@@ -18,4 +18,12 @@ describe('User model', function() {
         expect(user.dob).toEqual("03/08/1938");
     });
 
+    it('can list all users', function(done) {
+        User.find(function(err, users) {
+          expect(err).toBeNull();
+          expect(users).toEqual([]);
+          done();
+        });
+      });
+
 });
