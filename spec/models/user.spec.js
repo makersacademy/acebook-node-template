@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var bcrypt = require('bcryptjs');
 
 require("../mongodb_helper");
 var User = require("../../models/user");
@@ -52,10 +53,10 @@ describe("User model", function() {
           firstName: "Terry",
           surname: "Wogan",
           email: "terry@wogan.com",
-          newPassword: "pudsey",
           dob: "03/08/1938"
         });
 
+        expect(bcrypt.compareSync(user.newPassword, users[0].newPassword)).toBe(true);
         done();
       });
     });
