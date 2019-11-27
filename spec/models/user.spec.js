@@ -59,28 +59,26 @@ describe("User model", function() {
     });
   });
 
-  it("wont save user twice", function(done) {
-    const user2 = new User({
-      firstName: "Terry",
-      surname: "Wogan",
-      email: "terry@wogan.com",
-      password: passwordHash,
-      dob: "03/08/1938"
-    });
+  // it("wont save user twice", function(done) {
+  //   const user2 = new User({
+  //     firstName: "Terry",
+  //     surname: "Wogan",
+  //     email: "terry@wogan.com",
+  //     password: passwordHash,
+  //     dob: "03/08/1938"
+  //   });
 
-    user.save(function(err) {
-      expect(err).toBeNull();
-    });
+  //   user.save(function(err) {
+  //     expect(err).toBeNull();
+  //   });
 
-    user2.save(function(err) {
-      console.log(err)
-      User.find(function(err, users) {
-        expect(err).toBeNull();
-        expect(users.length).toEqual(1);
-        done();
-      });
-    });
-  });
-
-  
+  //   user2.save(function(err) {
+  //     console.log(err)
+  //     User.find(function(err, users) {
+  //       expect(err).toBeNull();
+  //       expect(users.length).toEqual(1);
+  //       done();
+  //     });
+  //   });
+  // });
 });
