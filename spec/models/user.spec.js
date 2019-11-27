@@ -16,7 +16,7 @@ describe("User model", function() {
       firstName: "Terry",
       surname: "Wogan",
       email: "terry@wogan.com",
-      newPassword: "pudsey",
+      password: "pudsey",
       dob: "03/08/1938"
     });
 
@@ -35,11 +35,13 @@ describe("User model", function() {
   });
 
   it("can save a user", function(done) {
+    var salt = bcrypt.genSaltSync(10);
+    var passwordHash = bcrypt.hashSync("pudsey", salt);
     const user = new User({
       firstName: "Terry",
       surname: "Wogan",
       email: "terry@wogan.com",
-      newPassword: "pudsey",
+      password: passwordHash,
       dob: "03/08/1938"
     });
 
@@ -56,7 +58,7 @@ describe("User model", function() {
           dob: "03/08/1938"
         });
 
-        expect(bcrypt.compareSync(user.newPassword, users[0].newPassword)).toBe(true);
+        expect(bcrypt.compareSync("pudsey", users[0].password)).toBe(true);
         done();
       });
     });
