@@ -5,7 +5,7 @@ var UserController  = {
         var user = new User(req.body)
         user.save(function(err) {
             if (err) {throw err; }
-            console.log("success")
+            res.send("success")
         });
     }
 }

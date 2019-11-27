@@ -10,14 +10,17 @@ describe("User model", function() {
     });
   });
 
-  it("has a name, email and dob", () => {
+  it("has a First name, surname, email, password and dob", () => {
     const user = new User({
-      name: "Terry Wogan",
+      firstName: "Terry",
+      surname: "Wogan",
       email: "terry@wogan.com",
+      newPassword: "pudsey",
       dob: "03/08/1938"
     });
 
-    expect(user.name).toEqual("Terry Wogan");
+    expect(user.firstName).toEqual("Terry");
+    expect(user.surname).toEqual("Wogan");
     expect(user.email).toEqual("terry@wogan.com");
     expect(user.dob).toEqual("03/08/1938");
   });
@@ -32,8 +35,10 @@ describe("User model", function() {
 
   it("can save a user", function(done) {
     const user = new User({
-      name: "Terry Wogan",
+      firstName: "Terry",
+      surname: "Wogan",
       email: "terry@wogan.com",
+      newPassword: "pudsey",
       dob: "03/08/1938"
     });
 
@@ -44,8 +49,10 @@ describe("User model", function() {
         expect(err).toBeNull();
 
         expect(users[0]).toMatchObject({
-          name: "Terry Wogan",
+          firstName: "Terry",
+          surname: "Wogan",
           email: "terry@wogan.com",
+          newPassword: "pudsey",
           dob: "03/08/1938"
         });
 

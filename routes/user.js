@@ -5,3 +5,5 @@ var UserController = require('../controllers/user')
 
 router.post('/', UserController.Create);
 
+module.exports = router
+
