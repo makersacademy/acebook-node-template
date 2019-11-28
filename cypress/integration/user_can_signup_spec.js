@@ -1,5 +1,3 @@
-require("../../spec/mongodb_dropusers");
-
 describe('Signup', function() {
     beforeEach(function () {
         cy.exec('npm run db:reset')
@@ -82,6 +80,6 @@ describe('Signup', function() {
 
         cy.get('#submit-button').click();
   
-        cy.contains('Error. User already exist');
+        cy.contains('Error. User already exists');
     });
 });

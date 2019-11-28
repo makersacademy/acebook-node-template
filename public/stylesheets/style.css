@@ -3,6 +3,35 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+input {
+  margin: 10px 0;
+  width: 332px;
+  display: block;
+  border-radius: 6px;
+  font-size: 20px;
+  line-height: 48px;
+  padding: 0 16px;
+}
+
+input[type=text], input[type=password] {
+  border: 1px solid #ccc;
+}
+
+button, input[type=submit] {
+  background-color: #1877f2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  line-height: 48px;
+  padding: 0 16px;
+  width: 332px;
+}
+
+button:hover, input[type=submit]:hover {
+  cursor: pointer;
+}
+
 a {
   color: #00B7FF;
 }
