@@ -1,4 +1,9 @@
+require("../../spec/mongodb_dropusers");
+
 describe('Signup', function() {
+    beforeEach(function () {
+        cy.task('npm run db:reset')
+    })
     it('can submit sign up and show success', function() {
         cy.visit('/');
   
