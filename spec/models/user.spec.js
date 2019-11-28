@@ -59,26 +59,16 @@ describe("User model", function() {
     });
   });
 
-  // it("wont save user twice", function(done) {
-  //   const user2 = new User({
-  //     firstName: "Terry",
-  //     surname: "Wogan",
-  //     email: "terry@wogan.com",
-  //     password: passwordHash,
-  //     dob: "03/08/1938"
-  //   });
+  it('after sign up we should be able to login user', function(done) {
+    user.save(function(err) {
+      expect(err).toBeNull();
 
-  //   user.save(function(err) {
-  //     expect(err).toBeNull();
-  //   });
-
-  //   user2.save(function(err) {
-  //     console.log(err)
-  //     User.find(function(err, users) {
-  //       expect(err).toBeNull();
-  //       expect(users.length).toEqual(1);
-  //       done();
-  //     });
-  //   });
-  // });
+      User.findOne({email: user.email}, function(err, returnedUser) {
+        if (err) return err;
+        expect(returnedUser.email).toBe('terry@wogan.com');
+        expect(bcrypt.compareSync("pudsey", returnedUser.password)).toBe(true);
+        done();
+      });
+    });
+  });
 });

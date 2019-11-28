@@ -6,11 +6,11 @@ var UserController  = {
     Create: function (req, res) {
         var form = req.body;
         var passwordHash = bcrypt.hashSync(form.password, salt);
-        User.find({email: form.email}), function (err, docs) {
-            if (err) { throw err; }
-            if (docs.length){
-                res.send("Error. User already exists")
-            } else{
+        // User.find({email: form.email}), function (err, docs) {
+        //     if (err) { throw err; }
+        //     if (docs.length){
+        //         res.send("Error. User already exists")
+        //     } else{
                 var user = new User({
                     firstName: form.firstName,
                     surname: form.surname,
@@ -22,8 +22,22 @@ var UserController  = {
                     if (err) {throw err; }
                     res.send("success")
                 });
+            },
+        // } 
+    // }
+    Index: function(req, res) {
+        var form = req.body;
+        User.findOne({email: form.email }, function(err, user) {
+          if (err) { throw err; }
+          if(user) {
+            if(bcrypt.compareSync(form.password, user.password)) {
+                res.redirect("/posts");
+            } else {
+                res.redirect("/");
             }
-        } 
-    }
+          }
+        });
+    },
 }
+
 module.exports = UserController;
