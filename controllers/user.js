@@ -31,6 +31,7 @@ var UserController  = {
           if (err) { throw err; }
           if(user) {
             if(bcrypt.compareSync(form.password, user.password)) {
+                res.cookie('userId', user.id);
                 res.redirect("/posts");
             } else {
                 res.redirect("/");

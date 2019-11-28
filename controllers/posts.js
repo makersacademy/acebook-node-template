@@ -1,11 +1,14 @@
 var Post = require('../models/post');
 
 var PostsController = {
-  Index: function(req, res) {
+  Index: async function(req, res) {
     Post.find(function(err, posts) {
       if (err) { throw err; }
 
-      res.render('posts/index', { posts: posts });
+      res.render('posts/index', { 
+        posts: posts,
+        user: req.cookies.userId
+       });
     });
   },
   New: function(req, res) {
