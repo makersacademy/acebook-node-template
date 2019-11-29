@@ -18,9 +18,10 @@ var UserController  = {
                     dob: form.dob,
                     password: passwordHash
                 });
-                user.save(function(err) {
+                user.save(function(err, user) {
                     if (err) {throw err; }
-                    res.send("success")
+                    res.cookie("userId", user.id)
+                    res.redirect("/posts")
                 });
             }
         }) 
