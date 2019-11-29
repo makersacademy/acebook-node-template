@@ -40,6 +40,12 @@ var UserController  = {
           }
         });
     },
+    LogOut: function(req, res) {
+        if (req.cookies.userId) {
+            res.clearCookie("userId")
+        }
+        res.redirect("/")
+    }
 }
 
 module.exports = UserController;
