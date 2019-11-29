@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #e9ebee;
 }
 
 input {
@@ -34,4 +35,33 @@ button:hover, input[type=submit]:hover {
 
 a {
   color: #00B7FF;
+}
+
+.navbar {
+
+  background-color: #1877f2;
+  position: fixed;
+  height: 50px;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+}
+.link-container {
+
+  margin-right: 80px;
+  margin-top: 15px;
+}
+
+.link {
+
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 20px;
+
+
 }
