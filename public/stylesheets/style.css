@@ -1,11 +1,13 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #e9ebee;
+  background-color:  rgba(193,244,255,1);
+  background: linear-gradient(162deg, rgba(131,126,228,1) 0%, rgba(215,175,250,1) 15%, rgba(193,244,255,1) 50%);
+  background-repeat: no-repeat;
 }
-
 input {
   margin: 10px 0;
+
   width: 332px;
   display: block;
   border-radius: 6px;
