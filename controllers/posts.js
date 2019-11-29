@@ -15,7 +15,11 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
+    var timeDate = new Date();
+    var post = new Post({ 
+                    message: req.body.message, 
+                    timeDate: timeDate
+                  });
     console.log(req.body)
     post.save(function(err) {
       if (err) { throw err; }

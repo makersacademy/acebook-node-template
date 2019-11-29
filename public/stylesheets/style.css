@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color:  rgba(193,244,255,1);
   background: linear-gradient(162deg, rgba(131,126,228,1) 0%, rgba(215,175,250,1) 15%, rgba(193,244,255,1) 50%);
@@ -21,7 +20,7 @@ input[type=text], input[type=password] {
 }
 
 button, input[type=submit] {
-  background-color: #1877f2;
+  background-color: #2160b3;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -64,6 +63,48 @@ a {
   font-weight: bold;
   text-decoration: none;
   padding: 10px 20px;
+}
+
+.welcome {
+  margin-top: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+header{
+  padding: 15px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav ul {
+  display: flex;
+  align-items: baseline;
+  list-style-type: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
 
 
+.main {
+  padding: 10px;
+  flex: 3;
+  margin-right: 60px;
+  background: white;
+}
+
+.sidebar {
+ padding: 10px;
+ padding-right: 0;
+ flex: 1;
+ background:yellow;
 }

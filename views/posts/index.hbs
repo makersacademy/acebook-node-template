@@ -1,12 +1,16 @@
 <body>
-<div class="navbar"> 
+  {{!-- <div class="navbar"> 
   <div class="link-container"> 
     <a class="link" href="#0">home</a>
     <a class="link" href="#0">profile</a>
     <a class="link" href="#0">log out</a>
   </div>
 </div>
+
+
 <a href="/" class="logo"></a>
+
+
 <h1>Newsfeed</h1>
 <h2>{{user}}</h2>
 <ul class="posts">
@@ -15,4 +19,48 @@
   {{/each}}
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<a class="new-post-link" href="/posts/new">New post</a> --}}
+
+
+  <div class="container">
+
+    <header>
+      <div class="navbar">
+        <div class="welcome">Hello, {{user}}! </div>
+
+        <div class="link-container">
+          <a class="link" href="#0">home</a>
+          <a class="link" href="#0">profile</a>
+          <a class="link" href="#0">log out</a>
+          <a href="/" class="logo"></a>
+      
+        </div>
+
+      </div>
+    </header>
+
+    <div class="wrapper">
+      <aside class="sidebar">
+        <h3></h3>
+      </aside>
+      <section class="main">
+        <h2></h2>
+        <p></p>
+        <h1>Newsfeed</h1>
+       
+        <ul class="posts">
+          {{#each posts}}
+          <li>{{this.message}}{{this.timeDate}}</li>
+          {{/each}}
+        </ul>
+
+        <a class="new-post-link" href="/posts/new">New post</a>
+      </section>
+    </div><!-- /wrapper -->
+
+    <footer>
+      <h3></h3>
+      <p></p>
+    </footer>
+  </div>
+  <!-- /container -->
