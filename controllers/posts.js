@@ -18,7 +18,11 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
+    var post = new Post(
+      {
+      message: req.body.message,
+      userId: req.cookies.userId
+      });
     console.log(req.body)
     post.save(function(err) {
       if (err) { throw err; }
