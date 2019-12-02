@@ -2,6 +2,9 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: async function(req, res) {
+    if(!req.cookies.userId) {
+      res.redirect("/");
+    }
     Post.find(function(err, posts) {
       if (err) { throw err; }
 
