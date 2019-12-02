@@ -1,18 +1,25 @@
 var Post = require('../models/post');
+var User = require('../models/user');
 
 var PostsController = {
   Index: async function(req, res) {
     if(!req.cookies.userId) {
       res.redirect("/");
     }
-    Post.find(function(err, posts) {
+    let findPosts = Post.find(function(err, posts) {
       if (err) { throw err; }
+      return posts;
+    })
 
-      res.render('posts/index', { 
-        posts: posts,
-        user: req.cookies.userId
-       });
-    });
+    let findUser = User.findOne({_id: req.cookies.userId}, function(err, user) {
+      if (err) { throw err; }
+      return user;
+    })
+
+    res.render('posts/index', { 
+      posts: await findPosts,
+      user: await findUser
+      });
   },
   New: function(req, res) {
     res.render('posts/new', {});
@@ -24,7 +31,8 @@ var PostsController = {
     var timeDate = time + ' ' + date;
     var post = new Post({ 
                     message: req.body.message, 
-                    timeDate: timeDate
+                    timeDate: timeDate,
+                    userId: req.cookies.userId
                   });
     console.log(req.body)
     post.save(function(err) {
