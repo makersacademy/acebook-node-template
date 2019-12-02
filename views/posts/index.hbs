@@ -1,9 +1,45 @@
-<h1>Timeline</h1>
-<h2>{{user}}</h2>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+<body>
+  <div class="container">
 
-<a class="new-post-link" href="/posts/new">New post</a>
+    <header>
+      <div class="navbar">
+        <div class="link-container">
+          <a class="link" href="#0">Hello, {{user}}!</a>
+          <a class="link" href="#0">Home</a>
+          <a class="link" href="#0">Create</a>
+          <a class="link" href="#0">Log Out</a>
+          <a href="/" class="logo"></a>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrapper">
+      <aside class="sidebar">
+        <h3></h3>
+      </aside>
+      <section class="main">
+        <form id="new-post-form" action="/posts" method="post">
+          <input id="message" class="postBox" placeholder="What's on your mind, {{user}}?" type="text" name="message" value="" required >
+          <input class="postButton" type="submit" value="Post">
+        </form>
+
+        <div class="posts">
+          {{#each posts}}
+          <div a href="/posts/{{id}}" class="postCard">
+          <p class="postOwner">Poster Name Here</p> 
+          <p class="postTime">{{this.timeDate}}</p>
+          <p>{{this.message}}</p>
+          </div>
+
+          {{/each}}
+        </div>
+
+      </section>
+    </div><!-- /wrapper -->
+
+    <footer>
+      <h3></h3>
+      <p></p>
+    </footer>
+  </div>
+  <!-- /container -->
