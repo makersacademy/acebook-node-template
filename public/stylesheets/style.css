@@ -145,7 +145,7 @@ input[type=submit].postButton {
   width: 100%;
   border-radius: 50%;
   padding-top: 0px;
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .postOwner {
