@@ -1,7 +1,11 @@
 <body>
   <div class="container">
     <header>
+
       <div class="navbar">
+        <div class="logo-container">
+          <a href="/"><img  class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
+        </div>
         <div class="link-container">
           <a class="link" href="#0">Hello, {{user.firstName}}!</a>
           <a class="link" href="#0">Home</a>
@@ -24,7 +28,9 @@
 
         <div class="posts">
           {{#each data}}
-          <div a href="/posts/{{this.id}}" class="postCard">
+            
+          <div a href="/posts/{{id}}" class="postCard">
+            <img src="./images/blank_profile.jpg" alt="Avatar">
             <p class="postOwner">{{this.user}}</p> 
             <p class="postTime">{{this.timeDate}}</p>
             <p>{{this.message}}</p>

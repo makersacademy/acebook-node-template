@@ -1,10 +1,10 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* background-color:  rgba(193,244,255,1); */
-  /* background: linear-gradient(162deg, rgba(131,126,228,1) 0%, rgba(215,175,250,1) 15%, rgba(193,244,255,1) 50%); */
+  background: linear-gradient(162deg, rgb(205, 217, 236) 0%, rgb(225, 231, 240) 15%, #E9EBEE 50%);
   background-repeat: no-repeat;
-  background-color: #E9EBEE;
+  /* background-color: #E9EBEE; */
 }
+
 input {
   margin: 10px 0;
   width: 332px;
@@ -19,13 +19,15 @@ input[type=text], input[type=password] {
 }
 
 button, input[type=submit] {
+  margin-top: 0;
   background-color: #2160b3;
   color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 20px;
-  line-height: 48px;
-  width: 332px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 28px;
+  width: 100%;
 }
 
 button:hover, input[type=submit]:hover {
@@ -37,7 +39,6 @@ a {
 }
 
 .navbar {
-
   background-color: #4267B2;
   position: fixed;
   height: 40px;
@@ -46,21 +47,41 @@ a {
   right: 0;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-
+  justify-content: space-between;
 }
-.link-container {
 
+.link-container {
+  display: flex;
+  justify-content: flex-end;
   margin-right: 80px;
-  margin-top: 15px;
+}
+
+.logo-container {
+  padding-left: 10px;
+}
+
+.profpic {
+  float: left;
+  height: 30px;
+  max-width: 30px;
+  width: 100%;
+  border-radius: 50%;
+  padding-top: 5px;
+}
+
+.logo {
+  float: left;
+  height: 30px;
+  max-width: 30px;
+  width: 100%;
+  padding-top: 5px;
 }
 
 .link {
-
   color: #fff;
   font-weight: bold;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 10px 20px 10px 5px;
 }
 
 
@@ -112,18 +133,30 @@ input[type=submit].postButton {
   text-decoration: none;
   border: 1px solid #dedede;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px;
   margin: 10px 0;
 }
 
+.postCard img {
+  float: left;
+  height: 40px;
+  max-width: 40px;
+  width: 100%;
+  border-radius: 50%;
+  padding-top: 0px;
+    margin-right: 10px;
+}
+
 .postOwner {
+  margin: 2px;
   color: #385898;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 }
 
 .postTime {
+  margin: 2px;
   font-size: 12px;
   color: #686E77;
 }
@@ -133,7 +166,7 @@ input[type=submit].postButton {
   border: 1px solid #dedede;
   background-color: white;
   border-radius: 5px;
-  margin: 10px 0;
+  margin: 10px 0 0;
 }
 
 .postBox::placeholder {
