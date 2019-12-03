@@ -28,10 +28,11 @@
         </form>
         
         <div class="posts">
-          {{#each posts}}
+          {{#each data}}
+            
           <div a href="/posts/{{id}}" class="postCard">
             <img src="./images/blank_profile.jpg" alt="Avatar">
-            <p class="postOwner">Poster Name Here</p>
+            <p class="postOwner">{{this.user}}</p> 
             <p class="postTime">{{this.timeDate}}</p>
             <p>{{this.message}}</p>
           </div>
