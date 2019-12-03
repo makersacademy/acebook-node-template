@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Posts = require('../models/post');
 var bcrypt = require('bcryptjs');
 var salt = bcrypt.genSaltSync(10);
 
@@ -47,12 +48,24 @@ var UserController  = {
         }
         res.redirect("/")
     },
-    Profile: function (req, res) {
-        User.findOne({_id: req.params.id}, function(err, user){
+    Profile: async function (req, res)  {
+        let findUser = User.findOne({_id: req.params.id}, function(err, user){
             if (err) {throw err;}
             if (user) {
-                res.render("user/profile", user)
+                return user
             }
+        })
+
+        let findUserPosts = Posts.find({userId: req.params.id}, function(err, posts){
+            if (err) {throw err;}
+            if (posts) {
+                return posts
+            }
+        })
+
+        res.render("user/profile", { 
+            user: await findUser,
+            posts: await findUserPosts
         })
     }
 }
