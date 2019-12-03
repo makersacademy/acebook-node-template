@@ -12,7 +12,6 @@
     "test:unit": "jest",
     "test:integration": "cypress run",
     "db:reset": "mongo acebook_test --eval 'db.users.drop()'"
-    
   },
   "engines": {
     "node": ">=10.16.3"

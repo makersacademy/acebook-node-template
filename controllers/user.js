@@ -41,6 +41,17 @@ var UserController  = {
           }
         });
     },
+
+    All: function(req, res) {
+        User.find({}, function(err, users) {
+            if(err) {throw err; }
+            if(users) {
+                res.render("users/all", { users });
+            }
+        });
+    
+    },
+
     LogOut: function(req, res) {
         if (req.cookies.userId) {
             res.clearCookie("userId")
