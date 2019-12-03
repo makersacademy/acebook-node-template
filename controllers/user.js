@@ -46,6 +46,14 @@ var UserController  = {
             res.clearCookie("userId")
         }
         res.redirect("/")
+    },
+    Profile: function (req, res) {
+        User.findOne({_id: req.params.id}, function(err, user){
+            if (err) {throw err;}
+            if (user) {
+                res.render("user/profile", user)
+            }
+        })
     }
 }
 
