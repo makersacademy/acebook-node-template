@@ -2,10 +2,9 @@
   <div class="container">
 
     <header>
-
       <div class="navbar">
         <div class="logo-container">
-          <a href="/"><img  class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
+          <a href="/"><img class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
         </div>
         <div class="link-container">
           <img class="profpic" src="./images/blank_profile.jpg" alt="Avatar">
@@ -21,24 +20,24 @@
       <aside class="sidebar">
         <h3></h3>
       </aside>
+
       <section class="main">
         <form id="new-post-form" action="/posts" method="post">
-          <input id="message" class="postBox" placeholder="What's on your mind, {{user}}?" type="text" name="message" value="" required >
+          <input id="message" class="postBox" placeholder="What's on your mind, {{user}}?" type="text" name="message"
+            value="" required>
           <input class="postButton" type="submit" value="Post">
         </form>
-
+        
         <div class="posts">
           {{#each posts}}
           <div a href="/posts/{{id}}" class="postCard">
             <img src="./images/blank_profile.jpg" alt="Avatar">
-            <p class="postOwner">Poster Name Here</p> 
+            <p class="postOwner">Poster Name Here</p>
             <p class="postTime">{{this.timeDate}}</p>
             <p>{{this.message}}</p>
           </div>
-
           {{/each}}
         </div>
-
       </section>
     </div><!-- /wrapper -->
 
