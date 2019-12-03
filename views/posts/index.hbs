@@ -4,9 +4,10 @@
 
       <div class="navbar">
         <div class="logo-container">
-          <a href="/"><img  class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
+          <a href="/"><img class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
         </div>
         <div class="link-container">
+          <img class="profpic" src="./images/blank_profile.jpg" alt="Avatar">
           <a class="link" href="#0">Hello, {{user.firstName}}!</a>
           <a class="link" href="#0">Home</a>
           <a class="link" href="#0">Create</a>
@@ -20,12 +21,13 @@
       <aside class="sidebar">
         <h3></h3>
       </aside>
+
       <section class="main">
         <form id="new-post-form" action="/posts" method="post">
           <input id="message" class="postBox" placeholder="What's on your mind, {{user.firstName}}?" type="text" name="message" value="" required >
           <input class="postButton" type="submit" value="Post">
         </form>
-
+        
         <div class="posts">
           {{#each data}}
             
@@ -35,10 +37,8 @@
             <p class="postTime">{{this.timeDate}}</p>
             <p>{{this.message}}</p>
           </div>
-
           {{/each}}
         </div>
-
       </section>
     </div><!-- /wrapper -->
 

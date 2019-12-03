@@ -84,7 +84,6 @@ a {
   padding: 10px 20px 10px 5px;
 }
 
-
 .container {
   display: flex;
   flex-direction: column;
@@ -109,25 +108,26 @@ header nav ul {
   justify-content: center;
 }
 
-
 .main {
   padding: 10px;
+  display: flex;
   flex: 3;
+  flex-direction: column;
   margin-right: 60px;
-  max-width: 500px;
+  max-width: 650px;
 }
 
 .sidebar {
- max-width: 200px;
- padding: 10px;
- padding-right: 0;
- flex: 1;
+  display: flex;
+  max-width: 200px;
+  padding: 10px;
+  padding-right: 0;
+  flex: 1;
 }
 
 input[type=submit].postButton {
   width: 100%;
 }
-
 
 .postCard {
   text-decoration: none;
