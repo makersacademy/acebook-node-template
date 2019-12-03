@@ -23,11 +23,11 @@
         </form>
 
         <div class="posts">
-          {{#each posts}}
-          <div a href="/posts/{{id}}" class="postCard">
-          <p class="postOwner">Poster Name Here</p> 
-          <p class="postTime">{{this.timeDate}}</p>
-          <p>{{this.message}}</p>
+          {{#each data}}
+          <div a href="/posts/{{this.id}}" class="postCard">
+            <p class="postOwner">{{this.user}}</p> 
+            <p class="postTime">{{this.timeDate}}</p>
+            <p>{{this.message}}</p>
           </div>
 
           {{/each}}
