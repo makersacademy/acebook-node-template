@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var Posts = require('../models/post');
+var FriendRequest = require('../models/friendRequest');
 var bcrypt = require('bcryptjs');
 var salt = bcrypt.genSaltSync(10);
 
@@ -27,7 +28,6 @@ var UserController  = {
             }
         }) 
     },
-
     Index: function(req, res) {
         var form = req.body;
         User.findOne({email: form.email }, function(err, user) {
@@ -42,7 +42,6 @@ var UserController  = {
           }
         });
     },
-
     All: function(req, res) {
         User.find({}, function(err, users) {
             if(err) {throw err; }
@@ -59,6 +58,7 @@ var UserController  = {
         }
         res.redirect("/")
     },
+
     Profile: async function (req, res)  {
         let findUser = User.findOne({_id: req.params.id}, function(err, user){
             if (err) {throw err;}
@@ -74,9 +74,20 @@ var UserController  = {
             }
         })
 
+        let friendStatus = FriendRequest.findOne({ $or:[{recipient: req.params.id}, {requester: req.params.id}]}, function(err, user) {
+            if(err) {throw err};
+            if(user) {
+                return { status: user.status };
+            }
+            else {
+                return 0;
+            }
+        })
+
         res.render("user/profile", { 
             user: await findUser,
-            posts: await findUserPosts
+            posts: await findUserPosts,
+            friendStatus: await friendStatus
         })
     }
 }
