@@ -5,8 +5,19 @@ var UserSchema = new mongoose.Schema({
   surname: String,
   email: String,
   password: String,
-  dob: String
+  dob: String,
+  friends: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Friend"
+  }],
+  friendRequests: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "FriendRequest"
+  }],
+  
+  
 });
+
 
 var User = mongoose.model('User', UserSchema);
 

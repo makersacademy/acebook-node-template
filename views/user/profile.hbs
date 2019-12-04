@@ -1,5 +1,5 @@
 <p> {{user.firstName}} {{user.surname}} - {{friendStatus.status}}</p> 
-<form action="/friends/add" method="POST">
+<form action="/user/add" method="POST">
     <input type="hidden" name="userId" value="{{user.id}}">
     <input id="submit-button" class="add-friend-{{friendStatus.status}}" type="submit" value="Add Friend">
 </form>

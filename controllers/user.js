@@ -89,6 +89,20 @@ var UserController  = {
             posts: await findUserPosts,
             friendStatus: await friendStatus
         })
+    },
+    AddFriend: function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        User.update({
+            _id: req.body.userId
+        }, {
+            $push: {
+                friendRequests: req.cookies.userId
+            }
+        }).exec(function(err, user){
+            console.log("foo_bar is added to the list of your followers");
+        })
     }
 }
 
