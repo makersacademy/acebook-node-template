@@ -1,31 +1,48 @@
 <div class="navbar">
-  <div class="logo-container">
-    <a href="/"><img class="logo" src="/images/acebook_icn_wht.png" alt="LogoIcon"></a>
-  </div>
-  <div class="link-container">
-    <img class="profpic" src="/images/blank_profile.jpg" alt="Avatar">
-    <a class="link" href="/user/{{user.id}}">Hello, {{user.firstName}}!</a>
+
+<div class="logo-container">
+    <a href="/"><img class="logo" src="../images/acebook_icn_wht.png" alt="LogoIcon"></a>
+</div>
+<div class="link-container">
+    <img class="profpic" src="../images/rob.jpg" alt="Avatar">
+    <a class="link" href="#0">Hello, {{user.firstName}}!</a>
+
     <a class="link" href="/user/requests">Friend requests</a>
     <a class="link" href="/user">Users</a>
     <a class="link" href="/user/logout">Log Out</a>
     <a href="/" class="logo"></a>
-  </div>
+
+</div>
 </div>
 
-<p> {{user.firstName}} {{user.surname}}</p> 
+<div class="backgroundimage"> 
+    <img class = "profilePic" src="../images/blank_profile.jpg" alt="profile pic">
+    <div class="form-container">
+        <form action="/user/add" method="POST">
+            <input type="hidden" name="userId" value="{{user.id}}">
+            <input id="submit-button" class="add-friend-{{friendStatus.status}}" type="submit" value="Add Friend +">
+        </form>
+    </div>
+</div>
 
-{{#if isFriends}}
-<p>You are friends.</p>
-{{else if isSelf}}
+<p> {{user.firstName}} {{user.surname}} - {{friendStatus.status}}</p> 
+    <div class="posts">
+    {{#each posts}}
+    <div class="postCard"><p>{{message}}</p></div>
+    {{/each}}
+    </div>
 
-{{else }}
-<form action="/user/add" method="POST">
-    <input type="hidden" name="userId" value="{{user.id}}">
-    <input id="submit-button" type="submit" value="Add Friend">
-</form>
-{{/if}}
+</div>
+<script>
+    let friendStatus = {{{friendStatus.status}}}
 
-{{#each posts}}
-<p>{{message}}</p>
-{{/each}}
+    if (friendStatus === 1) {
+        document.querySelector("#submit-button").value = "Friend request pending"
+    } else if (friendStatus === 2) {
+        document.querySelector("#submit-button").value = "Friends"
+    } else {
+        document.querySelector("#submit-button").value = "Add as friend"
+    }
+
+</script>
 
