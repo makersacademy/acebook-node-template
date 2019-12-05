@@ -1,32 +1,50 @@
- <div class="container">
-    <header>
-      <div class="loginbar">
-        <div class="logo-container">
-          <a href="/"><img class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
-        </div>
-        <div class="login-container">
-          <form action="/user/login" method="post">
+<div class="container">
+  <header>
+    <div class="loginbar">
+      <div class="logo-container">
+        <a href="/"><img class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
+      </div>
+      <div class="login-container">
+        <form action="/user/login" method="post">
           <table>
             <tr>
               <td>
                 <input class="logininput" id="email" placeholder="Email" type="text" name="email">
               </td>
               <td>
-               <input class="logininput" id="password" placeholder="Password" type="password" name="password">
+                <input class="logininput" id="password" placeholder="Password" type="password" name="password">
               </td>
-                <td>
-                 <input class="logininput" id="submit-button" type="submit" value="Log in">
-                </td>
-              </tr>
-            </table> 
-            </form>         
-          </div>
-        </div>
+              <td>
+                <input class="logininput" id="submit-button" type="submit" value="Log in">
+              </td>
+            </tr>
+          </table>
+        </form>
       </div>
-    </header>
     </div>
-
-
+</div>
+</header>
+</div>
+<div class="container">
+  <div class="wrapper">
+    <section class="leftbar">
+      <h1 class="title">{{title}}</h1>
+      <h2>by Rob and the Meerkats</h2>
+    </section>
+    <section class="rightbar">
+      <form id="new-user-form" action="/user" method="post">
+        <legend><h1>Sign up</h1></legend>
+        <input id="first_name" placeholder="First name" type="text" name="firstName" value="" required>
+        <input id="surname" placeholder="Surname" type="text" name="surname" value="" required>
+        <input id="email" placeholder="Email address" type="text" name="email" value="" required>
+        <input id="password" placeholder="New Password" type="password" name="password" value="" required>
+        <input id="dob" placeholder="Date of Birth" type="text" name="dob" value="">
+        <input id="submit-button" type="submit" value="Submit">
+      </form>
+    </section>
+  </div><!-- /wrapper -->
+</div>
+{{!-- 
 <h1 class="title">{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
@@ -38,4 +56,4 @@
   <input id="password" placeholder="New Password" type="password" name="password" value="" required>
   <input id="dob" placeholder="Date of Birth" type="text" name="dob" value="">
   <input id="submit-button" type="submit" value="Submit">
-</form>
+</form> --}}
