@@ -12,16 +12,15 @@
   </div>
 </div>
 
-<h1>Friend requests</h1>
-{{#if user.friendRequests}}
-{{#each user.friendRequests}}
-<div class="postCard">
-    <a href="/user/{{this.id}}">{{this.firstName}} {{this.surname}}</a>
-    <a href="/user/requests/{{this.id}}/accept">Accept</a>
-    <a href="/user/requests/{{this.id}}/decline">Decline</a>
+<h1>Friends</h1>
+<div class="card-container">
+  {{#each user.friends }}
+  <div class="card">
+    <img class="card-profilePic" src="/images/blank_profile.jpg" alt="profile picture">
+    <div class="container">
+      <a class="card-name" href="/user/{{this.id}}"> {{this.firstName}} {{this.surname}}</a>
+        <input type="hidden" name="userId" value="{{user.id}}">
+    </div>
+  </div>
+  {{/each }}
 </div>
-    
-{{/each}}
-{{/if}}
-
-

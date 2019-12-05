@@ -89,6 +89,19 @@ var UserController  = {
             res.redirect(`/user/${req.body.userId}`)
         })
     },
+    GetFriends: function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        User.findOne({_id: req.cookies.userId })
+                        .populate({
+                            path: 'friends',
+                            model: 'User'
+                        }).exec(function(err, docs) {
+                            if(err) { throw err}
+                            res.render('user/friends', {user:docs})
+                        });
+    },
     GetFriendRequests: function(req, res) {
         if(!req.cookies.userId) {
             res.redirect ("/")
@@ -98,6 +111,7 @@ var UserController  = {
                             path: 'friendRequests',
                             model: 'User'
                         }).exec(function(err, docs) {
+                            if(err) { throw err}
                             res.render('user/requests', {user:docs})
                         });
     },
