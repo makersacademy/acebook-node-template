@@ -174,13 +174,13 @@ so that integration tests do not interact with the development server.
 ## Contact
 
 Rob - [Rob's GitHub](https://github.com/robbaile)
-```
+
 Jade  - [Jade's GitHub](https://github.com/jade-genevieve)
-```
+
 Migle  - [Migle's GitHub](https://github.com/miglekuba)
-```
+
 Lena  - [Lena's GitHub](https://github.com/olkras03)
-```
+
 Project Link: [Project Repo](https://github.com/robbaile/acebook-robAndTheMeerkats)
 
 <!-- ACKNOWLEDGEMENTS -->
