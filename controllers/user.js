@@ -1,6 +1,5 @@
 var User = require('../models/user');
 var Posts = require('../models/post');
-var FriendRequest = require('../models/friendRequest');
 var bcrypt = require('bcryptjs');
 var salt = bcrypt.genSaltSync(10);
 
@@ -46,7 +45,7 @@ var UserController  = {
         User.find({}, function(err, users) {
             if(err) {throw err; }
             if(users) {
-                res.render("users/all", { users });
+                res.render("user/all", { users });
             }
         });
     
@@ -73,35 +72,59 @@ var UserController  = {
                 return posts
             }
         })
-
-        let friendStatus = FriendRequest.findOne({ $or:[{recipient: req.params.id}, {requester: req.params.id}]}, function(err, user) {
-            if(err) {throw err};
-            if(user) {
-                return { status: user.status };
-            }
-            else {
-                return 0;
-            }
-        })
-
         res.render("user/profile", { 
             user: await findUser,
-            posts: await findUserPosts,
-            friendStatus: await friendStatus
+            posts: await findUserPosts
         })
     },
     AddFriend: function(req, res) {
         if(!req.cookies.userId) {
             res.redirect ("/")
         }
-        User.update({
-            _id: req.body.userId
-        }, {
+        User.update({_id: req.body.userId}, {
             $push: {
                 friendRequests: req.cookies.userId
             }
         }).exec(function(err, user){
-            console.log("foo_bar is added to the list of your followers");
+            res.redirect(`/user/${req.body.userId}`)
+        })
+    },
+    GetFriendRequests: function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        User.findOne({_id: req.cookies.userId })
+                        .populate({
+                            path: 'friendRequests',
+                            model: 'User'
+                        }).exec(function(err, docs) {
+                            res.render('user/requests', {user:docs})
+                        });
+    },
+    AcceptFriendRequest: async function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+
+        let pullRequest = await User.updateOne({_id: req.cookies.userId}, { $pull: { friendRequests: req.params.id }})
+        let pushRequest = await User.updateOne({_id: req.cookies.userId}, { $push: { friends: req.params.id }})
+
+        pullRequest;
+        pushRequest;
+
+        res.redirect("/user/requests")
+
+    },
+    DeclineFriendRequest: function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        User.update({_id: req.cookies.userId}, {
+            $pull: {
+                friendRequests: req.params.id
+            }
+        }).exec(function(err, user){
+            res.redirect('/user/requests')
         })
     }
 }

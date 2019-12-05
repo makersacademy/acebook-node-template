@@ -7,15 +7,11 @@ var UserSchema = new mongoose.Schema({
   password: String,
   dob: String,
   friends: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Friend"
+    type: mongoose.Schema.Types.ObjectId, ref: "Friend"
   }],
   friendRequests: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "FriendRequest"
+    type: mongoose.Schema.Types.ObjectId, ref: "FriendRequest"
   }],
-  
-  
 });
 
 

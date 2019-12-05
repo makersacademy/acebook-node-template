@@ -2,7 +2,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: linear-gradient(162deg, rgb(205, 217, 236) 0%, rgb(225, 231, 240) 15%, #E9EBEE 50%);
   background-repeat: no-repeat;
-  /* background-color: #E9EBEE; */
+  background-color: #E9EBEE;
 }
 
 input {
