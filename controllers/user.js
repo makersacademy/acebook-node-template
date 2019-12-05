@@ -41,11 +41,17 @@ var UserController  = {
           }
         });
     },
-    All: function(req, res) {
+    All: async function(req, res) {
+        const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
+            if(err) {throw err; }
+            if(user) {
+                return user;
+            }
+        })
         User.find({}, function(err, users) {
             if(err) {throw err; }
             if(users) {
-                res.render("user/all", { users });
+                res.render("user/all", { loggedInUser, users });
             }
         });
     
@@ -59,22 +65,26 @@ var UserController  = {
     },
 
     Profile: async function (req, res)  {
-        let findUser = User.findOne({_id: req.params.id}, function(err, user){
+        let findUser = await User.findOne({_id: req.params.id}, function(err, user){
             if (err) {throw err;}
             if (user) {
                 return user
             }
         })
 
-        let findUserPosts = Posts.find({userId: req.params.id}, function(err, posts){
+        let findUserPosts = await Posts.find({userId: req.params.id}, function(err, posts){
             if (err) {throw err;}
             if (posts) {
                 return posts
             }
         })
+        var isFriends = findUser.friends.includes(req.cookies.userId);
+        var isSelf = req.params.id ===req.cookies.userId;
         res.render("user/profile", { 
-            user: await findUser,
-            posts: await findUserPosts
+            user: findUser,
+            posts: findUserPosts,
+            isFriends: isFriends,
+            isSelf: isSelf,
         })
     },
     AddFriend: function(req, res) {

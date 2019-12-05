@@ -4,7 +4,7 @@
   </div>
   <div class="link-container">
     <img class="profpic" src="./images/blank_profile.jpg" alt="Avatar">
-    <a class="link" href="#0">Hello, {{user.firstName}}!</a>
+    <a class="link" href="#0">Hello, {{loggedInUser.firstName}}!</a>
     <a class="link" href="/user/requests">Friend requests</a>
     <a class="link" href="/user">Users</a>
     <a class="link" href="/user/logout">Log Out</a>
@@ -21,7 +21,7 @@
       <form action="/user/add" method="POST">
         <input type="hidden" name="userId" value="{{user.id}}">
         <div class="submit-container">
-          <input id="submit-button" class="add-friend-{{friendStatus.status}}" type="submit" value="Add Friend">
+          <input id="submit-button" type="submit" value="Add Friend">
         </div>
       </form>
     </div>
