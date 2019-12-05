@@ -108,9 +108,10 @@ var UserController  = {
 
         let pullRequest = await User.updateOne({_id: req.cookies.userId}, { $pull: { friendRequests: req.params.id }})
         let pushRequest = await User.updateOne({_id: req.cookies.userId}, { $push: { friends: req.params.id }})
-
+        let pushRequest2 = await User.updateOne({_id: req.params.id}, {$push: {friends: req.cookies.userId }})
         pullRequest;
         pushRequest;
+        pushRequest2;
 
         res.redirect("/user/requests")
 
