@@ -41,11 +41,17 @@ var UserController  = {
           }
         });
     },
-    All: function(req, res) {
+    All: async function(req, res) {
+        const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
+            if(err) {throw err; }
+            if(user) {
+                return user;
+            }
+        })
         User.find({}, function(err, users) {
             if(err) {throw err; }
             if(users) {
-                res.render("user/all", { users });
+                res.render("user/all", { loggedInUser, users });
             }
         });
     

@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<p> {{user.firstName}} {{user.surname}} - {{friendStatus.status}}</p> 
+<p> {{user.firstName}} {{user.surname}}</p> 
 
 {{#if isFriends}}
 <p>You are friends.</p>
@@ -21,7 +21,7 @@
 {{else }}
 <form action="/user/add" method="POST">
     <input type="hidden" name="userId" value="{{user.id}}">
-    <input id="submit-button" class="add-friend-{{friendStatus.status}}" type="submit" value="Add Friend">
+    <input id="submit-button" type="submit" value="Add Friend">
 </form>
 {{/if}}
 
@@ -29,15 +29,3 @@
 <p>{{message}}</p>
 {{/each}}
 
-<script>
-    let friendStatus = {{{friendStatus.status}}}
-
-    if (friendStatus === 1) {
-        document.querySelector("#submit-button").value = "Friend request pending"
-    } else if (friendStatus === 2) {
-        document.querySelector("#submit-button").value = "Friends"
-    } else {
-        document.querySelector("#submit-button").value = "Add as friend"
-    }
-
-</script>
