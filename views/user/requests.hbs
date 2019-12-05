@@ -1,0 +1,13 @@
+<h1>Friend requests</h1>
+{{#if user.friendRequests}}
+{{#each user.friendRequests}}
+<div class="postCard">
+    <a href="/user/{{this.id}}">{{this.firstName}} {{this.surname}}</a>
+    <a href="/user/requests/{{this.id}}/accept">Accept</a>
+    <a href="/user/requests/{{this.id}}/decline">Decline</a>
+</div>
+    
+{{/each}}
+{{/if}}
+
+
