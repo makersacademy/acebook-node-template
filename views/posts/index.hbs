@@ -9,8 +9,8 @@
         <div class="link-container">
           <img class="profpic" src="./images/blank_profile.jpg" alt="Avatar">
           <a class="link" href="#0">Hello, {{user.firstName}}!</a>
-          <a class="link" href="#0">Home</a>
-          <a class="link" href="#0">Create</a>
+          <a class="link" href="/user/requests">Friend requests</a>
+          <a class="link" href="/user">Users</a>
           <a class="link" href="/user/logout">Log Out</a>
           <a href="/" class="logo"></a>
         </div>
@@ -31,7 +31,7 @@
         <div class="posts">
           {{#each data}}
             
-          <div a href="/posts/{{id}}" class="postCard">
+          <div class="postCard">
             <img src="./images/blank_profile.jpg" alt="Avatar">
             <a href = "/user/{{userId}}" class="postOwner">{{this.user}}</a> 
             <p class="postTime">{{this.timeDate}}</p>
