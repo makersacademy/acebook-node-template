@@ -3,6 +3,8 @@ body {
   background: linear-gradient(162deg, rgb(205, 217, 236) 0%, rgb(225, 231, 240) 15%, #E9EBEE 50%);
   background-repeat: no-repeat;
   background-color: #E9EBEE;
+  margin: 0;
+  padding: 0;
 }
 
 input {
@@ -39,6 +41,7 @@ a {
 }
 
 .navbar {
+  z-index: 100;
   background-color: #4267B2;
   position: fixed;
   height: 40px;
@@ -182,4 +185,38 @@ input[type="submit"].add-friend-1 {
 
 .add-friend-0 {
   background-color: #4267B2;
+}
+.backgroundimage {
+  background-image: url("../images/3.jpg");
+  height: 400px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.profilePic {
+border-radius: 50%;
+position: absolute;
+left: 30px;
+height: 200px;
+width: 200px;
+bottom: -30px;
+border: 4px solid #ccc;
+}
+
+.form-container {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  width: 150px;
+}
+
+#submit-button {
+  background-color: #f5f6f7;
+  color: #686E77;
+}
+.posts {
+  max-width: 1000px;
+  margin: 0 auto;
 }
