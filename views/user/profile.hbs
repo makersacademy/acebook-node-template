@@ -1,12 +1,10 @@
 <div class="navbar">
-
-<div class="logo-container">
-    <a href="/"><img class="logo" src="../images/acebook_icn_wht.png" alt="LogoIcon"></a>
-</div>
-<div class="link-container">
-    <img class="profpic" src="../images/rob.jpg" alt="Avatar">
-    <a class="link" href="#0">Hello, {{user.firstName}}!</a>
-
+  <div class="logo-container">
+    <a href="/"><img class="logo" src="/images/acebook_icn_wht.png" alt="LogoIcon"></a>
+  </div>
+  <div class="link-container">
+    <img class="profpic" src="/images/blank_profile.jpg" alt="Avatar">
+    <a class="link" href="/user/{{loggedInUser.id}}">Hello, {{loggedInUser.firstName}}!</a>
     <a class="link" href="/user/requests">Friend requests</a>
     <a class="link" href="/user">Users</a>
     <a class="link" href="/user/logout">Log Out</a>
@@ -32,17 +30,15 @@
     {{/each}}
     </div>
 
-</div>
-<script>
-    let friendStatus = {{{friendStatus.status}}}
+{{#if isFriends}}
+<p>You are friends.</p>
+{{else if isSelf}}
+<p>This is you!</p>
+{{else }}
+<form action="/user/add" method="POST">
+    <input type="hidden" name="userId" value="{{user.id}}">
+    <input id="submit-button" type="submit" value="Add Friend">
+</form>
+{{/if}}
 
-    if (friendStatus === 1) {
-        document.querySelector("#submit-button").value = "Friend request pending"
-    } else if (friendStatus === 2) {
-        document.querySelector("#submit-button").value = "Friends"
-    } else {
-        document.querySelector("#submit-button").value = "Add as friend"
-    }
-
-</script>
 

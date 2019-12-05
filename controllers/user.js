@@ -42,6 +42,7 @@ var UserController  = {
         });
     },
     All: async function(req, res) {
+
         const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
             if(err) {throw err; }
             if(user) {
@@ -51,7 +52,15 @@ var UserController  = {
         User.find({}, function(err, users) {
             if(err) {throw err; }
             if(users) {
-                res.render("user/all", { loggedInUser, users });
+                var checkedUsers =  users.map(function(user) {
+                    return {
+                    user,
+                    isFriends: user.friends.includes(req.cookies.userId),
+                    isSelf: user.id === req.cookies.userId,
+                    }
+                })
+                console.log(checkedUsers)
+                res.render("user/all", { loggedInUser, checkedUsers });
             }
         });
     
@@ -65,6 +74,13 @@ var UserController  = {
     },
 
     Profile: async function (req, res)  {
+        const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
+            if(err) {throw err; }
+            if(user) {
+                return user;
+            }
+        })
+        
         let findUser = await User.findOne({_id: req.params.id}, function(err, user){
             if (err) {throw err;}
             if (user) {
@@ -81,6 +97,7 @@ var UserController  = {
         var isFriends = findUser.friends.includes(req.cookies.userId);
         var isSelf = req.params.id ===req.cookies.userId;
         res.render("user/profile", { 
+            loggedInUser: loggedInUser,
             user: findUser,
             posts: findUserPosts,
             isFriends: isFriends,
