@@ -17,7 +17,7 @@
 {{#if isFriends}}
 <p>You are friends.</p>
 {{else if isSelf}}
-
+<p>This is you!</p>
 {{else }}
 <form action="/user/add" method="POST">
     <input type="hidden" name="userId" value="{{user.id}}">
