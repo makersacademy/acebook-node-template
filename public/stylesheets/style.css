@@ -6,7 +6,7 @@ body {
 }
 
 input {
-  margin: 10px 0;
+  margin: 5px 0 5px;
   width: 332px;
   display: block;
   border-radius: 6px;
@@ -19,9 +19,9 @@ input[type=text], input[type=password] {
 }
 
 button, input[type=submit] {
-  margin-top: 0;
+  margin-top: 5px;
   background-color: #2160b3;
-  color: #fff;
+  color: rgb(11, 6, 110);
   border: 1px solid;
   border-radius: 2px;
   font-size: 12px;
@@ -48,6 +48,27 @@ a {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  white-space: nowrap;
+}
+
+.loginbar {
+  background-color: #4267B2;
+  position: fixed;
+  height: 100px;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.logininput {
+  float: left;
+  max-width: 200px;
+  height: 30px;
+  margin: 5px 0 5px;
 }
 
 .link-container {
@@ -145,7 +166,7 @@ input[type=submit].postButton {
   width: 100%;
   border-radius: 50%;
   padding-top: 0px;
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .postOwner {

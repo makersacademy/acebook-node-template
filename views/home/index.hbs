@@ -1,3 +1,32 @@
+ <div class="container">
+    <header>
+      <div class="loginbar">
+        <div class="logo-container">
+          <a href="/"><img class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
+        </div>
+        <div class="login-container">
+          <form action="/user/login" method="post">
+          <table>
+            <tr>
+              <td>
+                <input class="logininput" id="email" placeholder="Email" type="text" name="email">
+              </td>
+              <td>
+               <input class="logininput" id="password" placeholder="Password" type="password" name="password">
+              </td>
+                <td>
+                 <input class="logininput" id="submit-button" type="submit" value="Log in">
+                </td>
+              </tr>
+            </table> 
+            </form>         
+          </div>
+        </div>
+      </div>
+    </header>
+    </div>
+
+
 <h1 class="title">{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
@@ -9,12 +38,4 @@
   <input id="password" placeholder="New Password" type="password" name="password" value="" required>
   <input id="dob" placeholder="Date of Birth" type="text" name="dob" value="">
   <input id="submit-button" type="submit" value="Submit">
-</form>
-
-
-<h1>Log in</h1>
-<form action="/user/login" method="post">
-  <input id="email" type="text" name="email">
-  <input id="password" type="password" name="password">
-  <input id="submit-button" type="submit" value="Log in">
 </form>
