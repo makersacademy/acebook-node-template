@@ -65,6 +65,13 @@ var UserController  = {
     },
 
     Profile: async function (req, res)  {
+        const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
+            if(err) {throw err; }
+            if(user) {
+                return user;
+            }
+        })
+        
         let findUser = await User.findOne({_id: req.params.id}, function(err, user){
             if (err) {throw err;}
             if (user) {
@@ -81,6 +88,7 @@ var UserController  = {
         var isFriends = findUser.friends.includes(req.cookies.userId);
         var isSelf = req.params.id ===req.cookies.userId;
         res.render("user/profile", { 
+            loggedInUser: loggedInUser,
             user: findUser,
             posts: findUserPosts,
             isFriends: isFriends,
