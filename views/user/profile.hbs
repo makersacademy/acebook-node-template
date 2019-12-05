@@ -13,10 +13,18 @@
 </div>
 
 <p> {{user.firstName}} {{user.surname}} - {{friendStatus.status}}</p> 
+
+{{#if isFriends}}
+<p>You are friends.</p>
+{{else if isSelf}}
+
+{{else }}
 <form action="/user/add" method="POST">
     <input type="hidden" name="userId" value="{{user.id}}">
     <input id="submit-button" class="add-friend-{{friendStatus.status}}" type="submit" value="Add Friend">
 </form>
+{{/if}}
+
 {{#each posts}}
 <p>{{message}}</p>
 {{/each}}
