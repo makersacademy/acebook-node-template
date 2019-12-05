@@ -1,8 +1,22 @@
+## Table of Contents
+
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
+
+
+
 # Acebook
 
-This is a Node.js template for the Acebook engineering project.
-
-It uses:
+### Built with:
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
 - [Handlebars](https://handlebarsjs.com/) to render view templates.
@@ -13,7 +27,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/b/agT0v9jj/acebook-rob-and-the-meerkats
 
 ## Quickstart
 
@@ -33,7 +47,7 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 ### Set up your project
 
 1. Fork this repository
-1. Rename your fork to `acebook-<team name>`
+1. Rename your fork to `https://github.com/robbaile/acebook-robAndTheMeerkats`
 1. Clone your fork to your local machine
 1. Install Node.js dependencies
     ```
@@ -78,5 +92,5 @@ integration tests to pass.
 ```
 npm run start:test
 ```
-This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
+This starts the server on port `3030` and uses the `acebook` MongoDB database,
 so that integration tests do not interact with the development server.

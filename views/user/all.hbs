@@ -1,6 +1,30 @@
-{{#each users }}
+<div class="navbar">
+  <div class="logo-container">
+    <a href="/"><img class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
+  </div>
+  <div class="link-container">
+    <img class="profpic" src="./images/blank_profile.jpg" alt="Avatar">
+    <a class="link" href="#0">Hello, {{user.firstName}}!</a>
+    <a class="link" href="/user/requests">Friend requests</a>
+    <a class="link" href="/user">Users</a>
+    <a class="link" href="/user/logout">Log Out</a>
+    <a href="/" class="logo"></a>
+  </div>
+</div>
 
-<p>{{this.firstName}} {{this.surname}} </p>
-
-{{/each }}
-
+<div class="card-container">
+  {{#each users }}
+  <div class="card">
+    <img class="card-profilePic" src="./images/blank_profile.jpg" alt="profile picture">
+    <div class="container">
+      <a class="card-name" href="/user/{{this.id}}"> {{this.firstName}} {{this.surname}}</a>
+      <form action="/user/add" method="POST">
+        <input type="hidden" name="userId" value="{{user.id}}">
+        <div class="submit-container">
+          <input id="submit-button" class="add-friend-{{friendStatus.status}}" type="submit" value="Add Friend">
+        </div>
+      </form>
+    </div>
+  </div>
+  {{/each }}
+</div>
