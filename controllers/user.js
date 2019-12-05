@@ -42,8 +42,6 @@ var UserController  = {
         });
     },
     All: async function(req, res) {
-    
-        var isSelf = req.params.id === req.cookies.userId;
 
         const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
             if(err) {throw err; }
@@ -54,12 +52,11 @@ var UserController  = {
         User.find({}, function(err, users) {
             if(err) {throw err; }
             if(users) {
-                
                 var checkedUsers =  users.map(function(user) {
                     return {
                     user,
                     isFriends: user.friends.includes(req.cookies.userId),
-                    isSelf: isSelf,
+                    isSelf: user.id === req.cookies.userId,
                     }
                 })
                 console.log(checkedUsers)
