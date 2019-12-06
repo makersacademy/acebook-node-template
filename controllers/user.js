@@ -42,7 +42,6 @@ var UserController  = {
         });
     },
     All: async function(req, res) {
-
         const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
             if(err) {throw err; }
             if(user) {
@@ -59,11 +58,9 @@ var UserController  = {
                     isSelf: user.id === req.cookies.userId,
                     }
                 })
-                console.log(checkedUsers)
                 res.render("user/all", { loggedInUser, checkedUsers });
             }
         });
-    
     },
 
     LogOut: function(req, res) {
@@ -114,7 +111,7 @@ var UserController  = {
             }
         }).exec(function(err, user){
             res.redirect(`/user/${req.body.userId}`)
-        })
+        }).catch((err) => res.redirect("error", {error: err, message: "Oops"}))
     },
     GetFriends: function(req, res) {
         if(!req.cookies.userId) {
@@ -134,28 +131,23 @@ var UserController  = {
             res.redirect ("/")
         }
         User.findOne({_id: req.cookies.userId })
-                        .populate({
-                            path: 'friendRequests',
-                            model: 'User'
-                        }).exec(function(err, docs) {
-                            if(err) { throw err}
-                            res.render('user/requests', {user:docs})
-                        });
+                .populate({
+                    path: 'friendRequests',
+                    model: 'User'
+                }).exec(function(err, docs) {
+                    if(err) { throw err}
+                    res.render('user/requests', {user:docs})
+                })
     },
     AcceptFriendRequest: async function(req, res) {
         if(!req.cookies.userId) {
             res.redirect ("/")
         }
-
-        let pullRequest = await User.updateOne({_id: req.cookies.userId}, { $pull: { friendRequests: req.params.id }})
-        let pushRequest = await User.updateOne({_id: req.cookies.userId}, { $push: { friends: req.params.id }})
-        let pushRequest2 = await User.updateOne({_id: req.params.id}, {$push: {friends: req.cookies.userId }})
-        pullRequest;
-        pushRequest;
-        pushRequest2;
-
+        await User.updateOne({_id: req.cookies.userId}, { $pull: { friendRequests: req.params.id }})
+        await User.updateOne({_id: req.cookies.userId}, { $push: { friends: req.params.id }})
+        await User.updateOne({_id: req.params.id}, {$push: {friends: req.cookies.userId }})
+        
         res.redirect("/user/requests")
-
     },
     DeclineFriendRequest: function(req, res) {
         if(!req.cookies.userId) {
@@ -167,7 +159,7 @@ var UserController  = {
             }
         }).exec(function(err, user){
             res.redirect('/user/requests')
-        })
+        }).catch((err) => res.redirect("error", {error: err, message: "Oops"}))
     }
 }
 

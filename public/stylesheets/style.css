@@ -10,8 +10,16 @@ body {
   background-color: #E9EBEE;
   margin: 0;
   padding: 0;
-
 }
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+.body {
+  margin-top: 100px;
+}
+
 
 input {
   margin: 10px 0;
@@ -150,6 +158,7 @@ input[type="submit"].postButton {
   border-radius: 10px;
   padding: 10px;
   margin: 10px 0;
+  width: 100%;
 }
 
 .postCard img {
@@ -206,14 +215,20 @@ input[type="submit"].add-friend-1 {
   background-size: cover;
   position: relative;
 }
+
 .profilePic {
 border-radius: 50%;
-position: absolute;
-left: 30px;
 height: 200px;
 width: 200px;
-bottom: -30px;
 border: 4px solid #ccc;
+}
+
+.profilePic-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 30px;
+  bottom: -30px;
 }
 
 .form-container {
@@ -226,14 +241,27 @@ border: 4px solid #ccc;
 #submit-button {
   background-color: #f5f6f7;
   color: #686E77;
+  margin: 10px 0;
+  display: block;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 48px;
 }
-.posts {
+
+.profile-posts {
   max-width: 1000px;
   margin: 0 auto;
+}
 
+.profile-name {
+  color: #E9EBEE;
+  font-size: 24px;
+  margin-left: 15px;
+  font-weight: bold;
+}
 
 .card-container {
-  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -271,7 +299,4 @@ border: 4px solid #ccc;
 .submit-container {
 width: 50%;
 margin: 10px auto;
-
-}
-
 }

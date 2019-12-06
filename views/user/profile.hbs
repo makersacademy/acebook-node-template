@@ -14,31 +14,30 @@
 </div>
 
 <div class="backgroundimage"> 
-    <img class = "profilePic" src="../images/blank_profile.jpg" alt="profile pic">
+    <div class="profilePic-container">
+        <img class = "profilePic" src="../images/blank_profile.jpg" alt="profile pic">
+        <p class="profile-name">{{user.firstName}} {{user.surname}}</p> 
+    </div>
     <div class="form-container">
+        {{#if isFriends}}
+            <p id="submit-button">You are friends</p>
+        {{else if isSelf}}
+            <p id="submit-button">This is you!</p>
+        {{else }}
         <form action="/user/add" method="POST">
             <input type="hidden" name="userId" value="{{user.id}}">
-            <input id="submit-button" class="add-friend-{{friendStatus.status}}" type="submit" value="Add Friend +">
+            <input id="submit-button" type="submit" value="Add Friend +">
         </form>
+        {{/if}}
     </div>
 </div>
 
-<p> {{user.firstName}} {{user.surname}} - {{friendStatus.status}}</p> 
-    <div class="posts">
+    <div class="profile-posts">
     {{#each posts}}
     <div class="postCard"><p>{{message}}</p></div>
     {{/each}}
     </div>
 
-{{#if isFriends}}
-<p>You are friends.</p>
-{{else if isSelf}}
-<p>This is you!</p>
-{{else }}
-<form action="/user/add" method="POST">
-    <input type="hidden" name="userId" value="{{user.id}}">
-    <input id="submit-button" type="submit" value="Add Friend">
-</form>
-{{/if}}
+
 
 

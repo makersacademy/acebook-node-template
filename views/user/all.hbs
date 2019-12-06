@@ -4,7 +4,7 @@
   </div>
   <div class="link-container">
     <img class="profpic" src="./images/blank_profile.jpg" alt="Avatar">
-    <a class="link" href="#0">Hello, {{loggedInUser.firstName}}!</a>
+    <a class="link" href="/user/{{loggedInUser.id}}">Hello, {{loggedInUser.firstName}}!</a>
     <a class="link" href="/user/requests">Friend requests</a>
     <a class="link" href="/user">Users</a>
     <a class="link" href="/user/logout">Log Out</a>
@@ -12,7 +12,9 @@
   </div>
 </div>
 
-<div class="card-container">
+<div class="body">
+  <h1>All users</h1>
+  <div class="card-container">
     {{#each checkedUsers }}
       <div class="card">
         <img class="card-profilePic" src="./images/blank_profile.jpg" alt="profile picture">
@@ -31,4 +33,5 @@
         </div>
       </div>
     {{/each }}
+  </div>
 </div>
