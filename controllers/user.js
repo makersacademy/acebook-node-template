@@ -27,7 +27,6 @@ var UserController  = {
             }
         }) 
     },
-
     Index: function(req, res) {
         var form = req.body;
         User.findOne({email: form.email }, function(err, user) {
@@ -42,31 +41,125 @@ var UserController  = {
           }
         });
     },
+    All: async function(req, res) {
+        const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
+            if(err) {throw err; }
+            if(user) {
+                return user;
+            }
+        })
+        User.find({}, function(err, users) {
+            if(err) {throw err; }
+            if(users) {
+                var checkedUsers =  users.map(function(user) {
+                    return {
+                    user,
+                    isFriends: user.friends.includes(req.cookies.userId),
+                    isSelf: user.id === req.cookies.userId,
+                    }
+                })
+                res.render("user/all", { loggedInUser, checkedUsers });
+            }
+        });
+    },
+
     LogOut: function(req, res) {
         if (req.cookies.userId) {
             res.clearCookie("userId")
         }
         res.redirect("/")
     },
+
     Profile: async function (req, res)  {
-        let findUser = User.findOne({_id: req.params.id}, function(err, user){
+        const loggedInUser = await User.findOne({_id: req.cookies.userId }, function(err, user) {
+            if(err) {throw err; }
+            if(user) {
+                return user;
+            }
+        })
+        
+        let findUser = await User.findOne({_id: req.params.id}, function(err, user){
             if (err) {throw err;}
             if (user) {
                 return user
             }
         })
 
-        let findUserPosts = Posts.find({userId: req.params.id}, function(err, posts){
+        let findUserPosts = await Posts.find({userId: req.params.id}, function(err, posts){
             if (err) {throw err;}
             if (posts) {
                 return posts
             }
         })
-
+        var isFriends = findUser.friends.includes(req.cookies.userId);
+        var isSelf = req.params.id ===req.cookies.userId;
         res.render("user/profile", { 
-            user: await findUser,
-            posts: await findUserPosts
+            loggedInUser: loggedInUser,
+            user: findUser,
+            posts: findUserPosts,
+            isFriends: isFriends,
+            isSelf: isSelf,
         })
+    },
+    AddFriend: function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        User.update({_id: req.body.userId}, {
+            $push: {
+                friendRequests: req.cookies.userId
+            }
+        }).exec(function(err, user){
+            res.redirect(`/user/${req.body.userId}`)
+        }).catch((err) => res.redirect("error", {error: err, message: "Oops"}))
+    },
+    GetFriends: function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        User.findOne({_id: req.cookies.userId })
+                        .populate({
+                            path: 'friends',
+                            model: 'User'
+                        }).exec(function(err, docs) {
+                            if(err) { throw err}
+                            res.render('user/friends', {user:docs})
+                        });
+    },
+    GetFriendRequests: function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        User.findOne({_id: req.cookies.userId })
+                .populate({
+                    path: 'friendRequests',
+                    model: 'User'
+                }).exec(function(err, docs) {
+                    if(err) { throw err}
+                    res.render('user/requests', {user:docs})
+                })
+    },
+    AcceptFriendRequest: async function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        await User.updateOne({_id: req.cookies.userId}, { $pull: { friendRequests: req.params.id }})
+        await User.updateOne({_id: req.cookies.userId}, { $push: { friends: req.params.id }})
+        await User.updateOne({_id: req.params.id}, {$push: {friends: req.cookies.userId }})
+        
+        res.redirect("/user/requests")
+    },
+    DeclineFriendRequest: function(req, res) {
+        if(!req.cookies.userId) {
+            res.redirect ("/")
+        }
+        User.update({_id: req.cookies.userId}, {
+            $pull: {
+                friendRequests: req.params.id
+            }
+        }).exec(function(err, user){
+            res.redirect('/user/requests')
+        }).catch((err) => res.redirect("error", {error: err, message: "Oops"}))
     }
 }
 

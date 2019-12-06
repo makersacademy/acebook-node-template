@@ -5,6 +5,15 @@ body {
   background-color: #E9EBEE;
 }
 
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+.body {
+  margin-top: 100px;
+}
+
+
 input {
   margin: 5px 0 5px;
   width: 332px;
@@ -14,7 +23,8 @@ input {
   line-height: 48px;
 }
 
-input[type=text], input[type=password] {
+input[type="text"],
+input[type="password"] {
   border: 1px solid #ccc;
 }
 
@@ -31,16 +41,19 @@ button, input[type=submit] {
   width: 332px;
 }
 
-button:hover, input[type=submit]:hover {
+button:hover,
+input[type="submit"]:hover {
   cursor: pointer;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 .navbar {
-  background-color: #4267B2;
+
+  z-index: 100;
+  background-color: #4267b2;
   position: fixed;
   height: 40px;
   top: 0;
@@ -128,7 +141,7 @@ a {
   flex-direction: column;
 }
 
-header{
+header {
   padding: 15px;
   margin-bottom: 40px;
   display: flex;
@@ -164,7 +177,7 @@ header nav ul {
   flex: 1;
 }
 
-input[type=submit].postButton {
+input[type="submit"].postButton {
   width: 100%;
 }
 
@@ -175,6 +188,7 @@ input[type=submit].postButton {
   border-radius: 10px;
   padding: 10px;
   margin: 10px 0;
+  width: 100%;
 }
 
 .postCard img {
@@ -197,7 +211,7 @@ input[type=submit].postButton {
 .postTime {
   margin: 2px;
   font-size: 12px;
-  color: #686E77;
+  color: #686e77;
 }
 
 .postBox {
@@ -211,4 +225,108 @@ input[type=submit].postButton {
 .postBox::placeholder {
   font-size: 14px;
   padding: 5px;
+}
+
+input[type="submit"].add-friend-1 {
+  background-color: #686e77;
+  cursor: not-allowed;
+}
+
+.add-friend-0 {
+  background-color: #4267b2;
+}
+
+.backgroundimage {
+  background-image: url("../images/3.jpg");
+  height: 400px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.profilePic {
+border-radius: 50%;
+height: 200px;
+width: 200px;
+border: 4px solid #ccc;
+}
+
+.profilePic-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 30px;
+  bottom: -30px;
+}
+
+.form-container {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  width: 150px;
+}
+
+#submit-button {
+  background-color: #f5f6f7;
+  color: #686E77;
+  margin: 10px 0;
+  display: block;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 48px;
+}
+
+.profile-posts {
+  max-width: 1000px;
+  margin: 50px auto 0 auto;
+}
+
+.profile-name {
+  color: #E9EBEE;
+  font-size: 24px;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 30%;
+  margin: 10px;
+  min-width: 250px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-profilePic {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.card-name {
+  font-weight: bold;
+  font-size: large;
+  color: darkblue;
+}
+
+.container {
+  padding: 2px 16px;
+  position: relative;
+}
+
+.submit-container {
+width: 50%;
+margin: 10px auto;
 }

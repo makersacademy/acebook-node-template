@@ -1,4 +1,48 @@
-<p> {{user.firstName}} {{user.surname}}</p>
-{{#each posts}}
-<p>{{message}}</p>
-{{/each}}
+<div class="navbar">
+  <div class="logo-container">
+    <a href="/"><img class="logo" src="/images/acebook_icn_wht.png" alt="LogoIcon"></a>
+  </div>
+  <div class="link-container">
+    <img class="profpic" src="/images/blank_profile.jpg" alt="Avatar">
+    <a class="link" href="/user/{{loggedInUser.id}}">Hello, {{loggedInUser.firstName}}!</a>
+    <a class="link" href="/user/requests">Friend requests</a>
+    <a class="link" href="/user">Users</a>
+    <a class="link" href="/user/logout">Log Out</a>
+    <a href="/" class="logo"></a>
+
+</div>
+</div>
+
+<div class="backgroundimage"> 
+    <div class="profilePic-container">
+        <img class = "profilePic" src="../images/blank_profile.jpg" alt="profile pic">
+        <p class="profile-name">{{user.firstName}} {{user.surname}}</p> 
+    </div>
+    <div class="form-container">
+        {{#if isFriends}}
+            <p id="submit-button">You are friends</p>
+        {{else if isSelf}}
+            <p id="submit-button">This is you!</p>
+        {{else }}
+        <form action="/user/add" method="POST">
+            <input type="hidden" name="userId" value="{{user.id}}">
+            <input id="submit-button" type="submit" value="Add Friend +">
+        </form>
+        {{/if}}
+    </div>
+</div>
+
+    <div class="profile-posts">
+        <p class="postTime">Posts</p>
+    {{#each posts}}
+    <div class="postCard">
+        <a href = "/user/{{userId}}" class="postOwner">{{this.user}}</a> 
+        <p class="postTime">{{this.timeDate}}</p>
+        <p>{{message}}</p>
+    </div>
+    {{/each}}
+    </div>
+
+
+
+
