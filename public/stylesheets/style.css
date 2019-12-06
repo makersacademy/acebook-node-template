@@ -1,15 +1,8 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: linear-gradient(
-    162deg,
-    rgb(205, 217, 236) 0%,
-    rgb(225, 231, 240) 15%,
-    #e9ebee 50%
-  );
+  /* background: linear-gradient(0deg,  rgba(233,235,238,1) 0%, rgba(128,176,190,1) 45%,rgba(66,103,178,1) 90%); */
   background-repeat: no-repeat;
   background-color: #E9EBEE;
-  margin: 0;
-  padding: 0;
 }
 
 h1, h2, h3, h4 {
@@ -22,7 +15,7 @@ h1, h2, h3, h4 {
 
 
 input {
-  margin: 10px 0;
+  margin: 5px 0 5px;
   width: 332px;
   display: block;
   border-radius: 6px;
@@ -35,17 +28,17 @@ input[type="password"] {
   border: 1px solid #ccc;
 }
 
-button,
-input[type="submit"] {
-  margin-top: 0;
+button, input[type=submit] {
+  margin-top: 5px 0px 5px 0;
   background-color: #2160b3;
-  color: #fff;
-  border: 1px solid;
+  color: rgb(11, 6, 110);
+  border: 1px solid rgb(39, 52, 112);
   border-radius: 2px;
   font-size: 12px;
+  color: white;
   font-weight: bold;
   line-height: 28px;
-  width: 100%;
+  width: 332px;
 }
 
 button:hover,
@@ -70,6 +63,43 @@ a {
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
+}
+
+.loginbar {
+  background-color: #4267B2;
+  position: fixed;
+  height: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.logininput {
+  float: left;
+  max-width: 200px;
+  height: 30px;
+  margin: 5px 0 5px;
+}
+
+.rightbar {
+  padding: 10px;
+  display: flex;
+  flex: 1;
+  max-width: 650px;
+  justify-content: flex-end;
+}
+
+.leftbar {
+  flex-direction: column;
+  display: flex;
+  max-width: 200px;
+  padding: 10px;
+  padding-right: 0;
+  flex: 3;
 }
 
 .link-container {
