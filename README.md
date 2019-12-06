@@ -2,15 +2,20 @@
 
 * [User Stories](#user-stories)
   * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+* [Quickstart](#quick-start)
+  * [Install Node.js](#install-node-js)
+  * [Set up for the project](#set-up-for-the-project)
+  * [Start](#start)
+  * [Test](#test)
+  * [Start test server](#start-test-server)
 * [Card wall](#card-wall)
-* [Roadmap](#roadmap)
 * [Contributing](#contributing)
-* [License](#license)
-* [Team](#team)
+* [Team Members](#team-members)
+* [Trello Board](#trello-board)
+* [Retro Board](#retro-board)
+* [Reflections about our journey](#reflecions)
 * [Acknowledgements](#acknowledgements)
+
 
 
 
@@ -119,7 +124,7 @@ https://trello.com/b/agT0v9jj/acebook-rob-and-the-meerkats
     nvm install 10.16.3
     ```
 
-### Set up your project
+### Set up for the project
 
 1. Fork this repository
 1. Rename your fork to `https://github.com/robbaile/acebook-robAndTheMeerkats`
@@ -170,21 +175,38 @@ npm run start:test
 This starts the server on port `3030` and uses the `acebook` MongoDB database,
 so that integration tests do not interact with the development server.
 
-<!-- CONTACT -->
-## Contact
+<!-- Team Members -->
+## Team members
 
-Rob - [Rob's GitHub](https://github.com/robbaile)
+[Rob](https://github.com/robbaile)
 
-Jade  - [Jade's GitHub](https://github.com/jade-genevieve)
+[Jade](https://github.com/jade-genevieve)
 
-Migle  - [Migle's GitHub](https://github.com/miglekuba)
+[Migle](https://github.com/miglekuba)
 
-Lena  - [Lena's GitHub](https://github.com/olkras03)
+[Lena](https://github.com/olkras03)
 
-Project Link: [Project Repo](https://github.com/robbaile/acebook-robAndTheMeerkats)
+[Project Repo](https://github.com/robbaile/acebook-robAndTheMeerkats)
+
+<!-- Trello Board -->
+## Trello board
+
+[Our Trello Board](https://trello.com/b/agT0v9jj/acebook-rob-and-the-meerkats)
+
+<!-- Retro Board -->
+## Retro Board
+
+[Retro Board Week1](https://github.com/robbaile/acebook-robAndTheMeerkats/tree/master/public/images/retro_week1.png)
+[Retro Board Week2](https://github.com/robbaile/acebook-robAndTheMeerkats/tree/master/public/images/retro_week2.png)
+
+<!-- Reflections -->
+## Reflections about our journey
+
+[Blog post](https://docs.google.com/document/d/18bviYAXN_c1crXvFRQpI37oH_cFTfA0xzArSh9DnGqY/edit)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
+
 * [MongoDB using Mongoose](https://mongoosejs.com/docs/)
                           (https://codeburst.io/things-i-wish-i-new-before-i-started-working-with-mongodb-c089d4b593db)
 
