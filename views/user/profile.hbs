@@ -33,8 +33,13 @@
 </div>
 
     <div class="profile-posts">
+        <p class="postTime">Posts</p>
     {{#each posts}}
-    <div class="postCard"><p>{{message}}</p></div>
+    <div class="postCard">
+        <a href = "/user/{{userId}}" class="postOwner">{{this.user}}</a> 
+        <p class="postTime">{{this.timeDate}}</p>
+        <p>{{message}}</p>
+    </div>
     {{/each}}
     </div>
 
