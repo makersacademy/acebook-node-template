@@ -1,8 +1,49 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+<body>
+  <div class="container">
+    <header>
+      <div class="navbar">
+        <div class="logo-container">
+          <a href="/"><img class="logo" src="./images/acebook_icn_wht.png" alt="LogoIcon"></a>
+        </div>
+        <div class="link-container">
+          <img class="profpic" src="./images/blank_profile.jpg" alt="Avatar">
+          <a class="link" href="/user/{{user.id}}">Hello, {{user.firstName}}!</a>
+          <a class="link" href="/user/requests">Friend requests</a>
+          <a class="link" href="/user">Users</a>
+          <a class="link" href="/user/logout">Log Out</a>
+          <a href="/" class="logo"></a>
+        </div>
+      </div>
+    </header>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+    <div class="wrapper">
+      <aside class="sidebar">
+        <h3></h3>
+      </aside>
+
+      <section class="main">
+        <form id="new-post-form" action="/posts" method="post">
+          <input id="message" class="postBox" placeholder="What's on your mind, {{user.firstName}}?" type="text" name="message" value="" required >
+          <input class="postButton" type="submit" value="Post">
+        </form>
+        
+        <div class="posts">
+          {{#each data}}
+            
+          <div class="postCard">
+            <img src="./images/blank_profile.jpg" alt="Avatar">
+            <a href = "/user/{{userId}}" class="postOwner">{{this.user}}</a> 
+            <p class="postTime">{{this.timeDate}}</p>
+            <p>{{this.message}}</p>
+          </div>
+          {{/each}}
+        </div>
+      </section>
+    </div><!-- /wrapper -->
+
+    <footer>
+      <h3></h3>
+      <p></p>
+    </footer>
+  </div>
+  <!-- /container -->

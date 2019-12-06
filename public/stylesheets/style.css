@@ -1,8 +1,332 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* background: linear-gradient(0deg,  rgba(233,235,238,1) 0%, rgba(128,176,190,1) 45%,rgba(66,103,178,1) 90%); */
+  background-repeat: no-repeat;
+  background-color: #E9EBEE;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+.body {
+  margin-top: 100px;
+}
+
+
+input {
+  margin: 5px 0 5px;
+  width: 332px;
+  display: block;
+  border-radius: 6px;
+  font-size: 20px;
+  line-height: 48px;
+}
+
+input[type="text"],
+input[type="password"] {
+  border: 1px solid #ccc;
+}
+
+button, input[type=submit] {
+  margin-top: 5px 0px 5px 0;
+  background-color: #2160b3;
+  color: rgb(11, 6, 110);
+  border: 1px solid rgb(39, 52, 112);
+  border-radius: 2px;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  line-height: 28px;
+  width: 332px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  cursor: pointer;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.navbar {
+
+  z-index: 100;
+  background-color: #4267b2;
+  position: fixed;
+  height: 40px;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.loginbar {
+  background-color: #4267B2;
+  position: fixed;
+  height: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.logininput {
+  float: left;
+  max-width: 200px;
+  height: 30px;
+  margin: 5px 0 5px;
+}
+
+.rightbar {
+  padding: 10px;
+  display: flex;
+  flex: 1;
+  max-width: 650px;
+  justify-content: flex-end;
+}
+
+.leftbar {
+  flex-direction: column;
+  display: flex;
+  max-width: 200px;
+  padding: 10px;
+  padding-right: 0;
+  flex: 3;
+}
+
+.link-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 80px;
+}
+
+.logo-container {
+  padding-left: 10px;
+}
+
+.profpic {
+  float: left;
+  height: 30px;
+  max-width: 30px;
+  width: 100%;
+  border-radius: 50%;
+  padding-top: 5px;
+}
+
+.logo {
+  float: left;
+  height: 30px;
+  max-width: 30px;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.link {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 20px 10px 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 15px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav ul {
+  display: flex;
+  align-items: baseline;
+  list-style-type: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main {
+  padding: 10px;
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+  margin-right: 60px;
+  max-width: 650px;
+}
+
+.sidebar {
+  display: flex;
+  max-width: 200px;
+  padding: 10px;
+  padding-right: 0;
+  flex: 1;
+}
+
+input[type="submit"].postButton {
+  width: 100%;
+}
+
+.postCard {
+  text-decoration: none;
+  border: 1px solid #dedede;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.postCard img {
+  float: left;
+  height: 40px;
+  max-width: 40px;
+  width: 100%;
+  border-radius: 50%;
+  padding-top: 0px;
+  margin-right: 10px;
+}
+
+.postOwner {
+  margin: 2px;
+  color: #385898;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.postTime {
+  margin: 2px;
+  font-size: 12px;
+  color: #686e77;
+}
+
+.postBox {
+  width: 100%;
+  border: 1px solid #dedede;
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px 0 0;
+}
+
+.postBox::placeholder {
+  font-size: 14px;
+  padding: 5px;
+}
+
+input[type="submit"].add-friend-1 {
+  background-color: #686e77;
+  cursor: not-allowed;
+}
+
+.add-friend-0 {
+  background-color: #4267b2;
+}
+
+.backgroundimage {
+  background-image: url("../images/3.jpg");
+  height: 400px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.profilePic {
+border-radius: 50%;
+height: 200px;
+width: 200px;
+border: 4px solid #ccc;
+}
+
+.profilePic-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 30px;
+  bottom: -30px;
+}
+
+.form-container {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  width: 150px;
+}
+
+#submit-button {
+  background-color: #f5f6f7;
+  color: #686E77;
+  margin: 10px 0;
+  display: block;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 48px;
+}
+
+.profile-posts {
+  max-width: 1000px;
+  margin: 50px auto 0 auto;
+}
+
+.profile-name {
+  color: #E9EBEE;
+  font-size: 24px;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 30%;
+  margin: 10px;
+  min-width: 250px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-profilePic {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.card-name {
+  font-weight: bold;
+  font-size: large;
+  color: darkblue;
+}
+
+.container {
+  padding: 2px 16px;
+  position: relative;
+}
+
+.submit-container {
+width: 50%;
+margin: 10px auto;
 }
