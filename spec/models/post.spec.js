@@ -1,24 +1,24 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'); //requiring mongoose which links to the database
 
-require('../mongodb_helper')
-var Post = require('../../models/post');
+require('../mongodb_helper') //this requires file that sets up the database saying when it is test database and when dev database
+var Post = require('../../models/post'); // requiring the database post
 
 describe('Post model', function() {
   beforeEach(function(done) {
-      mongoose.connection.collections.posts.drop(function() {
+      mongoose.connection.collections.posts.drop(function() { //dropping all the posts ever created
           done();
       });
   });
 
   it('has a message', function() {
-    var post = new Post({ message: 'some message' });
-    expect(post.message).toEqual('some message');
+    var post = new Post({ message: 'some message' }); //creates new instance of post
+    expect(post.message).toEqual('some message'); //mongodb syntax to say post.message
   });
 
   it('can list all posts', function(done) {
     Post.find(function(err, posts) {
-      expect(err).toBeNull();
-      expect(posts).toEqual([]);
+      expect(err).toBeNull(); //it shouldn't return an error/it should work
+      expect(posts).toEqual([]); //posts would be empty since drop above
       done();
     });
   });
@@ -27,12 +27,12 @@ describe('Post model', function() {
     var post = new Post({ message: 'some message' });
 
     post.save(function(err) {
-      expect(err).toBeNull();
+      expect(err).toBeNull(); //it should work
 
       Post.find(function(err, posts) {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: 'some message' });
+        expect(posts[0]).toMatchObject({ message: 'some message' }); //first value in the array to equal post added
         done();
       });
     });
