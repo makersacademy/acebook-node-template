@@ -6,6 +6,7 @@ var logger = require('morgan'); // Allows you to log get and post requests and e
 
 var homeRouter = require('./routes/home'); // Path for the connection to the homepage
 var postsRouter = require('./routes/posts'); // Path for the connection to the posts page
+var usersRouter = require('./routes/users') //Path
 
 var app = express();  // so it's easier to call the express methods / functions
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // joins the app to the
 // route setup
 app.use('/', homeRouter);  // sets up the route for the homepage
 app.use('/posts', postsRouter); // sets up the route for the posts page, links to the variable that requires the route 
+app.use('/users', usersRouter); // sets up the route for the user page, this slinks the variable to the route's folder.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
