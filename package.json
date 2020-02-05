@@ -21,6 +21,7 @@
     "express": "~4.16.1",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
+    "mongodb": "^3.5.2",
     "mongoose": "^5.8.11",
     "morgan": "~1.9.1",
     "nodemon": "^1.19.4"
