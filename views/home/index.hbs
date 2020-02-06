@@ -1,2 +1,34 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<div id="title" class="form-container">
+  <h1 class="title">{{title}}</h1>
+  <p>Welcome to {{title}}</p>
+  <hr>
+</div>
+
+<div id="login" class="form-group">
+  <h2>Enter your details</h2>
+  <label for="email-input">Email Address</label>
+  <input id="email-input" class="form-control" type="text">
+</div>
+
+<div id="password" class="form-group">
+  <label for="password-input">Password</label>
+  <input id="password-input" class="form-control" type="password">
+</div>
+
+<button id="login-button" class="btn btn-primary">Log In</button>
+<br><br><a class="signup-link" href="/signup">Sign up if you're new!</a>
+</body>
+</html>
