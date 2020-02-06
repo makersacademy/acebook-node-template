@@ -1,4 +1,4 @@
-<h1>Timeline</h1>
+<h1 class="title"> Timeline</h1>
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
@@ -6,3 +6,7 @@
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+<form action='/users/logout' method="post" id='logout'>
+<button type='submit'>Logout</button>
+</form>
