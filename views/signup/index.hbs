@@ -11,25 +11,29 @@
 
 <body>
 
-<div id="title" class="form-container">
-  <h1 class="title">{{title}}</h1>
-  <p>Welcome to {{title}}</p>
+<div id="signup-title" class="form-container">
+  <h1> Sign up to AceBook </h1>
+  <h2> Enter your details below to join! </h2>
   <hr>
 </div>
 
-<div id="login" class="form-group">
-  <h2>Enter Your Details</h2>
-  <label for="email-input">Email Address</label>
-  <input id="email-input" class="form-control" type="text">
+<div id="signup" class="form-group">
+  <label for="first-name-input">First Name</label>
+  <input id="first-name-input" class="form-control" type="text">
+  <br>
+  <label for="second-name-input">Second Name</label>
+  <input id="second-name-input" class="form-control" type="text">
+  <br>
+  <label for="email-entry">Email Address</label>
+  <input id="email-entry" class="form-control" type="text">
+  <br>
+  <label for="password-entry">Password</label>
+  <input id="password-entry" class="form-control" type="password">
+  <br>
+  <label for="password-confirm-entry">Confirm Password</label>
+  <input id="password-confirm-entry" class="form-control" type="password">
+  <br>
+  <button id="login-button" class="btn btn-primary">Sign Up!</button>
 </div>
-
-<div id="password" class="form-group">
-  <label for="password-input">Password</label>
-  <input id="password-input" class="form-control" type="password">
-</div>
-
-<button id="login-button" class="btn btn-primary">Log In</button>
-<br><br>
-<a class="signup-link" href="/signup">Sign up if you're new!</a>
 </body>
 </html>
