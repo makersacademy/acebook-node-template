@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head> <link rel="stylesheet" type="text/css" href="/mystyle.css">
-
+<head> 
+  <link rel="stylesheet" type="text/css" href="/mystyle.css">
+  <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
 
  </head>
 <body>
-
+<h1 style="font-family: 'Bungee', cursive"  class="title"> Welcome to Acebook </h1>
 
   <img src="/images/logo.png" alt="logo" class="overlayLogo">
-  <div class="rcorners1"></div>
-</div>
-<form action='/users/login' id="login">
-  <button type='submit'> Log in.
-</form>
+  <div class="rcorners1">
+      <div class="row">
+        <div class= "col s8">
+          <form action='/users/login' id="login">
+            <button style="margin-top: 20em;" class="waves-effect waves-light btn" type='submit'> Log in </button>
+          </form>
+          <form action='/users/register' id="register">
+            <button style="margin-top: 5em;" class="waves-effect waves-light btn" type='submit'> Register </button>
+          </form>
+        </div>
+      </div>
+  </div>
+      
+  
 
-<h1 class="title"> Welcome to Acebook </h1>
+
+
+
 
 
 </body>
