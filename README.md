@@ -1,5 +1,19 @@
 # Acebook
 
+## User Stories
+
+As a user,
+So that I can become social online,
+I would like to be able to sign up to AceBook.
+
+As a user,
+So that I can use my account anywhere,
+I would like to be able to log in.
+
+As a user,
+So that no one else can use my account,
+I would like to be able to sign out.
+
 This is a Node.js template for the Acebook engineering project.
 
 It uses:
