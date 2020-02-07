@@ -25,24 +25,35 @@ var UsersController = {
                 password: passwordHash
 
             });
+                Users.findOne({username: req.body.username}, function(err, check) {  // checks if the inputted username is in the db
+                  console.log("USERNAME IS HERE")
+                  console.log(req.body.username)
+                  if(err) { throw err; }
 
-            users.save(function(err) { // saves the new post
-                if (err) { throw err; }
+                  else if(check !== null) {
+                    res.render('/ourErrors', {message: "Username already taken. Please enter a different username."})  }               // if it's not set the check to true
 
-                res.status(201).redirect('/users/login');      // if it works show you the list of posts
+                  else{
+                    users.save(function(err) { // saves the new post
+                      if (err) { throw err; }
 
-            });
+                      res.status(201).redirect('/users/login');
+                    })
+                  }
+                }
+                )}
 
-        } else {
+        else {
           // res.render('error', { message: 'Incorrect password' });
                 // document.getElementById('demo').innerHTML = "You have entered the wrong password!";
             //     popupS.window({
             //         mode: 'alert',
             //         content: "Your password did not Match"
             //     });
-                res.redirect('/users/register');
+                res.redirect('/users/login');
             }
-    },
+          },
+
 
     Login: function(req, res) {
       res.render('users/login', {});  // render the user index view folder
@@ -67,7 +78,6 @@ var UsersController = {
 
     Logout: function(req, res) {
       res.clearCookie('username')
-      var check = req.cookies['username'];
       res.redirect('/')
     }
 };
