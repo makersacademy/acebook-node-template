@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Acebook Login</title>
-    </head>
+  <head>
+    <title>Acebook Login</title>
+    <link rel="stylesheet" type="text/css" href="../../public/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
+  </head>
 
-    <body>
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
 
-        <h1 class="login"> Login Page</h1>
+  <body>
 
-      <form id="login-form" action="/users/login" method="post">
-        <label for="email"><b> Email </b> </label>
-        <input id="email" type="text" name="email" placeholder="Enter Your Email">
-        <label for="password"><b> Password </b> </label>
-        <input id="password" type="password" name="password" placeholder="Enter Your Password">
+    <h1 style="font-family: 'Bungee', cursive" class="login"> Login Now</h1>
+    <img src="/images/logo.png" alt="acebook logo" class="overlayLogo">
+    <div class="rcorners1">
+      <div class="container">
+        <form id="login-form" action="/users/login" method="post">
+          <!-- <label for="email"><b> Email </b> </label> -->
+          <input style="margin-top: 17em;" id="email" class="input-box" type=“text” align=“center” name="email" placeholder="Enter Your Email">
+          <!-- <label for="password"><b> Password </b> </label> -->
+          <input style="margin-top: 2em;" id="password" class="input-box" type="password" name="password" placeholder="Enter Your Password">
+          <input style="margin-top:2em; background-color: #337ab7; border-color: #2e6da4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
+        </form>
+      </div>
+    </div>
 
-        <input type="submit" value="Submit">
-      </form>
+    <p class="forgot" align="center"><br><a href="#">Forgot Password?...Too bad!</a></p>
+    <p class="copyright" align="center"> &copy 2020 WePush2Master</p>
 
-      <p class="forgot" align="center"><br><br><a href="#">Forgot Password?...Too bad!</p>
-
-    </body>
+  </body>
 
 </html>
