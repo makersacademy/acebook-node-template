@@ -1,3 +1,49 @@
+<style>
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.bg {
+  background-image: url('/images/SocialGathering.jpg');
+  /* filter: blur(6px);
+  -webkit-filter: blur(6px); */
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.title {
+  text-align: center;
+  font-style: oblique;
+  font-size: 60px;
+  text-decoration: underline;
+  color: #4d4dff;
+}
+
+.second-title {
+  text-align: center;
+  font-style: oblique;
+  font-size: 25px;
+}
+
+.signin-box {
+  text-align: center;
+  border: 6px solid black;
+  margin-top: 10%;
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+
+
+
+
+</style>
+
 <html>
 
 <head>
@@ -8,15 +54,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </head>
-
 <body>
-
+  <div class="bg">
+  </div>
 <div id="title" class="form-container">
   <h1 class="title">{{title}}</h1>
-  <p>Welcome to {{title}}</p>
+  <p class="second-title">Welcome to {{title}}</p>
   <hr>
 </div>
 
+<div class="signin-box">
 <div id="login" class="form-group">
   <h2>Enter Your Details</h2>
   <label for="email-input">Email Address</label>
@@ -31,5 +78,6 @@
 <button id="login-button" class="btn btn-primary">Log In</button>
 <br><br>
 <a id="signup-link" class="signup-link" href="/signup">Sign up if you're new!</a>
+  </div>
 </body>
 </html>
