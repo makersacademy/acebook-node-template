@@ -50,7 +50,8 @@ var UsersController = {
             //         mode: 'alert',
             //         content: "Your password did not Match"
             //     });
-                res.redirect('/users/login');
+
+                res.render('ourErrors', { error: "Inccorect username or password"});
             }
           },
 
