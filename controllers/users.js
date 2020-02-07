@@ -28,7 +28,7 @@ var UsersController = {
 
             users.save(function(err) { // saves the new post
                 if (err) { throw err; }
-
+                
                 res.status(201).redirect('/users/login');      // if it works show you the list of posts
 
             });
@@ -40,7 +40,8 @@ var UsersController = {
             //         mode: 'alert',
             //         content: "Your password did not Match"
             //     });
-                res.redirect('/users/register');
+
+                res.render('ourErrors', { error: "Inccorect username or password"});
             }
     },
 
