@@ -1,5 +1,36 @@
-<form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
-  <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Post</title>
+    <link rel="stylesheet" type="text/css" href="../../public/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1565021324739-7493c5a74a13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+
+  <body>
+
+    <h1 style="font-family: 'Bungee', cursive" class="login"> New Post</h1>
+    <img src="/images/logo.png" alt="acebook logo" class="overlayLogo">
+    <div class="rcorners2">
+      <div class="container">
+        <form id="new-post-form" action="/posts" method="post">
+          <textarea rows = "10" cols= "25" name = "message" style="margin-top: 20em;"class="input-box" align=“center” placeholder="Enter Your Post" ></textarea>
+          <input style="margin-top:2em; background-color: #337ab7; border-color: #2e6da4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
+        </form>
+        <br>
+      </div>
+    </div>
+
+    <p class="copyright" style="color:white" align="center"> &copy 2020 WePush2Master</p>
+
+  </body>
+
+</html>
