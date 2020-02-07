@@ -1,37 +1,10 @@
 <!DOCTYPE html>
-<html>
+<div>
 <head> 
-  <link rel="stylesheet" type="text/css" href="/mystyle.css">
+  <link rel="stylesheet" type="text/css" href="../../public/style.css">
   <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
 
- </head>
-<body>
-<h1 style="font-family: 'Bungee', cursive"  class="title"> Welcome to Acebook </h1>
-
-  <img src="/images/logo.png" alt="logo" class="overlayLogo">
-  <div class="rcorners1">
-      <div class="row">
-        <div class= "col s8">
-          <form action='/users/login' id="login">
-            <button style="margin-top: 20em;" class="waves-effect waves-light btn" type='submit'> Log in </button>
-          </form>
-          <form action='/users/register' id="register">
-            <button style="margin-top: 5em;" class="waves-effect waves-light btn" type='submit'> Register </button>
-          </form>
-        </div>
-      </div>
-  </div>
-      
-  
-
-
-
-
-
-
-</body>
-
-
+</head>
 <style>
 body {
   background-image: url('https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80');
@@ -40,3 +13,29 @@ body {
   background-size: cover;
 }
 </style>
+<body>
+<h1 style="font-family: 'Bungee', cursive"  class="title"> Welcome to Acebook </h1>
+
+  <img src="/images/logo.png" alt="acebook logo" class="overlayLogo">
+  <div class="rcorners1">
+    {{!-- <img src="/images/logo.png" alt="acebook logo" class="overlayLogo"> --}}
+    <div class="container">
+            <form action='/users/login' id="login">
+              <button style="margin-top: 20em; background-color: #7dbcf3; border-color: #2e6da4" class="waves-effect waves-light btn btn-primary btn-block" type='submit'> Log in </button>
+            </form>
+            <form action='/users/register' id="register">
+              <button style="margin-top: 5em; background-color: #337ab7; border-color: #2e6da4" class="waves-effect btn btn-primary btn-block" type='submit'> Register </button>
+            </form>
+       
+    </div> 
+  </div>
+      
+  
+
+
+
+
+<p align="center"> &copy 2020 WePush2Master</p>
+
+</body>
+</html>

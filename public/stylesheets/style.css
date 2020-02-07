@@ -21,9 +21,9 @@ h1 {
    position: absolute;
    /* left: 565px; */
    display: block;
-   margin-left: 37%;
-   margin-top: 110px;
-  
+   margin-left: 42%;
+   margin-top: 10px;
+   z-index: 1;
 }
 
 .rcorners1 {
@@ -36,7 +36,8 @@ h1 {
   width: 300px;
   height: 400px;
   opacity: 0.5;
-  margin-left: 35%;
+  margin: 0 auto;
+  /* z-index: 300; */
   /* margin-right: auto; */
 }
 
@@ -47,6 +48,11 @@ h1 {
   width: 50%;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 70%;
+}
 
 .row .col[class*="push-"], .row .col[class*="pull-"] {
   position: relative;
@@ -170,6 +176,23 @@ h1 {
   margin-top: 250em;
   border-radius: 1.5em;
 }
+
+.btn-primary {
+  color: #fff;
+  /* background-color: #337ab7;
+  border-color: #2e6da4; */
+}
+
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+
 
 .row .col.offset-s1 {
   margin-left: 8.3333333333%;
