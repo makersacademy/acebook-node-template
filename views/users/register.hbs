@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-            <link rel="stylesheet" href="../../public/css/popupS.css">
-    </head> 
-        
-    <body>
-        
-        
+  <head>
+    <title>Acebook Login</title>
+    <link rel="stylesheet" type="text/css" href="../../public/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
+  </head>
 
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
 
-    <form id="sign-up-form" action="/users/register" method="post">
-    <label for="fullname"><b> Fullname </b> </label>
-    <input id="fullname" type="text" name="fullname" placeholder="Enter Your Fullname">
-    <label for="email"><b> Email </b> </label>
-    <input id="email" type="text" name="email" placeholder="Enter Your Email">
-    <label for="username"><b> Username </b> </label>
-    <input id="username" type="text" name="username" placeholder="Enter Your Username">
-    <label for="password"><b> Password </b> </label>
-    <input id="password" type="password" name="password" placeholder="Enter Your Password">
-    <label for="repeat_password"><b> Confirm Password </b> </label>
-    <input id="repeat_password" type="password" name="repeat_password" placeholder="Confirm Password">
+  <body>
 
-    <input type="submit" value="Submit">
-    </form>
+    <h1 style="font-family: 'Bungee', cursive" class="login"> Register</h1>
+    <img src="/images/logo.png" alt="acebook logo" class="overlayLogo">
+    <div class="rcorners2">
+      <div class="container">
+        <form id="sign-up-form" action="/users/register" method="post">
+          <input style="margin-top: 17em;" class="input-box" id="fullname" type="text" align=“center” name="fullname" placeholder="Enter Your Fullname">
+          <input style="margin-top: 1em;" class="input-box" id="email" type="text" align=“center” name="email" placeholder="Enter Your Email">
+          <input style="margin-top: 1em;" class="input-box" id="username" type="text" align=“center” name="username" placeholder="Enter Your Username">
+          <input style="margin-top: 1em;" class="input-box" id="password" type="text" align=“center” name="password" placeholder="Enter Your Password">
+          <input style="margin-top: 1em;" class="input-box" id="repeat_password" type="text" align=“center” name="repeat_password" placeholder="Confirm Your Password">
+          <input style="margin-top:2em; background-color: #337ab7; border-color: #2e6da4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
+        </form>
+        <br>
+        <a class="login-link" href="/users/login">Signed up already? Login</a>
+      </div>
+    </div>
 
+    <p class="copyright" style="color:white" align="center"> &copy 2020 WePush2Master</p>
 
-    </body>
+  </body>
 
 </html>

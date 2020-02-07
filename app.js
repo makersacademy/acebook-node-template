@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // joins the app to the
 
 // route setup
 app.use('/', homeRouter);  // sets up the route for the homepage
-app.use('/posts', postsRouter); // sets up the route for the posts page, links to the variable that requires the route 
+app.use('/posts', postsRouter); // sets up the route for the posts page, links to the variable that requires the route
 app.use('/users', usersRouter); // sets up the route for the user page, this slinks the variable to the route's folder.
 
 // catch 404 and forward to error handler

@@ -34,6 +34,7 @@ var UsersController = {
             });
 
         } else {
+          // res.render('error', { message: 'Incorrect password' });
                 // document.getElementById('demo').innerHTML = "You have entered the wrong password!";
             //     popupS.window({
             //         mode: 'alert',

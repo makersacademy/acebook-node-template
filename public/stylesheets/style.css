@@ -2,6 +2,7 @@ body {
   padding: 50px;
   font: 14px "BlinkMacSystemFont", Helvetica, Arial, sans-serif;
   margin: 0;
+  text-align: center;
 }
 
 
@@ -35,6 +36,21 @@ h1 {
   margin-top: 10em;
   width: 300px;
   height: 400px;
+  opacity: 0.5;
+  margin: 0 auto;
+  /* z-index: 300; */
+  /* margin-right: auto; */
+}
+
+.rcorners2 {
+  border-radius: 47px;
+  background: #E0E0E0;
+  position: relative;
+  /* left: 500px; */
+  padding: 20px;
+  margin-top: 10em;
+  width: 350px;
+  height: 550px;
   opacity: 0.5;
   margin: 0 auto;
   /* z-index: 300; */
