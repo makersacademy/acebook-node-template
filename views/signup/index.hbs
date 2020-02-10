@@ -17,20 +17,21 @@
   <hr>
 </div>
 
-<div id="signup" class="form-group">
-  <label for="first-name-input">First Name</label>
-  <input id="first-name-input" class="form-control" type="text">
+<form id="signup" action="/signup" method="post" class="form-group">
+  <label for="firstname">First Name</label>
+  <input id="firstname" name="firstname" class="form-control" type="text" required>
   <br>
   <label for="second-name-input">Second Name</label>
-  <input id="second-name-input" class="form-control" type="text">
+  <input id="second-name-input" name="secondname" class="form-control" type="text" required>
   <br>
   <label for="email-entry">Email Address</label>
-  <input id="email-entry" class="form-control" type="text">
+  <input id="email-entry" type="email" name="email" class="form-control" type="text" required>
   <br>
   <label for="password-entry">Password</label>
-  <input id="password-entry" class="form-control" type="password">
+  <input id="password-entry" name="password" class="form-control" type="password" required>
   <br>
-  <button id="login-button" class="btn btn-primary">Sign Up!</button>
-</div>
+  <button id="login-button" type="submit" class="btn btn-primary">Sign Up!</button>
+</form>
+
 </body>
 </html>

@@ -3,4 +3,8 @@ describe('Signup page', function() {
     cy.visit('/signup');
     cy.get('.signup-title').should('contain', 'Sign up to AceBook');
   });
+
+  xit('can sign up to Acebook', function() {
+    
+  })
 });
