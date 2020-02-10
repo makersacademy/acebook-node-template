@@ -33,4 +33,24 @@ describe('Users model', function() {
             });
         });
     });
+
+
+    it('create & updates the bio page for user', function(done) {
+        var users = new Users({ fullname: 'Joe Bloggs', email: 'user@WP2M.com', username: 'usernameWP2M', password: 'password123', bio: 'This is your bio, please update. Click the edit button to do so.'});
+            users.save(function(err) {
+            expect(err).toBeNull();
+
+            var updateBio = new Users({ id: users._id, bio: 'This is my bio, about my amazing self' })
+                updateBio.save(function(err) {
+                expect(err).toBeNull();
+
+                Users.find(function(err, updateBio){
+                expect(updateBio.id).toEqual(users._id);
+                expect(updateBio.bio).toEqual('This is my bio, about my amazing self');
+                done();
+                });
+            });
+        });
+    });
+
 });

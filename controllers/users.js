@@ -66,6 +66,13 @@ var UsersController = {
       })
     },
 
+    Bio: function(re, res){
+      // if the user clicks edit they are able to change the content of their bio page.
+      
+  
+  
+  },
+
     Logout: function(req, res) {
       res.clearCookie('username')
       var check = req.cookies['username'];
