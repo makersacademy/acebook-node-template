@@ -19,7 +19,7 @@ body, html {
   font-style: oblique;
   font-size: 60px;
   text-decoration: underline;
-  color: #4d4dff;
+  color: #000080;
 }
 
 .second-title {
@@ -30,16 +30,17 @@ body, html {
 
 .signin-box {
   text-align: center;
-  border: 6px solid black;
+  border: 3px solid black;
   margin-top: 10%;
   margin-left: 35%;
   margin-right: 35%;
+  background-color: rgba(211,211,211,0.4);
 }
 
-
-
-
-
+.signup-link {
+  color: black;
+  font-size: 21px;
+}
 </style>
 
 <html>
@@ -54,15 +55,23 @@ body, html {
 </head>
 
 <body>
+
 <div class="bg">
+
+<div id="logo" style="position:relative;">
+  <img style="position:absolute; top:10px; bottom: 10px; left: 5px;" src="/images/AceBookLogo.png" width="90" height="100" valign="top">
+</div>
+
 <div id="title" class="form-container">
   <h1 class="title">{{title}}</h1>
   <p class="second-title">Welcome to {{title}}</p>
   <hr>
 </div>
+
 <div class="signin-box">
+
 <div id="login" class="form-group">
-  <h2>Enter Your Details</h2>
+  <h2>Log In Here</h2>
   <label for="email-input">Email Address</label>
   <input id="email-input" class="form-control" type="text">
 </div>
@@ -74,8 +83,10 @@ body, html {
 
 <button id="login-button" class="btn btn-primary">Log In</button>
 <br><br>
-<a id="signup-link" class="signup-link" href="/signup">Sign up if you're new!</a>
-  </div>
-  </div>
+<a id="signup-link" class="signup-link" href="/signup">New user? Sign up here!</a>
+
+</div>
+</div>
+
 </body>
 </html>
