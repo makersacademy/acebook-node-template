@@ -31,7 +31,7 @@ var UsersController = {
                   if(err) { throw err; }
 
                   else if(check !== null) {
-                    res.render('/ourErrors', {message: "Username already taken. Please enter a different username."})  }               // if it's not set the check to true
+                    res.render('ourErrors', {error: "Username already taken. Please enter a different username."})  }               // if it's not set the check to true
 
                   else{
                     users.save(function(err) { // saves the new post
@@ -51,7 +51,7 @@ var UsersController = {
             //         content: "Your password did not Match"
             //     });
 
-                res.render('ourErrors', { error: "Inccorect username or password"});
+                res.render('ourErrors', { error: "Passwords do not match"});
             }
           },
 
