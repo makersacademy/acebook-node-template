@@ -131,11 +131,44 @@ var UsersController = {
 
     res.redirect('/users/profile'); // redirects to the viewing profile page
   },
+    Logout: function(req, res) {
+      res.clearCookie('username')
+      res.redirect('/')
+    },
 
-  Logout: function(req, res) {
-    res.clearCookie('username')
-    res.redirect('/')
-  }
+    Search: function(req, res) {
+      res.render('users/search')
+    },
+
+    Query: function(req, res) {
+      var input = 'ln';
+      Users.find({fullname: new RegExp(req.body.username, 'i')}, function(err, foundUsers) {
+        if(err) {throw err}
+        else{
+          if(!foundUsers) {
+            res.render('ourErrors', { error: "No users found"})
+          }
+          else {
+            res.cookie('foundUsers', foundUsers)
+            res.redirect('/users/search/results')
+          }
+        }
+      })
+    },
+
+    Results: function(req, res) {
+      var foundUsers = req.cookies['foundUsers'];
+      console.log("AFTER COOKIE SET")
+      console.log(foundUsers);
+      res.render('users/index', {users: foundUsers});
+    },
+
+    ViewProfile: function(req, res) {
+      Users.findOne({username: req.params.username} , function(err, user) {
+        if(err) {throw err}
+      res.render('users/viewProfile', {user: user})
+    })
+    },
 };
 
 module.exports = UsersController;
