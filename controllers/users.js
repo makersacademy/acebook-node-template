@@ -90,11 +90,16 @@ var UsersController = {
 
   Bio: function(req, res) {
     // console.log(req)
-    Users.findOne({  // gets the currently logged in user from the db
+    Users.findOne({ // gets the currently logged in user from the db
       username: req.cookies['username']
     }, function(req, name) {
 
-      Posts.find({postedby: name.username}, {}, {limit: 3, sort: '-time'},function(req, posts) {
+      Posts.find({
+        postedby: name.username
+      }, {}, {
+        limit: 3,
+        sort: '-time'
+      }, function(req, posts) {
         console.log(posts)
         res.render('users/profile', { // this page is only for viewing the profile
           user: name, // passes in the current users info for the page to use when it renders
