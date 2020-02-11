@@ -1,4 +1,6 @@
 var Post = require('../models/post');  // connects to the model which allows you to access database
+var ObjectId = require('mongodb').ObjectId;
+
 
 var PostsController = {
   Index: function(req, res) {
@@ -17,10 +19,11 @@ var PostsController = {
   },
 
   Create: function(req, res) {
-    if (req.cookies['username']){
+    if (req.cookies['username']){       // if there is a user logged in (cookie isn't empty)
     var post = new Post({
       message:req.body.message,
-      postedby: req.cookies['username']
+      postedby: req.cookies['username'],     //retrieve username from cookie
+      // comments: " "
     });  // creates a new instance of post with the text
     post.save(function(err) {       // saves the new post
       if (err) { throw err; }
@@ -30,7 +33,38 @@ var PostsController = {
   } else {
     res.redirect('/users/register');
   }
-  }
+},
+
+  ViewComments: function(req, res) {
+    res.cookie('post', req.params.id)            // getting cookie containing ID of post we are commenting on
+    res.render('posts/viewcomments', { id: req.params.id });    // post ID in URL 
+  },
+
+  CreateComments: function(req,res) {     // function for adding a comment
+    var postid= req.cookies['post'];      // retrieves cookie with Post ID
+
+    Post.findOne({_id: postid},function(err, foundObject) {   // find post with the ID
+      if(err) {
+        console.log(err);
+        res.status(500).send();
+      } else {
+        if (!foundObject) {
+          res.status(404).send();
+        } else {
+          // foundObject.comments = req.body.comments;
+          foundObject.comments.push(req.body.comments);     // add the comment to the array in the post db
+          foundObject.save(function(err, updatedObject) {     // save
+            if(err) {
+              console.log(err);
+              res.status(500).send();
+            } else {
+              res.redirect('/posts');
+          }
+        })
+      }
+    }
+  });
+  },
 };
 
 module.exports = PostsController;
