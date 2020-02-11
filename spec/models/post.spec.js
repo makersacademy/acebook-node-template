@@ -37,4 +37,24 @@ describe('Post model', function() {
       });
     });
   });
+
+  // it('can save a comment on a post', function(done){
+  //   var post = new Post ({ message: 'some message', comments: 'some comment' });
+  //   post.save(function(err){
+  //     expect(err).toBeNull();
+  //
+  //     Post.find(function(err,posts){
+  //       expect(err).toBeNull();
+  //
+  //       const expected = ["some comment"]
+  //       expect(posts[0]["comments"]).toEqual(expect.arrayContaining(expected));
+  // });
+  //       // const comment = Array.from(posts[0]["comments"])
+  //       // const random = ("some comment").split()
+  //       //
+  //       // expect(comment).toContain( random);
+  //     });
+  //   });
+  // });
+
 });
