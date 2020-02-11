@@ -77,6 +77,7 @@ var UsersController = {
       })
     },
 
+<<<<<<< HEAD
     Bio: function(req,res) {
         // console.log(req)
       Users.findOne({ username: req.cookies['username']}, function(req, name){
@@ -100,6 +101,24 @@ var UsersController = {
       })      // if(err) {throw err;}
       // Users.bio.save();
       res.redirect('/users/profile');
+=======
+  Bio: function(req,res) {
+      res.render('users/profile', {user: name} );
+  },
+
+  EditBio: function(req,res) {
+  Users.findOne({ username: req.cookies['username']}, function(req, name){
+    res.render('users/profile', {user: name} );
+  });
+},
+
+  NewBio: function(req, res){
+      res.render('users/profile_edit', {});
+      // Users.findOneAndUpdate({username: req.cookies['username']}, {$set: {bio: req.body.biobox }});  
+      // if(err) {throw err;}
+      // Users.bio.save(); 
+      // res.redirect('users/profile');
+>>>>>>> 2ff31794522284d8159d0ac2aa0a627cfbab981b
   },
 
     Logout: function(req, res) {
