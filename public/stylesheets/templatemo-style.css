@@ -20,7 +20,9 @@ a:focus {
 }
 
 .row { display: block; }
-.tm-left-right-container { width: 100%; }
+.tm-left-right-container { 
+	width: 100%;
+ }
 
 .tm-blue-bg {
 	background-color: #006599;
@@ -62,7 +64,18 @@ p { line-height: 2; }
 	cursor: pointer;
 	display: inline-block;
 	font-size: 1.4rem;	
-	padding: 18px 3px;
+	padding: 18px 40px;
+	border-radius: 40px;
+}
+
+.tm-button2 {
+	background-color: #ebf1f5;
+	border: none;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1.4rem;	
+	padding: 18px 40px;
 	border-radius: 40px;
 }
 

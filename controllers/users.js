@@ -67,7 +67,7 @@ var UsersController = {
         if(user) {
           if(bcrypt.compareSync(req.body.password, user.password)) {
             res.cookie('username', user.username)            // getting cookie for the current logged in user
-            var username = req.cookies['username'];     // sets username variable to the cookies username
+            // var username = req.cookies['username'];     // sets username variable to the cookies username
             res.redirect('/posts')
           }
           else {
@@ -77,11 +77,19 @@ var UsersController = {
       })
     },
 
-    Bio: function(re, res){
-      // if the user clicks edit they are able to change the content of their bio page.
-      
-  
-  
+    Bio: function(req,res) {
+      // console.log(req)
+    Users.findOne({ username: req.cookies['username']}, function(req, name){
+      res.render('users/profile', {user: name} );
+    });
+  },
+
+    NewBio: function(req, res){
+      res.render('/users/profile_edit', {});
+      Users.findOneAndUpdate({username: req.cookies['username']}, {$set: {bio: req.body.biobox }});  
+      if(err) {throw err;}
+      Users.bio.save(); 
+      res.redirect('/users/profile');
   },
 
     Logout: function(req, res) {

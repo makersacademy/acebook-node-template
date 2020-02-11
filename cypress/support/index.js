@@ -18,3 +18,23 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands')
+
+// var mongoose = require('mongoose');
+
+// beforeEach(function(done) {
+//   var mongoose = mongoose.connect('mongodb://localhost/acebook', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   });
+
+//   var db = mongoose.connection;
+//   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//   db.on('open', function() {
+//     done();
+//   });
+//   mongoose.connection.collections.users.drop(function() {
+//       done();
+//   })
+// });
+
+
