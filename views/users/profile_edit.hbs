@@ -15,20 +15,14 @@
   <link rel="stylesheet" href="../../public/stylesheets/templatemo-style.css">
   <!-- <link rel="stylesheet" type="text/css" href="../../public/stylesheets/style.css"> -->
 
-<<<<<<< HEAD
-
-  <link>
-</head>
-=======
     <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"> 
-    {{!-- <link rel="stylesheet" href="../../stylesheets/bootstrap.min.css">                                      
-    <link rel="stylesheet" href="../../stylesheets/magnific-popup.css">                                
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    {{!-- <link rel="stylesheet" href="../../stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="../../stylesheets/magnific-popup.css">
     <link rel="stylesheet" href="../../stylesheets/templatemo-style.css"> --}}
     <link rel="stylesheet" type="text/css" href="../../stylesheets/style.css">
 </head>
 
->>>>>>> 2ff31794522284d8159d0ac2aa0a627cfbab981b
 <style>
   .input-box {
     width: 100%;
@@ -59,89 +53,11 @@
     }
   </style> -->
 
-<<<<<<< HEAD
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="tm-left-right-container">
         <!-- Left column: logo and menu -->
-        <div class="tm-blue-bg tm-left-column">
-          <div class="tm-logo-div text-xs-center">
-            <img style="margin-left: 80px; height: 200px; width: auto; " src="../../public/images/images.png" alt="Logo">
-            <h4 style="margin-left: 75px;"> {{user.fullname}} Profile Page </h4>
-          </div>
-          <nav class="tm-main-nav">
-            <ul class="tm-main-nav-ul">
-              <ul>{{user.username}} </ul>
-              <ul>{{user.email}} </ul>
-              <br>
-              <br>
-              <li class="tm-nav-item">
-                <a href="/posts" class="tm-nav-item-link">Posts</a>
-              </li>
-              <li class="tm-nav-item">
-                <a href="/posts/new" class="tm-nav-item-link">New Posts</a>
-              </li>
-              <li class="tm-nav-item">
-                <a href="#" class="tm-nav-item-link">Connect & Search</a>
-              </li>
-              <br>
-              <ul class="tm-nav-item">Date joined Acebook: {mm/year} </ul>
-            </ul>
-          </nav>
-        </div> <!-- Left column: logo and menu -->
-        <!-- Right column: content -->
-        <div class="tm-right-column">
-          <figure>
-            <img src="img/neaty-01.jpg" alt="Header image" class="img-fluid">
-          </figure>
-
-          <div class="tm-content-div">
-            <!-- Welcome section -->
-            <section id="welcome" class="tm-section">
-              <header>
-                <h3 class="tm-blue-text tm-welcome-title tm-margin-b-45">{{user.fullname}}'s Bio </h3>
-              </header>
-              <form action="/users/profile" method="post">
-                <textarea rows="15" cols="60" id="biobox" name="biobox" style="margin-top: 1em; font-size: 18px;" class="input-box" align="center" placeholder="This is your bio, please edit me now!">{{user.bio}}</textarea>
-                <input style="margin-top:2em; background-color: #337AB7; border-color: #2E6DA4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
-              </form>
-
-            </section>
-            <!-- About section -->
-            <section id="about" class="tm-section">
-              <div class="row">
-                <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 push-lg-4 push-md-5">
-                  <header>
-                    <h3 class="tm-blue-text tm-section-title tm-margin-b-45">Your Recent Posts</h3>
-                  </header>
-                  <div class="rposts1">
-                    <img class="col-lg-4 col-md-5 col-sm-12 col-xs-12 pull-lg-8 pull-md-7 tm-about-img-container" src="img/neaty-02.jpg" alt="Image" class="img-fluid">
-                    <p>{Timestamp}</p>
-                    <p>Sed turpis nunc, laoreet sit amet fermentum sed, euismod ac justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                    <p>Donec ut lectus semper, sollicitudin risus blandit, mattis felis. Nam non malesuada odio. Vestibulum vaius, arcu eget rutrum consequat, arcu lacus imperdiet arcu, id pulvinar arcu erat vel magna.</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-
-
-<script src="../../public/javascripts/materialize.js"></script>
-<script src="../../public/javascripts/materialize.min.js"></script>
-
-</html>
-=======
-<body>    
-        <!-- Left column: logo and menu -->     
               <div class="tm-left-right-container">
                   <!-- Left column: logo and menu -->
-                  <div class="tm-blue-bg tm-left-column">                        
+                  <div class="tm-blue-bg tm-left-column">
                       <div class="tm-logo-div text-xs-center">
                           <img style="margin-left: 80px; height: 200px; width: auto; " src="../../images/images.png" alt="Logo">
                           <h4 style="margin-left: 75px; font-family: 'Bungee', cursive" > {{user.fullname}} Profile Page </h4>
@@ -162,15 +78,15 @@
                               <br>
                               <ul class="tm-nav-item">Date joined Acebook: {mm/year} </ul>
                           </ul>
-                      </div>                                         
-                  </div> 
-            </div>     
-                                            
-                  </div> <!-- Left column: logo and menu --> 
+                      </div>
+                  </div>
+            </div>
+
+                  </div> <!-- Left column: logo and menu -->
                      <!-- Right column: content -->
                   <div class="tm-right-column">
                       <figure>
-                          <img class="cropped" src="../../images/Friends--unsplash.jpg" alt="Header image" >    
+                          <img class="cropped" src="../../images/Friends--unsplash.jpg" alt="Header image" >
                       </figure>
 
                       <div class="tm-content-div">
@@ -186,7 +102,7 @@
                          </section>
                         <!-- About section -->
                           <section id="about" class="tm-section">
-                              <div class="row">                                                                
+                              <div class="row">
                                   <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 push-lg-4 push-md-5">
                                       <header>
                                           <h3 class="tm-blue-text tm-section-title tm-margin-b-45" style="font-family: 'Bungee', cursive">Your Recent Posts</h3>
@@ -195,12 +111,10 @@
                                       <p>{Timestamp}</p>
                                       <p>Sed turpis nunc, laoreet sit amet fermentum sed, euismod ac justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
                                       <p>Donec ut lectus semper, sollicitudin risus blandit, mattis felis. Nam non malesuada odio. Vestibulum vaius, arcu eget rutrum consequat, arcu lacus imperdiet arcu, id pulvinar arcu erat vel magna.</p>
-                                 </div> 
+                                 </div>
                                 </div>
-                              </div>                            
-                          </section>  
+                              </div>
+                          </section>
                       </div>
-                  </div>        
+                  </div>
     </body>
-       
->>>>>>> 2ff31794522284d8159d0ac2aa0a627cfbab981b

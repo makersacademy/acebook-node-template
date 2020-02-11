@@ -12,11 +12,7 @@ router.get('/login', UsersController.Login);
 router.post('/login', UsersController.Authenticate);
 
 router.get('/profile', UsersController.Bio);
-<<<<<<< HEAD
 router.get('/profile/new', UsersController.EditBio);
-=======
-router.get('/profile/new', UsersController.NewBio);
->>>>>>> 2ff31794522284d8159d0ac2aa0a627cfbab981b
 router.post('/profile', UsersController.NewBio);
 
 router.post('/logout', UsersController.Logout);
