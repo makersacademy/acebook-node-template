@@ -141,14 +141,13 @@ var UsersController = {
     },
 
     Query: function(req, res) {     // functionality behind searching for user
-      var input = 'ln';
+      // var input = 'ln';
       Users.find({fullname: new RegExp(req.body.username, 'i')}, function(err, foundUsers) {      // find the users in the database with the name you searched (doesn't have to be exact, so can be partially matching because of the regex)
         if(err) {throw err}
         else{
-          if(!foundUsers) {
-            res.render('ourErrors', { error: "No users found"})     // if no users found error page
-          }
-          else {
+          if(foundUsers !== null) {
+            res.render('ourErrors', { error: "No users found"});     // if no users found error page
+          } else {
             res.cookie('foundUsers', foundUsers)        // set the cookie foundusers to the list of users found
             res.redirect('/users/search/results')     // redirect to the results page
           }
