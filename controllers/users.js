@@ -136,37 +136,47 @@ var UsersController = {
       res.redirect('/')
     },
 
-    Search: function(req, res) {
+    Search: function(req, res) {    // renders the page to search for a users name
       res.render('users/search')
     },
 
-    Query: function(req, res) {
+    Query: function(req, res) {     // functionality behind searching for user
       var input = 'ln';
-      Users.find({fullname: new RegExp(req.body.username, 'i')}, function(err, foundUsers) {
+      Users.find({fullname: new RegExp(req.body.username, 'i')}, function(err, foundUsers) {      // find the users in the database with the name you searched (doesn't have to be exact, so can be partially matching because of the regex)
         if(err) {throw err}
         else{
           if(!foundUsers) {
-            res.render('ourErrors', { error: "No users found"})
+            res.render('ourErrors', { error: "No users found"})     // if no users found error page
           }
           else {
-            res.cookie('foundUsers', foundUsers)
-            res.redirect('/users/search/results')
+            res.cookie('foundUsers', foundUsers)        // set the cookie foundusers to the list of users found
+            res.redirect('/users/search/results')     // redirect to the results page
           }
         }
       })
     },
 
     Results: function(req, res) {
-      var foundUsers = req.cookies['foundUsers'];
-      console.log("AFTER COOKIE SET")
-      console.log(foundUsers);
-      res.render('users/index', {users: foundUsers});
+      var foundUsers = req.cookies['foundUsers'];         // set foundusers to the cookie (passed from previous function)
+      res.render('users/index', {users: foundUsers});     // render the page listing the found users with links to their profiles
     },
 
     ViewProfile: function(req, res) {
-      Users.findOne({username: req.params.username} , function(err, user) {
+      Users.findOne({username: req.params.username} , function(err, user) {     // find user's profile you clicked on
         if(err) {throw err}
-      res.render('users/viewProfile', {user: user})
+
+        Posts.find({
+          postedby: req.params.username
+        }, {}, {
+          limit: 3,
+          sort: '-time'
+        }, function(req, posts) {
+          console.log(posts)
+          res.render('users/viewProfile', { // this page is only for viewing the profile
+            user: user, // passes in the current users info for the page to use when it renders
+            posts: posts // passes in the 3 most recent posts
+          });
+        })
     })
     },
 };
