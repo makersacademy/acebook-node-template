@@ -96,7 +96,7 @@
                                   <h3 class="tm-blue-text tm-welcome-title tm-margin-b-45 title" style="font-family: 'Bungee', cursive">{{user.fullname}}'s Bio </h3>
                               </header>
                             <form action="/users/profile" method="POST">
-                              <textarea rows = "15" cols= "60" name="biobox" style="margin-top: 1em; font-size: 18px;" class="input-box" align="center" placeholder="This is your bio, please edit me now!" ></textarea>
+                              <textarea rows = "15" cols= "60" name="biobox" style="margin-top: 1em; font-size: 18px;" class="input-box" align="center" placeholder="This is your bio, please edit me now!" >{{user.bio}}</textarea>
                               <input style="margin-top:2em; background-color: #337AB7; border-color: #2E6DA4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
                             </form>
                          </section>
