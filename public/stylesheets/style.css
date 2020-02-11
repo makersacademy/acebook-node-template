@@ -1,15 +1,87 @@
-body {
+/* body {
   padding: 50px;
   font: 14px "BlinkMacSystemFont", Helvetica, Arial, sans-serif;
   margin: 0;
   text-align: center;
+} */
+
+.row { display: block; }
+.tm-left-right-container { width: 100%; }
+
+.cropped{
+  width: 1200px;
+  height: 300px ;
+  object-fit: cover;
+  /* object-position: 20% 10px; */
 }
 
+.loveimage{
+  width: 200px;
+  height: 300px ;
+}
 
-p1 {
-  color: #FFFFFF;
-  font: "Helvetica";
-  text-align: center;
+.tm-blue-bg {
+	background-color: #006599;
+  color: white;
+  
+}
+.tm-main-nav { display: none; }
+
+.tm-main-nav-ul {
+	display: inline-block;
+	padding-left: 0;
+}
+
+.tm-left-column { 
+  position: fixed; 
+  height: 100%;
+}
+
+.container { width: 100%; }
+.tm-left-column { width: 30%; }
+
+.tm-right-column {
+  float: right;
+  width: 70%;
+}
+
+.tm-nav-item {
+  cursor: pointer;
+  font-size: 1rem;
+  list-style: none;
+  padding: 18px 30px;
+  transition: all 0.3s ease;
+  
+}
+
+.tm-button {
+	background-color: #006599;
+	border: none;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1rem;	
+	padding: 10px 3px;
+	border-radius: 40px;
+}
+
+.tm-button-wide { padding: 10px 40px; }
+
+.tm-content-div { padding: 40px; }
+.tm-section { margin-bottom: 100px; }
+.tm-section { margin-bottom: 60px; }
+.tm-welcome-title { font-size: 2.4rem; }
+.tm-section-title { font-size: 2.2rem; }
+.tm-content-div { padding: 40px; }
+.tm-margin-b-45 { margin-bottom: 45px; }
+.tm-margin-b-30 { margin-bottom: 30px; }
+
+p {
+  font-family: "Helvetica";
+}
+
+a {
+  font-family: "Helvetica";
 }
 
 h1 {
@@ -371,3 +443,35 @@ h1 {
 .row .col.push-s12 {
   left: 100%;
 }
+
+@media (max-height: 860px) {
+	.tm-logo-div {
+	    padding-top: 45px;
+	    padding-bottom: 20px;
+	}
+
+	/* .tm-nav-item { font-size: 1rem; } */
+
+	.tm-site-name {
+		font-size: 2.4rem;
+		margin-top: 10px;
+	}
+}
+
+@media (min-height: 89px) {
+	.tm-logo-div {
+	    padding-top: 100px;
+	    padding-bottom: 100px;
+	}
+
+	.tm-nav-item { font-size: 1rem; }
+}
+.rposts1 {
+	border-radius: 47px;
+	background: rgb(150, 196, 240);
+	position: relative;
+	padding: 20px;
+	opacity: 0.5;
+	margin: 0 auto;
+
+  }
