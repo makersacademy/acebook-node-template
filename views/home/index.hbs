@@ -60,22 +60,22 @@ body, html {
   <p class="second-title">Welcome to {{title}}</p>
   <hr>
 </div>
-<div class="signin-box">
+<form class="signin-box" action="/" method="post">
 <div id="login" class="form-group">
   <h2>Enter Your Details</h2>
   <label for="email-input">Email Address</label>
-  <input id="email-input" class="form-control" type="text">
+  <input id="email-input" name="email" class="form-control" type="text" required>
 </div>
 
 <div id="password" class="form-group">
   <label for="password-input">Password</label>
-  <input id="password-input" class="form-control" type="password">
+  <input id="password-input" name="password" class="form-control" type="password" required>
 </div>
 
 <button id="login-button" class="btn btn-primary">Log In</button>
 <br><br>
 <a id="signup-link" class="signup-link" href="/signup">Sign up if you're new!</a>
-  </div>
+  </form>
   </div>
 </body>
 </html>
