@@ -40,7 +40,7 @@
             <button onclick="window.location.href = '#';" class="tm-nav-item-link tm-button2">Connect & Search</button>
           </li>
           <br>
-          <ul class="tm-nav-item">Date joined Acebook: {mm/year} </ul>
+          <ul>Date joined Acebook: {mm/year} </ul>
         </ul>
       </div>
     </div>
@@ -68,11 +68,14 @@
             <header>
               <h3 class="tm-blue-text tm-section-title tm-margin-b-45" style="font-family: 'Bungee', cursive">Your Recent Posts</h3>
             </header>
-            <div class="rposts1">
-              <p>{Timestamp}</p>
-              <p>Sed turpis nunc, laoreet sit amet fermentum sed, euismod ac justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-              <p>Donec ut lectus semper, sollicitudin risus blandit, mattis felis. Nam non malesuada odio. Vestibulum vaius, arcu eget rutrum consequat, arcu lacus imperdiet arcu, id pulvinar arcu erat vel magna.</p>
-            </div>
+
+              {{#each posts}}
+              <div style="margin-bottom: 5px" class="rposts1">           <!-- for each post in the db print all of the below -->
+                <li>{{this.message}}</li>
+                <li>{{this.time}}</li>
+                </div>
+              {{/each}}
+
           </div>
         </div>
       </section>

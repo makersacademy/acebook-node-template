@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 
 
 var Users = require('../models/users'); // connects to the model which allows you to access the users database
-var Posts = require('../models/users'); // connects to the model which allows you to access the posts database for display in the user bio
+var Posts = require('../models/post'); // connects to the model which allows you to access the posts database for display in the user bio
 
 var UsersController = {
   Index: function(req, res) {
@@ -93,9 +93,14 @@ var UsersController = {
     Users.findOne({  // gets the currently logged in user from the db
       username: req.cookies['username']
     }, function(req, name) {
-      res.render('users/profile', { // this page is only for viewing the profile
-        user: name // passes in the current users info for the page to use when it renders
-      });
+
+      Posts.find({postedby: name.username}, {}, {limit: 3, sort: '-time'},function(req, posts) {
+        console.log(posts)
+        res.render('users/profile', { // this page is only for viewing the profile
+          user: name, // passes in the current users info for the page to use when it renders
+          posts: posts // passes in the 3 most recent posts
+        });
+      })
     });
   },
 
