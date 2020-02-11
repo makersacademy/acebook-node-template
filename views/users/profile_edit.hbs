@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Acebook Profile Page</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400"> 
-    <link rel="stylesheet" href="../..public/stylesheets/bootstrap.min.css">                                      
-    <link rel="stylesheet" href="../../public/stylesheets/magnific-popup.css">                                
-    <link rel="stylesheet" href="../../public/stylesheets/templatemo-style.css">
-    <!-- <link rel="stylesheet" type="text/css" href="../../public/stylesheets/style.css"> -->
+  <title>Acebook Profile Page</title>
 
-    
-    <link >
-  </head>
+  <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+  <link rel="stylesheet" href="../..public/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="../../public/stylesheets/magnific-popup.css">
+  <link rel="stylesheet" href="../../public/stylesheets/templatemo-style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../../public/stylesheets/style.css"> -->
+
+
+  <link>
+</head>
 <style>
-    .input-box {
-  width: 100%;
-  color: rgb(38, 50, 56);
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 1px;
-  background: rgba(250, 250, 250, 0.9);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  box-sizing: border-box;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-  margin-left: 0px;
-  font-family: 'Ubuntu', sans-serif;
-}
+  .input-box {
+    width: 100%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1px;
+    background: rgba(250, 250, 250, 0.9);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    margin-left: 0px;
+    font-family: 'Ubuntu', sans-serif;
+  }
 </style>
 
 
-  <!-- <style>
+<!-- <style>
     body {
       background-image: url('https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80');
       background-repeat: no-repeat;
@@ -47,79 +48,79 @@
     }
   </style> -->
 
-    <body>        
-      <div class="container">
-          <div class="row">
-              <div class="tm-left-right-container">
-                  <!-- Left column: logo and menu -->
-                  <div class="tm-blue-bg tm-left-column">                        
-                      <div class="tm-logo-div text-xs-center">
-                          <img style="margin-left: 80px; height: 200px; width: auto; " src="../../public/images/images.png" alt="Logo">
-                          <h4 style="margin-left: 75px;" > {Fullname} Profile Page </h4>
-                      </div>
-                      <nav class="tm-main-nav">
-                          <ul class="tm-main-nav-ul">
-                              <ul >{Username} </ul>
-                              <ul >{Email} </ul>
-                              <br>
-                              <br>
-                              <li class="tm-nav-item">
-                                  <a href="/posts" class="tm-nav-item-link">Posts</a>
-                              </li>
-                              <li class="tm-nav-item">
-                                  <a href="/posts/new" class="tm-nav-item-link">New Posts</a>
-                              </li>
-                              <li class="tm-nav-item">
-                                  <a href="#" class="tm-nav-item-link">Connect & Search</a>
-                              </li>
-                              <br>
-                              <ul class="tm-nav-item">Date joined Acebook: {mm/year} </ul>
-                          </ul>
-                      </nav>                                         
-                  </div> <!-- Left column: logo and menu --> 
-                     <!-- Right column: content -->
-                  <div class="tm-right-column">
-                      <figure>
-                          <img src="img/neaty-01.jpg" alt="Header image" class="img-fluid">    
-                      </figure>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="tm-left-right-container">
+        <!-- Left column: logo and menu -->
+        <div class="tm-blue-bg tm-left-column">
+          <div class="tm-logo-div text-xs-center">
+            <img style="margin-left: 80px; height: 200px; width: auto; " src="../../public/images/images.png" alt="Logo">
+            <h4 style="margin-left: 75px;"> {{user.fullname}} Profile Page </h4>
+          </div>
+          <nav class="tm-main-nav">
+            <ul class="tm-main-nav-ul">
+              <ul>{{user.username}} </ul>
+              <ul>{{user.email}} </ul>
+              <br>
+              <br>
+              <li class="tm-nav-item">
+                <a href="/posts" class="tm-nav-item-link">Posts</a>
+              </li>
+              <li class="tm-nav-item">
+                <a href="/posts/new" class="tm-nav-item-link">New Posts</a>
+              </li>
+              <li class="tm-nav-item">
+                <a href="#" class="tm-nav-item-link">Connect & Search</a>
+              </li>
+              <br>
+              <ul class="tm-nav-item">Date joined Acebook: {mm/year} </ul>
+            </ul>
+          </nav>
+        </div> <!-- Left column: logo and menu -->
+        <!-- Right column: content -->
+        <div class="tm-right-column">
+          <figure>
+            <img src="img/neaty-01.jpg" alt="Header image" class="img-fluid">
+          </figure>
 
-                      <div class="tm-content-div">
-                          <!-- Welcome section -->
-                          <section id="welcome" class="tm-section">
-                              <header>
-                                  <h3 class="tm-blue-text tm-welcome-title tm-margin-b-45">{fullname}'s Bio </h3>
-                              </header>
-                              <form action="/users/profile" method="POST">
-                              <textarea rows = "15" cols= "60" name="biobox" style="margin-top: 1em; font-size: 18px;" class="input-box" align="center" placeholder="This is your bio, please edit me now!" ></textarea>
-                              <input style="margin-top:2em; background-color: #337AB7; border-color: #2E6DA4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
-                            </form>
+          <div class="tm-content-div">
+            <!-- Welcome section -->
+            <section id="welcome" class="tm-section">
+              <header>
+                <h3 class="tm-blue-text tm-welcome-title tm-margin-b-45">{{user.fullname}}'s Bio </h3>
+              </header>
+              <form action="/users/profile" method="post">
+                <textarea rows="15" cols="60" id="biobox" name="biobox" style="margin-top: 1em; font-size: 18px;" class="input-box" align="center" placeholder="This is your bio, please edit me now!">{{user.bio}}</textarea>
+                <input style="margin-top:2em; background-color: #337AB7; border-color: #2E6DA4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
+              </form>
 
-                            </section>
-                          <!-- About section -->
-                          <section id="about" class="tm-section">
-                              <div class="row">                                                                
-                                  <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 push-lg-4 push-md-5">
-                                      <header>
-                                          <h3 class="tm-blue-text tm-section-title tm-margin-b-45">Your Recent Posts</h3>
-                                      </header>
-                                      <div class="rposts1">
-                                        <img class="col-lg-4 col-md-5 col-sm-12 col-xs-12 pull-lg-8 pull-md-7 tm-about-img-container"  src="img/neaty-02.jpg" alt="Image" class="img-fluid">  
-                                      <p>{Timestamp}</p>
-                                      <p>Sed turpis nunc, laoreet sit amet fermentum sed, euismod ac justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                                      <p>Donec ut lectus semper, sollicitudin risus blandit, mattis felis. Nam non malesuada odio. Vestibulum vaius, arcu eget rutrum consequat, arcu lacus imperdiet arcu, id pulvinar arcu erat vel magna.</p>
-                                 </div> 
-                                </div>
-                              </div>                            
-                          </section>  
-                      </div>
-                  </div> 
+            </section>
+            <!-- About section -->
+            <section id="about" class="tm-section">
+              <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 push-lg-4 push-md-5">
+                  <header>
+                    <h3 class="tm-blue-text tm-section-title tm-margin-b-45">Your Recent Posts</h3>
+                  </header>
+                  <div class="rposts1">
+                    <img class="col-lg-4 col-md-5 col-sm-12 col-xs-12 pull-lg-8 pull-md-7 tm-about-img-container" src="img/neaty-02.jpg" alt="Image" class="img-fluid">
+                    <p>{Timestamp}</p>
+                    <p>Sed turpis nunc, laoreet sit amet fermentum sed, euismod ac justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                    <p>Donec ut lectus semper, sollicitudin risus blandit, mattis felis. Nam non malesuada odio. Vestibulum vaius, arcu eget rutrum consequat, arcu lacus imperdiet arcu, id pulvinar arcu erat vel magna.</p>
+                  </div>
+                </div>
               </div>
-          </div> 
-      </div>            
-    </body>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
 
-<script src="../../public/javascripts/materialize.js"></script>  
-<script src="../../public/javascripts/materialize.min.js"></script>  
+<script src="../../public/javascripts/materialize.js"></script>
+<script src="../../public/javascripts/materialize.min.js"></script>
 
 </html>
