@@ -1,12 +1,12 @@
 
 <h1 class="title"> Timeline</h1>
 <ul class="posts">
-  {{#each posts}}
+  {{#each posts}}              <!-- for each post in the db print all of the below -->
   <li>{{this.message}}</li>
   <li>{{this.time}}</li>
   <li>{{this.postedby}}</li>
   <li><a href="/posts/{{this.id }}"> Add comment</a></li>
-  <li>{{#each this.comments }} </li>
+  <li>{{#each this.comments }} </li>        <!--   for each comment in the array print -->
     <li> {{this}} </li>
       {{/each}}
   <p> ----------------- </p>

@@ -19,10 +19,10 @@ var PostsController = {
   },
 
   Create: function(req, res) {
-    if (req.cookies['username']){
+    if (req.cookies['username']){       // if there is a user logged in (cookie isn't empty)
     var post = new Post({
       message:req.body.message,
-      postedby: req.cookies['username'],
+      postedby: req.cookies['username'],     //retrieve username from cookie
       // comments: " "
     });  // creates a new instance of post with the text
     post.save(function(err) {       // saves the new post
@@ -36,15 +36,14 @@ var PostsController = {
 },
 
   ViewComments: function(req, res) {
-    res.cookie('post', req.params.id)            // getting cookie for the current logged in user
-    res.render('posts/viewcomments', { id: req.params.id });
-    console.log(req.params.id)
+    res.cookie('post', req.params.id)            // getting cookie containing ID of post we are commenting on
+    res.render('posts/viewcomments', { id: req.params.id });    // post ID in URL 
   },
 
-  CreateComments: function(req,res) {
-    var postid= req.cookies['post'];
+  CreateComments: function(req,res) {     // function for adding a comment
+    var postid= req.cookies['post'];      // retrieves cookie with Post ID
 
-    Post.findOne({_id: postid},function(err, foundObject) {
+    Post.findOne({_id: postid},function(err, foundObject) {   // find post with the ID
       if(err) {
         console.log(err);
         res.status(500).send();
@@ -53,8 +52,8 @@ var PostsController = {
           res.status(404).send();
         } else {
           // foundObject.comments = req.body.comments;
-          foundObject.comments.push(req.body.comments);
-          foundObject.save(function(err, updatedObject) {
+          foundObject.comments.push(req.body.comments);     // add the comment to the array in the post db
+          foundObject.save(function(err, updatedObject) {     // save
             if(err) {
               console.log(err);
               res.status(500).send();
@@ -64,8 +63,6 @@ var PostsController = {
         })
       }
     }
-    // Post.update({"_id" : ObjectId(postid)},{ $set:{"comments": req.body.comments}});
-    // db.posts.update({"_id" : ObjectId("5e3850093570ca13c79157a3")},{$set:{'comments':'New comment'}});
   });
   },
 };
