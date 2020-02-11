@@ -9,6 +9,9 @@ var PostSchema = new mongoose.Schema({
     default: timestamp
   },
   postedby: String,
+  comments: {
+    type: Array,
+  },
 });
 
 var Post = mongoose.model('Post', PostSchema);
