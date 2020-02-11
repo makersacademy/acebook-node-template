@@ -15,6 +15,12 @@ router.get('/profile', UsersController.Bio);
 router.get('/profile/new', UsersController.EditBio);
 router.post('/profile', UsersController.NewBio);
 
+router.get('/search', UsersController.Search);
+router.post('/search', UsersController.Query);
+router.get('/search/results', UsersController.Results);
+
+router.get('/:username', UsersController.ViewProfile);
+
 router.post('/logout', UsersController.Logout);
 
 module.exports = router;

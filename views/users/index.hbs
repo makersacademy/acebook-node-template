@@ -1,0 +1,6 @@
+{{#each users}}              <!-- for each post in the db print all of the below -->
+<li>{{this.fullname}}</li>
+<li>{{this.username}}</li>
+<li> <a href='/users/{{this.username}}'> View profile</a></li>
+<p> ----------------- </p>
+{{/each}}
