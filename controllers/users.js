@@ -100,12 +100,23 @@ var UsersController = {
         limit: 3,
         sort: '-time'
       }, function(req, posts) {
-        console.log(posts)
-        res.render('users/profile', { // this page is only for viewing the profile
-          user: name, // passes in the current users info for the page to use when it renders
-          posts: posts // passes in the 3 most recent posts
-        });
+        Posts.find({
+          tags: name.username
+        }, {}, {
+          limit: 3,
+          sort: '-time'
+        }, function(req, tagged) {
+
+          res.render('users/profile', { // this page is only for viewing the profile
+            user: name, // passes in the current users info for the page to use when it renders
+            posts: posts, // passes in the 3 most recent posts
+            tagged: tagged
+          });
+
+        })
+
       })
+
     });
   },
 
@@ -170,12 +181,26 @@ var UsersController = {
         }, {}, {
           limit: 3,
           sort: '-time'
-        }, function(req, posts) {
-          console.log(posts)
-          res.render('users/viewProfile', { // this page is only for viewing the profile
-            user: user, // passes in the current users info for the page to use when it renders
-            posts: posts // passes in the 3 most recent posts
-          });
+        }, function(require, posts) {
+
+          Posts.find({
+            tags: req.params.username
+          }, {}, {
+            limit: 3,
+            sort: '-time'
+          }, function(req, tagged) {
+
+            res.render('users/viewProfile', { // this page is only for viewing the profile
+              user: user, // passes in the current users info for the page to use when it renders
+              posts: posts, // passes in the 3 most recent posts
+              tagged: tagged
+            });
+
+          })
+          // res.render('users/viewProfile', { // this page is only for viewing the profile
+          //   user: user, // passes in the current users info for the page to use when it renders
+          //   posts: posts // passes in the 3 most recent posts
+          // });
         })
     })
     },
