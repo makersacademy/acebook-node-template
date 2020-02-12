@@ -20,7 +20,13 @@ var UsersSchema = new mongoose.Schema({
 },
 bio:{
   type: String,
-}
+},
+friendrequests: {
+  type: Array,
+},
+friendslist: {
+  type: Array,
+},
 });
 
 var Users = mongoose.model('Users', UsersSchema);
