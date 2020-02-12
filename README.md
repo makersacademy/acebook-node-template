@@ -1,7 +1,8 @@
-# Acebook
+# AceBook
 
 ## User Stories
 
+```
 As a user,
 So that I can become social online,
 I would like to be able to sign up to AceBook.
@@ -13,8 +14,9 @@ I would like to be able to log in.
 As a user,
 So that no one else can use my account,
 I would like to be able to sign out.
+```
 
-This is a Node.js template for the Acebook engineering project.
+This is a Node.js template for the AceBook engineering project.
 
 It uses:
 - [Express](https://expressjs.com/) web framework for Node.js.
@@ -63,6 +65,45 @@ https://trello.com/b/n4iTSLGz
     ```
     brew services start mongodb-community@4.2
     ```
+
+## AceBook Usage
+### How to run AceBook
+
+Install:
+- Express
+```
+npm install express --save
+```
+- Nodemon
+```
+npm install --save-dev nodemon
+```
+- Handlebars
+```
+npm install handlebars
+```
+- Mongoose
+```
+npm install mongoose
+```
+- ESLint
+```
+npm install eslint --save-dev
+```
+- Jest
+```
+npm install --save-dev jest
+```
+- Cypress
+```
+npm install cypress
+```
+- Express-Session
+```
+npm install express-session
+```
+
+
 
 ### Start
 
