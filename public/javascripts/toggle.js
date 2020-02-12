@@ -7,3 +7,7 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
+
+function change() {
+    document.getElementById("myButton1").value="Friend request sent"; 
+}
