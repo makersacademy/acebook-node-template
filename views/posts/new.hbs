@@ -23,6 +23,12 @@
       <div class="container">
         <form id="new-post-form" action="/posts" method="post">
           <textarea rows = "10" cols= "25" name = "message" style="margin-top: 20em;"class="input-box" align=“center” placeholder="Enter Your Post" ></textarea>
+          <input name="taglist" id="taglist" list="tags" style="margin-top: 2em" class="input-box" placeholder="Tag your friends"></input>
+          <datalist id="tags">
+            {{#each friends}}
+              <option value={{this}}>
+            {{/each}}
+          </datalist>
           <input style="margin-top:2em; background-color: #337ab7; border-color: #2e6da4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
         </form>
         <br>

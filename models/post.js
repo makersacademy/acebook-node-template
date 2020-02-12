@@ -12,6 +12,9 @@ var PostSchema = new mongoose.Schema({
   comments: {
     type: Array,
   },
+  tags: {
+    type: Array,
+  }
 });
 
 var Post = mongoose.model('Post', PostSchema);

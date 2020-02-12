@@ -1,4 +1,5 @@
 var Post = require('../models/post');  // connects to the model which allows you to access database
+var Users = require('../models/users');
 // var ObjectId = require('mongodb').ObjectId;
 
 
@@ -10,9 +11,21 @@ var PostsController = {
       res.render('posts/index', { posts: posts.reverse() });  // render the post index view
     });
   },
+
   New: function(req, res) {
     if (req.cookies['username']){
-      res.render('posts/new', {});    // render the 'new' index view
+      // Users.findOne({username: req.cookies['username']}, function(req, user) {
+      //   res.render('posts/new', {friends: user.friendslist});    // render the 'new' index view
+      // })
+
+      var userList = new Array
+      Users.find(function(req, user) {
+        user.forEach(function(person) {
+          userList.push(person.username)
+        });
+
+        res.render('posts/new', {friends: userList});    // render the 'new' index view
+      })
     } else {
       res.redirect('/users/register');
     }
@@ -20,10 +33,11 @@ var PostsController = {
 
   Create: function(req, res) {
     if (req.cookies['username']){       // if there is a user logged in (cookie isn't empty)
+
     var post = new Post({
       message:req.body.message,
       postedby: req.cookies['username'],     //retrieve username from cookie
-      // comments: " "
+      tags: req.body.taglist.toString().split(", ")
     });  // creates a new instance of post with the text
     post.save(function(err) {       // saves the new post
       if (err) { throw err; }
