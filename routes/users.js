@@ -22,6 +22,8 @@ router.get('/search/results', UsersController.Results);
 router.get('/:username', UsersController.ViewProfile);
 router.post('/:username', UsersController.AddFriend);
 
+router.get('/requests', UsersController.Requests);
+
 router.post('/logout', UsersController.Logout);
 
 module.exports = router;

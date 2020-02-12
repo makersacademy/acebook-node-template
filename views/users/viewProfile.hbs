@@ -40,8 +40,8 @@
             <button onclick="window.location.href = '/users/search';" class="tm-nav-item-link tm-button2">Connect & Search</button>
           </li>
           <li class= "tm-nav-item tm-button2">
-            <form id="friend-request-form" type="submit" method="post" action="/users/{{user.username}}">
-            <input onclick="change()" type="button" value="Add Friend" id="myButton1" />
+            <form id="friend-request-form" method="post" action="/users/{{user.username}}">
+            <input onclick="change()" type="submit" value="Add Friend" id="myButton1" />
           </form>
           <br>
           <ul class="tm-nav-item">Date joined Acebook: {mm/year} </ul>

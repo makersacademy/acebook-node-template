@@ -233,6 +233,17 @@ var UsersController = {
       }
     });
   },
+  
+  Requests: function(req,res) {
+    // console.log("See user below")
+    var requester  = req.cookies['username'];
+    // console.log(requester)
+    Users.findOne({username: requester}, function(err, user){
+      if(err) {throw err}
+      res.render('users/requests', {user: user} )
+    })
+  },
+
 };
 
 module.exports = UsersController;
