@@ -234,6 +234,18 @@ var UsersController = {
     });
   },
 
+  
+  Requests: function(req,res) {
+    // console.log("See user below")
+    var requester  = req.cookies['username'];
+    // console.log(requester)
+    Users.findOne({username: requester}, function(err, user){
+      if(err) {throw err}
+      res.render('users/requests', {user: user} )
+    })
+  },
+
+
   UpdateRStatus: function(req, res) {
     console.log("RELATIONSHIP BELOW");
     console.log(req.body.relationships);
@@ -248,6 +260,7 @@ var UsersController = {
   })
 })
 },
+
 };
 
 module.exports = UsersController;
