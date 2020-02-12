@@ -42,6 +42,21 @@
           <li class="tm-nav-item tm-button2">
             <button onclick="window.location.href = '/users/requests';" class="tm-nav-item-link tm-button2">Friend requests</button>
           </li>
+
+    <form action="/users/updatestatus" method="post">
+            <br>Relationship status:
+  <select name="relationships">
+    <option value="{{rStatus}}" selected="selected" hidden="hidden">{{rStatus}}</option>
+    <option value="Single">Single</option>
+    <option value="Leave me alone">Leave me alone</option>
+    <option value="In a relationship">In a relationship</option>
+    <option value="It's complicated">It's complicated</option>
+    <option value="Happily married">Happily married</option>
+    <option value="Unhappily married">Unhappily married</option>
+  </select>
+  <input type="submit">
+</form>
+
           <br>
           <ul>Date joined Acebook: {mm/year} </ul>
         </ul>

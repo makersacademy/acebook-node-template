@@ -82,18 +82,17 @@ var UsersController = {
           // var username = req.cookies['username'];     // sets username variable to the cookies username
           res.redirect('/posts')
         } else {
-          res.redirect('/users/login');
+          res.render('ourErrors', { error: "Username or password does not match"});
         };
       }
     })
   },
 
   Bio: function(req, res) {
-    // console.log(req)
     Users.findOne({ // gets the currently logged in user from the db
       username: req.cookies['username']
     }, function(req, name) {
-
+      status = name.rStatus
       Posts.find({
         postedby: name.username
       }, {}, {
@@ -110,7 +109,8 @@ var UsersController = {
           res.render('users/profile', { // this page is only for viewing the profile
             user: name, // passes in the current users info for the page to use when it renders
             posts: posts, // passes in the 3 most recent posts
-            tagged: tagged
+            tagged: tagged,
+            rStatus: status,
           });
 
         })
@@ -233,6 +233,7 @@ var UsersController = {
       }
     });
   },
+
   
   Requests: function(req,res) {
     // console.log("See user below")
@@ -243,6 +244,22 @@ var UsersController = {
       res.render('users/requests', {user: user} )
     })
   },
+
+
+  UpdateRStatus: function(req, res) {
+    console.log("RELATIONSHIP BELOW");
+    console.log(req.body.relationships);
+    Users.findOne({ // gets the currently logged in user from the db
+      username: req.cookies['username']
+    }, function(require, name) {
+      name.rStatus = req.body.relationships
+      name.save(function(err, updatedObject) {     // save
+        if(err) { throw err }
+        else {
+    res.redirect('/users/profile')}
+  })
+})
+},
 
 };
 
