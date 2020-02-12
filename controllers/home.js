@@ -1,5 +1,5 @@
 var User = require('../models/signup');
-var Response = require('../common/response');
+// var Response = require('../common/response');
 
 var HomeController = {
   Index: function(req, res) {
@@ -10,34 +10,32 @@ var HomeController = {
   },
 
 Login: function(req, res) {
-  User.findOne({email: req.body.email, password: req.body.password}, function (err, user) {
-    if(err){
-      console.log(err);
-       Response.errorResponse(err.message,res);
-    } console.log();
-    if(!user){
-      Response.notFoundResponse('Invalid Email Id or Password!',res);
-    }else{
-      req.session.user = user;
-      // Response.successResponse('User loggedin successfully!',res,user);
-      res.status(201).redirect('/posts'); 
 
-    }
-  });
-  
+  var password = req.body.password
+
+    User.findOne({email: req.body.email}, function(err, user) {
+     if (err) throw err;
+     // test a matching password
+     
+     user.comparePassword(password, function(err, isMatch) {
+
+      if (err) throw err;
+      if(isMatch) {
+        // res.cookie('email', user.email)   SETTING COOKIE
+        // email = req.cookies['email']      RETRIEVING COOKIE
+        res.redirect('/posts');
+      } else {
+        res.redirect('/');}
+     });
+
+     
+    //  test a failing password
+    //  user.comparePassword('password: req.body.password', function(err, isMatch) {
+    //   if (err) throw err;
+    //   console.log({password: req.body.password}, isMatch); // -> 123Password: false
+    //  });
+    });
 }
 }
 
 module.exports = HomeController;
-
-// User.findOne({email: req.body.email, password: req.body.password}, function (err, user) {
-//   if (err) { 
-//    return (err)
-//   }
-//   else if(user) {
-//     res.status(201).redirect('/posts'); 
-//   }
-//   else {
-//     return ('Invalid password').send;
-//   }
-// });

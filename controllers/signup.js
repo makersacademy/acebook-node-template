@@ -2,9 +2,9 @@ var User = require('../models/signup');
 var SignupController = {
   Index: function(req, res) {
     console.log("test")
-    User.find(function(err, myusers) {
+    User.find(function(err, users) {
       if (err) { throw err; }
-      res.render('signup/index', { myusers: myusers});
+      res.render('signup/index', { users: users});
     });
   },
   New: function(req, res) {
