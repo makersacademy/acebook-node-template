@@ -1,5 +1,5 @@
 var Post = require('../models/post');  // connects to the model which allows you to access database
-var ObjectId = require('mongodb').ObjectId;
+// var ObjectId = require('mongodb').ObjectId;
 
 
 var PostsController = {
@@ -37,7 +37,7 @@ var PostsController = {
 
   ViewComments: function(req, res) {
     res.cookie('post', req.params.id)            // getting cookie containing ID of post we are commenting on
-    res.render('posts/viewcomments', { id: req.params.id });    // post ID in URL 
+    res.render('posts/viewcomments', { id: req.params.id });    // post ID in URL
   },
 
   CreateComments: function(req,res) {     // function for adding a comment
