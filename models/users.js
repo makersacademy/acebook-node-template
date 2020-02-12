@@ -27,6 +27,9 @@ friendrequests: {
 friendslist: {
   type: Array,
 },
+rStatus:{
+  type: String,
+},
 });
 
 var Users = mongoose.model('Users', UsersSchema);

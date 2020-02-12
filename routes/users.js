@@ -15,6 +15,8 @@ router.get('/profile', UsersController.Bio);
 router.get('/profile/new', UsersController.EditBio);
 router.post('/profile', UsersController.NewBio);
 
+router.post('/updatestatus', UsersController.UpdateRStatus);
+
 router.get('/search', UsersController.Search);
 router.post('/search', UsersController.Query);
 router.get('/search/results', UsersController.Results);
