@@ -179,6 +179,35 @@ var UsersController = {
         })
     })
     },
+
+
+    AddFriend: function(req,res) {
+      console.log("Befriender below")
+      console.log(req.params.username)
+      var befriender = req.params.username ;
+      var requester  = req.cookies['username'];
+
+      Users.findOne({username: befriender },function(err, befriender) {   // find post with the ID
+        if(err) {
+          console.log(err);
+          res.status(500).send();
+        } else {
+            if (!befriender) {
+            res.status(404).send();
+          } else {
+            befriender.friendrequests.push(requester);     // add the comment to the array in the post db
+            befriender.save(function(err, updatedObject) {     // save
+              if(err) {
+                console.log(err);
+                res.status(500).send();
+              } else {
+               return res.redirect('/users/' + befriender.username);
+            }
+          });
+        }
+      }
+    });
+  },
 };
 
 module.exports = UsersController;

@@ -39,6 +39,10 @@
           <li class="tm-nav-item tm-button2">
             <button onclick="window.location.href = '/users/search';" class="tm-nav-item-link tm-button2">Connect & Search</button>
           </li>
+          <li class= "tm-nav-item tm-button2">
+            <form id="friend-request-form" type="submit" method="post" action="/users/{{user.username}}">
+            <button type="submit" value="submit"> Add friend </button>
+          </form>
           <br>
           <ul class="tm-nav-item">Date joined Acebook: {mm/year} </ul>
         </ul>
@@ -75,7 +79,7 @@
               <li>{{this.time}}</li>
               </div>
             {{/each}}
-            
+
           </div>
         </div>
       </section>

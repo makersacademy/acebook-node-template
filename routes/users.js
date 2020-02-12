@@ -20,6 +20,7 @@ router.post('/search', UsersController.Query);
 router.get('/search/results', UsersController.Results);
 
 router.get('/:username', UsersController.ViewProfile);
+router.post('/:username', UsersController.AddFriend);
 
 router.post('/logout', UsersController.Logout);
 
