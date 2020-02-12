@@ -41,7 +41,7 @@
           </li>
           <li class= "tm-nav-item tm-button2">
             <form id="friend-request-form" type="submit" method="post" action="/users/{{user.username}}">
-            <button type="submit" value="submit"> Add friend </button>
+            <input onclick="change()" type="button" value="Add Friend" id="myButton1" />
           </form>
           <br>
           <ul class="tm-nav-item">Date joined Acebook: {mm/year} </ul>
@@ -98,7 +98,6 @@
 </body>
 
 
-{{!-- <script src="../../public/javascripts/materialize.js"></script>
-<script src="../../public/javascripts/materialize.min.js"></script>   --}}
+<script type="text/javascript" src="../../javascripts/toggle.js"></script>
 
 </html>
