@@ -21,7 +21,7 @@
     <img src="/images/logo.png" alt="acebook logo" class="overlayLogo">
     <div class="rcorners2">
       <div class="container">
-        <form id="comments-form" action="/posts/{{id}}" method="post">
+        <form id="comments-form" action="/posts/{{id}}" method="post"> <!--this allows to pass through post id when adding a new comment-->
           <textarea rows = "10" cols= "25" type= "text" name = "comments" style="margin-top: 20em;"class="input-box" align=“center” placeholder="Enter Your Comment" ></textarea>
           <input style="margin-top:2em; background-color: #337ab7; border-color: #2e6da4" class="waves-effect btn btn-primary btn-block" type='submit' value="Submit">
         </form>
