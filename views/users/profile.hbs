@@ -42,7 +42,6 @@
           <li class="tm-nav-item tm-button2">
             <button onclick="window.location.href = '/users/requests';" class="tm-nav-item-link tm-button2">Friend requests</button>
           </li>
-
     <form action="/users/updatestatus" method="post">
             <br>Relationship status:
   <select name="relationships">
@@ -60,6 +59,11 @@
           <br>
           <ul>Date joined Acebook: {mm/year} </ul>
         </ul>
+        <br>
+        <ul> Friends with: </ul>
+        {{#each user.friendslist}}
+          <ul> <a href='/users/{{this}}'>{{this}}</a></li>
+          {{/each}}
       </div>
     </div>
   </div>
