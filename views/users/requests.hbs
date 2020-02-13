@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-
-<h1 class="list">
-<li>{{user.friendrequests}}</li>
-</h1>
-
-
-</body>
+<h1> Friend Requests </h1>
+{{#if user.friendrequests}}
+{{#each user.friendrequests}}
+<p> {{this}} </p>
+<form id="accept"  method="post" action="/users/{{this}}/accept">
+  <button type="submit" value="submit"> Accept </button>
+</form>
+<form id="decline"  method="post" action="/users/{{this}}/decline">
+  <button type="submit" value="submit"> Decline </button>
+</form>
+{{/each}}
+{{else}}
+<p>No Friend Requests</p>
+{{/if}}

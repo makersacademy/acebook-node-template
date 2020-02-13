@@ -211,6 +211,7 @@ var UsersController = {
       console.log(req.params.username)
       var befriender = req.params.username ;
       var requester  = req.cookies['username'];
+      console.log(requester)
 
       Users.findOne({username: befriender },function(err, befriender) {   // find post with the ID
         if(err) {
@@ -234,18 +235,6 @@ var UsersController = {
     });
   },
 
-  
-  Requests: function(req,res) {
-    // console.log("See user below")
-    var requester  = req.cookies['username'];
-    // console.log(requester)
-    Users.findOne({username: requester}, function(err, user){
-      if(err) {throw err}
-      res.render('users/requests', {user: user} )
-    })
-  },
-
-
   UpdateRStatus: function(req, res) {
     console.log("RELATIONSHIP BELOW");
     console.log(req.body.relationships);
@@ -261,6 +250,58 @@ var UsersController = {
 })
 },
 
+Requests: function(req, res) {
+  Users.findOne({
+    username: req.cookies['username']
+  }, function(err, user){
+    if(err) {throw err}
+    // console.log(user)
+    res.render('users/requests', { user: user });
+  })
+},
+
+Accept: function(req, res) {
+  // db.users.updateOne({username: 'victor'},{$pull: { friendrequests:'jess'}})
+  var requester = req.params.username ;
+  var user  = req.cookies['username'];
+
+  Users.findOne({ username: user },function(err, user) {
+    if(err) {
+      console.log(err);
+      res.status(500).send();
+    } else {
+        user.friendrequests.pull(requester);
+        user.friendslist.push(requester);
+        user.save(function() {} );
+    }
+  })
+
+  Users.findOne({ username: requester },function(err, requester) {
+    if(err) {
+      console.log(err);
+      res.status(500).send();
+    } else {
+        requester.friendslist.push(user);
+        requester.save(function() {} );
+    }
+  });
+  res.redirect('/users/profile')
+},
+
+Decline: function(req, res) {
+  var requester = req.params.username ;
+  var user  = req.cookies['username'];
+  Users.findOne({ username: user },function(err, user) {
+    if(err) {
+      console.log(err);
+      res.status(500).send();
+    } else {
+        user.friendrequests.pull(requester);
+        user.save(function() {} );
+    }
+  })
+  res.redirect('/users/profile')
+},
 };
 
 module.exports = UsersController;
