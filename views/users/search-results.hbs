@@ -1,21 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head>
-   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-
-  <title>Search page</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
-  
-  <link rel="stylesheet" type="text/css" href="../../public/stylesheets/style.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
-    <link rel="stylesheet" type="text/css" href="../../stylesheets/style.css">
-</head>
 
 <header>
   <nav class="navbar navbar-fixed-top navbar-default">
@@ -32,6 +15,7 @@
         <ul class="navbar-fullscreen-links">
           <li><a href="/users/profile" title="My Profile Page">My Profile Page</a></li>
           <li><a href="/posts" title="Posts">Posts</a></li>
+          <li><a href="/users/search" title="Search">Search</a></li>
           <li><a href="/users/logout" title="Log out">Log out</a></li>
         </ul>
 
@@ -45,14 +29,20 @@
     </div>
   </nav>
 </header>
+
+<html>
+
+<title> Search Results Page </title>
+
 <body>
-
-<form id="search" type="submit" method="post" action="/users/search">
-  <input id="fullname" name="fullname" type="text" placeholder="Search here">
-  <button type="submit" value="submit"> Search now </button>
-</form>
-
-
+<h1 class="list">
+{{#each users}}              <!-- for each post in the db print all of the below -->
+<li>{{this.fullname}}</li>
+<li>{{this.username}}</li>
+<li> <a href='/users/{{this.username}}'> View profile</a></li>
+<p> ----------------- </p>
+{{/each}}
+</h1>
 </body>
 
 <script type="text/javascript" src="../../toggle.js"></script>

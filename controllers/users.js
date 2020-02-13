@@ -169,7 +169,7 @@ var UsersController = {
 
     Results: function(req, res) {
       var foundUsers = req.cookies['foundUsers'];         // set foundusers to the cookie (passed from previous function)
-      res.render('users/index', {users: foundUsers});     // render the page listing the found users with links to their profiles
+      res.render('users/search-results', {users: foundUsers});     // render the page listing the found users with links to their profiles
     },
 
     ViewProfile: function(req, res) {

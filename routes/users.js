@@ -8,6 +8,8 @@ router.get('/register', UsersController.Index);     // already in post route so 
 router.post('/register', UsersController.Create); // this will allow us to create a new user with credentials
 router.get('/login', UsersController.Login);
 router.post('/login', UsersController.Authenticate);
+router.post('/logout', UsersController.Logout);
+
 router.get('/profile', UsersController.Bio);
 router.get('/requests', UsersController.Requests);
 router.post('/:username/accept', UsersController.Accept);
@@ -20,6 +22,6 @@ router.post('/search', UsersController.Query);
 router.get('/search/results', UsersController.Results);
 router.get('/:username', UsersController.ViewProfile);
 router.post('/:username', UsersController.AddFriend);
-router.post('/logout', UsersController.Logout);
+// router.post('/logout', UsersController.Logout);
 
 module.exports = router;
