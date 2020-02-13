@@ -5,7 +5,12 @@ var HomeController = {
   Index: function(req, res) {
     User.find(function(err) {
       if (err) { throw err; }
+      sess=req.session;  
+      if(sess.email) { 
+        res.redirect('/posts');
+       } else {
     res.render('home/index', { title: 'Acebook' });
+       }
   });
   },
 
@@ -21,20 +26,16 @@ Login: function(req, res) {
 
       if (err) throw err;
       if(isMatch) {
-        // res.cookie('email', user.email)   SETTING COOKIE
-        // email = req.cookies['email']      RETRIEVING COOKIE
+        sess=req.session;     
+        sess.email=req.body.email;
+        res.cookie('email', user.email);
+        email = req.cookies['email']     
+        req.session.cookie.maxAge = 1
         res.redirect('/posts');
       } else {
-        res.redirect('/');}
-     });
-
-     
-    //  test a failing password
-    //  user.comparePassword('password: req.body.password', function(err, isMatch) {
-    //   if (err) throw err;
-    //   console.log({password: req.body.password}, isMatch); // -> 123Password: false
-    //  });
+        res.send("Incorrect Password");}
     });
+  });
 }
 }
 
