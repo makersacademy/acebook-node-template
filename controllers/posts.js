@@ -14,18 +14,18 @@ var PostsController = {
 
   New: function(req, res) {
     if (req.cookies['username']){
-      // Users.findOne({username: req.cookies['username']}, function(req, user) {
-      //   res.render('posts/new', {friends: user.friendslist});    // render the 'new' index view
-      // })
-
-      var userList = new Array
-      Users.find(function(req, user) {
-        user.forEach(function(person) {
-          userList.push(person.username)
-        });
-
-        res.render('posts/new', {friends: userList});    // render the 'new' index view
+      Users.findOne({username: req.cookies['username']}, function(req, user) {
+        res.render('posts/new', {friends: user.friendslist});    // render the 'new' index view
       })
+
+      // var userList = new Array
+      // Users.find(function(req, user) {
+      //   user.forEach(function(person) {
+      //     userList.push(person.username)
+      //   });
+
+      //   res.render('posts/new', {friends: userList});    // render the 'new' index view
+      // })
     } else {
       res.redirect('/users/register');
     }

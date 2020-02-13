@@ -62,7 +62,7 @@
         <br>
         <ul> Friends with: </ul>
         {{#each user.friendslist}}
-          <ul> <a href='/users/{{this}}'>{{this}}</a></li>
+          <ul> <a class="fl" href='/users/{{this}}'>{{this}}</a></li>
           {{/each}}
       </div>
     </div>
@@ -92,7 +92,7 @@
             </header>
 
               {{#each posts}}
-              <div style="margin-bottom: 5px" class="rposts1">           <!-- for each post in the db print all of the below -->
+              <div name="recent_posts" style="margin-bottom: 5px" class="rposts1">           <!-- for each post in the db print all of the below -->
                 <li>{{this.message}}</li>
                 <li>{{this.time}}</li>
                 </div>
@@ -100,7 +100,7 @@
 
               <h3 class="tm-blue-text tm-section-title tm-margin-b-45" style="font-family: 'Bungee', cursive">Recent Posts You're Tagged In</h3>
               {{#each tagged}}
-              <div style="margin-bottom: 5px" class="rposts1">           <!-- for each post in the db print all of the below -->
+              <div name="tagged_in" style="margin-bottom: 5px" class="rposts1">           <!-- for each post in the db print all of the below -->
                 <li>{{this.message}}</li>
                 <li>{{this.time}}</li>
                 </div>
