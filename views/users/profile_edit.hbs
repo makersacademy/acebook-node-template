@@ -39,33 +39,19 @@
 </style>
 
 <header>
-  <nav class="navbar navbar-fixed-top navbar-default">
-    <div class="container">
-        <button type="button" class="navbar-toggle">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        
-      <nav class="navbar-fullscreen" id="navbar-middle">
-        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <ul class="navbar-fullscreen-links">
-          <li><a href="./index.html" title="">Home</a></li>
-          <li><a href="./project.html" title="">Project</a></li>
-          <li><a href="./about.html" title="">About me</a></li>
-          <li><a href="./components.html" title="">Components</a></li>
-        </ul>
+  <nav id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <ul>
+   <li><a href="/users/profile" title="My Profile Page">My Profile Page</a></li>
+   <li><a href="/posts" title="Posts">Posts</a></li>
+   <li><a href="/users/search" title="Search">Search</a></li>
+   <li><a href="/users/logout" title="Log out">Log out</a></li>
+  </ul>
+<p><small>© We Push Master | Website created with much toil, blood & sweat!</small></p>  
 
-        <div class="footer-container">
-          <p><small>© We Push Master | Website created with much toil, blood & sweat!</small></p>  
-        </div>
-
-
-      </nav> 
-    
-    </div>
-  </nav>
+<!-- Use any element to open the sidenav -->
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+</nav>
 </header>
 
 <body>
@@ -122,11 +108,6 @@
                                       <header>
                                           <h3 class="tm-blue-text tm-section-title tm-margin-b-45" style="font-family: 'Bungee', cursive">Your Recent Posts</h3>
                                       </header>
-                                      <div class="rposts1">
-                                      <p>{Timestamp}</p>
-                                      <p>Sed turpis nunc, laoreet sit amet fermentum sed, euismod ac justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                                      <p>Donec ut lectus semper, sollicitudin risus blandit, mattis felis. Nam non malesuada odio. Vestibulum vaius, arcu eget rutrum consequat, arcu lacus imperdiet arcu, id pulvinar arcu erat vel magna.</p>
-                                 </div>
                                 </div>
                               </div>
                           </section>
@@ -135,6 +116,7 @@
     </body>
 
 <script type="text/javascript" src="../../toggle.js"></script>
+<script type="text/javascript" src="../../public/javascripts/toggle.js"></script>
 
 
 </html>

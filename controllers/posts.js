@@ -8,7 +8,7 @@ var PostsController = {
     Post.find(function(err, posts) {    // like select all in sql
       if (err) { throw err; }       // if it returns an error throw the error
 
-      res.render('posts/index', { posts: posts.reverse() });  // render the post index view
+      res.render('posts/index', { posts: posts.reverse(), title: "A page title" });  // render the post index view
     });
   },
 
@@ -24,7 +24,7 @@ var PostsController = {
           userList.push(person.username)
         });
 
-        res.render('posts/new', {friends: userList});    // render the 'new' index view
+        res.render('posts/new', {friends: userList, title: "The new posts page"});    // render the 'new' index view
       })
     } else {
       res.redirect('/users/register');

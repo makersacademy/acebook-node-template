@@ -96,9 +96,8 @@ a {
 }
 
 h1 {
- color: white;
  text-align: left;
- font: 200% "Oxygen-Sans";
+ font: 200% "Helvetica";
 }
 
 .overlayLogo {
@@ -481,11 +480,23 @@ h1 {
 	border-radius: 47px;
 	background: rgb(150, 196, 240);
 	position: relative;
-	padding: 20px;
-	opacity: 0.5;
-	margin: 0 auto;
-
+  padding: 20px;
+	/* opacity: 0.5; */
+  margin: 10px 80px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 5em;
   }
+  
+  .rposts1 {
+    border-radius: 47px;
+    background: rgb(150, 196, 240);
+    position: relative;
+    padding: 20px;
+    /* opacity: 0.5; */
+    margin: 10px 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 5em;
+    }
 
   /* The side navigation menu */
 .sidenav {
@@ -494,7 +505,7 @@ h1 {
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
-  right: 10px;
+  left: 10px;
   background-color: rgb(150, 196, 240); /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */

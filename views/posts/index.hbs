@@ -1,27 +1,33 @@
-
-<h1 class="title"> Timeline</h1>
-<ul class="posts">
-  {{#each posts}}              <!-- for each post in the db print all of the below -->
-  <li>{{this.message}}</li>
-  <li>{{this.time}}</li>
-  <li>{{this.postedby}}</li>
-  <ul>
-    {{#each this.tags}}
-      <li>{{this}}</li>
-    {{/each}}
-  </ul>
-  <li><a href="/posts/{{this.id }}"> Add comment</a></li>
-  <li>{{#each this.comments }} </li>        <!--   for each comment in the array print -->
-    <li> {{this}} </li>
+<body>    
+    <h1 class="title"> Posts by Acebook Users</h1>
+    <ul class="posts">
+      {{#each posts}}     <!-- for each post in the db print all of the below -->
+      <div style="margin-bottom: 5px" class="rposts1">   
+      {{this.time}}
+      <ul>{{this.message}}</ul>
+     
+      <li>Posted by: {{this.postedby}}</li>
+      <ul>
+        People tagged in this post:
+        {{#each this.tags}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      </div>
+      <a href="/posts/{{this.id }}"> Add A Comment</a>
+      {{#each this.comments }}        <!--   for each comment in the array print -->
+        <ul> {{this}} </ul>
+          {{/each}}
+      
       {{/each}}
-  <p> ----------------- </p>
-  {{/each}}
-</ul>
+   
 
-<a href="/posts/new">New post</a>
-<br>
-<a href="/users/profile">View profile</a>
+    <a href="/posts/new">New post</a>
+    <br>
+    <a href="/users/profile">View profile</a>
 
-<form action='/users/logout' method="post" id='logout'>
-<button type='submit'>Logout</button>
-</form>
+    <form action='/users/logout' method="post" id='logout'>
+    <button type='submit'>Logout</button>
+    </form>
+
+</body>
