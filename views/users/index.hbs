@@ -1,0 +1,8 @@
+
+<h1 class="list">
+{{#each users}}              <!-- for each found user from the search request -->
+<li>{{this.fullname}}</li> <!-- print out their fullname -->
+<li>{{this.username}}</li> <!-- print out their username -->
+<li> <a href='/users/{{this.username}}'> View profile</a></li> <!--including a link to their profile which is users/theirusername -->
+{{/each}}
+</h1>
