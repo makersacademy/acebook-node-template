@@ -2,15 +2,15 @@
 <h1 class="title"> Timeline</h1>
 <ul class="posts">
   {{#each posts}}              <!-- for each post in the db print all of the below -->
-  <li>{{this.message}}</li>
-  <li>{{this.time}}</li>
-  <li>{{this.postedby}}</li>
+  <li>{{this.message}}</li> <!-- print the post message -->
+  <li>{{this.time}}</li> <!-- print the time the post was created at -->
+  <li>{{this.postedby}}</li> <<!-- print who it was created by -->
   <ul>
-    {{#each this.tags}}
-      <li>{{this}}</li>
+    {{#each this.tags}} <!-- for each tag -->
+      <li>{{this}}</li> <!-- print tag -->
     {{/each}}
   </ul>
-  <li><a href="/posts/{{this.id }}"> Add comment</a></li>
+  <li><a href="/posts/{{this.id }}"> Add comment</a></li> <!-- this takes you to posts page with the specific post id -->
   <li>{{#each this.comments }} </li>        <!--   for each comment in the array print -->
     <li> {{this}} </li>
       {{/each}}
