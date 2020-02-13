@@ -1,14 +1,14 @@
 <h1> Friend Requests </h1>
-{{#if user.friendrequests}}
-{{#each user.friendrequests}}
-<p> {{this}} </p>
-<form id="accept"  method="post" action="/users/{{this}}/accept">
+{{#if user.friendrequests}} <!-- if the user has friend requests then -->
+{{#each user.friendrequests}} <<!-- for each item in the array of user friend requests -->
+<p> {{this}} </p> <!-- print out the item in the array -->
+<form id="accept"  method="post" action="/users/{{this}}/accept"> <!-- when clicked on accept post it to users/specific username/accept-->
   <button type="submit" value="submit"> Accept </button>
 </form>
-<form id="decline"  method="post" action="/users/{{this}}/decline">
+<form id="decline"  method="post" action="/users/{{this}}/decline"> <!-- when clicked on decline post it to users/specific username/decline-->
   <button type="submit" value="submit"> Decline </button>
 </form>
 {{/each}}
-{{else}}
+{{else}} <<!-- if the user doesn't have any friend requests then -->
 <p>No Friend Requests</p>
 {{/if}}
