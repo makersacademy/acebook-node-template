@@ -1,14 +1,32 @@
-<h1> Friend Requests </h1>
-{{#if user.friendrequests}}
-{{#each user.friendrequests}}
-<p> {{this}} </p>
-<form id="accept"  method="post" action="/users/{{this}}/accept">
-  <button type="submit" value="submit"> Accept </button>
-</form>
-<form id="decline"  method="post" action="/users/{{this}}/decline">
-  <button type="submit" value="submit"> Decline </button>
-</form>
-{{/each}}
-{{else}}
-<p>No Friend Requests</p>
-{{/if}}
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+body {
+  background-image: url('https://images.unsplash.com/photo-1444210971048-6130cf0c46cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2852&q=80');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+<body>
+  <h1 style="font-family: 'Bungee', cursive" class="login"> Friend Requests </h1>
+  {{#if user.friendrequests}}
+  {{#each user.friendrequests}}
+  <div style="margin-bottom: 5px; width: 40%; opacity: 1" class="rposts1">
+    <h3 style="font-family: 'Bungee', cursive" class="login"> From: {{this}} </h3>
+    <form id="accept"  method="post" action="/users/{{this}}/accept">
+      <button type="submit" value="submit" style="margin-top:2em; background-color: #337ab7; border-color: #2e6da4" class="waves-effect btn btn-primary btn-block"> Accept </button>
+    </form>
+    <form id="decline"  method="post" action="/users/{{this}}/decline">
+      <button type="submit" value="submit" style="margin-top:2em; background-color: #337ab7; border-color: #2e6da4" class="waves-effect btn btn-primary btn-block"> Decline </button>
+    </form>
+  </div>
+  {{/each}}
+  {{else}}
+  <p>No Friend Requests</p>
+  {{/if}}
+</body>
