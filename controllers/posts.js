@@ -17,19 +17,7 @@ var PostsController = {
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
-    });
-  },
-  Logout: function(req, res) {
-    req.session.destroy(function(err){  
-      if(err){  
-          console.log(err);  
-      }  
-      else  
-      {  
-        console.log("success");
-          res.redirect('/');  
-      }  
-  });  
+    });  
 }
 }
 
