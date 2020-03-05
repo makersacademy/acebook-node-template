@@ -17,8 +17,8 @@ var PostsController = {
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
-    });
-  }
-};
+    });  
+}
+}
 
 module.exports = PostsController;

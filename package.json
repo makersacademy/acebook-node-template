@@ -16,11 +16,15 @@
     "node": ">=12.14.1"
   },
   "dependencies": {
+    "bcrypt": "^3.0.8",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.0",
+    "handlebars": "^4.7.3",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
+    "mongodb": "^3.5.2",
     "mongoose": "^5.8.11",
     "morgan": "~1.9.1",
     "nodemon": "^1.19.4"

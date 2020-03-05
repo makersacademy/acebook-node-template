@@ -1,6 +1,22 @@
-# Acebook
+# AceBook
 
-This is a Node.js template for the Acebook engineering project.
+## User Stories
+
+```
+As a user,
+So that I can become social online,
+I would like to be able to sign up to AceBook.
+
+As a user,
+So that I can use my account anywhere,
+I would like to be able to log in.
+
+As a user,
+So that no one else can use my account,
+I would like to be able to sign out.
+```
+
+This is a Node.js template for the AceBook engineering project.
 
 It uses:
 - [Express](https://expressjs.com/) web framework for Node.js.
@@ -13,7 +29,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/b/n4iTSLGz
 
 ## Quickstart
 
@@ -49,6 +65,45 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
     ```
     brew services start mongodb-community@4.2
     ```
+
+## AceBook Usage
+### How to run AceBook
+
+Install:
+- Express
+```
+npm install express --save
+```
+- Nodemon
+```
+npm install --save-dev nodemon
+```
+- Handlebars
+```
+npm install handlebars
+```
+- Mongoose
+```
+npm install mongoose
+```
+- ESLint
+```
+npm install eslint --save-dev
+```
+- Jest
+```
+npm install --save-dev jest
+```
+- Cypress
+```
+npm install cypress
+```
+- Express-Session
+```
+npm install express-session
+```
+
+
 
 ### Start
 
