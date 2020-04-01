@@ -3,7 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var hbs = require('hbs');
+const hbs = require('hbs');
+
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 
@@ -17,6 +18,11 @@ hbs.registerHelper('breaklines', function(text) {
     text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
     return new hbs.SafeString(text);
 });
+
+hbs.registerHelper("formatDate", function(date){
+var newDate = new Date(date)
+return newDate.toDateString()
+})
 
 app.use(logger('dev'));
 app.use(express.json());
