@@ -13,6 +13,8 @@ var PostsController = {
   },
   Create: function(req, res) {
     var post = new Post(req.body);
+    post.createdAt = Date.now();
+    console.log(post)
     post.save(function(err) {
       if (err) { throw err; }
 
