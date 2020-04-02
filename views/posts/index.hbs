@@ -1,7 +1,42 @@
-<h1>Timeline</h1>
+<h1 class="posts-header">Timeline</h1>
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
+
+
+  <form id="new-comment-form" action="/posts" method="post">
+    <label for="comment">Comment: </label>
+    <textarea id="comment" type="text" name="comment" cols="30" value=""></textarea>
+    <input type="submit" value="Submit">
+  </form>
+  
+  <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.fa {
+  font-size: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: darkblue;
+}
+</style>
+</head>
+<body>
+
+
+<i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+
+<script>
+function myFunction(x) {
+  x.classList.toggle("fa-thumbs-down");
+}
+</script>
+
+</body>
+
   {{/each}}
 </ul>
 

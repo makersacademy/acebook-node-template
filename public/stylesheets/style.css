@@ -9,7 +9,13 @@ a {
 
 .posts {
   text-align: justify;
-  white-space: pre-wrap;
   border-top: 1px solid #8d8686;
   border-bottom: 1px solid #8d8686;
+  overflow-wrap: break-word;
+  max-width: 300px;
+}
+
+.posts-header {
+  
+
 }
