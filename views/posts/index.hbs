@@ -35,8 +35,8 @@
 <h1 class="posts-header">Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
-  <li>{{this.date}}</li>
+  <li>{{this.message}}<br>{{this.date}}</li>
+  
 
   <form id="new-comment-form" action="/posts" method="post">
     <label for="comment">Comment: </label>
