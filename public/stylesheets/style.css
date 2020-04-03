@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.posts {
+  text-align: justify;
+  border-top: 1px solid #8d8686;
+  border-bottom: 1px solid #8d8686;
+  overflow-wrap: break-word;
+  max-width: 200px;
+}
+
+.posts-header {
+ 
+
+}
