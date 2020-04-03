@@ -1,11 +1,13 @@
 var User = require('../models/user');
 
-
+var UserController = {
 Create: function(req, res) {
-  var post = new Post(req.body);
-  post.save(function(err) {
+  var user = new User({username: 'username', password: 'password'});
+  user.save(function(err) {
     if (err) { throw err; }
-
-    res.status(201).redirect('/user');
+    res.send('Hey this is a message');
   });
 }
+};
+
+module.exports = UserController;
