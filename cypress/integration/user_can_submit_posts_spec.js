@@ -19,5 +19,4 @@ describe('Timeline', function() {
     cy.get('.posts').should('contain', 'Hello, world!');
     cy.get('.posts').should('contain', '2020');
   });
-
 });
