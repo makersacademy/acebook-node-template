@@ -5,5 +5,5 @@ describe('Sign up', function(){
     cy.get('input[name=username]').type('jane.lane')
     cy.get('input[name=password]').type('password')
     cy.get('form').submit()
-  });
+   });
   });
