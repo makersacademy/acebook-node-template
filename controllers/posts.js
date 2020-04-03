@@ -17,6 +17,7 @@ var PostsController = {
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
+      ///login
     });
   }
 };
