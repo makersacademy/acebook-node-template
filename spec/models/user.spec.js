@@ -10,5 +10,5 @@ describe('User model', function() {
   });
 
 
-  
+
 });
