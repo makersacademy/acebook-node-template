@@ -16,7 +16,7 @@ describe('User model', () => {
 
   it('has a password', () => {
     var user = new User({ password: 'qwerty'});
-    expect(user.password).toEqual('derp');
+    expect(user.password).toEqual('qwerty');
   });
 
 });
