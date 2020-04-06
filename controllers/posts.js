@@ -2,7 +2,7 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: function(req, res) {
-    Post.find(function(err, posts) {
+    Post.find().sort({createdAt: -1 }).exec(function(err, posts) {
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts });
@@ -13,6 +13,7 @@ var PostsController = {
   },
   Create: function(req, res) {
     var post = new Post(req.body);
+    post.createdAt = new Date();
     post.save(function(err) {
       if (err) { throw err; }
 
