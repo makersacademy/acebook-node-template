@@ -1,14 +1,18 @@
 var mongoose = require('mongoose');
+
 require('../mongodb_helper')
-var Post = require('../../models/user');
+var User = require('../../models/user');
 
 describe('User model', function() {
   beforeEach(function(done) {
-      mongoose.connection.collections.user.drop(function() {
+      mongoose.connection.collections.users.drop(function() {
           done();
       });
   });
-
+  it('has a user', function() {
+    var user = new User({ username: 'derpygary'});
+    expect(user.username).toEqual('derpygary');
+  });
 
 
 });
