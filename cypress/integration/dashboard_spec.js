@@ -1,4 +1,4 @@
-describe('Has a dashboard', () => {
+describe('Dashboard', () => {
   it('has a dropdown menu', () => {
     cy.visit('/');
     cy.get('#navbarDropdownMenuLink')
