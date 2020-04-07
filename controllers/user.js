@@ -17,8 +17,8 @@ Create: function(req, res) {
     if (err) {
       throw err;
     } else {
-      req.session._id = user._id;
-    res.render('user/index');
+      //req.session._id = user._id;
+      res.render('user/index');
     }
   });
 },
