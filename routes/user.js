@@ -8,7 +8,7 @@ router.get('/signup', UserController.Signup);
 //POST route to add a new user to the database
 router.post('/', UserController.Create);
 //GET route to check if user is in database
-router.get('/profile', UserController.Authenticate);
+router.post('/profile', UserController.Authenticate);
 //GET route to logout
 router.get('/logout', UserController.Logout);
 module.exports = router;
