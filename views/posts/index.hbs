@@ -32,11 +32,12 @@
 
 <body style="background-color:#3b5998;">
 
+<h3> Welcome back, {{req.session.username}}</h3>
 <h1 class="posts-header">Timeline</h1>
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}<br>{{this.date}}</li>
-  
+
 
   <form id="new-comment-form" action="/posts" method="post">
     <label for="comment">Comment: </label>
@@ -76,6 +77,10 @@ function myFunction(x) {
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+<form id="logout button" action="/" method="get">
+  <input type="submit" value="Log out">
+</form>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

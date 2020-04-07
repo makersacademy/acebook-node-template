@@ -12,5 +12,5 @@ router.get('/', UserController.Create);
 //GET route to check if user is in database
 router.post('/profile', UserController.Authenticate);
 //GET route to logout
-router.get('/logout', UserController.Logout);
+router.get('/', UserController.Logout);
 module.exports = router;
