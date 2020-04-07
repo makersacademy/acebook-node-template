@@ -12,8 +12,12 @@ Create: function(req, res) {
   });
 
   user.save(function(err) {
-    if (err) { throw err; }
+    if (err) {
+      throw err;
+    } else {
+      req.session.userId = user._id;
     res.render('user/index');
+    }
   });
 },
 
@@ -28,7 +32,7 @@ Create: function(req, res) {
           err.status = 400;
           return next(err);
         } else {
-          return res.send('<h1>Name: </h1>' + user.username + + '<br><a type="button" href="/logout">Logout</a>')
+          return res.send('<h1>Name: </h1>' + user.username + '<br><a type="button" href="/logout">Logout</a>')
         }
       }
     })
@@ -36,6 +40,7 @@ Create: function(req, res) {
 
   Logout: function(req, res, next) {
     if (req.session) {
+      //Deletes session object
       req.session.destroy(function(err){
         if (err) {
           return next(err);
