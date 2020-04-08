@@ -11,9 +11,17 @@ describe('Post model', function() {
   });
 
   it('has a message', function() {
-    var post = new Post({ message: 'some message' });
+    var post = new Post({ message: 'some message'});
     expect(post.message).toEqual('some message');
   });
+
+  it('messages have dates', function() {
+    var post = new Post({ message: 'some message'});
+    expect(post.message).toEqual('some message');
+    expect(post.date).not.toBeNull();
+    expect(post.date).not.toBeUndefined();
+  });
+
 
   it('can list all posts', function(done) {
     Post.find(function(err, posts) {

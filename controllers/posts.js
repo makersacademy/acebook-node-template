@@ -2,10 +2,15 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: function(req, res) {
-    Post.find(function(err, posts) {
+    var loggedIn = req.cookies.userId
+    var username = req.cookies.username
+      console.log(req.cookies.userId)
+
+    Post.find({}).sort({date: -1}).exec(function(err, posts) {
       if (err) { throw err; }
 
-      res.render('posts/index', { posts: posts });
+      res.render('posts/index', { posts: posts, loggedIn: loggedIn, username: username  })
+      // res.render('posts/index', { users: users });
     });
   },
   New: function(req, res) {
@@ -17,6 +22,7 @@ var PostsController = {
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
+      ///login
     });
   }
 };

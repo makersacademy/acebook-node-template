@@ -1,8 +1,25 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #3b5998;
+
 }
 
 a {
-  color: #00B7FF;
+  color: #ffffff;
+}
+
+.posts{
+  background-color: #ffffff;
+  display: block;
+  text-align: justify;
+  border-top: 1px solid #8d8686;
+  border-bottom: 1px solid #8d8686;
+  overflow-wrap: break-word;
+  max-width: 380px;
+}
+
+.posts-header {
+  color: #ffffff;
+
 }
