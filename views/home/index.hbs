@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/posts">Posts</a>
@@ -41,8 +41,13 @@
 
 
 <h2>Log in</h2>
-<form id="username" action="/user/profile" method="post">
+<form id="username" action="/user/login" method="post">
 	<input type="text" name="username" placeholder="username">
 	<input type="text" name="password" placeholder="Password">
 	<input type="submit" value="login">
+</form>
+<br>
+<h3>Click here to create an account</h3>
+<form action="/user/signup">
+    <input type="submit" value="Sign Up"/>
 </form>
