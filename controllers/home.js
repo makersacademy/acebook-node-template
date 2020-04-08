@@ -1,6 +1,7 @@
 var HomeController = {
   Index: function(req, res) {
-    res.render('home/index', { title: 'WTfacebook' });
+    var loggedIn = req.cookies.userId
+    res.render('home/index', { title: 'WTfacebook', loggedIn: loggedIn });
   }
 };
 

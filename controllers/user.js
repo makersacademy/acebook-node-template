@@ -23,6 +23,7 @@ Create: function(req, res) {
 
 
       req.session._id = user._id;
+      req.session.username = user.username;
     res.redirect('/posts');
         //res.status(201).redirect('/');
         //res.redirect('home/index');
@@ -56,6 +57,7 @@ Create: function(req, res) {
       if (user) {
         if(form.password == user.password){
           res.cookie('userId', user.id);
+          res.cookie('username', user.username)
           res.redirect("/posts");
         } else {
           res.redirect("/");
