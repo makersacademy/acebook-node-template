@@ -11,6 +11,7 @@ Create: function(req, res) {
     username: req.body.username,
     password: req.body.password,
     id: req.body.id
+
   });
 
   user.save(function(err) {
@@ -19,6 +20,11 @@ Create: function(req, res) {
     } else {
       req.session._id = user._id;
     res.render('user/index');
+        //res.status(201).redirect('/');
+        //res.redirect('home/index');
+//res.render('home/index');
+
+
     }
   });
 },
