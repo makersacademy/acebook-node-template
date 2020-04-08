@@ -26,6 +26,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: false,
+}));
 // route setup
 app.use('/', homeRouter);
 app.use('/posts', postsRouter);
@@ -33,15 +38,7 @@ app.use('/user', userRouter);
 
 var db = mongoose.connection;
 
-//Uses sessions to track logins
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: false,
-  store: new MongoStore({
-    mongooseConnection: db
-  })
-}));
+
 
 
 // catch 404 and forward to error handler

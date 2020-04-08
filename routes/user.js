@@ -8,9 +8,8 @@ router.get('/signup', UserController.Signup);
 //POST route to add a new user to the database
 router.post('/', UserController.Create);
 //GET route to go back to user.index once user has been added
-router.get('/', UserController.Create);
 //GET route to check if user is in database
-router.post('/profile', UserController.Authenticate);
+router.post('/login', UserController.Authenticate);
 //GET route to logout
-router.get('/', UserController.Logout);
+router.get('/logout', UserController.Logout);
 module.exports = router;

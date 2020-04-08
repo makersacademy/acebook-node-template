@@ -11,14 +11,25 @@ Create: function(req, res) {
     username: req.body.username,
     password: req.body.password,
     id: req.body.id
+
   });
 
   user.save(function(err) {
     if (err) {
       throw err;
     } else {
+
       //req.session._id = user._id;
-      res.render('user/index');
+
+
+      req.session._id = user._id;
+    res.redirect('/posts');
+        //res.status(201).redirect('/');
+        //res.redirect('home/index');
+//res.render('home/index');
+
+
+
     }
   });
 },
