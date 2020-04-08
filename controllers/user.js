@@ -49,9 +49,15 @@ Create: function(req, res) {
   Authenticate: function(req, res, next){
     var form = req.body;
     User.findOne({username: form.username}, function(err, user){
-
+      console.log('This is the start of my error')
+      console.log(err)
+      console.log('This is the end of my error')
       if (err) {
         throw err;
+      }
+      if (!user){
+        res.render('home/index', { error: 'Error: User not found' });
+        // res.send("Error: user not found.")
       }
       if (user) {
         if(form.password == user.password){

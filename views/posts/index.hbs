@@ -32,7 +32,7 @@
 
 <body style="background-color:#3b5998;">
 
-<h3> Welcome back, {{req.session.username}}</h3>
+<h3> Welcome back, {{req.cookies.username}}</h3>
 <h1 class="posts-header">Timeline</h1>
 <ul class="posts">
   {{#each posts}}

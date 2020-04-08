@@ -42,9 +42,12 @@
 
 <h2>Log in</h2>
 <form id="username" action="/user/login" method="post">
-	<input type="text" name="username" placeholder="username">
+	<div><input type="text" name="username" placeholder="username">
+
 	<input type="text" name="password" placeholder="Password">
-	<input type="submit" value="login">
+  <input type="submit" value="login"></div>
+  {{error}}
+
 </form>
 <br>
 <h3>Click here to create an account</h3>
