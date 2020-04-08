@@ -9,6 +9,12 @@
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+<<<<<<< HEAD
+=======
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/posts">Posts</a>
+>>>>>>> login
       </li>
 
         <li class="nav-item">
@@ -48,9 +54,21 @@
 
 <h2>Log in</h2>
 <form id="username" action="/user/login" method="post">
+<<<<<<< HEAD
 	<input type="text" name="username" placeholder="username">
+=======
+	<div><input type="text" name="username" placeholder="username">
+
+>>>>>>> login
 	<input type="text" name="password" placeholder="Password">
-	<input type="submit" value="login">
+  <input type="submit" value="login"></div>
+  {{error}}
+
+</form>
+<br>
+<h3>Click here to create an account</h3>
+<form action="/user/signup">
+    <input type="submit" value="Sign Up"/>
 </form>
 <br>
 <h3>Click here to create an account</h3>

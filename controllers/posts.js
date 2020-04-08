@@ -7,6 +7,9 @@ var PostsController = {
       console.log(req.cookies.userId)
 
     Post.find({}).sort({date: -1}).exec(function(err, posts) {
+      console.log('***********')
+      console.log(req.cookies.username)
+      console.log('***********')
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts, loggedIn: loggedIn, username: username  })
