@@ -10,6 +10,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/posts">Posts</a>
+      </li>
 
         <li class="nav-item">
           <a class="nav-link" href="/posts">Posts</a>
@@ -49,13 +52,12 @@
 <h2>Log in</h2>
 <form id="username" action="/user/login" method="post">
 	<div><input type="text" name="username" placeholder="username">
-	<input type="text" name="password" placeholder="password">
+	<input type="text" name="password" placeholder="Password">
   <input type="submit" value="login"></div>
   {{error}}
 
 </form>
 <br>
-
 <h3>Click here to create an account</h3>
 <form action="/user/signup">
     <input type="submit" value="Sign Up"/>
