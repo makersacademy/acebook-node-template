@@ -35,9 +35,9 @@
 <h3> Welcome back, {{username}}</h3>
 
 <h1 class="posts-header">Timeline</h1>
-<ul class="posts">
+
   {{#each posts}}
-  <li>{{this.message}}<br>{{this.date}}</li>
+  <div class="posts">{{this.message}}<br>{{this.date}}
 
 
   <form id="new-comment-form" action="/posts" method="post">
@@ -73,10 +73,10 @@ function myFunction(x) {
 </script>
 
 
-
+ {{else}} <p class="empty">Please add a post</p>
   {{/each}}
-</ul>
 
+</div>
 <a class="new-post-link" href="/posts/new">New post</a>
 
 <form id="logout button" action="/user/logout" method="get">
