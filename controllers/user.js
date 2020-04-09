@@ -75,6 +75,7 @@ Create: function(req, res) {
   Logout: function(req, res) {
     if (req.cookies.userId) {
       res.clearCookie('userId')
+      res.clearCookie('username')
       //Deletes session object
         }
         res.redirect('/');
