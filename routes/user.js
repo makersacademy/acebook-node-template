@@ -4,7 +4,7 @@ var router = express.Router();
 var UserController = require('../controllers/user');
 
 router.post('/signup', UserController.Create);
-router.get('/signin', UserController.Signin);
-
-
+router.get('/signin', UserController.Indexsignin);
+router.post('/signin', UserController.Signin);
+router.get('/profile', UserController.Profile);
 module.exports = router;

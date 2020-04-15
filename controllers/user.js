@@ -26,8 +26,27 @@ var UserController = {
 
   },
 
+  Indexsignin: function(req, res) {
+    var error = req.query.error
+
+    res.render('user/signin', {errorMessage: error});
+  },
+
   Signin: function(req, res) {
-    res.render('user/signin', {});
+    User.findOne({ name: req.body.name }, function(err, user){
+      if(err) { throw err }
+      else if (user && user.password === req.body.password) {
+        res.cookie('CurrentUser', user.name)
+        res.redirect('/user/profile')
+      }
+      else {
+        res.redirect('/user/signin/?error=' + "User not found. Try again.")
+      }
+  })
+},
+
+  Profile: function(req, res) {
+    res.render('user/profile')
   }
 };
 
