@@ -12,12 +12,19 @@ var UserController = {
   //   res.render('posts/new', {});
   // },
   Create: function(req, res) {
-    var user = new User(req.body);
-    user.save(function(err) {
-      if (err) { throw err; }
+    User.findOne({ username: req.body.username }, function(err, user){
+      if(err) { throw err };
+      if(user){ res.redirect('../?error=' + "That user already exists, either sign in, or choose a different username") }
+      else {
+        var user = new User(req.body);
+        user.save(function(err) {
+        if (err) { throw err; }
 
       res.status(201).redirect('/user/signin');
+      });
+      };
     });
+    
   },
 
   Signin: function(req, res) {

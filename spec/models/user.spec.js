@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 require('../mongodb_helper')
-var User = require('../../models/post');
+var User = require('../../models/user');
 
 describe('User model', function() {
   beforeEach(function(done) {
