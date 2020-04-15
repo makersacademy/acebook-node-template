@@ -16,7 +16,7 @@ var UserController = {
     user.save(function(err) {
       if (err) { throw err; }
 
-      res.status(201).redirect('user/signin');
+      res.status(201).redirect('/user/signin');
     });
   },
 
