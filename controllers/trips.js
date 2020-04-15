@@ -10,7 +10,7 @@ var TripsController = {
       res.status(200).redirect('/user/signin');
     }
   },
-
+/* eslint-disable */
   Create: function(req, res) {
     var trip = new Trip(req.body);
     trip.username = req.cookies.CurrentUser
@@ -24,5 +24,5 @@ var TripsController = {
     });
   }
 };
-
+/* eslint-enable */
 module.exports = TripsController;
