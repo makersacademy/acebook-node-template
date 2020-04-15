@@ -7,4 +7,5 @@ router.post('/signup', UserController.Create);
 router.get('/signin', UserController.Indexsignin);
 router.post('/signin', UserController.Signin);
 router.get('/profile', UserController.Profile);
+router.get('/signout', UserController.Signout);
 module.exports = router;

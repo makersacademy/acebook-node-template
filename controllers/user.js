@@ -46,8 +46,16 @@ var UserController = {
 },
 
   Profile: function(req, res) {
-    res.render('user/profile')
-  }
+    var username = req.cookies.CurrentUser
+    res.render('user/profile', {username: username})
+  },
+
+  Signout: function(req, res) {
+    if (req.cookies.CurrentUser) {
+      res.clearCookie('CurrentUser')
+        }
+        res.redirect('/');
+        }
 };
 
 module.exports = UserController;
