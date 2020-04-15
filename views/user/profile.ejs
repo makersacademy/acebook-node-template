@@ -3,3 +3,12 @@
 <form id="logout-button" action="/user/signout">
 <input type="submit" value="Log out">
 </form>
+
+<% trips.forEach((trip) => {%>
+  <li><%=trip.destination%> <%=trip.startDate%> <%=trip.endDate%>
+  </li>
+<%});%>
+
+<form id="create-trip-button" action="/trips/new">
+  <input type="submit" value="Create a new trip">
+</form>
