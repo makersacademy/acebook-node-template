@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Trip = require('../models/trips');
 
 var UserController = {
   // Index: function(req, res) {
@@ -46,8 +47,16 @@ var UserController = {
 },
 
   Profile: function(req, res) {
-    var username = req.cookies.CurrentUser
-    res.render('user/profile', {username: username})
+    if (req.cookies.CurrentUser){
+      var username = req.cookies.CurrentUser
+      Trip.find({username: username}, function(err, trips){
+        if(err) { throw err }
+        res.render('user/profile', {trips: trips, username: username})
+      }) 
+    } else {
+      res.status(200).redirect('/user/signin');
+    }
+    
   },
 
   Signout: function(req, res) {

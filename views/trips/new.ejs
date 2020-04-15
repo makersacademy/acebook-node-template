@@ -1,0 +1,12 @@
+<h1>Welcome <%= username %></h1>
+<h2>Add a new trip:</h2>
+
+<form id="new-trip-form" action="/trips/new" method="post">
+  <label for="destination">Destination </label>
+  <input id="destination" type="text" name="destination" required>
+  <label for="start-date">Start Date: </label>
+  <input id="start-date" type="date" name="startDate" required>
+  <label for="end-date">End Date: </label>
+  <input id="end-date" type="date" name="endDate" required>
+  <input type="submit" value="Add Trip">
+</form>
