@@ -11,14 +11,14 @@ describe('User model', function() {
   });
 
   it('create new user', function() {
-    var user = new User({ username: 'user1', email: 'user1@gmail.com', password: '321' });
-    expect(user.username).toEqual('user1');
+    var user = new User({ name: 'user1', email: 'user1@gmail.com', password: '321' });
+    expect(user.name).toEqual('user1');
     expect(user.email).toEqual('user1@gmail.com');
     expect(user.password).toEqual('321');
   });
 
   it('can save new user details', function(done) {
-    var user = new User({ username: 'user1', email: 'user1@gmail.com', password: '321'});
+    var user = new User({ name: 'user1', email: 'user1@gmail.com', password: '321'});
 
     user.save(function(err) {
       expect(err).toBeNull();
@@ -26,7 +26,7 @@ describe('User model', function() {
       User.find(function(err, user) {
         expect(err).toBeNull();
 
-        expect(users[0]).toMatchObject({ username: 'user1', email: 'user1@gmail.com', password: '321' });
+        expect(users[0]).toMatchObject({ name: 'user1', email: 'user1@gmail.com', password: '321' });
         done();
       });
     });
