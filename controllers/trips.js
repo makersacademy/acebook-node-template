@@ -22,7 +22,14 @@ var TripsController = {
       });
       res.status(201).redirect('/user/profile');
     });
-  }
+    /* eslint-enable */
+  },
+    Delete: function(req, res) {
+      Trip.deleteOne({_id: req.params.id}, function (err) {
+        if (err) { throw err};
+      });
+      res.redirect('/user/profile');
+    }
 };
-/* eslint-enable */
+
 module.exports = TripsController;
