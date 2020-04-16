@@ -16,7 +16,7 @@
       <input type="submit" value="Submit Change">
     </form>
   <%}%>
-  
+
 </div>
 
 <div>
@@ -27,10 +27,10 @@
   <h3>Accomodation</h3>
 </div>
 
-<form id="edit-dates-button" method="post" action="/trips/edit-data/<%=trip.id%>">
+<form id="edit-button" method="post" action="/trips/edit-data/<%=trip.id%>">
   <input type="submit"  value="Edit Trip">
 </form>
 
-<form id="edit-dates-button" method="post" action="/trips/save-edits/<%=trip.id%>">
+<form id="complete-edits-button" method="post" action="/trips/save-edits/<%=trip.id%>">
   <input type="submit"  value="Done">
 </form>

@@ -31,7 +31,7 @@ var TripsController = {
     });
     res.redirect('/user/profile');
     },
-  
+
   View: function(req, res) {
     var username = req.cookies.CurrentUser
     Trip.findById(req.params.id, function(err, trip){
@@ -46,7 +46,7 @@ var TripsController = {
   },
 
   EditData: function(req, res) {
-    
+
     res.cookie('editDates', true)
     res.redirect('/trips/view/' + req.params.id)
   },
@@ -62,8 +62,8 @@ var TripsController = {
     const query = {}
     query[dataKey] = newData
     var tripId = req.params.id
-    Trip.findOneAndUpdate({_id: tripId}, query, function (err, data) {
-      if (err) { throw err};
+    Trip.findOneAndUpdate({_id: tripId}, query, function (err) {
+      if (err) { throw err}
     });
     res.redirect('/trips/view/' + req.params.id)
   },
