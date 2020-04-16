@@ -26,7 +26,7 @@ var TripsController = {
   },
     Delete: function(req, res) {
       Trip.deleteOne({_id: req.params.id}, function (err) {
-        if (err) { throw err};
+        if (err) { throw err}
       });
       res.redirect('/user/profile');
     }
