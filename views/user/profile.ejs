@@ -1,3 +1,4 @@
+<%- include ('../partials/body.ejs') %>
 <h1> Welcome <%=username%> </h1>
 
 <form id="logout-button" action="/user/signout">
@@ -15,3 +16,5 @@
 <form id="create-trip-button" action="/trips/new">
   <input type="submit" value="Create a new trip">
 </form>
+
+<%- include ('../partials/footer.ejs') %>
