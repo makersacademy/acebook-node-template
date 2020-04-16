@@ -40,6 +40,15 @@ Cypress.Commands.add('signin', (name, password) => {
   cy.get('#login-form').submit();
 });
 
+Cypress.Commands.add('createTrip', (destination, startDate, endDate) => {
+  cy.visit('user/profile');
+  cy.get('#create-trip-button').submit();
+  cy.get('input[name=destination]').type(destination);
+  cy.get('input[name=startDate]').type(startDate);
+  cy.get('input[name=endDate]').type(endDate);
+  cy.get('#new-trip-form').submit();
+});
+
 beforeEach(function () {
 	cy.task('resetDB');
 })
