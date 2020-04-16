@@ -1,0 +1,36 @@
+<h1><%=username%>'s trip to <%= trip.destination %></h1>
+
+<div>
+  <h3>Dates</h3>
+  <p>Start date: <%=trip.startDate%></p>
+  <% if (editDate === true){%>
+    <form id="edit-start-date-form" action="/trips/edit/<%=trip.id%>" method="post">
+      <input id="start-date" type="date" name="startDate" required>
+      <input type="submit" value="Submit Change">
+    </form>
+  <%}%>
+  <p>End date: <%=trip.endDate%></p>
+  <% if (editDate === true){%>
+    <form id="edit-end-date-form" action="/trips/edit/<%=trip.id%>" method="post">
+      <input id="start-date" type="date" name="endDate" required>
+      <input type="submit" value="Submit Change">
+    </form>
+  <%}%>
+  
+</div>
+
+<div>
+  <h3>Transport</h3>
+</div>
+
+<div>
+  <h3>Accomodation</h3>
+</div>
+
+<form id="edit-dates-button" method="post" action="/trips/edit-data/<%=trip.id%>">
+  <input type="submit"  value="Edit Trip">
+</form>
+
+<form id="edit-dates-button" method="post" action="/trips/save-edits/<%=trip.id%>">
+  <input type="submit"  value="Done">
+</form>

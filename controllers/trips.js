@@ -24,12 +24,59 @@ var TripsController = {
     });
     /* eslint-enable */
   },
-    Delete: function(req, res) {
-      Trip.deleteOne({_id: req.params.id}, function (err) {
-        if (err) { throw err}
-      });
-      res.redirect('/user/profile');
-    }
+
+  Delete: function(req, res) {
+    Trip.deleteOne({_id: req.params.id}, function (err) {
+      if (err) { throw err}
+    });
+    res.redirect('/user/profile');
+    },
+  
+  View: function(req, res) {
+    var username = req.cookies.CurrentUser
+    Trip.findById(req.params.id, function(err, trip){
+      if(err) {throw err}
+      if(req.cookies.editDates){
+        res.render('trips/view', {trip: trip, username: username, editDate: true})
+      } else {
+        res.clearCookie('editDates')
+        res.render('trips/view', {trip: trip, username: username, editDate: false})
+      }
+    })
+  },
+
+  EditData: function(req, res) {
+    
+    res.cookie('editDates', true)
+    res.redirect('/trips/view/' + req.params.id)
+  },
+
+  SaveEdits: function(req, res) {
+    res.clearCookie('editDates')
+    res.redirect('/trips/view/' + req.params.id)
+  },
+
+  Edit: function(req, res){
+    var dataKey = Object.keys(req.body)[0]
+    var newData = Object.values(req.body)[0]
+    const query = {}
+    query[dataKey] = newData
+    var tripId = req.params.id
+    Trip.findOneAndUpdate({_id: tripId}, query, function (err, data) {
+      if (err) { throw err};
+    });
+    res.redirect('/trips/view/' + req.params.id)
+  },
+
+  // EndDate: function(req, res){
+  //   var newDate = req.body.endDate
+  //   var tripId = req.params.id
+  //   Trip.findOneAndUpdate({_id: tripId}, {endDate: newDate }, function (err) {
+  //     if (err) { throw err};
+  //   });
+  //   res.redirect('/trips/view/' + req.params.id)
+  // },
+
 };
 
 module.exports = TripsController;

@@ -7,5 +7,9 @@ var TripsController = require('../controllers/trips');
 router.get('/new', TripsController.New);
 router.post('/new', TripsController.Create);
 router.post('/delete/:id', TripsController.Delete);
+router.get('/view/:id', TripsController.View);
+router.post('/edit-data/:id', TripsController.EditData);
+router.post('/save-edits/:id', TripsController.SaveEdits);
+router.post('/edit/:id', TripsController.Edit);
 
 module.exports = router;
