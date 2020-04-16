@@ -16,5 +16,15 @@ describe('Trip model', function() {
     expect(trip.destination).toEqual('Spain');
     expect(trip.startDate.toString()).toEqual("Mon Oct 05 2020 00:00:00 GMT+0100 (British Summer Time)");
     expect(trip.endDate.toString()).toEqual( "Thu Nov 05 2020 00:00:00 GMT+0000 (Greenwich Mean Time)");
-});
+  });
+
+  it('can delete a trip', function() {
+    var trip = new Trip({ username: "x", destination: 'Spain', startDate: '10/05/2020', endDate: '11/05/2020' });
+    Trip.deleteOne({_id: trip.id}, function(){
+        console.log('hello')
+    })
+    console.log('hello2')
+    expect(trip).toBeNull;
+    });
+
 });

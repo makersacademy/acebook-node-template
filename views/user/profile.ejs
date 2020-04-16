@@ -6,6 +6,9 @@
 
 <% trips.forEach((trip) => {%>
   <li><%=trip.destination%> <%=trip.startDate%> <%=trip.endDate%>
+    <form id="delete-trip-button" method="post" action="/trips/delete/<%=trip.id%>">
+      <input type="submit"  value="Delete this trip">
+    </form>
   </li>
 <%});%>
 
