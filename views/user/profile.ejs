@@ -1,23 +1,31 @@
+<%- include ('../partials/header.ejs') %>
 <%- include ('../partials/body.ejs') %>
-<h1> Welcome <%=username%> </h1>
+<div>
+  <div class='title'>
+    <h1> Welcome <%=username%> </h1>
+  </div>
+  <div class='create-form'>
+    <form id="create-trip-button" action="/trips/new">
+      <input type="submit" value="Create a new trip">
+    </form>
+  </div>
+</div>  
 
-<form id="logout-button" action="/user/signout">
-<input type="submit" value="Log out">
-</form>
 
 <% trips.forEach((trip) => {%>
-  <li><%=trip.destination%> <%=trip.startDate%> <%=trip.endDate%>
-    <form id="delete-trip-button" method="post" action="/trips/delete/<%=trip.id%>">
+  <li class='trip-list'><strong><%=trip.destination%></strong></br>
+    Start date: <%=trip.startDate.toISOString().slice(0,10);%> </br>
+    End date: <%=trip.endDate.toISOString().slice(0,10);%></br>
+    <div class='btn-group'>
+    <form class='btn' id="delete-trip-button" method="post" action="/trips/delete/<%=trip.id%>">
       <input type="submit"  value="Delete this trip">
     </form>
-    <form id="view-trip-button" action="/trips/view/<%=trip.id%>">
+    <form class='btn' id="view-trip-button" action="/trips/view/<%=trip.id%>">
       <input type="submit"  value="View this trip">
     </form>
+    </div>
   </li>
 <%});%>
 
-<form id="create-trip-button" action="/trips/new">
-  <input type="submit" value="Create a new trip">
-</form>
 
 <%- include ('../partials/footer.ejs') %>
