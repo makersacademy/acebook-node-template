@@ -1,9 +1,6 @@
+<%- include ('../partials/header.ejs') %>
 <%- include ('../partials/body.ejs') %>
 <h1> Welcome <%=username%> </h1>
-
-<form id="logout-button" action="/user/signout">
-<input type="submit" value="Log out">
-</form>
 
 <% trips.forEach((trip) => {%>
   <li><%=trip.destination%> <%=trip.startDate%> <%=trip.endDate%>

@@ -1,3 +1,5 @@
+<%- include ('../partials/header.ejs') %>
+<%- include ('../partials/body.ejs') %>
 <h1><%=username%>'s trip to <%= trip.destination %></h1>
 
 <div>
@@ -34,3 +36,4 @@
 <form id="complete-edits-button" method="post" action="/trips/save-edits/<%=trip.id%>">
   <input type="submit"  value="Done">
 </form>
+<%- include ('../partials/footer.ejs') %>
