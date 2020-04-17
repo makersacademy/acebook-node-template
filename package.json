@@ -16,8 +16,10 @@
     "node": ">=12.14.1"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.2",
     "express": "~4.16.1",
     "hbs": "^4.1.0",

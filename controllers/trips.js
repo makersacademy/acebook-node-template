@@ -1,7 +1,10 @@
 var Trip = require('../models/trips');
 var User = require('../models/user');
-
+var sendMail = require('../sendMail.js');
+console.log(sendMail)
 var TripsController = {
+// import { companionEmailSend } from '../sendMail.js';
+// import '../sendMail.js';
   New: function(req, res) {
     if(req.cookies.CurrentUser) {
       var username = req.cookies.CurrentUser
@@ -16,7 +19,7 @@ var TripsController = {
     trip.username = req.cookies.CurrentUser
     trip.save(function(err) {
       if (err) { throw err; }
-      console.log(trip._id)
+      sendMail.companionEmailSend(trip.companionEmails[0], trip.username)
       User.findOneAndUpdate({name: trip.username}, {$push: {trips: trip._id }}, function (err) {
         if (err) { throw err};
       });

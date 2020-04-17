@@ -4,7 +4,8 @@ var TripSchema = new mongoose.Schema({
   username: String,
   destination: String,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
+  companionEmails: Array,
 });
 
 var Trip = mongoose.model('Trip', TripSchema);
