@@ -13,7 +13,7 @@
 
 
 <% trips.forEach((trip) => {%>
-  <li class='trip-list'><%=trip.destination%> </br>
+  <li class='trip-list'><strong><%=trip.destination%></strong></br>
     Start date: <%=trip.startDate.toISOString().slice(0,10);%> </br>
     End date: <%=trip.endDate.toISOString().slice(0,10);%></br>
     <div class='btn-group'>
