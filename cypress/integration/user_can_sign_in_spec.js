@@ -12,4 +12,11 @@ describe("Sign in", function(){
     cy.get('#login-form').submit();
     cy.contains('User not found. Try again.');
   })
+
+  it('redirects a logged in user to their profile', function(){
+    cy.signup('Test', '123@gmail.com', 'password');
+    cy.signin('Test', 'password');
+    cy.visit('user/signin');
+    cy.contains('Welcome Test');
+  })
 });
