@@ -1,6 +1,16 @@
 <%- include ('../partials/header.ejs') %>
 <%- include ('../partials/body.ejs') %>
-<h1> Welcome <%=username%> </h1>
+<div>
+  <div class='title'>
+    <h1> Welcome <%=username%> </h1>
+  </div>
+  <div class='create-form'>
+    <form id="create-trip-button" action="/trips/new">
+      <input type="submit" value="Create a new trip">
+    </form>
+  </div>
+</div>  
+
 
 <% trips.forEach((trip) => {%>
   <li class='trip-list'><%=trip.destination%> </br>
@@ -17,8 +27,5 @@
   </li>
 <%});%>
 
-<form id="create-trip-button" action="/trips/new">
-  <input type="submit" value="Create a new trip">
-</form>
 
 <%- include ('../partials/footer.ejs') %>
