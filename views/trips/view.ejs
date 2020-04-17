@@ -4,14 +4,14 @@
 
 <div>
   <h3>Dates</h3>
-  <p>Start date: <%=trip.startDate%></p>
+  <p>Start date: <%=trip.startDate.toISOString().slice(0,10);%></p>
   <% if (editDate === true){%>
     <form id="edit-start-date-form" action="/trips/edit/<%=trip.id%>" method="post">
       <input id="start-date" type="date" name="startDate" required>
       <input type="submit" value="Submit Change">
     </form>
   <%}%>
-  <p>End date: <%=trip.endDate%></p>
+  <p>End date: <%=trip.endDate.toISOString().slice(0,10);%></p>
   <% if (editDate === true){%>
     <form id="edit-end-date-form" action="/trips/edit/<%=trip.id%>" method="post">
       <input id="start-date" type="date" name="endDate" required>
