@@ -28,9 +28,12 @@ var UserController = {
   },
 
   Indexsignin: function(req, res) {
-    var error = req.query.error
-
-    res.render('user/signin', {errorMessage: error});
+    if (req.cookies.CurrentUser) {
+      res.redirect('/user/profile')
+    } else {
+      var error = req.query.error
+      res.render('user/signin', {errorMessage: error});
+    }
   },
 
   Signin: function(req, res) {
@@ -52,11 +55,11 @@ var UserController = {
       Trip.find({username: username}, function(err, trips){
         if(err) { throw err }
         res.render('user/profile', {trips: trips, username: username})
-      }) 
+      })
     } else {
       res.status(200).redirect('/user/signin');
     }
-    
+
   },
 
   Signout: function(req, res) {
