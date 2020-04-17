@@ -34,8 +34,10 @@ var TripsController = {
 
   View: function(req, res) {
     var username = req.cookies.CurrentUser
+      if (req.cookies.CurrentUser) {
     Trip.findById(req.params.id, function(err, trip){
       if(err) {throw err}
+
       if(req.cookies.editDates){
         res.render('trips/view', {trip: trip, username: username, editDate: true})
       } else {
@@ -43,7 +45,12 @@ var TripsController = {
         res.render('trips/view', {trip: trip, username: username, editDate: false})
       }
     })
+    }
+    else {
+      res.status(200).redirect('/user/signin')
+    }
   },
+
 
   EditData: function(req, res) {
 
