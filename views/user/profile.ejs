@@ -16,6 +16,7 @@
   <li class='trip-list'><strong><%=trip.destination%></strong></br>
     Start date: <%=trip.startDate.toISOString().slice(0,10);%> </br>
     End date: <%=trip.endDate.toISOString().slice(0,10);%></br>
+    <p><i>This trip was created by <%=trip.username%></i></p>
     <div class='btn-group'>
     <form class='btn' id="delete-trip-button" method="post" action="/trips/delete/<%=trip.id%>">
       <input type="submit"  value="Delete this trip">

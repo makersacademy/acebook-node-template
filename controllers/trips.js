@@ -17,6 +17,7 @@ var TripsController = {
   Create: function(req, res) {
     var trip = new Trip(req.body);
     trip.username = req.cookies.CurrentUser
+    trip.companionEmails.push(req.cookies.UserEmail)
     trip.save(function(err) {
       if (err) { throw err; }
       sendMail.companionEmailSend(trip.companionEmails[0], trip.username)
@@ -74,6 +75,16 @@ var TripsController = {
     var tripId = req.params.id
     Trip.findOneAndUpdate({_id: tripId}, query, function (err) {
       if (err) { throw err}
+    });
+    res.redirect('/trips/view/' + req.params.id)
+  },
+
+  AddUser: function(req, res){
+    var email = req.body.companionEmails
+    var tripId = req.params.id
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {companionEmails: email}}, function (err, trip) {
+      if (err) { throw err}
+      sendMail.companionEmailSend(email, trip.username)
     });
     res.redirect('/trips/view/' + req.params.id)
   },

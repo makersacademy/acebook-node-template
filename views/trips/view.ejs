@@ -29,6 +29,20 @@
   <h3>Accomodation</h3>
 </div>
 
+<div>
+  <h3>Companions</h3>
+  <% trip.companionEmails.forEach((email) => {%>
+    <li><%=email%></br>
+    </li>
+  <%});%>
+  <% if (editDate === true){%>
+    <form id="add-user-form" action="/trips/add-user/<%=trip.id%>" method="post">
+      <input id="companion-email" type="text" name="companionEmails" placeholder="Please add your friend's email">
+      <input type="submit" value="Submit Change">
+    </form>
+  <%}%>
+</div>
+
 <form id="edit-button" method="post" action="/trips/edit-data/<%=trip.id%>">
   <input type="submit"  value="Edit Trip">
 </form>

@@ -41,6 +41,7 @@ var UserController = {
       if(err) { throw err }
       else if (user && user.password === req.body.password) {
         res.cookie('CurrentUser', user.name)
+        res.cookie('UserEmail', user.email)
         res.redirect('/user/profile')
       }
       else {
@@ -52,7 +53,8 @@ var UserController = {
   Profile: function(req, res) {
     if (req.cookies.CurrentUser){
       var username = req.cookies.CurrentUser
-      Trip.find({username: username}, function(err, trips){
+      var email = req.cookies.UserEmail
+      Trip.find({companionEmails: email}, function(err, trips){
         if(err) { throw err }
         res.render('user/profile', {trips: trips, username: username})
       })
@@ -65,6 +67,7 @@ var UserController = {
   Signout: function(req, res) {
     if (req.cookies.CurrentUser) {
       res.clearCookie('CurrentUser')
+      res.clearCookie('UserEmail')
         }
         res.redirect('/');
         }
