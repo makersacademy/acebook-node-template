@@ -2,16 +2,17 @@
 <%- include ('../partials/body.ejs') %>
 
 <div>
-  <div class='title'>
+  <div class='trip-title'>
     <h1><%=username%>'s trip to <%= trip.destination %></h1>
   </div>
-  <div class='view-trip-buttons'>
-    <form id="edit-button" method="post" action="/trips/edit-data/<%=trip.id%>">
+
+  <div class='view-trip-buttons btn-group'>
+    <form class='btn' id="edit-button" method="post" action="/trips/edit-data/<%=trip.id%>">
       <input type="submit"  value="Edit Trip">
     </form>
     
-    <form id="complete-edits-button" method="post" action="/trips/save-edits/<%=trip.id%>">
-      <input type="submit"  value="Done">
+    <form class='btn' id="complete-edits-button" method="post" action="/trips/save-edits/<%=trip.id%>">
+      <input type="submit"  value="Exit Edit Mode">
     </form>
   </div>
 </div>  
@@ -23,14 +24,14 @@
   <p>Start date: <%=trip.startDate.toISOString().slice(0,10);%></p>
   <% if (editDate === true){%>
     <form id="edit-start-date-form" action="/trips/edit/<%=trip.id%>" method="post">
-      <input id="start-date" type="date" name="startDate" required>
+      <input class="form-control input_user" id="start-date" type="date" name="startDate" required>
       <input type="submit" value="Submit Change">
     </form>
   <%}%>
   <p>End date: <%=trip.endDate.toISOString().slice(0,10);%></p>
   <% if (editDate === true){%>
     <form id="edit-end-date-form" action="/trips/edit/<%=trip.id%>" method="post">
-      <input id="start-date" type="date" name="endDate" required>
+      <input class="form-control input_user" id="start-date" type="date" name="endDate" required>
       <input type="submit" value="Submit Change">
     </form>
   <%}%>
@@ -57,19 +58,19 @@
   <% if (editDate === true){%>
   <form id="new-flight-form" action="/trips/add-flight/<%=trip.id%>" method="post">
     <label for="departure-city">Departure City </label>
-    <input id="departure-city" type="text" name="departureCity" required>
+    <input class="form-control input_user" id="departure-city" type="text" name="departureCity" required>
     <label for="airport">Airport: </label>
-    <input id="airport" type="text" name="airport" required>
+    <input class="form-control input_user" id="airport" type="text" name="airport" required>
     <label for="airline">Airline: </label>
-    <input id="airline" type="text" name="airline" required>
+    <input class="form-control input_user" id="airline" type="text" name="airline" required>
     <label for="date">Date: </label>
-    <input id="date" type="date" name="date" required>
+    <input class="form-control input_user" id="date" type="date" name="date" required>
     <label for="departure-time">Departure Time: </label>
-    <input id="departure-time" type="text" name="departureTime" required>
+    <input class="form-control input_user" id="departure-time" type="text" name="departureTime" required>
     <label for="flight-number">Flight number: </label>
-    <input id="flight-number" type="text" name="flightNumber" required>
+    <input class="form-control input_user" id="flight-number" type="text" name="flightNumber" required>
     <label for="booking-reference">Booking reference: </label>
-    <input id="booking-reference" type="text" name="bookingReference" required>
+    <input class="form-control input_user" id="booking-reference" type="text" name="bookingReference" required>
     <input type="submit" value="Add Flight">
   </form>
   <%}%>
@@ -91,14 +92,14 @@
 
   <% if (editDate === true){%>
   <form id="new-accommodation-form" action="/trips/add-accommodation/<%=trip.id%>" method="post">
-    <label for="location">location</label>
-    <input id="location" type="text" name="location" required>
+    <label for="location">Location</label>
+    <input class="form-control input_user" id="location" type="text" name="location" required>
     <label for="start-date">Arrival Date: </label>
-    <input id="start-date" type="date" name="startDate" required>
+    <input class="form-control input_user" id="start-date" type="date" name="startDate" required>
     <label for="end-date">Departure Date: </label>
-    <input id="end-date" type="date" name="endDate" required>
+    <input class="form-control input_user" id="end-date" type="date" name="endDate" required>
     <label for="booking-reference">Booking reference: </label>
-    <input id="booking-reference" type="text" name="bookingReference" required>
+    <input class="form-control input_user" id="booking-reference" type="text" name="bookingReference" required>
     <input type="submit" value="Add Accommodation">
   </form>
   <%}%>
@@ -112,7 +113,7 @@
   <%});%>
   <% if (editDate === true){%>
     <form id="add-user-form" action="/trips/add-user/<%=trip.id%>" method="post">
-      <input id="companion-email" type="text" name="companionEmails" placeholder="Please add your friend's email">
+      <input class="form-control input_user" id="companion-email" type="text" name="companionEmails" placeholder="Please add your friend's email">
       <input type="submit" value="Submit Change">
     </form>
   <%}%>
