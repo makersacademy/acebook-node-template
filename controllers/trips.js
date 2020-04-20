@@ -96,15 +96,15 @@ var TripsController = {
 
   AddFlights: function(req, res){
     var tripId = req.params.id;
+    console.log(tripId)
     // var dataKey = Object.keys(req.body)[0]
     // var newData = Object.values(req.body)[0]
     // const query = {}
     // query[dataKey] = newData
     //I think req.body on line 100 should be something else because it's being replaced with a whole long string.
-
-    Trip.findOneAndUpdate({id: tripId}, {$push: {flights: req.body}}, function (err) {
+    var flight = req.body
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {flights: flight}}, function (err) {
       if (err) { throw err}
-    
     });
     // I need to add the flight id on line 102
     res.redirect('/trips/view/' + req.params.id)

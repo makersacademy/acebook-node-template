@@ -22,20 +22,23 @@
 </div>
 
 <div>
-  <h3>Transport</h3>
+  <h4>Flights</h3>
 <!-- Added fields to input flight data -->
-  <h4>Flights</h4>
+  <% trip.flights.forEach((flight) => {%>
+    <ul>
+      Info
+      <li>Departure City: <%= flight.departureCity %></li>
+      <li>Airport: <%= flight.airport %></li>
+      <li>Airline: <%= flight.airline %></li>
+      <li>Date: <%= flight.departureCity %></li>
+      <li>Departure Time: <%= flight.departureTime %></li>
+      <li>Flight number: <%= flight.flightNumber %></li>
+      <li>Booking reference: <%= flight.bookingReference %></li>
+    </ul>
+      <%});%>
+ 
 
-    Departure City: <%= trip.flights.departureCity %><ul>
-      <li>Airport: <%= trip.flights.airport %></li>
-      <li>Airline: <%= trip.flights.airline %></li>
-      <li>Date: <%= trip.flights.departureCity %></li>
-      <li>Departure Time: <%= trip.flights.departureTime %></li>
-      <li>Flight number: <%= trip.flights.flightNumber %></li>
-      <li>Booking reference: <%= trip.flights.bookingReference %></li>
-  </ul>
-
-
+  <% if (editDate === true){%>
   <form id="new-flight-form" action="/trips/add-flight/<%=trip.id%>" method="post">
     <label for="departure-city">Departure City </label>
     <input id="departure-city" type="text" name="departureCity" required>
@@ -54,6 +57,7 @@
     <input type="submit" value="Add Flight">
   </form>
 </div>
+<%}%>
 
 <div>
   <h3>Accomodation</h3>
