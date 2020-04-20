@@ -16,6 +16,7 @@ var TripsController = {
 /* eslint-disable */
   Create: function(req, res) {
     var trip = new Trip(req.body);
+    if(req.body.companionEmails.includes("@")) {
     trip.username = req.cookies.CurrentUser
     trip.companionEmails.push(req.cookies.UserEmail)
     trip.save(function(err) {
@@ -24,10 +25,22 @@ var TripsController = {
       User.findOneAndUpdate({name: trip.username}, {$push: {trips: trip._id }}, function (err) {
         if (err) { throw err};
       });
-      res.status(201).redirect('/user/profile');
-    });
+    })
+  }
+
+  if (!req.body.companionEmails.includes("@")) {
+    trip.companionEmails.pop()
+    trip.companionEmails.push(req.cookies.UserEmail)
+    trip.save(function(err) {
+      if (err) { throw err; }
+      User.findOneAndUpdate({name: trip.username}, {$push: {trips: trip._id }}, function (err) {
+        if (err) { throw err};
+      });
+    })
+  }
+  res.status(201).redirect('/user/profile');
     /* eslint-enable */
-  },
+ },
 
   Delete: function(req, res) {
     Trip.deleteOne({_id: req.params.id}, function (err) {
@@ -81,8 +94,14 @@ var TripsController = {
 
   AddUser: function(req, res){
     var email = req.body.companionEmails
+    console.log(req.body.companionEmails)
     var tripId = req.params.id
+  console.log("******")
+    console.log(email)
+console.log("******")
     Trip.findOneAndUpdate({_id: tripId}, {$push: {companionEmails: email}}, function (err, trip) {
+      console.log("******")
+      console.log(email)
       if (err) { throw err}
       sendMail.companionEmailSend(email, trip.username)
     });

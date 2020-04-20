@@ -11,14 +11,16 @@ function companionEmailSend(email, username) {
   subject : username + " wants to go on holiday. Click to join!",
 
 }
+/* eslint-disable */
 sgMail
   .send(message, (error, result) => {
+    /* eslint-enable */
     if (error) {
 
-      console.log(error.response.body.errors)
-      console.log(email)
-      console.log(message)
-      console.log("girl this dont work")
+      // console.log(error.response.body.errors)
+      // console.log(email)
+      // console.log(message)
+      // console.log("girl this dont work")
     }
     else {
       //Celebrate
