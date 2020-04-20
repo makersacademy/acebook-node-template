@@ -18,9 +18,15 @@
     End date: <%=trip.endDate.toISOString().slice(0,10);%></br>
     <p><i>This trip was created by <%=trip.username%></i></p>
     <div class='btn-group'>
+      <% if (trip.username === username) {%>
     <form class='btn' id="delete-trip-button" method="post" action="/trips/delete/<%=trip.id%>">
       <input type="submit"  value="Delete this trip">
     </form>
+    <% } else { %>
+      <form class='btn' id="leave-trip-button" method="post" action="/trips/leave/<%=trip.id%>">
+        <input type="submit"  value="Leave this trip">
+      </form>
+    <% } %>
     <form class='btn' id="view-trip-button" action="/trips/view/<%=trip.id%>">
       <input type="submit"  value="View this trip">
     </form>
