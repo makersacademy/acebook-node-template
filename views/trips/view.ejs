@@ -1,6 +1,22 @@
 <%- include ('../partials/header.ejs') %>
 <%- include ('../partials/body.ejs') %>
-<h1><%=username%>'s trip to <%= trip.destination %></h1>
+
+<div>
+  <div class='title'>
+    <h1><%=username%>'s trip to <%= trip.destination %></h1>
+  </div>
+  <div class='view-trip-buttons'>
+    <form id="edit-button" method="post" action="/trips/edit-data/<%=trip.id%>">
+      <input type="submit"  value="Edit Trip">
+    </form>
+    
+    <form id="complete-edits-button" method="post" action="/trips/save-edits/<%=trip.id%>">
+      <input type="submit"  value="Done">
+    </form>
+  </div>
+</div>  
+
+
 
 <div>
   <h3>Dates</h3>
@@ -56,11 +72,36 @@
     <input id="booking-reference" type="text" name="bookingReference" required>
     <input type="submit" value="Add Flight">
   </form>
+  <%}%>
 </div>
-<%}%>
+
 
 <div>
-  <h3>Accomodation</h3>
+  <h3>Accommodation</h3>
+  <% trip.accommodations.forEach((accommodation) => {%>
+    <ul>
+      Info
+      <li>Location: <%= accommodation.location %></li>
+      <li>Start Date: <%= accommodation.startDate %></li>
+      <li>End Date: <%= accommodation.endDate%></li>
+      <li>Booking reference: <%= accommodation.bookingReference %></li>
+    </ul>
+      <%});%>
+ 
+
+  <% if (editDate === true){%>
+  <form id="new-accommodation-form" action="/trips/add-accommodation/<%=trip.id%>" method="post">
+    <label for="location">location</label>
+    <input id="location" type="text" name="location" required>
+    <label for="start-date">Arrival Date: </label>
+    <input id="start-date" type="date" name="startDate" required>
+    <label for="end-date">Departure Date: </label>
+    <input id="end-date" type="date" name="endDate" required>
+    <label for="booking-reference">Booking reference: </label>
+    <input id="booking-reference" type="text" name="bookingReference" required>
+    <input type="submit" value="Add Accommodation">
+  </form>
+  <%}%>
 </div>
 
 <div>
@@ -77,11 +118,5 @@
   <%}%>
 </div>
 
-<form id="edit-button" method="post" action="/trips/edit-data/<%=trip.id%>">
-  <input type="submit"  value="Edit Trip">
-</form>
 
-<form id="complete-edits-button" method="post" action="/trips/save-edits/<%=trip.id%>">
-  <input type="submit"  value="Done">
-</form>
 <%- include ('../partials/footer.ejs') %>
