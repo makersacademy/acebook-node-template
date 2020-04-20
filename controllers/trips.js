@@ -18,8 +18,8 @@ var TripsController = {
 /* eslint-disable */
   Create: function(req, res) {
     var trip = new Trip(req.body);
-    if(req.body.companionEmails.includes("@")) {
     trip.username = req.cookies.CurrentUser
+    if(req.body.companionEmails.includes("@")) {
     trip.companionEmails.push(req.cookies.UserEmail)
     trip.save(function(err) {
       if (err) { throw err; }
