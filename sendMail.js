@@ -7,7 +7,7 @@ function companionEmailSend(email, username) {
   to : email,
   from : "chipmunktravel.help@gmail.com",
   message : "just added you on to a trip. Click this link to view",
-  html: "<p> You have been invited on a trip. Click this <a href='http://localhost:3000/user/signin'> link </a> to view </p>",
+  html: "<p> You have been invited on a trip. Click this <a href='http://chipmunktravel.herokuapp.com/user/signin'> link </a> to view </p>",
   subject : username + " wants to go on holiday. Click to join!",
 
 }
