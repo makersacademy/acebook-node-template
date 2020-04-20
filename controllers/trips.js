@@ -155,14 +155,18 @@ var TripsController = {
     var tripId = req.params.id;
     var accommodationIndex = req.params.index;
     Trip.findOne({_id: tripId}, function(err, trip){
+      console.log("2")
       if (err) { throw err}
+      console.log("3")
       trip.accommodations.splice(accommodationIndex, 1)
+      console.log("4")
       trip.save(function(err){
+        console.log("5")
           if(err) {throw err}
-          console.log('trip was saved!')
+          console.log('6: End Point: trip was saved!')
       });
     });
-    console.log('ready for redirect!')
+    console.log('1: process start')
     res.redirect('/trips/view/' + req.params.id)
   },
 };
