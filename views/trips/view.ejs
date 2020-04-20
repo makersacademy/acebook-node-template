@@ -36,7 +36,7 @@
   </ul>
 
 
-  <form id="new-flight-form" action="/trips/add-flight" method="post">
+  <form id="new-flight-form" action="/trips/add-flight/<%=trip.id%>" method="post">
     <label for="departure-city">Departure City </label>
     <input id="departure-city" type="text" name="departureCity" required>
     <label for="airport">Airport: </label>
