@@ -51,6 +51,18 @@ var TripsController = {
     res.redirect('/user/profile');
     },
 
+  Leave: function(req, res) {
+      Trip.findOne({_id: req.params.id}, function (err, trip) {
+        if (err) { throw err}
+        var i = trip.companionEmails.indexOf(req.cookies.UserEmail)
+        trip.companionEmails.splice(i, 1)
+        trip.save(function(err){
+          if(err) {throw err}
+        })
+      });
+      res.redirect('/user/profile');
+      },
+
   View: function(req, res) {
     var username = req.cookies.CurrentUser
       if (req.cookies.CurrentUser) {
