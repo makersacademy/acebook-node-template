@@ -1,6 +1,12 @@
 var HomeController = {
   Index: function(req, res) {
-    res.render('home/index', { title: 'Acebook' });
+    if (req.cookies.CurrentUser) {
+      res.redirect('/user/profile')
+    } else {
+    var error = req.query.error
+    console.log(error)
+    res.render('home/index', { title: 'Chipmunk Travel', errorMessage: error });
+    }
   }
 };
 

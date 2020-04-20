@@ -1,0 +1,30 @@
+<%- include ('../partials/home_signin.ejs') %>
+<!-- <h1 class="title"><%=title%></h1> -->
+<!-- <p>Welcome to <%=title%></p> -->
+
+<h1> Chipmunk Travel </h1>
+
+<!-- <center> -->
+<body>
+<form id="signup-form" action="/user/signup" method="post">
+  <label for="name">Name </label>
+    <input id="name" type="text" name="name" required  class="form-control input_user" placeholder="name">
+    <% if(errorMessage) {%>
+    <%= errorMessage %> <% }%>
+  <label for="name">Email </label>
+  <input id="email" type="email" name="email" required class="form-control input_user" placeholder="email">
+  <label for="name">Password </label>
+  <input id="password" type="password" name="password" required class="form-control input_user" placeholder="password">
+  <input type="submit" value="Sign Up">
+</form>
+
+<div class="mt-4">
+  <div class="d-flex justify-content-center links">
+    Already have an account? <form id="signin-button" class="ml-2" action="/user/signin">
+    <input type="submit" value="Sign in">
+    </form>
+  </div>
+
+<%- include ('../partials/footer.ejs') %>
+</body>
+<!-- </center> -->

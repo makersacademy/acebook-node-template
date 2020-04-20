@@ -1,0 +1,21 @@
+<%- include ('../partials/home_signin.ejs') %>
+<h1>Chipmunk travel</h1>
+
+<form id="login-form" action="/user/signin" method="post">
+  <label for="name">Name </label>
+  <input id="name" type="text" name="name" required class="form-control input_user" placeholder="name">
+  <% if(errorMessage) {%>
+    <%= errorMessage %> <% }%>
+  <label for="name">Password </label>
+  <input id="password" type="password" name="password" required class="form-control input_user" placeholder="password">
+  <input type="submit" value="Sign in">
+</form>
+
+<div class="mt-4">
+  <div class="d-flex justify-content-center links">
+    Don't have an account? <form id="signin-button" class="ml-2" action="/">
+    <input type="submit" value="Sign Up">
+    </form>
+  </div>
+
+<%- include ('../partials/footer.ejs') %>

@@ -23,3 +23,36 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add('signup', (name, email, password) => {
+  cy.visit('/');
+  cy.get('input[name=name]').type(name)
+  cy.get('input[name=email]').type(email)
+  cy.get('input[name=password]').type(password)
+  cy.get('#signup-form').submit()
+})
+
+Cypress.Commands.add('signin', (name, password) => {
+  cy.visit('user/signin');
+  cy.get('input[name=name]').type(name);
+  cy.get('input[name=password]').type(password);
+  cy.get('#login-form').submit();
+});
+
+Cypress.Commands.add('createTrip', (destination, startDate, endDate) => {
+  cy.visit('user/profile');
+  cy.get('#create-trip-button').submit();
+  cy.get('input[name=destination]').type(destination);
+  cy.get('input[name=startDate]').type(startDate);
+  cy.get('input[name=endDate]').type(endDate);
+  cy.get('#new-trip-form').submit();
+});
+
+beforeEach(function () {
+	cy.task('resetDB');
+})
+
+afterEach(function() {
+    cy.task('resetDB'); // runs after each test in the block
+  })

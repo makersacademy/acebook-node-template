@@ -1,8 +1,8 @@
 <h1>Timeline</h1>
 <ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
+  <% posts.forEach((post) => {%>
+    <li><%=post.message%></li>
+  <%});%>
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>

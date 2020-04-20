@@ -1,0 +1,19 @@
+<%- include ('../partials/header.ejs') %>
+<%- include ('../partials/body.ejs') %>
+<h1>Welcome <%= username %></h1>
+<h2>Add a new trip:</h2>
+
+<form id="new-trip-form" action="/trips/new" method="post">
+  <label for="destination">Destination </label>
+  <input id="destination" type="text" name="destination" required class="form-control input_user" placeholder="Location">
+  <label for="start-date">Start Date: </label>
+  <input id="start-date" type="date" name="startDate" required>
+  <label for="end-date">End Date: </label>
+  <input id="end-date" type="date" name="endDate" required> <br>
+  Sorry :( You can add some more companions later
+  <label for="email-input"> Companions: </label>
+  <input id="companion-email" type="email" name="companionEmails">
+  <input type="submit" value="Add Trip">
+</form>
+
+<%- include ('../partials/footer.ejs') %>

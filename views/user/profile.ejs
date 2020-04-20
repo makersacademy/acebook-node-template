@@ -1,0 +1,32 @@
+<%- include ('../partials/header.ejs') %>
+<%- include ('../partials/body.ejs') %>
+<div>
+  <div class='title'>
+    <h1> Welcome <%=username%> </h1>
+  </div>
+  <div class='create-form'>
+    <form id="create-trip-button" action="/trips/new">
+      <input type="submit" value="Create a new trip">
+    </form>
+  </div>
+</div>  
+
+
+<% trips.forEach((trip) => {%>
+  <li class='trip-list'><strong><%=trip.destination%></strong></br>
+    Start date: <%=trip.startDate.toISOString().slice(0,10);%> </br>
+    End date: <%=trip.endDate.toISOString().slice(0,10);%></br>
+    <p><i>This trip was created by <%=trip.username%></i></p>
+    <div class='btn-group'>
+    <form class='btn' id="delete-trip-button" method="post" action="/trips/delete/<%=trip.id%>">
+      <input type="submit"  value="Delete this trip">
+    </form>
+    <form class='btn' id="view-trip-button" action="/trips/view/<%=trip.id%>">
+      <input type="submit"  value="View this trip">
+    </form>
+    </div>
+  </li>
+<%});%>
+
+
+<%- include ('../partials/footer.ejs') %>
