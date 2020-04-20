@@ -11,5 +11,6 @@ router.get('/view/:id', TripsController.View);
 router.post('/edit-data/:id', TripsController.EditData);
 router.post('/save-edits/:id', TripsController.SaveEdits);
 router.post('/edit/:id', TripsController.Edit);
+router.post('/add-flight', TripsController.AddFlights);
 
 module.exports = router;

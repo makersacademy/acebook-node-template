@@ -1,10 +1,22 @@
 var mongoose = require('mongoose');
 
+//FlightSchema is the child schema of TripSchema
+var FlightSchema = new mongoose.Schema({
+  departureCity: String,
+  airport: String,
+  airline: String,
+  date: Date,
+  flightNumber: String,
+  departureTime: String,
+  bookingReference: String
+})
+
 var TripSchema = new mongoose.Schema({
   username: String,
   destination: String,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
+  flights: [FlightSchema]
 });
 
 var Trip = mongoose.model('Trip', TripSchema);

@@ -23,6 +23,36 @@
 
 <div>
   <h3>Transport</h3>
+<!-- Added fields to input flight data -->
+  <h4>Flights</h4>
+
+    Departure City: <%= trip.flights.departureCity %><ul>
+      <li>Airport: <%= trip.flights.airport %></li>
+      <li>Airline: <%= trip.flights.airline %></li>
+      <li>Date: <%= trip.flights.departureCity %></li>
+      <li>Departure Time: <%= trip.flights.departureTime %></li>
+      <li>Flight number: <%= trip.flights.flightNumber %></li>
+      <li>Booking reference: <%= trip.flights.bookingReference %></li>
+  </ul>
+
+
+  <form id="new-flight-form" action="/trips/add-flight" method="post">
+    <label for="departure-city">Departure City </label>
+    <input id="departure-city" type="text" name="departureCity" required>
+    <label for="airport">Airport: </label>
+    <input id="airport" type="text" name="airport" required>
+    <label for="airline">Airline: </label>
+    <input id="airline" type="text" name="airline" required>
+    <label for="date">Date: </label>
+    <input id="date" type="date" name="date" required>
+    <label for="departure-time">Departure Time: </label>
+    <input id="departure-time" type="text" name="departureTime" required>
+    <label for="flight-number">Flight number: </label>
+    <input id="flight-number" type="text" name="flightNumber" required>
+    <label for="booking-reference">Booking reference: </label>
+    <input id="booking-reference" type="text" name="bookingReference" required>
+    <input type="submit" value="Add Flight">
+  </form>
 </div>
 
 <div>

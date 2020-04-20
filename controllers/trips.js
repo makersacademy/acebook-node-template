@@ -75,6 +75,22 @@ var TripsController = {
     res.redirect('/trips/view/' + req.params.id)
   },
 
+  //I added the AddFlights property below to push the flight information into a nested database but get the error message 'MongooseError [CastError]: Cast to ObjectId failed for value "undefined" at path "_id" for model "Trip"'
+
+  AddFlights: function(req, res){
+    var tripId = req.params.id;
+    var flightId = req.params.id2;
+    // var dataKey = Object.keys(req.body)[0]
+    // var newData = Object.values(req.body)[0]
+    // const query = {}
+    // query[dataKey] = newData
+    //I think req.body on line 100 should be something else because it's being replaced with a whole long string.
+    Trip.findOneAndUpdate({_id: tripId, 'flights._id': flightId}, {$push: {'flights._id': req.params.id2 }}, function (err) {
+      if (err) { throw err}
+    });
+    // I need to add the flight id on line 102
+    res.redirect('/trips/view/' + req.params.id)
+  },
   // EndDate: function(req, res){
   //   var newDate = req.body.endDate
   //   var tripId = req.params.id
