@@ -1,7 +1,9 @@
 var Trip = require('../models/trips');
 var User = require('../models/user');
+
 var sendMail = require('../sendMail.js');
 console.log(sendMail)
+
 var TripsController = {
 // import { companionEmailSend } from '../sendMail.js';
 // import '../sendMail.js';
@@ -94,14 +96,15 @@ var TripsController = {
 
   AddFlights: function(req, res){
     var tripId = req.params.id;
-    var flightId = req.params.id2;
     // var dataKey = Object.keys(req.body)[0]
     // var newData = Object.values(req.body)[0]
     // const query = {}
     // query[dataKey] = newData
     //I think req.body on line 100 should be something else because it's being replaced with a whole long string.
-    Trip.findOneAndUpdate({_id: tripId, 'flights._id': flightId}, {$push: {'flights._id': req.params.id2 }}, function (err) {
+
+    Trip.findOneAndUpdate({id: tripId}, {$push: {flights: req.body}}, function (err) {
       if (err) { throw err}
+    
     });
     // I need to add the flight id on line 102
     res.redirect('/trips/view/' + req.params.id)
