@@ -1,7 +1,9 @@
 var Trip = require('../models/trips');
 var User = require('../models/user');
+
 var sendMail = require('../sendMail.js');
 console.log(sendMail)
+
 var TripsController = {
 // import { companionEmailSend } from '../sendMail.js';
 // import '../sendMail.js';
@@ -79,12 +81,33 @@ var TripsController = {
     res.redirect('/trips/view/' + req.params.id)
   },
 
+
   AddUser: function(req, res){
     var email = req.body.companionEmails
     var tripId = req.params.id
     Trip.findOneAndUpdate({_id: tripId}, {$push: {companionEmails: email}}, function (err, trip) {
       if (err) { throw err}
       sendMail.companionEmailSend(email, trip.username)
+    });
+    res.redirect('/trips/view/' + req.params.id)
+  },
+
+  //I added the AddFlights property below to push the flight information into a nested database but get the error message 'MongooseError [CastError]: Cast to ObjectId failed for value "undefined" at path "_id" for model "Trip"'
+
+  AddFlights: function(req, res){
+    var tripId = req.params.id;
+    var flight = req.body
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {flights: flight}}, function (err) {
+      if (err) { throw err}
+    });
+    res.redirect('/trips/view/' + req.params.id)
+  },
+
+  AddAccommodation: function(req, res){
+    var tripId = req.params.id;
+    var accommodation = req.body
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {accommodations: accommodation}}, function (err) {
+      if (err) { throw err}
     });
     res.redirect('/trips/view/' + req.params.id)
   },
