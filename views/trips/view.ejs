@@ -41,7 +41,9 @@
 <div>
   <h4>Flights</h3>
 <!-- Added fields to input flight data -->
+<% var i = -1 %>
   <% trip.flights.forEach((flight) => {%>
+    <%i++%>
     <ul>
       Info
       <li>Departure City: <%= flight.departureCity %></li>
@@ -52,7 +54,12 @@
       <li>Flight number: <%= flight.flightNumber %></li>
       <li>Booking reference: <%= flight.bookingReference %></li>
     </ul>
-      <%});%>
+    <% if (editDate === true){%>
+      <form id="delete-flight-form" action="/trips/delete-flight/<%=trip.id%>/<%=i%>" method="post">
+        <input type="submit" value="Delete Flight">
+      </form>
+    <%}%>
+  <%});%>
  
 
   <% if (editDate === true){%>
@@ -79,7 +86,9 @@
 
 <div>
   <h3>Accommodation</h3>
+  <% var i = -1 %>
   <% trip.accommodations.forEach((accommodation) => {%>
+    <% i++ %>
     <ul>
       Info
       <li>Location: <%= accommodation.location %></li>
@@ -87,7 +96,12 @@
       <li>End Date: <%= accommodation.endDate%></li>
       <li>Booking reference: <%= accommodation.bookingReference %></li>
     </ul>
-      <%});%>
+    <% if (editDate === true){%>
+      <form id="delete-accommodation-form" action="/trips/delete-accommodation/<%=trip.id%>/<%=i%>" method="post">
+        <input type="submit" value="Delete Accommodation">
+      </form>
+    <%}%>
+  <%});%>
  
 
   <% if (editDate === true){%>

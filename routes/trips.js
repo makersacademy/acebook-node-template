@@ -14,6 +14,8 @@ router.post('/add-user/:id', TripsController.AddUser);
 router.post('/save-edits/:id', TripsController.SaveEdits);
 router.post('/edit/:id', TripsController.Edit);
 router.post('/add-flight/:id', TripsController.AddFlights);
+router.post('/delete-flight/:id/:index', TripsController.DeleteFlight);
+router.post('/delete-accommodation/:id/:index', TripsController.DeleteAccommodation);
 router.post('/add-accommodation/:id', TripsController.AddAccommodation);
 
 module.exports = router;

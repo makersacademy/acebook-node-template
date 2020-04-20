@@ -129,6 +129,19 @@ var TripsController = {
     res.redirect('/trips/view/' + req.params.id)
   },
 
+  DeleteFlight: function(req,res){
+    var tripId = req.params.id;
+    var flightIndex = req.params.index;
+    Trip.findOne({_id: tripId}, function(err, trip){
+      if (err) { throw err}
+      trip.flights.splice(flightIndex, 1)
+        trip.save(function(err){
+          if(err) {throw err}
+      });
+    });
+    res.redirect('/trips/view/' + req.params.id)
+  },
+
   AddAccommodation: function(req, res){
     var tripId = req.params.id;
     var accommodation = req.body
@@ -138,15 +151,20 @@ var TripsController = {
     res.redirect('/trips/view/' + req.params.id)
   },
 
-  // EndDate: function(req, res){
-  //   var newDate = req.body.endDate
-  //   var tripId = req.params.id
-  //   Trip.findOneAndUpdate({_id: tripId}, {endDate: newDate }, function (err) {
-  //     if (err) { throw err};
-  //   });
-  //   res.redirect('/trips/view/' + req.params.id)
-  // },
-
+  DeleteAccommodation: function(req,res){
+    var tripId = req.params.id;
+    var accommodationIndex = req.params.index;
+    Trip.findOne({_id: tripId}, function(err, trip){
+      if (err) { throw err}
+      trip.accommodations.splice(accommodationIndex, 1)
+      trip.save(function(err){
+          if(err) {throw err}
+          console.log('trip was saved!')
+      });
+    });
+    console.log('ready for redirect!')
+    res.redirect('/trips/view/' + req.params.id)
+  },
 };
 
 module.exports = TripsController;
