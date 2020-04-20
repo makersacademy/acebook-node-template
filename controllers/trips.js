@@ -99,12 +99,7 @@ var TripsController = {
     var email = req.body.companionEmails
     console.log(req.body.companionEmails)
     var tripId = req.params.id
-  console.log("******")
-    console.log(email)
-console.log("******")
     Trip.findOneAndUpdate({_id: tripId}, {$push: {companionEmails: email}}, function (err, trip) {
-      console.log("******")
-      console.log(email)
       if (err) { throw err}
       sendMail.companionEmailSend(email, trip.username)
     });
