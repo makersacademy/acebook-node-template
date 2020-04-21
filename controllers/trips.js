@@ -174,24 +174,58 @@ var TripsController = {
     setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#message-section')}, 500);
   },
 
-  ViewActivities: function(req, res) {
-    var tripId = req.params.id
-    if(req.cookies.CurrentUser) {
-      var username = req.cookies.CurrentUser
-      res.render('/trips/itinerary/' + req.params.id, {username: username })
-    } else {
-      res.status(200).redirect('/user/signin');
-    }
-  },
 
+
+  ViewActivities: function(req, res) {
+    var username = req.cookies.CurrentUser
+    var tripId = req.params.id
+        Trip.findById({_id: tripId}, function(err, trip){
+          if (err) {throw err}
+          res.render('trips/itinerary', {trip: trip, username: username})
+        })
+
+      },
+
+      // AddAccommodation: function(req, res){
+      //   var tripId = req.params.id;
+      //   var accommodation = req.body
+      //   Trip.findOneAndUpdate({_id: tripId}, {$push: {accommodations: accommodation}}, function (err) {
+      //     if (err) { throw err}
+      //   });
+      // setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#accommodation-section')}, 500);
+      // },
 
   AddActivity: function(req, res) {
     var tripId = req.params.id;
-    Trip.findOneAndUpdate({_id: tripId}, {$push: {activity: req.body.activity}}, function (err) {
+    var activity = req.body
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {activity: activity}}, function (err) {
       if (err) { throw err}
     });
+  },
 
+  DeleteActivity: function(req, res){
+    var tripId = req.params.id;
+    var activityIndex = req.params.id;
+    Trip.findOne({_id: tripId}, function(err, trip){
+      if (err) {throw err}
+      trip.activity.splice(activityIndex, 1)
+      trip.save(function(err){
+        if(err) {throw err}
+      });
+    });
   }
+  // DeleteActivity: function(req,res){
+  //   var tripId = req.params.id;
+  //   var accommodationIndex = req.params.index;
+  //   Trip.findOne({_id: tripId}, function(err, trip){
+  //     if (err) { throw err}
+  //     trip.accommodations.splice(accommodationIndex, 1)
+  //     trip.save(function(err){
+  //         if(err) {throw err}
+  //     });
+  //   });
+  // setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#accommodation-section')}, 500);
+  // },
 
 };
 

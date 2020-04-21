@@ -5,6 +5,7 @@
   <div class='trip-title'>
     <h1>Activities for <%=username%>'s trip to <%= trip.destination %></h1>
     <form id="activity" action="/trips/itinerary/<%=trip.id%>" method="post">
+      <label for="Activity">Activity </label>
       <input id="activity" type="text" name="activity" required>
       <input type="submit" value="Add activity">
     </form>
