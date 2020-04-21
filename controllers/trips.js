@@ -1,8 +1,6 @@
 var Trip = require('../models/trips');
 var User = require('../models/user');
-
 var sendMail = require('../sendMail.js');
-console.log(sendMail)
 
 var TripsController = {
 // import { companionEmailSend } from '../sendMail.js';
@@ -109,7 +107,6 @@ var TripsController = {
 
   AddUser: function(req, res){
     var email = req.body.companionEmails
-    console.log(req.body.companionEmails)
     var tripId = req.params.id
     Trip.findOneAndUpdate({_id: tripId}, {$push: {companionEmails: email}}, function (err, trip) {
       if (err) { throw err}
@@ -169,6 +166,20 @@ var TripsController = {
     console.log('1: process start')
     res.redirect('/trips/view/' + req.params.id)
   },
+
+  Chat: function(req, res) {
+    var tripId = req.params.id;
+    var username = req.cookies.CurrentUser
+    var message = {author: username, message: req.body.chatMessages}
+    Trip.findOne({_id: tripId}, function(err, trip){
+      trip.chatMessages.push(message)
+      trip.save(function(err){
+        if (err) { throw err}
+      })
+    })
+      res.redirect('/trips/view/' + req.params.id)
+  }
+
 };
 
 module.exports = TripsController;

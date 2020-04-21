@@ -1,3 +1,4 @@
+
 var HomeController = {
   Index: function(req, res) {
     if (req.cookies.CurrentUser) {
@@ -7,7 +8,8 @@ var HomeController = {
     console.log(error)
     res.render('home/index', { title: 'Chipmunk Travel', errorMessage: error });
     }
-  }
+  },
+
 };
 
 module.exports = HomeController;

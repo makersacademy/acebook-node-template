@@ -18,7 +18,8 @@ var TripSchema = new mongoose.Schema({
   endDate: Date,
   companionEmails: Array,
   flights: Array,
-  accommodations: Array
+  accommodations: Array,
+  chatMessages: Array
 });
 
 var Trip = mongoose.model('Trip', TripSchema);

@@ -14,7 +14,7 @@
       <input type="submit"  value="Exit Edit Mode">
     </form>
   <%}%>
-</div>  
+</div>
 
 
 
@@ -59,7 +59,7 @@
       </form>
     <%}%>
   <%});%>
- 
+
 
   <% if (editDate === true){%>
   <form id="new-flight-form" action="/trips/add-flight/<%=trip.id%>" method="post">
@@ -101,7 +101,7 @@
       </form>
     <%}%>
   <%});%>
- 
+
 
   <% if (editDate === true){%>
   <form id="new-accommodation-form" action="/trips/add-accommodation/<%=trip.id%>" method="post">
@@ -131,6 +131,20 @@
     </form>
   <%}%>
 </div>
+
+
+<div>
+  <h3>Messages</h3>
+  <% trip.chatMessages.forEach((message) => {%>
+    <li><%=message.author%> : <%=message.message%></br>
+    </li>
+  <%});%>
+  <form id="chat-messages" action="/trips/chat/<%=trip.id%>" method="post">
+    <input type="text" id="message-id" name="chatMessages" placeholder="Enter message here">
+    <input type="submit" value="Enter">
+    </form>
+</div>
+
 
 
 <%- include ('../partials/footer.ejs') %>
