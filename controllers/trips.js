@@ -101,7 +101,7 @@ var TripsController = {
     Trip.findOneAndUpdate({_id: tripId}, query, function (err) {
       if (err) { throw err}
     });
-    res.redirect('/trips/view/' + req.params.id)
+    res.redirect('/trips/view/' + req.params.id + '#date-section')
   },
 
 
@@ -112,7 +112,7 @@ var TripsController = {
       if (err) { throw err}
       sendMail.companionEmailSend(email, trip.username)
     });
-    res.redirect('/trips/view/' + req.params.id)
+    res.redirect('/trips/view/' + req.params.id + '#companion-section')
   },
 
   //I added the AddFlights property below to push the flight information into a nested database but get the error message 'MongooseError [CastError]: Cast to ObjectId failed for value "undefined" at path "_id" for model "Trip"'
@@ -123,7 +123,7 @@ var TripsController = {
     Trip.findOneAndUpdate({_id: tripId}, {$push: {flights: flight}}, function (err) {
       if (err) { throw err}
     });
-    setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
+    setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#flights-section')}, 500);
   },
 
   DeleteFlight: function(req,res){
@@ -136,7 +136,7 @@ var TripsController = {
           if(err) {throw err}
       });
     });
-    setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
+    setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#flights-section')}, 500);
   },
 
   AddAccommodation: function(req, res){
@@ -145,7 +145,7 @@ var TripsController = {
     Trip.findOneAndUpdate({_id: tripId}, {$push: {accommodations: accommodation}}, function (err) {
       if (err) { throw err}
     });
-  setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
+  setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#accommodation-section')}, 500);
   },
 
   DeleteAccommodation: function(req,res){
@@ -158,7 +158,7 @@ var TripsController = {
           if(err) {throw err}
       });
     });
-  setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
+  setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#accommodation-section')}, 500);
   },
 
   Chat: function(req, res) {
@@ -171,7 +171,7 @@ var TripsController = {
         if (err) { throw err}
       })
     })
-    setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
+    setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#message-section')}, 500);
   }
 
 };

@@ -18,7 +18,7 @@
 
 
 
-<div>
+<div id='date-section'>
   <h3>Dates</h3>
   <p>Start date: <%=trip.startDate.toISOString().slice(0,10);%></p>
   <% if (editDate === true){%>
@@ -37,7 +37,7 @@
 
 </div>
 
-<div>
+<div id='flights-section'>
   <h4>Flights</h3>
 <!-- Added fields to input flight data -->
 <% var i = -1 %>
@@ -83,7 +83,7 @@
 </div>
 
 
-<div>
+<div id='accommodation-section'>
   <h3>Accommodation</h3>
   <% var i = -1 %>
   <% trip.accommodations.forEach((accommodation) => {%>
@@ -118,7 +118,7 @@
   <%}%>
 </div>
 
-<div>
+<div id='companion-section'>
   <h3>Companions</h3>
   <% trip.companionEmails.forEach((email) => {%>
     <li><%=email%></br>
@@ -134,7 +134,7 @@
 
 
 
-  <h3>Messages</h3>
+  <h3 id='message-section'>Messages</h3>
   <div>
   <% trip.chatMessages.forEach((message) => {%>
     <% if (username === message.author){%>
