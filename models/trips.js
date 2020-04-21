@@ -19,7 +19,8 @@ var TripSchema = new mongoose.Schema({
   companionEmails: Array,
   flights: Array,
   accommodations: Array,
-  chatMessages: Array
+  chatMessages: Array,
+  activity: Array
 });
 
 var Trip = mongoose.model('Trip', TripSchema);

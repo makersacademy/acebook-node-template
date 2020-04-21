@@ -172,6 +172,25 @@ var TripsController = {
       })
     })
     setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#message-section')}, 500);
+  },
+
+  ViewActivities: function(req, res) {
+    var tripId = req.params.id
+    if(req.cookies.CurrentUser) {
+      var username = req.cookies.CurrentUser
+      res.render('/trips/itinerary/' + req.params.id, {username: username })
+    } else {
+      res.status(200).redirect('/user/signin');
+    }
+  },
+
+
+  AddActivity: function(req, res) {
+    var tripId = req.params.id;
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {activity: req.body.activity}}, function (err) {
+      if (err) { throw err}
+    });
+
   }
 
 };
