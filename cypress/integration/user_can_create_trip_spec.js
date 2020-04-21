@@ -1,7 +1,7 @@
 describe("Create a trip", function(){
   it('allows a user to create trip', function(){
     cy.signup("Test", "123@gmail.com", "password");
-    cy.signin("Test", "password");
+    cy.signin("Test",'123@gmail.com');
 
     cy.get('#create-trip-button').submit();
     cy.get('input[name=destination]').type('France');

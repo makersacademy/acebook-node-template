@@ -3,7 +3,7 @@ describe("Users can be companions", function(){
     cy.task('createUser1')
     cy.task('createTripWithCompanion');
     cy.task('createUser2')
-    cy.signin("Test2", "password2");
+    cy.signin("Test2", '456@gmail.com');
     cy.contains('Spain');
   });
 
@@ -11,7 +11,7 @@ describe("Users can be companions", function(){
     cy.task('createUser1')
     cy.task('createTripWithCompanion');
     cy.task('createUser2')
-    cy.signin("Test2", "password2");
+    cy.signin("Test2", '456@gmail.com');
     cy.get('#leave-trip-button').submit();
     cy.get('.trip-list').should('not.contain', 'Spain')
   });
@@ -20,7 +20,7 @@ describe("Users can be companions", function(){
     cy.task('createUser1')
     cy.task('createTripWithCompanion');
     cy.task('createUser2')
-    cy.signin("Test2", "password2");
+    cy.signin("Test2", '456@gmail.com');
     cy.get('.trip-list').should('not.contain', '#delete-trip-button')
   });
 

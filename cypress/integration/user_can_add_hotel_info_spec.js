@@ -2,7 +2,7 @@ describe('Add hotel info', function() {
   it('user can add hotel info', function(){
     cy.task('createUser1')
     cy.task('createTripWithCompanion')
-    cy.signin('Test', 'password');
+    cy.signin('Test','123@gmail.com');
     cy.get('#view-trip-button').submit();
     cy.get('#edit-button').submit();
     cy.get('input[name=location]').type('Madrid');
