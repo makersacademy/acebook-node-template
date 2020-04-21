@@ -1,4 +1,3 @@
-
 var HomeController = {
   Index: function(req, res) {
     if (req.cookies.CurrentUser) {

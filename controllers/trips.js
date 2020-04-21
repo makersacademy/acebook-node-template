@@ -176,23 +176,21 @@ var TripsController = {
 
   ViewActivities: function(req, res) {
     var tripId = req.params.id
-    if(req.cookies.CurrentUser) {
-      var username = req.cookies.CurrentUser
-      res.render('/trips/itinerary/' + req.params.id, {username: username })
-    } else {
-      res.status(200).redirect('/user/signin');
-    }
+    Trip.findOne({_id: tripId}, function(err, trip){
+      if (err) { throw err}
+      res.render('trips/itinerary', {trip: trip})
+    })
   },
-
 
   AddActivity: function(req, res) {
     var tripId = req.params.id;
-    Trip.findOneAndUpdate({_id: tripId}, {$push: {activity: req.body.activity}}, function (err) {
+    var newActivity = req.body.activity
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {activity: newActivity}}, function (err, activity) {
       if (err) { throw err}
+      res.redirect('/trips/itinerary/' + req.params.id)
     });
-
   }
 
-};
+ };
 
 module.exports = TripsController;
