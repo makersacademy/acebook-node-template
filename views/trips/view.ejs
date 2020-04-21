@@ -133,17 +133,25 @@
 </div>
 
 
-<div>
+
   <h3>Messages</h3>
+  <div>
   <% trip.chatMessages.forEach((message) => {%>
-    <li><%=message.author%> : <%=message.message%></br>
-    </li>
+    <% if (username === message.author){%>
+    <p class="message current-user"><%=message.author%> : <%=message.message%> </p> <br>
+    <% } else { %>
+    <p class="message other-user"><%=message.author%> : <%=message.message%> </p> <br>
+  <%}%>
   <%});%>
+  </div>
+  <br>
+  <div>
   <form id="chat-messages" action="/trips/chat/<%=trip.id%>" method="post">
-    <input type="text" id="message-id" name="chatMessages" placeholder="Enter message here">
+    <input class="form-control input_user" type="text" id="message-id" name="chatMessages" placeholder="Enter message here">
     <input type="submit" value="Enter">
     </form>
-</div>
+    </div>
+
 
 
 

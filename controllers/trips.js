@@ -123,7 +123,7 @@ var TripsController = {
     Trip.findOneAndUpdate({_id: tripId}, {$push: {flights: flight}}, function (err) {
       if (err) { throw err}
     });
-    res.redirect('/trips/view/' + req.params.id)
+    setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
   },
 
   DeleteFlight: function(req,res){
@@ -136,7 +136,7 @@ var TripsController = {
           if(err) {throw err}
       });
     });
-    res.redirect('/trips/view/' + req.params.id)
+    setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
   },
 
   AddAccommodation: function(req, res){
@@ -145,26 +145,20 @@ var TripsController = {
     Trip.findOneAndUpdate({_id: tripId}, {$push: {accommodations: accommodation}}, function (err) {
       if (err) { throw err}
     });
-    res.redirect('/trips/view/' + req.params.id)
+  setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
   },
 
   DeleteAccommodation: function(req,res){
     var tripId = req.params.id;
     var accommodationIndex = req.params.index;
     Trip.findOne({_id: tripId}, function(err, trip){
-      console.log("2")
       if (err) { throw err}
-      console.log("3")
       trip.accommodations.splice(accommodationIndex, 1)
-      console.log("4")
       trip.save(function(err){
-        console.log("5")
           if(err) {throw err}
-          console.log('6: End Point: trip was saved!')
       });
     });
-    console.log('1: process start')
-    res.redirect('/trips/view/' + req.params.id)
+  setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
   },
 
   Chat: function(req, res) {
@@ -177,7 +171,7 @@ var TripsController = {
         if (err) { throw err}
       })
     })
-      res.redirect('/trips/view/' + req.params.id)
+    setTimeout(function(){res.redirect('/trips/view/' + req.params.id)}, 500);
   }
 
 };
