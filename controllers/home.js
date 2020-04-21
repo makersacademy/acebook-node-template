@@ -5,7 +5,6 @@ var HomeController = {
       res.redirect('/user/profile')
     } else {
     var error = req.query.error
-    console.log(error)
     res.render('home/index', { title: 'Chipmunk Travel', errorMessage: error });
     }
   },
