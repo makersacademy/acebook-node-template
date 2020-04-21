@@ -200,6 +200,7 @@ var TripsController = {
     var activity = req.body
     Trip.findOneAndUpdate({_id: tripId}, {$push: {activity: activity}}, function (err) {
       if (err) { throw err}
+      res.redirect('/trips/itinerary/' + req.params.id)
     });
   },
 
@@ -214,19 +215,8 @@ var TripsController = {
       });
     });
   }
-  // DeleteActivity: function(req,res){
-  //   var tripId = req.params.id;
-  //   var accommodationIndex = req.params.index;
-  //   Trip.findOne({_id: tripId}, function(err, trip){
-  //     if (err) { throw err}
-  //     trip.accommodations.splice(accommodationIndex, 1)
-  //     trip.save(function(err){
-  //         if(err) {throw err}
-  //     });
-  //   });
-  // setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#accommodation-section')}, 500);
-  // },
 
-};
+
+ };
 
 module.exports = TripsController;

@@ -5,6 +5,9 @@
   <div class='trip-title'>
     <h1><%=username%>'s trip to <%= trip.destination %></h1>
   </div>
+  <form class='btn' id="edit-button" action="/trips/itinerary/<%=trip.id%>">
+    <input type="submit"  value="View Itinerary">
+  </form>
   <% if (editDate !== true){%>
     <form class='btn' id="edit-button" method="post" action="/trips/edit-data/<%=trip.id%>">
       <input type="submit"  value="Edit Trip">
