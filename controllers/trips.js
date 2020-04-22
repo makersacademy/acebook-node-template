@@ -1,6 +1,7 @@
 var Trip = require('../models/trips');
 var User = require('../models/user');
 var sendMail = require('../sendMail.js');
+var getDates = require('../dates.js');
 
 var TripsController = {
 // import { companionEmailSend } from '../sendMail.js';
@@ -178,7 +179,8 @@ var TripsController = {
     var tripId = req.params.id
     Trip.findOne({_id: tripId}, function(err, trip){
       if (err) { throw err}
-      res.render('trips/itinerary', {trip: trip})
+      var dates = getDates.getDates(trip.startDate, trip.endDate)
+      res.render('trips/itinerary', {trip: trip, dates: dates})
     })
   },
 
