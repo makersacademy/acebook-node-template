@@ -1,7 +1,7 @@
 describe("Sign in", function(){
   it('allows a user to sign in', function(){
     cy.signup("Test", "123@gmail.com", "password");
-    cy.signin("Test", "password");
+    cy.signin("Test", '123@gmail.com');
     cy.contains('Welcome Test');
   });
 
@@ -15,7 +15,7 @@ describe("Sign in", function(){
 
   it('redirects a logged in user to their profile', function(){
     cy.signup('Test', '123@gmail.com', 'password');
-    cy.signin('Test', 'password');
+    cy.signin('Test', '123@gmail.com');
     cy.visit('user/signin');
     cy.contains('Welcome Test');
   })

@@ -47,7 +47,7 @@ var TripsController = {
     Trip.deleteOne({_id: req.params.id}, function (err) {
       if (err) { throw err}
     });
-    res.redirect('/user/profile');
+    setTimeout(function(){res.redirect('/user/profile');}, 500);
     },
 
   Leave: function(req, res) {
@@ -59,7 +59,7 @@ var TripsController = {
           if(err) {throw err}
         })
       });
-      res.redirect('/user/profile');
+      setTimeout(function(){res.redirect('/user/profile');}, 500);
       },
 
   View: function(req, res) {
