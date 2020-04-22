@@ -30,6 +30,27 @@ module.exports = (on) => {
       Trips.deleteMany({}, function () {
       });
       return null;
-    }
-  })
+    },
+    createTripWithCompanion() {
+      Trips.create({ username: "Test", destination: 'Spain', companionEmails: ["123@gmail.com","456@gmail.com"], startDate: '10/05/2020', endDate: '11/05/2020' }, function (err) {
+        if (err) return err;
+        // saved!
+      });
+      return null;
+    },
+    createUser1() {
+      User.create({ name: "Test", email: '123@gmail.com', password: 'password' }, function (err) {
+        if (err) return err;
+        // saved
+      });
+      return null;
+  },
+    createUser2() {
+      User.create({ name: "Test2", email: '456@gmail.com', password: 'password2' }, function (err) {
+        if (err) return err;
+        // saved
+      });
+      return null;
+  }
+})
 }

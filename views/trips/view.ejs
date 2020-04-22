@@ -48,7 +48,7 @@
       <li>Departure City: <%= flight.departureCity %></li>
       <li>Airport: <%= flight.airport %></li>
       <li>Airline: <%= flight.airline %></li>
-      <li>Date: <%= flight.departureCity %></li>
+      <li>Date: <%= flight.date %></li>
       <li>Departure Time: <%= flight.departureTime %></li>
       <li>Flight number: <%= flight.flightNumber %></li>
       <li>Booking reference: <%= flight.bookingReference %></li>
@@ -76,7 +76,7 @@
     <label for="flight-number">Flight number: </label>
     <input class="form-control input_user" id="flight-number" type="text" name="flightNumber" required>
     <label for="booking-reference">Booking reference: </label>
-    <input class="form-control input_user" id="booking-reference" type="text" name="bookingReference" required>
+    <input class="form-control input_user" id="booking-reference-flight" type="text" name="bookingReference" required>
     <input type="submit" value="Add Flight">
   </form>
   <%}%>
@@ -108,11 +108,11 @@
     <label for="location">Location</label>
     <input class="form-control input_user" id="location" type="text" name="location" required>
     <label for="start-date">Arrival Date: </label>
-    <input class="form-control input_user" id="start-date" type="date" name="startDate" required>
+    <input class="form-control input_user" id="start-date-hotel" type="date" name="startDate" required>
     <label for="end-date">Departure Date: </label>
-    <input class="form-control input_user" id="end-date" type="date" name="endDate" required>
+    <input class="form-control input_user" id="end-date-hotel" type="date" name="endDate" required>
     <label for="booking-reference">Booking reference: </label>
-    <input class="form-control input_user" id="booking-reference" type="text" name="bookingReference" required>
+    <input class="form-control input_user" id="booking-reference-accommodation" type="text" name="bookingReference" required>
     <input type="submit" value="Add Accommodation">
   </form>
   <%}%>

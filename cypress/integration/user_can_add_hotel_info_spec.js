@@ -1,14 +1,15 @@
 describe('Add hotel info', function() {
   it('user can add hotel info', function(){
-    cy.signup('Test', '123@gmail.com', 'password');
-    cy.signin('Test', 'password');
-    cy.createTrip('France', '2020-06-12', '2020-06-20');
-
-    cy.get('input[name=city]').type('Paris');
-    cy.get('input[name=accommodationName]').type('George V');
-    cy.get('input[name=checkinDate]').type('2020-06-12');
-    cy.get('input[name=checkoutDate]').type('2020-06-20');
-    cy.get('#hotel-info-form').submit();
-    cy.contains("George V");
+    cy.task('createUser1')
+    cy.task('createTripWithCompanion')
+    cy.signin('Test','123@gmail.com');
+    cy.get('#view-trip-button').submit();
+    cy.get('#edit-button').submit();
+    cy.get('input[name=location]').type('Madrid');
+    cy.get('#start-date-hotel').type('2020-06-12');
+    cy.get('#end-date-hotel').type('2020-06-20');
+    cy.get('#booking-reference-accommodation').type('HKKLRO');
+    cy.get('#new-accommodation-form').submit();
+    cy.contains("HKKLRO");
   });
 });

@@ -33,11 +33,10 @@ Cypress.Commands.add('signup', (name, email, password) => {
   cy.get('#signup-form').submit()
 })
 
-Cypress.Commands.add('signin', (name, password) => {
-  cy.visit('user/signin');
-  cy.get('input[name=name]').type(name);
-  cy.get('input[name=password]').type(password);
-  cy.get('#login-form').submit();
+Cypress.Commands.add('signin', (name, email) => {
+  cy.setCookie('CurrentUser', name)
+  cy.setCookie('UserEmail', email)
+  cy.visit('/user/profile');
 });
 
 Cypress.Commands.add('createTrip', (destination, startDate, endDate) => {
