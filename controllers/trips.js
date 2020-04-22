@@ -186,34 +186,27 @@ var TripsController = {
 
       },
 
-      // AddAccommodation: function(req, res){
-      //   var tripId = req.params.id;
-      //   var accommodation = req.body
-      //   Trip.findOneAndUpdate({_id: tripId}, {$push: {accommodations: accommodation}}, function (err) {
-      //     if (err) { throw err}
-      //   });
-      // setTimeout(function(){res.redirect('/trips/view/' + req.params.id + '#accommodation-section')}, 500);
-      // },
-
   AddActivity: function(req, res) {
     var tripId = req.params.id;
-    var activity = req.body
-    Trip.findOneAndUpdate({_id: tripId}, {$push: {activity: activity}}, function (err) {
+    var newActivity = req.body.activity
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {activities: newActivity}}, function (err, activity) {
       if (err) { throw err}
-      res.redirect('/trips/itinerary/' + req.params.id)
-    });
+      });
+      setTimeout(function(){res.redirect('/trips/itinerary/' + req.params.id)}, 500);
   },
 
+//The DeleteActivity function is passing the activityIndex but not the tripId into the URL for some reason!!! 21/4/20
   DeleteActivity: function(req, res){
     var tripId = req.params.id;
-    var activityIndex = req.params.id;
+    var activityIndex = req.params.index;
     Trip.findOne({_id: tripId}, function(err, trip){
       if (err) {throw err}
-      trip.activity.splice(activityIndex, 1)
+      trip.activities.splice(activityIndex, 1)
       trip.save(function(err){
         if(err) {throw err}
       });
     });
+     setTimeout(function(){res.redirect('/trips/itinerary/' + req.params.id)}, 500);
   }
 
 
