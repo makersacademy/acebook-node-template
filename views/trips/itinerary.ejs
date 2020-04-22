@@ -9,24 +9,26 @@
     <input type="submit"  value="Return to trip page">
   </form>
     <% var i = -1 %>
+    <% dates.forEach((date) => {%>
+      <h3><%= date %></h3>
     <% trip.activities.forEach((activity) => {%>
       <% i++ %>
-      <li class="message"> <%= activity %> </li>
-
+        <% if (activity.eachDate.toString() === date.toString()){%>
+      <li class="message">  <%= activity.activities %> </li>
       <form id="delete-activity" action="/trips/delete-activity/<%=trip.id%>/<%=i%>" method="post">
+          <input type="hidden" id="activity-date" name="eachDate" value="<%=date%>">
+            <input type="hidden" id="activity" name="activity" value="<%=activity.activities%>">
         <input type="submit" value="Delete Activity">
       </form>
+      <%}%>
         <%});%>
     <form id="activity" action="/trips/add-activity/<%=trip.id%>" method="post">
       <label for="Activity">Activity </label>
       <input id="activity" type="text" name="activity" required>
+      <input type="hidden" id="activity-date" name="eachDate" value="<%=date%>">
       <input type="submit" value="Add activity">
     </form>
-
-
-    <% dates.forEach((date) => {%>
-      <li> <%= date %> </li>
-        <%});%>
+    <%});%>
   </div>
 
 <%- include ('../partials/footer.ejs') %>

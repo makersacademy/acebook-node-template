@@ -189,8 +189,10 @@ var TripsController = {
 
   AddActivity: function(req, res) {
     var tripId = req.params.id;
-    var newActivity = req.body.activity
-    Trip.findOneAndUpdate({_id: tripId}, {$push: {activities: newActivity}}, function (err, activity) {
+    var newActivity = req.body.activity;
+    var eachDate = req.body.eachDate;
+    var query = {eachDate: eachDate ,activities: newActivity}
+    Trip.findOneAndUpdate({_id: tripId}, {$push: {activities: query}}, function (err, activity) {
       if (err) { throw err}
       });
       setTimeout(function(){res.redirect('/trips/itinerary/' + req.params.id)}, 500);
@@ -199,9 +201,19 @@ var TripsController = {
 //The DeleteActivity function is passing the activityIndex but not the tripId into the URL for some reason!!! 21/4/20
   DeleteActivity: function(req, res){
     var tripId = req.params.id;
-    var activityIndex = req.params.index;
+    var newActivity = req.body.activity;
+    var eachDate = req.body.eachDate;
+    var newquery = new Object
+    newquery.eachDate = eachDate
+    newquery.activities = newActivity
+    // var query = { "eachDate" : eachDate,"activities" : newActivity}
+    console.log(newquery)
+    // console.log(newActivity)
     Trip.findOne({_id: tripId}, function(err, trip){
       if (err) {throw err}
+      // console.log({ "eachDate" : eachDate,"activities" : newActivity})
+    var activityIndex  = trip.activities.indexOf(newquery)
+    console.log(activityIndex)
       trip.activities.splice(activityIndex, 1)
       trip.save(function(err){
         if(err) {throw err}
