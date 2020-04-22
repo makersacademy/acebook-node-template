@@ -2,11 +2,23 @@
 <%- include ('../partials/body.ejs') %>
 
 <div>
-    <h1>Activities</h1>
-    <% trip.activity.forEach((activity) => {%>
-      <li class="message"> <%=activity %> </li>
+  <div class='trip-title'>
+    <h1>Itinerary for <%=username%>'s trip to <%= trip.destination %></h1>
+  </div>
+  <form class='btn' id="edit-button" action="/trips/view/<%=trip.id%>">
+    <input type="submit"  value="Return to trip page">
+  </form>
+    <% var i = -1 %>
+    <% trip.activities.forEach((activity) => {%>
+      <% i++ %>
+      <li class="message"> <%= activity %> </li>
+
+      <form id="delete-activity" action="/trips/delete-activity/<%=trip.id%>/<%=i%>" method="post">
+        <input type="submit" value="Delete Activity">
+      </form>
         <%});%>
-    <form id="activity" action="/trips/itinerary/<%=trip.id%>" method="post">
+    <form id="activity" action="/trips/add-activity/<%=trip.id%>" method="post">
+      <label for="Activity">Activity </label>
       <input id="activity" type="text" name="activity" required>
       <input type="submit" value="Add activity">
     </form>
@@ -16,3 +28,5 @@
       <li> <%= date %> </li>
         <%});%>
   </div>
+
+<%- include ('../partials/footer.ejs') %>
