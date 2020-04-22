@@ -10,23 +10,22 @@
   </form>
     <% var i = -1 %>
     <% dates.forEach((date) => {%>
-      <h3><%= date.toDateString() %></h3>
+      <h4><%= date.toDateString() %></h4>
     <% trip.activities.forEach((activity) => {%>
       <% i++ %>
         <% if (activity.eachDate.toString() === date.toString()){%>
-      <li class="message">  <%= activity.activities %> </li>
+      <li class="message" id="activity-item">  <%= activity.activities %> </li>
       <form id="delete-activity" action="/trips/delete-activity/<%=trip.id%>/<%=i%>" method="post">
           <input type="hidden" id="activity-date" name="eachDate" value="<%=date%>">
             <input type="hidden" id="activity" name="activity" value="<%=activity.activities%>">
-        <input type="submit" value="Delete Activity">
+        <input type="submit" value="Delete">
       </form>
       <%}%>
         <%});%>
     <form id="activity" action="/trips/add-activity/<%=trip.id%>" method="post">
-      <label for="Activity">Activity </label>
-      <input id="activity" type="text" name="activity" required>
+      <input id="activity" type="text" name="activity" placeholder='Add a new activity' required>
       <input type="hidden" id="activity-date" name="eachDate" value="<%=date%>">
-      <input type="submit" value="Add activity">
+      <input type="submit" value="Add">
     </form>
     <%});%>
   </div>
