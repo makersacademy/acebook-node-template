@@ -10,7 +10,7 @@
   </form>
     <% var i = -1 %>
     <% dates.forEach((date) => {%>
-      <h3><%= date %></h3>
+      <h3><%= date.toDateString() %></h3>
     <% trip.activities.forEach((activity) => {%>
       <% i++ %>
         <% if (activity.eachDate.toString() === date.toString()){%>
