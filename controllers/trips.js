@@ -203,16 +203,10 @@ var TripsController = {
     var tripId = req.params.id;
     var newActivity = req.body.activity;
     var eachDate = req.body.eachDate;
-    var newquery = new Object
-    newquery.eachDate = eachDate
-    newquery.activities = newActivity
-    // var query = { "eachDate" : eachDate,"activities" : newActivity}
-    console.log(newquery)
-    // console.log(newActivity)
+  
     Trip.findOne({_id: tripId}, function(err, trip){
       if (err) {throw err}
-      // console.log({ "eachDate" : eachDate,"activities" : newActivity})
-    var activityIndex  = trip.activities.indexOf(newquery)
+    var activityIndex  =  trip.activities.findIndex(obj => obj.activities === newActivity && obj.eachDate === eachDate);
     console.log(activityIndex)
       trip.activities.splice(activityIndex, 1)
       trip.save(function(err){
