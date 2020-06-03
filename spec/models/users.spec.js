@@ -34,4 +34,6 @@ describe('User model', function() {
     var user = new User();
     expect(user._id).toBeInstanceOf(Object);
   });
+
+
 });
