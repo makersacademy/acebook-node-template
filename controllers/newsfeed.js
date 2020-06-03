@@ -1,6 +1,6 @@
 var NewsfeedController = {
   Index: function(req, res) {
-    res.send('hello');
+    res.render('newsfeed/index'); 
   }
 };
 
