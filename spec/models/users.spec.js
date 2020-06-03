@@ -19,4 +19,19 @@ describe('User model', function() {
     var user = new User({lastName:'Zoidberg'});
     expect(user.lastName).toEqual('Zoidberg');
   });
+
+  it('email is saved', function(){
+    var user = new User({email:'Zoidberg@planetexpress.com'});
+    expect(user.email).toEqual('Zoidberg@planetexpress.com');
+  });
+
+  it('password is saved', function(){
+    var user = new User({password:'12345'});
+    expect(user.password).toEqual('12345');
+  });
+
+  it('id is saved', function(){
+    var user = new User();
+    expect(user._id).toBeInstanceOf(Object);
+  });
 });
