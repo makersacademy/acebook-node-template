@@ -4,7 +4,7 @@ var NewsfeedController = {
   },
   Posts: function(req, res) {
     // res.setHeader('Content-Type', 'application/json');
-    res.send({name: "Tommy"})
+    res.send({name: "Tommy"});
   }
 };
 
