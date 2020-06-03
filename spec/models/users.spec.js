@@ -11,7 +11,12 @@ describe('User model', function() {
   // });
 
   it('firstName is saved', function() {
-    var user = new User({firstName: "Zoidberg"});
-    expect(user.firstName).toEqual('Zoidberg');
+    var user = new User({firstName: "John"});
+    expect(user.firstName).toEqual('John');
+  });
+
+  it('lastName is saved', function(){
+    var user = new User({lastName:'Zoidberg'});
+    expect(user.lastName).toEqual('Zoidberg');
   });
 });
