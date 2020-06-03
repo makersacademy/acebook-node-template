@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
-  message: String,
+  user_id: Number,
+  body: String,
+  datePosted: Date,
 });
 
 var Post = mongoose.model('Post', PostSchema);
