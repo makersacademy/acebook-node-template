@@ -42,6 +42,8 @@ describe('User model', function(){
   });
 });
 
+
+
   it('can save a user', function(done){
     var user = new User({firstName: 'Sarah', lastName: 'Smith', email: 'sarah@example.com', password: '12345'});
     var user2 = new User({firstName: 'John', lastName: 'Matthew', email: 'james@gmail.com', password: '12345'});
