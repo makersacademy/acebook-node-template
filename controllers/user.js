@@ -6,8 +6,8 @@ var UserController = {
   },
 
   Create: function(req, res) {
-    var user = new User(req.firstName);
-    post.save(function(err) {
+    var user = new User({firstName: req.firstName});
+    user.save(function(err) {
       if (err) { throw err; }
 
       res.status(201).redirect('/');
