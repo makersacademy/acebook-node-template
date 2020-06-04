@@ -25,18 +25,20 @@ class NewsfeedPostsComponent extends React.Component {
   render() {
     const {posts} = this.state;
     return (
-      <ul>
-          {posts.map((post) => {   //javascript
-            return (							 //javascript
-              <li key={post.id}>
-                 <Post data={post}/>
-              </li>
-              );
-            }
-          )}
-      </ul>
+      <div id="posts">
+        <ul>
+            {posts.map((post) => {   //javascript
+              return (							 //javascript
+                <li key={post.id}>
+                  <Post data={post}/>
+                </li>
+                );
+              }
+            )}
+        </ul>
+      </div>
     );
   }
 }
 
-ReactDOM.render(<NewsfeedPostsComponent />, document.getElementById('posts'))
+ReactDOM.render(<NewsfeedPostsComponent />, document.body);
