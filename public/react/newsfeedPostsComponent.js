@@ -17,15 +17,15 @@ class NewsfeedPostsComponent extends React.Component {
         })
       })
   }
+  //'I met a lovely dog today - by Jimothy Saladberg - Posted on 03/06/2020'
   render() {
     const {posts} = this.state;
     return (
-			// <p>{users.body}</p>
       <ul>  
           {posts.map((post) => {   //javascript
-            return  (							 //javascript
-              <li key={post.body}>  
-                 <p>{post.body}</p>
+            return (							 //javascript
+              <li key={post.id}> 
+                 <p>{post.body} - by {post.name} on {post.datePosted}</p>
               </li>
               )
             }
@@ -35,3 +35,7 @@ class NewsfeedPostsComponent extends React.Component {
   }
 }
 ReactDOM.render(<NewsfeedPostsComponent />, document.getElementById('posts'))
+
+// class Posts extends React.Component {
+
+// }
