@@ -2,13 +2,19 @@
 class Post extends React.Component {
   constructor() {
     super();
-    this.state = {
-      crisps: []
-    }
+  }
+  formatDate(message) {
+    var date = new Date(message)
+    console.log(date.toLocaleDateString())
+    return date.toLocaleDateString()
   }
 
+
   render() {
-    return(<p>hello</p>);
+    return(
+        <p>{this.props.data.body} - by {this.props.data.name} - Posted on {this.formatDate(this.props.data.datePosted)}</p>
+    
+    );
   }
 }
 
@@ -35,12 +41,11 @@ class NewsfeedPostsComponent extends React.Component {
   render() {
     const {posts} = this.state;
     return (
-      <ul>  
+      <ul>
           {posts.map((post) => {   //javascript
             return (							 //javascript
-              <li key={post.id}> 
-                 <p>{post.body} - by {post.name} on {post.datePosted}</p>
-                 <Post />
+              <li key={post.id}>
+                 <Post data={post}/>
               </li>
               )
             }
