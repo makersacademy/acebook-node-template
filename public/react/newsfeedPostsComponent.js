@@ -16,24 +16,25 @@ class NewsfeedPostsComponent extends React.Component {
     fetch(apiToFetch)
       .then(response => response.json())
       .then((data) => {
-        // organise data by date
-        data.sort(function(postA, postB) {
-          var dateA = new Date(postA.datePosted);
-          var dateB = new Date(postB.datePosted);
-          return dateB - dateA;
-        });
         this.setState({
           posts: data
         });
       });
   }
 
+  getPostsSortedByNewest() {
+    return this.state.posts.sort(function(postA, postB) {
+      var dateA = new Date(postA.datePosted);
+      var dateB = new Date(postB.datePosted);
+      return dateB - dateA;
+    });
+  }
+
   render() {
-    const {posts} = this.state;
     return (
       <div id="posts">
         <ul>
-            {posts.map((post) => {   //javascript
+            {this.getPostsSortedByNewest().map((post) => {   //javascript
               return (							 //javascript
                 <li key={post.id}>
                   <Post data={post}/>
