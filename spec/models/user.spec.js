@@ -16,11 +16,26 @@ describe('User model', function(){
     expect(user.lastName).toEqual('Matthew');
     expect(user.email).toEqual('john@example.com');
     expect(user.password).toEqual('12345');
+    done();
+  });
+
+  it('has to have a unique email address', function(){
+    var user = new User({firstName: 'John', lastName: 'Matthew', email: 'john@example.com', password: '12345'});
+    var user2 = new User({firstName: 'Sarah', lastName: 'Smith', email: 'john@example.com', password: '12345'});
+
+    user.save(function(err){
+      expect(err).toBeNull();
+
+      user2.save(function(err){
+        expect(err).not.toBeNull();
+      });
+    });
+      done();
   });
 
   it('can save a user', function(done){
     var user = new User({firstName: 'Sarah', lastName: 'Smith', email: 'sarah@example.com', password: '12345'});
-    var user2 = new User({firstName: 'John', lastName: 'Matthew', email: 'john@example.com', password: '12345'});
+    var user2 = new User({firstName: 'John', lastName: 'Matthew', email: 'james@gmail.com', password: '12345'});
 
     user.save(function(err){
       expect(err).toBeNull();
