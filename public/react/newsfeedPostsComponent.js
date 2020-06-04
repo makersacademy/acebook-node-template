@@ -1,3 +1,4 @@
+'use strict';
 // import Post from './postComponent';
 
 class NewsfeedPostsComponent extends React.Component {
@@ -5,21 +6,22 @@ class NewsfeedPostsComponent extends React.Component {
     super();
     this.state = {
       posts: []
-    }
+    };
   }
   componentDidMount() {
     this.fetchData('/newsfeed/posts');
   }
+
   fetchData = (apiToFetch) => {
     fetch(apiToFetch)
       .then(response => response.json())
       .then((data) => {
         this.setState({
           posts: data
-        })
-      })
+        });
+      });
   }
-  //'I met a lovely dog today - by Jimothy Saladberg - Posted on 03/06/2020'
+
   render() {
     const {posts} = this.state;
     return (
@@ -29,7 +31,7 @@ class NewsfeedPostsComponent extends React.Component {
               <li key={post.id}>
                  <Post data={post}/>
               </li>
-              )
+              );
             }
           )}
       </ul>

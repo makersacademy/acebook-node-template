@@ -1,9 +1,11 @@
+'use strict';
+
 class Post extends React.Component {
   constructor() {
     super();
   }
   formatDate() {
-    var date = new Date(this.props.data.datePosted)
+    let date = new Date(this.props.data.datePosted)
     return date.toLocaleDateString()
   }
   render() {
