@@ -6,7 +6,7 @@ var UserController = {
   },
 
   Create: function(req, res) {
-    var user = new User({firstName: req.firstName});
+    var user = new User({firstName: req.body.firstName});
     user.save(function(err) {
       if (err) { throw err; }
 
@@ -16,3 +16,5 @@ var UserController = {
 };
 
 module.exports = UserController;
+
+
