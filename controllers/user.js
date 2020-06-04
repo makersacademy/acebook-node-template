@@ -10,7 +10,7 @@ var UserController = {
   },
 
   Create: function(req, res) {
-    var user = new User({firstName: req.body.firstName});
+    var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: req.body.password});
 
     user.save(function(err) {
       if (err) { throw err; }
@@ -25,4 +25,4 @@ var UserController = {
 module.exports = UserController;
 
 
-// create a session for user = User._id 
+// create a session for user = User._id

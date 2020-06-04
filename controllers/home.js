@@ -2,11 +2,12 @@ var User = require('../models/user');
 
 var HomeController = {
 
-  Index: function(req, res) { 
+  Index: function(req, res) {
     User.find(function(err, users) {
-      if (err) { throw err; } 
+      if (err) { throw err; }
 
-      res.render('home/index', { title: 'Acebook', firstName: users, user: req.session.user});
+      res.render('home/index', { title: 'Acebook', firstName: users, lastName: users, email: users, password: users, user: req.session.user });
+
     });
   },
 
@@ -21,7 +22,7 @@ module.exports = HomeController;
 
 
 // req.session.user_id = 1 (Fry)
-// users = arr of hash 
+// users = arr of hash
 
 
 
@@ -31,7 +32,7 @@ module.exports = HomeController;
 
       // var id = req.session.user_id
       // var name = ""
-      
+
       // for(let index = 0; index < users.length; index++){
       //   if(users[index]._id === id){
       //     return name = users[index].firstName;
@@ -43,7 +44,7 @@ module.exports = HomeController;
 
       // var id = req.session.user_id
       // var name = ""
-      
+
       // for(let index = 0; index < users.length; index++){
       //   if(users[index]._id === id){
       //     return name = users[index].firstName;
