@@ -1,22 +1,4 @@
-
-class Post extends React.Component {
-  constructor() {
-    super();
-  }
-  formatDate(message) {
-    var date = new Date(message)
-    console.log(date.toLocaleDateString())
-    return date.toLocaleDateString()
-  }
-
-
-  render() {
-    return(
-        <p>{this.props.data.body} - by {this.props.data.name} - Posted on {this.formatDate(this.props.data.datePosted)}</p>
-    
-    );
-  }
-}
+// import Post from './postComponent';
 
 class NewsfeedPostsComponent extends React.Component {
   constructor() {
