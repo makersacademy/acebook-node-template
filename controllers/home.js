@@ -6,7 +6,7 @@ var HomeController = {
     User.find(function(err, users) {
       if (err) { throw err; } 
 
-      res.render('home/index', { title: 'Acebook', firstName: users});
+      res.render('home/index', { title: 'Acebook', firstName: users, user: req.session.user});
     });
   },
 
