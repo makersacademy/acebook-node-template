@@ -9,12 +9,12 @@ describe('User model', function(){
       done();
     });
   });
-
+  
   it('has a first name', function(){
-    var user = new User({firstName: 'John', lastName: 'Matthew', email: 'john@example.com', password: '12345'});
+    var user = new User({firstName: 'John', lastName: 'Matthew', email: 'j@example.com', password: '12345'});
     expect(user.firstName).toEqual('John');
     expect(user.lastName).toEqual('Matthew');
-    expect(user.email).toEqual('john@example.com');
+    expect(user.email).toEqual('j@example.com');
     expect(user.password).toEqual('12345');
     done();
   });
@@ -30,11 +30,11 @@ describe('User model', function(){
         expect(err).not.toBeNull();
       });
     });
-      done();
+    done();
   });
 
-  it('can save a user', function(done){
-    var user = new User({firstName: 'Sarah', lastName: 'Smith', email: 'sarah@example.com', password: '12345'});
+  it('can save a user', function(){
+    var user = new User({firstName: 'Sarah', lastName: 'Smith', email: 'sarah1@example.com', password: '12345'});
     var user2 = new User({firstName: 'John', lastName: 'Matthew', email: 'james@gmail.com', password: '12345'});
 
     user.save(function(err){
@@ -46,9 +46,10 @@ describe('User model', function(){
       User.find(function(err, users){
         expect(err).toBeNull();
 
-        expect(users[0]).toMatchObject({firstName: 'Sarah', lastName: 'Smith', email: 'sarah@example.com', password: '12345'});
+        expect(users[0]).toMatchObject({firstName: 'Sarah', lastName: 'Smith', email: 'sarah1@example.com', password: '12345'}); 
         done();
       });
+      
     });
   });
   });
