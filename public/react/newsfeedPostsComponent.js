@@ -1,3 +1,17 @@
+
+class Post extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      crisps: []
+    }
+  }
+
+  render() {
+    return(<p>hello</p>);
+  }
+}
+
 class NewsfeedPostsComponent extends React.Component {
   constructor() {
     super();
@@ -26,6 +40,7 @@ class NewsfeedPostsComponent extends React.Component {
             return (							 //javascript
               <li key={post.id}> 
                  <p>{post.body} - by {post.name} on {post.datePosted}</p>
+                 <Post />
               </li>
               )
             }
@@ -34,8 +49,5 @@ class NewsfeedPostsComponent extends React.Component {
     );
   }
 }
+
 ReactDOM.render(<NewsfeedPostsComponent />, document.getElementById('posts'))
-
-// class Posts extends React.Component {
-
-// }
