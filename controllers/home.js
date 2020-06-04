@@ -1,14 +1,7 @@
-var User = require('../models/user');
-
 var HomeController = {
 
   Index: function(req, res) {
-    User.findOne({ _id: req.session.user }, function(err, users) {
-      if (err) { throw err; }
-
-      res.render('home/index', { title: 'Acebook', firstName: users.firstName, lastName: users.lastName, email: users.email, password: users.password, user: req.session.user });
-
-    });
+    res.render('home/index', {title: 'Acebook'})
   },
 };
 

@@ -1,6 +1,7 @@
 var User = require('../models/user');
 
 
+
 var UserController = {
   Index:function(req, res){
 
@@ -15,11 +16,20 @@ var UserController = {
     user.save(function(err) {
       if (err) { throw err; }
 
-      res.status(201).redirect('/');
+      res.status(201).redirect('/signup/validate');
     });
 
     req.session.user = user._id
-  }
+  },
+
+  Validate: function(req, res){
+
+    User.findOne({ _id: req.session.user }, function(err, user) {
+      if (err) { throw err; }
+
+      res.render('user/valid', { firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, user: req.session.user });
+    });
+  },
 };
 
 module.exports = UserController;
