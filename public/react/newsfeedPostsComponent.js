@@ -16,6 +16,12 @@ class NewsfeedPostsComponent extends React.Component {
     fetch(apiToFetch)
       .then(response => response.json())
       .then((data) => {
+        // organise data by date
+        data.sort(function(postA, postB) {
+          var dateA = new Date(postA.datePosted);
+          var dateB = new Date(postB.datePosted);
+          return dateB - dateA;
+        });
         this.setState({
           posts: data
         });

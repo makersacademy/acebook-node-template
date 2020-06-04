@@ -14,7 +14,7 @@ var NewsfeedController = {
     });
   },
   TempPostInsertion: function(req, res) {
-    var newPost = new Post({body: 'I met a lovely dog today', datePosted:'2020-06-03'});
+    var newPost = new Post({body: 'I met a lovely fish today', datePosted:'2020-06-20'});
     newPost.save();
     res.send('saved');
   }
