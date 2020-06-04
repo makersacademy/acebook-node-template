@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
+//var uniqueValidator = require('mongoose-unique-validator');
 
 var UserSchema = new mongoose.Schema({
     firstName: { type: String },
     lastName: { type: String },
-    email: { type: String, index: true, unique: true, required: true },
+    email: { type: String },
     password: { type: String }
 });
 
@@ -12,7 +12,7 @@ var User = mongoose.model('User', UserSchema); // it creates new table, by chang
 
 module.exports = User;
 
-UserSchema.plugin(uniqueValidator);
+//UserSchema.plugin(uniqueValidator);
 
 
 // db => shows envoriment

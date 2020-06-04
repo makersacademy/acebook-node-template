@@ -6,7 +6,7 @@ var Post = require('../../models/post');
 describe('Post model', function() {
   beforeEach(function(done) {
       mongoose.connection.collections.posts.drop(function() {
-          done();
+      done();
       });
   });
 
