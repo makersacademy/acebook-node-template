@@ -4,7 +4,7 @@ var User = require('../models/user');
 
 var UserController = {
   Index:function(req, res){
-    res.render('user/signup', { title: 'Signup to Acebook'}); // is this useruser grabbing entire instance
+    res.render('user/signup', { title: 'Signup to Acebook', loginTitle: 'Login to Acebook'}); // is this useruser grabbing entire instance
   },
 
   Create: function(req, res) {
