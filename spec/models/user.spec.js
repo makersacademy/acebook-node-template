@@ -18,14 +18,15 @@ describe('User model', function() {
     expect(user1.password).toEqual('12345');
   });
 
-  // it('has to have a unique email address', function(done){
-  //   var user3 = new User({firstName: 'John', lastName: 'Matthew', email: 'john@example.com', password: '12345'});
-  //   user3.save(function(err){
-  //   console.log(err)
-  //   expect(err).not.toBe(null);
-  //   });
-  //  done();
-  // });
+  it('has to have a unique email address', function(done){
+    var user = new User({firstName: 'John2', lastName: 'Matthew', email: 'john@example.com', password: '12345'});
+    var user2 = new User({firstName: 'Sarah1', lastName: 'Smith', email: 'john@example.com', password: '12345'});
+    user.save(function(err){
+    expect(err).toBeNull();
+    expect(user2.save).toThrow();
+    done();
+  });
+});
 
   it('can save a user', function(done){
     var user1 = new User({firstName: 'John', lastName: 'Matthew', email: 'john@example.com', password: '12345'}); //TODO: Mock users
