@@ -1,8 +1,16 @@
 # Acebook
 
-This is a Node.js template for the Acebook engineering project.
+## Project Description
 
-It uses:
+Acebook is a social media platform, similar to Facebook, built as part of the Makers Academy course and specifically as part of the week 8-9 engineering project.
+
+## Features
+
+[Placeholder]
+
+## Dependencies
+
+This project uses the following technologies:
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
 - [Handlebars](https://handlebarsjs.com/) to render view templates.
@@ -13,11 +21,15 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+Our card wall can be found at this link: https://trello.com/b/7Jr6hjux/node4code
 
-## Quickstart
+## Getting Started
+
+To get started using Acebook by Team Node4Code, please follow the instructions below:
 
 ### Install Node.js
+
+**Skip this step if you already have Node.js installed**
 
 1. Install Node Version Manager (NVM)
     ```
@@ -30,48 +42,47 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
     nvm install 12.14.1
     ```
 
-### Set up your project
+### Getting set up
 
-1. Fork this repository
-1. Rename your fork to `acebook-<team name>`
-1. Clone your fork to your local machine
-1. Install Node.js dependencies
+1. Clone this repository to your local machine
+2. Install Node.js dependencies using the command:
     ```
     npm install
     ```
-1. Install an ESLint plugin for your editor. For example: [linter-eslint](https://github.com/AtomLinter/linter-eslint) for Atom.
-1. Install MongoDB
+3. Install MongoDB
     ```
     brew tap mongodb/brew
     brew install mongodb-community@4.2
     ```
-1. Start MongoDB
+4. Start MongoDB
     ```
     brew services start mongodb-community@4.2
     ```
 
-### Start
+### Using Acebook!
 
-1. Start the server
+1. To start the server, enter the command:
     ```
     npm start
     ```
-1. Browse to [http://localhost:3000](http://localhost:3000)
+2. Browse to [http://localhost:3000](http://localhost:3000)
 
-### Test
+## Testing
+
+### To run tests
 
 * Run all tests
     ```
     npm test
     ```
-* Run a check
-    ```bash
+* Run a specific check
+    ```
     npm run lint              # linter only
     npm run test:unit         # unit tests only
     npm run test:integration  # integration tests only
     ```
 
-#### Start test server
+#### Starting the test server
 
 The server must be running locally with test configuration for the
 integration tests to pass.
@@ -80,3 +91,12 @@ npm run start:test
 ```
 This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
 so that integration tests do not interact with the development server.
+
+## How to contribute
+
+If you would like to contribute to this project, you can follow the instructions below
+
+1. Clone this repository to your local computer
+2. Create a new branch: $ git checkout https://github.com/Joanneyoung01/Node4Code -b name_for_new_branch.
+3. Make changes and test
+4. Submit Pull Request with comprehensive description of changes

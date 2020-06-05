@@ -24,6 +24,7 @@
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
     "mongoose": "^5.8.11",
+    "mongoose-unique-validator": "^2.0.3",
     "morgan": "~1.9.1",
     "nodemon": "^1.19.4",
     "react": "^16.13.1",
