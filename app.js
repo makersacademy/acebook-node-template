@@ -3,10 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var newsfeedRouter = require('./routes/newsfeed');
+var userRouter = require('./routes/user');
 
 var app = express();
 
@@ -19,11 +21,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: "secret-key",
+  resave: false,
+  saveUninitialized: false,
+}));
 
 // route setup
 app.use('/', homeRouter);
 app.use('/posts', postsRouter);
+<<<<<<< HEAD
 app.use('/newsfeed', newsfeedRouter);
+=======
+app.use('/signup', userRouter);
+>>>>>>> 57d48160d9818d4df365547fdc1569ffed08d76f
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

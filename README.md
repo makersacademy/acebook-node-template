@@ -13,7 +13,7 @@ It uses:
 
 ## Card wall
 
-https://trello.com/b/fjC2EoVt/no-de-problem 
+https://trello.com/b/fjC2EoVt/no-de-problem
 
 ## Quickstart
 
@@ -79,4 +79,8 @@ integration tests to pass.
 npm run start:test
 ```
 This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
-so that integration tests do not interact with the development server. 
+so that integration tests do not interact with the development server.
+
+### Domain model Diagram
+
+![Domain Model Diagram](public/images/model.svg)
