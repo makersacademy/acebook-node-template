@@ -7,7 +7,6 @@ import CreatePosts from "./components/create-posts.component";
 
 function App() {
   return (
-
     <Router>
       <Route path="/posts" exact component={Posts} />
       <Route path="/posts/new" exact component={CreatePosts} />

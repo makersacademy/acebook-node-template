@@ -14,7 +14,7 @@ export default class Posts extends Component {
 
 // will run before the page is rendered and add the exercises to the list
   componentDidMount(){
-    fetch('http://localhost:3000/posts')
+    fetch('/posts')
     .then(response => { return response })
     .then(function(data){
       console.log(data)
