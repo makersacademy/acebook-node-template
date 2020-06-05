@@ -24,7 +24,7 @@ var UserController = {
     User.findOne({ _id: req.session.user }, function(err, user) {
       if (err) { throw err; }
 
-      res.render('user/validate', { firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, user: req.session.user });
+      res.render('user/validate', { loginMessage: "Login sucessful", firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, user: req.session.user });
     });
   },
 };
