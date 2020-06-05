@@ -4,10 +4,7 @@ var User = require('../models/user');
 
 var UserController = {
   Index:function(req, res){
-
-    req.session.viewCount += 1;
-
-    res.render('user/signup', { title: 'Signup to Acebook', viewCount: req.session.viewCount  }); // is this useruser grabbing entire instance
+    res.render('user/signup', { title: 'Signup to Acebook'}); // is this useruser grabbing entire instance
   },
 
   Create: function(req, res) {
