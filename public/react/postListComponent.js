@@ -1,7 +1,7 @@
 'use strict';
 // import Post from './postComponent';
 
-class NewsfeedPostsComponent extends React.Component {
+class PostListComponent extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -30,6 +30,15 @@ class NewsfeedPostsComponent extends React.Component {
     });
   }
 
+  onClickFunction = () => {
+    var newelement = {body: "I hate annotations"};
+    this.setState({
+      posts: this.state.posts.concat([newelement])
+    });
+  }
+
+
+
   render() {
     return (
       <div id="posts">
@@ -48,4 +57,3 @@ class NewsfeedPostsComponent extends React.Component {
   }
 }
 
-ReactDOM.render(<NewsfeedPostsComponent />, document.body);

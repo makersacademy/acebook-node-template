@@ -1,14 +1,18 @@
 'use strict';
 
-class NewsfeedComponent extends React.component {
+class NewsfeedComponent extends React.Component {
   constructor() {
-    super()
+    super();
   }
 
   render() {
     return(
-      <PostListComponent />
-      <FormComponent />
+      <div id="full_newsfeed">
+        <FormComponent />
+        <PostListComponent />
+      </div>
     );
   }
 }
+
+ReactDOM.render(<NewsfeedComponent />, document.body);
