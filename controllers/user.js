@@ -1,8 +1,7 @@
 var User = require('../models/user');
 
-
-
 var UserController = {
+  
   Index:function(req, res){
     res.render('user/signup', { title: 'Signup to Acebook', loginTitle: 'Login to Acebook'}); // is this useruser grabbing entire instance
   },
@@ -19,17 +18,22 @@ var UserController = {
     req.session.user = user._id
   },
 
-  Validate: function(req, res){
+  Validate: function(req, res) {
 
-    User.findOne({ _id: req.session.user }, function(err, user) {
-      if (err) { throw err; }
+    console.log(req.body.email);
+    console.log(req.body.password);
 
-      res.render('user/validate', { loginMessage: "Login sucessful", firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, user: req.session.user });
-    });
+    User.findOne({email: req.body.email}, function(err, result) {
+      if(result.password == req.body.password) {
+        //redirect user logged in
+        res.render('user/validate', { loginMessage: "Login sucessful"})
+      } else {
+        //errror
+        res.render('user/validate', { loginMessage: "Login FAIL"})
+      }
+    })
+  
   },
-};
+}
 
 module.exports = UserController;
-
-
-// create a session for user = User._id

@@ -6,6 +6,7 @@ var UserController = require('../controllers/user');
 
 router.get('/', UserController.Index);
 router.post('/', UserController.Create);
+router.post('/login', UserController.Validate);
 router.get('/validate', UserController.Validate);
 
 
