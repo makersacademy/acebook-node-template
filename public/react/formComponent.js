@@ -8,17 +8,15 @@ class FormComponent extends React.Component {
 
   mySubmitHandler = (event) => {
     event.preventDefault();
-    PostListComponent.state .push({body: "I am new!"})
-    
-    console.log(PostListComponent.state.posts)
+    this.props.updatemethod(this.state.body);
+  
     // sending the body over to server > route > controller  
     // when it arrives at controller > Model > DB
-    // Reload and render the post lists to show new posts 
+    // Reload and render the post lists to show new posts √√√√
   }
 
   myChangeHandler = (event) => {
     this.setState({body: event.target.value});
-
   }
 
   render() {
@@ -30,27 +28,3 @@ class FormComponent extends React.Component {
     );
   }
 }
-
-
-
-// mySubmitHandler = (event) => {
-//   event.preventDefault();
-//   alert("You are submitting " + this.state.username);
-// }
-// myChangeHandler = (event) => {
-//   this.setState({username: event.target.value});
-// }
-// render() {
-//   return (
-//     <form onSubmit={this.mySubmitHandler}>
-//     <h1>Hello {this.state.username}</h1>
-//     <p>Enter your name, and submit:</p>
-//     <input
-//       type='text'
-//       onChange={this.myChangeHandler}
-//     />
-//     <input
-//       type='submit'
-//     />
-//     </form>
-

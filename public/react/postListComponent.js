@@ -30,18 +30,17 @@ class PostListComponent extends React.Component {
     });
   }
 
-  onClickFunction = () => {
-    var newelement = {body: "I hate annotations"};
+  updateState = (msg) => {
+    var newelement = {body: msg};
     this.setState({
       posts: this.state.posts.concat([newelement])
     });
   }
 
-
-
   render() {
     return (
       <div id="posts">
+        <FormComponent updatemethod={this.updateState} />
         <ul>
             {this.getPostsSortedByNewest().map((post) => {   //javascript
               return (							 //javascript

@@ -8,7 +8,6 @@ class NewsfeedComponent extends React.Component {
   render() {
     return(
       <div id="full_newsfeed">
-        <FormComponent />
         <PostListComponent />
       </div>
     );
