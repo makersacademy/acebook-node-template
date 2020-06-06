@@ -12,7 +12,9 @@ var UserController = {
     user.save(function(err) {
       if (err) { throw err; }
 
-      res.status(201).redirect('/signup/validate');
+      // route was formerly '/validate'
+      // res.status(201).redirect('/validateSignUp');
+      res.render('user/validateSignUp', { signupMessage: "Sign up sucessful.", firstName: req.body.firstName} )
     });
 
     req.session.user = user._id
@@ -23,14 +25,16 @@ var UserController = {
     console.log(req.body.email);
     console.log(req.body.password);
 
-    User.findOne({email: req.body.email}, function(err, result) {
+    User.findOne( {email: req.body.email}, function(err, result) {
+
       if(result.password == req.body.password) {
         //redirect user logged in
-        res.render('user/validate', { loginMessage: "Login sucessful"})
+        res.render('user/validateLogin', { loginMessage: "Login sucessful." } )
       } else {
         //errror
-        res.render('user/validate', { loginMessage: "Login FAIL"})
+        res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
       }
+
     })
   
   },
