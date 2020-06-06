@@ -9,15 +9,21 @@ var UserController = {
   Create: function(req, res) {
     var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: req.body.password});
 
-    user.save(function(err) {
-      if (err) { throw err; }
 
-      // route was formerly '/validate'
-      // res.status(201).redirect('/validateSignUp');
-      res.render('user/validateSignUp', { signupMessage: "Sign up sucessful.", firstName: req.body.firstName} )
-    });
-
-    req.session.user = user._id
+    User.findOne( {email: req.body.email}, function(err, result) {
+      if (result.email == req.body.email) {
+        res.render('user/validateSignUp', { signupMessage: "This email is already registered."} )
+      } else {
+          user.save(function(err) {
+            if (err) { throw err; }
+      
+            // route was formerly '/validate'
+            // res.status(201).redirect('/validateSignUp');
+            res.render('user/validateSignUp', { signupMessage: "Sign up sucessful.", firstName: req.body.firstName} )
+          });
+          req.session.user = user._id
+      }
+    })
   },
 
   Validate: function(req, res) {
@@ -28,15 +34,13 @@ var UserController = {
     User.findOne( {email: req.body.email}, function(err, result) {
 
       if(result.password == req.body.password) {
-        //redirect user logged in
+        // redirect user logged in
         res.render('user/validateLogin', { loginMessage: "Login sucessful." } )
       } else {
-        //errror
+        // incorrect login details
         res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
       }
-
     })
-  
   },
 }
 
