@@ -78,7 +78,7 @@ To get started using Acebook by Team Node4Code, please follow the instructions b
 * Run a specific check
     ```
     npm run lint              # linter only
-    npm run test:unit         # unit tests only
+    npm run test:unit           # unit tests only
     npm run test:integration  # integration tests only
     ```
 

@@ -18,6 +18,8 @@
     "node": ">=12.14.1"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "bcrypt": "^4.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -26,13 +28,12 @@
     "mongoose": "^5.8.11",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "~1.9.1",
+    "node-modules": "^1.0.1",
     "nodemon": "^1.19.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "axios": "^0.19.2",
-    "node-modules": "^1.0.1"
+    "react-scripts": "3.4.1"
   },
   "devDependencies": {
     "cypress": "^3.8.3",
