@@ -5,7 +5,7 @@ var PostsController = {
     Post.find(function(err, posts) {
       if (err) { throw err; }
 
-      res.render('posts/index', { posts: posts });
+      res.json(posts);
     });
   },
   New: function(req, res) {
@@ -16,7 +16,7 @@ var PostsController = {
     post.save(function(err) {
       if (err) { throw err; }
 
-      res.status(201).redirect('/posts');
+      res.status(201).redirect('/api/posts');
     });
   }
 };
