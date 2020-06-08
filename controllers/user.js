@@ -10,21 +10,9 @@ var UserController = {
 
   Create: function(req, res) {
 
-    var unhashedPassword = req.body.password
-    // var hashedPassword  = bcrypt.hash(unhashedPassword, 10, function(err, hash){
-    //   if (err) { console.log(err) }
-    //   console.log(hash)
-    //   return hashedPassword = hash
-    // })     
-    
-    // var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hashedPassword});
-
-     var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: bcrypt.hash(unhashedPassword, 10, function(err, hash){
-        if (err) { console.log(err) }
-        console.log( hash)
-        typeOf(hash);
-     })});
-
+    var password = req.body.password;
+    var email = req.body.email;
+    var user;
 
     User.findOne( {email: req.body.email}, function(err, result) {
       // findOne will return "null" if emal is not found in the database
@@ -34,16 +22,14 @@ var UserController = {
       }
     })
 
-    user.save(function(err) {
-
-      if (err) { console.log(err) }
-       res.redirect('/');
-       //res.render('user/validateSignUp', { signupMessage: "Sign up sucessful", welcomeMessage: "Welcome ",  firstName: req.body.firstName} )
-    });
-
-    //req.session.user = user._id
-
-  },
+    bcrypt.hash(password, 10, function(err, hash) {
+      user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
+      user.save(function(err) {
+        if (err) { console.log(err) }
+         res.redirect('/');
+      });
+   }
+ )},
 
   Validate: function(req, res) {
     // console.log(req)
