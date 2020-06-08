@@ -27,7 +27,30 @@ var UserController = {
         }
       }    
     });  
-  } 
+  }, 
+
+  Index: function(req,res){
+    res.render('user/login',{});
+  },
+
+  Authenticate: function(req, res){
+    User.findOne({email: req.body.email}, async function(err, data) { // mongo function
+      if (err) {throw err;}
+      if (data) {
+        //TODO: REFACTOR LATER
+        //USER PASSWORD: 1234   == //HASHEDPASSWORD: AŞKSDFŞL1234ASFJKLAFLKFA
+        if (await bcrypt.compare(req.body.password, data.password)) {
+          res.render('posts/index', { msg:"Welcome " + data.firstName + " ! " })
+        } else {
+          res.render('user/login', { msg:'user password wrong' });
+        }
+      }
+      else{
+        res.render('user/login', { msg:'No user with that email' });
+      }
+    })
+  }
+  
 };
 
 module.exports = UserController;
