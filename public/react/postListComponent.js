@@ -1,7 +1,7 @@
 'use strict';
 // import Post from './postComponent';
 
-class NewsfeedPostsComponent extends React.Component {
+class PostListComponent extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -62,6 +62,11 @@ class NewsfeedPostsComponent extends React.Component {
       return dateB - dateA;
     });
   }
+
+
+  updateState = () => {
+    this.fetchData('/newsfeed/posts')
+  }
   
   render() {
     return (
@@ -73,7 +78,7 @@ class NewsfeedPostsComponent extends React.Component {
         
         {this.renderRedirectLogout()}
         <button onClick={this.setRedirectLogout}> Logout </button>
-
+        <FormComponent updatemethod={this.updateState} />
         <ul>
             {this.getPostsSortedByNewest().map((post) => {   //javascript
               return (							 //javascript
@@ -88,5 +93,3 @@ class NewsfeedPostsComponent extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<NewsfeedPostsComponent />, document.body);

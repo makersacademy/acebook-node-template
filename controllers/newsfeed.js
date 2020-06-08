@@ -1,4 +1,5 @@
 var Post = require('../models/post');
+var User = require('../models/user');
 
 var NewsfeedController = {
   Index: function(req, res) {
@@ -8,24 +9,34 @@ var NewsfeedController = {
       res.redirect('/');
     }
   },
+
   Posts: function(req, res) {
     Post.find(function(err, result) {
-      result.forEach((item) => {
-        // Database request to Users
-        item.name = 'Jimothy Saladberg'
-      });
       res.send(result);
     });
   },
+
+
+  Create: function(req, res) {
+    var userName
+
+
+    User.findOne({ _id: req.session.user }, function(err, user){
+      userName = user.firstName + " " + user.lastName
+
+      var newPost = new Post({userID: user._id, name: userName, body: req.body.body, datePosted: Date.now()});
+      
+      newPost.save(function(err){
+
+        res.send('saved')
+      });
+    });
+  },
+
   Session: function(req, res) {
     // console.log(req.session)
     res.send(req.session)
   },
-  TempPostInsertion: function(req, res) {
-    var newPost = new Post({body: 'I met a lovely fish today', datePosted:'2020-06-20'});
-    newPost.save();
-    res.send('saved');
-  }
 };
 
 module.exports = NewsfeedController;
