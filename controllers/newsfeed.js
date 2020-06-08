@@ -2,7 +2,7 @@ var Post = require('../models/post');
 
 var NewsfeedController = {
   Index: function(req, res) {
-    res.render('newsfeed/index', {});
+    res.render('newsfeed/index');
   },
   Posts: function(req, res) {
     Post.find(function(err, result) {
@@ -12,6 +12,10 @@ var NewsfeedController = {
       });
       res.send(result);
     });
+  },
+  Session: function(req, res) {
+    // console.log(req.session)
+    res.send(req.session)
   },
   TempPostInsertion: function(req, res) {
     var newPost = new Post({body: 'I met a lovely fish today', datePosted:'2020-06-20'});

@@ -5,11 +5,15 @@ class NewsfeedPostsComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      posts: []
+      posts: [],
+      session: {},
+      isLoggedIn: false,
     };
   }
   componentDidMount() {
     this.fetchData('/newsfeed/posts');
+    //this.fetchSession('/user/login');
+    this.fetchSession('/newsfeed/session');
   }
 
   fetchData = (apiToFetch) => {
@@ -17,9 +21,21 @@ class NewsfeedPostsComponent extends React.Component {
       .then(response => response.json())
       .then((data) => {
         this.setState({
-          posts: data
+          posts: data,
         });
       });
+  }
+
+  fetchSession = (apiToFetch) => {
+    fetch(apiToFetch)
+     .then(response => response.json())
+     .then((data) => {
+       console.log(data.user.firstName);
+       this.setState({
+        session: data,
+        isLoggedIn: true,
+      });
+    });
   }
 
   getPostsSortedByNewest() {
@@ -33,6 +49,10 @@ class NewsfeedPostsComponent extends React.Component {
   render() {
     return (
       <div id="posts">
+        { this.state.isLoggedIn ?
+            <h1>Welcome {this.state.session.user.firstName}</h1>
+            : <h1></h1>
+         }
         <ul>
             {this.getPostsSortedByNewest().map((post) => {   //javascript
               return (							 //javascript

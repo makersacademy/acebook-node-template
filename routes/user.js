@@ -15,6 +15,8 @@ router.get('/validateSignup', UserController.Create);
 router.post('/login', UserController.Validate);
 router.get('/validateLogin', UserController.Validate);
 
+// router.get('/login', UserController.Validate);
+
 
 
 module.exports = router;
