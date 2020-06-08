@@ -1,4 +1,5 @@
 var Post = require('../models/post');
+var objectId = require('mongodb').ObjectID;
 
 var PostsController = {
   Index: function(req, res) {
@@ -18,9 +19,22 @@ var PostsController = {
     post.save(function(err) {
       if (err) { throw err; }
 
-      res.status(201).redirect('/api/posts');
+      res.status(201).redirect('/api/posts')
+    });
+  },
+
+  Delete: function(req, res){
+    var id = req.body.id;
+    Post.deleteOne({"_id": objectId(id)}, function(err, id){
+      if(err)
+      { throw err; }
+
+      res.status(201).redirect('/api/posts')
     });
   }
-};
+}
+
+
+
 
 module.exports = PostsController;

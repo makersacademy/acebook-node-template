@@ -60,12 +60,38 @@ class App extends React.Component{
     });
   }
 
+
+  delete = (event) => {
+    event.preventDefault();
+
+    const post = {
+      message: this.state.post
+    };
+
+    axios({
+      url: '/api/posts/delete',
+      method: 'POST',
+      data: post._id
+    })
+
+    .then(() => {
+      console.log(post._id);
+      console.log('Data has been sent to be deleted');
+    })
+    .catch(() => {
+      console.log('Error');
+    });
+  }
+
   displayPosts = (posts) => {
     if (!posts.length) return null;
 
     return posts.map((post, index) => (
       <div key={index} className="blog-post_display">
-      <h4>{post.message}</h4>
+      <h4 id={post._id}>{post.message}</h4>
+      <form onSubmit={() => this.delete(post._id)}>
+      <input id={post._id} type="submit" id="delete" value="Delete"/>
+      </form>
       </div>
     ));
   };

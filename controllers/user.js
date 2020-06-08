@@ -9,7 +9,7 @@ var UserController = {
   },
 
   Create: function(req, res){
-    User.findOne({email: req.body.email}, function(err, email) {
+    User.findOne({email: req.body.email}, async function(err, email) {
       if (err) { throw err; }
       if (email) {
         res.render('user/new', { msg:'user exist' });
@@ -25,9 +25,9 @@ var UserController = {
         } catch {
          res.status(500).send();
         }
-      }    
-    });  
-  }, 
+      }
+    });
+  },
 
   Index: function(req,res){
     res.render('user/login',{});
@@ -50,7 +50,7 @@ var UserController = {
       }
     })
   }
-  
+
 };
 
 module.exports = UserController;
