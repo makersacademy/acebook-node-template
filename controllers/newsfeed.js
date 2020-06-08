@@ -2,8 +2,11 @@ var Post = require('../models/post');
 
 var NewsfeedController = {
   Index: function(req, res) {
-    console.log(req.session)
-    res.render('newsfeed/index');
+    if (req.session.user) {
+      res.render('newsfeed/index');
+    } else {
+      res.redirect('/');
+    }
   },
   Posts: function(req, res) {
     Post.find(function(err, result) {
