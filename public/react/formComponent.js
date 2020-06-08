@@ -14,19 +14,17 @@ class FormComponent extends React.Component {
 
     fetch("/newsfeed/create", {
       method: 'post',
-      headers: { "Content-Type": "application/json" }, 
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newPost)
     })
-    .then(function(response){
+    .then((response) => {
       console.log("The response is" + response)
-       // this.props.updatemethod(this.state.body);
+      this.props.updatemethod();
     });
 
-    
-  
     // this.props.updatemethod(this.state.body);
-  
-    // sending the body over to server > route > controller   
+
+    // sending the body over to server > route > controller
     // when it arrives at controller > Model > DB
     // Reload and render the post lists to show new posts √√√√
   }

@@ -30,10 +30,10 @@ class PostListComponent extends React.Component {
     });
   }
 
-  updateState = (msg) => {
+  updateState = () => {
 
-    
-    this.fetchData()
+    console.log(this.state)
+    this.fetchData('/newsfeed/posts')
 
     // var newelement = {body: msg};
     // this.setState({
@@ -59,4 +59,3 @@ class PostListComponent extends React.Component {
     );
   }
 }
-
