@@ -6,7 +6,7 @@ var Post = require('../../models/post');
 describe('Post model', function() {
   beforeEach(function(done) {
       mongoose.connection.collections.posts.drop(function() {
-          done();
+      done();
       });
   });
 
@@ -22,7 +22,6 @@ describe('Post model', function() {
       done();
     });
   });
-
   it('can save a post', function(done) {
     var post = new Post({ message: 'some message' });
 
@@ -31,10 +30,10 @@ describe('Post model', function() {
 
       Post.find(function(err, posts) {
         expect(err).toBeNull();
-
         expect(posts[0]).toMatchObject({ message: 'some message' });
         done();
       });
     });
   });
 });
+
