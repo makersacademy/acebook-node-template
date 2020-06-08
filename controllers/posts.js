@@ -1,5 +1,4 @@
 var Post = require('../models/post');
-var objectId = require('mongodb').ObjectID;
 
 var PostsController = {
   Index: function(req, res) {
@@ -24,8 +23,9 @@ var PostsController = {
   },
 
   Delete: function(req, res){
+    console.log("in delete function")
     var id = req.body.id;
-    Post.deleteOne({"_id": objectId(id)}, function(err, id){
+    Post.deleteOne({"_id" : id}, function(err){
       if(err)
       { throw err; }
 
@@ -33,8 +33,5 @@ var PostsController = {
     });
   }
 }
-
-
-
 
 module.exports = PostsController;

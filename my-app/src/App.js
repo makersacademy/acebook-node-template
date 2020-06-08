@@ -60,22 +60,20 @@ class App extends React.Component{
     });
   }
 
-
   delete = (event) => {
     event.preventDefault();
-
-    const post = {
-      message: this.state.post
-    };
+    const post_id = {
+      id: event.target.dataset.id
+    }
 
     axios({
       url: '/api/posts/delete',
       method: 'POST',
-      data: post._id
+      data: post_id
     })
 
     .then(() => {
-      console.log(post._id);
+      console.log();
       console.log('Data has been sent to be deleted');
     })
     .catch(() => {
@@ -88,9 +86,9 @@ class App extends React.Component{
 
     return posts.map((post, index) => (
       <div key={index} className="blog-post_display">
-      <h4 id={post._id}>{post.message}</h4>
-      <form onSubmit={() => this.delete(post._id)}>
-      <input type="submit" id="delete" value="Delete"/>
+      <h4>{post.message}</h4>
+      <form data-id={post._id} onSubmit={ this.delete }>
+      <input type="submit" value="Delete"/>
       </form>
       </div>
     ));
