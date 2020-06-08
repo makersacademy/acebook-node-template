@@ -27,7 +27,11 @@ var UserController = {
         }
       }    
     });  
-  } 
+  }, 
+  
+  Index: function(req,res){
+    res.render('user/login',{});
+  },
 };
 
 module.exports = UserController;
