@@ -3,7 +3,7 @@
 var User = require('../models/user');
 
 var UserController = {
-  
+
   Index:function(req, res){
     res.render('user/signup', { title: 'Signup to Acebook', loginTitle: 'Login to Acebook'});
   },
@@ -11,11 +11,11 @@ var UserController = {
   Create: function(req, res) {
     var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: req.body.password});
 
-    User.findOne( {email: req.body.email}, function(err, result) { 
+    User.findOne( {email: req.body.email}, function(err, result) {
       // findOne will return "null" if emal is not found in the database
       // so it will skip this IF statement and move on to next code block
-      if (result != null && result.email != null && req.body.email == result.email) { 
-        res.render('user/validateSignUp', { signupMessage: "This email is already registered."}); 
+      if (result != null && result.email != null && req.body.email == result.email) {
+        res.render('user/validateSignUp', { signupMessage: "This email is already registered."});
       }
     })
 
@@ -24,7 +24,8 @@ var UserController = {
       if (err) { console.log(err) }
       // route was formerly '/validate'
       // res.status(201).redirect('/validateSignUp');
-      res.render('user/validateSignUp', { signupMessage: "Sign up sucessful.", firstName: req.body.firstName} )
+
+      res.render('user/validateSignUp', { signupMessage: "Sign up sucessful", welcomeMessage: "Welcome ",  firstName: req.body.firstName} )
     });
 
     req.session.user = user._id
