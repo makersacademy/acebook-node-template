@@ -17,7 +17,6 @@ var NewsfeedController = {
 
     User.findOne({ _id: "5ede176bbab17f447004aae3" }, function(err, user){
       userName = user.firstName + " " + user.lastName
-      console.log(userName + "Inside FindOne")
 
       var newPost = new Post({userID: "5ede176bbab17f447004aae3", name: userName, body: req.body.body, datePosted: Date.now()});
       newPost.save(function(err){

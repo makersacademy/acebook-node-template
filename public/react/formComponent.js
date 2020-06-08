@@ -18,11 +18,8 @@ class FormComponent extends React.Component {
       body: JSON.stringify(newPost)
     })
     .then((response) => {
-      console.log("The response is" + response)
       this.props.updatemethod();
     });
-
-    // this.props.updatemethod(this.state.body);
 
     // sending the body over to server > route > controller
     // when it arrives at controller > Model > DB

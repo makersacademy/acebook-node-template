@@ -1,7 +1,5 @@
 var User = require('../models/user');
 
-
-
 var UserController = {
   Index:function(req, res){
 
@@ -18,7 +16,6 @@ var UserController = {
 
       res.status(201).redirect('/signup/validate');
     });
-
     req.session.user = user._id
   },
 
@@ -33,6 +30,3 @@ var UserController = {
 };
 
 module.exports = UserController;
-
-
-// create a session for user = User._id

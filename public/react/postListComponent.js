@@ -31,14 +31,7 @@ class PostListComponent extends React.Component {
   }
 
   updateState = () => {
-
-    console.log(this.state)
     this.fetchData('/newsfeed/posts')
-
-    // var newelement = {body: msg};
-    // this.setState({
-    //   posts: this.state.posts.concat([newelement])
-    // });
   }
 
   render() {
