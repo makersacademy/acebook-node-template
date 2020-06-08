@@ -90,7 +90,7 @@ class App extends React.Component{
       <div key={index} className="blog-post_display">
       <h4 id={post._id}>{post.message}</h4>
       <form onSubmit={() => this.delete(post._id)}>
-      <input id={post._id} type="submit" id="delete" value="Delete"/>
+      <input type="submit" id="delete" value="Delete"/>
       </form>
       </div>
     ));
