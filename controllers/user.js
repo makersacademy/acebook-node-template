@@ -32,16 +32,20 @@ var UserController = {
  )},
 
   Validate: function(req, res) {
-    // console.log(req)
     User.findOne( {email: req.body.email}, function(err, result) {
+      console.log(req.body.password)
+      console.log(result.password)
+      bcrypt.compare(req.body.password, result.password, function(err, match) {
+        if (match) {
+          console.log("hey")
+          req.session.user = result;
+          res.redirect('/newsfeed');
+        } else {
+          if (err) { console.log(err) }
+          res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
+        }
+      })
 
-      if(result.password == req.body.password) {
-        req.session.user = result
-        //res.render('user/validateLogin', { loginMessage: "Login sucessful.", firstName: result.firstName } )
-        res.redirect('/newsfeed');
-      } else {
-        res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
-      }
     })
   },
 }
