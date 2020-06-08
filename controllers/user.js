@@ -20,10 +20,10 @@ var UserController = {
   },
 
   Validate: function(req, res){
-
-    User.findOne({ _id: req.session.user }, function(err, user) {
+User.findOne({ _id: req.session.user }, function(err, user) {
       if (err) { throw err; }
 
+    
       res.render('user/valid', { firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, user: req.session.user });
     });
   },
