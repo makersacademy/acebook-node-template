@@ -31,10 +31,14 @@ class PostListComponent extends React.Component {
   }
 
   updateState = (msg) => {
-    var newelement = {body: msg};
-    this.setState({
-      posts: this.state.posts.concat([newelement])
-    });
+
+    
+    this.fetchData()
+
+    // var newelement = {body: msg};
+    // this.setState({
+    //   posts: this.state.posts.concat([newelement])
+    // });
   }
 
   render() {

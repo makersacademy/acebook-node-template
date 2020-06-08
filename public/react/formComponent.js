@@ -3,14 +3,30 @@
 class FormComponent extends React.Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+    }
   };
 
   mySubmitHandler = (event) => {
     event.preventDefault();
-    this.props.updatemethod(this.state.body);
+
+    let newPost = {body: this.state.body};
+
+    fetch("/newsfeed/create", {
+      method: 'post',
+      headers: { "Content-Type": "application/json" }, 
+      body: JSON.stringify(newPost)
+    })
+    .then(function(response){
+      console.log("The response is" + response)
+       // this.props.updatemethod(this.state.body);
+    });
+
+    
   
-    // sending the body over to server > route > controller  
+    // this.props.updatemethod(this.state.body);
+  
+    // sending the body over to server > route > controller   
     // when it arrives at controller > Model > DB
     // Reload and render the post lists to show new posts √√√√
   }

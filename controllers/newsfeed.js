@@ -21,6 +21,12 @@ var NewsfeedController = {
     var newPost = new Post({body: 'I met a lovely dog today', datePosted:'2020-06-03'});
     newPost.save();
     res.send('saved');
+  },
+  Create: function(req, res) {
+    var newPost = new Post({body: req.body.body, datePosted: "2020-06-08" });
+    newPost.save(function(err){
+      res.send('saved')
+    });
   }
 };
 
