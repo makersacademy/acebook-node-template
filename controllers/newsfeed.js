@@ -3,7 +3,11 @@ var User = require('../models/user');
 
 var NewsfeedController = {
   Index: function(req, res) {
-    res.render('newsfeed/index', {});
+    if (req.session.user) {
+      res.render('newsfeed/index');
+    } else {
+      res.redirect('/');
+    }
   },
 
   Posts: function(req, res) {
@@ -12,28 +16,27 @@ var NewsfeedController = {
     });
   },
 
+
   Create: function(req, res) {
     var userName
 
-<<<<<<< HEAD
-    User.findOne({ _id: "5ede4d776e930a3959478a29"}, function(err, user){
-      
+
+    User.findOne({ _id: req.session.user }, function(err, user){
       userName = user.firstName + " " + user.lastName
 
       var newPost = new Post({userID: user._id, name: userName, body: req.body.body, datePosted: Date.now()});
       
-=======
-    User.findOne({ firstName: "Phillip" }, function(err, user){
-      userName = user.firstName + " " + user.lastName
-
-      var newPost = new Post({ userID: user._id, name: userName, body: req.body.body, datePosted: Date.now()});
->>>>>>> e16160c72858b5fe9869f67659960cda02372441
       newPost.save(function(err){
 
         res.send('saved')
       });
     });
-  }
+  },
+
+  Session: function(req, res) {
+    // console.log(req.session)
+    res.send(req.session)
+  },
 };
 
 module.exports = NewsfeedController;

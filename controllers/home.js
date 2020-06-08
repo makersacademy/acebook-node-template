@@ -1,7 +1,11 @@
 var HomeController = {
 
   Index: function(req, res) {
-    res.render('home/index', {title: 'Acebook'})
+    if (req.session.user) {
+      res.render('newsfeed/index', {})
+    } else {
+      res.render('user/login.hbs')
+    }
   },
 };
 
