@@ -32,11 +32,14 @@ var UserController = {
   },
 
   Validate: function(req, res) {
-    console.log(req)
+    // console.log(req)
     User.findOne( {email: req.body.email}, function(err, result) {
 
       if(result.password == req.body.password) {
-        res.render('user/validateLogin', { loginMessage: "Login sucessful." } )
+        req.session.user = result
+        console.log(result.email)
+        // console.log( req.session.user )
+        res.render('user/validateLogin', { loginMessage: "Login sucessful.", firstName: result.firstName } )
       } else {
         res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
       }

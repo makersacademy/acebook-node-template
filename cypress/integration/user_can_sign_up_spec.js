@@ -12,7 +12,6 @@ describe("Sign up page", function(){
     cy.get('#new-user-form').find('[id="password"]').type('12345')
     cy.get('#new-user-form').submit();
 
-   
     cy.get('.signupMessage').should('contain', 'Sign up sucessful.');
     cy.get('.firstName').should('equal', 'Lomothy');
   });
