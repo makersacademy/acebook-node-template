@@ -25,10 +25,11 @@ var UserController = {
       // route was formerly '/validate'
       // res.status(201).redirect('/validateSignUp');
 
-      res.render('user/validateSignUp', { signupMessage: "Sign up sucessful", welcomeMessage: "Welcome ",  firstName: req.body.firstName} )
+       res.redirect('/');
+       //res.render('user/validateSignUp', { signupMessage: "Sign up sucessful", welcomeMessage: "Welcome ",  firstName: req.body.firstName} )
     });
 
-    req.session.user = user._id
+    //req.session.user = user._id
 
   },
 
@@ -38,9 +39,8 @@ var UserController = {
 
       if(result.password == req.body.password) {
         req.session.user = result
-        console.log(result.email)
-        // console.log( req.session.user )
-        res.render('user/validateLogin', { loginMessage: "Login sucessful.", firstName: result.firstName } )
+        //res.render('user/validateLogin', { loginMessage: "Login sucessful.", firstName: result.firstName } )
+        res.redirect('/newsfeed');
       } else {
         res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
       }
