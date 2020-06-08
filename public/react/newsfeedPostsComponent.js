@@ -8,8 +8,10 @@ class NewsfeedPostsComponent extends React.Component {
       posts: [],
       session: {},
       isLoggedIn: false,
+      redirect: false
     };
   }
+
   componentDidMount() {
     this.fetchData('/newsfeed/posts');
     //this.fetchSession('/user/login');
@@ -38,6 +40,21 @@ class NewsfeedPostsComponent extends React.Component {
     });
   }
 
+  setRedirectLogout = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirectLogout = () => {
+    if (this.state.redirect) {
+      console.log("test log out")
+      this.session.data.clear()
+      return <Redirect to='https://localhost:3000' />
+    }
+    console.log("log out!")
+  }
+
   getPostsSortedByNewest() {
     return this.state.posts.sort(function(postA, postB) {
       var dateA = new Date(postA.datePosted);
@@ -45,7 +62,7 @@ class NewsfeedPostsComponent extends React.Component {
       return dateB - dateA;
     });
   }
-
+  
   render() {
     return (
       <div id="posts">
@@ -53,6 +70,10 @@ class NewsfeedPostsComponent extends React.Component {
             <h1>Welcome {this.state.session.user.firstName}</h1>
             : <h1></h1>
          }
+        
+        {this.renderRedirectLogout()}
+        <button onClick={this.setRedirectLogout}> Logout </button>
+
         <ul>
             {this.getPostsSortedByNewest().map((post) => {   //javascript
               return (							 //javascript

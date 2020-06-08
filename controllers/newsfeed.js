@@ -2,6 +2,7 @@ var Post = require('../models/post');
 
 var NewsfeedController = {
   Index: function(req, res) {
+    console.log(req.session)
     res.render('newsfeed/index');
   },
   Posts: function(req, res) {
