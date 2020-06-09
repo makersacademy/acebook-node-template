@@ -67,7 +67,7 @@ class PostListComponent extends React.Component {
   updateState = () => {
     this.fetchData('/newsfeed/posts')
   }
-  
+
   render() {
     return (
       <div id="posts">
@@ -75,20 +75,23 @@ class PostListComponent extends React.Component {
             <h1>Welcome {this.state.session.user.firstName}</h1>
             : <h1></h1>
          }
-        
         {this.renderRedirectLogout()}
-        <button onClick={this.setRedirectLogout}> Logout </button>
+
+        <div class="container">
         <FormComponent updatemethod={this.updateState} />
         <ul>
             {this.getPostsSortedByNewest().map((post) => {   //javascript
               return (							 //javascript
-                <li key={post.id}>
+                <li class="card" key={post.id}>
                   <Post data={post}/>
                 </li>
                 );
               }
             )}
         </ul>
+        </div>
+        <button class="button" onClick={this.setRedirectLogout}> Logout </button>
+
       </div>
     );
   }
