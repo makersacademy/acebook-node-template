@@ -23,14 +23,23 @@ var PostsController = {
   },
 
   Delete: function(req, res){
-    console.log("in delete function")
     var id = req.body.id;
     Post.deleteOne({"_id" : id}, function(err){
-      if(err)
-      { throw err; }
+      if(err) { throw err; }
 
       res.status(201).redirect('/api/posts')
     });
+  },
+
+  Update: function(req, res){
+    console.log("in delete function")
+    var id = req.body.id
+    var message = req.body.message
+    Post.updateOne({"_id" : id}, {$set: {"message": message} }, {upsert: true}, function(err){
+      if(err) { throw err; }
+
+      res.status(201).redirect('/api/posts')
+    })
   }
 }
 
