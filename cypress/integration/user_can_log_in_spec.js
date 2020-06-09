@@ -1,7 +1,17 @@
 describe("Login page", function(){
   
-  it("login success if user credentials are correct", function(){
+  it("returns to login page if user is not in database", function() {
     cy.task('emptyDatabase');
+    cy.visit('/');
+    cy.get('#login-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
+    cy.get('#login-form').find('[id="password"]').type('12345')
+    cy.get('#login-form').submit();
+
+    cy.get('.loginMessage').should('contain', 'Login unsuccessful: incorrect email or password.');
+  })
+
+
+  it("login success if user credentials are correct", function(){
     cy.task('insertUser', {firstName: 'Lomothy', lastName: 'Mockins', email: 'Lomothy.Tomins@example.com', password: '12345'});
     cy.visit('/');
     cy.get('#login-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
