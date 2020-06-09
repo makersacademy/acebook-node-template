@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "lint": "eslint .",
-    "start": "nodemon ./bin/www",
+    "start": "MONGODB_URL='mongodb+srv://acebook-code-dynasty:code-dynasty@acebook-code-dynasty-wqegs.mongodb.net/acebook-code-dynasty?retryWrites=true&w=majority' nodemon ./bin/www",
+    "start:local": "nodemon ./bin/www",
     "start:test": "PORT=3030 MONGODB_URL='mongodb://localhost/acebook_test' npm start",
     "test": "npm run lint && npm run test:unit && npm run test:integration && jest --coverage",
     "test:watch": "jest --watch",
