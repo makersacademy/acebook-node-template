@@ -27,11 +27,19 @@ module.exports = function(on) {
             userInformation.password = hash;
             var newUser = new User(userInformation);
             newUser.save(function(err) {
-              console.log('I got into the database as Lomothy Mockins!')
               resolve('done');
             }); 
           });
         });
+      });
+    },
+    emptyDatabase() {
+      return new Promise(function(resolve) {
+        mongoose.connect('mongodb://localhost/acebook_test', function(err) {
+          mongoose.connection.collections.users.drop(function() {
+            resolve('done');
+          });
+        });   
       });
     }
   });
