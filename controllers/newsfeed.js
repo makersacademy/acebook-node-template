@@ -12,6 +12,7 @@ var NewsfeedController = {
 
   Posts: function(req, res) {
     Post.find(function(err, result) {
+      
       res.send(result);
     });
   },
@@ -38,5 +39,11 @@ var NewsfeedController = {
     res.send(req.session)
   },
 };
+
+async function getUserNames(posts) {
+  return new Promise(function(resolve) {
+
+  });
+}
 
 module.exports = NewsfeedController;
