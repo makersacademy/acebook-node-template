@@ -16,7 +16,7 @@ class Post extends React.Component {
         <p>{data.body} - by {data.name} - Posted on {this.formatDate()}</p>
         { data.comments.map((comment) => {
           return (
-            <p>{comment.body} by {comment._id}</p>
+            <p>{comment.body}</p>
           )
         })
         }
