@@ -1,6 +1,6 @@
 describe("Login page", function(){
   it("login success if user credentials are correct", function(){
-    cy.task('insertLomothy');
+    cy.task('insertUser', {firstName: 'Lomothy', lastName: 'Mockins', email: 'Lomothy.Tomins@example.com', password: '12345'});
     cy.visit('/');
     cy.get('#login-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
     cy.get('#login-form').find('[id="password"]').type('12345')

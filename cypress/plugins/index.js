@@ -20,12 +20,12 @@ module.exports = function(on) {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
   on('task', {
-    insertLomothy() {
+    insertUser(userInformation) {
       return new Promise(function(resolve) {
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
-          var password = '12345';
-          bcrypt.hash(password, 10, function(err, hash) {
-            var newUser = new User({firstName: 'Lomothy', lastName: 'Mockins', email: 'Lomothy.Tomins@example.com', password: hash});
+          bcrypt.hash(userInformation.password, 10, function(err, hash) {
+            userInformation.password = hash;
+            var newUser = new User(userInformation);
             newUser.save(function(err) {
               console.log('I got into the database as Lomothy Mockins!')
               resolve('done');
