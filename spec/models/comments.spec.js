@@ -15,7 +15,7 @@ describe('Comments', function(){
   it('Can see comments as an array of PostScheme', function(){
     var post = new Post({comments: [{}]});
     expect(post.comments).toBeInstanceOf(Array)
-    
+
   });
   it('Can add a body to comments array', function(){
     var post = new Post({comments: [{body: 'some message'}]});
@@ -48,7 +48,7 @@ describe('Comments', function(){
         expect(posts[0].comments[0].body).toEqual('some comment');
         done();
       });
-      
+
     });
   });
 
@@ -62,12 +62,12 @@ describe('Comments', function(){
       Post.find(function(err, posts){
         expect(err).toBeNull();
 
-        console.log(posts[0].comments[1])
+        //console.log(posts[0].comments[1])
 
         expect(posts[0].comments[1].body).toEqual('a second comment');
         done();
       });
-      
+
     });
   });
 
@@ -83,7 +83,7 @@ describe('Comments', function(){
 
 
 // Post: {
-//   UserID = user_id 
+//   UserID = user_id
 //   comments: [
 //     {body: ajdbfvsg}
 //     {body: kjadkg}
