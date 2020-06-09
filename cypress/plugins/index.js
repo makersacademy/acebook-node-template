@@ -12,8 +12,10 @@
 // the project's config changing)
 
 var mongoose = require('mongoose');
-var User = require('../../models/user');
 var bcrypt = require('bcrypt');
+
+var User = require('../../models/user');
+var Post = require('../../models/post');
 
 
 module.exports = function(on) {
@@ -33,6 +35,15 @@ module.exports = function(on) {
         });
       });
     },
+    getUser(userInfo) {
+      return new Promise(function(resolve){
+        mongoose.connect('mongodb://localhost/acebook_test', function(err) {
+          User.findOne(userInfo, function(err, user) {
+            resolve(user)
+          }); 
+        });
+      });
+    },
     emptyDatabase() {
       return new Promise(function(resolve) {
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
@@ -41,6 +52,21 @@ module.exports = function(on) {
           });
         });   
       });
+    },
+    insertPost(postInformation) {
+      return new Promise(function(resolve){
+        mongoose.connect('mongodb://localhost/acebook_test', function(err) {
+          var newPost = new Post(postInformation);
+          newPost.save(function(err) {
+            resolve('done');
+          });
+        });
+      });
+    },
+    consoleLog(message) {
+      console.log("this is a console Log");
+      console.log(message);
+      return null
     }
   });
 }
