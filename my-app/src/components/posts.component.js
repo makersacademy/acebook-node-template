@@ -58,6 +58,10 @@ export default class Posts extends React.Component{
     .catch(() => {
       console.log('Error');
     });
+
+    this.resetUserInputs();
+    this.getBlogPost();
+    this.displayPosts(this.state.posts);
   }
 
   delete = (event) => {
@@ -73,23 +77,32 @@ export default class Posts extends React.Component{
     })
 
     .then(() => {
-      console.log();
       console.log('Data has been sent to be deleted');
     })
     .catch(() => {
       console.log('Error');
     });
+    this.getBlogPost();
+    this.displayPosts(this.state.posts);
   }
+
+  resetUserInputs = () => { 
+    this.setState({ 
+      post: ''
+    }); 
+  }; 
 
   displayPosts = (posts) => {
     if (!posts.length) return null;
-
     return posts.map((post, index) => (
-      <div key={index} className="blog-post_display">
-      <h4>{post.message}</h4>
-      <form data-id={post._id} onSubmit={ this.delete }>
-      <input type="submit" value="Delete"/>
-      </form>
+      <div key={index} className="post_display">
+        <h4>{post.message}</h4>
+        <form data-id={post._id} onSubmit={ this.delete }>
+          <input type="submit" value="Delete"/>
+        </form>
+        <form data-id={post._id} action="/posts/edit" method="get">
+          <input type="submit" value="Edit"/>
+        </form>
       </div>
     ));
   };
@@ -99,7 +112,9 @@ export default class Posts extends React.Component{
     console.log('State: ', this.state)
     return(
       <div>
+        <center>
         <h2> Welcome to Acebook </h2>
+        <h4> Create a post... </h4>
         <form onSubmit={this.submit}>
           <div className="form-input">
             <textarea
@@ -119,6 +134,7 @@ export default class Posts extends React.Component{
           <h2>Timeline</h2>
           {this.displayPosts(this.state.posts)}
         </div>
+        </center>
       </div>
     );
   }
