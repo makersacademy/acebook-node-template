@@ -1,7 +1,7 @@
 describe("Login page", function(){
-  
+
   it("returns to login page if user is not in database", function() {
-    cy.task('emptyDatabase');
+    cy.task('emptyUsers');
     cy.visit('/');
     cy.get('#login-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
     cy.get('#login-form').find('[id="password"]').type('12345')

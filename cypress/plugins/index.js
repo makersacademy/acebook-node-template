@@ -44,10 +44,19 @@ module.exports = function(on) {
         });
       });
     },
-    emptyDatabase() {
+    emptyUsers() {
       return new Promise(function(resolve) {
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
           mongoose.connection.collections.users.drop(function() {
+            resolve('done');
+          });
+        });   
+      });
+    },
+    emptyPosts() {
+      return new Promise(function(resolve) {
+        mongoose.connect('mongodb://localhost/acebook_test', function(err) {
+          mongoose.connection.collections.posts.drop(function() {
             resolve('done');
           });
         });   
