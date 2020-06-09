@@ -55,13 +55,15 @@ export default class Posts extends React.Component{
     .then(() => {
       console.log('Data has been sent to ther server');
     })
+    .finally(()=> {
+      this.resetUserInputs();
+      this.getBlogPost();
+      this.displayPosts(this.state.posts);
+    })
+
     .catch(() => {
       console.log('Error');
     });
-
-    this.resetUserInputs();
-    this.getBlogPost();
-    this.displayPosts(this.state.posts);
   }
 
   delete = (event) => {
@@ -79,11 +81,13 @@ export default class Posts extends React.Component{
     .then(() => {
       console.log('Data has been sent to be deleted');
     })
+    .finally(()=> {
+      this.getBlogPost();
+      this.displayPosts(this.state.posts);
+    })
     .catch(() => {
       console.log('Error');
     });
-    this.getBlogPost();
-    this.displayPosts(this.state.posts);
   }
 
   resetUserInputs = () => { 
