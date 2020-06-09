@@ -44,7 +44,10 @@ export default class userLogin extends Component {
 
     .then(response => {
       console.log('Data has sent to server');
-      console.log(response);
+      console.log(response.data);
+      //redirect > window.location localhost + variable
+
+            
     })
     .catch(err => {
       console.log(err)

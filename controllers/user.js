@@ -17,10 +17,13 @@ var UserController = {
       if (err) { throw err; }
       if (data) {
         console.log('user exist')
-        res.json(data);
-        
+        // console.log(data.email)
+        // res.json(data.firstName);
+        res.send('/user/login');
+        // window.location = "/user/login";
+        // return json + url or route for login page
         //res.render('user/new', { msg:'user exist' });
-        //res.status(201).redirect('/api/user/login')
+        // res.status(201).redirect('/user/login')
       }
       else {
         try {
