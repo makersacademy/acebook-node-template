@@ -1,8 +1,144 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
 a {
   color: #00B7FF;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.5;
+}
+body {
+  padding: 0 7%;
+  margin: 2rem;
+  color: dimgray;
+  background-color: gainsboro;
+}
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+h3 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 2.5rem;
+}
+span {
+  font-size: 1rem;
+}
+p {
+  text-align: left;
+  color: dimgray;
+  font-family: inherit;
+}
+form {
+  background-color: linen;
+  margin: 0 auto;
+  display: block;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+input {
+  padding: .6rem;
+  border-radius: 3px;
+  border: 1px solid #eee;
+  font-family: inherit;
+  display: block;
+  width: 100%;
+ border-radius: 3px;
+ border: 1px solid teal;
+ font-family: inherit;
+ font-size: inherit;
+ padding: 0.3rem 0.7rem;
+ margin-bottom: 1rem;
+ margin-top: 1rem;
+}
+input::-webkit-input-placeholder {
+  padding: 1rem;
+  margin: auto;
+}
+label {
+  display: block;
+  margin-top: 1.7rem;
+  margin-bottom: 0.7rem;
+}
+.container {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.card {
+  background-color: linen;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  padding: 3rem;
+  margin: 2rem 3rem;
+}
+.loginForm {
+  width: 35%;
+}
+.button {
+  color: linen;
+  background-color: salmon;
+  border: none;
+  border-radius: 3px;
+  padding: .6rem;
+  font-size: inherit;
+  font-family: inherit;
+}
+.button:hover {
+  background-color: crimson;
+  cursor: pointer;
+}
+.postContent {
+  font-size: 1.5rem;
+  border-bottom: 1px solid gainsboro;
+}
+.postInput {
+  height: 5rem;
+}
+#postButton {
+  display: inline-block;
+  width: 50%;
+  margin: 0 auto;
+}
+.posted {
+  font-size: 1.3rem;
+  font-style: italic;
+  font-size: 1rem;
+}
+.commentBox {
+  margin-left: 2rem;
+}
+.fa-comments {
+  color: dimgray;
+  margin: 5px 5px 5px 0;
+}
+.fa-comments:active,
+.fa-comments:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    width: 100%;
+  }
+  body {
+    padding: 0 3%;
+  }
+}
+@media only screen and (max-width: 600px){
+  body {
+    font-size: 80%;
+    padding: 0 1%;
+  }
 }
