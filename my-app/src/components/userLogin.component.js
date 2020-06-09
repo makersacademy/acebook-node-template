@@ -5,29 +5,16 @@ export default class userSignup extends Component {
   
   constructor(props) {
     super(props);
-    this.onChangeFirstName = this.onChangeFirstName.bind(this);
-    this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
-     firstName: '',
-     lastName: '',
      email: '',
      password: '',
     }
   }
 
-  onChangeFirstName(e) {
-    this.setState({
-      firstName: e.target.value
-    });
-  }
-  onChangeLastName(e) {
-    this.setState({
-      lastName: e.target.value
-    });
-  }
+
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
@@ -43,8 +30,6 @@ export default class userSignup extends Component {
   onSubmit(e) {
     e.preventDefault();
     const user = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
       email: this.state.email,
       password: this.state.password
     }
@@ -52,7 +37,7 @@ export default class userSignup extends Component {
     console.log(user);
 
     axios({
-      url: '/api/user/new',
+      url: '/api/user/login',
       method: 'POST',
       data: user
     })
@@ -64,8 +49,6 @@ export default class userSignup extends Component {
     .catch(err => {
       console.log(err)
     });
-   
-
   };
 
   render() {
@@ -79,7 +62,7 @@ export default class userSignup extends Component {
             <input type="text"
                    required
                    className="form-control"
-                   value={this.state.email}
+                   value={this.state.email} 
                    onChange={this.onChangeEmail}> 
             </input>
             <label>Password:</label>
@@ -90,7 +73,7 @@ export default class userSignup extends Component {
                    onChange={this.onChangePassword}> 
             </input>
           </div>
-          
+
           <div className="form-group">
             <input type="submit" value="Login" className="btn btn-primary" ></input>
           </div>
