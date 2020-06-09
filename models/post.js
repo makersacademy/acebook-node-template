@@ -7,6 +7,8 @@ var PostSchema = new mongoose.Schema({
   body: String,
   datePosted: Date,
   name: String,
+  comments: [{body: String, timePosted: Date, commentUserID: {type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'}}]
 });
 
 var Post = mongoose.model('Post', PostSchema);
