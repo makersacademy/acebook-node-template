@@ -13,7 +13,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/invite/b/3ToEsMtu/8056c42f75fbbf1d16f3c9d97250b2ea/acebook-code-dynasty
 
 ## Quickstart
 
