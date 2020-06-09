@@ -1,4 +1,5 @@
 describe("Login page", function(){
+  
   it("login success if user credentials are correct", function(){
     cy.task('emptyDatabase');
     cy.task('insertUser', {firstName: 'Lomothy', lastName: 'Mockins', email: 'Lomothy.Tomins@example.com', password: '12345'});
