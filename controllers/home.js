@@ -5,7 +5,6 @@ var HomeController = {
       res.render('newsfeed/index', {})
     } else {
       var message = req.session.errorMessage;
-      var message = req.session.errorMessage;
       req.session.errorMessage = undefined;
       res.render('user/login.hbs', {errorMessage: message});
     }
