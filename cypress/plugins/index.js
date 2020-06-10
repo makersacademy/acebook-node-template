@@ -38,6 +38,7 @@ module.exports = function(on) {
         });
       });
     },
+    
     getUser(userInfo) {
       return new Promise(function(resolve){
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
