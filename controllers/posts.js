@@ -45,13 +45,13 @@ var PostsController = {
   findOne: function(req, res){
     console.log("in the retrieve function")
     var id = req.body.id
-    Post.findOne({"_id" : id}, function(err){
+    Post.findOne({"_id" : id}, function(err, post){
       if(err) { throw err; }
 
-      res.status(201).redirect('/')
+      res.json(post);
     })
   },
-  
+
   UpdateForm: function(req, res) {
     res.render('posts/update', {});
   }

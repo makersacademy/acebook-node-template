@@ -1,13 +1,15 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default class EditPosts extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      post: ''
+      post: this.props.message
     }
+    console.log('in edit post component')
+    console.log(props.editPost)
   }
   render(){
     return(
