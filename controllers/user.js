@@ -13,13 +13,13 @@ var UserController = {
 
   Create: function(req, res){
     console.log("we are in CREATE")
-    User.findOne({email: req.body.email}, async function(err, data) {
+    User.findOne({email: req.body.email}, async function(err, user) {
       if (err) { throw err; }
-      if (data) {
+      if (user) {
         console.log('user exist')
         // console.log(data.email)
         // res.json(data.firstName);
-        res.send('/user/login');
+        res.send(user);
         // window.location = "/user/login";
         // return json + url or route for login page
         //res.render('user/new', { msg:'user exist' });
@@ -34,7 +34,8 @@ var UserController = {
             //res.render('posts/index', { msg:"Welcome " + user.firstName + " ! " })
             //res.status(201).redirect('/api/posts')
             console.log('user added')
-            res.status(201).redirect('/api/user/new')
+            // res.status(201).redirect('/api/user/new')
+            res.send(false)
             
           });
         } catch {

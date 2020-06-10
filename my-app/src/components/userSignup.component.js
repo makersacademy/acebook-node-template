@@ -60,16 +60,19 @@ export default class userSignup extends Component {
     .then(response => {
       console.log('Data has sent to server');
       console.log(response);
-      console.log("redirecting...")
-      alert("User already exists, please log in");
-      window.location.replace(response.data);
-    })
 
+      if(response.data){
+        console.log("redirecting...")
+        alert("User already exists, please log in");
+      }else{
+        alert("User has been created, please log in");
+      }
+        window.location.replace("/user/login");
+    })
     .catch(err => {
       console.log(err)
     });
    
-
   };
 
   render() {
