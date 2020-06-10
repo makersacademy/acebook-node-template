@@ -9,7 +9,9 @@ export default class Posts extends React.Component{
     super();
     this.state = {
       post: '',
-      posts: []
+      posts: [],
+      updateMessage: '',
+      updateID:''
     };
   }
 
@@ -46,7 +48,8 @@ export default class Posts extends React.Component{
     event.preventDefault();
 
     const post = {
-      message: this.state.post
+      message: this.state.post,
+      date: new Date(Date.now())
     };
 
     axios({
@@ -67,6 +70,57 @@ export default class Posts extends React.Component{
     .catch(() => {
       console.log('Error');
     });
+  }
+
+  update = (event) => {
+    event.preventDefault();
+    const post_id = {
+      id: event.target.dataset.id
+    }
+
+    axios({
+      url: '/api/posts/retrieve',
+      method: 'POST',
+      data: post_id
+    })
+
+    .then((response) => {
+      console.log(response.data)
+      this.setState({updateMessage: response.data.message, updateID: response.data._id})
+      console.log(this.state.updateMessage)
+      console.log(this.state.updateID)
+    })
+    .catch(() => {
+      console.log('Error')
+    })
+  }
+
+  save = (event) => {
+    event.preventDefault();
+
+    const post = {
+      id: this.state.updateID,
+      message: this.state.updateMessage,
+      date: new Date(Date.now())
+    }
+
+    axios({
+      url: '/api/posts/update',
+      method: 'POST',
+      data: post
+    })
+    .then((response) => {
+      console.log(response.data)
+    })
+    .finally(()=> {
+      this.resetUserInputs();
+      this.getBlogPost();
+      this.displayPosts(this.state.posts);
+    })
+    .catch(() => {
+      console.log('Error')
+    })
+
   }
 
   delete = (event) => {
@@ -95,7 +149,9 @@ export default class Posts extends React.Component{
 
   resetUserInputs = () => {
     this.setState({
-      post: ''
+      post: '',
+      updateMessage: '',
+      updateID: ''
     }); 
   }; 
 
@@ -105,10 +161,12 @@ export default class Posts extends React.Component{
     return posts.map((post, index) => (
       <div key={index} className="post_display">
         <h4>{post.message}</h4>
+          {console.log(typeof post.date)}
+        <h6> Posted at {post.date} </h6>
         <form data-id={post._id} onSubmit={ this.delete }>
           <input type="submit" value="Delete"/>
         </form>
-        <form data-id={post._id} action="/posts/edit" method="get">
+        <form data-id={post._id} onSubmit={ this.update}>
           <input type="submit" value="Edit"/>
         </form>
       </div>
@@ -142,6 +200,24 @@ export default class Posts extends React.Component{
         <div className="newsfeed">
           <h2>Timeline</h2>
           {this.displayPosts(this.state.posts)}
+        </div>
+
+        <div>
+        <h4> Edit your post below... </h4>
+        <form onSubmit={this.save}>
+          <div className="form-input">
+            <textarea
+            name="updateMessage"
+            placeholder="Edit your post"
+            cols="30"
+            rows="10"
+            value={this.state.updateMessage}
+            onChange={this.handleChange}>
+            </textarea>
+          </div>
+
+          <button>Submit</button>
+        </form>
         </div>
         </center>
       </div>
