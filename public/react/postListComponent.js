@@ -83,7 +83,7 @@ class PostListComponent extends React.Component {
             {this.getPostsSortedByNewest().map((post) => {   //javascript
               return (							 //javascript
                 <li class="card" key={post.id}>
-                  <Post data={post}/>
+                  <Post data={post} updatemethod={this.updateState}/>
                 </li>
                 );
               }

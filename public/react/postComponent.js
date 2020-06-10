@@ -32,20 +32,17 @@ class Post extends React.Component {
     event.preventDefault();
 
     let newComment = {
-      body: this.state.body
+      body: this.state.body,
+      id: this.state.postId
      }
-
-    let postId = {
-      postId: this.state.postId
-    }
 
     fetch('/newsfeed/comments/new', {
       method: 'post',
       headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify(newComment, postId)
+      body: JSON.stringify(newComment)
     })
     .then((response) => {
-      console.log(newComment.body, postId.postId)
+      this.props.updatemethod();
       //update method to fetch updated posts
     })
   }
