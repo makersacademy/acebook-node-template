@@ -18,7 +18,8 @@ var UserController = {
       // findOne will return "null" if emal is not found in the database
       // so it will skip this IF statement and move on to next code block
       if (result != null && result.email != null && req.body.email == result.email) {
-        res.render('user/validateSignUp', { signupMessage: "This email is already registered."});
+        req.session.errorMessage = "This email is already registered."
+        res.redirect('/');
       }
     })
 
@@ -41,7 +42,7 @@ var UserController = {
       bcrypt.compare(req.body.password, result.password, function(err, match) {
         if (match) {
           req.session.user = result;
-          res.redirect('/newsfeed');
+          res.redirect('/');
         } else {
           if (err) { console.log(err) }
           res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
