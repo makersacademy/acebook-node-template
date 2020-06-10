@@ -20,17 +20,19 @@ var UserController = {
       if (result != null && result.email != null && req.body.email == result.email) {
         req.session.errorMessage = "This email is already registered."
         res.redirect('/');
-      }
-    })
 
-    bcrypt.hash(password, 10, function(err, hash) {
-      user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
-      user.save(function(err) {
-        if (err) { console.log(err) }
-         res.redirect('/');
-      });
-   }
- )},
+      } else {
+        bcrypt.hash(password, 10, function(err, hash) {
+          user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
+          user.save(function(err) {
+            if (err) { console.log(err) }
+            res.redirect('/');
+          });
+        });
+     }
+    })
+    console.log("check")
+  },
 
   Validate: function(req, res) {
     User.findOne( {email: req.body.email}, function(err, result) {
@@ -45,7 +47,9 @@ var UserController = {
           res.redirect('/');
         } else {
           if (err) { console.log(err) }
-          res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
+          req.session.errorMessage = "Login unsuccessful: incorrect email or password."
+          res.redirect('/');
+          // res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
         }
       })
 
