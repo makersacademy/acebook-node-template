@@ -7,7 +7,7 @@ var PostSchema = new mongoose.Schema({
   body: String,
   datePosted: Date,
   name: String,
-  comments: [{body: String, timePosted: Date,commentUserName: String, commentUserID: {type: mongoose.Schema.Types.ObjectId,
+  comments: [{body: String, timePosted: Date, commentUserName: String, commentUserID: {type: mongoose.Schema.Types.ObjectId,
     ref: 'User'}}]
 });
 

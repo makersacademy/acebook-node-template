@@ -46,31 +46,12 @@ describe('Comments', function(){
     post.save(function(err){
       expect(err).toBeNull();
 
-      Post.find(function(err, posts){
+      Post.find( { body: "Comments Test" }, function(err, posts){
         expect(err).toBeNull();
 
         console.log(posts[0].comments[0])
 
         expect(posts[0].comments[0].body).toEqual('some comment');
-        done();
-      });
-
-    });
-  });
-
-
-  it('Can save a comment', function(done){
-    var post = new Post({ body:"Comments Test", comments: [ {body: 'some comment'}, {body: 'a second comment'}]});
-
-    post.save(function(err){
-      expect(err).toBeNull();
-
-      Post.find(function(err, posts){
-        expect(err).toBeNull();
-
-        //console.log(posts[0].comments[1])
-
-        expect(posts[0].comments[1].body).toEqual('a second comment');
         done();
       });
 

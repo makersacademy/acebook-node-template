@@ -29,7 +29,7 @@ describe('Post model', function() {
     post.save(function(err) {
       expect(err).toBeNull();
 
-      Post.find(function(err, posts) {
+      Post.find( { body: 'some message' }, function(err, posts) {
         expect(err).toBeNull();
 
         expect(posts[0]).toMatchObject({ body: 'some message' });
