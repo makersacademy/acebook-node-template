@@ -35,7 +35,9 @@ var PostsController = {
     console.log("in delete function")
     var id = req.body.id
     var message = req.body.message
-    Post.updateOne({"_id" : id}, {$set: {"message": message} }, {upsert: true}, function(err){
+    var date = req.body.date
+
+    Post.updateOne({"_id" : id}, {$set: {"message": message, "date": date}}, {upsert: true}, function(err){
       if(err) { throw err; }
 
       res.status(201).redirect('/api/posts')

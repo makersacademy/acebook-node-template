@@ -97,7 +97,8 @@ export default class Posts extends React.Component{
 
     const post = {
       id: this.state.updateID,
-      message: this.state.updateMessage
+      message: this.state.updateMessage,
+      date: new Date(Date.now())
     }
 
     axios({
