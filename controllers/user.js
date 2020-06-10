@@ -40,9 +40,10 @@ var UserController = {
   Validate: function(req, res) {
     User.findOne( {email: req.body.email}, function(err, result) {
       if (result == null) { 
-        res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password." 
-      });
-      return null  
+        //res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."});
+        req.session.errorMessage = "Login unsuccessful: incorrect email or password."
+        res.redirect('/');
+        return null  
     }
       bcrypt.compare(req.body.password, result.password, function(err, match) {
         if (match) {
