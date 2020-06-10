@@ -13,6 +13,7 @@ function App() {
     <Router>
       <Route path="/" exact component={userSignup}/>
       <Route path="/posts" exact component={Posts}/>
+      <Route path="/posts/:id" exact component={Posts}/>
       <Route path="/posts/edit" exact component={EditPosts}/> 
       <Route path="/user/new" exact component={userSignup}/>
       <Route path="/user/login" exact component={userLogin}/>

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+// import e from 'express';
 
 // Components are like functions that return HTML elements.
 export default class Posts extends React.Component{
@@ -11,8 +12,16 @@ export default class Posts extends React.Component{
       post: '',
       posts: [],
       updateMessage: '',
-      updateID:''
+      updateID:'',
     };
+
+  }
+
+  getParams() {
+    const { match: { params } } = this.props;
+    console.log("in the get params method")
+    console.log(params)
+    return params
   }
 
   componentDidMount = () => {
@@ -24,7 +33,7 @@ export default class Posts extends React.Component{
     .then((response) => {
       const data = response.data
       this.setState({posts: data})
-      console.log('Data has been recieved');
+      console.log('Data has been received');
     })
     .catch(() => {
       console.log('Error')
@@ -43,10 +52,12 @@ export default class Posts extends React.Component{
 
   submit = (event) => {
     event.preventDefault();
+    const { match: { params } } = this.props;
 
     const post = {
       message: this.state.post,
-      date: new Date(Date.now())
+      date: new Date(Date.now()),
+      userId: params.id
     };
 
     axios({
@@ -56,7 +67,7 @@ export default class Posts extends React.Component{
     })
 
     .then(() => {
-      console.log('Data has been sent to ther server');
+      console.log('Data has been sent to there server');
     })
     .finally(()=> {
       this.resetUserInputs();
@@ -82,10 +93,7 @@ export default class Posts extends React.Component{
     })
 
     .then((response) => {
-      console.log(response.data)
       this.setState({updateMessage: response.data.message, updateID: response.data._id})
-      console.log(this.state.updateMessage)
-      console.log(this.state.updateID)
     })
     .catch(() => {
       console.log('Error')
@@ -144,29 +152,40 @@ export default class Posts extends React.Component{
     });
   }
 
-  resetUserInputs = () => { 
-    this.setState({ 
-      post: '',
-      updateMessage: '',
-      updateID: ''
-    }); 
-  }; 
+  resetUserInputs = () => {
+    this.setState({
+       post: '',
+       updateMessage: '',
+       updateID: ''
+     });
+   };
 
   displayPosts = (posts) => {
+    const { match: { params } } = this.props;
+
     if (!posts.length) return null;
     return posts.map((post, index) => (
       <div key={index} className="post_display">
         <h4>{post.message}</h4>
-          {console.log(typeof post.date)}
         <h6> Posted at {post.date} </h6>
-        <form data-id={post._id} onSubmit={ this.delete }>
-          <input type="submit" value="Delete"/>
-        </form>
-        <form data-id={post._id} onSubmit={ this.update}>
-          <input type="submit" value="Edit"/>
-        </form>
+        {(() => {
+          if (post.userId !== params.id) {
+            return null
+          } else {
+            return(
+            <div>
+              <form data-id={post._id} onSubmit={ this.delete }>
+                <input type="submit" value="Delete"/>
+              </form>
+              <form data-id={post._id} onSubmit={ this.update}>
+                <input type="submit" value="Edit"/>
+              </form>
+            </div>)
+          }
+        })()}
       </div>
     ));
+    
   };
 
 // purpose of render is to display the specified HTML code inside the specified HTML element
@@ -216,6 +235,8 @@ export default class Posts extends React.Component{
         </div>
         </center>
       </div>
+
+      
     );
   }
 }
