@@ -10,8 +10,17 @@ class Post extends React.Component {
   }
   render() {
     let data = this.props.data
+    console.log(data)
     return(
+      <div>
         <p>{data.body} - by {data.name} - Posted on {this.formatDate()}</p>
+        { data.comments.map((comment) => {
+          return (
+            <p>{comment.body}</p>
+          )
+        })
+        }
+        </div>
     );
   }
 }
