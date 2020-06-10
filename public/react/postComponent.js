@@ -18,8 +18,7 @@ class Post extends React.Component {
         { data.comments.map((comment) => {
           return (
             <div class="commentBox">
-              <p>{comment._id} said:</p>
-              <p>{comment.body}</p>
+              <p>{comment.body} - by {comment.commentUserName}</p>
             </div>
           )
         })
