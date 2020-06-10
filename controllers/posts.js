@@ -35,11 +35,27 @@ var PostsController = {
     console.log("in delete function")
     var id = req.body.id
     var message = req.body.message
-    Post.updateOne({"_id" : id}, {$set: {"message": message} }, {upsert: true}, function(err){
+    var date = req.body.date
+
+    Post.updateOne({"_id" : id}, {$set: {"message": message, "date": date}}, {upsert: true}, function(err){
       if(err) { throw err; }
 
       res.status(201).redirect('/api/posts')
     })
+  },
+
+  findOne: function(req, res){
+    console.log("in the retrieve function")
+    var id = req.body.id
+    Post.findOne({"_id" : id}, function(err, post){
+      if(err) { throw err; }
+
+      res.json(post);
+    })
+  },
+
+  UpdateForm: function(req, res) {
+    res.render('posts/update', {});
   }
 }
 
