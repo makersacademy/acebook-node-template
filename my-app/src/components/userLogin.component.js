@@ -45,6 +45,7 @@ export default class userLogin extends Component {
     .then(response => {
       console.log('Data has sent to server');
       console.log(response.data);
+      console.log("hello")
 
       if(response.data.email === this.state.email){
         alert("OKEY")
@@ -88,6 +89,8 @@ export default class userLogin extends Component {
             <input type="submit" value="Login" className="btn btn-primary" ></input>
           </div>
         </form>
+        <a href="/user/new" >Signup</a> 
+        <a href="/posts" >Go to posts without login</a> 
       </div>
     )
   }
