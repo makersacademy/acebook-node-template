@@ -73,8 +73,6 @@ class PostListComponent extends React.Component {
             <h1 id="login-message">Welcome {this.state.session.user.firstName}</h1>
             : <h1></h1>
          }
-        {this.renderRedirectLogout()}
-        <button onClick={this.setRedirectLogout}> Logout </button>
         <div class="container">
         <FormComponent updatemethod={this.updateState} />
         <ul>
@@ -88,7 +86,9 @@ class PostListComponent extends React.Component {
             )}
         </ul>
         </div>
+        {this.renderRedirectLogout()}
         <button class="button" onClick={this.setRedirectLogout}> Logout </button>
+        <a id="log-out" href="signup/log-out">Logout</a>
 
       </div>
     );
