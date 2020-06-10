@@ -47,6 +47,21 @@ module.exports = function(on) {
         });
       });
     },
+
+
+
+    getPost(postInfo) {
+      return new Promise(function(resolve){
+        mongoose.connect('mongodb://localhost/acebook_test', function(err) {
+          Post.findOne(postInfo, function(err, post) {
+            resolve(post)
+          });
+        });
+      });
+    },
+
+
+
     emptyUsers() {
       return new Promise(function(resolve) {
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
