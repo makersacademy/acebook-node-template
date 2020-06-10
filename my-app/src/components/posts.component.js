@@ -15,11 +15,8 @@ export default class Posts extends React.Component{
 
   componentDidMount = () => {
     const { match: { params } } = this.props;
-    console.log(params);
+    // console.log(params);
     console.log("we are here")
-
-
-    
     this.getBlogPost();
   }
 
@@ -28,7 +25,7 @@ export default class Posts extends React.Component{
     .then((response) => {
       const data = response.data
       this.setState({posts: data})
-      console.log('Data has been recieved');
+      console.log('Data has been received');
     })
     .catch(() => {
       console.log('Error')
@@ -59,7 +56,7 @@ export default class Posts extends React.Component{
     })
 
     .then(() => {
-      console.log('Data has been sent to ther server');
+      console.log('Data has been sent to there server');
     })
     .finally(()=> {
       this.resetUserInputs();
@@ -96,11 +93,12 @@ export default class Posts extends React.Component{
     });
   }
 
-  resetUserInputs = () => { 
-    this.setState({ 
+  resetUserInputs = () => {
+    this.setState({
       post: ''
     }); 
   }; 
+
 
   displayPosts = (posts) => {
     if (!posts.length) return null;
