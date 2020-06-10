@@ -28,6 +28,6 @@ describe("Login page", function(){
     cy.get('#login-form').find('[id="password"]').type('wrong')
     cy.get('#login-form').submit();
 
-    cy.get('.loginMessage').should('contain', 'Login unsuccessful: incorrect email or password.');
+    cy.get('#login-message').should('contain', 'Login unsuccessful: incorrect email or password.');
   });
 })

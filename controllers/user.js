@@ -1,7 +1,6 @@
 'use strict'
 const bcrypt = require('bcrypt');
 var User = require('../models/user');
-
 var UserController = {
 
   Index:function(req, res){
@@ -10,28 +9,32 @@ var UserController = {
 
   Create: function(req, res) {
 
+    // var sendErrorFlashMessage = (request, route, message) => {
+    //   console.log(request.body);
+    //   request.redirect(route);
+    // };
+
     var password = req.body.password;
     var email = req.body.email;
     var user;
 
     User.findOne( {email: req.body.email}, function(err, result) {
-      // findOne will return "null" if emal is not found in the database
-      // so it will skip this IF statement and move on to next code block
-      if (result != null && result.email != null && req.body.email == result.email) {
+      //console.log(req);
+      // if(result) { sendErrorFlashMessage(req, '/', 'This email is already registered'); return; }
+      if (result) {
         req.session.errorMessage = "This email is already registered."
         res.redirect('/');
+        return; // early return to avoid bcrypt running
+      }
 
-      } else {
-        bcrypt.hash(password, 10, function(err, hash) {
-          user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
-          user.save(function(err) {
-            if (err) { console.log(err) }
-            res.redirect('/');
-          });
+      bcrypt.hash(password, 10, function(err, hash) {
+        user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
+        user.save(function(err) {
+          if (err) { console.log(err) }
+          res.redirect('/');
         });
-     }
-    })
-    console.log("check")
+      });
+    });
   },
 
   Validate: function(req, res) {
@@ -54,8 +57,7 @@ var UserController = {
       })
 
     })
-  },
-   
+  },  
 }
 
 module.exports = UserController;
