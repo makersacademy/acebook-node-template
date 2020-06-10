@@ -9,6 +9,7 @@ class NewsfeedComponent extends React.Component {
     return(
       <div id="full_newsfeed">
         <PostListComponent />
+        <LogoutComponent />
       </div>
     );
   }

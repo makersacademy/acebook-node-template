@@ -54,7 +54,11 @@ var UserController = {
       })
 
     })
-  },  
+  }, 
+  Logout: function(request, response) {
+    request.session.user = null;
+    sendErrorFlashMessage(response, request, '/', 'You logged out.');
+  } 
 }
 
 var sendErrorFlashMessage = (response, request, route, message) => {
