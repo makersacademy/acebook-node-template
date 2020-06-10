@@ -70,7 +70,7 @@ class PostListComponent extends React.Component {
     return (
       <div id="posts">
         { this.state.isLoggedIn ?
-            <h1>Welcome {this.state.session.user.firstName}</h1>
+            <h1 id="login-message">Welcome {this.state.session.user.firstName}</h1>
             : <h1></h1>
          }
         {this.renderRedirectLogout()}
