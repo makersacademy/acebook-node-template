@@ -10,6 +10,11 @@ describe('Newsfeed', function() {
       var fullName = user.firstName + ' ' + user.lastName;
       cy.task('insertPost', {body: 'I met a lovely dog today', datePosted:'2020-06-03', name: fullName, userID: user._id.toString(), 
       comments: [{body: "Amazing!", timePosted: "2020-06-04", commentUserName: fullName, commentUserID: user._id.toString()}]} ); 
+      // task to get post and then comment id --> then do your tests in here
+      cy.task('getPost')
+      .then(function(post) {
+        post.comments[0]._id
+      })
     });
 
     cy.get('#comment-form-')
