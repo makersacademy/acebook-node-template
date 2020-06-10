@@ -45,9 +45,16 @@ export default class userLogin extends Component {
     .then(response => {
       console.log('Data has sent to server');
       console.log(response.data);
-      //redirect > window.location localhost + variable
 
-            
+      if(response.data.email === this.state.email){
+        alert("OKEY")
+        window.location.replace("/posts")
+      }else if(response.data ==="wrong password") {
+        alert(response.data)
+      }else{
+        alert("no user with that email, please signup or try again")
+      }
+          
     })
     .catch(err => {
       console.log(err)
