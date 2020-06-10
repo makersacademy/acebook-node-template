@@ -43,7 +43,8 @@ export default class Posts extends React.Component{
     event.preventDefault();
 
     const post = {
-      message: this.state.post
+      message: this.state.post,
+      date: new Date(Date.now())
     };
 
     axios({
@@ -64,6 +65,12 @@ export default class Posts extends React.Component{
     .catch(() => {
       console.log('Error');
     });
+  }
+
+  update = (event) => {
+    event.preventDefault();
+
+    
   }
 
   delete = (event) => {
@@ -101,10 +108,12 @@ export default class Posts extends React.Component{
     return posts.map((post, index) => (
       <div key={index} className="post_display">
         <h4>{post.message}</h4>
+          {console.log(typeof post.date)}
+        <h6> Posted at {post.date} </h6>
         <form data-id={post._id} onSubmit={ this.delete }>
           <input type="submit" value="Delete"/>
         </form>
-        <form data-id={post._id} action="/posts/edit" method="get">
+        <form data-id={post._id} onSubmit={ this.update }>
           <input type="submit" value="Edit"/>
         </form>
       </div>

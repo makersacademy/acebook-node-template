@@ -40,6 +40,20 @@ var PostsController = {
 
       res.status(201).redirect('/api/posts')
     })
+  },
+
+  findOne: function(req, res){
+    console.log("in the retrieve function")
+    var id = req.body.id
+    Post.findOne({"_id" : id}, function(err){
+      if(err) { throw err; }
+
+      res.status(201).redirect('/')
+    })
+  },
+  
+  UpdateForm: function(req, res) {
+    res.render('posts/update', {});
   }
 }
 
