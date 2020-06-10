@@ -11,7 +11,16 @@ class Post extends React.Component {
   }
 
   myChangeHandler = (event) => {
-    // saving body & post ID into the state
+
+    this.setState({
+      body: event.target.value,
+      postId: this.props.data._id
+    })
+  }
+
+  mySubmitHandler = (event) => {
+
+    // saving body & post ID into the state   vvv
     // fetch to post data to server - newsfeed/comments/new controller
     // new controller postscontroller.comments
     //   we are sending res.body & res.id
@@ -20,21 +29,26 @@ class Post extends React.Component {
     // var comment = new Post({comment: {body: res.body, userId: req.session.user.id, userName: }})
     // update post with comment data
 
-    this.setState({
-      body: event.target.value,
-
-    })
-
-  }
-
-
-  mySubmitHandler = (event) => {
     event.preventDefault();
-    // console.log("hello")
-    // console.log(this.state.body)
 
+    let newComment = {
+      body: this.state.body
+     }
+
+    let postId = {
+      postId: this.state.postId
+    }
+
+    fetch('/newsfeed/comments/new', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(newComment, postId)
+    })
+    .then((response) => {
+      console.log(newComment.body, postId.postId)
+      //update method to fetch updated posts
+    })
   }
-
 
   render() {
     let data = this.props.data
