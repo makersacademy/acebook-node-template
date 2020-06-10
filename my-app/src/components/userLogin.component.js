@@ -44,7 +44,18 @@ export default class userLogin extends Component {
 
     .then(response => {
       console.log('Data has sent to server');
-      console.log(response);
+      console.log(response.data);
+      console.log("hello")
+
+      if(response.data.email === this.state.email){
+        alert("OKEY")
+        window.location.replace("/posts")
+      }else if(response.data ==="wrong password") {
+        alert(response.data)
+      }else{
+        alert("no user with that email, please signup or try again")
+      }
+          
     })
     .catch(err => {
       console.log(err)
@@ -78,6 +89,8 @@ export default class userLogin extends Component {
             <input type="submit" value="Login" className="btn btn-primary" ></input>
           </div>
         </form>
+        <a href="/user/new" >Signup</a> 
+        <a href="/posts" >Go to posts without login</a> 
       </div>
     )
   }

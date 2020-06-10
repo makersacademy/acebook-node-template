@@ -13,14 +13,17 @@ var UserController = {
 
   Create: function(req, res){
     console.log("we are in CREATE")
-    User.findOne({email: req.body.email}, async function(err, data) {
+    User.findOne({email: req.body.email}, async function(err, user) {
       if (err) { throw err; }
-      if (data) {
+      if (user) {
         console.log('user exist')
-        res.json(data);
-        
+        // console.log(data.email)
+        // res.json(data.firstName);
+        res.send(user);
+        // window.location = "/user/login";
+        // return json + url or route for login page
         //res.render('user/new', { msg:'user exist' });
-        //res.status(201).redirect('/api/user/login')
+        // res.status(201).redirect('/user/login')
       }
       else {
         try {
@@ -31,7 +34,8 @@ var UserController = {
             //res.render('posts/index', { msg:"Welcome " + user.firstName + " ! " })
             //res.status(201).redirect('/api/posts')
             console.log('user added')
-            res.status(201).redirect('/api/user/new')
+            // res.status(201).redirect('/api/user/new')
+            res.send(false)
             
           });
         } catch {
@@ -48,19 +52,23 @@ var UserController = {
 
   Authenticate: function(req, res){
     console.log("WE ARE İN AUTHENTİCATE")
-    User.findOne({email: req.body.email}, async function(err, data) { // mongo function
+    User.findOne({email: req.body.email}, async function(err, user) { // mongo function
       if (err) {throw err;}
-      if (data) {
+      if (user) {
         //TODO: REFACTOR LATER
         //USER PASSWORD: 1234   == //HASHEDPASSWORD: AŞKSDFŞL1234ASFJKLAFLKFA
-        if (await bcrypt.compare(req.body.password, data.password)) {
+        if (await bcrypt.compare(req.body.password, user.password)) {
           console.log("USER LOGIN")
+          console.log(user)
+          res.json(user)
           //res.render('posts/index', { msg:"Welcome " + data.firstName + " ! " })
-          res.render('posts/index', { msg:"Welcome " + data.firstName + " ! " })
-         // res.status(201).redirect('/user/new')
+          // res.render('posts/index', { msg:"Welcome " + data.firstName + " ! " })
+          // res.status(201).redirect('/user/new')
         } else {
           console.log("WRONG PASSWORD")
-          res.render('user/login', { msg:'user password wrong' });
+          // res.render('user/login', { msg:'user password wrong' });
+          res.json("wrong password")
+
         }
       }
       else{

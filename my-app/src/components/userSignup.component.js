@@ -60,12 +60,19 @@ export default class userSignup extends Component {
     .then(response => {
       console.log('Data has sent to server');
       console.log(response);
+
+      if(response.data){
+        console.log("redirecting...")
+        alert("User already exists, please log in");
+      }else{
+        alert("User has been created, please log in");
+      }
+        window.location.replace("/user/login");
     })
     .catch(err => {
       console.log(err)
     });
    
-
   };
 
   render() {
@@ -104,9 +111,10 @@ export default class userSignup extends Component {
             </input>
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" ></input>
+            <input type="submit" value="Create User" ></input>
           </div>
         </form>
+        <a href="/user/login" >login</a> 
       </div>
     )
   }

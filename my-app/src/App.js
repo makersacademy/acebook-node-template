@@ -9,6 +9,7 @@ function App() {
 
   return (
     <Router>
+      <Route path="/" exact component={userSignup}/>
       <Route path="/posts" exact component={Posts}/>
       <Route path="/user/new" exact component={userSignup}/>
       <Route path="/user/login" exact component={userLogin}/>
