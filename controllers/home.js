@@ -6,7 +6,7 @@ var HomeController = {
     } else {
       var message = req.session.errorMessage;
       req.session.errorMessage = undefined;
-      res.render('user/login.hbs', {errorMessage: message});
+      res.render('user/login.hbs', {errorMessage: message})
     }
   },
 };
