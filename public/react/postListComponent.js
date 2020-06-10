@@ -8,13 +8,11 @@ class PostListComponent extends React.Component {
       posts: [],
       session: {},
       isLoggedIn: false,
-      redirect: false
     };
   }
 
   componentDidMount() {
     this.fetchData('/newsfeed/posts');
-    //this.fetchSession('/user/login');
     this.fetchSession('/newsfeed/session');
   }
 
@@ -40,19 +38,6 @@ class PostListComponent extends React.Component {
     });
   }
 
-  setRedirectLogout = () => {
-    this.setState({
-      redirect: true
-    })
-  }
-
-  renderRedirectLogout = () => {
-    if (this.state.redirect) {
-      // console.log(this.session.data)
-      return <Redirect to='/' />
-    }
-  }
-
   getPostsSortedByNewest() {
     return this.state.posts.sort(function(postA, postB) {
       var dateA = new Date(postA.datePosted);
@@ -73,8 +58,6 @@ class PostListComponent extends React.Component {
             <h1 id="login-message">Welcome {this.state.session.user.firstName}</h1>
             : <h1></h1>
          }
-        {this.renderRedirectLogout()}
-        <button onClick={this.setRedirectLogout}> Logout </button>
         <div class="container">
         <FormComponent updatemethod={this.updateState} />
         <ul>
@@ -88,8 +71,9 @@ class PostListComponent extends React.Component {
             )}
         </ul>
         </div>
-        <button class="button" onClick={this.setRedirectLogout}> Logout </button>
-
+        {/* <form action="signup/log-out">
+          <input id="log-out" type="submit" class="button" value="Log Out"></input>
+        </form> */}
       </div>
     );
   }

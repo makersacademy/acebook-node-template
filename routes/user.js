@@ -15,6 +15,9 @@ router.get('/validateSignup', UserController.Create);
 router.post('/login', UserController.Validate);
 router.get('/validateLogin', UserController.Validate);
 
+//log out
+router.get('/log-out', UserController.Logout);
+
 // router.get('/login', UserController.Validate);
 
 
