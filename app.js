@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 
+// import routes
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var newsfeedRouter = require('./routes/newsfeed');
@@ -16,6 +17,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// middleware 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -1,9 +1,4 @@
 describe("Sign up page", function(){
-  it('has a title', function() {
-    cy.visit('/signup');
-    cy.get('.title').should('contain', 'Signup to Acebook');
-  });
-
   it('user can sign up', function() {
     cy.visit('/signup');
     cy.get('#new-user-form').find('[id="firstName"]').type('Lomothy')
