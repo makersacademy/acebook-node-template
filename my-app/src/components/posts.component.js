@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import axios from 'axios';
 
 // Components are like functions that return HTML elements.
@@ -11,7 +12,7 @@ export default class Posts extends React.Component{
       post: '',
       posts: [],
       updateMessage: '',
-      updateID:''
+      isInEditMode: false
     };
   }
 
@@ -71,6 +72,7 @@ export default class Posts extends React.Component{
 
   update = (event) => {
     event.preventDefault();
+    this.setState({isInEditMode: true})
     const post_id = {
       id: event.target.dataset.id
     }
@@ -94,7 +96,7 @@ export default class Posts extends React.Component{
 
   save = (event) => {
     event.preventDefault();
-
+    this.setState({isInEditMode: false})
     const post = {
       id: this.state.updateID,
       message: this.state.updateMessage,
@@ -172,6 +174,12 @@ export default class Posts extends React.Component{
 // purpose of render is to display the specified HTML code inside the specified HTML element
   render(){
     console.log('State: ', this.state)
+    if(this.state.isInEditMode === false) {
+      $("#edit-posts").hide()
+    }else{
+      $("#edit-posts").show()
+    }
+
     return(
       <div>
         <center>
@@ -196,8 +204,7 @@ export default class Posts extends React.Component{
           <h2>Timeline</h2>
           {this.displayPosts(this.state.posts)}
         </div>
-
-        <div>
+        <div id="edit-posts">
         <h4> Edit your post below... </h4>
         <form onSubmit={this.save}>
           <div className="form-input">
