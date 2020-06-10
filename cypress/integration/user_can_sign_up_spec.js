@@ -1,5 +1,6 @@
 describe("Sign up page", function(){
   it('user can sign up', function() {
+    cy.task('emptyUsers');
     cy.visit('/signup');
     cy.get('#new-user-form').find('[id="firstName"]').type('Lomothy')
     cy.get('#new-user-form').find('[id="lastName"]').type('Tomins')
@@ -7,8 +8,7 @@ describe("Sign up page", function(){
     cy.get('#new-user-form').find('[id="password"]').type('12345')
     cy.get('#new-user-form').submit();
 
-    cy.get('.signupMessage').should('contain', 'Sign up sucessful.');
-    cy.get('.firstName').should('equal', 'Lomothy');
+    cy.get('#login-message').should('contain', 'Sign up successful.');
   });
 
   it('cannot use an email that is already registered', function() {
@@ -19,6 +19,6 @@ describe("Sign up page", function(){
     cy.get('#new-user-form').find('[id="password"]').type('12345')
     cy.get('#new-user-form').submit();
 
-    cy.get('.signupMessage').should('contain', 'This email is already registered.');
+    cy.get('#login-message').should('contain', 'This email is already registered.');
   })
 });

@@ -15,7 +15,7 @@ var UserController = {
 
     User.findOne( {email: req.body.email}, function(err, result) {
       //console.log(req);
-      if(result) { sendErrorFlashMessage(res, req, '/', 'This email is already registered'); return; }
+      if(result) { sendErrorFlashMessage(res, req, '/', 'This email is already registered.'); return; }
       // if (result) {
       //   req.session.errorMessage = "This email is already registered."
       //   res.redirect('/');
@@ -26,6 +26,7 @@ var UserController = {
         user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
         user.save(function(err) {
           if (err) { console.log(err) }
+          req.session.errorMessage = "Sign up successful."
           res.redirect('/');
         });
       });
