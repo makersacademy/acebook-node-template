@@ -6,7 +6,6 @@ var PostsController = {
       if (err) { throw err; }
         posts = posts.reverse()
         res.json(posts)
-        console.log("THESE ARE THE POSTS");
         console.log(posts);
       });
   },

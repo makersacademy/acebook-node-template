@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import axios from 'axios';
+import moment from 'moment';
 
 // Components are like functions that return HTML elements.
 export default class Posts extends React.Component{
@@ -47,7 +48,7 @@ export default class Posts extends React.Component{
 
     const post = {
       message: this.state.post,
-      date: new Date(Date.now())
+      date: moment().format("YYYY-MM-DD HH:mm")
     };
 
     axios({
@@ -179,7 +180,6 @@ export default class Posts extends React.Component{
     }else{
       $("#edit-posts").show()
     }
-
     return(
       <div>
         <center>
