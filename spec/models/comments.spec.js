@@ -33,6 +33,12 @@ describe('Comments', function(){
     expect(post.comments[0].commentUserID).toBeInstanceOf(Object)
     expect(post.comments[0].commentUserID).toEqual(user._id)
   });
+  it('has a name saved with comment', function() {
+    var user = new User({firstName: 'John', lastName:'Zoidberg'});
+    var post = new Post({comments: [{commentUserName: user.firstName + " " + user.lastName}]});
+
+    expect(post.comments[0].commentUserName).toEqual('John Zoidberg')
+  });
 
   it('Can save a comment', function(done){
     var post = new Post({ body:"Comments Test", comments: [ {body: 'some comment'}]});
@@ -72,20 +78,3 @@ describe('Comments', function(){
   });
 
 });
-
-
-
-// Comments:
-// User_id
-// datePosted (Date)
-// Body (String) √
-
-
-
-// Post: {
-//   UserID = user_id
-//   comments: [
-//     {body: ajdbfvsg}
-//     {body: kjadkg}
-//   ]
-// }
