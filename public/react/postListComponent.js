@@ -32,7 +32,7 @@ class PostListComponent extends React.Component {
     fetch(apiToFetch)
      .then(response => response.json())
      .then((data) => {
-       console.log(data.user.firstName);
+       // console.log(data.user.firstName);
        this.setState({
         session: data,
         isLoggedIn: true,
@@ -48,11 +48,11 @@ class PostListComponent extends React.Component {
 
   renderRedirectLogout = () => {
     if (this.state.redirect) {
-      console.log("test log out")
+      // console.log("test log out")
       this.session.data.clear()
       return <Redirect to='https://localhost:3000' />
     }
-    console.log("log out!")
+    // console.log("log out!")
   }
 
   getPostsSortedByNewest() {
