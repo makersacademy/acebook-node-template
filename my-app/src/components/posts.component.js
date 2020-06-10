@@ -148,12 +148,12 @@ export default class Posts extends React.Component{
   }
 
   resetUserInputs = () => {
-    this.setState({
+   this.setState({
       post: '',
       updateMessage: '',
       updateID: ''
-    }); 
-  }; 
+    });
+  };
 
 
   displayPosts = (posts) => {
