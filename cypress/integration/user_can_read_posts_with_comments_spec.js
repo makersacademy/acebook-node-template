@@ -12,6 +12,7 @@ describe('Newsfeed', function() {
     cy.get('#login-form').submit();
 
     cy.get('#posts').should('contain', 'Amazing!');
-    //cy.get('#comment-form').find('[id="comment"]').type("a");
+    // cy.get('#comment-form').find('[id="comment"]').type("a");
+
   });
 });
