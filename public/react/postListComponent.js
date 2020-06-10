@@ -48,11 +48,17 @@ class PostListComponent extends React.Component {
 
   renderRedirectLogout = () => {
     if (this.state.redirect) {
+<<<<<<< HEAD
       // console.log("test log out")
       this.session.data.clear()
       return <Redirect to='https://localhost:3000' />
     }
     // console.log("log out!")
+=======
+      // console.log(this.session.data)
+      return <Redirect to='/' />
+    }
+>>>>>>> 25e53f58b72bd94b99dcb0505c1bc61b23000ca3
   }
 
   getPostsSortedByNewest() {
@@ -72,11 +78,11 @@ class PostListComponent extends React.Component {
     return (
       <div id="posts">
         { this.state.isLoggedIn ?
-            <h1>Welcome {this.state.session.user.firstName}</h1>
+            <h1 id="login-message">Welcome {this.state.session.user.firstName}</h1>
             : <h1></h1>
          }
         {this.renderRedirectLogout()}
-
+        <button onClick={this.setRedirectLogout}> Logout </button>
         <div class="container">
         <FormComponent updatemethod={this.updateState} />
         <ul>

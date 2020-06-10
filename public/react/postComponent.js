@@ -20,7 +20,10 @@ class Post extends React.Component {
     // var comment = new Post({comment: {body: res.body, userId: req.session.user.id, userName: }})
     // update post with comment data
 
-    this.setState({body: event.target.value})
+    this.setState({
+      body: event.target.value,
+
+    })
 
   }
 

@@ -1,3 +1,9 @@
+<div class="entry">
+  {{#if errorMessage}}
+    <h1 id="login-message">{{errorMessage}}</h1>
+  {{/if}}
+</div>
+
 <h1 class="title"> Login </h1>
 
 <form  class="loginForm" id="login-form" action="/signup/login" method="post">
