@@ -5,7 +5,7 @@
   "license": "CC BY-NC-SA",
   "private": true,
   "scripts": {
-    "lint": "eslint .",
+    "lint": "",
     "start": "nodemon ./bin/www",
     "start:test": "PORT=3030 MONGODB_URL='mongodb://localhost/acebook_test' npm start",
     "start:ed": "set PORT=3030 && set MONGODB_URL=mongodb://localhost/acebook_test&& npm start",

@@ -32,9 +32,9 @@ class FormComponent extends React.Component {
 
   render() {
     return (
-      <form id="new-post-form" onSubmit={this.mySubmitHandler}>
-        <input id="new-post" type="text" placeholder="Type your post here" onChange={this.myChangeHandler}></input>
-        <input type="submit" value="Submit"></input>
+      <form id="new-post-form" class="card" onSubmit={this.mySubmitHandler}>
+        <input id="new-post" class="postInput" type="text" placeholder="Type your post here" onChange={this.myChangeHandler}></input>
+        <input type="submit" id="postButton" class="button" value="Submit"></input>
       </form>
     );
   }
