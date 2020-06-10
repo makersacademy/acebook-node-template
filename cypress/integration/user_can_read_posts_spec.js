@@ -18,6 +18,6 @@ describe('Newsfeed', function() {
     cy.get('#login-form').find('[id="password"]').type('12345')
     cy.get('#login-form').submit();  
     
-    cy.get('#posts').should('contain', 'I met a lovely dog today - by Jimothy Saladberg - Posted on 03/06/2020');
+    cy.get('#posts').should('contain', 'I met a lovely dog today - by Jimothy Saladberg');
   });
 });
