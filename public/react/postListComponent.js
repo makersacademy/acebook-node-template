@@ -71,9 +71,9 @@ class PostListComponent extends React.Component {
             )}
         </ul>
         </div>
-        <form action="signup/log-out">
+        {/* <form action="signup/log-out">
           <input id="log-out" type="submit" class="button" value="Log Out"></input>
-        </form>
+        </form> */}
       </div>
     );
   }
