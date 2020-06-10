@@ -38,7 +38,6 @@ module.exports = function(on) {
         });
       });
     },
-    
     getUser(userInfo) {
       return new Promise(function(resolve){
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
@@ -48,9 +47,6 @@ module.exports = function(on) {
         });
       });
     },
-
-
-
     getPost(postInfo) {
       return new Promise(function(resolve){
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
@@ -60,9 +56,6 @@ module.exports = function(on) {
         });
       });
     },
-
-
-
     emptyUsers() {
       return new Promise(function(resolve) {
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
