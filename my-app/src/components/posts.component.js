@@ -14,6 +14,12 @@ export default class Posts extends React.Component{
   }
 
   componentDidMount = () => {
+    const { match: { params } } = this.props;
+    console.log(params);
+    console.log("we are here")
+
+
+    
     this.getBlogPost();
   }
 
@@ -109,6 +115,7 @@ export default class Posts extends React.Component{
         </form>
       </div>
     ));
+    
   };
 
 // purpose of render is to display the specified HTML code inside the specified HTML element
@@ -140,6 +147,8 @@ export default class Posts extends React.Component{
         </div>
         </center>
       </div>
+
+      
     );
   }
 }

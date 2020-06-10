@@ -49,7 +49,7 @@ export default class userLogin extends Component {
 
       if(response.data.email === this.state.email){
         alert("OKEY")
-        window.location.replace("/posts")
+        window.location.replace("/posts/" + response.data._id) 
       }else if(response.data ==="wrong password") {
         alert(response.data)
       }else{
