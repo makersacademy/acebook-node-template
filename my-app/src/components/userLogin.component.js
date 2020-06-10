@@ -48,7 +48,7 @@ export default class userLogin extends Component {
       console.log("hello")
 
       if(response.data.email === this.state.email){
-        alert("OKEY")
+        alert("Welcome onboard!")
         window.location.replace("/posts/" + response.data._id) 
       }else if(response.data ==="wrong password") {
         alert(response.data)

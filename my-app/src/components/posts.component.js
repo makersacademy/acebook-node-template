@@ -161,7 +161,6 @@ export default class Posts extends React.Component{
    };
 
   displayPosts = (posts) => {
-    // pull in params
     const { match: { params } } = this.props;
 
     if (!posts.length) return null;
