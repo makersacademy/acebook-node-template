@@ -1,5 +1,6 @@
 describe('Newsfeed', function() {
   it('can view all posts with comments', function() {
+
     cy.task('emptyUsers');
     cy.task('emptyPosts');
     cy.task('insertUser', {firstName: 'Lomothy', lastName: 'Mockins', email: 'Lomothy.Tomins@example.com', password: '12345'});
@@ -16,5 +17,6 @@ describe('Newsfeed', function() {
 
     cy.get('.commentBox').should('contain', 'Amazing!');
     //cy.get('#comment-form').find('[id="comment"]').type("a");
+
   });
 });

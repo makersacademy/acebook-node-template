@@ -30,7 +30,7 @@ class PostListComponent extends React.Component {
     fetch(apiToFetch)
      .then(response => response.json())
      .then((data) => {
-       console.log(data.user.firstName);
+       // console.log(data.user.firstName);
        this.setState({
         session: data,
         isLoggedIn: true,
@@ -64,16 +64,13 @@ class PostListComponent extends React.Component {
             {this.getPostsSortedByNewest().map((post) => {   //javascript
               return (							 //javascript
                 <li class="card" key={post.id}>
-                  <Post data={post}/>
+                  <Post data={post} updatemethod={this.updateState}/>
                 </li>
                 );
               }
             )}
         </ul>
         </div>
-        {/* <form action="signup/log-out">
-          <input id="log-out" type="submit" class="button" value="Log Out"></input>
-        </form> */}
       </div>
     );
   }

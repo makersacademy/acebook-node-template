@@ -10,6 +10,9 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
+var mongoose = require('mongoose');
+var Post = require('../../models/post');
+
 
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
@@ -30,7 +33,7 @@ module.exports = function(on) {
             var newUser = new User(userInformation);
             newUser.save(function(err) {
               resolve('done');
-            }); 
+            });
           });
         });
       });
@@ -40,17 +43,32 @@ module.exports = function(on) {
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
           User.findOne(userInfo, function(err, user) {
             resolve(user)
-          }); 
+          });
         });
       });
     },
+
+
+
+    getPost(postInfo) {
+      return new Promise(function(resolve){
+        mongoose.connect('mongodb://localhost/acebook_test', function(err) {
+          Post.findOne(postInfo, function(err, post) {
+            resolve(post)
+          });
+        });
+      });
+    },
+
+
+
     emptyUsers() {
       return new Promise(function(resolve) {
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
           mongoose.connection.collections.users.drop(function() {
             resolve('done');
           });
-        });   
+        });
       });
     },
     emptyPosts() {
@@ -59,7 +77,7 @@ module.exports = function(on) {
           mongoose.connection.collections.posts.drop(function() {
             resolve('done');
           });
-        });   
+        });
       });
     },
     insertPost(postInformation) {
@@ -71,6 +89,7 @@ module.exports = function(on) {
           });
         });
       });
+
     },
     consoleLog(message) {
       console.log("this is a console Log");
