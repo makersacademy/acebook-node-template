@@ -62,7 +62,7 @@ export default class userSignup extends Component {
       console.log(response);
       console.log("redirecting...")
       alert("User already exists, please log in");
-      window.location.replace("http://localhost:3000" + response.data);
+      window.location.replace(response.data);
     })
 
     .catch(err => {
