@@ -12,18 +12,17 @@ export default class Posts extends React.Component{
       posts: [],
       updateMessage: '',
       isInEditMode: false,
-      updateID:''
+      updateID:'',
+      firstName:''
     };
 
   }
 
-  getParams() {
-    const { match: { params } } = this.props;
-    return params
-  }
-
   componentDidMount = () => {
+    this.takeUserid();
+    console.log(this.state.firstName)
     this.getBlogPost();
+   
   }
 
   getBlogPost = () => {
@@ -55,7 +54,8 @@ export default class Posts extends React.Component{
     const post = {
       message: this.state.post,
       date: moment().format("YYYY-MM-DD HH:mm"),
-      userId: params.id
+      userId: params.id,
+      userName: this.state.firstName
     };
 
     axios({
@@ -105,7 +105,8 @@ export default class Posts extends React.Component{
     const post = {
       id: this.state.updateID,
       message: this.state.updateMessage,
-      date: moment().format("YYYY-MM-DD HH:mm")
+      date: moment().format("YYYY-MM-DD HH:mm"),
+      userName: this.state.firstName
     }
 
     axios({
@@ -161,13 +162,13 @@ export default class Posts extends React.Component{
 
   displayPosts = (posts) => {
     const { match: { params } } = this.props;
-
     if (!posts.length) return null;
     return posts.map((post, index) => (
       <div key={index} class="card">
         <div class="card-body">
         <h4>{post.message}</h4>
         <h6> Posted at {post.date} </h6>
+        <h6> Posted by {post.userName} </h6>
         {(() => {
           if (post.userId !== params.id) {
             return null
@@ -189,6 +190,25 @@ export default class Posts extends React.Component{
 
   };
 
+  takeUserid = () => {
+    const { match: { params } } = this.props;
+    console.log("hey we are in takeUserid function and we are getting ")
+    console.log(params.id)
+    axios({
+      url: '/api/user/find',
+      method: 'POST',
+      data: params
+    }).then((response) => {
+      var firstName = response.data.firstName
+      this.setState({firstName: firstName})
+      console.log(this.state.firstName)
+    })
+  }
+
+
+
+// purpose of render is to display the specified HTML code inside the specified HTML element
+
   render(){
     console.log('State: ', this.state)
     if(this.state.isInEditMode === false) {
@@ -199,7 +219,7 @@ export default class Posts extends React.Component{
     return(
       <div className="col-md-6 offset-md-3"> 
         <div>
-          <h2> Welcome to Acebook </h2>
+          <h2> Welcome to Acebook {this.state.firstName}! </h2>
         </div>
         <div>
           <h4> Create a post... </h4>
@@ -218,7 +238,7 @@ export default class Posts extends React.Component{
             <button class="btn btn-light btn-sm">Submit</button>
           </form>
         </div>
-
+      
         <div className="newsfeed">
           <h2>Timeline</h2>
           {this.displayPosts(this.state.posts)}

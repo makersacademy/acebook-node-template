@@ -3,8 +3,12 @@ const bcrypt = require('bcrypt');
 
 
 var UserController = {
+ 
   New: function(req, res){
-    //nothing inside
+    User.findOne({_id: req.body.id}, async function(err, existingUser){
+      console.log(existingUser)
+      res.send(existingUser)
+    })
   },
 
   Create: function(req, res){
@@ -41,6 +45,7 @@ var UserController = {
               success: false,
               message: "db server error!",
             })}
+            console.log(newUser)
             res.send(false)  
         });
       }
@@ -48,7 +53,7 @@ var UserController = {
   }, 
 
   Index: function(req,res){
-    //nothing inside
+    //
   },
 
   Authenticate: function(req, res){

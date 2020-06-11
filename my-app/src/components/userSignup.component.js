@@ -89,6 +89,7 @@ showPassword() {
           <div className="form-group">
             <label>First Name:</label>
             <input type="text"
+                   placeholder = "firstname"
                    required
                    className="form-control"
                    value={this.state.firsName}
@@ -96,11 +97,16 @@ showPassword() {
             </input>
             <label>Last Name:</label>
             <input type="text"
+                   placeholder = "lastname"
                    required
                    className="form-control"
                    value={this.state.lastName}
                    onChange={this.onChangeLastName}>
             </input>
+
+            <label>email:</label>
+            <input type="email"
+                   placeholder = "email"  
             <label>Email:</label>
             <input type="text"
                    required
@@ -110,6 +116,7 @@ showPassword() {
             </input>
             <label>Password:</label>
             <input type="password"
+                   placeholder = "password"
                    required
                    id="password-id"
                    className="form-control"

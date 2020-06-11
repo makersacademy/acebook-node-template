@@ -71,6 +71,10 @@ export default class userLogin extends Component {
         <form onSubmit = {this.onSubmit}>
           <div className="form-group">
 
+
+            <label>email:</label>
+            <input type="email"
+                   placeholder = "email"
             <label>Email:</label>
             <input type="text"
                    required
@@ -80,6 +84,7 @@ export default class userLogin extends Component {
             </input>
             <label>Password:</label>
             <input type="password"
+                   placeholder = "password"
                    required
                    id="password-id"
                   className="form-control"

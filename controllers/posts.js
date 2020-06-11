@@ -6,7 +6,7 @@ var PostsController = {
       if (err) { throw err; }
         posts = posts.reverse()
         res.json(posts)
-        console.log(posts);
+
       });
   },
 
@@ -15,7 +15,7 @@ var PostsController = {
   },
   Create: function(req, res) {
     var post = new Post(req.body);
-    console.log(post)
+
     post.save(function(err) {
       if (err) { throw err; }
 
