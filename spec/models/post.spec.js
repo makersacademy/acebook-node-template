@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-require('../mongodb_helper');
+require('../mongodb_helper')
 const Post = require('../../models/post');
 
 describe('Post model', function() {
@@ -34,6 +34,25 @@ describe('Post model', function() {
 
         expect(posts[0]).toMatchObject({message: 'some message'});
         done();
+      });
+    });
+  });
+
+  it('can delete a post', function(done) {
+    const post = new Post({message: 'some message'});
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      post.delete({_id: post.id}, function(err) {
+        expect(err).toBeNull();
+
+        Post.find(function(err, posts) {
+          expect(err).toBeNull();
+
+          expect(posts.length).toEqual(0);
+          done();
+        });
       });
     });
   });
