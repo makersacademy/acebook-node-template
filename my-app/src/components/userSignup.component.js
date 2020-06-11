@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 
 export default class userSignup extends Component {
-  
+
   constructor(props) {
     super(props);
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -72,11 +72,20 @@ export default class userSignup extends Component {
     .catch(err => {
       console.log(err)
     });
-   
+
   };
 
+showPassword() {
+    var x = document.getElementById("myID");
+    if (x.type === "password") {
+    x.type = "text";
+    } else {
+    x.type = "password";
+    }
+    }
+
   render() {
-    return ( 
+    return (
       <div >
         <h3>NEW USER WELCOME!</h3>
         <form onSubmit = {this.onSubmit}>
@@ -86,29 +95,33 @@ export default class userSignup extends Component {
                    required
                    className="form-control"
                    value={this.state.firsName}
-                   onChange={this.onChangeFirstName}> 
+                   onChange={this.onChangeFirstName}>
             </input>
             <label>Lastname:</label>
             <input type="text"
                    required
                    className="form-control"
                    value={this.state.lastName}
-                   onChange={this.onChangeLastName}> 
+                   onChange={this.onChangeLastName}>
             </input>
             <label>email:</label>
             <input type="text"
                    required
                    className="form-control"
                    value={this.state.email}
-                   onChange={this.onChangeEmail}> 
+                   onChange={this.onChangeEmail}>
             </input>
             <label>Password:</label>
-            <input type="text"
+            <input type="password"
                    required
+                   id="myID"
                    className="form-control"
                    value={this.state.password}
-                   onChange={this.onChangePassword}> 
+                   onChange={this.onChangePassword}>
             </input>
+            <input type="checkbox" onChange={this.showPassword}></input>
+            <label>Check Password</label>
+
           </div>
           <div className="form-group">
             <input type="submit" value="Create User" ></input>
