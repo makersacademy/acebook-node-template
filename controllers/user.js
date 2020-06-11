@@ -84,7 +84,7 @@ var UserController = {
               })}  //res.json(existingUser)
               return res.send({
                 success: true,
-                message: 'Valid sign in',
+                message: 'Valid log in',
                 token: doc._id
               })
             })
@@ -100,6 +100,35 @@ var UserController = {
         })
       }
     })   
+  },
+  Verify: function(req, res){
+    const { query } = req;
+    const { token } = query;
+
+    userSession.find({
+      _id: token,
+      isDeleted: false
+    }, function(err, sessions){
+      console.log(sessions)
+      if(err) {
+        res.send({
+          success: false,
+          message: 'db error'
+        })
+      }
+      else if(sessions.length !=1){
+        res.send({
+          success: false,
+          message: 'error invalid'
+        })
+      }
+      else {
+        res.send({
+          success: true,
+          message: 'verifed token'
+        })
+      }
+    })
   }
 };
 

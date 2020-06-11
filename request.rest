@@ -4,7 +4,7 @@ Content-Type: application/json
 {
   "firstName": "tanil",
   "lastName": "serbes",
-  "email": "t@gmail.com",
+  "email": "t1@gmail.com",
   "password": "1234"
 }
 
@@ -13,6 +13,16 @@ POST http://localhost:3030/api/user/login
 Content-Type: application/json
 
 {
-  "email": "t@gmail.com",
+  "email": "t1@gmail.com",
   "password": "1234"
 }
+
+###
+get http://localhost:3030/api/user/verify?token=ee29fbc611c345f0cd109af
+
+Content-Type: application/json
+
+
+
+
+
