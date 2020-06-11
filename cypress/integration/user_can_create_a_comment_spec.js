@@ -1,6 +1,5 @@
 describe('Newsfeed', function() {
   it('can view all posts with comments', function() {
-    cy.visit('/signup');
     cy.task("emptyUsers")
     cy.task('emptyPosts');
     cy.task('insertUser', {firstName: 'Lomothy', lastName: 'Mockins', email: 'Lomothy.Tomins@example.com', password: '12345'});
