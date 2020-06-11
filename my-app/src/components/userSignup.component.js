@@ -83,6 +83,7 @@ export default class userSignup extends Component {
           <div className="form-group">
             <label>Firstname:</label>
             <input type="text"
+                   placeholder = "firstname"
                    required
                    className="form-control"
                    value={this.state.firsName}
@@ -90,20 +91,23 @@ export default class userSignup extends Component {
             </input>
             <label>Lastname:</label>
             <input type="text"
+                   placeholder = "lastname"
                    required
                    className="form-control"
                    value={this.state.lastName}
                    onChange={this.onChangeLastName}> 
             </input>
             <label>email:</label>
-            <input type="text"
+            <input type="email"
+                   placeholder = "email"  
                    required
                    className="form-control"
                    value={this.state.email}
                    onChange={this.onChangeEmail}> 
             </input>
             <label>Password:</label>
-            <input type="text"
+            <input type="password"
+                   placeholder = "password"
                    required
                    className="form-control"
                    value={this.state.password}

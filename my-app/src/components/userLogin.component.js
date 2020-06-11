@@ -70,14 +70,16 @@ export default class userLogin extends Component {
           <div className="form-group">
 
             <label>email:</label>
-            <input type="text"
+            <input type="email"
+                   placeholder = "email"
                    required
                    className="form-control"
                    value={this.state.email} 
                    onChange={this.onChangeEmail}> 
             </input>
             <label>Password:</label>
-            <input type="text"
+            <input type="password"
+                   placeholder = "password"
                    required
                    className="form-control"
                    value={this.state.password}

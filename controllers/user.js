@@ -5,8 +5,6 @@ const bcrypt = require('bcrypt');
 var UserController = {
  
   New: function(req, res){
-    console.log("HEEEEEEEY")
-    console.log(req.body.id)
     User.findOne({_id: req.body.id}, async function(err, existingUser){
       console.log(existingUser)
       res.send(existingUser)
