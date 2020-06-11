@@ -22,7 +22,7 @@ export default class Posts extends React.Component{
     this.takeUserid();
     console.log(this.state.firstName)
     this.getBlogPost();
-   
+
   }
 
   getBlogPost = () => {
@@ -167,8 +167,7 @@ export default class Posts extends React.Component{
       <div key={index} class="card">
         <div class="card-body">
         <h4>{post.message}</h4>
-        <h6> Posted at {post.date} </h6>
-        <h6> Posted by {post.userName} </h6>
+        <h6>{post.userName} posted at {post.date} </h6>
         {(() => {
           if (post.userId !== params.id) {
             return null
@@ -219,7 +218,7 @@ export default class Posts extends React.Component{
     return(
       <div className="col-md-6 offset-md-3"> 
         <div>
-          <h2> Welcome to Acebook {this.state.firstName}! </h2>
+          <h2> Hi {this.state.firstName}! </h2>
         </div>
         <div>
           <h4> Create a post... </h4>
@@ -238,7 +237,7 @@ export default class Posts extends React.Component{
             <button class="btn btn-light btn-sm">Submit</button>
           </form>
         </div>
-      
+
         <div className="newsfeed">
           <h2>Timeline</h2>
           {this.displayPosts(this.state.posts)}

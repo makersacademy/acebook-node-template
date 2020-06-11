@@ -61,8 +61,6 @@ export default class userSignup extends Component {
       if(response.data){
         console.log("redirecting...")
         alert("User already exists, please log in");
-      }else{
-        alert("User has been created, please log in");
       }
         window.location.replace("/user/login");
     })
@@ -89,7 +87,7 @@ showPassword() {
           <div className="form-group">
             <label>First Name:</label>
             <input type="text"
-                   placeholder = "firstname"
+                   placeholder = "First Name"
                    required
                    className="form-control"
                    value={this.state.firsName}
@@ -97,18 +95,16 @@ showPassword() {
             </input>
             <label>Last Name:</label>
             <input type="text"
-                   placeholder = "lastname"
+                   placeholder = "Last Name"
                    required
                    className="form-control"
                    value={this.state.lastName}
                    onChange={this.onChangeLastName}>
             </input>
 
-            <label>email:</label>
-            <input type="email"
-                   placeholder = "email"  
             <label>Email:</label>
-            <input type="text"
+            <input type="email"
+                   placeholder = "Email"
                    required
                    className="form-control"
                    value={this.state.email}
@@ -116,7 +112,7 @@ showPassword() {
             </input>
             <label>Password:</label>
             <input type="password"
-                   placeholder = "password"
+                   placeholder = "Password"
                    required
                    id="password-id"
                    className="form-control"

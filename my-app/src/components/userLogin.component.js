@@ -41,7 +41,6 @@ export default class userLogin extends Component {
     .then(response => {
         console.log('Data has sent to server');
       if(response.data.email === this.state.email){
-        alert("Welcome onboard!")
         window.location.replace("/posts/" + response.data._id )
       }else if(response.data ==="wrong password") {
         alert(response.data)
@@ -72,11 +71,9 @@ export default class userLogin extends Component {
           <div className="form-group">
 
 
-            <label>email:</label>
-            <input type="email"
-                   placeholder = "email"
             <label>Email:</label>
-            <input type="text"
+            <input type="email"
+                   placeholder = "Email"
                    required
                    className="form-control"
                    value={this.state.email}
@@ -84,7 +81,7 @@ export default class userLogin extends Component {
             </input>
             <label>Password:</label>
             <input type="password"
-                   placeholder = "password"
+                   placeholder = "Password"
                    required
                    id="password-id"
                   className="form-control"
