@@ -16,22 +16,30 @@ class Comment extends React.Component {
 
   mySubmitHandler = (event) => {
 
-      event.preventDefault();
+    event.preventDefault();
 
-      let newComment = {
-        body: this.state.body,
-        id: this.state.postId
-       }
+    let newComment = {
+      body: this.state.body,
+      id: this.state.postId
+      }
 
-      fetch('/newsfeed/comments/new', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(newComment)
-      })
-      .then((response) => {
-        this.props.updatemethod();
-      })
-    }
+    fetch('/newsfeed/comments/new', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(newComment)
+    })
+    .then((response) => {
+      this.props.updatemethod();
+    })
+
+    this.cancelCourse()
+  }
+
+  cancelCourse = () => { 
+    document.getElementById(`comment-form-${this.props.data._id}`).reset();
+  }
+
+
 
     formatTime(comment) {
       let date = new Date(comment.timePosted)
