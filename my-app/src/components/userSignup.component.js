@@ -82,7 +82,9 @@ showPassword() {
   render() {
     return (
       <div className="col-md-6 offset-md-3"> 
+        <center>
         <h3>Sign up to Acebook</h3>
+        </center>
         <form onSubmit = {this.onSubmit}>
           <div className="form-group">
             <label>First Name:</label>

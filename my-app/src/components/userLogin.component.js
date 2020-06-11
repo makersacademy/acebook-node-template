@@ -66,7 +66,9 @@ export default class userLogin extends Component {
   render() {
     return (
       <div className="col-md-6 offset-md-3"> 
+        <center>
         <h3>Log in to Your Account</h3>
+        </center>
         <form onSubmit = {this.onSubmit}>
           <div className="form-group">
 
