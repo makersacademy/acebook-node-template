@@ -17,6 +17,12 @@ var NewsfeedController = {
     });
   },
 
+  ProfilePicture: function(request, response){
+    User.findOne({ _id: request.query.imguserid }, function(err, user) {
+      response.send({binary: user.profilePicture.data.toString('base64')})
+    });
+  },
+
 
   Create: function(request, response) {
     var userName
