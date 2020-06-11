@@ -3,10 +3,8 @@ import $ from 'jquery';
 import axios from 'axios';
 import moment from 'moment';
 
-// Components are like functions that return HTML elements.
 export default class Posts extends React.Component{
 
-  // component properties should be kept in an object called state
   constructor() {
     super();
     this.state = {
@@ -21,8 +19,6 @@ export default class Posts extends React.Component{
 
   getParams() {
     const { match: { params } } = this.props;
-    console.log("in the get params method")
-    console.log(params)
     return params
   }
 
@@ -188,10 +184,9 @@ export default class Posts extends React.Component{
         })()}
       </div>
     ));
-    
+
   };
 
-// purpose of render is to display the specified HTML code inside the specified HTML element
   render(){
     console.log('State: ', this.state)
     if(this.state.isInEditMode === false) {
@@ -242,8 +237,6 @@ export default class Posts extends React.Component{
         </div>
         </center>
       </div>
-
-      
     );
   }
 }

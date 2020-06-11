@@ -33,8 +33,6 @@ export default class userLogin extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    console.log("hey");
-    console.log(user);
 
     axios({
       url: '/api/user/login',
@@ -43,11 +41,7 @@ export default class userLogin extends Component {
     })
 
     .then(response => {
-      console.log('Data has sent to server');
-      console.log(response.data);
-      console.log("hello")
-      console.log(response.data);
-
+        console.log('Data has sent to server');
       if(response.data.email === this.state.email){
         alert("Welcome onboard!")
         window.location.replace("/posts/" + response.data._id )

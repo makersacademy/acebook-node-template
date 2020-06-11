@@ -48,8 +48,6 @@ export default class userSignup extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    console.log("hey");
-    console.log(user);
 
     axios({
       url: '/api/user/new',
@@ -59,7 +57,6 @@ export default class userSignup extends Component {
 
     .then(response => {
       console.log('Data has sent to server');
-      console.log(response);
 
       if(response.data){
         console.log("redirecting...")
