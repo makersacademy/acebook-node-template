@@ -35,25 +35,20 @@ var UserController = {
   },
 
   Profile: function(request, response, next) {
-    // var obj = {
-    //   name: req.body.name,
-    //   desc: req.body.desc,
-    //   img: {
-    //     data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-    //     contentType: 'image/png'
-    //   }
-    // }
-    // User.create(obj, (err, item) => {
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    //     else {
-    //         // item.save();
-    //         res.redirect('/');
-    //     }
-    // });
-    // console.log(request.body)
-    // response.send(request.body.image)
+    var newUserParams = {
+      firstName: "Jimothy",
+      lastName: "Saladberg",
+      email: "jim@salads.com",
+      password: "1234",
+      profilePicture:
+          {
+              data: fs.readFileSync(path.join(__dirname +'/../uploads/' + request.file.filename)),
+              contentType: 'image/png'
+          }
+      }
+    var newUser = new User(newUserParams);
+    newUser.save();
+    response.send(request.body.profilePicture)
   },
 
   ImageForm: function(request, response) {
