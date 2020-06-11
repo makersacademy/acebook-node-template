@@ -124,7 +124,6 @@ showPassword() {
             <input type="submit" value="Create User" ></input>
           </div>
         </form>
-        <a href="/user/login" >login</a> 
       </div>
     )
   }

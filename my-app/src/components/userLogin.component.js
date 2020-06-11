@@ -97,8 +97,6 @@ export default class userLogin extends Component {
             <input type="submit" value="Login" className="btn btn-primary" ></input>
           </div>
         </form>
-        <a href="/user/new" >Signup</a> 
-        <a href="/posts" >Go to posts without login</a> 
       </div>
     )
   }
