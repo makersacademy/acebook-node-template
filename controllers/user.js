@@ -1,4 +1,7 @@
 'use strict'
+var multer = require('multer');
+var path = require('path');
+var fs = require('fs');
 const bcrypt = require('bcrypt');
 var User = require('../models/user');
 var UserController = {
@@ -29,11 +32,38 @@ var UserController = {
         sendFlashMessage(response, request, '/', "Login unsuccessful: incorrect email or password.")
       });
     });
-  }, 
+  },
+
+  Profile: function(request, response, next) {
+    // var obj = {
+    //   name: req.body.name,
+    //   desc: req.body.desc,
+    //   img: {
+    //     data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+    //     contentType: 'image/png'
+    //   }
+    // }
+    // User.create(obj, (err, item) => {
+    //     if (err) {
+    //         console.log(err);
+    //     }
+    //     else {
+    //         // item.save();
+    //         res.redirect('/');
+    //     }
+    // });
+    // console.log(request.body)
+    // response.send(request.body.image)
+  },
+
+  ImageForm: function(request, response) {
+    response.render('user/profile')
+  },
+
   Logout: function(request, response) {
     request.session.user = null;
     sendFlashMessage(response, request, '/', 'You logged out.');
-  } 
+  }
 }
 
 var sendFlashMessage = (response, request, route, message) => {
