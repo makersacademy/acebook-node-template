@@ -8,6 +8,8 @@ before_install:
 services:
   - mongodb
 
+before_script:
+  - npm run start:test &
+
 script:
-  - npm run start:test
   - npm test
