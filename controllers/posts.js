@@ -25,11 +25,10 @@ const PostsController = {
     });
   },
   Delete: function(req, res) {
-    Post.findByIdAndRemove({_id: req.params.id},
-      function(err){ 
-        if (err) {
-          throw err;
-      } 
+    Post.findByIdAndRemove({_id: req.params.id}, function(err) {
+      if (err) {
+        throw err;
+        } 
     res.status(201).redirect('/posts');
   });
 },
