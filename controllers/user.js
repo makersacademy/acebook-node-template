@@ -105,21 +105,14 @@ var UserController = {
     const { query } = req;
     const { token } = query;
 
-    userSession.find({
+    userSession.findOne({
       _id: token,
       isDeleted: false
     }, function(err, sessions){
-      console.log(sessions)
       if(err) {
         res.send({
           success: false,
           message: 'db error'
-        })
-      }
-      else if(sessions.length !=1){
-        res.send({
-          success: false,
-          message: 'error invalid'
         })
       }
       else {
@@ -129,6 +122,36 @@ var UserController = {
         })
       }
     })
+  },
+  Logout: function(req,res){
+    const { query } = req;
+    const { token } = query;
+
+    userSession.findOneAndUpdate(
+    {
+      _id: token,
+      isDeleted: false
+    },
+
+    {
+      $set:{isDeleted:true}
+    }, 
+    function(err, sessions){
+      console.log(sessions)
+      if(err) {
+        res.send({
+          success: false,
+          message: 'db error'
+        })
+      }
+      else {
+        res.send({
+          success: true,
+          message: 'loged out'
+        })
+      }
+    })
+
   }
 };
 

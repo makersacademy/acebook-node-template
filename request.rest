@@ -18,11 +18,11 @@ Content-Type: application/json
 }
 
 ###
-get http://localhost:3030/api/user/verify?token=ee29fbc611c345f0cd109af
-
+get http://localhost:3030/api/user/verify?token=5ee2a3c3c864036032df8008
 Content-Type: application/json
 
-
-
+####
+get http://localhost:3030/api/user/logout?token=5ee2a3c3c864036032df8008
+Content-Type: application/json
 
 
