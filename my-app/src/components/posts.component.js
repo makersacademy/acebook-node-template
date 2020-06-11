@@ -175,10 +175,10 @@ export default class Posts extends React.Component{
             return(
             <div className="row">
               <form data-id={post._id} onSubmit={ this.delete }>
-                <input className="col" class="btn btn-light btn-sm" type="submit" value="Delete"/>
+                <input className="col" class="btn btn-dark btn-sm" type="submit" value="Delete"/>
               </form>
               <form data-id={post._id} onSubmit={ this.update}>
-                <input className="col" class="btn btn-light btn-sm" type="submit" value="Edit"/>
+                <input className="col" class="btn btn-dark btn-sm" type="submit" value="Edit"/>
               </form>
             </div>)
           }
@@ -218,7 +218,9 @@ export default class Posts extends React.Component{
     return(
       <div className="col-md-6 offset-md-3"> 
         <div>
+          <center>
           <h2> Hi {this.state.firstName}! </h2>
+          </center>
         </div>
         <div>
           <h4> Create a post... </h4>
@@ -234,9 +236,11 @@ export default class Posts extends React.Component{
               onChange={this.handleChange}>
               </textarea>
             </div>
-            <button class="btn btn-light btn-sm">Submit</button>
+            <button class="btn btn-dark btn-sm">Submit</button>
           </form>
         </div>
+
+        <br></br>
 
         <div className="newsfeed">
           <h2>Timeline</h2>
@@ -258,7 +262,7 @@ export default class Posts extends React.Component{
               </textarea>
             </div>
 
-            <button class="btn btn-light btn-sm">Submit</button>
+            <button class="btn btn-dark btn-sm">Submit</button>
           </form>
         </div>
       </div>

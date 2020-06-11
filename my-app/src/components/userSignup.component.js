@@ -124,7 +124,7 @@ showPassword() {
 
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" ></input>
+            <input type="submit" value="Create User" className="btn btn-dark" ></input>
           </div>
         </form>
       </div>
