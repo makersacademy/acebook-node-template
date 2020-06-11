@@ -8,22 +8,11 @@ var UserController = {
   },
 
   Create: function(req, res) {
-
-    var password = req.body.password;
-    var email = req.body.email;
-    var user;
-
     User.findOne( {email: req.body.email}, function(err, result) {
-      //console.log(req);
       if(result) { sendErrorFlashMessage(res, req, '/', 'This email is already registered.'); return; }
-      // if (result) {
-      //   req.session.errorMessage = "This email is already registered."
-      //   res.redirect('/');
-      //   return; // early return to avoid bcrypt running
-      // }
 
-      bcrypt.hash(password, 10, function(err, hash) {
-        user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
+      bcrypt.hash(req.body.password, 10, function(err, hash) {
+        var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
         user.save(function(err) {
           if (err) { console.log(err) }
           req.session.errorMessage = "Sign up successful."
@@ -35,12 +24,7 @@ var UserController = {
 
   Login: function(req, res) {
     User.findOne( {email: req.body.email}, function(err, result) {
-      if (result == null) { 
-        //res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."});
-        req.session.errorMessage = "Login unsuccessful: incorrect email or password."
-        res.redirect('/');
-        return null  
-    }
+      if (result == null) { sendErrorFlashMessage(res, req, '/', "Login unsuccessful: incorrect email or password."); return; }
       bcrypt.compare(req.body.password, result.password, function(err, match) {
         if (match) {
           req.session.user = result;
@@ -49,7 +33,6 @@ var UserController = {
           if (err) { console.log(err) }
           req.session.errorMessage = "Login unsuccessful: incorrect email or password."
           res.redirect('/');
-          // res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."})
         }
       })
 
@@ -62,8 +45,6 @@ var UserController = {
 }
 
 var sendErrorFlashMessage = (response, request, route, message) => {
-  console.log(request);
-  console.error(message);
   request.session.errorMessage = message;
   response.redirect(route);
 };
