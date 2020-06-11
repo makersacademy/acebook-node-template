@@ -1,14 +1,10 @@
 var User = require('../models/user')
-const bcrypt = require('bcrypt'); //lib for bcryption
+const bcrypt = require('bcrypt'); 
 
 
 var UserController = {
   New: function(req, res){
-    res.render('posts/new', {});
-    //res.status(201).redirect('/api/user/new')
-
-    // the 'user/new' is referring to the new.hbs file in the views > user folder
-
+    //nothing inside
   },
 
   Create: function(req, res){
@@ -24,11 +20,11 @@ var UserController = {
 
 
     User.findOne({email: email}, async function(err, existingUser) {
-      if (err) { res.send({
-        success: false,
-        message: "db server error!",
-      })
-       }
+      if (err) { 
+        res.send({
+          success: false,
+          message: "db server error!",
+        })}
       else if (existingUser !== null ) {
         res.send(existingUser);
       }
@@ -40,7 +36,11 @@ var UserController = {
         newUser.password = newUser.hashedPassword(password)
 
         newUser.save(function(err){
-          if (err) { throw err; }
+          if (err) { 
+            res.send({
+              success: false,
+              message: "db server error!",
+            })}
             res.send(false)  
         });
       }
@@ -48,7 +48,7 @@ var UserController = {
   }, 
 
   Index: function(req,res){
-    res.render('user/login',{});
+    //nothing inside
   },
 
   Authenticate: function(req, res){
@@ -62,7 +62,11 @@ var UserController = {
     
 
     User.findOne({email: email}, async function(err, existingUser) {
-      if (err) {throw err;}
+      if (err) {
+        res.send({
+          success: false,
+          message: "db server error!",
+        })}
       else if (existingUser !== null ) {
           if (existingUser.validPassword(password)) {
             res.json(existingUser)
