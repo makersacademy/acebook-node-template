@@ -164,7 +164,8 @@ export default class Posts extends React.Component{
 
     if (!posts.length) return null;
     return posts.map((post, index) => (
-      <div key={index} className="post_display">
+      <div key={index} class="card">
+        <div class="card-body">
         <h4>{post.message}</h4>
         <h6> Posted at {post.date} </h6>
         {(() => {
@@ -172,16 +173,17 @@ export default class Posts extends React.Component{
             return null
           } else {
             return(
-            <div>
+            <div className="row">
               <form data-id={post._id} onSubmit={ this.delete }>
-                <input type="submit" value="Delete"/>
+                <input className="col" class="btn btn-light btn-sm" type="submit" value="Delete"/>
               </form>
               <form data-id={post._id} onSubmit={ this.update}>
-                <input type="submit" value="Edit"/>
+                <input className="col" class="btn btn-light btn-sm" type="submit" value="Edit"/>
               </form>
             </div>)
           }
         })()}
+        </div>
       </div>
     ));
 
@@ -195,47 +197,51 @@ export default class Posts extends React.Component{
       $("#edit-posts").show()
     }
     return(
-      <div>
-        <center>
-        <h2> Welcome to Acebook </h2>
-        <h4> Create a post... </h4>
-        <form onSubmit={this.submit}>
-          <div className="form-input">
-            <textarea
-            name="post"
-            placeholder="Enter your post"
-            cols="30"
-            rows="10"
-            value={this.state.post}
-            onChange={this.handleChange}>
-            </textarea>
-          </div>
-
-          <button>Submit</button>
-        </form>
+      <div className="col-md-6 offset-md-3"> 
+        <div>
+          <h2> Welcome to Acebook </h2>
+        </div>
+        <div>
+          <h4> Create a post... </h4>
+          <form onSubmit={this.submit}>
+            <div className="form-input">
+              <textarea
+              name="post"
+              placeholder="Enter your post"
+              className="form-control"
+              cols="30"
+              rows="3"
+              value={this.state.post}
+              onChange={this.handleChange}>
+              </textarea>
+            </div>
+            <button class="btn btn-light btn-sm">Submit</button>
+          </form>
+        </div>
 
         <div className="newsfeed">
           <h2>Timeline</h2>
           {this.displayPosts(this.state.posts)}
         </div>
+
         <div id="edit-posts">
         <h4> Edit your post below... </h4>
-        <form onSubmit={this.save}>
-          <div className="form-input">
-            <textarea
-            name="updateMessage"
-            placeholder="Edit your post"
-            cols="30"
-            rows="10"
-            value={this.state.updateMessage}
-            onChange={this.handleChange}>
-            </textarea>
-          </div>
+          <form onSubmit={this.save}>
+            <div className="form-input">
+              <textarea
+              name="updateMessage"
+              placeholder="Edit your post"
+              className="form-control"
+              cols="30"
+              rows="3"
+              value={this.state.updateMessage}
+              onChange={this.handleChange}>
+              </textarea>
+            </div>
 
-          <button>Submit</button>
-        </form>
+            <button class="btn btn-light btn-sm">Submit</button>
+          </form>
         </div>
-        </center>
       </div>
     );
   }

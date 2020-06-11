@@ -14,7 +14,6 @@ export default class userLogin extends Component {
     }
   }
 
-
   onChangeEmail(e) {
     this.setState({
       email: e.target.value
@@ -25,7 +24,6 @@ export default class userLogin extends Component {
       password: e.target.value
     });
   }
-
 
   onSubmit(e) {
     e.preventDefault();
@@ -58,23 +56,22 @@ export default class userLogin extends Component {
   };
 
   showPassword() {
-      var x = document.getElementById("myID");
-      if (x.type === "password") {
-      x.type = "text";
+      var passwordInput = document.getElementById("password-id");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
       } else {
-      x.type = "password";
+        passwordInput.type = "password";
+      }
     }
-  }
-
 
   render() {
     return (
-      <div >
-        <h3>Hello myFriend!</h3>
+      <div className="col-md-6 offset-md-3"> 
+        <h3>Log in to Your Account</h3>
         <form onSubmit = {this.onSubmit}>
           <div className="form-group">
 
-            <label>email:</label>
+            <label>Email:</label>
             <input type="text"
                    required
                    className="form-control"
@@ -84,7 +81,7 @@ export default class userLogin extends Component {
             <label>Password:</label>
             <input type="password"
                    required
-                   id="myID"
+                   id="password-id"
                   className="form-control"
                    value={this.state.password}
                    onChange={this.onChangePassword}>
