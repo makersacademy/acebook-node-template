@@ -47,11 +47,11 @@ var UserController = {
           }
       }
     var newUser = new User(newUserParams);
-    newUser.save();
-    User.findOne({firstName: "Jimothy"}, function(err, result) {
-      response.render("user/display", { image: result.profilePicture.data.toString('base64') })
+    newUser.save(function(err) {
+      User.findOne({firstName: "Jimothy"}, function(err, result) {
+        response.render("user/display", { image: result.profilePicture.data.toString('base64') })
+      });
     });
-    //response.render("user/display", { image: newUser.profilePicture.data.toString('base64') })
   },
 
   ImageForm: function(request, response) {
