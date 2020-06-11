@@ -48,7 +48,7 @@ var UserController = {
       }
     var newUser = new User(newUserParams);
     newUser.save();
-    response.send(request.body.profilePicture)
+    response.render("user/display", { image: newUser.profilePicture.data.toString('base64') })
   },
 
   ImageForm: function(request, response) {
