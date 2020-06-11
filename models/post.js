@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
   message: String,
-  date: Date,
+  date: String,
   userId: String,
 });
 
