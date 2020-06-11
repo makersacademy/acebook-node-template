@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 
 export default class userSignup extends Component {
-  
+
   constructor(props) {
     super(props);
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -48,8 +48,6 @@ export default class userSignup extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    console.log("hey");
-    console.log(user);
 
     axios({
       url: '/api/user/new',
@@ -59,7 +57,6 @@ export default class userSignup extends Component {
 
     .then(response => {
       console.log('Data has sent to server');
-      console.log(response);
 
       if(response.data){
         console.log("redirecting...")
@@ -72,53 +69,68 @@ export default class userSignup extends Component {
     .catch(err => {
       console.log(err)
     });
-   
+
   };
 
+showPassword() {
+    var passwordInput = document.getElementById("password-id");
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+    }
+    }
+
   render() {
-    return ( 
-      <div >
-        <h3>NEW USER WELCOME!</h3>
+    return (
+      <div className="col-md-6 offset-md-3"> 
+        <h3>Sign up to Acebook</h3>
         <form onSubmit = {this.onSubmit}>
           <div className="form-group">
-            <label>Firstname:</label>
+            <label>First Name:</label>
             <input type="text"
                    placeholder = "firstname"
                    required
                    className="form-control"
                    value={this.state.firsName}
-                   onChange={this.onChangeFirstName}> 
+                   onChange={this.onChangeFirstName}>
             </input>
-            <label>Lastname:</label>
+            <label>Last Name:</label>
             <input type="text"
                    placeholder = "lastname"
                    required
                    className="form-control"
                    value={this.state.lastName}
-                   onChange={this.onChangeLastName}> 
+                   onChange={this.onChangeLastName}>
             </input>
+
             <label>email:</label>
             <input type="email"
                    placeholder = "email"  
+            <label>Email:</label>
+            <input type="text"
                    required
                    className="form-control"
                    value={this.state.email}
-                   onChange={this.onChangeEmail}> 
+                   onChange={this.onChangeEmail}>
             </input>
             <label>Password:</label>
             <input type="password"
                    placeholder = "password"
                    required
+                   id="password-id"
                    className="form-control"
                    value={this.state.password}
-                   onChange={this.onChangePassword}> 
+                   onChange={this.onChangePassword}>
             </input>
+            <input type="checkbox" onChange={this.showPassword}></input>
+            <label>Check Password</label>
+
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" ></input>
+            <input type="submit" value="Create User" className="btn btn-primary" ></input>
           </div>
         </form>
-        <a href="/user/login" >login</a> 
       </div>
     )
   }

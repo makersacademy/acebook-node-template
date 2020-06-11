@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 
 export default class userLogin extends Component {
-  
+
   constructor(props) {
     super(props);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -13,7 +13,6 @@ export default class userLogin extends Component {
      password: '',
     }
   }
-
 
   onChangeEmail(e) {
     this.setState({
@@ -26,15 +25,12 @@ export default class userLogin extends Component {
     });
   }
 
-
   onSubmit(e) {
     e.preventDefault();
     const user = {
       email: this.state.email,
       password: this.state.password
     }
-    console.log("hey");
-    console.log(user);
 
     axios({
       url: '/api/user/login',
@@ -43,56 +39,66 @@ export default class userLogin extends Component {
     })
 
     .then(response => {
-      console.log('Data has sent to server');
-      console.log(response.data);
-      console.log("hello")
-
+        console.log('Data has sent to server');
       if(response.data.email === this.state.email){
         alert("Welcome onboard!")
-        window.location.replace("/posts/" + response.data._id) 
+        window.location.replace("/posts/" + response.data._id )
       }else if(response.data ==="wrong password") {
         alert(response.data)
       }else{
         alert("no user with that email, please signup or try again")
       }
-          
+
     })
     .catch(err => {
       console.log(err)
     });
   };
 
+  showPassword() {
+      var passwordInput = document.getElementById("password-id");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    }
+
   render() {
-    return ( 
-      <div >
-        <h3>Hello myFriend!</h3>
+    return (
+      <div className="col-md-6 offset-md-3"> 
+        <h3>Log in to Your Account</h3>
         <form onSubmit = {this.onSubmit}>
           <div className="form-group">
+
 
             <label>email:</label>
             <input type="email"
                    placeholder = "email"
+            <label>Email:</label>
+            <input type="text"
                    required
                    className="form-control"
-                   value={this.state.email} 
-                   onChange={this.onChangeEmail}> 
+                   value={this.state.email}
+                   onChange={this.onChangeEmail}>
             </input>
             <label>Password:</label>
             <input type="password"
                    placeholder = "password"
                    required
-                   className="form-control"
+                   id="password-id"
+                  className="form-control"
                    value={this.state.password}
-                   onChange={this.onChangePassword}> 
+                   onChange={this.onChangePassword}>
             </input>
+            <input type="checkbox" onChange={this.showPassword}></input>
+            <label>Check Password</label>
           </div>
 
           <div className="form-group">
             <input type="submit" value="Login" className="btn btn-primary" ></input>
           </div>
         </form>
-        <a href="/user/new" >Signup</a> 
-        <a href="/posts" >Go to posts without login</a> 
       </div>
     )
   }
