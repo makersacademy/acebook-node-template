@@ -15,7 +15,17 @@ var UserController = {
       if(result) { sendFlashMessage(response, request, '/', 'This email is already registered.'); return; }
 
       bcrypt.hash(request.body.password, 10, function(err, hash) {
-        var user = new User({firstName: request.body.firstName, lastName: request.body.lastName, email: request.body.email, password: hash});
+        var imageProperty = {
+          data: fs.readFileSync(path.join(__dirname +'/../uploads/' + request.file.filename)),
+          contentType: 'image/png'
+        }
+
+        var user = new User({firstName: request.body.firstName, 
+          lastName: request.body.lastName, 
+          email: request.body.email, 
+          password: hash,
+          profilePicture: imageProperty});
+        
         user.save(function(err) {
           if (err) { console.log(err) }
           sendFlashMessage(response, request, '/', "Sign up successful.");

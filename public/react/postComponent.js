@@ -6,6 +6,10 @@ class Post extends React.Component {
     this.state = {}
   }
 
+  //componentDidMount --> Ajax request to the server fetches data
+  // by send the this.props.data.userID --> returns an image with the profile
+  //image datta that corersponds to that user
+
   formatDate() {
     let date = new Date(this.props.data.datePosted)
     return date.toLocaleString()

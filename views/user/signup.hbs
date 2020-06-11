@@ -1,6 +1,6 @@
 <h1 class="title"> Sign up </h1>
 
-<form class="loginForm" id="new-user-form" action="/user/signup" method="post">
+<form class="loginForm" id="new-user-form" action="/user/signup" method="post" enctype="multipart/form-data">
   <label for="firstName">First Name: </label>
   <input id="firstName" type="text" name="firstName" value="">
 
@@ -12,6 +12,9 @@
 
   <label for="password">Password: </label>
   <input id="password" type="text" name="password" value="">
+
+  <label for="image">Upload Image</label>
+  <input type="file" id="image" name="image" value="" required></input>
 
   <input type="submit" class="button" value="Submit">
 </form>
