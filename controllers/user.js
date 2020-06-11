@@ -12,36 +12,39 @@ var UserController = {
   },
 
   Create: function(req, res){
-    console.log("we are in CREATE")
-    User.findOne({email: req.body.email}, async function(err, user) {
-      if (err) { throw err; }
-      if (user) {
+    console.log("we are here")
+    const { body } = req;
+
+    const {
+      firstName,
+      lastName,
+      email,
+      password
+    } = body; 
+
+
+    User.findOne({email: email}, async function(err, existingUser) {
+      if (err) { res.send({
+        success: false,
+        message: "db server error!",
+      })
+       }
+      else if (existingUser !== null ) {
         console.log('user exist')
-        // console.log(data.email)
-        // res.json(data.firstName);
-        res.send(user);
-        // window.location = "/user/login";
-        // return json + url or route for login page
-        //res.render('user/new', { msg:'user exist' });
-        // res.status(201).redirect('/user/login')
+        res.send(existingUser);
       }
-      else {
-        try {
-          const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 = salt structer = salt + password bcz if the passwords are same for both users, salt generates different values for every each time.
-          var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hashedPassword});
-          user.save(function(err){
-          if (err) { throw err; }
-            //res.render('posts/index', { msg:"Welcome " + user.firstName + " ! " })
-            //res.status(201).redirect('/api/posts')
-            console.log('user added')
-            // res.status(201).redirect('/api/user/new')
-            res.send(false)
-            
-          });
-        } catch {
-          console.log('some db error')
-         res.status(500).send();
-        }
+      else{
+      var newUser = new User();
+      newUser.email = email;
+      newUser.firstName = firstName;
+      newUser.lastName = lastName;
+      newUser.password = newUser.hashedPassword(password)
+
+      newUser.save(function(err){
+        if (err) { throw err; }
+          console.log('user added')
+          res.send(false)  
+        });
       }
     });
   },
