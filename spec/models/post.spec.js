@@ -44,7 +44,7 @@ describe('Post model', function() {
     post.save(function(err) {
       expect(err).toBeNull();
 
-      post.delete({_id: post.id}, function(err) {
+      post.remove({_id: post.id}, function(err) {
         expect(err).toBeNull();
 
         Post.find(function(err, posts) {
