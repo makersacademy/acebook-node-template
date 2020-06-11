@@ -11,9 +11,13 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
+## Travis Status
+
+[![Build Status](https://travis-ci.com/edmond-b/acebook-NO-de-Problem.svg?branch=master)](https://travis-ci.com/edmond-b/acebook-NO-de-Problem)
+
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/b/fjC2EoVt/no-de-problem
 
 ## Quickstart
 
@@ -80,3 +84,7 @@ npm run start:test
 ```
 This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
 so that integration tests do not interact with the development server.
+
+### Domain model Diagram
+
+![Domain Model Diagram](public/images/model.svg)

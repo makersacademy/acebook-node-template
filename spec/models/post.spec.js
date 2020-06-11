@@ -11,8 +11,8 @@ describe('Post model', function() {
   });
 
   it('has a message', function() {
-    var post = new Post({ message: 'some message' });
-    expect(post.message).toEqual('some message');
+    var post = new Post({ body: 'some message' });
+    expect(post.body).toEqual('some message');
   });
 
   it('can list all posts', function(done) {
@@ -24,15 +24,15 @@ describe('Post model', function() {
   });
 
   it('can save a post', function(done) {
-    var post = new Post({ message: 'some message' });
+    var post = new Post({ body: 'some message' });
 
     post.save(function(err) {
       expect(err).toBeNull();
 
-      Post.find(function(err, posts) {
+      Post.find( { body: 'some message' }, function(err, posts) {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: 'some message' });
+        expect(posts[0]).toMatchObject({ body: 'some message' });
         done();
       });
     });
