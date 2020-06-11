@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-//var uniqueValidator = require('mongoose-unique-validator');
+const bcrypt = require('bcrypt'); 
 
 var UserSchema = new mongoose.Schema({
     firstName: {
@@ -10,12 +10,20 @@ var UserSchema = new mongoose.Schema({
         },
     email: {
         type: String,
-        unique: true,
         },
     password: {
         type: String 
     },
 });
+
+UserSchema.methods.hashedPassword = (password) => {
+    return bcrypt.hashSync(password, 10)
+}
+
+UserSchema.methods.validPassword = function(password) { 
+    return bcrypt.compareSync(password, this.password)
+}
+
 
 var User = mongoose.model('Users', UserSchema); // it creates new table, by changing 'users' to 'test' you are creating new table and any new data go to that table insead of 'users'. User is users
 module.exports = User;
