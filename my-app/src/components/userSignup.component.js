@@ -48,8 +48,6 @@ export default class userSignup extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    console.log("hey");
-    console.log(user);
 
     axios({
       url: '/api/user/new',
@@ -59,7 +57,6 @@ export default class userSignup extends Component {
 
     .then(response => {
       console.log('Data has sent to server');
-      console.log(response);
 
       if(response.data){
         console.log("redirecting...")
@@ -76,35 +73,35 @@ export default class userSignup extends Component {
   };
 
 showPassword() {
-    var x = document.getElementById("myID");
-    if (x.type === "password") {
-    x.type = "text";
+    var passwordInput = document.getElementById("password-id");
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
     } else {
-    x.type = "password";
+      passwordInput.type = "password";
     }
     }
 
   render() {
     return (
-      <div >
-        <h3>NEW USER WELCOME!</h3>
+      <div className="col-md-6 offset-md-3"> 
+        <h3>Sign up to Acebook</h3>
         <form onSubmit = {this.onSubmit}>
           <div className="form-group">
-            <label>Firstname:</label>
+            <label>First Name:</label>
             <input type="text"
                    required
                    className="form-control"
                    value={this.state.firsName}
                    onChange={this.onChangeFirstName}>
             </input>
-            <label>Lastname:</label>
+            <label>Last Name:</label>
             <input type="text"
                    required
                    className="form-control"
                    value={this.state.lastName}
                    onChange={this.onChangeLastName}>
             </input>
-            <label>email:</label>
+            <label>Email:</label>
             <input type="text"
                    required
                    className="form-control"
@@ -114,7 +111,7 @@ showPassword() {
             <label>Password:</label>
             <input type="password"
                    required
-                   id="myID"
+                   id="password-id"
                    className="form-control"
                    value={this.state.password}
                    onChange={this.onChangePassword}>
@@ -124,10 +121,9 @@ showPassword() {
 
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" ></input>
+            <input type="submit" value="Create User" className="btn btn-primary" ></input>
           </div>
         </form>
-        <a href="/user/login" >login</a> 
       </div>
     )
   }
