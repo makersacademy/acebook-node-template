@@ -8,7 +8,7 @@ class Post extends React.Component {
 
   formatDate() {
     let date = new Date(this.props.data.datePosted)
-    return date.toLocaleDateString()
+    return date.toLocaleString()
   }
 
   render() {

@@ -2,55 +2,54 @@ var Post = require('../models/post');
 var User = require('../models/user');
 
 var NewsfeedController = {
-  Index: function(req, res) {
-    if (req.session.user) {
-      res.render('newsfeed/index');
+  Index: function(request, response) {
+    if (request.session.user) {
+      response.render('newsfeed/index');
     } else {
-      res.redirect('/');
+      response.redirect('/');
     }
   },
 
-  Posts: function(req, res) {
+  Posts: function(request, response) {
     Post.find(function(err, result) {
 
-      res.send(result);
+      response.send(result);
     });
   },
 
 
-  Create: function(req, res) {
+  Create: function(request, response) {
     var userName
 
 
-    User.findOne({ _id: req.session.user }, function(err, user){
+    User.findOne({ _id: request.session.user }, function(err, user){
       userName = user.firstName + " " + user.lastName
 
-      var newPost = new Post({userID: user._id, name: userName, body: req.body.body, datePosted: Date.now()});
+      var newPost = new Post({userID: user._id, name: userName, body: request.body.body, datePosted: Date.now()});
 
       newPost.save(function(err){
 
-        res.send('saved')
+        response.send('saved')
       });
     });
   },
 
-  Session: function(req, res) {
-    // console.log(req.session)
-    res.send(req.session)
+  Session: function(request, response) {
+    response.send(request.session)
   },
 
-  Comment: function(req, res) {
-    Post.findOne({ _id: req.body.id }, function(err, post) {
+  Comment: function(request, response) {
+    Post.findOne({ _id: request.body.id }, function(err, post) {
       console.log(post)
       post.comments.push({
-        body: req.body.body,
+        body: request.body.body,
         timePosted: Date.now(),
-        commentUserName: req.session.user.firstName + " " + req.session.user.lastName,
-        commentUserID: req.session.user._id
+        commentUserName: request.session.user.firstName + " " + request.session.user.lastName,
+        commentUserID: request.session.user._id
       })
       post.save(function(err) {
         console.log(post)
-        res.send("saved")
+        response.send("saved")
       })
     })
   }

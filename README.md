@@ -11,6 +11,10 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
+## Travis Status
+
+[![Build Status](https://travis-ci.com/edmond-b/acebook-NO-de-Problem.svg?branch=master)](https://travis-ci.com/edmond-b/acebook-NO-de-Problem)
+
 ## Card wall
 
 https://trello.com/b/fjC2EoVt/no-de-problem
