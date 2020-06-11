@@ -3,30 +3,30 @@ const bcrypt = require('bcrypt');
 var User = require('../models/user');
 var UserController = {
 
-  Index:function(req, res){
-    res.render('user/signup', { title: 'Signup to Acebook', loginTitle: 'Login to Acebook'});
+  Index:function(request, response){
+    response.render('user/signup', { title: 'Signup to Acebook', loginTitle: 'Login to Acebook'});
   },
 
-  Create: function(req, res) {
-    User.findOne( {email: req.body.email}, function(err, result) {
-      if(result) { sendFlashMessage(res, req, '/', 'This email is already registered.'); return; }
+  Create: function(request, response) {
+    User.findOne( {email: request.body.email}, function(err, result) {
+      if(result) { sendFlashMessage(response, request, '/', 'This email is already registered.'); return; }
 
-      bcrypt.hash(req.body.password, 10, function(err, hash) {
-        var user = new User({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: hash});
+      bcrypt.hash(request.body.password, 10, function(err, hash) {
+        var user = new User({firstName: request.body.firstName, lastName: request.body.lastName, email: request.body.email, password: hash});
         user.save(function(err) {
           if (err) { console.log(err) }
-          sendFlashMessage(res, req, '/', "Sign up successful.");
+          sendFlashMessage(response, request, '/', "Sign up successful.");
         });
       });
     });
   },
 
-  Login: function(req, res) {
-    User.findOne( {email: req.body.email}, function(err, result) {
-      if (result == null) { sendFlashMessage(res, req, '/', "Login unsuccessful: incorrect email or password."); return; }
-      bcrypt.compare(req.body.password, result.password, function(err, match) {
-        if (match) { req.session.user = result; res.redirect('/'); return; }
-        sendFlashMessage(res, req, '/', "Login unsuccessful: incorrect email or password.")
+  Login: function(request, response) {
+    User.findOne( {email: request.body.email}, function(err, result) {
+      if (result == null) { sendFlashMessage(response, request, '/', "Login unsuccessful: incorrect email or password."); return; }
+      bcrypt.compare(request.body.password, result.password, function(err, match) {
+        if (match) { request.session.user = result; response.redirect('/'); return; }
+        sendFlashMessage(response, request, '/', "Login unsuccessful: incorrect email or password.")
       });
     });
   }, 
