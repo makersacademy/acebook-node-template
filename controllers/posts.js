@@ -24,6 +24,7 @@ const PostsController = {
       res.status(201).redirect('/posts');
     });
   },
+  Delete: 
 };
 
 module.exports = PostsController;
