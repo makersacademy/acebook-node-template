@@ -33,7 +33,7 @@ var UserController = {
     });
   },
 
-  Validate: function(req, res) {
+  Login: function(req, res) {
     User.findOne( {email: req.body.email}, function(err, result) {
       if (result == null) { 
         //res.render('user/validateLogin', { loginMessage: "Login unsuccessful: incorrect email or password."});

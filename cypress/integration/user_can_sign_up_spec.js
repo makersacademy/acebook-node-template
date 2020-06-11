@@ -1,7 +1,7 @@
 describe("Sign up page", function(){
   it('user can sign up', function() {
     cy.task('emptyUsers');
-    cy.visit('/signup');
+    cy.visit('/user/signup');
     cy.get('#new-user-form').find('[id="firstName"]').type('Lomothy')
     cy.get('#new-user-form').find('[id="lastName"]').type('Tomins')
     cy.get('#new-user-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
@@ -12,7 +12,7 @@ describe("Sign up page", function(){
   });
 
   it('cannot use an email that is already registered', function() {
-    cy.visit('/signup');
+    cy.visit('/user/signup');
     cy.get('#new-user-form').find('[id="firstName"]').type('Lomothy')
     cy.get('#new-user-form').find('[id="lastName"]').type('Tomins')
     cy.get('#new-user-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
