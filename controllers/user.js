@@ -1,6 +1,5 @@
-var User = require('../models/user')
-const bcrypt = require('bcrypt'); 
-
+var user = require('../models/user')
+var userSession = require('../models/userSession')
 
 var UserController = {
  
@@ -23,7 +22,7 @@ var UserController = {
     } = body; 
 
 
-    User.findOne({email: email}, async function(err, existingUser) {
+    user.findOne({email: email}, async function(err, existingUser) {
       if (err) { 
         res.send({
           success: false,
@@ -33,7 +32,7 @@ var UserController = {
         res.send(existingUser);
       }
       else{
-        var newUser = new User();
+        const newUser = new user();
         newUser.email = email;
         newUser.firstName = firstName;
         newUser.lastName = lastName;
@@ -45,8 +44,8 @@ var UserController = {
               success: false,
               message: "db server error!",
             })}
-            console.log(newUser)
-            res.send(false)  
+          console.log(newUser)
+          res.send(false)  
         });
       }
     });
@@ -66,7 +65,7 @@ var UserController = {
     } = body; 
     
 
-    User.findOne({email: email}, async function(err, existingUser) {
+    user.findOne({email: email}, async function(err, existingUser) {
       if (err) {
         res.send({
           success: false,
@@ -74,20 +73,34 @@ var UserController = {
         })}
       else if (existingUser !== null ) {
           if (existingUser.validPassword(password)) {
-            res.json(existingUser)
-        } else {
-          res.json("wrong password")
-        }
+  
+            const userSessionNew =  new userSession();
+            userSessionNew.userId = existingUser._id
+            userSessionNew.save((err,doc)=> {
+              if (err) { 
+                res.send({
+                success: false,
+                message: "db server error!",
+              })}  //res.json(existingUser)
+              return res.send({
+                success: true,
+                message: 'Valid sign in',
+                token: doc._id
+              })
+            })
+          } 
+          else {
+            res.json("wrong password")
+          }
       }
       else{
         res.send({ 
-          success: false,
-          message:'No user with that email' 
+        success: false,
+        message:'No user with that email' 
         })
       }
-    })
+    })   
   }
-
 };
 
 module.exports = UserController;
