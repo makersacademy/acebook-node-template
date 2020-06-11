@@ -24,7 +24,14 @@ const PostsController = {
       res.status(201).redirect('/posts');
     });
   },
-  Delete: 
+  Delete: function(req, res) {
+    Post.findByIdAndRemove({_id: req.params.id},
+      function(err){ 
+        if (err) {
+          throw err;
+      } 
+    res.status(201).redirect('/posts');
+  });
+},
 };
-
 module.exports = PostsController;
