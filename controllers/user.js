@@ -15,8 +15,18 @@ var UserController = {
       if(result) { sendFlashMessage(response, request, '/', 'This email is already registered.'); return; }
 
       bcrypt.hash(request.body.password, 10, function(err, hash) {
+        var photo = "";
+
+        // console.log(request.file);
+
+        if ( request.file == undefined ) {
+           photo = fs.readFileSync(path.join(__dirname +'/../uploads/' + 'disapprove.png'));
+        } else {
+           photo = fs.readFileSync(path.join(__dirname +'/../uploads/' + request.file.filename))
+        }
+        
         var imageProperty = {
-          data: fs.readFileSync(path.join(__dirname +'/../uploads/' + request.file.filename)),
+          data: photo,
           contentType: 'image/png'
         }
 
