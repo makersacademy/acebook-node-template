@@ -77,8 +77,10 @@ export default class userSignup extends Component {
       email: this.state.email,
       password: this.state.password
     }
+    var createdUser = document.getElementById('createdUserMessage')
     var emailError = document.getElementById('email-error')
-    emailError.innerHTML = " ";
+    emailError.innerHTML = "";
+    createdUser.innerHTML = "";
 
 
     axios({
@@ -95,8 +97,8 @@ export default class userSignup extends Component {
       if(response.data){
         console.log("redirecting...")
         emailError.innerHTML = "Sorry this username already exists, please click <a href='/user/login'>here</a> to login";
-        createdUser.innerHTML = "";
         emailError.setAttribute("style", "color:red");
+        createdUser.innerHTML = "";
       }
       
     })
