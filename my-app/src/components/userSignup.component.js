@@ -60,9 +60,8 @@ export default class userSignup extends Component {
 
       if(response.data){
         console.log("redirecting...")
-        alert("User already exists, please log in");
+        document.getElementById('email-error').innerHTML = "Sorry this username already exists, please click <a href='/user/login'>here</a> to login";
       }
-        window.location.replace("/user/login");
     })
     .catch(err => {
       console.log(err)
@@ -95,6 +94,7 @@ showPassword() {
                    value={this.state.firsName}
                    onChange={this.onChangeFirstName}>
             </input>
+           
             <label>Last Name:</label>
             <input type="text"
                    placeholder = "Last Name"
@@ -104,7 +104,7 @@ showPassword() {
                    onChange={this.onChangeLastName}>
             </input>
 
-            <label>Email:</label>
+            <label>Email:</label>  <div id="email-error"></div>
             <input type="email"
                    placeholder = "Email"
                    required
