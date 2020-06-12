@@ -13,10 +13,103 @@ code {
     monospace;
 } */
 
+
 body {
-  background-color: antiquewhite;
+  background: url("./images/cliffs-image.jpg"); 
+  background-size: cover;
+
+}
+
+.nav-link {
+  color:#fff;
+}
+
+h2 {
+  margin: 20px 0 20px 0;
+}
+
+.wrapper{
+  background: #fff;
+  box-shadow: 0px 13px 40px -13px rgba(0,0,0,0.75);
+  margin: 0 auto;
+  padding: 10% 15% 10% 15%;
+  margin: 5%;
+}
+
+.wrapper-main{
+  background: #fff;
+  margin: 0 auto;
+  padding: 15%;
+  margin: 0%;
+}
+
+.posts-page{
+  width: 100vw;
+  height: 100vh;
+  background: url("./images/cliffs-image.jpg"); 
+  background-size: cover;
+}
+
+
+.wrapper-posts{
+  box-shadow: 0px 13px 40px -13px rgba(0,0,0,0.75);
+  margin: 0 auto;
+  padding: 10% 15% 10% 15%;
+  margin: 5%;
 }
 
 .card{
   margin-bottom: 20px;
 }
+
+.custom-btn {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.large-button {
+  margin: 0 20px 0 20px;
+}
+
+.main-post {
+  padding-bottom: 0;
+}
+
+.see-password {
+  padding-top: 10px;
+}
+
+.see-pass-wording {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+
+
+/* BASIC */
+/* 
+html {
+  background-color: #56baed;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+a {
+  color: #92badd;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #cccccc;
+} */

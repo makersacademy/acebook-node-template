@@ -126,6 +126,7 @@ showPassword() {
   render() {
     return (
       <div className="col-md-6 offset-md-3"> 
+        <div className="wrapper">
         <center>
         <h3>Sign up to Acebook</h3>
         </center>
@@ -179,7 +180,7 @@ showPassword() {
                    onChange={this.onChangeConfirmPassword}>
             </input>
             <input type="checkbox" onChange={this.showPassword}></input>
-            <label>See Password</label>
+            <label className="see-pass-wording">See Password</label>
 
           </div>
           <div className="form-group">
@@ -187,6 +188,9 @@ showPassword() {
           </div>
           <div id="createdUserMessage"></div>
         </form>
+        </div>
+
+       
       </div>
     )
   }

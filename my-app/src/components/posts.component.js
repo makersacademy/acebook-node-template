@@ -165,10 +165,10 @@ export default class Posts extends React.Component{
     const { match: { params } } = this.props;
     if (!posts.length) return null;
     return posts.map((post, index) => (
-      <div key={index} className="card">
+      <div key={index} className="card shadow-sm p-3 mb-5 bg-white rounded">
         <div className="card-body">
         <h4>{post.message}</h4>
-        <h6>{post.userName} posted at {post.date} </h6>
+        <p>{post.userName} posted at {post.date} </p>
         {(() => {
           if (post.userId !== params.id) {
           return(
@@ -179,12 +179,12 @@ export default class Posts extends React.Component{
 
           } else {
             return(
-            <div className="row">
+            <div className="row float-right">
               <form data-id={post._id} onSubmit={ this.delete }>
-                <input className="btn btn-dark btn-sm" type="submit" value="Delete"/>
+                <input className="btn btn-dark btn-sm custom-btn" type="submit" value="Delete"/>
               </form>
               <form data-id={post._id} onSubmit={ this.update}>
-                <input className="btn btn-dark btn-sm" type="submit" value="Edit"/>
+                <input className="btn btn-dark btn-sm custom-btn" type="submit" value="Edit"/>
               </form>
             </div>)
           }
@@ -229,56 +229,73 @@ export default class Posts extends React.Component{
       $("#edit-posts").show()
     }
     return(
-      <div className="col-md-6 offset-md-3"> 
-        <div>
+      <div className="posts-page">
+        <div className="col-md-6 offset-md-3"> 
+          <div className="container">
+
+          <div className="shadow-sm p-3 mb-5 bg-white rounded">
           <center>
-          <h2> Hi {this.state.firstName}! </h2>
-          </center>
-        </div>
-        <div>
-          <h4> Create a post... </h4>
-          <form onSubmit={this.submit}>
-            <div className="form-input">
-              <textarea
-              name="post"
-              placeholder="Enter your post"
-              className="form-control"
-              cols="30"
-              rows="3"
-              value={this.state.post}
-              onChange={this.handleChange}>
-              </textarea>
+            <h2> Hi {this.state.firstName}! </h2>
+            </center>
+            <div className="card-body  main-post">
+              <h4> Create a post... </h4>
+              <form onSubmit={this.submit}>
+                <div className="form-input">
+                  <textarea
+                    name="post"
+                    placeholder="Enter your post"
+                    className="form-control"
+                    cols="30"
+                    rows="3"
+                    value={this.state.post}
+                    onChange={this.handleChange}>
+                  </textarea>
+                </div>
+                <div className="text-right">
+                  <input className=" btn btn-dark btn-small custom-btn" type= "submit" value="Submit"/>
+                </div>    
+              </form>
             </div>
-            <button className="btn btn-dark btn-sm">Submit</button>
-          </form>
-        </div>
+          
+          </div>
 
-        <br></br>
+          <br></br>
 
-        <div className="newsfeed">
-          <h2>Timeline</h2>
-          {this.displayPosts(this.state.posts)}
-        </div>
-
-        <div id="edit-posts">
-        <h4> Edit your post below... </h4>
-          <form onSubmit={this.save}>
-            <div className="form-input">
-              <textarea
-              name="updateMessage"
-              placeholder="Edit your post"
-              className="form-control"
-              cols="30"
-              rows="3"
-              value={this.state.updateMessage}
-              onChange={this.handleChange}>
-              </textarea>
+          <div className="newsfeed wrapper-main shadow-sm p-3 mb-5 bg-white rounded">
+            <div className="container">
+              <h2>Timeline</h2>
+              {this.displayPosts(this.state.posts)}
             </div>
+          </div>
 
-            <button className="btn btn-dark btn-sm">Submit</button>
-          </form>
+          <div id="edit-posts">
+        
+            <form onSubmit={this.save}>
+              <div className="form-input card shadow-sm p-3 mb-5 bg-white rounded">
+                <div className="card-body container">
+                <h4> Edit your post below... </h4>
+                  <textarea
+                  name="updateMessage"
+                  placeholder="Edit your post"
+                  className="form-control"
+                  cols="30"
+                  rows="3"
+                  value={this.state.updateMessage}
+                  onChange={this.handleChange}>
+                  </textarea>
+                </div>
+
+                <div className="text-right">
+                  <input className=" btn btn-dark btn-small custom-btn" type="submit" value="Submit"/>
+                </div>    
+              </div>
+            </form>
+          </div>
         </div>
+          </div>
+          
       </div>
+        
     );
   }
 }
