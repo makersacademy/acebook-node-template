@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); 
 
-var UserSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
     firstName: {
          type: String 
         },
@@ -16,15 +16,15 @@ var UserSchema = new mongoose.Schema({
     },
 });
 
-UserSchema.methods.hashedPassword = (password) => {
+userSchema.methods.hashedPassword = (password) => {
     return bcrypt.hashSync(password, 10)
 }
 
-UserSchema.methods.validPassword = function(password) { 
+userSchema.methods.validPassword = function(password) { 
     return bcrypt.compareSync(password, this.password)
 }
 
 
-var User = mongoose.model('Users', UserSchema); // it creates new table, by changing 'users' to 'test' you are creating new table and any new data go to that table insead of 'users'. User is users
-module.exports = User;
+var user = mongoose.model('Users', userSchema); 
+module.exports = user;
 
