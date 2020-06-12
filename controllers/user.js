@@ -1,11 +1,10 @@
-var User = require('../models/user')
-const bcrypt = require('bcrypt'); 
-
+var user = require('../models/user')
+var userSession = require('../models/userSession')
 
 var UserController = {
  
   New: function(req, res){
-    User.findOne({_id: req.body.id}, async function(err, existingUser){
+    user.findOne({_id: req.body.id}, async function(err, existingUser){
       console.log(existingUser)
       res.send(existingUser)
     })
@@ -23,7 +22,7 @@ var UserController = {
     } = body; 
 
 
-    User.findOne({email: email}, async function(err, existingUser) {
+    user.findOne({email: email}, async function(err, existingUser) {
       if (err) { 
         res.send({
           success: false,
@@ -33,7 +32,7 @@ var UserController = {
         res.send(existingUser);
       }
       else{
-        var newUser = new User();
+        const newUser = new user();
         newUser.email = email;
         newUser.firstName = firstName;
         newUser.lastName = lastName;
@@ -45,8 +44,8 @@ var UserController = {
               success: false,
               message: "db server error!",
             })}
-            console.log(newUser)
-            res.send(false)  
+          console.log(newUser)
+          res.send(false)  
         });
       }
     });
@@ -65,8 +64,7 @@ var UserController = {
       password
     } = body; 
     
-
-    User.findOne({email: email}, async function(err, existingUser) {
+    user.findOne({email: email}, async function(err, existingUser) {
       if (err) {
         res.send({
           success: false,
@@ -74,20 +72,69 @@ var UserController = {
         })}
       else if (existingUser !== null ) {
           if (existingUser.validPassword(password)) {
-            res.json(existingUser)
-        } else {
-          res.json("wrong password")
-        }
+  
+            const userSessionNew =  new userSession();
+            userSessionNew.userId = existingUser._id
+            userSessionNew.save((err,doc)=> {
+              if (err) { 
+                res.send({
+                success: false,
+                message: "db server error!",
+              })} 
+              return res.send({
+                success: true,
+                message: 'Valid log in',
+                token: doc._id,
+                userId: existingUser._id
+              })
+            })
+          } 
+          else {
+            res.send({ 
+              success: false,
+              message:'Wrong Password' 
+              })
+          }
       }
       else{
         res.send({ 
+        success: false,
+        message:'No user with that email' 
+        })
+      }
+    })   
+  },
+  
+  Logout: function(req,res){
+    const { query } = req;
+    const { token } = query;
+
+    userSession.findOneAndUpdate(
+    {
+      _id: token,
+      isOnline: true
+    },
+
+    {
+      $set:{isOnline:false}
+    }, 
+    function(err, sessions){
+      console.log(sessions)
+      if(err) {
+        res.send({
           success: false,
-          message:'No user with that email' 
+          message: 'db error'
+        })
+      }
+      else {
+        res.send({
+          success: true,
+          message: 'loged out'
         })
       }
     })
-  }
 
+  }
 };
 
 module.exports = UserController;
