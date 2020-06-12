@@ -22,7 +22,7 @@ Acebook the best thing since facebook! This is a re-creation of classic facebook
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 - [Multer](https://www.npmjs.com/package/multer) for file uploads to the server.
-- [Bcrypt]( https://www.npmjs.com/package/bcrypt) for password encryption.
+- [Bcrypt](https://www.npmjs.com/package/bcrypt) for password encryption.
 - [Travis](https://travis-ci.org) for continuous integration and build testing.
 
 ## Development Process
