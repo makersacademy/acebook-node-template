@@ -90,3 +90,7 @@ The test server runs on port `3030` at [http://localhost:3030](http://localhost:
     ```
     npm run test:integration
     ```
+
+## Learning
+
+We ran daily retros to review each other's code and clarified our learning with a wiki post detailing the new knowledge we had acquired. You can a link to an overview of [daily learning here](https://github.com/edmond-b/acebook-NO-de-Problem/wiki/Daily-Learning).
