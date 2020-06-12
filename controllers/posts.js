@@ -30,6 +30,18 @@ const PostsController = {
         throw err;
         } 
     res.status(201).redirect('/posts');
+    });
+  },
+  Edit: function(req, res) {
+    res.render('posts/edit', {});
+  },
+  Update: function(req, res) {
+    const post = new Post(req.body);
+    Post.tofindByIdAndUpdate({_id: req.params._id}, function(err) {
+      if (err) {
+        throw err;
+      }
+    res.status(201).redirect('/posts');
   });
 },
 };
