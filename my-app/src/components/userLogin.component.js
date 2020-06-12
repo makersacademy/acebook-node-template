@@ -90,11 +90,11 @@ export default class userLogin extends Component {
                    onChange={this.onChangePassword}>
             </input>
             <input type="checkbox" onChange={this.showPassword}></input>
-            <label>Check Password</label>
+            <label>See Password</label>
           </div>
 
           <div className="form-group">
-            <input type="submit" value="Login" className="btn btn-dark" ></input>
+            <input id="login" type="submit" value="Login" className="btn btn-dark" ></input>
           </div>
         </form>
       </div>

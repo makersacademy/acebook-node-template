@@ -1,6 +1,11 @@
-/* .App {
-  text-align: center;
+
+.heart {
+  float: right;
+  font-size: 20px;
+	color:red;
 }
+
+/*
 
 .App-logo {
   height: 40vmin;
@@ -12,7 +17,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 
 .App-header {
   background-color: #282c34;

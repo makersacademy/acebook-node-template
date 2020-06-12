@@ -6,7 +6,13 @@ Acebook is a social media platform, similar to Facebook, built as part of the Ma
 
 ## Features
 
-[Placeholder]
+Acebook has the following features:
+
+* User sign up
+* User log in
+* A Timeline of posts
+* A user can create a post
+* A user can edit and delete their own posts
 
 ## Dependencies
 
@@ -36,13 +42,15 @@ To get started using Acebook by Team Node4Code, please follow the instructions b
     brew install nvm
     ```
     Then follow the instructions to update your `~/.bash_profile`.
-1. Open a new terminal
-1. Install the latest long term support (LTS) version of [Node.js](https://nodejs.org/en/), currently `12.14.1`.
+2. Open a new terminal
+3. Install the latest long term support (LTS) version of [Node.js](https://nodejs.org/en/), currently `12.14.1`.
     ```
     nvm install 12.14.1
     ```
 
 ### Getting set up
+
+Once you have installed Node:
 
 1. Clone this repository to your local machine
 2. Install Node.js dependencies using the command:
@@ -61,11 +69,16 @@ To get started using Acebook by Team Node4Code, please follow the instructions b
 
 ### Using Acebook!
 
-1. To start the server, enter the command:
+To use Acebook you must start the backend server, then start the frontend server.
+
+1. To start the backend server, navigate to the Node4Code root directory and enter the command:
     ```
     npm start
     ```
-2. Browse to [http://localhost:3000](http://localhost:3000)
+
+2. To start the front server, navigate to the directory named 'react' and enter the same command.
+
+3. Browse to [http://localhost:3000](http://localhost:3000) to view and use Acebook!
 
 ## Testing
 
