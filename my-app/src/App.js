@@ -17,6 +17,7 @@ function App() {
       <Route path="/posts/:id" exact component={Posts}/>
       <Route path="/user/new" exact component={userSignup}/>
       <Route path="/user/login" exact component={userLogin}/>
+      
     </Router>
   );
 }

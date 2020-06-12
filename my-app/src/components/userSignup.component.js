@@ -134,7 +134,7 @@ showPassword() {
           <div className="form-group">
             <label>First Name:</label>
             <input type="text"
-                   placeholder = "First Name"
+                   id="firstName"                   placeholder = "First Name"
                    required
                    className="form-control"
                    value={this.state.firsName}
@@ -144,6 +144,7 @@ showPassword() {
             <label>Last Name:</label>
             <input type="text"
                    placeholder = "Last Name"
+                   id="lastName"
                    required
                    className="form-control"
                    value={this.state.lastName}
@@ -153,6 +154,7 @@ showPassword() {
             <label>Email:</label>  <div id="email-error"></div>
             <input type="email"
                    placeholder = "Email"
+                   id="Email"
                    required
                    className="form-control"
                    value={this.state.email}
@@ -167,6 +169,7 @@ showPassword() {
                    value={this.state.password}
                    onChange={this.onChangePassword}>
             </input>
+      
             <label>Confirm Password:</label>  <div id="password-error"></div>
             <input type="password"
                    placeholder = "Confirm Password"
@@ -181,7 +184,7 @@ showPassword() {
 
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-dark" ></input>
+            <input id="createUser" type="submit" value="Create User" className="btn btn-dark" ></input>
           </div>
           <div id="createdUserMessage"></div>
         </form>
