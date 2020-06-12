@@ -36,12 +36,11 @@ const PostsController = {
     res.render('posts/edit', {});
   },
   Update: function(req, res) {
-    const post = new Post(req.body);
-    Post.tofindByIdAndUpdate({_id: req.params._id}, function(err) {
+    Post.findByIdAndUpdate({_id: req.params._id}, function(err) {
       if (err) {
         throw err;
       }
-    res.status(201).redirect('/posts');
+    // res.status(201).redirect('/posts');
   });
 },
 };
