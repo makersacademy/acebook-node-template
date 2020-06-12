@@ -15,7 +15,7 @@ class Post extends React.Component {
     .then(response => response.json())
     .then((data) => {
       this.setState({
-        
+
         profilePic: data
       })
     })
@@ -28,12 +28,11 @@ class Post extends React.Component {
 
   render() {
     let data = this.props.data
-    console.log(this.state.profilePic)
     return(
       <div>
         <div>
           {this.state.profilePic ? <img src={`data:image/png;base64,${ this.state.profilePic.binary }`}></img> : " "}
-      
+
           <p class="postContent">{data.body} - by {data.name} - <span class="posted">Posted on {this.formatDate()}</span></p>
         </div>
       <Comment data={data} updatemethod={this.props.updatemethod}/>

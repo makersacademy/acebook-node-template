@@ -1,5 +1,6 @@
 describe("Sign up page", function(){
   it('user can sign up', function() {
+    cy.task('emptyPosts');
     cy.task('emptyUsers');
     cy.visit('/user/signup');
     cy.get('#new-user-form').find('[id="firstName"]').type('Lomothy')

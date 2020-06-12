@@ -18,8 +18,14 @@ var NewsfeedController = {
   },
 
   ProfilePicture: function(request, response){
+    console.log(3)
+    console.log(request.query.imguserid)
     User.findOne({ _id: request.query.imguserid }, function(err, user) {
+    // if (user.profilePicture == undefined ) {
+      // response.send("")
+    // } else {
       response.send({binary: user.profilePicture.data.toString('base64')})
+    // }
     });
   },
 

@@ -1,6 +1,7 @@
 describe("Login page", function(){
 
   it("returns to login page if user is not in database", function() {
+    cy.task('emptyPosts');
     cy.task('emptyUsers');
     cy.visit('/');
     cy.get('#login-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
@@ -12,7 +13,7 @@ describe("Login page", function(){
 
 
   it("login success if user credentials are correct", function(){
-    cy.task('insertUser', {firstName: 'Lomothy', lastName: 'Mockins', email: 'Lomothy.Tomins@example.com', password: '12345'});
+    cy.task('insertUser', {firstName: 'Lomothy', lastName: 'Mockins', email: 'Lomothy.Tomins@example.com', password: '12345', profilePicture: "" });
     cy.visit('/');
     cy.get('#login-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
     cy.get('#login-form').find('[id="password"]').type('12345')
