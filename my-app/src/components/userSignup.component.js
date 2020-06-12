@@ -53,14 +53,19 @@ export default class userSignup extends Component {
     e.preventDefault();
     var password = this.state.password
     var confirmPassword = this.state.confirmPassword
+    var passwordError = document.getElementById('password-error')
+    passwordError.innerText = " ";
+
     if(password.length >= 6){
       if(password === confirmPassword){
         this.onSubmit();
       } else{
-        alert('The password fields do not match. Try again.')
+        passwordError.innerText = "The password fields do not match. Try again.";
+        passwordError.setAttribute("style", "color:red");
       }
     }else{
-      alert('Passwords must be a minimum of 6 characters. Try again.')
+      passwordError.innerText = "Passwords must be a minimum of 6 characters. Try again.";
+      passwordError.setAttribute("style", "color:red");
     }
   }
 
@@ -72,6 +77,9 @@ export default class userSignup extends Component {
       email: this.state.email,
       password: this.state.password
     }
+    var emailError = document.getElementById('email-error')
+    emailError.innerHTML = " ";
+
 
     axios({
       url: '/api/user/new',
@@ -81,11 +89,16 @@ export default class userSignup extends Component {
 
     .then(response => {
       console.log('Data has sent to server');
+      var createdUser = document.getElementById('createdUserMessage')
+      createdUser.innerHTML = "Thanks for signing up! Please click <a href='/user/login'>here</a> to login";
 
       if(response.data){
         console.log("redirecting...")
-        document.getElementById('email-error').innerHTML = "Sorry this username already exists, please click <a href='/user/login'>here</a> to login";
+        emailError.innerHTML = "Sorry this username already exists, please click <a href='/user/login'>here</a> to login";
+        createdUser.innerHTML = "";
+        emailError.setAttribute("style", "color:red");
       }
+      
     })
     .catch(err => {
       console.log(err)
@@ -151,7 +164,7 @@ showPassword() {
                    value={this.state.password}
                    onChange={this.onChangePassword}>
             </input>
-            <label>Confirm Password:</label>
+            <label>Confirm Password:</label>  <div id="password-error"></div>
             <input type="password"
                    placeholder = "Confirm Password"
                    required
@@ -167,6 +180,7 @@ showPassword() {
           <div className="form-group">
             <input type="submit" value="Create User" className="btn btn-dark" ></input>
           </div>
+          <div id="createdUserMessage"></div>
         </form>
       </div>
     )
