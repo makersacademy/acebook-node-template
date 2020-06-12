@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-require('../mongodb_helper')
+require('../mongodb_helper');
 const Post = require('../../models/post');
 
 describe('Post model', function() {
@@ -64,19 +64,19 @@ describe('Post model', function() {
       expect(err).toBeNull();
 
       Post.updateOne(
-        {"message": "some message"},
-        { $set: { "message": "this is a changed message" }
-      },
-        function(err) {
-        expect(err).toBeNull();
+          {'message': 'some message'},
+          {$set: {'message': 'this is a changed message'}},
+          function(err) {
+            expect(err).toBeNull();
 
-        Post.find(function(err, posts) {
-          expect(err).toBeNull();
+            Post.find(function(err, posts) {
+              expect(err).toBeNull();
 
-          expect(posts[0]).toMatchObject({message: 'this is a changed message'});
-          done();
-        });
-      });
+              expect(posts[0]).toMatchObject({
+                message: 'this is a changed message'});
+              done();
+            });
+          });
     });
   });
 });

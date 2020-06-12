@@ -6,7 +6,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.render('posts/index', {
         posts: posts});
     });
@@ -20,7 +19,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.status(201).redirect('/posts');
     });
   },
@@ -28,20 +26,30 @@ const PostsController = {
     Post.findByIdAndRemove({_id: req.params._id}, function(err) {
       if (err) {
         throw err;
-        } 
-    res.status(201).redirect('/posts');
+      }
+      res.status(201).redirect('/posts');
     });
   },
-  Edit: function(req, res) {
-    res.render('posts/edit', {});
-  },
   Update: function(req, res) {
-    Post.findByIdAndUpdate({_id: req.params._id}, function(err) {
+    Post.find({_id: req.params._id}, function(err, posts) {
       if (err) {
         throw err;
       }
-    // res.status(201).redirect('/posts');
-  });
-},
+      res.render('posts/edit', {
+        posts: posts});
+    });
+  },
+
+  Edit: function(req, res) {
+    Post.findOneAndUpdate({
+      _id: req.params._id},
+    {$set: {message: req.body.message}},
+    function(err, posts) {
+      if (err) {
+        throw err;
+      }
+    res.status(201).redirect('/posts');
+    });
+  },
 };
 module.exports = PostsController;
