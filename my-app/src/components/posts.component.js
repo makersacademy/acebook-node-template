@@ -220,7 +220,7 @@ export default class Posts extends React.Component{
         <div className="col-md-6 offset-md-3"> 
           <div className="container">
 
-          <div className="shadow-sm p-3 mb-5 bg-light rounded">
+          <div className="shadow-sm p-3 mb-5 bg-white rounded">
           <center>
             <h2> Hi {this.state.firstName}! </h2>
             </center>
