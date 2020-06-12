@@ -13,7 +13,8 @@ export default class Posts extends React.Component{
       updateMessage: '',
       isInEditMode: false,
       updateID:'',
-      firstName:''
+      firstName:'',
+      token: '',
     };
 
   }
@@ -22,7 +23,6 @@ export default class Posts extends React.Component{
     this.takeUserid();
     console.log(this.state.firstName)
     this.getBlogPost();
-
   }
 
   getBlogPost = () => {
@@ -164,8 +164,8 @@ export default class Posts extends React.Component{
     const { match: { params } } = this.props;
     if (!posts.length) return null;
     return posts.map((post, index) => (
-      <div key={index} class="card">
-        <div class="card-body">
+      <div key={index} className="card">
+        <div className="card-body">
         <h4>{post.message}</h4>
         <h6>{post.userName} posted at {post.date} </h6>
         {(() => {
@@ -175,15 +175,15 @@ export default class Posts extends React.Component{
             return(
             <div className="row">
               <form data-id={post._id} onSubmit={ this.delete }>
-                <input className="col" class="btn btn-dark btn-sm" type="submit" value="Delete"/>
+                <input className="btn btn-dark btn-sm" type="submit" value="Delete"/>
               </form>
               <form data-id={post._id} onSubmit={ this.update}>
-                <input className="col" class="btn btn-dark btn-sm" type="submit" value="Edit"/>
+                <input className="btn btn-dark btn-sm" type="submit" value="Edit"/>
               </form>
             </div>)
           }
         })()}
-        </div>
+        </div> 
       </div>
     ));
 
@@ -236,7 +236,7 @@ export default class Posts extends React.Component{
               onChange={this.handleChange}>
               </textarea>
             </div>
-            <button class="btn btn-dark btn-sm">Submit</button>
+            <button className="btn btn-dark btn-sm">Submit</button>
           </form>
         </div>
 
@@ -262,7 +262,7 @@ export default class Posts extends React.Component{
               </textarea>
             </div>
 
-            <button class="btn btn-dark btn-sm">Submit</button>
+            <button className="btn btn-dark btn-sm">Submit</button>
           </form>
         </div>
       </div>

@@ -8,7 +8,6 @@ router.post('/find', UserController.New); // currently it is at '/user' then it 
 router.post('/new', UserController.Create);
 router.get('/login', UserController.Index);
 router.post('/login', UserController.Authenticate);
-router.get('/verify', UserController.Verify);
 router.get('/logout', UserController.Logout);
 
 module.exports = router;

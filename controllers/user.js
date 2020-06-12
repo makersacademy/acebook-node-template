@@ -4,7 +4,7 @@ var userSession = require('../models/userSession')
 var UserController = {
  
   New: function(req, res){
-    User.findOne({_id: req.body.id}, async function(err, existingUser){
+    user.findOne({_id: req.body.id}, async function(err, existingUser){
       console.log(existingUser)
       res.send(existingUser)
     })
@@ -64,7 +64,6 @@ var UserController = {
       password
     } = body; 
     
-
     user.findOne({email: email}, async function(err, existingUser) {
       if (err) {
         res.send({
@@ -81,16 +80,20 @@ var UserController = {
                 res.send({
                 success: false,
                 message: "db server error!",
-              })}  //res.json(existingUser)
+              })} 
               return res.send({
                 success: true,
                 message: 'Valid log in',
-                token: doc._id
+                token: doc._id,
+                userId: existingUser._id
               })
             })
           } 
           else {
-            res.json("wrong password")
+            res.send({ 
+              success: false,
+              message:'Wrong Password' 
+              })
           }
       }
       else{
@@ -101,28 +104,7 @@ var UserController = {
       }
     })   
   },
-  Verify: function(req, res){
-    const { query } = req;
-    const { token } = query;
-
-    userSession.findOne({
-      _id: token,
-      isDeleted: false
-    }, function(err, sessions){
-      if(err) {
-        res.send({
-          success: false,
-          message: 'db error'
-        })
-      }
-      else {
-        res.send({
-          success: true,
-          message: 'verifed token'
-        })
-      }
-    })
-  },
+  
   Logout: function(req,res){
     const { query } = req;
     const { token } = query;
@@ -130,11 +112,11 @@ var UserController = {
     userSession.findOneAndUpdate(
     {
       _id: token,
-      isDeleted: false
+      isOnline: true
     },
 
     {
-      $set:{isDeleted:true}
+      $set:{isOnline:false}
     }, 
     function(err, sessions){
       console.log(sessions)

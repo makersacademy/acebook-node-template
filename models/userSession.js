@@ -9,9 +9,9 @@ var userSessionSchema = new mongoose.Schema({
     type: Date,
     default: Date.now()
   },
-  isDeleted: {
+  isOnline: {
     type: Boolean,
-    default: false
+    default: true
   }
 })
 
