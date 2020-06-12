@@ -16,10 +16,14 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nodemon ./bin/www",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "npm run lint && npm run test:unit && npm run test:integration",
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "start:test": "PORT=3000 MONGODB_URL='mongodb://localhost/acebook_test' npm start",
+    "test:unit": "jest",
+    "test:integration": "cypress run"
   },
   "eslintConfig": {
     "extends": "react-app"
