@@ -16,7 +16,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "npm run lint && npm run test:unit && npm run test:integration",
     "eject": "react-scripts eject",
@@ -25,9 +25,7 @@
     "test:unit": "jest",
     "test:integration": "cypress run"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",
