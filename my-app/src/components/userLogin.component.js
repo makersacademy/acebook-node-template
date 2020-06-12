@@ -66,6 +66,7 @@ export default class userLogin extends Component {
   render() {
     return (
       <div className="col-md-6 offset-md-3"> 
+        <div className="wrapper">
         <center>
         <h3>Log in to Your Account</h3>
         </center>
@@ -90,14 +91,17 @@ export default class userLogin extends Component {
                    value={this.state.password}
                    onChange={this.onChangePassword}>
             </input>
-            <input type="checkbox" onChange={this.showPassword}></input>
-            <label>See Password</label>
+            <div className="see-password">
+              <input type="checkbox" onChange={this.showPassword}></input>
+              <label className="see-pass-wording">See Password</label>
+            </div>
           </div>
 
           <div className="form-group">
             <input type="submit" value="Login" className="btn btn-dark" ></input>
           </div>
         </form>
+        </div>
       </div>
     )
   }
