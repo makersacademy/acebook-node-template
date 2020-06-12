@@ -36,13 +36,15 @@ p {
   font-family: inherit;
 }
 form {
-  background-color: linen;
+  width: 80%;
+  background-color: #fae6e675;
   margin: 0 auto;
   display: block;
   padding: 1rem;
   border-radius: 5px;
   margin-top: 2rem;
 }
+
 input {
   padding: .6rem;
   border-radius: 3px;
@@ -50,14 +52,16 @@ input {
   font-family: inherit;
   display: block;
   width: 100%;
- border-radius: 3px;
- border: 1px solid #00cc00;
- font-family: inherit;
- font-size: inherit;
- padding: 0.3rem 0.7rem;
- margin-bottom: 1rem;
- margin-top: 1rem;
+  border-radius: 3px;
+  border: 1px solid #c7b218;
+  font-family: inherit;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0.2rem 0.7rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
+
 input::-webkit-input-placeholder {
   padding: 1rem;
   margin: auto;
@@ -81,20 +85,22 @@ label {
   flex-direction: column;
   position: relative;
   box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-  padding: 3rem;
-  margin: 2rem 3rem;
+  padding: 1.5rem;
+  margin: 1rem auto;
 }
 .loginForm {
   width: 35%;
 }
 .button {
   color: linen;
-  background-color: #00cc00;
+  background-color: #4c7d77;
   border: none;
   border-radius: 3px;
-  padding: .6rem;
-  font-size: 1.1rem;
+  padding: .3rem;
+  font-size: 10px;
   font-family: 'Orbitron', sans-serif;
+  width: 25%;
+  margin: 0 auto;
 }
 .button:hover {
   background-color: #009900;
@@ -104,6 +110,7 @@ label {
   font-size: 1.5rem;
   border-bottom: 1px solid gainsboro;
 }
+
 .postInput {
   height: 5rem;
 }
@@ -115,20 +122,54 @@ label {
 .posted {
   font-size: 1.3rem;
   font-style: italic;
-  font-size: 1rem;
+  font-size: 0.7rem;
 }
 .commentBox {
   margin-left: 2rem;
 }
-.fa-comments {
+
+.individualComments {
+  background-color: #f2f2f2;
+  opacity: .5;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  width: 90%;
+}
+
+.commentText {
+  color: black;
+}
+
+.commentInfo {
+  color: dimgray;
+}
+/* .fa-comments {
   color: dimgray;
   margin: 5px 5px 5px 0;
-}
-.fa-comments:active,
+} */
+/* .fa-comments:active,
 .fa-comments:hover {
   color: #000;
   cursor: pointer;
+} */
+
+.profilePicture {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; 
+  align-content: center;
 }
+.pictureContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: right;
+}
+
 
 @media only screen and (max-width: 800px) {
   .container {
@@ -144,3 +185,5 @@ label {
     padding: 0 1%;
   }
 }
+
+

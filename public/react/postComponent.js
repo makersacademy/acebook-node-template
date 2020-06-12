@@ -31,9 +31,11 @@ class Post extends React.Component {
     return(
       <div>
         <div>
-          {this.state.profilePic ? <img src={`data:image/png;base64,${ this.state.profilePic.binary }`}></img> : " "}
+        
+          {this.state.profilePic ? <div class="pictureContainer"><img class="profilePicture" src={`data:image/png;base64,${ this.state.profilePic.binary }`}></img> </div>: " "}
 
-          <p class="postContent">{data.body} - by {data.name} - <span class="posted">Posted on {this.formatDate()}</span></p>
+          <p class="postContent">{data.body} </p>
+          <p class="postInfo"> {data.name} - <span class="posted">Posted on {this.formatDate()}</span></p>
         </div>
       <Comment data={data} updatemethod={this.props.updatemethod}/>
       </div>

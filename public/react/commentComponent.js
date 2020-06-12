@@ -49,21 +49,21 @@ class Comment extends React.Component {
     render() {
       return(
         <div>
-        <p><span class="fa fa-comments fa-2x"></span></p>
-
-        <form id={`comment-form-${this.props.data._id}`} onSubmit={this.mySubmitHandler}>
-          <input id="new-comment" class="commentInput" type="text" placeholder="Type your comment here" onChange={this.myChangeHandler}></input>
-          <input type="submit" id="commentButton" class="button" value="Submit"></input>
-        </form>
-
         { this.props.data.comments.map((comment) => {
         return (
           <div class="commentBox">
-            <p>{comment.body} - by {comment.commentUserName} - Posted on: {this.formatTime(comment)}</p>
+            <div class="individualComments">
+              <p class="commentText">{comment.body} </p>
+              <p class="commentInfo">{comment.commentUserName} - <span class="posted">Posted on: {this.formatTime(comment)}</span></p>
+            </div>
           </div>
           )
         })
       }
+        <form id={`comment-form-${this.props.data._id}`} onSubmit={this.mySubmitHandler}>
+          <input id="new-comment" class="commentInput" type="text" placeholder="Type your comment here" onChange={this.myChangeHandler}></input>
+          <input type="submit" id="commentButton" class="button" value="Submit"></input>
+        </form>
       </div>
     );
   }
