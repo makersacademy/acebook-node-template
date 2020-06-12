@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/edmond-b/acebook-NO-de-Problem.svg?branch=master)](https://travis-ci.com/edmond-b/acebook-NO-de-Problem)
 
-Acebook the best thing since facebook! This is a re-creation of classic facebook in Node.js using Express.
+Acebook the best thing since facebook! This is a re-creation of classic facebook in Node.js using Express and React. The application is structured using modern RESTful route design with asynchronous fetch API calls from a frontend react controller to a backend express server which returns data using JSON.
 
 ## Features:
 
@@ -24,6 +24,7 @@ Acebook the best thing since facebook! This is a re-creation of classic facebook
 - [Multer](https://www.npmjs.com/package/multer) for file uploads to the server.
 - [Bcrypt](https://www.npmjs.com/package/bcrypt) for password encryption.
 - [Travis](https://travis-ci.org) for continuous integration and build testing.
+- [React](https://reactjs.org) as a front end controller. 
 
 ## Development Process
 
@@ -31,7 +32,7 @@ Our team used an agile development process with periodic sprints to deliver Aceb
 
 For an insight into our agile process you can view our team's [card wall here](https://trello.com/b/fjC2EoVt/no-de-problem).
 
-We employed extensive domain and database modelling for our application before beginning development as well as diagramming the flow of the application. Furthermore we integrated a react frontend controller that used asynchronous fetch requests to parse JSON data from our server to create a modern web application. There are links to our wiki with this planning below:
+We employed extensive domain and database modelling for our application before beginning development as well as diagramming the flow of the application. There are links to our wiki with this planning below:
 
 - [User Stories](https://github.com/edmond-b/acebook-NO-de-Problem/wiki/User-Stories-MVP)
 - [Database Models](https://github.com/edmond-b/acebook-NO-de-Problem/wiki/Mongo-Database-Diagram)
