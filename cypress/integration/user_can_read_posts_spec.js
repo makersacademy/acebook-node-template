@@ -38,7 +38,7 @@ describe('Newsfeed', function() {
         cy.get('#login-form').find('[id="email"]').type('Lomothy.Tomins@example.com')
         cy.get('#login-form').find('[id="password"]').type('12345')
         cy.get('#login-form').submit();
-        cy.get('#posts').should('contain', 'I met a lovely dog today - by Jimothy Saladberg');
+        cy.get('#posts').should('contain', 'I met a lovely dog today');
         cy.wait(3000);
         });
       });
