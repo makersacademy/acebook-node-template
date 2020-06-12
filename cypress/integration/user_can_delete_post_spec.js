@@ -9,6 +9,6 @@ describe('Timeline', function() {
     cy.get('.posts').should('contain', 'Hello, world!');
 
     cy.contains('Delete').click();
-    cy.get('.posts').should('be.empty');
+    cy.get('.posts').should('not.contain', 'Hello, world!');
   });
 });

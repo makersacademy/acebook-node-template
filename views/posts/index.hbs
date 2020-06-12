@@ -2,8 +2,12 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
+
+  <form action="/posts/delete/{{this._id}}" method="post">
+    <input type="submit" value="Delete" />
+  </form>
+
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
-<a class="delete-post" href="/delete/:_id">Delete</a>
