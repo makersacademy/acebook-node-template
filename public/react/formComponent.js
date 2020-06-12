@@ -20,10 +20,13 @@ class FormComponent extends React.Component {
     .then((response) => {
       this.props.updatemethod();
     });
+    
+    this.cancelCourse()
+  }
 
-    // sending the body over to server > route > controller
-    // when it arrives at controller > Model > DB
-    // Reload and render the post lists to show new posts √√√√
+
+  cancelCourse = () => { 
+    document.getElementById("new-post-form").reset();
   }
 
   myChangeHandler = (event) => {
