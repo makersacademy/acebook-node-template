@@ -21,22 +21,27 @@ Acebook the best thing since facebook! This is a re-creation of classic facebook
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
-- [Multer](https://www.npmjs.com/package/multer) for file uploads to the server
-- [Bcrypt](https://www.npmjs.com/package/bcrypt) for password encryption
-- [Travis](https://travis-ci.org) for continuous integration and build testing
+- [Multer](https://www.npmjs.com/package/multer) for file uploads to the server.
+- [Bcrypt]( https://www.npmjs.com/package/bcrypt) for password encryption.
+- [Travis](https://travis-ci.org) for continuous integration and build testing.
 
 ## Development Process
 
-Our team used an agile development process with periodic sprints to deliver Acebook to our client with regular check ins and feature updates. This allowed us to integrate changes in specification late into development and keep the team running by dividing up dividing up tasks during the sprints. We used a process of branches, pull-request code reviews and continuous integration testing pipelines to keep our code clean and dependendable.
+Our team used an agile development process with periodic sprints to deliver Acebook to our client with regular check ins and feature updates. The client's specification was broken down by our team into user stories which were then assigned to team member pairs. This process allowed us to integrate changes in specification late into development and keep the team running by dividing up dividing up tasks during the sprints. We used a process of branches, pull-request code reviews and continuous integration testing pipelines to keep our code clean and dependendable.
 
 For an insight into our agile process you can view our team's [card wall here](https://trello.com/b/fjC2EoVt/no-de-problem).
 
-### Domain Model
-
 We employed extensive domain and database modelling for our application before beginning development as well as diagramming the flow of the application. Furthermore we integrated a react frontend controller that used asynchronous fetch requests to parse JSON data from our server to create a modern web application. There are links to our wiki with this planning below:
 
-- [Database Models]()
-- [Domain Model Diagram]()
+- [User Stories](https://github.com/edmond-b/acebook-NO-de-Problem/wiki/User-Stories-MVP)
+- [Database Models](https://github.com/edmond-b/acebook-NO-de-Problem/wiki/Mongo-Database-Diagram)
+- [Domain Model Diagram](https://github.com/edmond-b/acebook-NO-de-Problem/wiki/Domain-Model-Diagram)
+
+## Next Steps
+
+While we were successful in delivering our `MVP` we also developed a number of further user stories in collaboration with our client which we were unable to complete during the project's current life cycle. We plan to tackle some of these further users stories at a later date.
+
+- [Extended User Stories](https://github.com/edmond-b/acebook-NO-de-Problem/wiki/Extra-User-Stories)
 
 ## Installation Guide
 
