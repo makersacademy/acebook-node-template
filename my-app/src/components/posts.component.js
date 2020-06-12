@@ -228,16 +228,25 @@ export default class Posts extends React.Component{
     }else{
       $("#edit-posts").show()
     }
+    if(this.state.firstName !== undefined) {
+      console.log(this.state.firstName )
+      console.log("true")
+      $(".topsection").show()
+    }else{
+      console.log('false')
+      $(".topsection").hide()
+    }
+
     return(
       <div className="posts-page">
         <div className="col-md-6 offset-md-3"> 
           <div className="container">
-
-          <div className="shadow-sm p-3 mb-5 bg-white rounded">
-          <center>
-            <h2> Hi {this.state.firstName}! </h2>
-            </center>
+            <div className = "topsection" >
             <div className="card-body  main-post">
+            <div className="shadow-sm p-3 mb-5 bg-white rounded">
+            <center>
+            <h2> Hi {this.state.firstName}! </h2>
+           </center>
               <h4> Create a post... </h4>
               <form onSubmit={this.submit}>
                 <div className="form-input">
@@ -255,10 +264,9 @@ export default class Posts extends React.Component{
                   <input className=" btn btn-dark btn-small custom-btn" type= "submit" value="Submit"/>
                 </div>    
               </form>
-            </div>
-          
+            </div> 
           </div>
-
+        </div>
           <br></br>
 
           <div className="newsfeed wrapper-main shadow-sm p-3 mb-5 bg-white rounded">
