@@ -36,11 +36,7 @@ module.exports = function(on) {
               contentType: 'image/png'
             }
             userInformation.profilePicture = imageProperty;
-            console.log(1)
-            console.log(userInformation)
             var newUser = new User(userInformation);
-            console.log(2)
-            console.log(newUser)
             newUser.save(function(err) {
               resolve('done');
             });

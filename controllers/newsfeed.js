@@ -18,8 +18,6 @@ var NewsfeedController = {
   },
 
   ProfilePicture: function(request, response){
-    console.log(3)
-    console.log(request.query.imguserid)
     User.findOne({ _id: request.query.imguserid }, function(err, user) {
     // if (user.profilePicture == undefined ) {
       // response.send("")
@@ -52,7 +50,6 @@ var NewsfeedController = {
 
   Comment: function(request, response) {
     Post.findOne({ _id: request.body.id }, function(err, post) {
-      console.log(post)
       post.comments.push({
         body: request.body.body,
         timePosted: Date.now(),
@@ -60,7 +57,6 @@ var NewsfeedController = {
         commentUserID: request.session.user._id
       })
       post.save(function(err) {
-        console.log(post)
         response.send("saved")
       })
     })
