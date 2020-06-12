@@ -17,11 +17,10 @@ code {
 body {
   background: url("./images/cliffs-image.jpg"); 
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
-}
 
-.nav-link {
-  color:#fff;
 }
 
 h2 {
@@ -46,8 +45,6 @@ h2 {
 .posts-page{
   width: 100vw;
   height: 100vh;
-  background: url("./images/cliffs-image.jpg"); 
-  background-size: cover;
 }
 
 
