@@ -56,4 +56,28 @@ describe('Post model', function() {
       });
     });
   });
+  it('can edit a post', function(done) {
+    const post = new Post({message: 'some message'});
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      post.update(
+        {message: 'some message'},
+        {
+        $set: {
+          "message": "this is a changed message",
+        }
+      },
+        function(err) {
+        expect(err).toBeNull();
+
+        Post.find(function(err, posts) {
+          expect(err).toBeNull();
+
+          expect(posts[0]).toMatchObject({message: 'this is a changed message'});
+        });
+      });
+    });
+  });
 });

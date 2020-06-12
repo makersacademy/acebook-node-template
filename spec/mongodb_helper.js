@@ -6,13 +6,13 @@ beforeAll(function(done) {
     useUnifiedTopology: true});
 
   const db = mongoose.connection;
-  db.collection.deleteMany(
-      ({}),
-      {
-        writeConcern: ({}),
-        collation: ({}),
-      },
-  );
+  // db.collection.deleteMany(
+  //     ({}),
+  //     {
+  //       writeConcern: ({}),
+  //       collation: ({}),
+  //     },
+  // );
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
   db.on('open', function() {
     done();
