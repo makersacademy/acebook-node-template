@@ -7,8 +7,13 @@ var UserSchema = new mongoose.Schema({
     type: String,
     unique: 1,
     required: true
-  }, 
-  password: String
+  },
+  password: String,
+  profilePicture: 
+      {
+          data: Buffer,
+          contentType: String
+      }
 });
 
 var User = mongoose.model('User', UserSchema);

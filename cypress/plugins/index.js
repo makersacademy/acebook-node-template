@@ -12,6 +12,7 @@
 // the project's config changing)
 var mongoose = require('mongoose');
 var Post = require('../../models/post');
+var path = require('path');
 
 
 var mongoose = require('mongoose');
@@ -19,7 +20,7 @@ var bcrypt = require('bcrypt');
 
 var User = require('../../models/user');
 var Post = require('../../models/post');
-
+var fs = require('fs');
 
 module.exports = function(on) {
   // `on` is used to hook into various events Cypress emits
@@ -30,6 +31,11 @@ module.exports = function(on) {
         mongoose.connect('mongodb://localhost/acebook_test', function(err) {
           bcrypt.hash(userInformation.password, 10, function(err, hash) {
             userInformation.password = hash;
+            var imageProperty = {
+              data: fs.readFileSync(path.join(__dirname +'/../../uploads/' + 'disapprove.png')),
+              contentType: 'image/png'
+            }
+            userInformation.profilePicture = imageProperty;
             var newUser = new User(userInformation);
             newUser.save(function(err) {
               resolve('done');
