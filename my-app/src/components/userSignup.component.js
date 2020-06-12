@@ -122,7 +122,7 @@ showPassword() {
                    onChange={this.onChangePassword}>
             </input>
             <input type="checkbox" onChange={this.showPassword}></input>
-            <label>Check Password</label>
+            <label>Show Password</label>
 
           </div>
           <div className="form-group">
