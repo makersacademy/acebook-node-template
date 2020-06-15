@@ -14,6 +14,11 @@
   <form action="/posts/edit/{{this._id}}" method="get">
     <input type="submit" value="Edit" />
   </form>
+
+  <form action="/posts/like/{{this._id}}" method="post">
+    <input type="submit" value="Like" />
+  </form>
+  <p> Likes: {{this.likes}} </p>
   {{/each}}
 </ul>
 
