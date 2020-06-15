@@ -10,4 +10,6 @@ router.get('/new', PostsController.New);
 router.get('/edit/:_id', PostsController.Update);
 router.post('/:_id', PostsController.Edit);
 router.post('/delete/:_id', PostsController.Delete);
+router.get('/comment/:_id', PostsController.Comment);
+router.post('/:_id', PostsController.PostComment);
 module.exports = router;

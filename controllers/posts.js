@@ -36,6 +36,30 @@ const PostsController = {
       res.status(201).redirect('/posts');
     });
   },
+
+  Comment: function(req, res) {
+    Post.find({_id: req.params._id}, function(err, posts) {
+      if (err) {
+        throw err;
+      }
+      res.render('posts/comment', {
+        posts: posts});
+    });
+  },
+
+PostComment: function(req, res) {
+  Post.findOneAndUpdate({
+    _id: req.params._id},
+    {$set: {comments: req.body.comment}},
+  function(err, posts) {
+    if (err) {
+      throw err;
+    }
+    res.status(201).redirect('/posts');
+  });
+},
+
+
   Delete: function(req, res) {
     Post.findByIdAndRemove({_id: req.params._id}, function(err) {
       if (err) {
@@ -44,6 +68,7 @@ const PostsController = {
       res.status(201).redirect('/posts');
     });
   },
+
   Update: function(req, res) {
     Post.find({_id: req.params._id}, function(err, posts) {
       if (err) {
