@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 
+
 const PostsController = {
   Index: function(req, res) {
     Post.find(function(err, posts) {
@@ -10,6 +11,7 @@ const PostsController = {
         posts: posts});
     });
   },
+
   New: function(req, res) {
     res.render('posts/new', {});
   },
