@@ -38,6 +38,30 @@ describe('Post model', function() {
     });
   });
 
+
+  it('can add a like', function(done) {
+    const post = new Post({message: 'some message'});
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      Post.updateOne(
+          {'message': 'some message'},
+          {$set: {'likes': '1'}},
+          function(err) {
+            expect(err).toBeNull();
+
+        Post.find(function(err, posts) {
+          expect(err).toBeNull();
+
+          expect(posts[0]).toMatchObject({
+            message: 'some message'});
+          done();
+        });
+      });
+    });
+  });
+
   it('can delete a post', function(done) {
     const post = new Post({message: 'some message'});
 
