@@ -8,8 +8,7 @@ const schemaOptions = {
 
 const PostSchema = new mongoose.Schema({
   message: String,
-  likes: Number,
-  comments: String } ,
+  likes: Number } ,
   schemaOptions
 );
 
