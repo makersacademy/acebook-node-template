@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <div>
+  <div class = "posts-box">
   <li>{{this.message}}</li>
   <p id = "date"> {{this.created_at}} </p>
   <!-- <p>Edited: {{this.updated_at}}</p> -->
@@ -15,11 +15,19 @@
     <input type="submit" value="Edit" />
   </form>
 
-  <form action="/posts/like/{{this._id}}" method="post">
+  <label> Likes: {{this.likes}} </label> <form action="/posts/like/{{this._id}}" method="post">
     <input type="submit" value="Like" />
   </form>
-  <p> Likes: {{this.likes}} </p>
 
+  <form action="/posts/comment/{{this._id}}" method="get">
+    <input type="submit" value="Comment" />
+  </form>
+<p> Comments: </p>
+<div class='array-output-wrapper'>
+  <ul> {{#each this.comments}}
+      <li> {{this}} </li>
+    {{/each}}
+    </div>
 
   {{/each}}
 </ul>

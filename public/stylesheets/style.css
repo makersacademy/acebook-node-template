@@ -11,14 +11,23 @@ a {
   font-size: 10px;
 }
 
-div {
+.posts-box {
      background-color: #f0fff3;
      border-left: solid 4px #11cbd7;
      line-height: 18px;
      overflow: hidden;
      padding: 12px;
      padding-bottom: 40px;
+     padding-top: 40px;
+     margin-top: 20px;
 }
+
+.array-output-wrapper {
+    padding-bottom: 30px;
+    padding: 12px;
+    background-color: #f5f5f5;
+}
+
 
 ul {
   list-style-type: none;
