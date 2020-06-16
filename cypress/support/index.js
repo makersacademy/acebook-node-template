@@ -18,3 +18,12 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands');
+
+
+// const mongoose = require('mongoose');
+
+// beforeEach(() => {
+//   mongoose.connection.collections.posts.drop(function() {
+//     done();
+//   });
+// })
