@@ -15,3 +15,18 @@ module.exports = function() {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 };
+
+// Attempting to truncate for cypress tests
+
+// module.exports = on => {
+//   on('task', {
+//     'db:teardown': () => {
+//       const teardown = require('../../db/teardown.js')
+//       return teardown()
+//     },
+//     'db:seed': () => {
+//       const seed = require('../../db/seed.js')
+//       return seed()
+//     },
+//   })
+// }

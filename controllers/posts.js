@@ -38,7 +38,6 @@ const PostsController = {
   },
 
 
-
   Delete: function(req, res) {
     Post.findByIdAndRemove({_id: req.params._id}, function(err) {
       if (err) {
@@ -47,6 +46,7 @@ const PostsController = {
       res.status(201).redirect('/posts');
     });
   },
+
   Update: function(req, res) {
     Post.find({_id: req.params._id}, function(err, posts) {
       if (err) {
@@ -65,7 +65,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-    res.status(201).redirect('/posts');
+      res.status(201).redirect('/posts');
     });
   },
 
