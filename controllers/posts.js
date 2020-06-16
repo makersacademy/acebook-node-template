@@ -36,6 +36,9 @@ const PostsController = {
       res.status(201).redirect('/posts');
     });
   },
+
+
+
   Delete: function(req, res) {
     Post.findByIdAndRemove({_id: req.params._id}, function(err) {
       if (err) {
