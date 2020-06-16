@@ -1,7 +1,11 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
+  <div>
   <li>{{this.message}}</li>
+  <p id = "date"> {{this.created_at}} </p>
+  <!-- <p>Edited: {{this.updated_at}}</p> -->
+</div>
 
   <form action="/posts/delete/{{this._id}}" method="post">
     <input type="submit" value="Delete" />
