@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express');
+// eslint-disable-next-line new-cap
 const router = express.Router();
 const passport = require('passport');
 const flash = require('express-flash');
