@@ -1,9 +1,15 @@
+<link rel='stylesheet' href='/stylesheets/posts-style.css' /></head>
+
+<div class = "edit-form">
+  <img id= "dogg-gif" src="/images/dog.gif"/>
 {{#each posts}}
 <form id="edit-post-form" action="/posts/{{this._id}}" method="post">
-  <label for="message">Edit Your Message: </label>
+  <p class = "edit-label"><label for="message">Edit Your Message: </label></p>
   <br>
   <textarea id="message" type="text" name="message" value="{{this.message}}" rows="4" cols="50"></textarea>
   <br>
   <input type="submit" value="Submit">
 </form>
 {{/each}}
+<img src="/images/Avacodo.png"/>
+</div>

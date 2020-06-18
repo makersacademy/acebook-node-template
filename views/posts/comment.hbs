@@ -1,8 +1,15 @@
+<link rel='stylesheet' href='/stylesheets/posts-style.css' /></head>
+
+<div class = "comment-form">
+  <img id= "cat-gif" src="/images/catmouse.gif"/>
 {{#each posts}}
 <form id="comment-post-form" action="/posts/{{this._id}}/comment" method="post">
-  <label for="comments">Write your comment: </label>
-  <input id="comments" type="text" name="comments" value="">
-
+<p class = "edit-label"> <label for="comments">Write your comment: </label> </p>
+<br>
+  <textarea id="comments" type="text" name="comments" value="" rows="4" cols="50"></textarea>
+<br>
   <input type="submit" value="Submit">
 </form>
 {{/each}}
+<img src="/images/Avacodo.png"/>
+</div>

@@ -1,6 +1,10 @@
 <head>
-<link rel='stylesheet' href='/stylesheets/posts-style.css' /></head>
-<h1>Timeline</h1>
+<link rel='stylesheet' href='/stylesheets/posts-style.css' />
+<title> Avocodo: chat for coders </title>
+</head>
+<h1>Let's chat, coders &#x1f951;</h1>
+
+<a class="new-post-link" href="/posts/new">New post &#9997;</a>
 <ul class="posts">
   {{#each posts}}
   <div class = "posts-box">
@@ -8,31 +12,47 @@
   <p id = "date"> {{this.created_at}} </p>
   <!-- <p>Edited: {{this.updated_at}}</p> -->
 </div>
-
+<div class = buttons>
   <form action="/posts/delete/{{this._id}}" method="post">
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Delete &#10006;" />
   </form>
 
   <form action="/posts/edit/{{this._id}}" method="get">
-    <input type="submit" value="Edit" />
+    <input type="submit" value="Edit &#9999;" />
   </form>
-
-  <label> Likes: {{this.likes}} </label> <form action="/posts/like/{{this._id}}" method="post">
-    <input type="submit" value="Like" />
+</div>
+<div id = "outer">
+<div class = "likes-button">
+  <div class ="inner">
+    <div class = "likes-label-div"
+        <p class = "likes-label" >Likes: {{this.likes}} &#128079;</p>
+      </div>
+  <form action="/posts/like/{{this._id}}" method="post">
+    <input type="submit" value="Like &#128077;" />
   </form>
+</div>
+</div>
+</div>
 
+  <div class = "comment-button">
   <form action="/posts/comment/{{this._id}}" method="get">
-    <input type="submit" value="Comment" />
+    <input type="submit" value="Comment &#127908;" />
   </form>
+</div>
+
+  <a id = "commentslink">View post comments &#128064;</a>
+  <div class = "comments">
+
 <p> Comments: </p>
 <div class='array-output-wrapper'>
-  <ul style="list-style-type:circle">
+  <ul id= "comments-list">
     {{#each this.comments}}
-      <li> {{this}} </li>
+      <li id = "commenting"> {{this}} </li>
     {{/each}}
     </div>
+  </div>
 
   {{/each}}
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<img src="/images/Avacodo.png"/>
