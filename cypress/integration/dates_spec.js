@@ -8,5 +8,5 @@ describe('Timeline', function() {
 
     cy.get('.posts').should('contain', 'Message');
     cy.get('.posts').should('contain', 'British Summer Time');
-  })
+  });
 });

@@ -4,13 +4,14 @@ const Post = require('../models/post');
 const PostsController = {
   Index: function(req, res) {
     Post.find().sort('-created_at').exec(function(err, posts) {
-     if (err) {
-       throw err;
-     }
-
-      res.render('posts/index', {
-        posts: posts });
-      });
+      if (err) {
+        throw err;
+      }
+      (req, res) => {
+        res.render('sign_up.ejs');
+      };
+      res.render('posts/index', {posts: posts});
+    });
   },
 
   New: function(req, res) {
@@ -25,10 +26,11 @@ const PostsController = {
       res.status(201).redirect('/posts');
     });
   },
+
   Like: function(req, res) {
     Post.findOneAndUpdate({
       _id: req.params._id},
-    {$inc: { likes: 1 }},
+    {$inc: {likes: 1}},
     function(err, posts) {
       if (err) {
         throw err;
@@ -36,7 +38,6 @@ const PostsController = {
       res.status(201).redirect('/posts');
     });
   },
-
 
   Delete: function(req, res) {
     Post.findByIdAndRemove({_id: req.params._id}, function(err) {
@@ -69,8 +70,6 @@ const PostsController = {
     });
   },
 
-
-
   Comment: function(req, res) {
     Post.find({_id: req.params._id}, function(err, posts) {
       if (err) {
@@ -89,10 +88,8 @@ const PostsController = {
       if (err) {
         throw err;
       }
-    res.status(201).redirect('/posts');
+      res.status(201).redirect('/posts');
     });
   },
-
-
 };
 module.exports = PostsController;

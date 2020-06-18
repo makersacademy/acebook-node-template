@@ -14,6 +14,5 @@ describe('Timeline', function() {
     cy.get('#edit-post-form').submit();
 
     cy.get('.posts').should('contain', 'Changed message');
-
   });
 });
