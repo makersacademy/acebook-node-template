@@ -6,7 +6,7 @@
 <form id="edit-post-form" action="/posts/{{this._id}}" method="post">
   <p class = "edit-label"><label for="message">Edit Your Message: </label></p>
   <br>
-  <textarea id="message" type="text" name="message" value="{{this.message}}" rows="4" cols="50"></textarea>
+  <input id="edit-message" type="text" name="message" value="{{this.message}}" rows="4" cols="50">
   <br>
   <input type="submit" value="Submit">
 </form>
