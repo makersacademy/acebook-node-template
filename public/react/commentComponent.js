@@ -43,7 +43,8 @@ class Comment extends React.Component {
 
     formatTime(comment) {
       let date = new Date(comment.timePosted)
-      return date.toLocaleString()
+      return date.toLocaleDateString()
+      // stringDate = date.toLocaleDateString()
     }
 
     render() {
