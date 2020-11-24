@@ -1,0 +1,26 @@
+<h1 class="title">{{title}}</h1>
+
+<script type="text/javascript">
+  function CheckGender(val) {
+    var element = document.getElementById('Gender')
+    if (val=='Other')
+      element.style.display='block'
+    else
+      element.style.display='none'
+  }
+</script>
+
+<form id="sign-up-form" action="/1" method="post">
+  <input type="text" name="name" placeholder="Name: first, last" maxlength="20">
+  <input type="password" name="password" placeholder="Password">
+  <select class="User-gender" name="Gender" placeholder="Gender" onchange='CheckGender(this.value);'>
+    <option value="Female">Female</option>
+    <option value="Male">Male</option>
+    <option value="Other">Other</option>
+    <option value="NA">I'd rather not say</option>
+  </select>
+  <input type="text" name="Gender" id="Gender" placeholder="Your gender identity" style='display:none;'/>
+  <input type="text" name="Birthday" placeholder="Birthday (dd/mm/yyyy)">
+  <textarea name="About-me" placeholder="About me" rows="8" cols="80"></textarea>
+  <input type="submit" value="Submit">
+</form>
