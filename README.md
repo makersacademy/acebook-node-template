@@ -43,11 +43,11 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 1. Install MongoDB
     ```
     brew tap mongodb/brew
-    brew install mongodb-community@4.2
+    brew install mongodb-community@4.4
     ```
 1. Start MongoDB
     ```
-    brew services start mongodb-community@4.2
+    brew services start mongodb-community@4.4
     ```
 
 ### Start
