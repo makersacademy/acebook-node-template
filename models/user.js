@@ -6,6 +6,7 @@ var UserSchema = new mongoose.Schema({
   Gender: String,
   Birthday: String,
   'About-me': String,
+  Status: Boolean,
 });
 
 var User = mongoose.model('User', UserSchema);
