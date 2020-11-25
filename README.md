@@ -16,7 +16,7 @@ It uses:
 
 ## Card wall
 
-https://trello.com/b/o7P59asd/js-engineering-project
+https://trello.com/b/ok1PiZf0/acebook-project
 
 ## Project set-up
 
