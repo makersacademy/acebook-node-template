@@ -7,6 +7,7 @@ router.get('/', HomeController.Index);
 router.get('/signup', HomeController.Signup);
 router.post('/1', HomeController.CreateUser);
 router.get('/login', HomeController.Login);
+router.post('/2', HomeController.LoginUser);
 
 
 module.exports = router;
