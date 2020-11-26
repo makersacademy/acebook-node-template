@@ -29,7 +29,7 @@ var HomeController = {
       }, function(err, affected, resp) {
         console.log(resp);
       })
-      res.send({ message: "The username and password combination is correct!" });
+      res.status(201).redirect('/profile');
      });
   },
   CreateUser: function(req, res) {
