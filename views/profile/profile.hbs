@@ -1,7 +1,30 @@
+<link rel='stylesheet' href='/stylesheets/profile.css' />
+
 <h1 class="title">{{title}}</h1>
+<body>
+  <ul class="profile">
 
-<ul class="posts">
+    <section>
+      {{user.name}}
+    </section>
 
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+    <section>
+      {{user.Gender}}
+    </section>
+
+    <section>
+      {{user.About-me}}
+    </section>
+  </ul>
+
+
+
+  <div class="fixed">
+    {{user.Birthday}}
+  </div>
+
+  </body>
+
+
+  <a class="edit" href="/profile/edit">Edit</a>
+
