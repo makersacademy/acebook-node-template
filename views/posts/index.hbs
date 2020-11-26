@@ -1,5 +1,5 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
-
+    <!-- <p>{{test}}</p> -->
     <div>
       <form action="/login" method="get">
         <button type="submit" id="logout">Log out</button>
@@ -8,7 +8,7 @@
     <h1>Timeline</h1>
     <ul class="posts">
       {{#each posts}}
-      <li>{{this.message}}</li>
+      <li>{{this.owner}} - {{this.message}}</li>
       {{/each}}
     </ul>
 

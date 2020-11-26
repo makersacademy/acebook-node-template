@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 var HomeController = {
   Index: function(req, res) {
-    res.render('home/index', { title: 'Acebook' });
+    res.render('home/index', { title: 'Acebook', test: req.session.test });
   },
   Signup: function(req, res) {
     res.render('home/signup', { title: 'Acebook' });
@@ -24,6 +24,9 @@ var HomeController = {
       if(!bcrypt.compareSync(req.body.password, data.password)) {
           return res.status(400).send({ message: "Your username or password is incorrect" });
       }
+
+      req.session.test = 'tomato';
+
       User.updateOne({ name: req.body.username}, {
         Status: true
       }, function(err, affected, resp) {
