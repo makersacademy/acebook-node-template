@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+
+#logout {
+  width: 80px;
+  height: 20px;
+  display: flex;
+  text-align: center;
+}
