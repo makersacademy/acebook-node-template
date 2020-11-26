@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 var HomeController = {
   Index: function(req, res) {
-    res.render('home/index', { title: 'Acebook' });
+    res.render('home/index', { title: 'Acebook', test: req.session.test });
   },
   Signup: function(req, res) {
     res.render('home/signup', { title: 'Acebook' });
@@ -17,14 +17,16 @@ var HomeController = {
     //change their status to false
   },
   LoginUser: function(req,res) {
-    var user = User.findOne({ name: req.body.username }).exec();
-        if(!user) {
-            return res.status(400).send({ message: "The username does not exist" });
-        }
-        if(!bcrypt.compare(req.body.password, user.password)) {
-            return res.status(400).send({ message: "The password is invalid" });
-        }
-        res.send({ message: "The username and password combination is correct!" });
+    User.findOne({ name: req.body.username }).exec().then(data => {
+      if(!data) {
+          return res.status(400).send({ message: "Your username or password is incorrect" });
+      }
+      if(!bcrypt.compareSync(req.body.password, data.password)) {
+          return res.status(400).send({ message: "Your username or password is incorrect" });
+      }
+      req.session.test = 'tomato';
+      res.send({ message: "The username and password combination is correct!" });
+    });
   },
   CreateUser: function(req, res) {
     req.body.Gender = req.body.Gender[0] === "Other" ? req.body.Gender[1] : req.body.Gender[0]
