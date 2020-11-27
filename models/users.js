@@ -1,4 +1,4 @@
-// const bcrypt = require('bcrypt');
+var Post = require('../models/post');
 
 var mongoose = require('mongoose');
 
@@ -22,7 +22,9 @@ var UserSchema = new mongoose.Schema({
     joined: {
         type: Date,
         default: Date.now
-    }
+    },
+
+    posts: [Post.schema]
 });
 
 const User = mongoose.model("user", UserSchema);
