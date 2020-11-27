@@ -16,7 +16,8 @@ var UsersController = {
       var user = new User({
         name: req.body.name,
         password: hashedPwd,
-        email: hashedEmail
+        email: hashedEmail,
+        posts: req.body.posts
       });
       user.save(function(err) {
         if (err) { throw err; }

@@ -1,4 +1,4 @@
-var Post = require('../models/post');
+var Post = require('../models/postsSchema');
 
 var mongoose = require('mongoose');
 
@@ -8,12 +8,12 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    
+
     email: {
         type: String,
-        required: true 
+        required: true
     },
-    
+
     password: {
         type: String,
         required: true
@@ -23,8 +23,7 @@ var UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-
-    posts: [Post.schema]
+    posts: [Post]
 });
 
 const User = mongoose.model("user", UserSchema);
