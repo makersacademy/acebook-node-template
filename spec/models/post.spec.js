@@ -37,4 +37,20 @@ describe('Post model', function() {
       });
     });
   });
+
+  it('can delete a post', function(done) {
+    var post = new Post({ message: 'some message' });
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      Post.deleteOne(post,function(err, posts) {
+        expect(err).toBeNull();
+
+        expect(posts).toEqual({"deletedCount": 1, "n": 1, "ok": 1});
+        done();
+      });
+    });
+ });
+
 });
