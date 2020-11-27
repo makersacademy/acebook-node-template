@@ -4,6 +4,7 @@ var PostSchema = new mongoose.Schema({
   message: String,
   //uniqueId: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
   owner: String,
+  date: Date,
 });
 
 var Post = mongoose.model('Post', PostSchema);
