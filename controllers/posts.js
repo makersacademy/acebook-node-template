@@ -1,5 +1,6 @@
 var Post = require('../models/post');
 
+
 var PostsController = {
   Index: function(req, res) {
     if(!req.session.test) {
@@ -15,7 +16,11 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    req.body.owner = 'Giorgio Esposito';
+
+
+    req.body.owner = req.session.username;
+    req.body.date = new Date();
+
       var post = new Post(req.body);
       post.save(function(err) {
         if (err) { throw err; }
