@@ -1,4 +1,7 @@
+const bcrypt = require("bcrypt");
 var User = require('../models/users');
+
+const saltRounds = 10;
 
 var UsersController = {
   Index: function(req, res) {
@@ -7,8 +10,14 @@ var UsersController = {
       console.log(users);
       res.render('users/index', {users: users});})
     },
-    Create: function(req, res) {
-      var user = new User(req.body);
+    Create: async function(req, res) {
+      const hashedPwd = await bcrypt.hash(req.body.password, saltRounds);
+      const hashedEmail = await bcrypt.hash(req.body.email, saltRounds);
+      var user = new User({
+        name: req.body.name,
+        password: hashedPwd,
+        email: hashedEmail 
+      });
       user.save(function(err) {
         if (err) { throw err; }
 
