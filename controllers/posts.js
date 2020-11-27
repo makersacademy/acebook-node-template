@@ -15,7 +15,7 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    req.body.owner = 'Finn the human';
+    req.body.owner = 'Giorgio Esposito';
       var post = new Post(req.body);
       post.save(function(err) {
         if (err) { throw err; }

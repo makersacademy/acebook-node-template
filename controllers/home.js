@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 var HomeController = {
   Index: function(req, res) {
-    res.render('home/index', { title: 'Acebook', test: req.session.test });
+    res.render('home/index', { title: 'Acebook'});
   },
   Signup: function(req, res) {
     res.render('home/signup', { title: 'Acebook' });
@@ -42,7 +42,7 @@ var HomeController = {
     var user = new User(req.body);
     user.save(function(err) {
       if (err) { throw err; }
-
+      req.session.test = 'tomato';
       res.status(201).redirect('/posts');
     });
   },
