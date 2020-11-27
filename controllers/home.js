@@ -17,21 +17,18 @@ var HomeController = {
     //change their status to false
   },
   LoginUser: function(req,res) {
-    User.findOne({ name: req.body.username }).exec().then(data => {
+    User.findOne({ name: req.body.
+      username}).exec().then(data => {
       if(!data) {
           return res.status(400).send({ message: "Your username or password is incorrect" });
       }
       if(!bcrypt.compareSync(req.body.password, data.password)) {
           return res.status(400).send({ message: "Your username or password is incorrect" });
       }
-
       req.session.test = 'tomato';
+      req.session.username = req.body.username;
 
-      User.updateOne({ name: req.body.username}, {
-        Status: true
-      }, function(err, affected, resp) {
-        console.log(resp);
-      })
+    
       res.status(201).redirect('/profile');
      });
   },
@@ -42,7 +39,7 @@ var HomeController = {
     var user = new User(req.body);
     user.save(function(err) {
       if (err) { throw err; }
-
+      req.session.test = 'tomato';
       res.status(201).redirect('/posts');
     });
   },
