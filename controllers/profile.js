@@ -1,12 +1,15 @@
 var User = require('../models/user');
+var Post = require('../models/post');
 const bcrypt = require('bcrypt');
 
 var ProfileController = {
   Index: function(req, res) {
     User.findOne({ name: 'Giorgio Esposito'}).exec().then(data => {
-      // console.log(data.name)
-      res.render('profile/profile', { user: data, title: "Acebook" });
+      Post.find({owner: data.name}, function(err, posts) {
+        if (err) { throw err; }
 
+      res.render('profile/profile', { user: data, title: "Acebook", posts: posts });
+    });
     })
   },
   Editor: function(req, res){
@@ -20,7 +23,7 @@ var ProfileController = {
       password: req.body.password,
       gender: req.body.Gender,
       Birthday: req.body.Birthday,
-    
+
 
     }, function(err, affected, resp) {
       console.log(resp);

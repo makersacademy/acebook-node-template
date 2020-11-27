@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 var HomeController = {
   Index: function(req, res) {
-    res.render('home/index', { title: 'Acebook', test: req.session.test });
+    res.render('home/index', { title: 'Acebook'});
   },
   Signup: function(req, res) {
     res.render('home/signup', { title: 'Acebook' });
