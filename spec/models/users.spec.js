@@ -25,6 +25,20 @@ describe('User model', function() {
     });
   });
 
+  it('can save a user with a post', function(done) {
+    var user = new User({ name: 'John', email: 'john@gmail.com', password: 'Password123', posts: {message: "Hi everyone"} });
+    user.save(function(err) {
+      expect(err).toBeNull();
+
+      User.find(function(err, users) {
+        expect(err).toBeNull();
+
+        expect(users[0].posts.length).toEqual(1);
+        done();
+      });
+    });
+  });
+
   it('can save a user', function(done) {
     var user = new User({ name: 'John', email: 'john@gmail.com', password: 'Password123' });
     user.save(function(err) {
@@ -34,6 +48,21 @@ describe('User model', function() {
         expect(err).toBeNull();
 
         expect(users[0]).toMatchObject({ name: 'John', email: 'john@gmail.com', password: 'Password123' });
+        done();
+      });
+    });
+  });
+
+  it('can add a post to existing user', function(done) {
+    var user = new User({ name: 'John', email: 'john@gmail.com', password: 'Password123', posts: {message: "Hi everyone"} });
+    user.save(function(err) {
+      expect(err).toBeNull();
+
+      User.find(function(err, users) {
+        expect(err).toBeNull();
+        users[0].posts.push({message: "Hi everyone, its my second post"});
+
+        expect(users[0].posts.length).toEqual(2);
         done();
       });
     });
