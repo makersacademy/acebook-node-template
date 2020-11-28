@@ -28,3 +28,10 @@
 
   <a class="edit" href="/profile/edit">Edit</a>
 
+<h1>Posts</h1>
+
+<ul class="posts">
+  {{#each posts}}
+  <li>{{this.message}}</li>
+  {{/each}}
+</ul>

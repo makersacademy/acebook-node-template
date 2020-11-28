@@ -17,9 +17,11 @@ var PostsController = {
   },
   Create: function(req, res) {
 
+
     req.body.owner = req.session.username;
 
     req.body.date = new Date();
+
       var post = new Post(req.body);
       post.save(function(err) {
         if (err) { throw err; }
