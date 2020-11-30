@@ -34,7 +34,7 @@ var UsersController = {
       const cmp = await bcrypt.compare(req.body.password, user.password);
       if (cmp) {
         //   ..... further code to maintain authentication like jwt or sessions
-        res.send("Auth Successful");
+        res.json(user)
       } else {
         res.send("Wrong username or password.");
       }
