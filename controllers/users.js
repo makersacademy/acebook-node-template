@@ -8,8 +8,9 @@ var UsersController = {
     User.find(function(err, users) {
       if (err) { throw err; }
       console.log(users);
-      res.render('users/index', {users: users});})
-    },
+      res.json({users: users});
+    });
+  },
     Create: async function(req, res) {
       const hashedPwd = await bcrypt.hash(req.body.password, saltRounds);
       const hashedEmail = await bcrypt.hash(req.body.email, saltRounds);
