@@ -1,24 +1,30 @@
 var Post = require('../models/post');
 
+
 var PostsController = {
   Index: function(req, res) {
-    Post.find(function(err, posts) {
+    if(!req.session.test) {
+      res.status(201).redirect('/')
+    };
+    Post.find({}, null, {sort: {date: -1}},function(err, posts) {
       if (err) { throw err; }
 
-      res.render('posts/index', { posts: posts });
+      res.render('posts/index', { posts: posts, test: req.session.test });
     });
-  },
-  New: function(req, res) {
-    res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
-    post.save(function(err) {
-      if (err) { throw err; }
 
-      res.status(201).redirect('/posts');
-    });
-  }
-};
+
+    req.body.owner = req.session.name;
+    req.body.date = new Date();
+
+      var post = new Post(req.body);
+      post.save(function(err) {
+        if (err) { throw err; }
+
+        res.status(201).redirect('/posts');
+      });
+    }
+  };
 
 module.exports = PostsController;
