@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var PostSchema = new mongoose.Schema({
   message: String,
   owner: String,
-  //date: Date
+  date: Date
 }, {
   timestamps: true,
 });

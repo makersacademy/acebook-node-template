@@ -13,3 +13,13 @@ a {
   display: flex;
   text-align: center;
 }
+
+li {
+  list-style: none;
+}
+
+.tlposts {
+  border-width: 20px;
+  border-color: aqua;
+  border-style: solid;
+}

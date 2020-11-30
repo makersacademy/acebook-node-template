@@ -9,10 +9,15 @@
       </form>
     </div>
     <h1>Timeline</h1>
-    <ul class="posts">
-      {{#each posts}}
-      <li>{{this.owner}} - {{this.message}} : {{this.createdAt}}</li>
-      {{/each}}
-    </ul>
+    <div class="tlposts">
+      <ul class="posts">
+        {{#each posts}}
+        <li>{{this.owner}} </li>
+        <li>{{this.message}} </li>
+        <li>{{this.date}} </li>
+        <br>
+        {{/each}}
+      </ul>
+    </div>
 
     <a class="new-post-link" href="/posts/new">New post</a>
