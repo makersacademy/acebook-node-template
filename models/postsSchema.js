@@ -11,8 +11,8 @@ var PostSchema = new mongoose.Schema({
     default: Date.now
   },
   likes:{
-     type: Array,
-     required: false
+     type: Number,
+     default: 0
   }
 });
 

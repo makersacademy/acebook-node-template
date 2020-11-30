@@ -54,8 +54,11 @@ var PostsController = {
         }
         else{
             console.log(post.likes);
-            post.likes.push(1);
+            post.likes += 1;
+            console.log(post.likes);
+            post.save();
         }
+        res.json(post);
       });
     }
 
