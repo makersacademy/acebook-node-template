@@ -31,20 +31,37 @@ var PostsController = {
     }
     res.redirect('/posts');});
   },
-  Like: function(req, res) {
-    var id = req.params.postId;
-  //  var sess = req.session;
-//      if(sess.email) {
-//        console.log(sess.email);
- Post.findByIdAndUpdate(id, {
-     $push:{likes: 1}
- }, {
-   new:true
- })
+
+  Find: function(req, res) {
+      var id = req.params.postId;
+      Post.findById(id, function (err, post){
+        if (err){
+          console.log(err);
       }
+      else{
+          console.log(post);
+      }
+      res.json(post);
+    });
+  },
+
+
+    Like: function(req, res) {
+        var id = req.params.postId;
+        Post.findById(id, function (err, post){
+          if (err){
+            console.log(err);
+        }
+        else{
+            console.log(post.likes);
+            post.likes.push(1);
+        }
+      });
+    }
 
 
 
-  };
+
+      };
 
 module.exports = PostsController;
