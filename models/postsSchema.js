@@ -10,10 +10,10 @@ var PostSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  likes:{
-     type: Number,
-     default: 0
-  }
+  like: {
+    type:  Array
+}
+
 });
 
 module.exports = PostSchema;
