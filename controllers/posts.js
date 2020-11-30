@@ -8,6 +8,7 @@ var PostsController = {
       res.json({posts: posts});
   });
 },
+
   New: function(req, res) {
     res.render('posts/new', {});
   },
