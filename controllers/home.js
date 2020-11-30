@@ -12,12 +12,11 @@ var HomeController = {
     res.render('home/login', { title: 'Acebook' });
   },
   Logout: function(req, res) {
+    req.session.destroy
     res.render('home/login', {title: 'Acebook' });
-    //re.body.Status = false; find user in database and
-    //change their status to false
   },
   LoginUser: function(req,res) {
-    User.findOne({ name: req.body.
+    User.findOne({ username: req.body.
       username}).exec().then(data => {
       if(!data) {
           return res.status(400).send({ message: "Your username or password is incorrect" });
@@ -27,8 +26,9 @@ var HomeController = {
       }
       req.session.test = 'tomato';
       req.session.username = req.body.username;
+      req.session.name = data.name;
 
-    
+
       res.status(201).redirect('/profile');
      });
   },
@@ -40,6 +40,8 @@ var HomeController = {
     user.save(function(err) {
       if (err) { throw err; }
       req.session.test = 'tomato';
+      req.session.username = req.body.username;
+      req.session.name = req.body.name;
       res.status(201).redirect('/posts');
     });
   },
