@@ -1,5 +1,8 @@
 <h1 class="title">{{title}}</h1>
 
+<a class="new-post-link" href="/posts">Home</a>
+<a class="posts-link" href="/profile">Back</a>
+
 <script type="text/javascript">
   function CheckGender(val) {
     var element = document.getElementById('Gender')
@@ -11,6 +14,7 @@
 </script>
 
 <form id="sign-up-form" action="/profile/edit" method="post">
+  <input type="text" name="name" placeholder="Name">
   <input type="password" name="password" placeholder="Password">
   <select class="User-gender" name="Gender" placeholder="Gender" onchange='CheckGender(this.value);'>
     <option value="Female">Female</option>
@@ -20,6 +24,6 @@
   </select>
   <input type="text" name="Gender" id="Gender" placeholder="Your gender identity" style='display:none;'/>
   <input type="date" name="Birthday" placeholder="Birthday (dd/mm/yyyy)">
-  <textarea name="About-me" placeholder="About me" rows="8" cols="80"></textarea>
+  <textarea name="About" placeholder="About me" rows="8" cols="80"></textarea>
   <input type="submit" value="Submit">
 </form>

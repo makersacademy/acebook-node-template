@@ -18,12 +18,8 @@ var PostsController = {
   Create: function(req, res) {
 
 
-    req.body.owner = req.session.username;
-    Post.find({}).sort({ createdAt: -1 }).exec(function(err, posts) {
-      //if(err) console.log(err);
-      res.json(posts);
-    });
-    //req.body.date = new Date();
+    req.body.owner = req.session.name;
+    req.body.date = new Date();
 
       var post = new Post(req.body);
       post.save(function(err) {
