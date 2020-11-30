@@ -1,7 +1,16 @@
 <h1 class="title">{{title}}</h1>
 
-<a class="new-post-link" href="/posts">Home</a>
-<a class="posts-link" href="/profile">Back</a>
+<div>
+  <form action="/posts">
+    <button type="submit" id="home">Home</button>
+  </form>
+</div>
+
+<div>
+<form action="/profile">
+  <button type="submit" id="back">Back</button>
+</form>
+</div>
 
 <script type="text/javascript">
   function CheckGender(val) {
