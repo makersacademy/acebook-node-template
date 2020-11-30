@@ -4,10 +4,11 @@ var PostsController = {
   Index: function(req, res) {
     Post.find(function(err, posts) {
       if (err) { throw err; }
-      // console.log(posts);
-      res.json({ posts: posts });
-    });
-  },
+      console.log(posts);
+      res.json({posts: posts});
+  });
+},
+
   New: function(req, res) {
     res.render('posts/new', {});
   },

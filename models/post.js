@@ -1,8 +1,5 @@
 var mongoose = require('mongoose');
-
-var PostSchema = new mongoose.Schema({
-  message: String,
-});
+var PostSchema = require('./postsSchema');
 
 var Post = mongoose.model('Post', PostSchema);
 
