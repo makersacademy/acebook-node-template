@@ -30,7 +30,20 @@ var PostsController = {
         console.log("Deleted : ", id);
     }
     res.redirect('/posts');})
-  }
+  },
+
+  Find: function(req, res) {
+    var id = req.params.postId;
+    Post.findById(id, function (err, post){
+      if (err){
+        console.log(err);
+    }
+    else{
+        console.log(post);
+    }
+    res.json(post);
+  });
+}
 };
 
 module.exports = PostsController;
