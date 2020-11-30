@@ -5,9 +5,9 @@ var PostsController = {
     Post.find(function(err, posts) {
       if (err) { throw err; }
       console.log(posts);
-      res.render('posts/index', { posts: posts });
-    } ).sort( { _id: -1 } ) ;
-  },
+      res.json({posts: posts});
+  });
+},
   New: function(req, res) {
     res.render('posts/new', {});
   },
