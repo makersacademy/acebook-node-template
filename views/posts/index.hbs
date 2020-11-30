@@ -1,8 +1,36 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 
-<a class="new-post-link" href="/posts/new">New post</a>
+    <div>
+      <form action="/posts">
+        <button type="submit" id="home">Home</button>
+      </form>
+    </div>
+    <div>
+      <form action="/profile">
+        <button type="submit" id="profile">Profile</button>
+      </form>
+    </div>
+
+    <div>
+      <form action="/login" method="get">
+        <button type="submit" id="logout">Log out</button>
+      </form>
+    </div>
+    <h1>Timeline</h1>
+
+    <form id="new-post-form" action="/posts" method="post">
+      <label for="message">Message: </label>
+      <input id="message" type="text" name="message" value="">
+      <input type="submit" value="Share post">
+    </form>
+
+    <div class="tlposts" style="height: 500px; overflow:auto;" >
+      <ul class="posts">
+        {{#each posts}}
+        <li>{{this.owner}} </li>
+        <li>{{this.message}} </li>
+        <li>{{this.date}} </li>
+        <br>
+        {{/each}}
+      </ul>
+    </div>

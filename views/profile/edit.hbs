@@ -1,9 +1,15 @@
 <h1 class="title">{{title}}</h1>
 
 <div>
-  <form action="/">
-    <button type="submit" id="back">Back</button>
+  <form action="/posts">
+    <button type="submit" id="home">Home</button>
   </form>
+</div>
+
+<div>
+<form action="/profile">
+  <button type="submit" id="back">Back</button>
+</form>
 </div>
 
 <script type="text/javascript">
@@ -16,11 +22,9 @@
   }
 </script>
 
-<form id="sign-up-form" action="/1" method="post">
-  <input type="text" name="username" placeholder="Username" maxlength="20">
+<form id="sign-up-form" action="/profile/edit" method="post">
+  <input type="text" name="name" placeholder="Name">
   <input type="password" name="password" placeholder="Password">
-  <br><br>
-  <input type="text" name="name" placeholder="Name: first, last" maxlength="20">
   <select class="User-gender" name="Gender" placeholder="Gender" onchange='CheckGender(this.value);'>
     <option value="Female">Female</option>
     <option value="Male">Male</option>

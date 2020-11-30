@@ -1,0 +1,58 @@
+<link rel='stylesheet' href='/stylesheets/profile.css' />
+
+<h1 class="title">{{title}}</h1>
+
+<div>
+  <form action="/posts">
+    <button type="submit" id="home">Home</button>
+  </form>
+</div>
+
+
+<body>
+  <ul class="profile">
+
+    <section>
+      {{user.name}}
+    </section>
+
+    <section>
+      {{user.Gender}}
+    </section>
+
+    <section>
+      {{user.About}}
+    </section>
+  </ul>
+
+
+
+  <div class="fixed">
+    {{user.Birthday}}
+  </div>
+
+  </body>
+
+  <div>
+    <form action="/profile/edit">
+      <button type="submit" id="edit">Edit</button>
+    </form>
+  </div>
+
+
+<h1>Posts</h1>
+
+<form id="new-post-form" action="/profile" method="post">
+  <label for="message">Message: </label>
+  <input id="message" type="text" name="message" value="">
+  <input type="submit" value="Share post">
+</form>
+<div style="height: 500px; overflow:auto;">
+<ul class="posts">
+  {{#each posts}}
+  <li>{{this.message}}</li>
+  <li>{{this.date}}</li>
+  <br>
+  {{/each}}
+</ul>
+</div>
