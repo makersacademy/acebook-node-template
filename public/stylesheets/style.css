@@ -1,7 +1,11 @@
 body {
+  text-align: center;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+
+
+   background-image: linear-gradient(to bottom right, #7CACF7, #6BB1D6, #83E4ED);
+ }
 
 a {
   color: #00B7FF;
@@ -11,5 +15,18 @@ a {
   width: 80px;
   height: 20px;
   display: flex;
+  text-align: center;
+}
+
+/* #indexbg {
+  height: 200px;
+  background-image: linear-gradient(to bottom right, #7CACF7, #6BB1D6, #83E4ED);
+} */
+
+.posts{
+  list-style: none
+}
+
+div{
   text-align: center;
 }
