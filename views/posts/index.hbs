@@ -17,15 +17,20 @@
       </form>
     </div>
     <h1>Timeline</h1>
+
     <form id="new-post-form" action="/posts" method="post">
       <label for="message">Message: </label>
       <input id="message" type="text" name="message" value="">
       <input type="submit" value="Share post">
     </form>
-    <div style="height: 500px; overflow:auto;">
-    <ul class="posts">
-      {{#each posts}}
-      <li>{{this.owner}} - {{this.message}} - {{this.date}}</li>
-      {{/each}}
-    </ul>
-  </div>
+
+    <div class="tlposts" style="height: 500px; overflow:auto;" >
+      <ul class="posts">
+        {{#each posts}}
+        <li>{{this.owner}} </li>
+        <li>{{this.message}} </li>
+        <li>{{this.date}} </li>
+        <br>
+        {{/each}}
+      </ul>
+    </div>
