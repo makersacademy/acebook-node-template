@@ -17,8 +17,14 @@
       </form>
     </div>
     <h1>Timeline</h1>
-<<<<<<< HEAD
-    <div class="tlposts">
+
+    <form id="new-post-form" action="/posts" method="post">
+      <label for="message">Message: </label>
+      <input id="message" type="text" name="message" value="">
+      <input type="submit" value="Share post">
+    </form>
+
+    <div class="tlposts" style="height: 500px; overflow:auto;" >
       <ul class="posts">
         {{#each posts}}
         <li>{{this.owner}} </li>
@@ -28,19 +34,3 @@
         {{/each}}
       </ul>
     </div>
-
-    <a class="new-post-link" href="/posts/new">New post</a>
-=======
-    <form id="new-post-form" action="/posts" method="post">
-      <label for="message">Message: </label>
-      <input id="message" type="text" name="message" value="">
-      <input type="submit" value="Share post">
-    </form>
-    <div style="height: 500px; overflow:auto;">
-    <ul class="posts">
-      {{#each posts}}
-      <li>{{this.owner}} - {{this.message}} - {{this.date}}</li>
-      {{/each}}
-    </ul>
-  </div>
->>>>>>> b6fdd1239ee0367bb4b58ef2e4cf08134846bf5d
