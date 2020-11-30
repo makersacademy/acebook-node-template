@@ -39,7 +39,7 @@ var PostsController = {
         console.log(err);
     }
     else{
-        console.log(post);
+        console.log('Found : ', post);
     }
     res.json(post);
   });
