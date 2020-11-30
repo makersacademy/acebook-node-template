@@ -3,17 +3,18 @@ const bcrypt = require('bcrypt');
 
 var HomeController = {
   Index: function(req, res) {
-    res.render('home/index', { title: 'Acebook'});
+    // res.setHeader({})
+    res.render('home/index', { title: 'IceBook'});
   },
   Signup: function(req, res) {
-    res.render('home/signup', { title: 'Acebook' });
+    res.render('home/signup', { title: 'IceBook' });
   },
   Login: function(req, res) {
-    res.render('home/login', { title: 'Acebook' });
+    res.render('home/login', { title: 'IceBook' });
   },
   Logout: function(req, res) {
     req.session.destroy
-    res.render('home/login', {title: 'Acebook' });
+    res.render('home/login', {title: 'IceBook' });
   },
   LoginUser: function(req,res) {
     User.findOne({ username: req.body.

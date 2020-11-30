@@ -6,14 +6,11 @@ var PostsController = {
     if(!req.session.test) {
       res.status(201).redirect('/')
     };
-    Post.find(function(err, posts) {
+    Post.find({}, null, {sort: {date: -1}},function(err, posts) {
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts, test: req.session.test });
     });
-  },
-  New: function(req, res) {
-    res.render('posts/new', {});
   },
   Create: function(req, res) {
 
