@@ -33,6 +33,9 @@ var UsersController = {
     if (user) {
       const cmp = await bcrypt.compare(req.body.password, user.password);
       if (cmp) {
+        //sess = req.session;
+      //  sess.email = req.body.email;
+      //  console.log(sess.email);
         //   ..... further code to maintain authentication like jwt or sessions
         res.send("Auth Successful");
       } else {

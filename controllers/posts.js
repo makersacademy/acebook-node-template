@@ -29,8 +29,22 @@ var PostsController = {
     else{
         console.log("Deleted : ", id);
     }
-    res.redirect('/posts');})
-  }
-};
+    res.redirect('/posts');});
+  },
+  Like: function(req, res) {
+    var id = req.params.postId;
+  //  var sess = req.session;
+//      if(sess.email) {
+//        console.log(sess.email);
+ Post.findByIdAndUpdate(id, {
+     $push:{likes: 1}
+ }, {
+   new:true
+ })
+      }
+
+
+
+  };
 
 module.exports = PostsController;

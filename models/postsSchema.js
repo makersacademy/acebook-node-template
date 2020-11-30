@@ -9,6 +9,10 @@ var PostSchema = new mongoose.Schema({
   date:{
     type: Date,
     default: Date.now
+  },
+  likes:{
+     type: Array,
+     required: false
   }
 });
 
