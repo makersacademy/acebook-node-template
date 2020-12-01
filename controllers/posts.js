@@ -1,5 +1,5 @@
 var Post = require('../models/post');
-
+var Users = require('../models/users');
 
 var PostsController = {
   Index: function(req, res) {
@@ -40,7 +40,6 @@ var PostsController = {
           console.log(err);
       }
       else{
-          console.log(post);
       }
       res.json(post);
     });
@@ -49,6 +48,18 @@ var PostsController = {
 //them to like a post more than once
   Like: function(req, res) {
       var id = req.params.postId;
+      var userId = req.params.userId;
+      var userIdtoPass;
+
+      Users.findById(userId, function (err, user){
+        if(err){
+          console.log(err);
+        }
+        else{
+          userIdtoPass = userId;
+        }
+      })
+
       Post.findById(id, function (err, post){
         if (err){
           console.log(err);
@@ -56,9 +67,9 @@ var PostsController = {
       else{
         var long = post.like.length;
         console.log(long);
-        post.like.push('555');//needs user id to insert
+        post.like.push(userIdtoPass);//needs user id to insert
+        post.likes = long;
         post.save();
-        console.log(post.like.length);
       }
 
       res.json(post);

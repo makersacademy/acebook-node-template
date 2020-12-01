@@ -12,6 +12,10 @@ var PostSchema = new mongoose.Schema({
   },
   like: {
     type:  Array
+},
+likes:{
+  type: Number,
+  default: 0
 }
 
 });

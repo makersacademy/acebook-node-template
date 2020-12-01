@@ -8,6 +8,6 @@ router.post('/', PostsController.Create);
 router.get('/new', PostsController.New);
 router.delete('/:postId', PostsController.Delete); //added
 router.get('/:postId', PostsController.Find); //added
-router.post('/:postId/like', PostsController.Like); //added
+router.post('/:postId/like/:userId', PostsController.Like); //added
 
 module.exports = router;
