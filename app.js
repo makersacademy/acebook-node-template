@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
@@ -21,6 +22,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//allows session
+app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 
 // route setup
 app.use('/', homeRouter);

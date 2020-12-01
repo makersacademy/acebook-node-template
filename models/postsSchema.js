@@ -9,7 +9,15 @@ var PostSchema = new mongoose.Schema({
   date:{
     type: Date,
     default: Date.now
-  }
+  },
+  like: {
+    type:  Array
+},
+likes:{
+  type: Number,
+  default: 0
+}
+
 });
 
 module.exports = PostSchema;
