@@ -34,16 +34,31 @@ var PostsController = {
     });
   },
   Delete: function(req, res) {
-    var id = req.params.postId;
-    Post.findByIdAndDelete(id, function (err, id){
+    var userid = req.params._id;
+    User.findById(userid, function (err, foundUser){
       if (err){
         console.log(err);
     }
     else{
-        console.log("Deleted : ", id);
+      var postId = req.body.postId;
+      console.log(foundUser.posts)
+      foundUser.posts.id(postId).remove();
+      foundUser.save(function (err) {
+        if (err) return handleError(err);
+        console.log("Deleted : ", postId);
+      })
+        
     }
     res.redirect('/posts');})
   }
 };
 
 module.exports = PostsController;
+
+// Equivalent to `parent.children.pull(_id)`
+//parent.children.id(_id).remove();
+// Equivalent to `parent.child = null`
+// parent.child.remove();
+// parent.save(function (err) {
+//   if (err) return handleError(err);
+//   console.log('the subdocs were removed');
