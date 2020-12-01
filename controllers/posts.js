@@ -1,11 +1,23 @@
 var Post = require('../models/post');
+var User = require('../models/users');
 
 var PostsController = {
   Index: function(req, res) {
-    Post.find(function(err, posts) {
+
+    User.find(function(err, users) {
       if (err) { throw err; }
-      console.log(posts);
-      res.json({posts: posts});
+      const allPosts = [];
+    
+      for (let i = 0; i < users.length; i++) {
+        var usersPosts = users[i].posts;
+        if (usersPosts.length > 0) {
+          for (let j = 0; j < usersPosts.length; j++) {
+            allPosts.push(usersPosts[j]);
+          }
+        }
+      }
+
+      res.json({posts: allPosts});
   });
 },
 
