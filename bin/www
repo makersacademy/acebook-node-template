@@ -9,7 +9,7 @@ var debug = require('debug')('acebook:server');
 var http = require('http');
 var mongoose = require('mongoose');
 
-var bodyparser = require("body-parser");
+var bodyParser = require("body-parser");
 /**
  * Get port from environment and store in Express.
  */

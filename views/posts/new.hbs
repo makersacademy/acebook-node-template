@@ -1,11 +1,19 @@
 <form id="new-post-form" action="/posts" method="post">
+
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    Upload image:
+    <div><label for="image">Title: </label>
+    <input id="image" type="file" name="image" id="image"><br>
+    <input type="submit" value="Upload Image" name="submit">
+  </form>
+
   <div><label for="message">Title: </label>
   <input id="message" type="text" name="message" value=""><br><br>
   
   <label for="Author">Author</label>
-  <input type="text"><br><br>
+  <input id ="author" type="text" name="author" value=""><br><br>
 
-  <textarea name="" id="" cols="30" rows="10">Enter a text... </textarea><br>
+  <textarea name="description" id="description" value= "" cols="30" rows="10">Enter a text... </textarea><br>
   <input type="submit" value="Submit">
   </div>
 </form>

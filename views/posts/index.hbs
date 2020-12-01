@@ -1,9 +1,11 @@
 <h1>Timeline</h1>
-<ul class="posts">
+<ol class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
+  <p>{{this.author}}</p>
+  <p>{{this.description}}</p>
   {{/each}}
-</ul>
+</ol>
 
 <button class = "button"><a class="new-post-link" href="/posts/new">New post</a></button>
 <button class = "button"><a class="delete-link" href="/posts/delete">Delete post</a></button>
