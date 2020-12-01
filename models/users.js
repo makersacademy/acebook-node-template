@@ -1,4 +1,4 @@
-var Post = require('../models/postsSchema');
+var PostSchema = require('../models/postsSchema');//changed from postsSchema
 
 var mongoose = require('mongoose');
 
@@ -23,7 +23,7 @@ var UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    posts: [Post]
+    posts: [PostSchema]
 });
 
 const User = mongoose.model("user", UserSchema);
