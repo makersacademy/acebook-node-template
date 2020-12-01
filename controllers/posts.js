@@ -1,11 +1,23 @@
 var Post = require('../models/post');
+var User = require('../models/users');
 
 var PostsController = {
   Index: function(req, res) {
-    Post.find(function(err, posts) {
+
+    User.find(function(err, users) {
       if (err) { throw err; }
-      console.log(posts);
-      res.json({posts: posts});
+      const allPosts = [];
+    
+      for (let i = 0; i < users.length; i++) {
+        var usersPosts = users[i].posts;
+        if (usersPosts.length > 0) {
+          for (let j = 0; j < usersPosts.length; j++) {
+            allPosts.push(usersPosts[j]);
+          }
+        }
+      }
+
+      res.json({posts: allPosts});
   });
 },
 
@@ -13,24 +25,40 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
-    post.save(function(err) {
-      if (err) { throw err; }
-
-      res.status(201).redirect('/posts');
+    var userid = req.params._id
+    User.findById(userid, function (err, foundUser){
+     foundUser.posts.push(req.body);
+     foundUser.save();
+         res.status(201);
+         res.json({message: req.body.message});
     });
   },
   Delete: function(req, res) {
-    var id = req.params.postId;
-    Post.findByIdAndDelete(id, function (err, id){
+    var userid = req.params._id;
+    User.findById(userid, function (err, foundUser){
       if (err){
         console.log(err);
     }
     else{
-        console.log("Deleted : ", id);
+      var postId = req.body.postId;
+      console.log(foundUser.posts)
+      foundUser.posts.id(postId).remove();
+      foundUser.save(function (err) {
+        if (err) return handleError(err);
+        console.log("Deleted : ", postId);
+      })
+        
     }
     res.redirect('/posts');})
   }
 };
 
 module.exports = PostsController;
+
+// Equivalent to `parent.children.pull(_id)`
+//parent.children.id(_id).remove();
+// Equivalent to `parent.child = null`
+// parent.child.remove();
+// parent.save(function (err) {
+//   if (err) return handleError(err);
+//   console.log('the subdocs were removed');
