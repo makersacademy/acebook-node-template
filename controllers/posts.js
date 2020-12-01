@@ -25,11 +25,12 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
-    post.save(function(err) {
-      if (err) { throw err; }
-
-      res.status(201).redirect('/posts');
+    var userid = req.params._id
+    User.findById(userid, function (err, foundUser){
+     foundUser.posts.push(req.body);
+     foundUser.save();
+         res.status(201);
+         res.json({message: req.body.message});
     });
   },
   Delete: function(req, res) {
