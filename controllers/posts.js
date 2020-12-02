@@ -27,22 +27,11 @@ var PostsController = {
     res.json({post: post});
   },
   Delete: function(req, res) {
-    var userid = req.params._id;
-    User.findById(userid, function (err, foundUser){
-      if (err){
-        console.log(err);
-    }
-    else{
-      var postId = req.body.postId;
-      console.log(foundUser.posts)
-      foundUser.posts.id(postId).remove();
-      foundUser.save(function (err) {
-        if (err) return handleError(err);
-        console.log("Deleted : ", postId);
-      })
-
-    }
-    res.redirect('/posts');});
+    var postId = req.params.postId;
+    Post.findByIdAndDelete(postId, function (err){
+      if (err){ throw err; }
+    });
+    res.json({post: 'deleted'});
   },
 // only finds free hanging posts
   Find: async function(req, res) {
