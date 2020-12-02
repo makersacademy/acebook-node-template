@@ -17,7 +17,8 @@ var PostsController = {
   Create: function(req, res) {
     var post = new Post({
       userId: req.body.userId,
-      message: req.body.message
+      message: req.body.message,
+      author: req.body.author
     });
     post.save(function(err) {
       if (err) { throw err; }

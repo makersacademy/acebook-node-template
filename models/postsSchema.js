@@ -21,6 +21,10 @@ var PostSchema = new mongoose.Schema({
   likes:{
     type: Number,
     default: 0
+  },
+  author: {
+    type: String,
+    required: true
   }
 });
 
