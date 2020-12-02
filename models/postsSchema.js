@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var CommentSchema = require('../models/commentsSchema');
 
 var PostSchema = new mongoose.Schema({
 
@@ -12,11 +13,12 @@ var PostSchema = new mongoose.Schema({
   },
   like: {
     type:  Array
-},
-likes:{
-  type: Number,
-  default: 0
-}
+  },
+  likes:{
+    type: Number,
+    default: 0
+  },
+  comments:[CommentSchema] 
 
 });
 

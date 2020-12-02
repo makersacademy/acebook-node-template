@@ -128,7 +128,34 @@ var PostsController = {
      res.json(post);
 
  });
- }
+ },
+  Comments: async function(req, res) {
+    var id = req.params.postId; 
+    await User.find(function(err, users) {
+      if (err) { throw err; }
+
+      const allPosts = [];
+    
+      for (let i = 0; i < users.length; i++) {
+        var usersPosts = users[i].posts;
+        console.log("Post Object: ", usersPosts);
+        console.log("id that was passed: ", id);
+        // if (usersPosts[0] === id) {
+        //   console.log("I should run");
+        //   allPosts.push(usersPosts);
+        // }
+      }
+      console.log(allPosts);
+
+      const allComments = [];
+      // for (let i = 0; i < allPosts.comments.length; i++) {
+      //   allComments.push(allPosts[0].comments[i]);
+      // }
+
+      res.json({comments: allComments});
+  });
+  }
+
 }
 
 module.exports = PostsController;
