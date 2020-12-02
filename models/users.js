@@ -1,5 +1,3 @@
-var PostSchema = require('../models/postsSchema');//changed from postsSchema
-
 var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
@@ -22,8 +20,7 @@ var UserSchema = new mongoose.Schema({
     joined: {
         type: Date,
         default: Date.now
-    },
-    posts: [PostSchema]
+    }
 });
 
 const User = mongoose.model("user", UserSchema);

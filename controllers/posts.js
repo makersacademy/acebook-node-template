@@ -1,46 +1,15 @@
 var Post = require('../models/post');
 var User = require('../models/users');
 var Comment = require('../models/comment');
-// const getPostFromId = async function(postId) {
-//   const allPosts = [];
-//   await User.find(function(err, users) {
-//     if (err) { throw err; }
-
-//     for (let i = 0; i < users.length; i++) {
-//       var usersPosts = users[i].posts;
-//       if (usersPosts.length > 0) {
-//         for (let j = 0; j < usersPosts.length; j++) {
-//           allPosts.push(usersPosts[j]);
-
-//         }
-//       }
-//     }
-
-//   });
-// console.log(allPosts);
-//     var id = req.params.postId;
-//   var wantedPosts  =  allPosts.filter(function(post){ return post._id == id });
-//   return wantedPosts[0];
-// }
 
 
 var PostsController = {
   Index: function(req, res) {
 
-    User.find(function(err, users) {
+    Post.find(function(err, posts) {
       if (err) { throw err; }
-      const allPosts = [];
-
-      for (let i = 0; i < users.length; i++) {
-        var usersPosts = users[i].posts;
-        if (usersPosts.length > 0) {
-          for (let j = 0; j < usersPosts.length; j++) {
-            allPosts.push(usersPosts[j]);
-          }
-        }
-      }
-
-      res.json({posts: allPosts});
+      
+      res.json({posts: posts});
   });
 },
 
@@ -48,13 +17,14 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var userid = req.params._id
-    User.findById(userid, function (err, foundUser){
-     foundUser.posts.push(req.body);
-     foundUser.save();
-         res.status(201);
-         res.json({message: req.body.message});
+    var post = new Post({
+      userId: req.body.userId,
+      message: req.body.message
     });
+    post.save(function(err) {
+      if (err) { throw err; }
+    });
+    res.json({post: post});
   },
   Delete: function(req, res) {
     var userid = req.params._id;

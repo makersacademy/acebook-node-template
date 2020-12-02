@@ -1,8 +1,12 @@
 var mongoose = require('mongoose');
-var CommentSchema = require('../models/commentsSchema');
 
 var PostSchema = new mongoose.Schema({
 
+  userId: {
+    //the _id of user
+    type: String,
+    required: true
+  },
   message: {
     type: String,
     required: true
@@ -17,9 +21,7 @@ var PostSchema = new mongoose.Schema({
   likes:{
     type: Number,
     default: 0
-  },
-  comments:[CommentSchema] 
-
+  }
 });
 
 module.exports = PostSchema;
