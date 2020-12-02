@@ -1,6 +1,6 @@
 var Post = require('../models/post');
 var User = require('../models/users');
-
+var Comment = require('../models/comment');
 // const getPostFromId = async function(postId) {
 //   const allPosts = [];
 //   await User.find(function(err, users) {
@@ -204,9 +204,12 @@ var PostsController = {
   });
   var wantedPosts  =  allPosts.filter(function(post){ return post._id == id });
   wantedPosts[0].comments.push(req.body);
-  wantedPosts[0].save();
-
-  res.json(wantedPosts[0]);
+//  wantedPosts[0].save();
+  const commentObject = new Comment(req.body);
+  const postObject = new Post(wantedPosts[0]);
+  postObject.comments.push(commentObject);
+  postObject.save();
+  res.json(postObject);
 
 }
 
