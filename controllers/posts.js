@@ -1,6 +1,29 @@
 var Post = require('../models/post');
 var User = require('../models/users');
 
+// const getPostFromId = async function(postId) {
+//   const allPosts = [];
+//   await User.find(function(err, users) {
+//     if (err) { throw err; }
+
+//     for (let i = 0; i < users.length; i++) {
+//       var usersPosts = users[i].posts;
+//       if (usersPosts.length > 0) {
+//         for (let j = 0; j < usersPosts.length; j++) {
+//           allPosts.push(usersPosts[j]);
+
+//         }
+//       }
+//     }
+
+//   });
+// console.log(allPosts);
+//     var id = req.params.postId;
+//   var wantedPosts  =  allPosts.filter(function(post){ return post._id == id });
+//   return wantedPosts[0];
+// }
+
+
 var PostsController = {
   Index: function(req, res) {
 
@@ -142,31 +165,50 @@ var PostsController = {
  });
  },
   Comments: async function(req, res) {
-    var id = req.params.postId;
+    const allPosts = [];
     await User.find(function(err, users) {
       if (err) { throw err; }
 
-      const allPosts = [];
+      for (let i = 0; i < users.length; i++) {
+        var usersPosts = users[i].posts;
+        if (usersPosts.length > 0) {
+          for (let j = 0; j < usersPosts.length; j++) {
+            allPosts.push(usersPosts[j]);
+
+          }
+        }
+      }
+
+  });
+  console.log(allPosts);
+      var id = req.params.postId;
+    var wantedPosts  =  allPosts.filter(function(post){ return post._id == id });
+    res.json(wantedPosts[0].comments);
+  },
+  AddComment: async function(req, res) {
+    var id = req.params.postId;
+    const allPosts = [];
+    await User.find(function(err, users) {
+      if (err) { throw err; }
 
       for (let i = 0; i < users.length; i++) {
         var usersPosts = users[i].posts;
-        console.log("Post Object: ", usersPosts);
-        console.log("id that was passed: ", id);
-        // if (usersPosts[0] === id) {
-        //   console.log("I should run");
-        //   allPosts.push(usersPosts);
-        // }
+        if (usersPosts.length > 0) {
+          for (let j = 0; j < usersPosts.length; j++) {
+            allPosts.push(usersPosts[j]);
+
+          }
+        }
       }
-      console.log(allPosts);
 
-      const allComments = [];
-      // for (let i = 0; i < allPosts.comments.length; i++) {
-      //   allComments.push(allPosts[0].comments[i]);
-      // }
-
-      res.json({comments: allComments});
   });
-  }
+  var wantedPosts  =  allPosts.filter(function(post){ return post._id == id });
+  wantedPosts[0].comments.push(req.body);
+  wantedPosts[0].save();
+
+  res.json(wantedPosts[0]);
+
+}
 
 }
 

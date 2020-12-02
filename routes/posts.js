@@ -13,5 +13,6 @@ router.post('/:postId/like/:userId', PostsController.Like); // to work with hree
 router.delete('/:postId/unlike/:userId', PostsController.UnLike) // to work with hree hanging posts 
 // comments
 router.get('/:postId/comments', PostsController.Comments);
+router.post('/:postId/comments', PostsController.AddComment);
 
 module.exports = router;
