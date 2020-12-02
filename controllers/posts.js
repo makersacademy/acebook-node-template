@@ -33,27 +33,13 @@ var PostsController = {
     });
     res.json({post: 'deleted'});
   },
-// only finds free hanging posts
-  Find: async function(req, res) {
-    const allPosts = [];
-    await User.find(function(err, users) {
-      if (err) { throw err; }
+  Find: function(req, res) {
+    var postId = req.params.postId;
+    Post.findById(postId, function (err, post){
+      if (err){ throw err; }
 
-      for (let i = 0; i < users.length; i++) {
-        var usersPosts = users[i].posts;
-        if (usersPosts.length > 0) {
-          for (let j = 0; j < usersPosts.length; j++) {
-            allPosts.push(usersPosts[j]);
-
-          }
-        }
-      }
-
-  });
-  console.log(allPosts);
-      var id = req.params.postId;
-    var wantedPosts  =  allPosts.filter(function(post){ return post._id == id });
-    res.json(wantedPosts[0]);
+      res.json({post: post});
+    });
   },
 //like function needs to only work when user is signed in and not allow
 //them to like a post more than once
