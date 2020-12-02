@@ -1,7 +1,5 @@
 var Post = require('../models/post');
 var User = require('../models/users');
-var Comment = require('../models/comment');
-
 
 var PostsController = {
   Index: function(req, res) {
@@ -10,8 +8,8 @@ var PostsController = {
       if (err) { throw err; }
       
       res.json({posts: posts});
-  });
-},
+    });
+  },
 
   New: function(req, res) {
     res.render('posts/new', {});
@@ -108,55 +106,7 @@ var PostsController = {
      res.json(post);
 
  });
- },
-  Comments: async function(req, res) {
-    const allPosts = [];
-    await User.find(function(err, users) {
-      if (err) { throw err; }
-
-      for (let i = 0; i < users.length; i++) {
-        var usersPosts = users[i].posts;
-        if (usersPosts.length > 0) {
-          for (let j = 0; j < usersPosts.length; j++) {
-            allPosts.push(usersPosts[j]);
-
-          }
-        }
-      }
-
-  });
-  console.log(allPosts);
-      var id = req.params.postId;
-    var wantedPosts  =  allPosts.filter(function(post){ return post._id == id });
-    res.json(wantedPosts[0].comments);
-  },
-  AddComment: async function(req, res) {
-    var id = req.params.postId;
-    const allPosts = [];
-    await User.find(function(err, users) {
-      if (err) { throw err; }
-
-      for (let i = 0; i < users.length; i++) {
-        var usersPosts = users[i].posts;
-        if (usersPosts.length > 0) {
-          for (let j = 0; j < usersPosts.length; j++) {
-            allPosts.push(usersPosts[j]);
-
-          }
-        }
-      }
-
-  });
-  var wantedPosts  =  allPosts.filter(function(post){ return post._id == id });
-  wantedPosts[0].comments.push(req.body);
-//  wantedPosts[0].save();
-  const commentObject = new Comment(req.body);
-  const postObject = new Post(wantedPosts[0]);
-  postObject.comments.push(commentObject);
-  postObject.save();
-  res.json(postObject);
-
-}
+ }
 
 }
 
