@@ -1,12 +1,11 @@
 var Post = require('../models/post');
-var User = require('../models/users');
 
 var PostsController = {
   Index: function(req, res) {
 
     Post.find(function(err, posts) {
       if (err) { throw err; }
-      
+
       res.json({posts: posts});
     });
   },
@@ -42,71 +41,28 @@ var PostsController = {
   },
 //like function needs to only work when user is signed in and not allow
 //them to like a post more than once
-  Like: async function(req, res) {
-      var id = req.params.postId;
-      var userId = req.params.userId;
-      var userIdtoPass;
+  Like: function(req, res) {
+    var postId = req.params.postId;
+    Post.findById(postId, function (err, post){
+      if (err){ throw err; }
+      post.likes +=1;
+      post.like.push(req.body);
+      post.save();
+      res.json({post: post});
+    });
+  },
 
-      await User.findById(userId, function (err){
-        if(err){
-          console.log(err);
-        }
-        else{
-          userIdtoPass = userId;
-        }
-      })
-
-      Post.findById(id, function (err, post){
-        if (err){
-          console.log(err);
-      } else {
-        if (post.like.includes(userIdtoPass)){
-          console.log("Can't like twice.");
-        } else if (userIdtoPass === null || userIdtoPass === undefined) {
-          console.log("Wild null/undefined apeared.");
-        } else {
-        post.like.push(userIdtoPass);//needs user id to insert
-        post.likes += 1;
-        post.save();
-        console.log(userIdtoPass);
-      }
-      }
-
-      res.json(post);
-
-  });
- },
-
- UnLike: async function(req, res) {
-     var id = req.params.postId;
-     var userId = req.params.userId;
-     var userIdtoPass;
-
-     await User.findById(userId, function (err){
-       if(err){
-         console.log(err);
-       }
-       else{
-         userIdtoPass = userId;
-       }
-     })
-
-     Post.findById(id, function (err, post){
-       if (err){
-         console.log(err);
-     } else {
-       if (!post.like.includes(userIdtoPass)){
-         console.log("Nothing to unlike.");
-       } else {
-       post.like.splice(post.like.indexOf(userIdtoPass), 1);//needs user id to insert
-       post.likes -= 1;
-       post.save();
-     }
-     }
-
-     res.json(post);
-
- });
+ UnLike: function(req, res) {
+   var postId = req.params.postId;
+   Post.findById(postId, function (err, post){
+     if (err){ throw err; }
+     post.like = post.like.filter(like => {like.authorId !== req.body.authorId});
+     post.likes -=1;
+     console.log(post);
+     console.log(req.body);
+     post.save();
+     res.json({post: post});
+   });
  }
 
 }
