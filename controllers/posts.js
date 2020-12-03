@@ -57,7 +57,7 @@ var PostsController = {
    Post.findById(postId, function (err, post){
      if (err){ throw err; }
      post.like = post.like.filter(like => {like.authorId !== req.body.authorId});
-     post.likes -=1;
+     post.likes = post.like.length;
      console.log(post);
      console.log(req.body);
      post.save();
