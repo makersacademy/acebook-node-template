@@ -49,6 +49,7 @@ var PostsController = {
       post.like.push(req.body);
       post.save();
       res.json({post: post});
+
     });
   },
 
@@ -56,13 +57,17 @@ var PostsController = {
    var postId = req.params.postId;
    Post.findById(postId, function (err, post){
      if (err){ throw err; }
-     post.like = post.like.filter(like => {like.authorId !== req.body.authorId});
-     post.likes = post.like.length;
-     console.log(post);
-     console.log(req.body);
-     post.save();
-     res.json({post: post});
+       console.log(post.like);
+       try{
+         (post.like).remove(req.body);
+         post.save();
+       }catch(err){
+         throw error;
+       }
+        post.likes -= 1;
+     res.json({post: 'deleted'});
    });
+
  }
 
 }
