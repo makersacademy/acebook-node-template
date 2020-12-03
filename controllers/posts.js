@@ -4,61 +4,40 @@ var User = require('../models/users');
 var PostsController = {
   Index: function(req, res) {
 
-    User.find(function(err, users) {
+    Post.find(function(err, posts) {
       if (err) { throw err; }
-      const allPosts = [];
-    
-      for (let i = 0; i < users.length; i++) {
-        var usersPosts = users[i].posts;
-        if (usersPosts.length > 0) {
-          for (let j = 0; j < usersPosts.length; j++) {
-            allPosts.push(usersPosts[j]);
-          }
-        }
-      }
-
-      res.json({posts: allPosts});
-  });
-},
+      
+      res.json({posts: posts});
+    });
+  },
 
   New: function(req, res) {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var userid = req.params._id
-    User.findById(userid, function (err, foundUser){
-     foundUser.posts.push(req.body);
-     foundUser.save();
-         res.status(201);
-         res.json({message: req.body.message});
+    var post = new Post({
+      userId: req.body.userId,
+      message: req.body.message,
+      author: req.body.author
     });
+    post.save(function(err) {
+      if (err) { throw err; }
+    });
+    res.json({post: post});
   },
   Delete: function(req, res) {
-    var userid = req.params._id;
-    User.findById(userid, function (err, foundUser){
-      if (err){
-        console.log(err);
-    }
-    else{
-      var postId = req.body.postId;
-      console.log(foundUser.posts)
-      foundUser.posts.id(postId).remove();
-      foundUser.save(function (err) {
-        if (err) return handleError(err);
-        console.log("Deleted : ", postId);
-      })
-        
-    }
-    res.redirect('/posts');});
+    var postId = req.params.postId;
+    Post.findByIdAndDelete(postId, function (err){
+      if (err){ throw err; }
+    });
+    res.json({post: 'deleted'});
   },
-
   Find: function(req, res) {
-      var id = req.params.postId;
-      Post.findById(id, function (err, post){
-        if (err){
-          console.log(err);
-      }
-      res.json(post);
+    var postId = req.params.postId;
+    Post.findById(postId, function (err, post){
+      if (err){ throw err; }
+
+      res.json({post: post});
     });
   },
 //like function needs to only work when user is signed in and not allow
@@ -129,6 +108,7 @@ var PostsController = {
 
  });
  }
+
 }
 
 module.exports = PostsController;

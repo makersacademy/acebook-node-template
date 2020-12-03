@@ -2,6 +2,11 @@ var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
 
+  userId: {
+    //the _id of user
+    type: String,
+    required: true
+  },
   message: {
     type: String,
     required: true
@@ -12,12 +17,15 @@ var PostSchema = new mongoose.Schema({
   },
   like: {
     type:  Array
-},
-likes:{
-  type: Number,
-  default: 0
-}
-
+  },
+  likes:{
+    type: Number,
+    default: 0
+  },
+  author: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = PostSchema;

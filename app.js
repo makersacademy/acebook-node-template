@@ -8,6 +8,7 @@ var session = require('express-session');
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var usersRouter = require('./routes/users');
+var commentsRouter = require('./routes/comments');
 
 var cors = require('cors');
 var app = express();
@@ -30,6 +31,7 @@ app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 app.use('/', homeRouter);
 app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
+app.use('/comments', commentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
