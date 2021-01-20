@@ -28,5 +28,5 @@ jobs:
     - run: sudo systemctl start mongod
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm start:test
+    - run: npm run start:test
     - run: npm test
