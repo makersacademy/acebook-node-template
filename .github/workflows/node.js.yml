@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: unbuntu-16.04
+    runs-on: unbuntu-latest
 
     strategy:
       matrix:
