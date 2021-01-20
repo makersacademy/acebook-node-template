@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: sudo systemctl start mongod
     - run: npm ci
-    - run: npm install forever
+    - run: npm install -g forever
     - run: npm run build --if-present
     - run: forever npm run start:test
     - run: npm test
