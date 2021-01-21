@@ -30,3 +30,30 @@ jobs:
     - run: npm run build --if-present
     - run: (npm run start:test&)
     - run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+    steps:
+      - name: AWS S3 Deploy
+      # You may pin to the exact commit or the version.
+      # uses: vexelabs/s3-deploy@29658243b3016e198730d43165853077a37e953e
+      uses: vexelabs/s3-deploy@v1
+      with:
+        # AWS Key ID to use
+        aws-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        # AWS Secret Access Key to use
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        # AWS S3 Bucket name
+        aws-bucket: continuously-eddie
+        # AWS region to deploy to
+        aws-region: us-east-2
+        # Path prefix for the target S3 Key
+        aws-key-prefix: # optional
+        # Directory on Actions runner to upload to S3
+        directory: 
+        # Empties the old contents in the bucket before uploading the new files
+        empty-bucket: 
+      
