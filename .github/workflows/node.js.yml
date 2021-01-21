@@ -46,6 +46,8 @@ jobs:
       - run: sudo systemctl start mongod
       - run: npm ci
       - run: npm run build --if-present
+      - run: mkdir ./zipfiles
+      - run: zip ./zipfiles/acebook /home/runner/work/acebook-node-template/acebook-node-template
       - name: AWS S3 Deploy
       # You may pin to the exact commit or the version.
       # uses: vexelabs/s3-deploy@29658243b3016e198730d43165853077a37e953e
@@ -62,7 +64,7 @@ jobs:
           # Path prefix for the target S3 Key
           aws-key-prefix: # optional
           # Directory on Actions runner to upload to S3
-          directory: /home/runner/work/acebook-node-template/acebook-node-template
+          directory: ./zipfiles
           # Empties the old contents in the bucket before uploading the new files
           empty-bucket: false
         
