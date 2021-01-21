@@ -54,7 +54,7 @@ jobs:
           # Path prefix for the target S3 Key
           aws-key-prefix: # optional
           # Directory on Actions runner to upload to S3
-          directory: 
+          directory: /home/runner/work/acebook-node-template/acebook-node-template
           # Empties the old contents in the bucket before uploading the new files
-          empty-bucket: 
+          empty-bucket: false
         
