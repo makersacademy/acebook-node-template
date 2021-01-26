@@ -1,7 +1,14 @@
 var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
-  message: String,
+  userID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'},
+  body: String,
+  datePosted: Date,
+  name: String,
+  comments: [{body: String, timePosted: Date, commentUserName: String, commentUserID: {type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'}}]
 });
 
 var Post = mongoose.model('Post', PostSchema);

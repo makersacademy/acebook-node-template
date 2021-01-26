@@ -1,0 +1,23 @@
+<div class="entry">
+  {{#if errorMessage}}
+    <h2 id="login-message">{{errorMessage}}</h2>
+  {{/if}}
+</div>
+
+
+
+<h1 class="title"> Login </h1>
+
+<form  class="loginForm" id="login-form" action="/user/login" method="post">
+  <label for="email">E-mail: </label>
+  <input id="email" type="text" name="email" value="">
+
+  <label for="password">Password: </label>
+  <input id="password" type="text" name="password" value="">
+
+  <input type="submit" class="button" value="Login">
+</form>
+
+<form class="loginForm" action="/user/signup" method="get">
+  <input type="submit" class="button" name="signup" value="Sign Up">
+</form>

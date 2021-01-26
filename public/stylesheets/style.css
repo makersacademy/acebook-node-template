@@ -1,8 +1,189 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
 a {
   color: #00B7FF;
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+}
+body {
+  padding: 0 7%;
+  margin: 2rem;
+  color: dimgray;
+  background-color: #F8F8F8;
+}
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  text-align: center;
+}
+h3 {
+  font-family: 'Orbitron', sans-serif;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 2.5rem;
+}
+span {
+  font-size: 1rem;
+}
+p {
+  text-align: left;
+  color: dimgray;
+  font-family: inherit;
+}
+form {
+  width: 80%;
+  background-color: #fae6e675;
+  margin: 0 auto;
+  display: block;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+
+input {
+  padding: .6rem;
+  border-radius: 3px;
+  border: 1px solid #eee;
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #c7b218;
+  font-family: inherit;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0.2rem 0.7rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+input::-webkit-input-placeholder {
+  padding: 1rem;
+  margin: auto;
+}
+label {
+  display: block;
+  margin-top: 1.7rem;
+  margin-bottom: 0.7rem;
+}
+.container {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.card {
+  background-color: white;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  padding: 1.5rem;
+  margin: 1rem auto;
+}
+.loginForm {
+  width: 35%;
+}
+.button {
+  color: linen;
+  background-color: #4c7d77;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem;
+  font-size: 10px;
+  font-family: 'Orbitron', sans-serif;
+  width: 25%;
+  margin: 0 auto;
+}
+.button:hover {
+  background-color: #009900;
+  cursor: pointer;
+}
+.postContent {
+  font-size: 1.5rem;
+  border-bottom: 1px solid gainsboro;
+}
+
+.postInput {
+  height: 5rem;
+}
+#postButton {
+  display: inline-block;
+  width: 50%;
+  margin: 0 auto;
+}
+.posted {
+  font-size: 1.3rem;
+  font-style: italic;
+  font-size: 0.7rem;
+}
+.commentBox {
+  margin-left: 2rem;
+}
+
+.individualComments {
+  background-color: #f2f2f2;
+  opacity: .5;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  width: 90%;
+}
+
+.commentText {
+  color: black;
+}
+
+.commentInfo {
+  color: dimgray;
+}
+/* .fa-comments {
+  color: dimgray;
+  margin: 5px 5px 5px 0;
+} */
+/* .fa-comments:active,
+.fa-comments:hover {
+  color: #000;
+  cursor: pointer;
+} */
+
+.profilePicture {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; 
+  align-content: center;
+}
+.pictureContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: right;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .container {
+    width: 100%;
+  }
+  body {
+    padding: 0 3%;
+  }
+}
+@media only screen and (max-width: 600px){
+  body {
+    font-size: 80%;
+    padding: 0 1%;
+  }
+}
+
+

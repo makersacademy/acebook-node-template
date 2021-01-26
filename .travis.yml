@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - 12
+
+branches: 
+  only: 
+   - travis
+
+before_install:
+  - npm i -g npm@6.13.4
+
+services:
+  - mongodb
+
+before_script:
+  - npm run start:test &
+
+script:
+  - npm test
