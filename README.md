@@ -12,8 +12,8 @@ It uses:
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
 ## Card wall
+https://trello.com/b/CmEQoJ44/acebook-group-3-
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 
 ## Quickstart
 
