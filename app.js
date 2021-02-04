@@ -21,9 +21,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); // tell express where our public files are which are our css, images, etc
 
-// import mongoose and connect to mongodb here
-
-
 // tell express to use these route
 app.use('/', homeRouter);
 app.use('/content', contentRouter);
