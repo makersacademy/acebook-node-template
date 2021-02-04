@@ -4,28 +4,25 @@ var router = express.Router(); // this allows us to set up HTTP routes
 var HomeController = require('../controllers/home');
 var SignUpController = require('../controllers/signup');
 var LoginController = require('../controllers/login');
-const { route } = require('./content');
+var ContentController = require('../controllers/content');
+//const { route } = require('./content');
 
 router.get('/', HomeController.Index);
 
-router.get('/signup', SignUpController.SignUp, (req, res) => {
-    res.send('testing')
-})
+router.get('/signup', SignUpController.SignUp);
 
-router.get('/content', (req, res) => {
-    res.send('content page')
-})
+router.get('/login', LoginController.Login);
 
+router.get('/content', ContentController.Index);
+
+// Create a new user
 router.post('/signup', (req, res) => {
-    res.redirect('/content')
-})
-
-router.get('/login', LoginController.Login, (req, res) => {
-    res.send('login page')
-})
+  res.send('Create')
+  // res.redirect('/content')
+});
 
 router.post('/login', (req, res) => {
-    res.redirect('/content')
-})
+  res.redirect('/content')
+});
 
 module.exports = router; // export the router so that app.js can require it
