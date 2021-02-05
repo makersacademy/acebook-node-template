@@ -5,19 +5,16 @@ var HomeController = require('../controllers/home');
 var SignUpController = require('../controllers/signup');
 var LoginController = require('../controllers/login');
 var ContentController = require('../controllers/content');
-const { route } = require('./content');
-const User = require('../models/users');
 
 router.get('/', HomeController.Index);
-router.get('/signup', SignUpController.SignUp);
-router.get('/login', LoginController.Login);
+router.get('/signup', SignUpController.Index);
+router.get('/login', LoginController.Index);
 router.get('/content', ContentController.Index);
 
 // Create a new user
 router.post('/content', SignUpController.Create);
 
-router.post('/login', (req, res) => {
-  res.redirect('/content')
-});
+// Log the user in
+router.post('/login', LoginController.Login);
 
 module.exports = router; // export the router so that app.js can require it

@@ -19,7 +19,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); // tell express where our public files are which are our css, images, etc
 

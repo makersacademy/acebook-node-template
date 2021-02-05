@@ -1,7 +1,7 @@
 const User = require("../models/users");
 
 var SignUpController = {
-  SignUp: function(req, res) {
+  Index: function(req, res) {
     res.render('home/signup', { 
         title: 'Acebook',
     });
@@ -13,7 +13,7 @@ var SignUpController = {
     });
     user.save((err, newUser) => {
       if (err) {
-        res.redirect('/signup');
+        res.get('home/signup')
       } else {
         res.status(201).redirect('/content');
       }
