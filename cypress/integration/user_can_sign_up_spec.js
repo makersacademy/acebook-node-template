@@ -1,10 +1,15 @@
 describe("Form test", () => {
-    it("Can fill the form", () => {
-      cy.visit("/");
-      cy.get("form");
-
-      cy.get('input[name="name"]')
-      .type("Molly")
-      .should("have.value", "Molly");
-    });
+    it('Creating a new user', () => {
+      cy.visit('/new') 
+      cy.get("form");   
+  
+      cy.get('input[name="name"]') 
+        .type('Jane Doe')
+  
+      cy.get('input[name="password"]')  
+        .type('Password1') 
+  
+      cy.contains('Submit')   
+        .click()            
+    }); 
   });

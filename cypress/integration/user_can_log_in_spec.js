@@ -6,7 +6,7 @@ describe('Logging In - HTML Web Form', function () {
     context('HTML form submission', function () {
         beforeEach(function () {
           cy.visit('/login')
-        })
+        })     
     
         it('displays errors on login', function () {
           cy.get('input[name=username]').type('jane.lae')
