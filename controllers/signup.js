@@ -11,7 +11,7 @@ var SignUpController = {
       username: req.body.username,
       password: req.body.password
     });
-    user.save((err, newUser) => {
+    user.save((err) => {
       if (err) {
         res.get('home/signup')
       } else {
