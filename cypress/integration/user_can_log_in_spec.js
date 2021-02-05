@@ -6,6 +6,16 @@ describe('Logging In - HTML Web Form', function () {
     context('HTML form submission', function () {
         beforeEach(function () {
           cy.visit('/login')
+          cy.get("form"); 
+
+          cy.get('input[name="name"]') 
+            .type('jane.doe')
+  
+          cy.get('input[name="password"]')  
+            .type('Password1') 
+  
+          cy.contains('Submit')   
+            .click()       
         })     
     
         it('displays errors on login', function () {
