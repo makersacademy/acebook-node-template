@@ -12,11 +12,9 @@ var SignUpController = {
       password: req.body.password
     });
     user.save((err) => {
-      if (err) {
-        res.get('home/signup')
-      } else {
-        res.status(201).redirect('/content');
-      }
+      if (err) { throw err }
+
+      res.status(201).redirect('/content');
     })
   }
 };
