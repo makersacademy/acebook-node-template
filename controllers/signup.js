@@ -1,4 +1,5 @@
 const User = require("../models/users");
+const bcrypt = require('bcrypt'); // a library to encrypt password
 
 var SignUpController = {
   Index: function(req, res) {
@@ -6,16 +7,25 @@ var SignUpController = {
         title: 'Acebook',
     });
   },
-  Create: function(req, res) {
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password
-    });
-    user.save((err) => {
-      if (err) { throw err }
+  Create: async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
 
-      res.status(201).redirect('/content');
-    })
+    const salt = await bcrypt.genSalt(); // randomly generated string of characters to add in front of user's password
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const user = new User({
+      username: username,
+      password: hashedPassword
+    });
+    await user.save((err) => {
+      if (err) {
+        res.redirect('/signup');
+        console.log(err);
+      } else {
+        res.status(201).redirect('/content');
+      };
+    });
   }
 };
 
