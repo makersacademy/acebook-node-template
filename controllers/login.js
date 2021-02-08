@@ -1,28 +1,31 @@
 const User = require("../models/users");
+const bcrypt = require('bcrypt');
 
 var LoginController = {
   Index: function(req, res) {
     res.render('home/login', { title: 'Acebook' });
     },
-  Login: function(req, res) {      
-    username = req.body.username;
-    password = req.body.password;
+  Login: async (req, res) => {  
+    const username = req.body.username;
+    const password = req.body.password;
 
-    User.findOne({username: username, password: password}, (err, user) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).send('Internal Server Error');
-      }
+    try {
+      const user = await User.findOne({ username: username }).exec();
 
-      // if user object doesn't exist in the database, send 404 status back to client
       if (!user) {
-        return res.status(404).send('User not found');
+        return res.status(404).redirect('/login').send({ message: 'The user does not exist. '});
       }
 
-      // if user object exist in the database, redirect user to the dashboard
-      console.log(user)
-      return res.status(201).redirect('/content');
-    })
+      const match = await bcrypt.compare(password, user.password);
+
+      if (!match) {
+        return res.status(404).send('The password is invalid');
+      } else {
+        res.send('The username and password combination is correct!');
+      }
+    } catch {
+      res.status(500).send('Internal Server Error');
+    }
   }
 };
 
