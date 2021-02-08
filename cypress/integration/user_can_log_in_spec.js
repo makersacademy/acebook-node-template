@@ -8,7 +8,7 @@ describe('Logging In - HTML Web Form', function () {
           cy.visit('/login')
           cy.get("form"); 
 
-          cy.get('input[name="name"]') 
+          cy.get('input[name="username"]') 
             .type('jane.doe')
   
           cy.get('input[name="password"]')  
