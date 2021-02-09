@@ -4,14 +4,12 @@ var router = express.Router(); // this allows us to set up HTTP routes
 var HomeController = require('../controllers/home');
 var SignUpController = require('../controllers/signup');
 var LoginController = require('../controllers/login');
-var ContentController = require('../controllers/content');
 
 router.get('/', HomeController.Index);
 router.get('/signup', SignUpController.Index);
 router.get('/login', LoginController.Index);
-router.get('/content', ContentController.Index);
 
-// Create a new user
+// Create a new user, direct to dashboard if login successful
 router.post('/content', SignUpController.Create);
 
 // Log the user in
