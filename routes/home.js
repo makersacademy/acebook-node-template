@@ -10,7 +10,7 @@ router.get('/signup', SignUpController.Index);
 router.get('/login', LoginController.Index);
 
 // Create a new user, direct to dashboard if login successful
-router.post('/content', SignUpController.Create);
+router.post('/signup', SignUpController.Create);
 
 // Log the user in
 router.post('/login', LoginController.Login);

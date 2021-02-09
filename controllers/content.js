@@ -1,22 +1,34 @@
 var Content = require('../models/content');
+var User = require('../models/users');
 
 var ContentController = {
   Index: function(req, res) {
-    Content.find(function(err, content) {
+    // display all posts
+    Content.find(function(err, post) {
       if (err) { throw err; }
 
-      res.render('content/index', { content: content });
+      res.render('content/index', { content: post });
     });
   },
-  New: function(req, res) {
-    res.render('content/new', {});
+  New: async (req, res) => {
+    res.render('content/new', { 
+      content: new Content(),
+      title: 'Add new post' 
+    });
   },
-  Create: function(req, res) {
-    var content = new Content(req.body);
-    content.save(function(err) {
-      if (err) { throw err; }
+  Create: async (req, res) => {
+    const post = req.body.post;
 
-      res.status(201).redirect('/content');
+    const content = new Content({
+      post: post
+    });
+
+    await content.save((err) => {
+      if (err) {
+        res.redirect('content/new');
+      } else {
+        res.status(201).redirect('/content');
+      };
     });
   }
 };

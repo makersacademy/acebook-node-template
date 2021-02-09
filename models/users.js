@@ -13,6 +13,6 @@ var UsersSchema = new Schema({
   }
 });
 
-var User = mongoose.model('Users', UsersSchema); // compile the UserSchema to create a User model
+var User = mongoose.model('User', UsersSchema); // compile the UserSchema to create a User model
 
 module.exports = User;
