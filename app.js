@@ -4,9 +4,18 @@ const createError = require('http-errors'); // creates HTTP errors
 const cookieParser = require('cookie-parser'); // enables signed cookie support
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const session = require('express-session')
 
 // connect to express
 const app = express();
+
+// set up sessions
+app.use(session({
+  secret: 'secret-session',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {maxAge: 1000 * 60 * 60 * 24}
+}))
 
 // connect to the routes folder
 const homeRouter = require('./routes/home'); // gets the home page
@@ -19,7 +28,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); // tell express where our public files are which are our css, images, etc
 
@@ -42,5 +51,7 @@ app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app; // export the app so routes can access it
