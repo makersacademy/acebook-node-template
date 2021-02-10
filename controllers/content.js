@@ -23,7 +23,7 @@ var ContentController = {
   UserIndex: async (req, res) => {
     var userID = req.session.user._id;
     await Content.
-            findOne({user: [userID]}).
+            find({user: userID}).
             sort({ createdAt: 'desc' }).
             exec((err, post) => {
       if (err) { throw err; }
