@@ -31,7 +31,10 @@ var ContentController = {
         return res.status(401).redirect('/');
       }
       else{
-        res.render('content/dashboard', { user: post });
+        res.render('content/dashboard', { 
+          user: post,
+          username: req.session.user.username
+        });
       }
     })
   },
