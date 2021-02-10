@@ -4,7 +4,10 @@ var User = require('../models/users');
 var ContentController = {
   Index: async (req, res) => {
     // display all posts in descending order
-    await Content.find({}).sort({ createdAt: 'desc' }).exec((err, post) => {
+    await Content.
+            find({}).
+            sort({ createdAt: 'desc' }).
+            exec((err, post) => {
       if (err) { throw err; }
 
       res.render('content/index', { content: post });

@@ -1,5 +1,6 @@
 const User = require("../models/users");
 const bcrypt = require('bcrypt'); // a library to encrypt password
+const mongoose  = require("mongoose");
 
 var SignUpController = {
   Index: function(req, res) {
@@ -15,6 +16,7 @@ var SignUpController = {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = new User({
+      //_id: new mongoose.Types.ObjectId(),
       username: username,
       password: hashedPassword
     });

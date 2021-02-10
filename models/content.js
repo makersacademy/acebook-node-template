@@ -12,11 +12,10 @@ var ContentSchema = new Schema({
     required: true,
     default: Date.now
   },
-  // user: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   required: true
-  // }
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 var Content = mongoose.model('Content', ContentSchema); // compile the ContentSchema to create a Content model
