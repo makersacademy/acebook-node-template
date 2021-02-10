@@ -16,7 +16,7 @@ var ContentController = {
         return res.status(401).redirect('/');
       }
       else{
-        res.render('content/index', { content: content});
+        res.render('content/index', { content: post});
       }
     })
   },
