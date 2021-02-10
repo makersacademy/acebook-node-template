@@ -2,15 +2,15 @@ var Content = require('../models/content');
 var User = require('../models/users');
 
 var ContentController = {
-  Index: function(req, res) {
-    // display all posts
-    Content.find(function(err, post) {
+  Index: async (req, res) => {
+    // display all posts in descending order
+    await Content.find({}).sort({ createdAt: 'desc' }).exec((err, post) => {
       if (err) { throw err; }
 
       res.render('content/index', { content: post });
-    });
+    })
   },
-  New: async (req, res) => {
+  New: function(req, res) {
     res.render('content/new', { 
       content: new Content(),
       title: 'Add new post' 

@@ -6,16 +6,16 @@ var ContentSchema = new Schema({
   post: {
     type: String,
     required: true
-  }
+  },
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now
+  },
   // user: {
   //   type: Schema.Types.ObjectId,
   //   ref: 'User',
   //   required: true
-  // },
-  // createdDate: {
-  //   type: Date,
-  //   required: true,
-  //   default: Date.now
   // }
 });
 
