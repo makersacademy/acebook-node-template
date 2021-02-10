@@ -7,7 +7,7 @@ var ContentController = {
     Content.find(function(err, content) {
       if (err) { throw err; }
       if (!req.session.user){
-        console.log('There is no session')
+        //console.log('There is no session')
         return res.status(401).redirect('/');
       }
       else{
@@ -17,8 +17,13 @@ var ContentController = {
     });
   },
   New: function(req, res) {
-    res.render('content/new', {});
-  },
+    if (!req.session.user){
+      //console.log('There is no session')
+      return res.status(401).redirect('/');
+    }
+    else{
+      res.render('content/new', {});
+  }},
   Create: function(req, res) {
     var content = new Content(req.body);
     content.save(function(err) {
