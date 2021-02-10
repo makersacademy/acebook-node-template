@@ -5,12 +5,12 @@ var HomeController = require('../controllers/home');
 var SignUpController = require('../controllers/signup');
 var LoginController = require('../controllers/login');
 var ContentController = require('../controllers/content');
-var LogoutController = require('../controllers/logout');
+// var LogoutController = require('../controllers/logout');
 
 router.get('/', HomeController.Index);
 router.get('/signup', SignUpController.Index);
 router.get('/login', LoginController.Index);
-router.get('/logout', LogoutController.Destroy);
+// router.get('/logout', LogoutController.Destroy);
 router.get('/content', ContentController.Index);
 
 // Create a new user
