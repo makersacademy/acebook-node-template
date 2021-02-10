@@ -23,6 +23,7 @@ var LoginController = {
       if (!match) {
         return res.status(404).redirect('/login');
       } else {
+        req.session.user = user;
         res.status(201).redirect('/content');
         console.log('Username and password are both correct!');
       }

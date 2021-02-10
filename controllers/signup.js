@@ -25,6 +25,8 @@ var SignUpController = {
         res.redirect('/signup');
         console.log(err);
       } else {
+        console.log('user is created')
+        req.session.user = user;
         res.status(201).redirect('/content');
       };
     });
