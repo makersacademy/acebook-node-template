@@ -16,7 +16,6 @@ var SignUpController = {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = new User({
-      //_id: new mongoose.Types.ObjectId(),
       username: username,
       password: hashedPassword
     });

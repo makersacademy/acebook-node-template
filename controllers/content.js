@@ -1,7 +1,7 @@
 var Content = require('../models/content');
 var User = require('../models/users');
-var App = require('../app');
-session = App.session;
+//var App = require('../app');
+//session = App.session;
 
 var ContentController = {
   Index: async (req, res) => {
@@ -16,7 +16,22 @@ var ContentController = {
         return res.status(401).redirect('/');
       }
       else{
-        res.render('content/index', { content: post});
+        res.render('content/index', { content: post });
+      }
+    })
+  },
+  UserIndex: async (req, res) => {
+    var userID = req.session.user._id;
+    await Content.
+            findOne({user: [userID]}).
+            sort({ createdAt: 'desc' }).
+            exec((err, post) => {
+      if (err) { throw err; }
+      if (!req.session.user){
+        return res.status(401).redirect('/');
+      }
+      else{
+        res.render('content/dashboard', { user: post });
       }
     })
   },
@@ -33,11 +48,18 @@ var ContentController = {
   Create: async (req, res) => {
     const post = req.body.post;
 
+    req.session.user.posts.push(post)
+
     const content = new Content({
-      post: post
+      post: post,
+      user: req.session.user._id
     });
-    
-     await content.save((err) => {
+
+
+    console.log(req.session.user)
+    console.log(req.session.user.posts.length)
+
+    await content.save((err) => {
       if (err) {
         res.redirect('content/new');
       } else {

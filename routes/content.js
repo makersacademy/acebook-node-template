@@ -12,4 +12,6 @@ router.get('/new', ContentController.New);
 // create content route
 router.post('/new', ContentController.Create);
 
+router.get('/dashboard', ContentController.UserIndex);
+
 module.exports = router; // export the router so that app.js can require it
