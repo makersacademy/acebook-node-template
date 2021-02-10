@@ -6,5 +6,9 @@
   </head>
   <body>
     {{{body}}}
+    {{#if !req.session.user }}
+    <div class="ui-state-default ui-corner-all" title=".ui-icon-plusthick"><span class="ui-icon ui-icon-plusthick"></span></div>
+    <a class="logout-link" href="/logout">Layout Logout</a>
+    {{/if}}
   </body>
 </html>

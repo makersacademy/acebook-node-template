@@ -1,11 +1,19 @@
 var Content = require('../models/content');
+var App = require('../app');
+session = App.session;
 
 var ContentController = {
   Index: function(req, res) {
     Content.find(function(err, content) {
       if (err) { throw err; }
+      if (!req.session.user){
+        console.log('There is no session')
+        return res.status(401).redirect('/');
+      }
+      else{
+        res.render('content/index', { content: content });
+      }
 
-      res.render('content/index', { content: content });
     });
   },
   New: function(req, res) {
