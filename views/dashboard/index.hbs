@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acebook</title>
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Acebook!</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,25 +16,32 @@
           <a class="nav-link" href="/signup">Sign up</a>
         </li>
       </ul>
-      </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <h1 class="title">{{title}}</h1>
-  <h2>Log In!</h2>
+<h1>Welcome {{username}}</h1>
+<form action="/dashboard/new" method="get">
+  <input type="submit" class="btn btn-primary" value="Add new post">
+</form>
 
-  <form action="/login" method="post">
-    <label for="username">
-      Username
-      <input type="text" name="username">
-    </label></br>
-    <label for="password"></label>
-      Password
-      <input type="password" name="password">
-    </label></br>
-    <input type="submit" value="Submit">
-  </form>
 
-  <p>Created by The Matrix.</p>
-</body>
-</html>
+<ul class="content">
+  {{#each content}}
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">{{this.user.username}} </div>
+    <div class="card-body">
+      <h4 class="card-title">{{this.post}}</h4>
+      <p class="card-text">{{this.createdAt}}</p>
+    </div>
+  </div>
+  {{/each}}
+</ul>
+
+
+
+
+    {{!-- <li>{{this.user.username}}
+      <br>{{this.post}}
+      <br>{{this.createdAt}}
+    </li> --}}

@@ -13,7 +13,7 @@ router.get('/login', LoginController.Index);
 
 // Create a new user, direct to dashboard if login successful
 router.get('/logout', LogoutController.Destroy);
-router.get('/content', ContentController.Index);
+router.get('/dashboard', ContentController.Index);
 
 // Create a new user
 router.post('/signup', SignUpController.Create);

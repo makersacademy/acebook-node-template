@@ -16,8 +16,7 @@ var ContentController = {
         return res.status(401).redirect('/');
       }
       else{
-        console.log(new Date().toLocaleString().slice(0,10))
-        res.render('content/index', { 
+        res.render('dashboard/index', { 
           content: post,
           username: req.session.user.username,
           createdAt: new Date().toLocaleString().slice(0,10)
@@ -36,7 +35,7 @@ var ContentController = {
         return res.status(401).redirect('/');
       }
       else{
-        res.render('content/dashboard', { 
+        res.render('dashboard/myposts', { 
           user: post,
           username: req.session.user.username,
           createdAt: new Date().toLocaleString().slice(0,10)
@@ -49,7 +48,7 @@ var ContentController = {
       return res.status(401).redirect('/');
     }
     else{
-      res.render('content/new', {
+      res.render('dashboard/new', {
         content: new Content(),
         title: 'Add new post' 
       });
@@ -66,9 +65,9 @@ var ContentController = {
 
     await content.save((err) => {
       if (err) {
-        res.redirect('content/new');
+        res.redirect('dashboard/new');
       } else {
-        res.status(201).redirect('/content');
+        res.status(201).redirect('/dashboard');
       };
     });
   }

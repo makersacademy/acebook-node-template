@@ -1,4 +1,8 @@
-body {
+.navbar {
+  background-color: yellow;
+}
+
+/* body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -10,9 +14,9 @@ body {
   width:100%;
 
   /*Fallback if gradeints don't work */
-  background: #9b59b6;
+  /*background: #9b59b6;
   /*Linear gradient... */
-  background:
+  /*background:
     radial-gradient(
       at center, #185a86, #9b59b6
     );
@@ -179,4 +183,4 @@ input#login_username {}
 
 a {
   color: #00B7FF;
-}
+} */

@@ -26,7 +26,7 @@ var SignUpController = {
       } else {
         console.log('user is created')
         req.session.user = user;
-        res.status(201).redirect('/content');
+        res.status(201).redirect('/dashboard');
       };
     });
   }

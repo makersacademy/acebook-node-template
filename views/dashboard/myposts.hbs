@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acebook</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Acebook!</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Welcome {{username}}</h1>
+
+  <ul class="content">
+    {{#each user}}
+      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+          {{this.user.username}}
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{this.post}}</h4>
+          <p class="card-text">{{this.createdAt}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </ul>
+
+  <a class="new-content-link" href="/content/new">Add new post</a>
+
+  <a class="logout-link" href="/logout">Logout</a>
+
+</body>
+</html>
+
