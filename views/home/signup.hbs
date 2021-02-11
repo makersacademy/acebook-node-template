@@ -1,23 +1,19 @@
 <h1 class="title">{{title}}</h1>
 
 <h2>Sign Up!</h2>
-<form action="/signup" method="post">
-  {{!-- <label for="firstname">
-    First Name
-    <input type="text" name="firstname">
-  </label></br>
-  <label for="lastname"></label>
-    Last Name
-    <input type="text" name="lastname">
-  </label></br> --}}
-  <label for="username"></label>
-    Username
-    <input type="text" name="username" value="{{{ user.username }}}">
-  </label></br>
-  <label for="password"></label>
-    Password
-    <input type="text" name="password" value="{{{ user.password }}}">
-  </label></br>
-  <input type="submit" value="Submit">
+
+<div class="d-flex justify-content-center align-items-center h-100">
+<form>
+  <div action="/login" method="post" class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter username">
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+  <br>
+  <button type="submit" value="submit" class="btn btn-primary">Submit</button>
 </form>
-<p>Created by The Matrix.</p>
+</div>

@@ -1,16 +1,25 @@
 <h1 class="title">{{title}}</h1>
 <h2>Log In!</h2>
 
-<form action="/login" method="post">
-  <label for="username">
-    Username
-    <input type="text" name="username">
-  </label></br>
-  <label for="password"></label>
-    Password
-    <input type="text" name="password">
-  </label></br>
-  <input type="submit" value="Submit">
+<div class="d-flex justify-content-center align-items-center h-100">
+<form>
+  <div action="/login" method="post" class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter username">
+    <small id="emailHelp" class="form-text text-muted">We'll share your username with everyone under the sun.</small>
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+  <br>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">By selecting this option, you agree to sell your soul</label>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
 
-<p>Created by The Matrix.</p>
