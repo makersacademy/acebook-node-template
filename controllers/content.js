@@ -7,22 +7,22 @@ var ContentController = {
   Index: async (req, res) => {
     // display all posts in descending order
     await Content.
-            find({}).
-            populate('user').
-            sort({ createdAt: 'desc' }).
-            exec((err, post) => {
-      if (err) { throw err; }
-      if (!req.session.user){
-        return res.status(401).redirect('/');
-      }
-      else{
-        res.render('dashboard/index', { 
-          content: post,
-          username: req.session.user.username,
-          createdAt: new Date().toLocaleString().slice(0,10)
-        });
-      }
-    })
+      find({}).
+      populate('user').
+      sort({ createdAt: 'desc' }).
+      exec((err, post) => {
+        if (err) { throw err; }
+        if (!req.session.user) {
+          return res.status(401).redirect('/');
+        }
+        else {
+          res.render('dashboard/index', {
+            content: post,
+            username: req.session.user.username,
+            createdAt: new Date().toLocaleString().slice(0, 10)
+          });
+        }
+      })
   },
   UserIndex: async (req, res) => {
     var userID = req.session.user._id;
@@ -35,7 +35,7 @@ var ContentController = {
         return res.status(401).redirect('/');
       }
       else{
-        res.render('dashboard/myposts', { 
+        res.render('dashboard/myposts', {
           user: post,
           username: req.session.user.username,
           createdAt: new Date().toLocaleString().slice(0,10)
@@ -50,7 +50,7 @@ var ContentController = {
     else{
       res.render('dashboard/new', {
         content: new Content(),
-        title: 'Add new post' 
+        title: 'Add new post'
       });
   }},
   Create: async (req, res) => {
@@ -68,7 +68,7 @@ var ContentController = {
         res.redirect('dashboard/new');
       } else {
         res.status(201).redirect('/dashboard');
-      };
+      }
     });
   }
 };
