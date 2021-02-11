@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 require('../mongodb_helper')
-var Post = require('../../models/post');
+var Post = require('../../models/content');
 
 describe('Post model', function() {
   beforeEach(function(done) {

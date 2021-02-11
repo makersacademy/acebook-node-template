@@ -18,7 +18,8 @@ var ContentController = {
       else{
         res.render('content/index', { 
           content: post,
-          username: req.session.user.username
+          username: req.session.user.username,
+          createdAt: new Date().toLocaleString().slice(0,10)
         });
       }
     })
@@ -36,7 +37,8 @@ var ContentController = {
       else{
         res.render('content/dashboard', { 
           user: post,
-          username: req.session.user.username
+          username: req.session.user.username,
+          createdAt: new Date().toLocaleString().slice(0,10)
         });
       }
     })

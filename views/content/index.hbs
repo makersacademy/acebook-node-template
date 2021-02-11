@@ -1,7 +1,10 @@
 <h1>Welcome {{username}}</h1>
 <ul class="content">
   {{#each content}}
-  <li>{{this.post}} {{this.createdAt}}</li>
+    <li>{{this.user}} 
+      <br>{{this.post}}
+      <br>{{this.createdAt}}
+    </li>
   {{/each}}
 </ul>
 
