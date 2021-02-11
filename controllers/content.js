@@ -8,14 +8,15 @@ var ContentController = {
     // display all posts in descending order
     await Content.
             find({}).
+            populate('user').
             sort({ createdAt: 'desc' }).
             exec((err, post) => {
       if (err) { throw err; }
       if (!req.session.user){
-        //console.log('There is no session')
         return res.status(401).redirect('/');
       }
       else{
+        console.log(new Date().toLocaleString().slice(0,10))
         res.render('content/index', { 
           content: post,
           username: req.session.user.username,
