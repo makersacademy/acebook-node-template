@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// create a new instance of schema to define the structure of the 'post' document/table that we want to store in the database collection
+// create a new instance of schema to define the structure of the 'content' document that we want to store in the database
 var ContentSchema = new Schema({
   post: {
     type: String,

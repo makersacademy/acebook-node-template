@@ -1,5 +1,5 @@
 var Content = require('../models/content');
-var User = require('../models/users');
+
 //var App = require('../app');
 //session = App.session;
 
@@ -16,7 +16,10 @@ var ContentController = {
         return res.status(401).redirect('/');
       }
       else{
-        res.render('content/index', { content: post });
+        res.render('content/index', { 
+          content: post,
+          username: req.session.user.username
+        });
       }
     })
   },
@@ -57,10 +60,6 @@ var ContentController = {
       post: post,
       user: req.session.user._id
     });
-
-
-    console.log(req.session.user)
-    console.log(req.session.user.posts.length)
 
     await content.save((err) => {
       if (err) {

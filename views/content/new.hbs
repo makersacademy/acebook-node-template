@@ -1,5 +1,9 @@
 <h1>{{title}}</h1>
 <form id="new-post-form" action="/content/new" method="POST">
+  <label for="image" class="post-image">
+    Upload photo:
+    <input type="file" name="image">
+  </label>
   <label for="post">Message:
     <input id="message" type="text" name="post" value="{{{ content.post }}}">
   </label>
