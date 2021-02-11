@@ -16,7 +16,6 @@ var SignUpController = {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = new User({
-      //_id: new mongoose.Types.ObjectId(),
       username: username,
       password: hashedPassword
     });
@@ -27,7 +26,7 @@ var SignUpController = {
       } else {
         console.log('user is created')
         req.session.user = user;
-        res.status(201).redirect('/content');
+        res.status(201).redirect('/dashboard');
       };
     });
   }
