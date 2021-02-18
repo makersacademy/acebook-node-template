@@ -67,4 +67,8 @@ jobs:
           directory: ./zipfiles
           # Empties the old contents in the bucket before uploading the new files
           empty-bucket: false
+      - name: CodeDeploy
+      - run: |
+        aws deploy create-deployment --application-name acebook --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name production --s3-location bucket=continuously-eddie, bundleType=zip,key=acebook.zip
+
         
