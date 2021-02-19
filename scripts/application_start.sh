@@ -1,3 +1,4 @@
+cd ~
 sudo touch /etc/yum.repos.d/mongodb-org-4.4.repo
 sudo tee -a /etc/yum.repos.d/mongodb-org-4.4.repo > /dev/null <<EOT
 [mongodb-org-4.4]
@@ -11,10 +12,7 @@ sudo yum install -y mongodb-org
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
-echo "listing all files and the working dir"
-pwd
-ls
-echo "end list"
 sudo ~/.nvm/versions/node/v15.9.0/bin/npm install
 sudo systemctl start mongod
+sudo ~/.nvm/versions/node/v15.9.0/bin/npm update
 ~/.nvm/versions/node/v15.9.0/bin/npm start
