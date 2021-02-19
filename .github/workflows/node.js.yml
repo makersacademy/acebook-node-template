@@ -36,35 +36,17 @@ jobs:
       matrix:
         node-version: [15.x]
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: sudo systemctl start mongod
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: mkdir ./zipfiles
-      - run: zip ./zipfiles/acebook /home/runner/work/acebook-node-template/acebook-node-template
-      - name: AWS S3 Deploy
-      # You may pin to the exact commit or the version.
-      # uses: vexelabs/s3-deploy@29658243b3016e198730d43165853077a37e953e
-        uses: vexelabs/s3-deploy@v1
-        with:
-          # AWS Key ID to use
-          aws-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          # AWS Secret Access Key to use
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # AWS S3 Bucket name
-          aws-bucket: continuously-eddie
-          # AWS region to deploy to
-          aws-region: us-east-2
-          # Path prefix for the target S3 Key
-          aws-key-prefix: # optional
-          # Directory on Actions runner to upload to S3
-          directory: ./zipfiles
-          # Empties the old contents in the bucket before uploading the new files
-          empty-bucket: false
+      - name: AWS Deploy push
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws deploy push \
+          --application-name acebook
+          --description "This is a revision for the acebook-${{ github.sha }}" \
+          --ignore-hidden-files \
+          --s3-location s3://continuously-eddie/acebook-{{ github.sha }}.zip \
+          --source .
       - name: CodeDeploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
