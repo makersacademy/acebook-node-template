@@ -45,7 +45,7 @@ jobs:
           --application-name acebook \
           --description "This is a revision for the acebook-${{ github.sha }}" \
           --ignore-hidden-files \
-          --s3-location s3://continuously-eddie/acebook.zip" \
+          --s3-location s3://continuously-eddie/acebook-${{ github.sha }}.zip \
           --source .
       - name: CodeDeploy
         env:
