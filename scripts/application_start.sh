@@ -1,1 +1,1 @@
-npm run start
+~/.nvm/versions/node/v15.9.0/bin/npm run start
