@@ -1,0 +1,43 @@
+version: 0.0
+os: linux 
+# files:
+#   - source: 
+#     destination:
+#   - source:
+#     destination:
+# permissions:
+#   - object:
+#     pattern:
+#     except:
+#     owner:
+#     group:
+#     mode: 
+#     acls:
+#       -
+#     context:
+#       user:
+#       type:
+#       range:
+#     type:
+#       -
+hooks:
+  # ApplicationStop:
+  #   - location: 
+  #     timeout:
+  #     runas:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+  AfterInstall:
+    - location: scripts/after_install.sh    
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 300
+      runas: ubuntu
+  # ValidateService:
+  #   - location:     
+  #     timeout: 
+  #     runas:
