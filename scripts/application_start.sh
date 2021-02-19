@@ -1,1 +1,1 @@
-~/.nvm/versions/node/v15.9.0/bin/npm run start
+/home/ec2-user/node_modules/nodemon/bin/nodemon.js ./bin/www
