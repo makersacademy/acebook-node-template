@@ -44,6 +44,7 @@ jobs:
           aws deploy push \
           --application-name acebook \
           --description "This is a revision for the acebook-${{ github.sha }}" \
+          --region us-east-2 \
           --ignore-hidden-files \
           --s3-location s3://continuously-eddie/acebook-${{ github.sha }}.zip \
           --source .
