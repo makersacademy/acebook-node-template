@@ -42,7 +42,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws deploy push \
-          --application-name acebook
+          --application-name acebook \
           --description "This is a revision for the acebook-${{ github.sha }}" \
           --ignore-hidden-files \
           --s3-location s3://continuously-eddie/acebook-{{ github.sha }}.zip \
