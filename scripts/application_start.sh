@@ -11,6 +11,10 @@ sudo yum install -y mongodb-org
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
+echo "listing all files and the working dir"
+pwd
+ls
+echo "end list"
 sudo ~/.nvm/versions/node/v15.9.0/bin/npm install
 sudo systemctl start mongod
 ~/.nvm/versions/node/v15.9.0/bin/npm start
