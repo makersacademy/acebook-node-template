@@ -1,6 +1,6 @@
 # Acebook ![CI](https://github.com/EdwardAndress/acebook-node-template/workflows/Node.js%20CI/badge.svg?branch=master)
 
-This is a Node.js template for the Acebook engineering project.
+This is a Node.js template for the Acebook engineering project!
 
 It uses:
 - [Express](https://expressjs.com/) web framework for Node.js.
