@@ -13,8 +13,6 @@ sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | 
 . ~/.nvm/nvm.sh
 echo 'needlessly installing node'
 nvm install node
-echo 'some dependencies, please'
-sudo ~/.nvm/versions/node/v15.9.0/bin/npm install
 echo 'starting mongo'
 sudo systemctl start mongod
 echo 'starting app'
