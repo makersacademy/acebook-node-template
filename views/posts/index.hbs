@@ -2,6 +2,8 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
+  <a {{this._id}} class="delete-post-link" href="/posts/">Delete  post </a>
+  
   {{/each}}
 </ul>
 

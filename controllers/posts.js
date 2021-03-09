@@ -1,4 +1,5 @@
 var Post = require('../models/post');
+const { post } = require('../routes/posts');
 
 var PostsController = {
   Index: function(req, res) {
@@ -18,6 +19,9 @@ var PostsController = {
 
       res.status(201).redirect('/posts');
     });
+  }
+  Delete:function(req,res) {
+    posts.remove({_id})//in progress
   }
 };
 
