@@ -8,7 +8,10 @@ var methodOverride = require('method-override');
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var signupRouter = require('./routes/signup');
+<<<<<<< HEAD
 var signinRouter = require('./routes/signin');
+=======
+>>>>>>> 8f47b83b4b1c8a263d1297d7738e2a255aefaf4b
 var app = express();
 
 // view engine setup
@@ -26,7 +29,10 @@ app.use(methodOverride('_method'))
 app.use('/', homeRouter);
 app.use('/posts', postsRouter);
 app.use('/signup',signupRouter);
+<<<<<<< HEAD
 app.use('/signin',signinRouter);
+=======
+>>>>>>> 8f47b83b4b1c8a263d1297d7738e2a255aefaf4b
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
