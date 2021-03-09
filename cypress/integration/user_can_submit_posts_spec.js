@@ -9,3 +9,4 @@ describe('Timeline', function() {
     cy.get('.posts').should('contain', 'Hello, world!');
   });
 });
+
