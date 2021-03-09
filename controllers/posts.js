@@ -1,5 +1,5 @@
 var Post = require('../models/post');
-
+var mongoose = require('mongoose');
 var PostsController = {
   Index: function(req, res) {
     Post.find(function(err, posts) {
@@ -18,7 +18,14 @@ var PostsController = {
 
       res.status(201).redirect('/posts');
     });
-  }
+  },
+  Delete: function(req, res) {
+    Post.findOneAndDelete( {
+       _id: mongoose.Types.ObjectId(req.body.id)}, function(err, post) {
+      res.status(201).redirect('/posts');
+    });
+      
+  } 
 };
 
 module.exports = PostsController;
