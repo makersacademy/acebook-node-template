@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var PostsController = require('../controllers/posts')
+var SignupController = require('../controllers/signup')
 
-router.get('/', PostsController.Index);
+router.get('/', SignupController.Index);
 
 module.exports = router;
+
