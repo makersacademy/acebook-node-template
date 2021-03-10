@@ -17,6 +17,7 @@ var LoginController = {
           } else {
         bcrypt.compare(req.body.password, user.password, function (err, result) {
          if (result == true) {
+          req.session.user = user.dataValues;
              res.redirect('/posts');
          } else {
           res.send('Incorrect password');
