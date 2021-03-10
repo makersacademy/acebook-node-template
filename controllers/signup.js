@@ -12,7 +12,7 @@ var SignupController = {
       user.save(function(err) {
         if (err) { throw err; }
   
-        res.status(201).redirect('/signin');
+        res.status(201).redirect('/login');
       });
     },
     
