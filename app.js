@@ -10,6 +10,7 @@ var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
+var exitRouter = require('./routes/exit');
 var app = express();
 
 // view engine setup
@@ -34,7 +35,6 @@ app.use(session({
   }
 }));
 
-
 // This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
 // This usually happens when you stop your express server after login, your cookie still remains saved in the browser.
 app.use((req, res, next) => {
@@ -43,6 +43,7 @@ app.use((req, res, next) => {
   }
   next();
 });
+
 var sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
     next();
@@ -55,6 +56,7 @@ app.use('/', homeRouter);
 app.use('/posts', sessionChecker, postsRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
+app.use('/exit', exitRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

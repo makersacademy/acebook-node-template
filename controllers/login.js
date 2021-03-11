@@ -8,26 +8,32 @@ var LoginController = {
     }, 
 
     Dashboard: function(req,res) {
+      if (!req.body.password || !req.body.username) {
+        res.status(400).send({
+            status: false,
+            message: 'Please input in all fields'
+        })
+    } else {
       User.findOne({ 
         username: req.body.username
                   })
         .then(function (user) {
+          
           if (!user) {
-             res.redirect('/');
+            res.redirect('/');
           } else {
-        bcrypt.compare(req.body.password, user.password, function (err, result) {
+           bcrypt.compare(req.body.password, user.password, function (err, result) {
          if (result == true) {
-          req.session.user = user.dataValues;
-             res.redirect('/posts');
+          req.session.user = user;
+           res.redirect('/posts');
          } else {
-          res.send('Incorrect password');
-          res.redirect('/');
+           res.send('Incorrect password');
          }
        });
       }
-   });
+    });
     }
-
+    }
   };
     
 
