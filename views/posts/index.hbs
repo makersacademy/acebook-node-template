@@ -1,18 +1,21 @@
 <h1>Timeline</h1>
 <div class="posts">
   {{#each posts}}
-  <p>{{this.message}}</p>
+  <p>{{this.message}}</p><span></span>
   <div><h5>{{this.date}}</h5></div>
 
      <form method="post" action="/posts?_method=DELETE"> 
      {{!-- enctype="application/x-www-form-urlencoded" --}}
       {{!-- <input type="hidden" id="postId" name="_method" value="DELETE"> --}}
       <input type="hidden" name="id" value="{{this._id}}">
-   <button type="submit">Delete</button></form>
+   <button type="submit">Delete</button></form><br>
+<form id="comment-box" action="/posts/comments" method="post">
+  <textarea name="message" rows="2" cols="15" placeholder="Type Comment Here"></textarea><br>
+  <input type="submit" value="Submit">
+</form>
+
   {{/each}}
   
 </div>
-  
 <a class="new-post-link" href="/posts/new">New post</a>
-
 <a class="exit-link" href="/exit">Log Out</a>
