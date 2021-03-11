@@ -5,12 +5,12 @@
   <div><h5>{{this.date}}</h5></div>
 
      <form method="post" action="/posts?_method=DELETE"> 
-     {{!-- enctype="application/x-www-form-urlencoded" --}}
-      {{!-- <input type="hidden" id="postId" name="_method" value="DELETE"> --}}
       <input type="hidden" name="id" value="{{this._id}}">
    <button type="submit">Delete</button></form><br>
-<form id="comment-box" action="/posts/comments" method="post">
-  <textarea name="message" rows="2" cols="15" placeholder="Type Comment Here"></textarea><br>
+
+<form id="comment-box" action="/posts/comment" method="post">
+  <input type="hidden" name="id" value="{{this._id}}">
+  <textarea name="comment" rows="2" cols="15" placeholder="Type Comment Here"></textarea><br>
   <input type="submit" value="Submit">
 </form>
 
