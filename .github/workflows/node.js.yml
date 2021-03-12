@@ -1,5 +1,3 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 name: Node.js CI
 on:
   push:
@@ -8,13 +6,11 @@ on:
     branches: [ master ]
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
-        mongodb-version: [4.0, 4.2, 4.4]
+        node-version: [15.x]
+        mongodb-version: [4.2]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
     - uses: actions/checkout@v2
@@ -26,9 +22,8 @@ jobs:
       uses: supercharge/mongodb-github-action@1.3.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-    - name: Cypress run
-      uses: cypress-io/github-action@v2
     - run: npm install    
     - run: npm ci
     - run: npm run build --if-present
+    - run: (npm run start:test&)
     - run: npm test
