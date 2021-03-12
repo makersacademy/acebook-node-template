@@ -4,7 +4,9 @@
 <div class="posts">
   {{#each posts}}
   <p>{{this.message}}</p>
+  {{#each this.comments}}
   <p>{{this.comment}}</p>
+  {{/each}}
   <div><h5>{{this.date}}</h5></div>
 
      <form method="post" action="/posts?_method=DELETE"> 

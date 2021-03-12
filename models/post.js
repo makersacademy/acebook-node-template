@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var PostSchema = new mongoose.Schema({
   message: String,
   date: { type: Date, default: Date.now},
-  comment: { type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
 
