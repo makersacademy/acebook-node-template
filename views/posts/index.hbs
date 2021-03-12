@@ -1,7 +1,10 @@
 <h1>Timeline</h1>
+<a class="new-post-link" href="/posts/new">New post</a>
+<a class="exit-link" href="/exit">Log Out</a>
 <div class="posts">
   {{#each posts}}
-  <p>{{this.message}}</p><span></span>
+  <p>{{this.message}}</p>
+  <p>{{this.comment}}</p>
   <div><h5>{{this.date}}</h5></div>
 
      <form method="post" action="/posts?_method=DELETE"> 
@@ -17,5 +20,3 @@
   {{/each}}
   
 </div>
-<a class="new-post-link" href="/posts/new">New post</a>
-<a class="exit-link" href="/exit">Log Out</a>

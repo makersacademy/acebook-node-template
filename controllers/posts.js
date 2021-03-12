@@ -1,10 +1,10 @@
 var Post = require('../models/post');
-var Comment = require('../models/Comment');
+var Comment = require('../models/comment');
 var mongoose = require('mongoose');
 var PostsController = {
 
   Index: function(req, res) {
-    Post.find().sort( {date: -1}).exec(function(err, posts) {
+    Post.find().sort( {date: -1}).populate({path: 'comment'}).exec(function(err, posts) { console.log(posts)
       if (err) { throw err; }
       res.render('posts/index', { posts: posts });
     });
@@ -34,7 +34,9 @@ var PostsController = {
 comment.save().then(function (result) {
   return Post.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(req.body.id) },
-    { $push: { comments: result._id } }
+    { $push: { comments: result} },
+    console.log(req.body.id),
+   console.log(result),
   );
 }).then(function (result) {
   console.log('updated post');
