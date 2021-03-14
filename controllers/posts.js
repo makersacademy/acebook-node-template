@@ -26,10 +26,10 @@ var PostsController = {
     Post.schema.pre('remove', function(next) {
       // 'this' is the client being removed. Provide callbacks here if you want
       // to be notified of the calls' result.
-      Comment.remove({comments: this._id}).exec();
+      Comment.remove({ post_id: mongoose.Types.ObjectId(req.body.id)}).exec();
       next();
   });
-    Post.findOneAndDelete( {
+    Post.findOneAndRemove( {
        _id: mongoose.Types.ObjectId(req.body.id)}, function(err) {
         if (err) { throw err; }
         res.status(201).redirect('/posts');
