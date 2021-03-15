@@ -58,9 +58,7 @@ jobs:
           --deployment-group-name production \
           --region eu-west-2 \
           --file-exists-behavior OVERWRITE \
-          --s3-location "bucket=acebookpost, bundleType=zip, key=acebook-TriUnity-${{ github.sha }}.zip"
-
-# comment
+          --s3-location "bucket=acebookpost, bundleType=zip, key=acebook-TriUnity-${{ github.sha }}.zip
     # - name: Checkout
     #   uses: actions/checkout@v2
 
