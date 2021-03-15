@@ -42,6 +42,9 @@ jobs:
         aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-2
 
+    - run: npm install
+    - run: zip -r acebook-TriUnity-${{ github.sha }}.zip . 
+
     - name: Copy files to the production website with the AWS CLI
       run: |
-        aws s3 sync . s3://acebookpost
+        aws s3 sync acebook-TriUnity-${{ github.sha }}.zip s3://acebookpost
