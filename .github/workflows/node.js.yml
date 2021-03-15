@@ -47,6 +47,19 @@ jobs:
           --s3-location s3://acebookpost/acebook-TriUnity-${{ github.sha }}.zip \
           --source .
 
+      - name: CodeDeploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws deploy create-deployment \
+          --application-name TriUnity-Acebook \
+          --deployment-config-name CodeDeployDefault.OneAtATime \
+          --deployment-group-name production \
+          --region eu-west-2 \
+          --file-exists-behavior OVERWRITE \
+          --s3-location "bucket=acebookpost, bundleType=zip, key=acebook-TriUnity-${{ github.sha }}.zip"
+
 
     # - name: Checkout
     #   uses: actions/checkout@v2
