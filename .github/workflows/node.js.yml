@@ -29,6 +29,7 @@ jobs:
     - run: npm test
   
   deploy:
+    needs: build
     name: Upload to Amazon S3
     runs-on: ubuntu-latest
 
@@ -45,4 +46,4 @@ jobs:
 
     - name: Copy files to the production website with the AWS CLI
       run: |
-        aws s3 sync . s3://my-s3-prod-website-bucket
+        aws s3 sync . s3://acebookpost
