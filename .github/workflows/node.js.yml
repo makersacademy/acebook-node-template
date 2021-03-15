@@ -32,19 +32,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - run: npm install
+      - name: AWS Deploy push
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID  }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY  }}
+        run: |
+          aws deploy push \
+          --application-name acebook \
+          --description "This is a revision for the acebook-${{ github.sha }}" \
+          --region eu-west-2 \
+          --ignore-hidden-files \
+          --s3-location s3://acebookpost-${{ github.sha }}.zip \
+          --source .
 
-    - name: Configure AWS credentials from Production account
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-west-2
 
-    - run: npm install
-    - run: zip -r acebook-TriUnity-${{ github.sha }}.zip . 
+    # - name: Checkout
+    #   uses: actions/checkout@v2
 
-    - name: Copy files to the production website with the AWS CLI
-      run: |
-        aws s3 sync . s3://acebookpost
+    # - name: Configure AWS credentials from Production account
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: eu-west-2
+
+    # - run: npm install
+    # - run: zip -r acebook-TriUnity-${{ github.sha }}.zip . 
+
+    # - name: Copy files to the production website with the AWS CLI
+    #   run: |
+    #     aws s3 sync . s3://acebookpost
