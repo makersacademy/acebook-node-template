@@ -40,7 +40,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY  }}
         run: |
           aws deploy push \
-          --application-name acebook-TriUnity \
+          --application-name TriUnity-Acebook \
           --description "This is a revision for the acebook-TriUnity-${{ github.sha }}" \
           --region eu-west-2 \
           --ignore-hidden-files \
