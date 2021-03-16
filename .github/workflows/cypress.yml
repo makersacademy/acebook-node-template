@@ -9,11 +9,18 @@ jobs:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        
+      - name: Cypress run with env
+        uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_host: api.dev.local
+          CYPRESS_port: 4222
+            
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         with:
           start: npm run start:test
           build: npm run test:integration
