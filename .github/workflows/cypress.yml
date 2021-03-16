@@ -15,7 +15,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          build: npm run test:integration
-          start: npm run start:test
+          build: npm run build
+          start: npm start
           wait-on: http://localhost:3030
           
