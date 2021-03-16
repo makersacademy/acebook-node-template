@@ -28,6 +28,12 @@ jobs:
       - name: Using node 
         uses: actions/setup-node@v1
         
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.3.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+          mongodb-replica-set: test-rs
+        
       - name: Install
         run: npm install
 
