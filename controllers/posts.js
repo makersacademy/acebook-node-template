@@ -14,7 +14,9 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
+    console.log(req.session.user.username)
+    var post = new Post( {message: req.body.message, user: req.session.user.username})
+    console.log("hello")
     post.save(function(err) {
       if (err) { throw err; }
 
@@ -40,6 +42,16 @@ comment.save().then(function (result) {
   console.log('updated post');
   res.redirect('/posts');
 });  
+},
+
+Like: function(req, res) {
+  Post.findOneAndUpdate( {
+    _id: mongoose.Types.ObjectId(req.body.id)},
+    {$inc : { likes: 1}})
+    .then(function () {
+      console.log('updated post');
+      res.redirect('/posts');
+  });
 },
 }
 
