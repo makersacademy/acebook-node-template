@@ -17,3 +17,4 @@ echo 'starting mongo'
 sudo systemctl start mongod
 echo 'starting app'
 node ./bin/www &> /dev/null &
+#comment
