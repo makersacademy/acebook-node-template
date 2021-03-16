@@ -1,12 +1,75 @@
-<h1>Timeline</h1>
+<head>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  </head>
+<body style="background-color: rgb(255, 255, 255);">
+<div class="wrap">
+<nav> 
+  <div class ="logo"> ACEBOOK</div>
+<ul>
+ <!-- <li><a class="active" href ="#"> Go Live</a></li>
+  <li><a class="active" href ="#"> Friends</a></li>
+  <li><a class="active" href ="#"> Messages</a></li> -->
+</ul>
+</nav>
+ <div class="profile"> 
+    <img src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTY2NzA3MDU5MTEzMzM4MTQ4/marilyn_monroe_photo_alfred_eisenstaedt_pix_inc_the_life_picture_collection_getty_images_53376357_cropped.jpg" alt="Profile Image" class="profile__image">
+    <div class="profile__name">Marilyn M.</div>
+    <div class="profile__title">Model at Vogue</div>
+  <div class="profile__detail">
+    3M followers 
+    </div>
+      <div class="friend4"> 
+    <img src="https://thetwist03.files.wordpress.com/2013/06/danny-devito-glasses.jpg" alt="Profile Image" class="profile__image">
+    <div class="profile__name">Joe</div>
+    <div class="profile__title">Actor</div>
+    <div class="profile__detail">
+    6M followers 
+    </div>
+    </div>
+    </div>
+    <div class="friend2"> 
+    <img src="https://www.biography.com/.image/ar_8:10%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cg_faces:center%2Cq_auto:good%2Cw_620/MTU3NjM3MjA0NjA3MjQ4MzQ4/charlie-hunnam-attends-the-papillon-premiere-during-the-2017-toronto-international-film-festival-at-princess-of-wales-theatre-on-september-7-2017-in-toronto-canada-photo-by-j-merritt_gc-images-square.jpg" alt="Profile Image" class="profile__image">
+    <div class="profile__name">Alister</div>
+    <div class="profile__title">Actor</div>
+    <div class="profile__detail">
+      50M followers
+    </div>
+    </div>
+     <div class="friend3"> 
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrgpe_yvBbEDKLU68DM_cbCtQ6YY7BSAWTpg&usqp=CAU" alt="Profile Image" class="profile__image">
+    <div class="profile__name">Beyonce</div>
+    <div class="profile__title">Singer</div>
+    <div class="profile__detail">
+      50M followers
+    </div>
+    </div>
+  </div>
+  <div class="friend5"> 
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGT6OkUrJeFIJ9IQByJU50v3aey_Z303czTg&usqp=CAU" alt="Profile Image" class="profile__image">
+    <div class="profile__name">Ashley</div>
+    <div class="profile__title">Actor</div>
+  <div class="profile__detail">
+    3M followers 
+    </div>
+    </div>
+</body>
+ <div class="postbtn">
 <a class="new-post-link" href="/posts/new">New post</a>
-<a class="exit-link" href="/exit">Log Out</a>
-<div class="posts">
-  {{#each posts}}
-  <div><h5>{{this.date}}</h5></div>
+</div>
+<div class="logoutbtn">
+  <a class="exit-link" href="/exit">Log Out</a>
+</div>
+  <div class="container">
+    <div class="box">
+    <div class="posts">
+     <center><h1>Post</h1></center>
+
+    {{#each posts}}
+    <img src="https://thetwist03.files.wordpress.com/2013/06/danny-devito-glasses.jpg" width="10%" class="profilepic">
+    <div><h5>{{this.date}}</h5></div>
   <p> {{this.user}} </p>
-  <p>{{this.message}} <span>
-  <form method="post" action="/posts/like"> 
+    <p>{{this.message}} <span>
+    <form method="post" action="/posts/like"> 
       <input type="hidden" name="id" value="{{this._id}}">
   <button type="submit">{{this.likes}} Likes </button></form></span>
   </p><br>
@@ -14,18 +77,16 @@
   <p>{{this.user}}</p>
   <p>{{this.comment}}</p>
   {{/each}}
-  
+      <form method="post" action="/posts?_method=DELETE"> 
+        <input type="hidden" name="id" value="{{this._id}}">
+    <button type="submit" class="btn btn-outline-danger">Delete</button></form>
 
-     <form method="post" action="/posts?_method=DELETE"> 
-      <input type="hidden" name="id" value="{{this._id}}">
-   <button type="submit">Delete</button></form><br>
-
-<form id="comment-box" action="/posts/comment" method="post">
+    <form id="comment-box" action="/posts/comment" method="post">
   <input type="hidden" name="id" value="{{this._id}}">
   <textarea name="comment" rows="2" cols="15" placeholder="Type Comment Here"></textarea><br>
   <input type="submit" value="Submit">
 </form>
-
-  {{/each}}
-  
-</div>
+    {{/each}}
+  </div>
+  </div>
+ 
