@@ -14,7 +14,9 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
+    console.log(req.session.user.username)
+    var post = new Post( {message: req.body.message, user: req.session.user.username})
+    console.log("hello")
     post.save(function(err) {
       if (err) { throw err; }
 
@@ -36,6 +38,16 @@ var PostsController = {
 });  
 },
 
+
+Like: function(req, res) {
+  Post.findOneAndUpdate( {
+    _id: mongoose.Types.ObjectId(req.body.id)},
+    {$inc : { likes: 1}})
+    .then(function () {
+      console.log('updated post');
+      res.redirect('/posts');
+  });
+},
 Delete: function(req, res) {
     Comment.deleteMany({ post_id: mongoose.Types.ObjectId(req.body.id)}).exec();
     Post.findOneAndDelete( {
