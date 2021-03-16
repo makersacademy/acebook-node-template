@@ -26,7 +26,7 @@ var PostsController = {
   
   
   Comment: function(req, res) {
-   var comment = new Comment ({ comment: req.body.comment, post_id: req.body.id })
+   var comment = new Comment ({ user: req.session.user.username, comment: req.body.comment, post_id: req.body.id })
   comment.save().then(function (result) {
   return Post.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(req.body.id) },

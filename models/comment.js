@@ -5,8 +5,7 @@ var CommentSchema = new mongoose.Schema({
   comment: {type: String, trim: true},
   created: {type: Date, default: Date.now(), select: false},
   post_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Post'},
-  user: String
-});
+  });
 
 var Comment = mongoose.model('Comment', CommentSchema);
 
