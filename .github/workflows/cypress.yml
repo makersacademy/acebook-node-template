@@ -17,4 +17,5 @@ jobs:
         with:
           build: npm run test:integration
           start: npm run start:test
+          wait-on: http://localhost:3030
           
