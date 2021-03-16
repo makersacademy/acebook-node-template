@@ -42,7 +42,8 @@ var PostsController = {
     { _id: mongoose.Types.ObjectId(req.body.id) },
     { $push: { comments: result._id} },
      );
-}).then(function (result) {
+}).
+}).then(function () {
   console.log('updated post');
   res.redirect('/posts');
 });  
