@@ -1,10 +1,12 @@
 var Post = require('../models/post');
 var Comment = require('../models/comment');
 var mongoose = require('mongoose');
+var moment = require('moment');
+
 var PostsController = {
 
   Index: function(req, res) {
-    Post.find().sort( {date: -1}).populate({path: 'comments'}).exec(function(err, posts) { 
+    Post.find().sort( {created_at: -1}).populate({path: 'comments'}).exec(function(err, posts) { 
       if (err) { throw err; }
       res.render('posts/index', { posts: posts });
     });
@@ -15,7 +17,7 @@ var PostsController = {
   },
   Create: function(req, res) {
     console.log(req.session.user.username)
-    var post = new Post( {message: req.body.message, user: req.session.user.username})
+    var post = new Post( {message: req.body.message, user: req.session.user.username,  date: moment().format("kk:mm ddd, MMM Do YY")});
     console.log("hello")
     post.save(function(err) {
       if (err) { throw err; }
