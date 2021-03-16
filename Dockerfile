@@ -2,7 +2,7 @@
 # Docker images can be inherited from other images. Therefore, instead of 
 # creating our own base image, we’ll use the official Node.js image that 
 # already has all the tools and packages that we need to run a Node.js application.
-FROM alpine:3.10
+FROM node:10-alpine
 
 ENV NODE_VERSION 15.11.0
 ENV NODE_ENV=production
