@@ -22,19 +22,19 @@ var PostsController = {
     });
   },
   
-  Delete: function(req, res) {
-    Post.schema.pre('remove', function(next) {
-      // 'this' is the client being removed. Provide callbacks here if you want
-      // to be notified of the calls' result.
-      Comment.deleteMany({ post_id: mongoose.Types.ObjectId(req.body.id)}).exec();
-      next();
-  });
-    Post.findOneAndRemove( {
-       _id: mongoose.Types.ObjectId(req.body.id)}, function(err) {
-        if (err) { throw err; }
-        res.status(201).redirect('/posts');
-    });   
-  },
+  // Delete: function(req, res) {
+  //   Post.schema.pre('remove', function(next) {
+  //     // 'this' is the client being removed. Provide callbacks here if you want
+  //     // to be notified of the calls' result.
+  //     Comment.fineByIdAndRemove({ post_id: mongoose.Types.ObjectId(req.body.id)}).exec();
+  //     next();
+  // });
+  //   Post.findOneAndRemove( {
+  //      _id: mongoose.Types.ObjectId(req.body.id)}, function(err) {
+  //       if (err) { throw err; }
+  //       res.status(201).redirect('/posts');
+  //   });   
+  // },
   Comment: function(req, res) {
    var comment = new Comment ({ comment: req.body.comment, post_id: req.body.id })
   comment.save().then(function (result) {
@@ -47,6 +47,17 @@ var PostsController = {
   res.redirect('/posts');
 });  
 },
+
+Delete: function(req, res) {
+    Comment.deleteMany({ post_id: mongoose.Types.ObjectId(req.body.id)}).exec();
+    Post.findOneAndDelete( {
+    _id: mongoose.Types.ObjectId(req.body.id)}, function(err) {
+    if (err) { throw err; }
+    res.status(201).redirect('/posts');
+    });   
+  },
 }
+
+
 
 module.exports = PostsController;
