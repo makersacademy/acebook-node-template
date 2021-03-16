@@ -24,25 +24,20 @@ var PostsController = {
     });
   },
   
-  Delete: function(req, res) {
-    Post.findOneAndDelete( {
-       _id: mongoose.Types.ObjectId(req.body.id)}, function(err) {
-        if (err) { throw err; }
-        res.status(201).redirect('/posts');
-    });   
-  },
+  
   Comment: function(req, res) {
-   var comment = new Comment ({ comment: req.body.comment })
-comment.save().then(function (result) {
+   var comment = new Comment ({ comment: req.body.comment, post_id: req.body.id })
+  comment.save().then(function (result) {
   return Post.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(req.body.id) },
     { $push: { comments: result._id} },
-    );
+     );
 }).then(function () {
   console.log('updated post');
   res.redirect('/posts');
 });  
 },
+
 
 Like: function(req, res) {
   Post.findOneAndUpdate( {
@@ -53,6 +48,16 @@ Like: function(req, res) {
       res.redirect('/posts');
   });
 },
+Delete: function(req, res) {
+    Comment.deleteMany({ post_id: mongoose.Types.ObjectId(req.body.id)}).exec();
+    Post.findOneAndDelete( {
+    _id: mongoose.Types.ObjectId(req.body.id)}, function(err) {
+    if (err) { throw err; }
+    res.status(201).redirect('/posts');
+    });   
+  },
 }
+
+
 
 module.exports = PostsController;
