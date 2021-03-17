@@ -1,0 +1,77 @@
+name: Node.js CI
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [15.x]
+        mongodb-version: [4.2]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.3.0
+      with:
+        mongodb-version: ${{ matrix.mongodb-version }}
+    - run: npm install    
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: (npm run start:test&)
+    - run: npm test
+  
+  deploy:
+    needs: build
+    name: Upload to Amazon S3
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - name: AWS Deploy push
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID  }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY  }}
+        run: |
+          aws deploy push \
+          --application-name TriUnity-Acebook \
+          --description "This is a revision for the acebook-TriUnity-${{ github.sha }}" \
+          --region eu-west-2 \
+          --ignore-hidden-files \
+          --s3-location s3://acebookpost/acebook-TriUnity-${{ github.sha }}.zip \
+          --source .
+
+      - name: CodeDeploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws deploy create-deployment \
+          --application-name TriUnity-Acebook \
+          --deployment-config-name CodeDeployDefault.OneAtATime \
+          --deployment-group-name production \
+          --region eu-west-2 \
+          --file-exists-behavior OVERWRITE \
+          --s3-location "bucket=acebookpost, bundleType=zip, key=acebook-TriUnity-${{ github.sha }}.zip
+    # - name: Checkout
+    #   uses: actions/checkout@v2
+
+    # - name: Configure AWS credentials from Production account
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: eu-west-2
+
+    # - run: npm install
+    # - run: zip -r acebook-TriUnity-${{ github.sha }}.zip . 
+
+    # - name: Copy files to the production website with the AWS CLI
+    #   run: |
+    #     aws s3 sync . s3://acebookpost
