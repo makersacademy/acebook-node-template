@@ -1,21 +1,13 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-{{!-- <form id="login-form" action="/login" method="post">
-        <label for="username"><br>Username<b></b></label>
-        <input type="text" placeholder="Enter Username" name ="username" required>
 
-        <label for="password"><br>Password<b></b></label>
-        <input type="password" placeholder="Enter Password" name ="password" required>
 
-        <button type="submit">Submit</button>
-</form> --}}
 <div class="row justify-content-md-center" style="margin-top: 100px">
     <div class="col-md-6">
 
-        {{!-- {{#if message}}
+        {{#if message}}
             <div class="alert {{messageClass}}" role="alert">
                 {{message}}
             </div>
-        {{/if}} --}}
+        {{/if}}
 
         <form id="login-form" method="POST" action="/login">
             <div class="form-group">

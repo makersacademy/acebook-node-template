@@ -18,20 +18,24 @@ var LoginController = {
         username: req.body.username
                   })
         .then(function (user) {
-          
-          if (!user) {
-            res.redirect('/');
-          } else {
+            if (!user) {
+            res.render('login/index', {
+              message: 'This user is not registered',
+              messageClass: 'alert-danger'});
+            }
+           else {
            bcrypt.compare(req.body.password, user.password, function (err, result) {
          if (result == true) {
           req.session.user = user;
            res.redirect('/posts');
          } else {
-           res.send('Incorrect password');
-         }
-       });
-      }
-    });
+           res.render('login/index', {
+            message: 'incorrect password',
+            messageClass: 'alert-danger'});
+          }
+         })
+       }
+      });
     }
     }
   };
