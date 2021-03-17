@@ -14,7 +14,12 @@ var SignupController = {
 
       user.save(function(err) {
         if (err) {
-          res.status(400).send('This username is already taken')
+          console.log(err.errors)
+          console.log("looking for my error")
+          console.log(err.errors.password.properties.message)
+          console.log(err.errors.username.properties.message)
+
+          res.status(400).send('SORRY This username is already taken')
         } else {
         res.status(201).redirect('/login');
       }
@@ -23,3 +28,9 @@ var SignupController = {
     },
 }
   module.exports = SignupController;
+
+// let errors = err.errors
+// res.render(“signup”, {errors: errors})
+// {{ #if errors.password.message }}
+// <p>{{errors.password.message}}</p>
+// {{ /if }}
