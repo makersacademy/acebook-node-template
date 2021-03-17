@@ -24,13 +24,17 @@ jobs:
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
         mongodb-replica-set: test-rs
-        
 
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
+    - name: Run Jest test
       run: npm run test:unit
+      env:
+        CI: true
+
+    - name: Run Lint test
+      run: npm run lint
       env:
         CI: true
 
