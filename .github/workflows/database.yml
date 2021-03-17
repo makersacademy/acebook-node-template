@@ -36,21 +36,21 @@ jobs:
 
 
 
-    cypress-run:
-      needs: build
-      runs-on: ubuntu-latest
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-              
-        # Install NPM dependencies, cache them correctly
-        # and run all Cypress tests
-        - name: Cypress run
-          uses: cypress-io/github-action@v2
-          with:
-            start: npm run start:test
-            #build: npm run test:integration
-            wait-on: http://localhost:3030
+  cypress-run:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
             
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run start:test
+          #build: npm run test:integration
+          wait-on: http://localhost:3030
+          
