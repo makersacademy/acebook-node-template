@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var UserSchema = new mongoose.Schema({
-  username:  String,
-  password: String
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
 });
+UserSchema.plugin(uniqueValidator, {message: 'is already taken.'});
 
 var User = mongoose.model('User', UserSchema);
 
