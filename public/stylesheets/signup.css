@@ -1,0 +1,191 @@
+html,body{
+    margin: 0;
+    padding: 0;  
+    font-family: 'Montserrat', sans-serif;
+    background-color: #EDF0F5;
+  }
+  a{
+    text-decoration: none;
+    color: #3B5998;
+  }
+  .container{
+    width: 980px;
+    margin: auto;
+  }
+  #header{
+    background-color: black;
+    height: 83px;
+  }
+  #header .logo{
+    padding-top: 20px;
+    font-weight: 600;
+    font-size: 2.6rem;
+    display: inline-block;  
+  }
+  #header .logo a{
+    color: white;
+    text-decoration: none;
+  }
+  .smallc {
+    font-size: 15px;
+    font-style: normal;
+  }
+  #header .login{
+    display: inline-block;
+    float: right;
+    margin-top: 10px; 
+  }
+  #header .login .top-row{
+    color: white;
+    font-size: 12px;
+  }
+  #header .login .middle-row input{
+    height: 19px;
+    width: 140px;
+    margin-right: 10px;
+    border: 1px solid #1d3c7d;
+  }
+  #header .login .middle-row button{
+    background-color: #6da653;
+    color: white;
+    font-weight: 600;
+    border: 1px solid #6da653;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+  }
+  #header .login .bottom-row{
+    color: #c5cfe3;
+    font-size: 12px;
+    margin-top: 15px;
+  }
+  #main .left-side{
+    display: inline-block;
+    float: left;
+    width: 60%;
+    margin-top: 40px;
+  }
+  #main .left-side h2{
+    color: #454545;
+    line-height: 1.4;
+    width: 79%;
+    font-size: 27px;
+    font-weight: 600;
+    margin-bottom: 35px;
+  }
+  #main .left-side .reasons{
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+  }
+  #main .left-side .reasons .left-icon{
+    font-size: 2.8rem;
+    color: #a9b5c9;
+    margin-right: 20px;
+  }
+  #main .left-side .reasons .far{
+    font-size: 3rem;
+  }
+  #main .left-side .reasons p{
+    font-size: 16px;
+    color: #707070;
+    vertical-align: middle; 
+  }
+  #main .left-side .reasons p span{
+    font-weight: 600;
+    color: #2e2e2e;
+  }
+  #main .right-side{
+    display: inline-block;
+    width: 40%;
+    margin-top: -15px;
+  }
+  #main .right-side h1{
+    font-size: 2.3rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    color: #454545;
+  }
+  #main .right-side p{
+    font-size: 20px;
+    margin-top: 5px;
+    color: #707070;
+  }
+  #main .right-side form input{
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #8a949c; 
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  #main .right-side form input[type="text"] {
+    font-size: 18px;
+    padding-left: 10px;
+    width: 170px;
+  }
+  #main .right-side form input:nth-child(1) {
+    margin-right: 8px;
+  }
+  #main .right-side form input[type="password"], #main .right-side form input[type="email"]{
+    font-size: 18px;
+    padding-left: 10px;
+    width: 365px;
+  }
+  #main .right-side .birthday{
+    margin-bottom: 16px;
+  }
+  #main .right-side .birthday .birth-date{
+    margin-top: 10px;
+  }
+  #main .right-side .birthday select{
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #aab0b5; 
+  }
+  .gender-wrapper{
+  display: flex;
+  align-items:center;
+  }
+  #main .right-side form .birthday p, #main .right-side form .gender p{
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 2px;
+  } 
+  #main .right-side form .gender .select-gender{   
+    margin-right: 25px;
+    display:flex;
+    align-items:center;
+  }
+  #main .right-side form .legal p{
+    font-size: 11px;
+    width: 80%;
+    margin-top: 12px;
+    margin-bottom: 18px;
+  }
+  #main .right-side form button{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 63px;
+    margin-bottom: 11px;
+    border-radius: 5px;
+    border: 1px solid #732c2c;
+    background: #ffffff; 
+    background: -moz-linear-gradient(top, #ffffff 0%, #6da653 3%, #6da653 3%, #5c8c46 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#6da653 3%,#6da653 3%,#5c8c46 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ffffff 0%,#6da653 3%,#6da653 3%,#5c8c46 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+  #main .right-side hr{
+    border-top: 1px solid #d1d1d1;
+    margin-bottom: 15px;
+  }
+  #main .right-side .create p{
+    font-size: 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .footer {
+    text-align: center;
+    border-top: #d1d1d1 solid 1px;
+    margin: 0px 20px;
+  }
