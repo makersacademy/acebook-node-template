@@ -1,6 +1,6 @@
-const { update } = require('../models/post');
+require('../models/post');
 var Post = require('../models/post');
-const { post } = require('../routes/posts');
+require('../routes/posts');
 
 var PostsController = {
   Index: function(req, res) {
