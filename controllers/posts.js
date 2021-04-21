@@ -1,4 +1,6 @@
+const { update } = require('../models/post');
 var Post = require('../models/post');
+const { post } = require('../routes/posts');
 
 var PostsController = {
   Index: function(req, res) {
@@ -18,7 +20,18 @@ var PostsController = {
 
       res.status(201).redirect('/posts');
     });
+  },
+  Delete: function(req, res) {
+    var post = Post.findById(req.params.id)
+    console.log(post)
+    post.deleteOne( function(err) {
+      if (err) { throw err;}
+  
+      res.status(201).redirect('/');
+    });
   }
+
+
 };
 
 module.exports = PostsController;
