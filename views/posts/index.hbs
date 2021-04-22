@@ -1,7 +1,14 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <li>{{this.message}}<form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form></li>
+  <form id="new-post-form" action="/posts/{{this.id}}/comment" method="post">
+    <label for="message">Comment: </label>
+    <input id="message" type="text" name="comment" value="">
+    <input type="submit" value="Submit">
+  </form>
+
+
   {{/each}}
 </ul>
 
