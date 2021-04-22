@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}
+  <li>{{this.message}} - {{dateFormat now "HH:mm, DD/MM/YY"}}
     <form action='/posts/{{this.id}}/delete' method='post'>
     <input type='submit' value='Delete'>
     </form>
@@ -9,8 +9,9 @@
     <input type='submit' value='Update'>
     </form>
   </li>
-  
   {{/each}}
 </ul>
-
+<form action="/posts/sorted" method="get"> 
+  <input type="submit" value="Sort">
+</form>
 <a class="new-post-link" href="/posts/new">New post</a>

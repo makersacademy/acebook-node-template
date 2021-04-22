@@ -36,6 +36,34 @@ describe('Post model', function() {
         done();
       });
     });
+  });
+  it('can delete a post', function(done) {
+    var post = new Post({message: 'some message'});
+    post.delete(function(err, posts) {
+      expect(err).toBeNull();
+
+      expect(posts).not.toContain('some message');
+      done();
+    });
+  });
+
+  it('sorts posts in descending order', function(done) {
+    var post = new Post({message: 'Hello World!'});
+    var post2 = new Post({message: 'Goodbye World!'});
+
+    var posts = Post.find();
+
+    posts.sort('-createdAt')
+    posts.find(function(err, posts, done) {
+      if(err) {
+        throw err
+      }
+      expect(posts[0]).toEqual(post2);
+      expect(posts[1]).toEqual(post);
+    });
+    done(); 
+  });
+})
 
     // it('can update a post', function(done) {
     //   var post = new Post({message: 'some message '});
@@ -46,6 +74,3 @@ describe('Post model', function() {
     //     Post.updateOne(function(e
 
     // })
-
-  });
-});

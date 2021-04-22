@@ -3,11 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var hbs = require('hbs');
+
 
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 
 var app = express();
+
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
