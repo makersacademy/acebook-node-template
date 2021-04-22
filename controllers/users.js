@@ -1,6 +1,5 @@
 var User = require('../models/user');
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 var UsersController = {
   Signup: function(req, res){
@@ -24,8 +23,11 @@ var UsersController = {
     });
   },
   Welcome: function(req, res){
-    res.render('users/welcome', {} );
+    res.render('users/welcome', {});
   },
+  Login: function(req, res){
+    res.render('users/login', {});
+  }
 }
 
 module.exports = UsersController;

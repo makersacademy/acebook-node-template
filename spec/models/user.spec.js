@@ -13,9 +13,6 @@ describe('User model', function() {
   it('has an email input', function(){
     var user = new User({ email: 'email@test.co.uk' , password: 'test123'});
     expect(user.email).toEqual('email@test.co.uk');
-    // create an expectation for the password (be a certain lenght to indicate hash)
-    // expect(user.email).to.not.equal('test123');
-
   });
 
 
