@@ -21,6 +21,29 @@ var HomeController = {
         
       });
     },
+    
+    Login: function(req, res){
+      var username = req.body.loginUsername;
+      var password = req.body.loginPassword;
+
+      //{ <field>: { $eq: <value> } }
+      User.findOne({ username: username }, (err, result) => {
+        if(err) {
+          throw err;
+        }
+
+        var passwordMatch = bcrypt.compareSync(password, result.password)
+
+        if (passwordMatch) {
+          console.log("Password correct");
+          res.status(201).redirect('/posts')
+        } else {
+          console.log("Password wrong");
+        } 
+      })
+
+    
+    },
 
     Error: function(req, res) {
       res.render('error', {message: 'Username is in use'});
