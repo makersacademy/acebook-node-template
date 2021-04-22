@@ -1,8 +1,9 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+<h1 class='title'>{{title}}</h1>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<p> Welcome to {{title}}</p>
+
+<form action="/" method="POST">
+  <input name="username" type="text" placeholder="Enter username here">
+  <input name="password" type="password" placeholder="Enter password here"> 
+  <input type="submit" value="Submit">
+</form>
