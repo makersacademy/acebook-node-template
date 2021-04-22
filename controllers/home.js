@@ -13,11 +13,17 @@ var HomeController = {
       let hash = bcrypt.hashSync(password, saltRounds)
       var user = new User({ username: username, password: hash })
       user.save(function(err) {
-        if (err) { throw err; }
+        if (err) { 
+          return res.status(401).redirect('/error')
+         }
 
-        res.status(201).redirect('/');
+        return res.status(201).redirect('/');
         
       });
+    },
+
+    Error: function(req, res) {
+      res.render('error', {message: 'Username is in use'});
     }
 };
 
