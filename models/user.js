@@ -3,12 +3,12 @@ var mongoose = require('mongoose');
 
 
 var UserSchema = new mongoose.Schema({
-  username: String,
+  username: {type: String, unique : true},
   password: String,
 });
 
+
 var User = mongoose.model('User', UserSchema)
-console.log(User.password)
 
 
 
