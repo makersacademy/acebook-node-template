@@ -1,13 +1,23 @@
 var User = require('../models/user');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 var UsersController = {
   Signup: function(req, res){
     res.render('users/index', {});
   },
-  CreateUser: function(req, res){
-    var user = new User(req.body);
+  CreateUser: async function(req, res){
+    const { email, password } = req.body;
+    const hash = await bcrypt.hash(password, 12); 
+    console.log(hash);
+
+    var user = new User( {
+      email,
+      password: hash}
+    );
+
     console.log(req.body);
-    user.save(function(err){
+    await user.save(function(err){
       if (err) { throw err }
       
       res.status(201).redirect('/users/welcome');
