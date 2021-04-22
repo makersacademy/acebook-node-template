@@ -4,12 +4,14 @@ require('../routes/posts');
 
 require('../models/post')
 var Comment = require('../models/comment')
-/* require('../routes/comments') */
 
 var PostsController = {
   Index: function(req, res) {
     Post.find(function(err, posts) {
       if (err) { throw err; }
+// populate comments
+// make sure to LOG them so you know what to put in your template
+      
 
       res.render('posts/index', { posts: posts });
     }).sort({date: -1});
@@ -43,19 +45,20 @@ var PostsController = {
   },
   
   Comment: function(req, res) {
-    Post.findById(req.params.id, function() {
+    Post.findById(req.params.id, (err, post) => {
       var comment = new Comment(req.body);
-      comment.save(function(err) {
-        if (err) { throw err; }
-        
-        /* post.comments.unshift(comment);
-        post.save(function(err) {
-          if (err) { throw err; }
-    
-          res.status(201).redirect('/posts');
-        }); */
+      
+      comment.save((saveCommentError) => {
+        if (saveCommentError) { throw saveCommentError; }
 
-      res.status(201).redirect('/posts');
+        // Push the comment to the post
+        post.comments.push(comment);
+
+        post.save((savePostError) => {
+          if (savePostError) { throw savePostError; }
+
+          res.status(201).redirect('/posts'); 
+        })     
       });
     })
     
