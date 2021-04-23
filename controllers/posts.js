@@ -37,9 +37,21 @@ var PostsController = {
     });
   },
 
-  Update: function(req, res) {
-    var post = Post.findById(req.params.id)
-    post.updateOne()
+  Edit: function(req, res) {
+    id = req.params.id;
+    edit = req.body.edited;
+    console.log(id)
+    console.log(edit)
+    Post.findByIdAndUpdate({_id: id},{message: edit}, (err) => {
+      if(err){
+        console.log(err)
+        return res.status(401).redirect('/posts');
+      }
+      else {
+        console.log("All good")
+        return res.status(200).redirect('/posts')
+      }
+    })
   },
   
   Comment: function(req, res) {
