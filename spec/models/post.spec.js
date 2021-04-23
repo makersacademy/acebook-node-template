@@ -47,22 +47,23 @@ describe('Post model', function() {
     });
   });
 
-  it('sorts posts in descending order', function(done) {
-    var post = new Post({message: 'Hello World!'});
-    var post2 = new Post({message: 'Goodbye World!'});
+//   it('sorts posts in descending order', function(done) {
+//     var post = new Post({message: 'Hello World!'});
+//     var post2 = new Post({message: 'Goodbye World!'});
 
-    var posts = Post.find();
+//     var posts = Post.find();
 
-    posts.sort('-createdAt')
-    posts.find(function(err, posts, done) {
-      if(err) {
-        throw err
-      }
-      expect(posts[0]).toEqual(post2);
-      expect(posts[1]).toEqual(post);
-    });
-    done(); 
-  });
+//     posts.sort('-createdAt')
+//     posts.find(function(err, posts) {
+//       if(err) {
+//         throw err
+//       }
+//       expect(posts[0]).toEqual(post2);
+//       expect(posts[1]).toEqual(post);
+      
+//     });
+//     done(); 
+//   });
 })
 
     // it('can update a post', function(done) {
