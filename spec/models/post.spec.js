@@ -63,26 +63,26 @@ describe('Post model', function() {
       });
     });
   })
+
+  it("sorts posts in descending order", function (done) {
+    var post = new Post({ message: "Hello World!" });
+    var post2 = new Post({ message: "Goodbye World!" }); // class Model
+
+    post.save((err, postSaveResult) => {
+      post2.save((err, post2SaveResult) => {
+        var posts = Post.find()
+        posts.sort("-createdAt");
+        posts.find(function (err, result) {
+          expect(err).toBeNull();
+
+          expect(result[0].message).toEqual("Goodbye World!");
+          expect(result[1].message).toEqual("Hello World!");
+
+          done();
+        });
+      });
+    });
+  });
 });
-
-
-//   it('sorts posts in descending order', function(done) {
-//     var post = new Post({message: 'Hello World!'});
-//     var post2 = new Post({message: 'Goodbye World!'});
-
-//     var posts = Post.find();
-
-//     posts.sort('-createdAt')
-//     posts.find(function(err, posts) {
-//       if(err) {
-//         throw err
-//       }
-//       expect(posts[0]).toEqual(post2);
-//       expect(posts[1]).toEqual(post);
-      
-//     });
-//     done(); 
-//   });
-// })
 
    
