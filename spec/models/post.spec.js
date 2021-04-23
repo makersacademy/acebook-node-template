@@ -68,8 +68,8 @@ describe('Post model', function() {
     var post = new Post({ message: "Hello World!" });
     var post2 = new Post({ message: "Goodbye World!" }); // class Model
 
-    post.save((err, postSaveResult) => {
-      post2.save((err, post2SaveResult) => {
+    post.save(() => {
+      post2.save(() => {
         var posts = Post.find()
         posts.sort("-createdAt");
         posts.find(function (err, result) {

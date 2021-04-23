@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var hbs = require('hbs');
 const session = require('express-session');
 
 var homeRouter = require('./routes/home');
@@ -12,8 +11,6 @@ var postsRouter = require('./routes/posts');
 var usersRouter = require('./routes/users');
 
 var app = express();
-
-hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
