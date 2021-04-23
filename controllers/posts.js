@@ -16,7 +16,7 @@ var PostsController = {
       
 
       res.render('posts/index', { posts: posts });
-    }).sort({date: -1}).populate('comments'/* , 'comment -_id' */);
+    }).populate('comments', 'comment -_id').sort({date: -1});
     
   },
   New: function(req, res) {
