@@ -37,4 +37,52 @@ describe('Post model', function() {
       });
     });
   });
+
+  it('can delete a post', function(done) {
+    var post = new Post({message: 'some message'});
+    post.delete(function(err, posts) {
+      expect(err).toBeNull();
+
+      expect(posts).not.toContain('some message');
+      done();
+    });
+  });
+
+  it('can update a post', function(done) {
+    var post = new Post({message: 'some message '});
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      Post.updateOne(function(err, post) {
+        expect(err).toBeNull();
+
+        expect(post).not.toContain({message: 'some message'});
+        done();
+
+      });
+    });
+  })
+
+  it("sorts posts in descending order", function (done) {
+    var post = new Post({ message: "Hello World!" });
+    var post2 = new Post({ message: "Goodbye World!" }); // class Model
+
+    post.save((err, postSaveResult) => {
+      post2.save((err, post2SaveResult) => {
+        var posts = Post.find()
+        posts.sort("-createdAt");
+        posts.find(function (err, result) {
+          expect(err).toBeNull();
+
+          expect(result[0].message).toEqual("Goodbye World!");
+          expect(result[1].message).toEqual("Hello World!");
+
+          done();
+        });
+      });
+    });
+  });
 });
+
+   

@@ -1,4 +1,4 @@
-var Post = require('../models/post');
+var Post = require("../models/post");
 
 var PostsController = {
   Index: function(req, res) {
@@ -21,10 +21,46 @@ var PostsController = {
     var post = new Post(req.body);
     post.save(function(err) {
       if (err) { throw err; }
+			res.status(201).redirect("/posts");
+		});
+	},
+	Delete: function (req, res) {
+		Post.findByIdAndRemove(req.params.id, function (err) {
+			if (err) {
+				throw err;
+			}
+			res.status(201).redirect("/posts");
+		});
+	},
 
-      res.status(201).redirect('/posts');
-    });
-  }
+	Sort: function (req, res) {
+		Post.find().sort("-createdAt").exec(function (err, posts) {
+				if (err) {
+					throw err;
+				}
+				res.render("posts/index", { posts: posts });
+			});
+	},
+
+	UpdatePage: function (req, res) {
+		res.render("posts/update", { message: req.body.message, id: req.params.id });
+	},
+
+	Update: function (req, res) {
+		Post.findByIdAndUpdate(
+			{ _id: req.params.id },
+			{ $set: { message: req.body.message } },
+			{ new: true },
+			function (err) {
+				if (err) {
+					throw err;
+				} else {
+					console.log("Updated post");
+					res.status(201).redirect("/posts");
+				}
+			}
+		);
+	},
 };
 
 module.exports = PostsController;
