@@ -47,6 +47,24 @@ describe('Post model', function() {
     });
   });
 
+  it('can update a post', function(done) {
+    var post = new Post({message: 'some message '});
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      Post.updateOne(function(err, post) {
+        expect(err).toBeNull();
+
+        expect(post).not.toContain({message: 'some message'});
+        done();
+
+      });
+    });
+  })
+})
+
+
 //   it('sorts posts in descending order', function(done) {
 //     var post = new Post({message: 'Hello World!'});
 //     var post2 = new Post({message: 'Goodbye World!'});
@@ -64,14 +82,6 @@ describe('Post model', function() {
 //     });
 //     done(); 
 //   });
-})
+// })
 
-    // it('can update a post', function(done) {
-    //   var post = new Post({message: 'some message '});
-
-    //   post.save(function(err) {
-    //     expect(err).toBeNull();
-
-    //     Post.updateOne(function(e
-
-    // })
+   
