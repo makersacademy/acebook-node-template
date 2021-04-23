@@ -8,15 +8,10 @@ var Comment = require('../models/comment')
 var PostsController = {
   Index: function(req, res) {
     Post.find(function(err, posts) {
-      
-      
       if (err) { throw err; }
-// populate comments
-// make sure to LOG them so you know what to put in your template
-      
 
       res.render('posts/index', { posts: posts });
-    }).populate('comments', 'comment -_id').sort({date: -1});
+    }).populate('comments').sort({date: -1});
     
   },
   New: function(req, res) {
@@ -67,7 +62,7 @@ var PostsController = {
         if (saveCommentError) { throw saveCommentError; }
 
         // Push the comment to the post
-        post.comments.push(comment);
+        post.comments.unshift(comment);
 
         post.save((savePostError) => {
           if (savePostError) { throw savePostError; }

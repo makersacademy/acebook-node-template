@@ -8,7 +8,8 @@
     <input id="message" type="text" name="edited" value="">
     <input type="submit" value="Save edit">
   </form>
-  <form id="new-post-form" action="/posts/{{this.id}}/comment" method="post">
+  <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
+
     <label for="message">Comment: </label>
     <input id="message" type="text" name="comment" value="">
     <input type="submit" value="Submit">
