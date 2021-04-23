@@ -51,6 +51,11 @@ describe('session', function(){
       cy.visit('/posts');
       cy.url().should('eq', 'http://localhost:3030/users/login');
     });
+
+    it('prevents non-account users accessing /posts/new', function(){
+      cy.visit('/posts/new');
+      cy.url().should('eq', 'http://localhost:3030/users/login');
+    });
   });
 
 })

@@ -12,6 +12,9 @@ var PostsController = {
     });
   },
   New: function(req, res) {
+    if (!req.session.user_id){
+      res.redirect('/users/login')
+    }
     res.render('posts/new', {});
   },
   Create: function(req, res) {

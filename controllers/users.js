@@ -1,7 +1,6 @@
 var User = require('../models/user');
 const bcrypt = require('bcrypt');
 
-
 var UsersController = {
   Signup: function(req, res){
     res.render('users/index', {});
