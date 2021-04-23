@@ -3,7 +3,7 @@
   {{#each posts}}
   
   <li>{{this.message}} <br>{{this.date}}<form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form></li>
-  <form action="/posts/{{this.id}}/edit" method="POST">
+  <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
     <label for="message">Edit post: </label>
     <input id="message" type="text" name="edited" value="">
     <input type="submit" value="Save edit">
