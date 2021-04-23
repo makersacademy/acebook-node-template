@@ -1,6 +1,7 @@
 var User = require('../models/user');
 const bcrypt = require('bcrypt');
 
+
 var UsersController = {
   Signup: function(req, res){
     res.render('users/index', {});
@@ -31,11 +32,16 @@ var UsersController = {
     const user = await User.findOne({ email });
     const validPassword = await bcrypt.compare(password, user.password);
     if(validPassword){
-      res.send('Welcome')
+      req.session.user_id = user._id;
+      res.redirect('/posts');
     } 
     else{
-      res.send('Try again')
+      res.redirect('/users/login');
     }
+  },
+  LogOut: function(req, res){
+    req.session.user_id = null;
+    res.redirect('/users/login');
   }
 }
 

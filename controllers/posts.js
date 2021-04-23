@@ -2,6 +2,9 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: function(req, res) {
+    if (!req.session.user_id){
+      res.redirect('/users/login')
+    }
     Post.find(function(err, posts) {
       if (err) { throw err; }
 

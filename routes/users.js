@@ -8,5 +8,6 @@ router.post('/signup', UsersController.CreateUser);
 router.get('/welcome', UsersController.Welcome);
 router.get('/login', UsersController.Login);
 router.post('/login', UsersController.Authenticate);
+router.post('/logout', UsersController.LogOut);
 
 module.exports = router;
