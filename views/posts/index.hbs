@@ -1,11 +1,11 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.createdAt}} - {{dateFormat now "HH:mm, DD/MM/YY"}}
+  <li>{{this.message}} - {{this.createdAt}}
     <form action='/posts/{{this.id}}/delete' method='post'>
     <input type='submit' value='Delete'>
     </form>
-    <form action='/posts/{{this.id}}/update' method='get'>
+    <form action='/posts/{{this.id}}/update' method='post'>
     <input type='submit' value='Update'>
     </form>
   </li>

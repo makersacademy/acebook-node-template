@@ -33,9 +33,7 @@ var PostsController = {
 	},
 
 	Sort: function (req, res) {
-		Post.find()
-			.sort("-createdAt")
-			.exec(function (err, posts) {
+		Post.find().sort("-createdAt").exec(function (err, posts) {
 				if (err) {
 					throw err;
 				}
@@ -43,15 +41,16 @@ var PostsController = {
 			});
 	},
 
-	UpdatePage: function (req, res, message) {
+	UpdatePage: function (req, res) {
 		res.render("posts/update", { message: req.body.message, id: req.params.id });
 	},
+
 	Update: function (req, res) {
-		let post = Post.findByIdAndUpdate(
+		Post.findByIdAndUpdate(
 			{ _id: req.params.id },
 			{ $set: { message: req.body.message } },
 			{ new: true },
-			function (err, post) {
+			function (err) {
 				if (err) {
 					throw err;
 				} else {
