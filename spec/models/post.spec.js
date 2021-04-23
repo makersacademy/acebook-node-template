@@ -37,6 +37,7 @@ describe('Post model', function() {
       });
     });
   });
+
   it('can delete a post', function(done) {
     var post = new Post({message: 'some message'});
     post.delete(function(err, posts) {
@@ -62,7 +63,7 @@ describe('Post model', function() {
       });
     });
   })
-})
+});
 
 
 //   it('sorts posts in descending order', function(done) {
