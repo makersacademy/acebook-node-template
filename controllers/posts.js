@@ -3,18 +3,21 @@ var Post = require('../models/post');
 require('../routes/posts');
 
 require('../models/post')
-var Comment = require('../models/comment')
+var Comment = require('../models/comment')  
 
 var PostsController = {
   Index: function(req, res) {
     Post.find(function(err, posts) {
+      
+      
       if (err) { throw err; }
 // populate comments
 // make sure to LOG them so you know what to put in your template
       
 
       res.render('posts/index', { posts: posts });
-    }).sort({date: -1});
+    }).sort({date: -1}).populate('comments'/* , 'comment -_id' */);
+    
   },
   New: function(req, res) {
     res.render('posts/new', {});

@@ -8,8 +8,11 @@
     <input id="message" type="text" name="comment" value="">
     <input type="submit" value="Submit">
   </form>
-
+  {{#each this.comments}}
+    <p>{{this.comment}}</p>
   {{/each}}
+
+{{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
