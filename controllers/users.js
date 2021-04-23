@@ -8,14 +8,12 @@ var UsersController = {
   CreateUser: async function(req, res){
     const { email, password } = req.body;
     const hash = await bcrypt.hash(password, 12); 
-    console.log(hash);
 
     var user = new User( {
       email,
       password: hash}
     );
 
-    console.log(req.body);
     await user.save(function(err){
       if (err) { throw err }
       
@@ -27,6 +25,17 @@ var UsersController = {
   },
   Login: function(req, res){
     res.render('users/login', {});
+  },
+  Authenticate: async function(req, res){
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    const validPassword = await bcrypt.compare(password, user.password);
+    if(validPassword){
+      res.send('Welcome')
+    } 
+    else{
+      res.send('Try again')
+    }
   }
 }
 

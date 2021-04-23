@@ -8,7 +8,10 @@ describe('session', function(){
     });
 
     it('allows them to login and see posts', function(){
-      cy.visit('/users/login');
+      cy.contains('Log in').click();
+
+      cy.url().should('eq', 'http://localhost:3030/users/login');
+
       cy.get('#log-in-form').find('#email').type('email@test.co.uk');
       cy.get('#log-in-form').find('#password').type('test123');
       cy.get('#log-in-form').submit();
