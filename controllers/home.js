@@ -39,6 +39,7 @@ var HomeController = {
           res.status(201).redirect('/posts')
         } else {
           console.log("Password wrong");
+          return res.status(401).redirect('/error')
         } 
       })
 
