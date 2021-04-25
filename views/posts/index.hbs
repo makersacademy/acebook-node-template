@@ -5,15 +5,24 @@
     <form action='/posts/{{this.id}}/delete' method='post'>
     <input type='submit' value='Delete'>
     </form>
-    <form action='/posts/{{this.id}}/update' method='get'>
-    <input type='submit' value='Update'>
+    <form action='/posts/{{this.id}}/edit' method='get'>
+    <input type='submit' value='Edit'>
     </form>
   </li>
+
   {{/each}}
 </ul>
 <form action="/posts/sorted" method="get"> 
   <input type="submit" value="Sort">
 </form>
+
+
+<form id="search-post-form" action='/posts/search' method='get'>
+  <input type="text" name="search"  name="search" />
+  <input type="submit" value="Search"></input>
+</div>
+
+
 <a class="new-post-link" href="/posts/new">New post</a>
 
 <form id="log-out-form" action="/users/logout" method="post">

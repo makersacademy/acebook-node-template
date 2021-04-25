@@ -10,18 +10,18 @@ describe('Timeline', function() {
     cy.get('#log-in-form').submit();
   });
 
-  it('can submit posts and view them', function() {
+  it('can search for a post', function() {
     cy.visit('/posts');
     cy.contains('New post').click();
 
-    cy.get('#new-post-form').find('[type="text"]').type('What is up!');
+    cy.get('#new-post-form').find('[type="text"]').type('Happy new week!');
     cy.get('#new-post-form').submit();
-    cy.contains('Edit').click();
     
-    cy.get('#update-post-form').find('[type="text"]').type('Goodbye, world!');
-    cy.get('#update-post-form').submit();
-    cy.get('.posts').should('not.contain', 'What is up!');
+    cy.get('#search-post-form').find('[type="text"]').type('Happy!');
+    cy.get('#search-post-form').submit();
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/posts/search')
+    })
+    cy.get('.search').should('contain', 'Happy new week!');
   })
 })
-
-

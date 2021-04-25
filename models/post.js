@@ -6,6 +6,8 @@ var PostSchema = new mongoose.Schema({
   timestamps: { createdAt: true, updatedAt: false}
 });
 
+PostSchema.index({'$**': 'text'});
+
 var Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;

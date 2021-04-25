@@ -5,12 +5,14 @@ var PostsController = {
     if (!req.session.user_id){
       res.redirect('/users/login')
     }
-    Post.find(function(err, posts) {
-      if (err) { throw err; }
+    // Post.find(function(err, posts) {
+    //   if (err) { throw err; }
 
-      res.render('posts/index', { posts: posts });
-    });
-  },
+		Post.find({}, null, {sort :{createdAt : 'desc'}}, function(err, posts) {
+      if (err) { throw err; }
+      res.render('posts/index', { posts: posts});
+		})
+	},
   New: function(req, res) {
     if (!req.session.user_id){
       res.redirect('/users/login')
@@ -42,11 +44,11 @@ var PostsController = {
 			});
 	},
 
-	UpdatePage: function (req, res) {
-		res.render("posts/update", { message: req.body.message, id: req.params.id });
+	EditPage: function (req, res) {
+		res.render("posts/edit", { message: req.body.message, id: req.params.id });
 	},
 
-	Update: function (req, res) {
+	Edit: function (req, res) {
 		Post.findByIdAndUpdate(
 			{ _id: req.params.id },
 			{ $set: { message: req.body.message } },
@@ -61,6 +63,16 @@ var PostsController = {
 			}
 		);
 	},
+	Search: async function(req, res) {
+    const  postsSearch = req.query.search
+     await Post.find({$text: {$search: postsSearch }}, function(err, postsSearch) {
+			if (err) { 
+				throw err; 
+			}
+				res.render("posts/search", { postsSearch: postsSearch })
+		})
+	}
+
 };
 
 module.exports = PostsController;
