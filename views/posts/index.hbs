@@ -1,8 +1,11 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  
-  <li>{{this.message}} <br>{{this.date}}<form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form></li>
+
+  <li>{{this.message}}<h6>Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+    Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
+    <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form>
+  </li>
   <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
     <label for="message">Edit post: </label>
     <input id="message" type="text" name="edited" value="">
@@ -13,9 +16,10 @@
     <label for="message">Comment: </label>
     <input id="message" type="text" name="comment" value="">
     <input type="submit" value="Submit">
-  </form>
+  </form><br>
   {{#each this.comments}}
-    <p>{{this.comment}}</p>
+    <h4>{{this.comment}}</h4><h6>{{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+    {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
   {{/each}}
 
 {{/each}}
