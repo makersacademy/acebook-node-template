@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 var saltRounds = 10;
 
 var HomeController = {
@@ -16,8 +17,9 @@ var HomeController = {
         if (err) { 
           return res.status(401).redirect('/error')
          }
-
-        return res.status(201).redirect('/');
+        var token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
+        res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
+        return res.status(201).redirect('/posts');
         
       });
     },
@@ -25,25 +27,31 @@ var HomeController = {
     Login: function(req, res){
       var username = req.body.loginUsername;
       var password = req.body.loginPassword;
-
+  
       //{ <field>: { $eq: <value> } }
-      User.findOne({ username: username }, (err, result) => {
+      user = User.findOne({ username: username }, (err, result) => {
+        
         if(err) {
           throw err;
         }
-
         var passwordMatch = bcrypt.compareSync(password, result.password)
 
         if (passwordMatch) {
           console.log("Password correct");
+          var token = jwt.sign({ _id: user._id, username: user.username }, process.env.SECRET, { expiresIn: "60 days" });
+          res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
           res.status(201).redirect('/posts')
         } else {
           console.log("Password wrong");
           return res.status(401).redirect('/error')
         } 
       })
+    },
 
-    
+    Logout: function(req , res) {
+
+    res.clearCookie('nToken');
+    res.redirect('/');
     },
 
     Error: function(req, res) {
