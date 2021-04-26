@@ -1,4 +1,6 @@
 <h1>Timeline</h1>
+<a class="profile-link" href="/users/{{userId._id}}">{{userId.username}}</a>
+
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}} - {{this.createdAt}}
@@ -11,6 +13,7 @@
   </li>
   {{/each}}
 </ul>
+
 <form action="/posts/sorted" method="get"> 
   <input type="submit" value="Sort">
 </form>

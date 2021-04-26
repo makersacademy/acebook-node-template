@@ -47,6 +47,14 @@ var UsersController = {
   LogOut: function(req, res){
     req.session.user_id = null;
     res.redirect('/users/login');
+  },
+
+  Profile: async (req, res) => {
+    if (!req.session.user_id){
+      res.redirect('/users/login')
+    }
+    const user = await User.findById(req.session.user_id);
+    res.render('users/profile', {Title: 'Profile Page', user: user});
   }
 }
 
