@@ -1,31 +1,88 @@
-<h1>Timeline</h1>
-<form method="post" action="/logout">
-  <td><input type="submit" value="Log Out"></td>
-  </form>
-<ul class="posts">
-  {{#each posts}}
+<!DOCTYPE html>
+<html lang="en">
 
-  <li>{{this.message}}<h6>Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
-    Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
-    <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form>
-  </li>
-  <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
-    <label for="message">Edit post: </label>
-    <input id="message" type="text" name="edited" value="">
-    <input type="submit" value="Save edit">
-  </form>
-  <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/posts.css">
+</head>
 
-    <label for="message">Comment: </label>
-    <input id="message" type="text" name="comment" value="">
-    <input type="submit" value="Submit">
-  </form><br>
-  {{#each this.comments}}
-    <h4>{{this.comment}}</h4><h6>{{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
-    {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
-  {{/each}}
+<body>
+  <section id="header">
+    <div class="container">
+      <div class="header-nav">
+        <div class="logo">
+          <a href="#">Acebook<em class="smallc"> &copy</em></a>
+        </div>
+        <main>
+      </div>
+    </div>
+    <article>
+      <div class="heading">
+        <p class="heading-title">User Posts</p>
+        <div class="heading-text">
+          Whether you want to show the world your new dog, <br />complain about how the train prices have gone up over
+          the last 10 years<br /> or talk about your favourite TV show. <br> There's always something to discuss below.
+        </div>
+      </div>
 
-{{/each}}
-</ul>
+      {{!-- Log out form --}}
+      <form method="post" action="/logout">
+        <input type="submit" value="Log Out">
+      </form>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+      {{!-- Show each post --}}
+      <div class="cards">
+        {{#each posts}}
+        <div class="card">
+          <div class="thumbnail">
+            <p>Thumbnail</p>
+          </div>
+          <div class="card-text">
+            {{this.message}}
+          </div>
+          <div class="card-buttons">
+            <div class="card-button-1 hover-effect add-cursor">
+              View
+            </div>
+            <div class="card-button-2 hover-effect add-cursor">
+              Edit
+            </div>
+
+            {{!-- Date time --}}
+            <p class="card-bottom-text">
+              Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+              Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}
+            </p>
+            <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form>
+            {{!-- Edit post --}}
+            <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
+              <label for="message">Edit post: </label>
+              <input id="message" type="text" name="edited" value="">
+              <input type="submit" value="Save edit">
+            </form>
+
+            {{!-- New comment --}}
+            <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
+              <label for="message">Comment: </label>
+              <input id="message" type="text" name="comment" value="">
+              <input type="submit" value="Submit">
+            </form><br>
+            {{!-- Show comments --}}
+            {{#each this.comments}}
+            <h4>{{this.comment}}</h4><br>
+            <h6>Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+              Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{!-- New post --}}
+      <a class="new-post-link" href="/posts/new">New post</a>
+    </article>
+  </section>
+</body>
+</html>
