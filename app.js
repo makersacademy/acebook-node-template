@@ -8,6 +8,8 @@ var hbs = require("express3-handlebars");
 var hbshelpers = require("handlebars-helpers");
 var multihelpers = hbshelpers();
 
+
+
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var app = express();
