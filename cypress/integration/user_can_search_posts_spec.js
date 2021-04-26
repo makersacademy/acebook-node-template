@@ -22,6 +22,14 @@ describe('Timeline', function() {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/posts/search')
     })
+
     cy.get('.search').should('contain', 'Happy new week!');
+    cy.contains('Back to Homepage').click();
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/posts')
+    })
+
+    cy.url().should('eq', 'http://localhost:3030/posts');
+
   })
 })
