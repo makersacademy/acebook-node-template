@@ -6,16 +6,22 @@ var UsersController = {
     res.render('users/index', {});
   },
   CreateUser: async function(req, res){
-    const { email, password } = req.body;
+    console.log(req.body);
+    const { email, password, username, bio } = req.body;
     const hash = await bcrypt.hash(password, 12); 
 
     var user = new User( {
       email,
-      password: hash}
-    );
+      password: hash,
+      username,
+      bio
+    });
+    console.log(user);
 
     await user.save(function(err){
-      if (err) { throw err }
+      if (err) { 
+        throw err 
+      }
       
       res.status(201).redirect('/users/welcome');
     });
