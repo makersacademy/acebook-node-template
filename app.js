@@ -3,9 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 var hbs = require("express3-handlebars");
 var hbshelpers = require("handlebars-helpers");
 var multihelpers = hbshelpers();
+require('dotenv').config();
+
 
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');

@@ -6,6 +6,7 @@ var HomeController = require('../controllers/home');
 router.get('/', HomeController.Index);
 router.post('/', HomeController.Registration);
 router.get('/error', HomeController.Error);
-router.post('/login', HomeController.Login)
+router.post('/login', HomeController.Login);
+router.post('/logout', HomeController.Logout)
 
 module.exports = router;
