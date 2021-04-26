@@ -11,7 +11,7 @@ var PostsController = {
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts });
-    }).populate('comments').sort({date: -1});
+    }).populate('comments').sort({createdAt: -1});
     
   },
   New: function(req, res) {
