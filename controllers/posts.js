@@ -71,7 +71,6 @@ var PostsController = {
         })     
       });
     })
-<<<<<<< HEAD
 
   },
 
@@ -88,8 +87,6 @@ var PostsController = {
         return res.status(200).redirect('/posts')
       }
     })
-=======
->>>>>>> image_upload
   },
 
   DeleteComment: function(req, res) {
