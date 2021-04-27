@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var bcrypt = require('bcrypt');
+var alert = require('alert');
 var jwt = require('jsonwebtoken');
 var saltRounds = 10;
 
@@ -15,7 +16,8 @@ var HomeController = {
       var user = new User({ username: username, password: hash })
       user.save(function(err) {
         if (err) { 
-          return res.status(401).redirect('/error')
+          alert('Username already in use.')
+          return res.status(401).redirect('/')
          }
         var token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
         res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
@@ -29,7 +31,7 @@ var HomeController = {
       var password = req.body.loginPassword;
   
       //{ <field>: { $eq: <value> } }
-      user = User.findOne({ username: username }, (err, result) => {
+      var user = User.findOne({ username: username }, (err, result) => {
         
         if(err) {
           throw err;
@@ -43,7 +45,8 @@ var HomeController = {
           res.status(201).redirect('/posts')
         } else {
           console.log("Password wrong");
-          return res.status(401).redirect('/error')
+          alert('Oops, that password is incorrect!')
+          return res.status(401).redirect('/')
         } 
       })
     },
