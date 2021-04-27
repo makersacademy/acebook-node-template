@@ -14,12 +14,14 @@ var PostsController = {
 
 		Post.find(async function (err) {
 			if (err) { throw err; }
-			const user = await User.findById(req.session.user_id)
-			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'})
-			res.render("posts/index", { posts: posts, userId: user });
-		
-		
-	});
+			const user = await User.findById(req.session.user_id);
+			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'});
+			console.log(posts[0].author[0].username);
+			console.log(posts[0].author);
+			console.log(posts)
+			// console.log(author)
+			res.render("posts/index", { posts: posts, userId: user});
+		});
 	},
 
 	New: async function (req, res) {
@@ -28,29 +30,31 @@ var PostsController = {
 		}
 		await res.render("posts/new", {});
 	},
+
 	Create: async function (req, res) {
+		if (!req.session.user_id) {
+			res.redirect("/users/login");
+		}
+		var user = await User.findById(req.session.user_id);
 
-		User.findById(req.session.user_id, (err, user) => {
-			console.log(req.session.user_id)
-			console.log(user)
-			if (err) {
-				throw new Error(err);
-			}
-			const newPost = {
-				message: req.body.message,
-				author: (user._id)
-			};
-
-			Post.create(newPost, (err, post) => {
-				if (err) {
-					throw new Error(err);
-				}
-				user.posts.push(newPost);
-				user.save((err) => {
-					 return res.status(201).redirect("/posts/");
-				});
-			});
+		var newPost = new Post({
+			message: req.body.message,
+			author: (user._id)
+		})
+		
+		newPost.save(function(err){
+			if (err) { throw err }
+			res.status(201).redirect('/posts');	
 		});
+		// res.status(201).redirect('/posts');
+		// newPost.posts 
+		// await	newPost.save(function(err){
+    //   if (err) { 
+    //     throw err 
+    //   }
+      
+    //   res.status(201).redirect('/posts');
+    // });
 	},
 
 	// post.save(function(err) {

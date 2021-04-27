@@ -3,7 +3,7 @@
 
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}} - {{this.createdAt}} - {{this.user}}
+  <li>{{this.message}} - {{this.createdAt}} - {{this.author}}
     <form action='/posts/{{this.id}}/delete' method='post'>
     <input type='submit' value='Delete'>
     </form>

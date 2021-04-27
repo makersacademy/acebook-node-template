@@ -18,12 +18,13 @@ var UserSchema = new mongoose.Schema({
     default: "I have not written a bio yet",
     required: false
   },
-  posts: [
-    {
-       type: mongoose.Schema.Types.ObjectId,
-       ref: 'Post'
-    }
- ]
+  //Do you want this as this is making the data circular
+//   posts: [
+//     {
+//        type: mongoose.Schema.Types.ObjectId,
+//        ref: 'Post'
+//     }
+//  ]
 })
 
 var User = mongoose.model('User', UserSchema);
