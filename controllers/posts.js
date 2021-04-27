@@ -1,3 +1,4 @@
+
 require('../models/post');
 var Post = require('../models/post');
 require('../routes/posts');
@@ -29,8 +30,10 @@ var PostsController = {
     var post = Post.findById(req.params.id)
     post.deleteOne( function(err) {
       if (err) { throw err;}
-
-
+      // const response = {
+      //   message: "Post successfully deleted",
+      //   id: post._id
+      // };
       res.status(201).redirect('/posts');
     });
   },
