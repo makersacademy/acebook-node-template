@@ -82,7 +82,9 @@
               <input type="submit" value="Save edit">
             </form>
 
+            <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete"></form>
             {{/each}}
+            
           </div>
         </div>
         {{/each}}
