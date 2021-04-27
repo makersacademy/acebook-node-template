@@ -1,18 +1,22 @@
 var Post = require("../models/post");
+var User = require("../models/user");
 
 var PostsController = {
   Index: function(req, res) {
     if (!req.session.user_id){
       res.redirect('/users/login')
     }
-    // Post.find(function(err, posts) {
-    //   if (err) { throw err; }
-
 		Post.find({}, null, {sort :{createdAt : 'desc'}}, function(err, posts) {
       if (err) { throw err; }
       res.render('posts/index', { posts: posts});
 		})
 	},
+    Post.find(async function(err, posts) {
+      if (err) { throw err; }
+			const user = await User.findById(req.session.user_id);
+      res.render('posts/index', { posts: posts, userId: user });
+    });
+  },
   New: function(req, res) {
     if (!req.session.user_id){
       res.redirect('/users/login')

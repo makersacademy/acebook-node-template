@@ -9,5 +9,6 @@ router.get('/welcome', UsersController.Welcome);
 router.get('/login', UsersController.Login);
 router.post('/login', UsersController.Authenticate);
 router.post('/logout', UsersController.LogOut);
+router.get('/:id', UsersController.Profile);
 
 module.exports = router;

@@ -1,4 +1,9 @@
 describe('Home page', function() {
+  before(async (done) => {
+    await cy.task("db:drop");
+    done();
+  })
+
   it('has a title', function() {
     cy.visit('/');
     cy.get('.title').should('contain', 'Acebook');
