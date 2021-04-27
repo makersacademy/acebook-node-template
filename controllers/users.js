@@ -16,6 +16,7 @@ var UsersController = {
       username,
       bio
     });
+    
     console.log(user);
 
     await user.save(function(err){
