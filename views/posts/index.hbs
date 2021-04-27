@@ -75,6 +75,13 @@
             <h4>{{this.comment}}</h4><br>
             <h6>Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
               Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
+            {{!-- Edit comments --}}
+            <form id="edit-post-form" action="/posts/{{this.id}}/edit-comment" method="POST">
+              <label for="message">Edit comment: </label>
+              <input id="message" type="text" name="edited" value="">
+              <input type="submit" value="Save edit">
+            </form>
+
             {{/each}}
           </div>
         </div>
