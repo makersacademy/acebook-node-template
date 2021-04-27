@@ -1,8 +1,4 @@
 describe('Timeline', function() {
-  before(async (done) => {
-    await cy.task("db:drop");
-    done();
-  })
 
   beforeEach(() => {
     cy.signupAndLogin()
@@ -17,17 +13,11 @@ describe('Timeline', function() {
     
     cy.get('#search-post-form').find('[type="text"]').type('Happy!');
     cy.contains('Search').click();
-    // // cy.location().should((loc) => {
-    // //   expect(loc.pathname).to.eq('/posts/search?search=happy')
-    // // })
 
-    // cy.contains('Happy new week!');
-    // cy.contains('Back to Homepage').click();
-    // cy.location().should((loc) => {
-    //   expect(loc.pathname).to.eq('/posts')
-    // })
+    cy.contains('Happy new week!');
+    cy.contains('Back to Homepage').click();
 
-    // cy.url().should('eq', 'http://localhost:3030/posts');
+    cy.url().should('eq', 'http://localhost:3030/posts');
 
   })
 })
