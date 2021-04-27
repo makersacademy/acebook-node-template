@@ -1,0 +1,10 @@
+<h1>Edit your bio</h1>
+
+<form id="edit-profile-form" action="/users/{{user._id}}/edit" method="POST">
+ <input type="hidden" name="_method" value="put">
+  <label for="message">Message: </label>
+  <input id="message" type="text" name="message" class="message" value="{{{user.bio}}}">
+  <input type="submit" value="Edit Bio">
+</form>
+
+<a href="/users/{{user._id}}">Back to Profile</a>

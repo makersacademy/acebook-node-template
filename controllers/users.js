@@ -56,7 +56,24 @@ var UsersController = {
     }
     const user = await User.findById(req.session.user_id);
     res.render('users/profile', {Title: 'Profile Page', user: user});
-  }
+  },
+
+  EditBio: async (req, res) => {
+    if (!req.session.user_id){
+      res.redirect('/users/login')
+    }
+    const user = await User.findById(req.session.user_id);
+    res.render('users/edit', { Title: 'Edit Bio', user: user});
+  },
+
+  UpdateBioDB: async (req,res) => {
+    if (!req.session.user_id){
+      res.redirect('/users/login')
+    }
+    const user = await User.findByIdAndUpdate(req.session.user_id, {bio: req.body.message});
+    res.status(201).redirect(`/users/${user._id}`);
+  },
+
 }
 
 module.exports = UsersController;

@@ -12,9 +12,9 @@ var PostsController = {
     //   res.render('posts/index', { posts: posts, userId: user });
 		// });
 	
-    Post.find( function(err, posts) {
+    Post.find( async function(err, posts) {
       if (err) { throw err; }
-			const user = User.findById(req.session.user_id);
+			const user = await User.findById(req.session.user_id);
       res.render('posts/index', { posts: posts, userId: user });
     });
   },
@@ -74,12 +74,12 @@ var PostsController = {
 		if (!req.session.user_id){
       res.redirect('/users/login')
     }
-    const  postsSearch = req.query.search
-     await Post.find({$text: {$search: postsSearch }}, function(err, postsSearch) {
+    const postsSearch = req.query.search
+    await Post.find({$text: {$search: postsSearch }}, function(err, postsSearch) {
 			if (err) { 
 				throw err; 
 			}
-				res.render("posts/search", { postsSearch: postsSearch })
+			res.render("posts/search", { postsSearch: postsSearch })
 		})
 	}
 
