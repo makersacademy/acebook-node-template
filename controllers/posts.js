@@ -1,3 +1,4 @@
+
 require('../models/post');
 var Post = require('../models/post');
 require('../routes/posts');

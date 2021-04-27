@@ -36,6 +36,12 @@ var HomeController = {
         if(err) {
           throw err;
         }
+
+        if (result === null ) {
+          console.log("Unregistered user");
+         alert('Oops, that username is not recognised!')
+          return res.status(401).redirect('/')
+        }
         var passwordMatch = bcrypt.compareSync(password, result.password)
 
         if (passwordMatch) {
