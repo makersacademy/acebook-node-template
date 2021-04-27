@@ -1,2 +1,57 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section id="header">
+    <div class="container">
+        <div class="header-nav">
+            <div class="logo">
+                <a href="/">{{title}}<em class="smallc"> &copy</em></a>
+            </div>
+            <div class="login">
+                <table>
+                    <tr class="top-row">
+                        <td>Email</td>
+                        <td>Password</td>
+                    </tr>
+                    <tr class="middle-row">
+                        <form method="POST" action="/login">
+                            <td><input type="text" name="loginUsername"></td>
+                            <td><input type="password" name="loginPassword"></td>
+                            <td><input type="submit" value="Log In"></td>
+                        </form>
+                    </tr>
+                    <tr class="bottom-row">
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="main">
+    <div class="container">
+        <div class="left-side">
+            <h2>Connect with old friends, new acquaintences and the cousin in the family that no one really talks about.
+            </h2>
+            <div class="reasons">
+                <i class="left-icon far fa-newspaper"></i>
+                <p><span>Share what's new</span> in your life.</p>
+            </div>
+            <div class="reasons">
+                <i class="left-icon fas fa-tv"></i>
+                <p><span>See photos</span> of your sisters new labrador.</p>
+            </div>
+            <div class="reasons">
+                <i class="left-icon fas fa-project-diagram"></i>
+                <p><span>Find more</span> about what your ex is up to on the News Feed</p>
+            </div>
+        </div>
+        <div class="right-side">
+            <h1>Sign Up</h1>
+            <p>Develop an addiction to social media</p>
+            <form action="/" method="POST">
+                <input class="fname" type="text" id="fname" name="username" placeholder="Username">
+                <input type="password" id="pword" name="password" placeholder="Password"><br>
+                <input type="submit" value="Sign Up">
+            </form>
+            <hr>
+        </div>
+    </div>
+</section><br><br><br>

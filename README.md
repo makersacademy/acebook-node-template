@@ -11,6 +11,36 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
+## User Stories
+
+ ```
+ 
+As a user,
+so that I can use AceBook,
+I want to sign up and login.
+
+As a system desinger,
+so that one user does not have multiple accounts,
+I want to ensure each user can only register once.
+
+As a user,
+so that I can let the world know what I am up to,
+I want to create a post.
+
+As a user,
+so that I can amend and update my posts if needed,
+I want to able to edit and delete them.
+
+As a user,
+so that I can engage with other users,
+I want to comment on other users' posts.
+
+As a system designer,
+so that the users do not miss posts
+I want the posts to appear in reverse chronological order.
+
+ ```
+
 ## Card wall
 
 REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
@@ -80,3 +110,5 @@ npm run start:test
 ```
 This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
 so that integration tests do not interact with the development server.
+
+
