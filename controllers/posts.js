@@ -20,6 +20,7 @@ var PostsController = {
       res.render('posts/index', { posts: posts, userId: user });
     });
   },
+  
   New: function(req, res) {
     if (!req.session.user_id){
       res.redirect('/users/login')
