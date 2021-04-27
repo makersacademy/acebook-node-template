@@ -3,7 +3,7 @@
 
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}} - {{this.createdAt}}
+  <li>{{this.message}} - {{this.createdAt}} - {{this.user}}
     <form action='/posts/{{this.id}}/delete' method='post'>
     <input type='submit' value='Delete'>
     </form>
@@ -24,6 +24,7 @@
   <input type="text" name="search"  name="search" />
   <input type="submit" value="Search"></input>
 </div>
+</form>
 
 
 <a class="new-post-link" href="/posts/new">New post</a>

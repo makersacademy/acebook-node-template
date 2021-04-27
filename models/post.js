@@ -1,10 +1,19 @@
 var mongoose = require('mongoose');
 
-var PostSchema = new mongoose.Schema({
-  message: String,
-}, {
-  timestamps: { createdAt: true, updatedAt: false}
-});
+var PostSchema = new mongoose.Schema(
+	{
+		author: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "User",
+			},
+		],
+		message: String,
+	},
+	{
+		timestamps: { createdAt: true, updatedAt: false },
+	}
+);
 
 PostSchema.index({'$**': 'text'});
 
