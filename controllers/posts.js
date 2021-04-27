@@ -1,4 +1,6 @@
 var Post = require("../models/post");
+const { cloudinary } = require("../cloudinary");
+const { rawListeners } = require("../app");
 
 var PostsController = {
   Index: function(req, res) {
@@ -17,9 +19,12 @@ var PostsController = {
     }
     res.render('posts/new', {});
   },
-  Create: function(req, res) {
+  Create: async function(req, res) {
     var post = new Post(req.body);
-    post.save(function(err) {
+		post.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    // post.user = req.user._id;
+		await post.save(function(err) {
+			console.log(post)
       if (err) { throw err; }
 			res.status(201).redirect("/posts");
 		});
