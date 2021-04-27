@@ -1,7 +1,4 @@
 var mongoose = require('mongoose');
-const images = require('./image');
-const Schema = mongoose.Schema;
-
 
 var PostSchema = new mongoose.Schema(
 	{

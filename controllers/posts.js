@@ -1,8 +1,5 @@
 var Post = require("../models/post");
 
-const { cloudinary } = require("../cloudinary");
-const { rawListeners } = require("../app");
-
 var User = require("../models/user");
 
 
