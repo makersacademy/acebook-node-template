@@ -10,5 +10,5 @@ router.post('/:id/delete', PostsController.Delete);
 router.post('/:id/comment', PostsController.Comment);
 router.post('/:id/edit', PostsController.Edit);
 router.post('/:id/edit-comment', PostsController.EditComment);
-
+router.post('/:id/delete-comment', PostsController.DeleteComment);
 module.exports = router;
