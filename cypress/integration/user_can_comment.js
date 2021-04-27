@@ -8,6 +8,6 @@ describe('Timeline', function() {
     cy.get('#new-comment-form').find('[type="text"]').type('First Comment');
     cy.get('#new-comment-form').submit();
 
-    cy.get('.posts').should('contain', 'First Comment');
+    cy.get('.cards').should('contain', 'First Comment');
   });
 });
