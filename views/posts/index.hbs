@@ -75,7 +75,9 @@
             <h4>{{this.comment}}</h4><br>
             <h6>Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
               Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
+            <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete"></form>
             {{/each}}
+            
           </div>
         </div>
         {{/each}}

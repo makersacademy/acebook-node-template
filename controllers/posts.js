@@ -71,8 +71,16 @@ var PostsController = {
         })     
       });
     })
-    
   },
+
+  DeleteComment: function(req, res) {
+    var comment = Comment.findById(req.params.id)
+    comment.deleteOne( function(err) {
+      if (err) { throw err;}
+
+      res.status(201).redirect('/posts');
+    })
+  }
 
 
 };
