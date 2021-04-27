@@ -12,10 +12,13 @@
 <body>
   <section id="header">
     <div class="container">
-      <div class="header-nav">
+      <div class="header-nalsv">
         <div class="logo">
           <a href="#">Acebook<em class="smallc"> &copy</em></a>
         </div>
+        <form class="logoutbutton" method="post" action="/logout">
+          <input type="submit" value="Log Out">
+      </form>
         <main>
       </div>
     </div>
@@ -29,9 +32,6 @@
       </div>
 
       {{!-- Log out form --}}
-      <form method="post" action="/logout">
-        <input type="submit" value="Log Out">
-      </form>
 
       {{!-- Show each post --}}
       <div class="cards">
@@ -45,17 +45,12 @@
           </div>
           <div class="card-buttons">
             <div class="card-button-1 hover-effect add-cursor">
-              View
             </div>
             <div class="card-button-2 hover-effect add-cursor">
-              Edit
-            </div>
+            </div><br><br>
 
+            <section class="postarea">
             {{!-- Date time --}}
-            <p class="card-bottom-text">
-              Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
-              Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}
-            </p>
             <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form>
             {{!-- Edit post --}}
             <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
@@ -71,6 +66,10 @@
               <input type="submit" value="Submit">
             </form><br>
             {{!-- Show comments --}}
+            <p class="card-bottom-text">
+              Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+              Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}
+            </p>
             {{#each this.comments}}
             <h4>{{this.comment}}</h4><br>
             <h6>Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
@@ -85,6 +84,7 @@
             <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete"></form>
             {{/each}}
             
+            </section>
           </div>
         </div>
         {{/each}}
