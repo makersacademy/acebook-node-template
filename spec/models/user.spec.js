@@ -11,8 +11,10 @@ describe('User model', function() {
   });
 
   it('has an email input', function(){
-    var user = new User({ email: 'email@test.co.uk' , password: 'test123'});
+    var user = new User({ email: 'email@test.co.uk' , password: 'test123', username: 'user1'});
     expect(user.email).toEqual('email@test.co.uk');
+    expect(user.username).toEqual('user1');
+    expect(user.bio).toEqual("I have not written a bio yet");
   });
 
 

@@ -9,5 +9,8 @@ router.get('/welcome', UsersController.Welcome);
 router.get('/login', UsersController.Login);
 router.post('/login', UsersController.Authenticate);
 router.post('/logout', UsersController.LogOut);
+router.get('/:id', UsersController.Profile);
+router.get('/:id/edit', UsersController.EditBio);
+router.post('/:id/edit', UsersController.UpdateBioDB);
 
 module.exports = router;
