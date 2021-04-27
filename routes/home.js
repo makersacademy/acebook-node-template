@@ -7,6 +7,6 @@ router.get('/', HomeController.Index);
 router.post('/', HomeController.Registration);
 router.get('/error', HomeController.Error);
 router.post('/login', HomeController.Login);
-router.post('/logout', HomeController.Logout)
+router.post('/logout', HomeController.Logout);
 
 module.exports = router;

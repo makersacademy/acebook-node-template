@@ -71,7 +71,22 @@ var PostsController = {
         })     
       });
     })
-    
+
+  },
+
+  EditComment: function(req, res) {
+    id = req.params.id;
+    edit = req.body.edited;
+    console.log(id)
+    console.log(edit)
+    Comment.findByIdAndUpdate({_id: id},{comment: edit}, (err) => {
+      if(err){
+        return res.status(401).redirect('/posts');
+      }
+      else {
+        return res.status(200).redirect('/posts')
+      }
+    })
   },
 
 
