@@ -1,0 +1,6 @@
+<form id="update-post-form" action="/posts/edit/{{id}}" method="POST">
+ <input type="hidden" name="_method" value="put">
+  <label for="message">Message: </label>
+  <input id="message" type="text" name="message" class="message" value="{{{post.message}}}">
+  <input type="submit" value="Save">
+</form>

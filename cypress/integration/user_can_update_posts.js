@@ -14,7 +14,8 @@ describe('Update Posts', () => {
 
     cy.get('#new-post-form').find('[type="text"]').type('What is up!');
     cy.get('#new-post-form').submit();
-    cy.contains('Update').click();
+
+    cy.contains('Edit').click();
 
     cy.get('#update-post-form').find('[type="text"]').type('Goodbye, world!');
     cy.get('#update-post-form').submit();
