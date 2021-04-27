@@ -37,8 +37,4 @@ describe('Comment model', function() {
       });
     });
   });
-
-  it('can delete a comment', function(done) {
-    
-  })
 });
