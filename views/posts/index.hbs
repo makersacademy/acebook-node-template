@@ -16,9 +16,11 @@
         <div class="logo">
           <a href="#">Acebook<em class="smallc"> &copy</em></a>
         </div>
+        {{#if currentUser}}
         <form class="logoutbutton" method="post" action="/logout">
           <input type="submit" value="Log Out">
       </form>
+        {{/if}}
         <main>
       </div>
     </div>
@@ -67,13 +69,16 @@
             </form><br>
             {{!-- Show comments --}}
             <p class="card-bottom-text">
+              {{this.author.username}}
               Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
               Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}
             </p>
             {{#each this.comments}}
             <h4>{{this.comment}}</h4><br>
-            <h6>Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
-              Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
+            
+            <h6>{{this.author.username}}
+              Commented {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+              Edited Comment {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
             {{!-- Edit comments --}}
             <form id="edit-post-form" action="/posts/{{this.id}}/edit-comment" method="POST">
               <label for="message">Edit comment: </label>

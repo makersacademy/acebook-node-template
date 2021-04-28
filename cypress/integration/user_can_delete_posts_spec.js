@@ -1,5 +1,10 @@
 describe('Timeline', function() {
     it('can delete posts', function() {
+      cy.visit('/')
+      cy.get('input.fname').type('Delete')
+      cy.get('input#pword').type('Delete')
+      cy.get('.registration-form').submit();
+      
       cy.visit('/posts');
       cy.contains('New post').click();
   

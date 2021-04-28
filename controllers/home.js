@@ -46,7 +46,7 @@ var HomeController = {
 
         if (passwordMatch) {
           console.log("Password correct");
-          var token = jwt.sign({ _id: user._id, username: user.username }, process.env.SECRET, { expiresIn: "60 days" });
+          var token = jwt.sign({ _id: result._id, username: result.username }, process.env.SECRET, { expiresIn: "60 days" });
           res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
           res.status(201).redirect('/posts')
         } else {
