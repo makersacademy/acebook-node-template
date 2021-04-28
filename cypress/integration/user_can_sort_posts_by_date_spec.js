@@ -18,8 +18,6 @@ describe('Sort by Posts', function () {
         cy.get('#new-post-form').find('[type="text"]').type('Hello, world!');
         cy.get('#new-post-form').submit();
 
-        cy.contains('Sort').click()
-        
         cy.get('.posts').first().should('contain', 'Hello, world!');
     })
 })
