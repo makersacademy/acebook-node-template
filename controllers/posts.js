@@ -125,6 +125,7 @@ var PostsController = {
 
 	DeleteComment: function(req, res) {
 		var comment = Comment.findById(req.params.id)
+		console.log(comment.id)
 		comment.deleteOne( function(err) {
 			if (err) {
 				throw err;

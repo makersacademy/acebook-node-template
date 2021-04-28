@@ -9,13 +9,14 @@ var PostSchema = new mongoose.Schema(
 			},
 		],
 	message: String,
+	comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
     images: [
 			{
 				url: String,
 				filename: String,
 			},
 		],
-	comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
+	
 	}, {
 		timestamps: { createdAt: true, updatedAt: false },
 	}, 

@@ -92,13 +92,10 @@
               <p>
                 <h6> Comments </h6>
                 {{#each this.comments}}
-                    <h7>{{this.comment}}</h7>
-                    <h8>Posted {{this.createdAt}} </h8>
-                    <h8> {{this.author}} </h8>
-                    <form action="/posts/{{this.id}}/delete-comment" method="post">
-                      <input type="submit" value="Delete">
-                    </form>      
+                    <p>{{this.comment}}</p>
+                    <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete"></form>      
                 {{/each}}
+                
                   
                   <p>
                     <div class="btn-group" role="group" aria-label="...">
