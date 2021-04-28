@@ -16,10 +16,6 @@ var PostsController = {
 			if (err) { throw err; }
 			const user = await User.findById(req.session.user_id);
 			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'});
-			console.log(posts[0].author[0].username);
-			console.log(posts[0].author);
-			console.log(posts)
-			// console.log(author)
 			res.render("posts/index", { posts: posts, userId: user});
 		});
 	},
@@ -44,7 +40,11 @@ var PostsController = {
 		
 		newPost.save(function(err){
 			if (err) { throw err }
-			res.status(201).redirect('/posts');	
+			// user.posts = user.posts.push(newPost);
+			// user.save((err) => {
+			// 	if (err) { throw err }
+				res.status(201).redirect('/posts');	
+			// })			
 		});
 		// res.status(201).redirect('/posts');
 		// newPost.posts 
