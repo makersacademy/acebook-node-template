@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="stylesheets/posts.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -73,7 +74,10 @@
               Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
               Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}
             </p>
+            <button class="showcomments">{{this.comments.length}} Comments</button>
+           
             {{#each this.comments}}
+            <div class="comments">
             <h4>{{this.comment}}</h4><br>
             
             <h6>{{this.author.username}}
@@ -85,10 +89,9 @@
               <input id="message" type="text" name="edited" value="">
               <input type="submit" value="Save edit">
             </form>
-
             <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete"></form>
+            </div>
             {{/each}}
-            
             </section>
           </div>
         </div>
@@ -98,5 +101,6 @@
       <a class="new-post-link" href="/posts/new">New post</a>
     </article>
   </section>
+  <script src="javascripts/posts.js"></script>
 </body>
 </html>

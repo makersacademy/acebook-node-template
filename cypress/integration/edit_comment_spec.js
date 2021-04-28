@@ -18,6 +18,8 @@ describe('Timeline', function() {
       cy.get('#new-comment-form').type('Unedited comment');
       cy.get('#new-comment-form').submit();
 
+      cy.get('.showcomments').click()
+
       cy.get('#edit-comment-form').type('Edited comment');
       cy.get('#edit-comment-form').submit();
   
