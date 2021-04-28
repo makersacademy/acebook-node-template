@@ -2,12 +2,7 @@ var mongoose = require('mongoose');
 
 var CommentSchema = new mongoose.Schema({
     comment: String,
-    author: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User", required: true
-        }
-        ],
+    author: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     }, {
     timestamps: { createdAt: true, updatedAt: false}
 });

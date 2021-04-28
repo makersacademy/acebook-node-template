@@ -23,8 +23,13 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-session": "^1.17.1",
+    "handlebars-helpers": "^0.10.0",
+    "handlebars.moment": "^1.0.4",
     "hbs": "^4.1.2",
+    "helper-date": "^1.0.1",
+    "helper-moment": "^0.2.0",
     "http-errors": "~1.6.3",
+    "install": "^0.13.0",
     "moment": "^2.29.1",
     "mongoose": "^5.12.5",
     "morgan": "~1.9.1",
@@ -38,6 +43,7 @@
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
+    "helper-moment-handlebars": "^1.1.0",
     "jest": "^26.6.3"
   },
   "nodemonConfig": {

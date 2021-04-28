@@ -12,9 +12,9 @@ var PostsController = {
 		Post.find(async function (err) {
 			if (err) { throw err; }
 			const user = await User.findById(req.session.user_id);
-			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'});
+			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'}).populate('comments').sort({createdAt: 'desc'}).populate({path: 'comments', populate: {path: 'author'}});
 			res.render("posts/index", { posts: posts, userId: user})
-    }).populate('comments');;
+    });
   },
   
   New: function(req, res) {
@@ -99,10 +99,22 @@ var PostsController = {
 				if (err) {
 					throw err;
 				}
-				res.render("posts/search", { postsSearch: postsSearch });
+				const user = User.findById(req.session.user_id);
+				res.render("posts/search", { postsSearch: postsSearch, userId: user });
 			}
-		);
+		).populate('author');
 	},
+
+	// ProfilePost: async function (req, res) {
+	// 	if (!req.session.user_id) {
+	// 		res.redirect("/users/login");
+	// 	}
+	// 	Post.find({'author.id': req.user._id}, function (err, posts) {
+	// 		if (err) { throw err; } else {
+	// 		res.render("posts/index", { posts: posts})
+	// 		}
+    // 	});
+	// },
 
 	Comment: function (req, res) {
 		Post.findById(req.params.id, (err, post) => {
