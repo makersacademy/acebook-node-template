@@ -70,8 +70,29 @@
                   <form action='/posts/{{this.id}}/edit' method='get'>
                     <input class="btn btn-outline-secondary" type='submit' value='Edit'>
                   </form>
-                </div>
-              </p>    
+                </div>                
+              </p>
+              <p>
+                <h6> Comments </h6>
+                {{#each this.comments}}
+                    <p>{{this.comment}}</p>
+                    <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete"></form>      
+                {{/each}}
+                  
+                  <p>
+                    <div class="btn-group" role="group" aria-label="...">
+                      <form id='new-comment-form' action='/posts/{{this.id}}/comment' method='post'>
+                        <p>
+                          <input id='message' name='comment' type='text' placeholder="Type a comment here...">
+                        </p>
+                        
+                        <p>
+                          <input class="btn btn-outline-secondary" type='submit' value='Add Comment'>
+                        </p>
+                      </form>
+                    </div>
+              </p>
+
             </div>
           </li>
           {{/each}}
@@ -88,6 +109,7 @@
 
 
     </div>
+
       <footer>
         <div id="footersubdiv">
           <div id="license">
@@ -113,7 +135,6 @@
 
     footer {
       bottom: 0;
-      position: absolute;
       padding: 25px;
       width: 100%;
     }

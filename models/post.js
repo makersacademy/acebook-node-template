@@ -8,7 +8,8 @@ var PostSchema = new mongoose.Schema(
 				filename: String,
 			},
 		],
-		message: String,
+		message: {type: String, required: true},
+		comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
 	}, {
 		timestamps: { createdAt: true, updatedAt: false}
 	});
