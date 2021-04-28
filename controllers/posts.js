@@ -23,7 +23,7 @@ var PostsController = {
     }
     res.render('posts/new', {});
   },
-  	Create: async function (req, res) {
+		Create: async function (req, res) {
 		if (!req.session.user_id) {
 			res.redirect("/users/login");
 		}
@@ -34,19 +34,12 @@ var PostsController = {
 			author: (user._id)
 		})
     
-    newPost.images: = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    newPost.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
 		
 		newPost.save(function(err){
 			if (err) { throw err }
 				res.status(201).redirect('/posts');		
 		});
-	},
-
-	New: async function (req, res) {
-		if (!req.session.user_id) {
-			res.redirect("/users/login");
-		}
-		await res.render("posts/new", {});
 	},
 
 	Delete: function (req, res) {
