@@ -1,30 +1,40 @@
-
-require('../models/post');
 var Post = require('../models/post');
 require('../routes/posts');
-
-require('../models/post')
-var Comment = require('../models/comment')  
+var alert = require('alert');
+var Comment = require('../models/comment')
+var User = require('../models/user');
 
 var PostsController = {
   Index: function(req, res) {
+    currentUser = req.user;
     Post.find(function(err, posts) {
       if (err) { throw err; }
 
-      res.render('posts/index', { posts: posts });
-    }).populate('comments').sort({createdAt: -1});
+      res.render('posts/index', { posts: posts, currentUser });
+    }).populate({path:'comments', populate: {path: 'author'}}).populate('author').sort({createdAt: -1})
     
   },
   New: function(req, res) {
-    res.render('posts/new', {});
+    currentUser = req.user;
+    res.render('posts/new', {currentUser});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
-    post.save(function(err) {
-      if (err) { throw err; }
+    if (req.user) {
+      User.findById(req.user._id, (err, user) => {
+        var post = new Post(req.body);
+        post.author = req.user._id;
+        post.save((savePostError) => {
+          if(savePostError) { throw savePostError; }
 
-      res.status(201).redirect('/posts');
-    });
+          user.posts.push(post)
+          user.save();
+          res.status(201).redirect('/posts');
+        })
+      })
+    } else {
+      alert('Oops, that password is incorrect!')
+      return res.status(401).redirect('/posts')
+    }
   },
   Delete: function(req, res) {
     var post = Post.findById(req.params.id)
@@ -58,7 +68,7 @@ var PostsController = {
   Comment: function(req, res) {
     Post.findById(req.params.id, (err, post) => {
       var comment = new Comment(req.body);
-      
+      comment.author = req.user._id;
       comment.save((saveCommentError) => {
         if (saveCommentError) { throw saveCommentError; }
 
