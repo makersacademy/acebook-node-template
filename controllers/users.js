@@ -10,6 +10,11 @@ var UsersController = {
     const { email, password, username, bio } = req.body;
     const hash = await bcrypt.hash(password, 12); 
 
+    var checkEmail = await User.findOne({ email });
+    if (checkEmail) return res.status(400).redirect('/users/signup')
+    var checkUsername = await User.findOne({ username });
+    if (checkUsername) return res.status(400).redirect('/users/signup')
+
     var user = new User( {
       email,
       password: hash,
