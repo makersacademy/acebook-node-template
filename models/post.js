@@ -15,8 +15,7 @@ var PostSchema = new mongoose.Schema(
 				filename: String,
 			},
 		],
-	},
-	{
+	}, {
 		timestamps: { createdAt: true, updatedAt: false },
 	}, 
 );

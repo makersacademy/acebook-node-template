@@ -1,5 +1,5 @@
 var Post = require("../models/post");
-
+var Comment = require("../models/comment");
 var User = require("../models/user");
 
 
@@ -17,6 +17,7 @@ var PostsController = {
 
     });
   },
+  
   New: function(req, res) {
     if (!req.session.user_id){
       res.redirect('/users/login')
@@ -87,6 +88,7 @@ var PostsController = {
 			}
 		);
 	},
+  
 	Search: async function (req, res) {
 		if (!req.session.user_id) {
 			res.redirect("/users/login");
@@ -102,6 +104,34 @@ var PostsController = {
 			}
 		);
 	},
+
+	Comment: function (req, res) {
+		Post.findById(req.params.id, (err, post) => {
+			var comment = new Comment(req.body);
+			comment.save((saveErr) => {
+				if (saveErr) {
+					throw saveErr;
+				}
+				post.comments.push(comment);
+				post.save((postErr) => {
+					if (postErr) {
+						throw postErr;
+					}
+					res.status(201).redirect("/posts");
+				});
+			});
+		});
+	},
+
+	DeleteComment: function(req, res) {
+		var comment = Comment.findById(req.params.id)
+		comment.deleteOne( function(err) {
+			if (err) {
+				throw err;
+			}
+			res.status(201).redirect('/posts');
+		})
+	}
 };
 
 module.exports = PostsController;
