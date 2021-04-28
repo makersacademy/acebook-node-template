@@ -17,7 +17,7 @@ var UserSchema = new mongoose.Schema({
     type: String,
     default: "I have not written a bio yet",
     required: false
-  }
+  },
 })
 
 var User = mongoose.model('User', UserSchema);

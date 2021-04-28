@@ -2,16 +2,25 @@ var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema(
 	{
-		images: [
+		author: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "User",
+			},
+		],
+		message: String,
+    images: [
 			{
 				url: String,
 				filename: String,
 			},
 		],
-		message: String,
-	}, {
-		timestamps: { createdAt: true, updatedAt: false}
-	});
+	},
+	{
+		timestamps: { createdAt: true, updatedAt: false },
+	}, 
+);
+
 
 PostSchema.index({'$**': 'text'});
 
