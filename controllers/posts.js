@@ -101,7 +101,7 @@ var PostsController = {
       if(req.user._id == comment.author) {
         var id = req.params.id;
         var edit = req.body.edited;
-        Comment.updateOne({_id: id},{message: edit}, (err) => {
+        Comment.updateOne({_id: id},{comment: edit}, (err) => {
 
           if(err){
             return res.status(401).redirect('/posts');
