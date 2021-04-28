@@ -38,7 +38,7 @@ var PostsController = {
   },
   Delete: function(req, res) {
       Post.findById(req.params.id, (err, post) => {
-        if(req.user === post.author) {
+        if(req.user._id == post.author) {
           post.deleteOne( function(err) {
             if (err) { throw err;}
 
@@ -107,7 +107,7 @@ var PostsController = {
 
   DeleteComment: function(req, res) {
     Comment.findById(req.params.id, (err, comment) => {
-      if(req.user === comment.author) {
+      if(req.user._id == comment.author) {
         comment.deleteOne( function(err) {
           if (err) { throw err;}
 
