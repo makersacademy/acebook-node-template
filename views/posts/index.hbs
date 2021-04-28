@@ -80,7 +80,7 @@
               Commented {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
               Edited Comment {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
             {{!-- Edit comments --}}
-            <form id="edit-post-form" action="/posts/{{this.id}}/edit-comment" method="POST">
+            <form id="edit-comment-form" action="/posts/{{this.id}}/edit-comment" method="POST">
               <label for="message">Edit comment: </label>
               <input id="message" type="text" name="edited" value="">
               <input type="submit" value="Save edit">

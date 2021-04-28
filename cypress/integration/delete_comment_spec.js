@@ -1,4 +1,8 @@
 describe('Timeline', function() {
+  before(async (done) => {
+    await cy.task("db:drop:all");
+    done();
+  })
   it('can delete comment', function() {
     cy.visit('/')
     cy.get('input.fname').type('Delete Com')
