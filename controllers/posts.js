@@ -1,33 +1,29 @@
 var Post = require("../models/post");
+
 var User = require("../models/user");
+
 
 var PostsController = {
 	Index: function(req, res) {
 		if (!req.session.user_id){
 			res.redirect('/users/login')
 		}
-		// Post.find({}, null, {sort :{createdAt : 'desc'}}, async function(err, posts) {
-		//   if (err) { throw err; }
-		// 	const user = await User.findById(req.session.user_id);
-		//   res.render('posts/index', { posts: posts, userId: user });
-		// });
 
 		Post.find(async function (err) {
 			if (err) { throw err; }
 			const user = await User.findById(req.session.user_id);
 			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'});
 			res.render("posts/index", { posts: posts, userId: user});
-		});
-	},
 
-	New: async function (req, res) {
-		if (!req.session.user_id) {
-			res.redirect("/users/login");
-		}
-		await res.render("posts/new", {});
-	},
-
-	Create: async function (req, res) {
+    });
+  },
+  New: function(req, res) {
+    if (!req.session.user_id){
+      res.redirect('/users/login')
+    }
+    res.render('posts/new', {});
+  },
+  	Create: async function (req, res) {
 		if (!req.session.user_id) {
 			res.redirect("/users/login");
 		}
@@ -37,30 +33,21 @@ var PostsController = {
 			message: req.body.message,
 			author: (user._id)
 		})
+    
+    newPost.images: = req.files.map(f => ({ url: f.path, filename: f.filename }));
 		
 		newPost.save(function(err){
 			if (err) { throw err }
-			// user.posts = user.posts.push(newPost);
-			// user.save((err) => {
-			// 	if (err) { throw err }
-				res.status(201).redirect('/posts');	
-			// })			
+				res.status(201).redirect('/posts');		
 		});
-		// res.status(201).redirect('/posts');
-		// newPost.posts 
-		// await	newPost.save(function(err){
-    //   if (err) { 
-    //     throw err 
-    //   }
-      
-    //   res.status(201).redirect('/posts');
-    // });
 	},
 
-	// post.save(function(err) {
-	//   if (err) { throw err; }
-	// 	res.status(201).redirect("/posts");
-	// });
+	New: async function (req, res) {
+		if (!req.session.user_id) {
+			res.redirect("/users/login");
+		}
+		await res.render("posts/new", {});
+	},
 
 	Delete: function (req, res) {
 		Post.findByIdAndRemove(req.params.id, function (err) {
