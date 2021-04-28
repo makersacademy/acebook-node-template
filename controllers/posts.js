@@ -141,7 +141,17 @@ var PostsController = {
     })
   },
 
-
-};
+  MyPosts: function(req, res) {
+    console.log('No user yet')
+      var currentUser = req.user;
+      console.log(currentUser)
+      Post.find(function(err, posts) {
+        if (err) { throw err; }
+  
+        res.render('posts/myposts', { posts: posts, currentUser });
+      }).populate({path:'comments', populate: {path: 'author'}}).populate('author').sort({createdAt: -1})
+    }
+    
+  };
 
 module.exports = PostsController;

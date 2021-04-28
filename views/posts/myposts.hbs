@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/posts.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <section id="header">
+        <div class="container">
+            <div class="header-nalsv">
+                <div class="logo">
+                    <a href="#">Acebook<em class="smallc"> &copy</em></a>
+                </div>
+                {{#if currentUser}}
+                <form id="logoutbutton" class="logoutbutton" method="post" action="/logout">
+                    <input type="submit" value="Log Out">
+                </form>
+                {{/if}}
+                <main>
+            </div>
+        </div>
+        <article>
+            <div class="heading">
+                <p class="heading-title">My Posts</p>
+                <div class="heading-text">
+                    Welcome to your dashboard! View, Edit and Comment on your own posts below.
+                </div>
+                <h6 class="mars">A Team Mars Production</h6>
+
+            </div>
+
+
+            {{!-- New post --}}
+            {{#if currentUser}}
+            <a class="new-post-link" href="/posts/new">New post</a>
+            {{/if}}
+            {{!-- Show each post --}}
+
+            <div class="cards">
+                {{#each posts}}
+                <div class="card">
+                    <div class="thumbnail">
+                        <p>Thumbnail</p>
+                    </div>
+                    <div class="card-text">
+                        {{this.message}}
+                    </div>
+                    <div class="card-buttons">
+                        <div class="card-button-1 hover-effect add-cursor">
+                        </div>
+                        <div class="card-button-2 hover-effect add-cursor">
+                        </div><br><br>
+
+                        <section class="postarea">
+                            {{!-- Date time --}}
+                            <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete">
+                            </form>
+                            {{!-- Edit post --}}
+                            <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
+                                <label for="message">Edit post: </label>
+                                <input id="message" type="text" name="edited" value="">
+                                <input type="submit" value="Save edit">
+                            </form>
+
+                            {{!-- New comment --}}
+                            <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
+                                <label for="message">Comment: </label>
+                                <input id="message" type="text" name="comment" value="">
+                                <input type="submit" value="Submit">
+                            </form><br>
+                            {{!-- Show comments --}}
+                            <p class="card-bottom-text">
+                                {{this.author.username}}
+                                Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+                                Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}
+                            </p>
+                            <button class="showcomments">{{this.comments.length}} Comments</button>
+
+                            {{#each this.comments}}
+                            <div class="comments">
+                                <h4>{{this.comment}}</h4><br>
+
+                                <h6>{{this.author.username}}
+                                    Commented {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+                                    Edited Comment {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
+                                {{!-- Edit comments --}}
+                                <form id="edit-comment-form" action="/posts/{{this.id}}/edit-comment" method="POST">
+                                    <label for="message">Edit comment: </label>
+                                    <input id="message" type="text" name="edited" value="">
+                                    <input type="submit" value="Save edit">
+                                </form>
+                                <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit"
+                                        value="Delete"></form>
+                            </div>
+                            {{/each}}
+                        </section>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            {{!-- New post --}}
+        </article>
+    </section>
+    <script src="javascripts/posts.js"></script>
+</body>
+
+</html>
