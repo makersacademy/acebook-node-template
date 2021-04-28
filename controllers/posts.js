@@ -54,20 +54,26 @@ var PostsController = {
   },
 
   Edit: function(req, res) {
-    var id = req.params.id;
-    var edit = req.body.edited;
-    console.log(id)
-    console.log(edit)
-    Post.findByIdAndUpdate({_id: id},{message: edit}, (err) => {
-      if(err){
-        console.log(err)
-        return res.status(401).redirect('/posts');
+    Post.findById(req.params.id, (err, post) => {
+      if(req.user._id == post.author) {
+        var id = req.params.id;
+        var edit = req.body.edited;
+        Post.updateOne({_id: id},{message: edit}, (err) => {
+
+          if(err){
+            return res.status(401).redirect('/posts');
+          }
+          else {
+            return res.status(200).redirect('/posts')
+          }
+        
+      })
+      } else {
+        alert('Bruh! You cant be editing ppls posts like that')
+        return res.status(401).redirect('/posts')
       }
-      else {
-        console.log("All good")
-        return res.status(200).redirect('/posts')
-      }
-    })
+      
+    }) 
   },
   
   Comment: function(req, res) {
@@ -91,18 +97,26 @@ var PostsController = {
   },
 
   EditComment: function(req, res) {
-    var id = req.params.id;
-    var edit = req.body.edited;
-    console.log(id)
-    console.log(edit)
-    Comment.findByIdAndUpdate({_id: id},{comment: edit}, (err) => {
-      if(err){
-        return res.status(401).redirect('/posts');
+    Comment.findById(req.params.id, (err, comment) => {
+      if(req.user._id == comment.author) {
+        var id = req.params.id;
+        var edit = req.body.edited;
+        Comment.updateOne({_id: id},{message: edit}, (err) => {
+
+          if(err){
+            return res.status(401).redirect('/posts');
+          }
+          else {
+            return res.status(200).redirect('/posts')
+          }
+        
+      })
+      } else {
+        alert('Bruh! You cant be editing ppls comment like that')
+        return res.status(401).redirect('/posts')
       }
-      else {
-        return res.status(200).redirect('/posts')
-      }
-    })
+      
+    }) 
   },
 
   DeleteComment: function(req, res) {
