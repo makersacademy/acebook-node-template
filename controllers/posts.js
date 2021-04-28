@@ -32,20 +32,25 @@ var PostsController = {
         })
       })
     } else {
-      alert('Oops, that password is incorrect!')
+      alert('Fam! Log in first!')
       return res.status(401).redirect('/posts')
     }
   },
   Delete: function(req, res) {
-    var post = Post.findById(req.params.id)
-    post.deleteOne( function(err) {
-      if (err) { throw err;}
-      // const response = {
-      //   message: "Post successfully deleted",
-      //   id: post._id
-      // };
-      res.status(201).redirect('/posts');
-    });
+      Post.findById(req.params.id, (err, post) => {
+        if(req.user === post.author) {
+          post.deleteOne( function(err) {
+            if (err) { throw err;}
+
+            res.status(201).redirect('/posts');
+        });
+        }else {
+          alert('Bruh! You cant be deleting ppls posts like that')
+          return res.status(401).redirect('/posts')
+        }
+          
+      })
+      
   },
 
   Edit: function(req, res) {
@@ -101,13 +106,20 @@ var PostsController = {
   },
 
   DeleteComment: function(req, res) {
-    var comment = Comment.findById(req.params.id)
-    comment.deleteOne( function(err) {
-      if (err) { throw err;}
+    Comment.findById(req.params.id, (err, comment) => {
+      if(req.user === comment.author) {
+        comment.deleteOne( function(err) {
+          if (err) { throw err;}
 
-      res.status(201).redirect('/posts');
+          res.status(201).redirect('/posts');
+      });
+      }else {
+        alert('Bruh! You cant be deleting ppls comments like that!')
+        return res.status(401).redirect('/posts')
+      }
+        
     })
-  }
+  },
 
 
 };
