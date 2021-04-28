@@ -13,9 +13,8 @@ var PostsController = {
 			if (err) { throw err; }
 			const user = await User.findById(req.session.user_id);
 			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'});
-			res.render("posts/index", { posts: posts, userId: user});
-
-    });
+			res.render("posts/index", { posts: posts, userId: user})
+    }).populate('comments');;
   },
   
   New: function(req, res) {
@@ -108,6 +107,7 @@ var PostsController = {
 	Comment: function (req, res) {
 		Post.findById(req.params.id, (err, post) => {
 			var comment = new Comment(req.body);
+			comment.author = req.session.user_id;
 			comment.save((saveErr) => {
 				if (saveErr) {
 					throw saveErr;
