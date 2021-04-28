@@ -77,7 +77,8 @@ var PostsController = {
   },
   
   Comment: function(req, res) {
-    Post.findById(req.params.id, (err, post) => {
+    if(req.user) {
+      Post.findById(req.params.id, (err, post) => {
       var comment = new Comment(req.body);
       comment.author = req.user._id;
       comment.save((saveCommentError) => {
@@ -93,6 +94,11 @@ var PostsController = {
         })     
       });
     })
+    }else {
+      alert('Fam! Log in first!')
+      return res.status(401).redirect('/posts')
+    }
+    
 
   },
 
