@@ -21,9 +21,9 @@ describe('Profile', function() {
 			cy.visit('/posts');
 			cy.contains('user1').click();
 	
-			cy.contains('Edit Bio').click();
+			cy.contains('Edit Profile').click();
 			cy.get('#edit-profile-form').find('#message').type('I am a robot');
-			cy.contains('Edit Bio').click();
+			cy.contains('Edit Profile').click();
 
 			cy.contains('I am a robot');
 	

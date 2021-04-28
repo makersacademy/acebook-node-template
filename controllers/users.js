@@ -7,7 +7,7 @@ var UsersController = {
   },
   CreateUser: async function(req, res){
     console.log(req.body);
-    const { email, password, username, bio } = req.body;
+    const { email, password, username, bio, profilePicture } = req.body;
     const hash = await bcrypt.hash(password, 12); 
 
     var checkEmail = await User.findOne({ email });
@@ -25,7 +25,8 @@ var UsersController = {
       email,
       password: hash,
       username,
-      bio
+      bio,
+      profilePicture
     });
     
     console.log(user);
@@ -85,7 +86,9 @@ var UsersController = {
     if (!req.session.user_id){
       res.redirect('/users/login')
     }
-    const user = await User.findByIdAndUpdate(req.session.user_id, {bio: req.body.message});
+    console.log(req.body)
+    const user = await User.findByIdAndUpdate(req.session.user_id, {bio: req.body.message, profilePicture: req.body.profilePic.url});
+    console.log(user)
     res.status(201).redirect(`/users/${user._id}`);
   },
 
