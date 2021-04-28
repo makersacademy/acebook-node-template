@@ -6,7 +6,7 @@ var User = require('../models/user');
 
 var PostsController = {
   Index: function(req, res) {
-    currentUser = req.user;
+    var currentUser = req.user;
     Post.find(function(err, posts) {
       if (err) { throw err; }
 
@@ -15,7 +15,7 @@ var PostsController = {
     
   },
   New: function(req, res) {
-    currentUser = req.user;
+    var currentUser = req.user;
     res.render('posts/new', {currentUser});
   },
   Create: function(req, res) {

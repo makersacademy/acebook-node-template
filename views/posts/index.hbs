@@ -95,7 +95,9 @@
         {{/each}}
       </div>
       {{!-- New post --}}
-      <a class="new-post-link" href="/posts/new">New post</a>
+      {{#if currentUser}}
+        <a class="new-post-link" href="/posts/new">New post</a>
+      {{/if}}
     </article>
   </section>
 </body>

@@ -31,7 +31,7 @@ var HomeController = {
       var password = req.body.loginPassword;
   
       //{ <field>: { $eq: <value> } }
-      var user = User.findOne({ username: username }, (err, result) => {
+      User.findOne({ username: username }, (err, result) => {
         
         if(err) {
           throw err;
