@@ -19,10 +19,8 @@ var UserSchema = new mongoose.Schema({
     required: false
   },
   profilePicture:{
-    url: {
       type: String, 
       default:'https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80'
-    }
   }
 })
 

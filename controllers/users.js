@@ -79,7 +79,7 @@ var UsersController = {
       res.redirect('/users/login')
     }
     const user = await User.findById(req.session.user_id);
-    res.render('users/edit', { Title: 'Edit Bio', user: user});
+    res.render('users/edit', { Title: 'Edit Profile', user: user});
   },
 
   UpdateBioDB: async (req,res) => {
@@ -87,7 +87,7 @@ var UsersController = {
       res.redirect('/users/login')
     }
     console.log(req.body)
-    const user = await User.findByIdAndUpdate(req.session.user_id, {bio: req.body.message, profilePicture: req.body.profilePic.url});
+    const user = await User.findByIdAndUpdate(req.session.user_id, {bio: req.body.message, profilePicture: req.body.profilePic});
     console.log(user)
     res.status(201).redirect(`/users/${user._id}`);
   },
