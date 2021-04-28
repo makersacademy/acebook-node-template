@@ -270,4 +270,7 @@ html,body{
     text-align: right;
     margin-top: -35px;
   }
-  
+
+.comments {
+    display: none;
+}
