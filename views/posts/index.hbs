@@ -17,8 +17,8 @@
           <a href="#">Acebook<em class="smallc"> &copy</em></a>
         </div>
         {{#if currentUser}}
-        <form class="logoutbutton" method="post" action="/logout">
-          <input type="submit" value="Log Out">
+        <form id="logoutbutton" class="logoutbutton"  method="post" action="/logout">
+          <input  type="submit" value="Log Out">
       </form>
         {{/if}}
         <main>

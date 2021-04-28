@@ -1,4 +1,8 @@
 describe('Home page', function() {
+  before(async (done) => {
+    await cy.task("db:drop:all");
+    done();
+  })
   it('has a title', function() {
     cy.visit('/');
     cy.get('.logo').should('contain', 'Acebook');
@@ -6,6 +10,10 @@ describe('Home page', function() {
 });
 
 describe('Registration', function() {
+  before(async (done) => {
+    await cy.task("db:drop:all");
+    done();
+  })
   it('can register a new user', function() {
     cy.visit('/');
     cy.get('input.fname').type('Bob')

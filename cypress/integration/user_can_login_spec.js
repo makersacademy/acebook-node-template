@@ -1,15 +1,20 @@
 describe('Login', function() {
-    it('can authenitcate an existing user', function() {
+  before(async (done) => {
+    await cy.task("db:drop:all");
+    done();
+  })
+    it('can authenticate an existing user', function() {
       cy.visit('/');
   
-      cy.get('#sign-up-form').find('#fname').type('test_user_2');
-      cy.get('#sign-up-form').find('#pword').type('password2');
-  
-      cy.get('#login-form').find('#loginUsername').type('test_user_2');
-      cy.get('#login-form').find('#loginPassword').type('password2');
+      cy.get('.registration-form').find('#fname').type('test_user_2');
+      cy.get('.registration-form').find('#pword').type('password2');
+      cy.get('.registration-form').submit();
+      cy.get('#logoutbutton').submit();
+      cy.get('input#loginUsername').type('test_user_2');
+      cy.get('input#loginPassword').type('password2');
       
-      cy.get('#login-form').submit();
-      cy.should('contain', 'Timeline');
+      cy.get('.login-form').submit();
+      cy.contains('User Posts');
     });
 });
   
