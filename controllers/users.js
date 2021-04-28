@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 var UsersController = {
   Signup: function(req, res){
-    res.render('users/index', {});
+    res.render('users/index', { messages: req.flash('err')});
   },
   CreateUser: async function(req, res){
     console.log(req.body);
@@ -11,9 +11,15 @@ var UsersController = {
     const hash = await bcrypt.hash(password, 12); 
 
     var checkEmail = await User.findOne({ email });
-    if (checkEmail) return res.status(400).redirect('/users/signup')
+    if (checkEmail) {
+      req.flash('err', 'This email is already registered');
+      return res.status(400).redirect('/users/signup');
+    }
     var checkUsername = await User.findOne({ username });
-    if (checkUsername) return res.status(400).redirect('/users/signup')
+    if (checkUsername){
+      req.flash('err', 'This username is already registered');
+      return res.status(400).redirect('/users/signup');
+    } 
 
     var user = new User( {
       email,
@@ -36,7 +42,7 @@ var UsersController = {
     res.render('users/welcome', {});
   },
   Login: function(req, res){
-    res.render('users/login', {});
+    res.render('users/login', { messages: req.flash('logstatus')});
   },
   Authenticate: async function(req, res){
     const { email, password } = req.body;
@@ -47,12 +53,16 @@ var UsersController = {
       res.redirect('/posts');
     } 
     else{
+      req.flash('logstatus', 'Your credentials are incorrect, please try again');
       res.redirect('/users/login');
     }
   },
   LogOut: function(req, res){
     req.session.user_id = null;
-    res.redirect('/users/login');
+    if (req.session.user_id === null){
+      req.flash('logstatus', 'You have sucessfully logged out');
+      res.redirect('/users/login');
+    }
   },
 
   Profile: async (req, res) => {
