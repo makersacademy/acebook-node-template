@@ -14,7 +14,6 @@ var PostsController = {
 			const user = await User.findById(req.session.user_id);
 			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'});
 			res.render("posts/index", { posts: posts, userId: user});
-
     });
   },
   New: function(req, res) {
@@ -98,7 +97,6 @@ var PostsController = {
 				if (err) {
 					throw err;
 				}
-				console.log(postsSearch);
 				if (postsSearch === []){
 					req.flash('noResults', 'There are no search results');
 				}
