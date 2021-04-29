@@ -97,6 +97,7 @@ var PostsController = {
     }
   },
   Delete: function(req, res) {
+    if(req.user) {
       Post.findById(req.params.id, (err, post) => {
         if(req.user._id == post.author) {
           post.deleteOne( function(err) {
@@ -110,12 +111,18 @@ var PostsController = {
         }
           
       })
+    }else {
+      alert('Fam! Log in first!')
+      return res.status(401).redirect('/posts')
+    }
+      
       
   },
 
   Edit: function(req, res) {
-    Post.findById(req.params.id, (err, post) => {
-      if(req.user._id == post.author) {
+    if(req.user) {
+      Post.findById(req.params.id, (err, post) => {
+        if(req.user._id == post.author) {
         var id = req.params.id;
         var edit = req.body.edited;
         Post.updateOne({_id: id},{message: edit}, (err) => {
@@ -127,13 +134,17 @@ var PostsController = {
             return res.status(200).redirect('/posts')
           }
         
-      })
-      } else {
-        alert('Bruh! You cant be editing ppls posts like that')
-        return res.status(401).redirect('/posts')
-      }
-      
-    }) 
+        })
+        } else {
+          alert('Bruh! You cant be editing ppls posts like that')
+          return res.status(401).redirect('/posts')
+        }   
+    })
+    }else {
+      alert('Fam! Log in first!')
+      return res.status(401).redirect('/posts')
+    }
+    
   },
   
   Comment: function(req, res) {
@@ -163,7 +174,8 @@ var PostsController = {
   },
 
   EditComment: function(req, res) {
-    Comment.findById(req.params.id, (err, comment) => {
+    if(req.user) {
+      Comment.findById(req.params.id, (err, comment) => {
       if(req.user._id == comment.author) {
         var id = req.params.id;
         var edit = req.body.edited;
@@ -182,23 +194,34 @@ var PostsController = {
         return res.status(401).redirect('/posts')
       }
       
-    }) 
+    })
+    }else {
+      alert('Fam! Log in first!')
+      return res.status(401).redirect('/posts')
+    }
+    
   },
 
   DeleteComment: function(req, res) {
-    Comment.findById(req.params.id, (err, comment) => {
-      if(req.user._id == comment.author) {
-        comment.deleteOne( function(err) {
-          if (err) { throw err;}
+    if(req.user) {
+      Comment.findById(req.params.id, (err, comment) => {
+        if(req.user._id == comment.author) {
+          comment.deleteOne( function(err) {
+            if (err) { throw err;}
 
-          res.status(201).redirect('/posts');
-      });
-      }else {
-        alert('Bruh! You cant be deleting ppls comments like that!')
-        return res.status(401).redirect('/posts')
-      }
-        
-    })
+            res.status(201).redirect('/posts');
+        });
+        }else {
+          alert('Bruh! You cant be deleting ppls comments like that!')
+          return res.status(401).redirect('/posts')
+        }
+          
+      })
+    }else {
+      alert('Fam! Log in first!')
+      return res.status(401).redirect('/posts')
+    }
+    
   },
 
   Like: function(req, res) {
