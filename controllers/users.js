@@ -1,15 +1,16 @@
-var User = require('../models/user');
-const bcrypt = require('bcrypt');
+var User = require("../models/user");
+const bcrypt = require("bcrypt");
 
 var UsersController = {
-  Signup: function(req, res){
-    res.render('users/index', { messages: req.flash('err')});
-  },
-  CreateUser: async function(req, res){
-    console.log(req.body);
-    const { email, password, username, bio, profilePicture } = req.body;
-    const hash = await bcrypt.hash(password, 12); 
+	Signup: function (req, res) {
+		res.render("users/index", {messages: req.flash('err')});
+	},
+	CreateUser: async function (req, res) {
 
+		const { email, password, username, bio, profilePicture } = req.body;
+    const emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
+    const passwordValidator = /.*[0-9].*/
+    
     var checkEmail = await User.findOne({ email });
     if (checkEmail) {
       req.flash('err', 'This email is already registered');
@@ -20,23 +21,34 @@ var UsersController = {
       req.flash('err', 'This username is already registered');
       return res.status(400).redirect('/users/signup');
     } 
-
-    var user = new User( {
-      email,
-      password: hash,
-      username,
-      bio,
-      profilePicture
-    });
     
-    console.log(user);
-
-    await user.save(function(err){
+		if ((emailValidator).test(email) === false) {
+			req.flash('err', 'You must provide a valid email address')
+      return res.status(400).redirect('/users/signup');
+		}
+    if ((passwordValidator).test(password) === false) {
+			req.flash('err', 'Your password must have a least one number')
+      return res.status(400).redirect('/users/signup');
+		}
+		if (password.length < 6) {
+      req.flash('err', 'Your password must be at least 6 characters long')
+      return res.status(400).redirect('/users/signup');
+		} else {
+			const hash = await bcrypt.hash(password, 12);
+  
+			var user = new User({
+				email,
+				password: hash,
+				username,
+				bio,
+        profilePicture
+			});
+       await user.save(function(err){
       if (err) { 
         throw err 
       }
-      
       res.status(201).redirect('/users/welcome');
+   
     });
   },
   Welcome: function(req, res){
@@ -65,15 +77,27 @@ var UsersController = {
       res.redirect('/users/login');
     }
   },
-
-  Profile: async (req, res) => {
-    if (!req.session.user_id){
-      res.redirect('/users/login')
-    }
-    const user = await User.findById(req.session.user_id);
-    res.render('users/profile', {Title: 'Profile Page', user: user});
-  },
-
+	Welcome: function (req, res) {
+		res.render("users/welcome", {});
+	},
+	Login: function (req, res) {
+		res.render("users/login", {});
+	},
+	Authenticate: async function (req, res) {
+		const { email, password } = req.body;
+		const user = await User.findOne({ email });
+		const validPassword = await bcrypt.compare(password, user.password);
+		if (validPassword) {
+			req.session.user_id = user._id;
+			res.redirect("/posts");
+		} else {
+			res.redirect("/users/login");
+		}
+	},
+	LogOut: function (req, res) {
+		req.session.user_id = null;
+		res.redirect("/users/login");
+	},
   EditBio: async (req, res) => {
     if (!req.session.user_id){
       res.redirect('/users/login')
@@ -91,7 +115,14 @@ var UsersController = {
     console.log(user)
     res.status(201).redirect(`/users/${user._id}`);
   },
+	Profile: async (req, res) => {
+		if (!req.session.user_id) {
+			res.redirect("/users/login");
+		}
+		const user = await User.findById(req.session.user_id);
+		res.render("users/profile", { Title: "Profile Page", user: user });
+	},
 
-}
+};
 
 module.exports = UsersController;
