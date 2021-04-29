@@ -1,10 +1,45 @@
-<h1>Edit your bio</h1>
+<h1>Edit your profile</h1>
 
 <form id="edit-profile-form" action="/users/{{user._id}}/edit" method="POST">
- <input type="hidden" name="_method" value="put">
-  <label for="message">Message: </label>
+  <input type="hidden" name="_method" value="put">
+  <div>
+    <input type="radio" id="desert" name="profilePic" value="https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80" checked>
+    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80'>
+    <label for="desert">Desert</label>
+  </div>
+  <div>
+    <input type="radio" id="beach" name="profilePic" value='https://images.unsplash.com/photo-1619509943800-81ce9ac042e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'>
+    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619509943800-81ce9ac042e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'>
+    <label for="beach">Beach</label>
+  </div>
+  <div>
+    <input type="radio" id="river" name="profilePic" value='https://images.unsplash.com/photo-1619460636045-ed08799e25f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80'>
+    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619460636045-ed08799e25f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80'>
+    <label for="river">River</label>
+  </div>
+  <div>
+    <input type="radio" id="building" name="profilePic" value='https://images.unsplash.com/photo-1619550147327-c0038188f4ef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'>
+    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619550147327-c0038188f4ef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'>
+    <label for="building">Building</label>
+  </div>
+  <div>
+    <input type="radio" id="hotairballoon" name="profilePic" value='https://images.unsplash.com/photo-1619547871672-b6562e042c1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
+    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619547871672-b6562e042c1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
+    <label for="hotairballoon">Hot Air Balloon</label>
+  </div>
+  <div>
+    <input type="radio" id="flowers" name="profilePic" value='https://images.unsplash.com/photo-1619612200694-69b4d3d13e4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
+    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619612200694-69b4d3d13e4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
+    <label for="flowers">Flowers</label>
+  </div>
+
+
+
+  <label for="message">Bio: </label>
   <input id="message" type="text" name="message" class="message" value="{{{user.bio}}}">
-  <input type="submit" value="Edit Bio">
+  <input type="submit" value="Edit Profile">
+
+
 </form>
 
 <a href="/users/{{user._id}}">Back to Profile</a>
