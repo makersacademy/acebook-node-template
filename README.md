@@ -23,6 +23,10 @@ As a user,
 so that I can use AceBook,
 I want to login.
 
+As a user, 
+so that I do not engage in social media all day,
+I want to be able to sign out of Acebook.
+
 As a system administrator,
 so that one user does not have multiple accounts,
 I want to ensure each user can only register once.
