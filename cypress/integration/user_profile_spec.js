@@ -28,6 +28,10 @@ describe('Profile', function() {
 			cy.contains('I am a robot');
 	
 		});
+
+		it('can view posts created by the author', function(){
+			
+		})
 	})
   
 })
