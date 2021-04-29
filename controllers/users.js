@@ -24,7 +24,7 @@ var UsersController = {
         throw err 
       }
       
-      res.status(201).redirect('/users/welcome');
+      res.status(201).redirect('/users/login');
     });
   },
   Welcome: function(req, res){
