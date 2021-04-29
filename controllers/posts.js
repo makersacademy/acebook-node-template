@@ -48,6 +48,9 @@ var PostsController = {
             imageBase64 : src
         }
         Post.findById(req.params.id, (err, post) => {
+          if(req.user._id == post.author) {
+
+          
           newImage = new Image (finalImg);
           newImage.save((saveImageError) => {
             if(saveImageError) { throw saveImageError; }
@@ -60,7 +63,11 @@ var PostsController = {
                 
                 res.status(201).redirect('/posts/image')
               })
-        })
+          })
+          }else {
+            alert('Fam! You cant be uploading your ugly pics here! go to your posts!')
+            return res.status(401).redirect('/posts')
+          }
         })
       });
     } else {
