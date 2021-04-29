@@ -61,6 +61,10 @@ var UsersController = {
   Authenticate: async function(req, res){
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    if(!user){
+      req.flash('logstatus', 'Your credentials are incorrect, please try again');
+      res.redirect('/users/login');
+    }
     const validPassword = await bcrypt.compare(password, user.password);
     if(validPassword){
       req.session.user_id = user._id;
