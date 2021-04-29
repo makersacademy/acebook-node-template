@@ -74,21 +74,21 @@
             </div><br><br>
 
             <section class="postarea">
-              {{!-- Date time --}}
-              <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form>
-              {{!-- Edit post --}}
-              <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
-                <label for="message">Edit post: </label>
-                <input id="message" type="text" name="edited" value="">
-                <input type="submit" value="Save edit">
-              </form>
-              {{!--Like post--}}
-              <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST"
-                onsubmit="like.disabled = true; return true;">
-                <p class="likes">{{this.likes}} </p>
-                <input name="like" type="submit" value="Like">
-              </form>
 
+            {{!-- Date time --}}
+            <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form>
+            {{!-- Edit post --}}
+            <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
+              <label for="message">Edit post: </label>
+              <input id="message" type="text" name="edited" value="">
+              <input type="submit" value="Save edit">
+            </form>
+            {{!--Like post--}}
+            <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST" onsubmit="like.disabled = true; return true;">
+              <p class="likes" >{{this.likes}} </p>
+              <input name="like" type="submit" value="Like">
+            </form>
+             <form method="post" action="/posts/{{this.id}}/dislike"><input type="submit" value="Dislike"></form>
 
               {{!-- New comment --}}
               <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
