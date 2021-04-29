@@ -15,7 +15,7 @@ describe('Timeline', function() {
     cy.contains('Search').click();
 
     cy.contains('Happy new week!');
-    cy.contains('Back to Homepage').click();
+    cy.contains('Back to the Timeline').click();
 
     cy.url().should('eq', 'http://localhost:3030/posts');
 

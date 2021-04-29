@@ -7,6 +7,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var hbs = require('hbs');
+// var exphbs = require("express-handlebars")
 
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -32,6 +34,9 @@ hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+
+// app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 app.use(session({secret: 'secretsession'}));
@@ -43,6 +48,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 // route setup
 app.use('/', homeRouter);

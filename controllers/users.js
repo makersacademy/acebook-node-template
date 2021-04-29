@@ -1,4 +1,5 @@
 var User = require("../models/user");
+var Post = require("../models/post");
 const bcrypt = require("bcrypt");
 const Post = require("../models/post");
 
@@ -44,11 +45,11 @@ var UsersController = {
 			});
 
       await user.save(function(err){
-      if (err) { 
-        throw err 
-      }
-      res.status(201).redirect('/users/welcome');
-      });
+        if (err) { 
+          throw err 
+        }
+      res.status(201).redirect('/users/login');
+     });
     }
   },
 
@@ -103,10 +104,9 @@ var UsersController = {
 		if (!req.session.user_id) {
 			res.redirect("/users/login");
 		}
-		const user = await User.findById(req.session.user_id);
-
-    const userPosts = await Post.find({ author: { _id:  req.session.user_id }}).sort({createdAt: 'desc'});
-    res.render("users/profile", { title: "Profile Page", user: user, userPosts: userPosts });
+    const user = await User.findById(req.session.user_id);
+    const userPosts = await Post.find({ author: { _id:  req.session.user_id }}).sort({createdAt: 'desc'}).populate({ path: "comments", populate: { path: "author" } });;
+    res.render("users/profile", { Title: "Profile Page", user: user, userPosts: userPosts });
 	},
 
 };

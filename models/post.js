@@ -8,16 +8,17 @@ var PostSchema = new mongoose.Schema(
 				ref: "User",
 			},
 		],
-		message: String,
+	message: String,
+	comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
     images: [
 			{
 				url: String,
 				filename: String,
 			},
 		],
-	},
-	{
-		timestamps: { createdAt: true, updatedAt: false },
+	
+	}, {
+		timestamps: { createdAt: true, updatedAt: true },
 	}, 
 );
 
