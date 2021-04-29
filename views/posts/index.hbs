@@ -57,10 +57,12 @@
             {{/if}}
             {{/each}}
             {{/each}}
+            {{#unless images}}
             <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
               <input type="file" class="form-control" name="images" id="formFile">
               <input type="submit" value="Upload Image">
             </form>
+            {{/unless}}
           </div>
           <div class="card-text">
             {{this.message}}
