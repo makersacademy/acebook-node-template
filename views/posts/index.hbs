@@ -4,7 +4,7 @@
 <ul class="posts">
   {{#each posts}}
 
-  <li>{{this.message}} - {{this.createdAt}} - {{#each this.author}}{{this.username}}{{/each}}
+  <li>{{this.message}} - {{dateFormat this.createdAt "DD-MM-YYYY, HH:mm:ss"}} - {{#each this.author}}{{this.username}}{{/each}}
     {{#each images}}
     <div class="card mb-3">
         <div class="row">
