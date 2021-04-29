@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 var UsersController = {
 	Signup: function (req, res) {
-		res.render("users/index", {messages: req.flash('err')});
+		res.render("users/index", {messages: req.flash('err'), title: 'Sign Up'});
 	},
 	CreateUser: async function (req, res) {
 		const { email, password, username, bio, profilePicture } = req.body;
@@ -52,10 +52,10 @@ var UsersController = {
   },
 
   Welcome: function(req, res){
-    res.render('users/welcome', {});
+    res.render('users/welcome', {title: 'Welcome'});
   },
   Login: function(req, res){
-    res.render('users/login', { messages: req.flash('logstatus')});
+    res.render('users/login', { messages: req.flash('logstatus'), title: 'Log In'});
   },
   Authenticate: async function(req, res){
     const { email, password } = req.body;
@@ -82,7 +82,7 @@ var UsersController = {
       res.redirect('/users/login')
     }
     const user = await User.findById(req.session.user_id);
-    res.render('users/edit', { Title: 'Edit Profile', user: user});
+    res.render('users/edit', { title: 'Edit Profile', user: user});
   },
 
   UpdateBioDB: async (req,res) => {
@@ -99,7 +99,7 @@ var UsersController = {
 			res.redirect("/users/login");
 		}
 		const user = await User.findById(req.session.user_id);
-		res.render("users/profile", { Title: "Profile Page", user: user });
+		res.render("users/profile", { title: 'Profile Page', user: user });
 	},
 
 };
