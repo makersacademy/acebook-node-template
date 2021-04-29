@@ -141,7 +141,16 @@ var PostsController = {
     })
   },
 
-
-};
+  Dashboard: function(req, res) {
+      var currentUser = req.user;
+      var currentUserId = currentUser._id
+      Post.find({author: currentUserId}, function(err, posts) {
+        if (err) { throw err; }
+  
+        res.render('posts/dashboard', { posts: posts, currentUser });
+      }).populate({path:'comments', populate: {path: 'author'}}).populate('author').sort({createdAt: -1})
+    }
+    
+  };
 
 module.exports = PostsController;
