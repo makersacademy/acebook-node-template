@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const session = require('express-session');
+const flash = require('connect-flash');
 
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
@@ -21,6 +22,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(session({secret: 'secretsession'}));
+app.use(flash())
+
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());
