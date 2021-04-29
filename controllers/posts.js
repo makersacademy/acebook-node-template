@@ -98,7 +98,11 @@ var PostsController = {
 				if (err) {
 					throw err;
 				}
-				res.render("posts/search", { postsSearch: postsSearch });
+				console.log(postsSearch);
+				if (postsSearch === []){
+					req.flash('noResults', 'There are no search results');
+				}
+				res.render("posts/search", { postsSearch: postsSearch, resultError: req.flash('noResults')});
 			}
 		);
 	},
