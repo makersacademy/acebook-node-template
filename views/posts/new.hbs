@@ -4,14 +4,30 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/public/stylesheets/new.css"> 
+    <link rel="stylesheet" href="/stylesheets/posts.css">
   <title>New Post</title>
 </head>
 <body>
+   <section id="header">
+        <div class="container">
+            <div class="header-nalsv">
+                <div class="logo">
+                    <a href="/posts">Acebook<em class="smallc"> &copy</em></a>
+                </div>
+                {{#if currentUser}}
+                <form id="logoutbutton" class="logoutbutton" method="post" action="/logout">
+                    <input type="submit" value="Log Out">
+                </form>
+                {{/if}}
+                <main>
+            </div>
+        </div>
+        <article>
+      
   {{#if currentUser}}
   <section class="message" style="margin-top: 275px;">
     <form id="new-post-form" action="/posts" method="post" style="text-align: center" >
-      <label for="message">Message: </label>
+      <label for="message">Post an update: </label>
       <input id="message" type="text" name="message" value="">
       <input type="submit" value="Submit">
     </form>
