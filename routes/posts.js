@@ -12,4 +12,6 @@ router.post('/:id/edit', PostsController.Edit);
 router.post('/:id/edit-comment', PostsController.EditComment);
 router.post('/:id/delete-comment', PostsController.DeleteComment);
 router.post('/:id/like', PostsController.Like);
+router.get('/dashboard', PostsController.Dashboard);
+
 module.exports = router;
