@@ -70,6 +70,12 @@
               <input id="message" type="text" name="edited" value="">
               <input type="submit" value="Save edit">
             </form>
+            {{!--Like post--}}
+            <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST" onsubmit="like.disabled = true; return true;">
+              <p class="likes" >{{this.likes}} </p>
+              <input name="like" type="submit" value="Like">
+            </form>
+
 
             {{!-- New comment --}}
             <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">

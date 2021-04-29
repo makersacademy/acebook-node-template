@@ -141,6 +141,24 @@ var PostsController = {
     })
   },
 
+  Like: function(req, res) {
+    if(req.user) {
+      Post.findByIdAndUpdate({_id: req.params.id},{$inc:{likes: 1}}, (err, post) => {
+      //like.author = req.user._id;
+        post.save((savePostError) => {
+          if (savePostError) { throw savePostError; }
+
+          res.status(201).redirect('/posts'); 
+        })
+      })     
+    } else {
+     alert('Fam! Log in first!')
+     return res.status(401).redirect('/posts')
+    }
+  }
+
+};
+
   Dashboard: function(req, res) {
       var currentUser = req.user;
       var currentUserId = currentUser._id
