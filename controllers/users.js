@@ -1,7 +1,6 @@
 var User = require("../models/user");
 var Post = require("../models/post");
 const bcrypt = require("bcrypt");
-const Post = require("../models/post");
 
 var UsersController = {
 	Signup: function (req, res) {
@@ -105,7 +104,7 @@ var UsersController = {
 			res.redirect("/users/login");
 		}
     const user = await User.findById(req.session.user_id);
-    const userPosts = await Post.find({ author: { _id:  req.session.user_id }}).sort({createdAt: 'desc'}).populate({ path: "comments", populate: { path: "author" } });;
+    const userPosts = await Post.find({ author: { _id:  req.session.user_id }}).sort({createdAt: 'desc'}).populate({ path: "comments", populate: { path: "author" } });
     res.render("users/profile", { Title: "Profile Page", user: user, userPosts: userPosts });
 	},
 

@@ -7,7 +7,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var hbs = require('hbs');
 // var exphbs = require("express-handlebars")
 
 const session = require('express-session');
@@ -20,7 +19,6 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 var hbs = require('hbs');
-hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 // hbs.registerHelper('if_eq', function(a, b, opts) {
 //   a = a.toString()
 //   b = b.toString()
