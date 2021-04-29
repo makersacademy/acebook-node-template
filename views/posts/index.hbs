@@ -67,6 +67,7 @@
     <div class="posts">
       <ul class="list-group list-group-flush">
         {{#each posts}}
+        
         <div class="container-fluid">
           <li class="list-group-item">
             <p id="post-msg">
@@ -81,27 +82,25 @@
               {{#each this.author}}
               Posted by <a href="/users/:id">{{this.username}}</a>
               {{/each}}
-              on {{this.createdAt}}
+              at {{dateFormat this.createdAt "HH:MM, DD/MM/YYYY"}}
               {{#if updatedAt}}
-            <p>
-              Updated on {{this.updatedAt}}
-            </p>
-            {{/if}}
-            </p>
-            {{#if "username == author"}}
-            <p>
-            <div class="btn-group btn-group-lg" role="group" aria-label="...">
-              <form action='/posts/{{this.id}}/delete' method='post'>
-                <input class="btn btn-outline-secondary" type='submit' value='Delete'>
-              </form>
-            </div>
-            <div class="btn-group" role="group" aria-label="...">
-              <form action='/posts/{{this.id}}/edit' method='get'>
-                <input class="btn btn-outline-secondary" type='submit' value='Edit'>
-              </form>
-            </div>
-            </p>
-            {{/if}}
+                <p>
+                  Updated at {{dateFormat this.updatedAt "HH:MM, DD/MM/YYYY"}}
+                </p>
+              {{/if}}
+                  <p>
+                      <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                        <form action='/posts/{{this.id}}/delete' method='post'>
+                          <input class="btn btn-outline-secondary" type='submit' value='Delete'>
+                        </form>
+                      </div>
+                      <div class="btn-group" role="group" aria-label="...">
+                        <form action='/posts/{{this.id}}/edit' method='get'>
+                          <input class="btn btn-outline-secondary" type='submit' value='Edit'>
+                        </form>
+                      </div>
+                  </p>
+
 
             <div class="card" id="collapseExample">
               <div class="card card-body">
@@ -114,6 +113,7 @@
                     {{#each this.author}}
                     <a href="/users/:id">{{this.username}}</a>
                     {{/each}}
+                    at {{dateFormat this.createdAt "HH:MM, DD/MM/YYYY"}}
                     <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete">
                     </form>
                     {{/each}}
@@ -169,6 +169,9 @@
 <style>
   #main {
     padding: 40px;
+  }
+  #post-msg {
+    font-size: 30px
   }
 
   footer {

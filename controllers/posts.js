@@ -5,7 +5,7 @@ var User = require("../models/user");
 var PostsController = {
   Index: function (req, res) {
     if (!req.session.user_id) {
-      res.redirect("/users/login");
+      return res.redirect("/users/login");
     }
 
     Post.find(async function (err) {
@@ -19,6 +19,7 @@ var PostsController = {
         .populate("comments")
         .sort({ createdAt: "desc" })
         .populate({ path: "comments", populate: { path: "author" } });
+
       res.render("posts/index", { posts: posts, userId: user });
     });
   },

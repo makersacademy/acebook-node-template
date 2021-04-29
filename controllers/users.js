@@ -1,4 +1,5 @@
 var User = require("../models/user");
+var Post = require("../models/post");
 const bcrypt = require("bcrypt");
 
 var UsersController = {
@@ -98,8 +99,9 @@ var UsersController = {
 		if (!req.session.user_id) {
 			res.redirect("/users/login");
 		}
-		const user = await User.findById(req.session.user_id);
-		res.render("users/profile", { Title: "Profile Page", user: user });
+    const user = await User.findById(req.session.user_id);
+    const userPosts = await Post.find({ author: { _id:  req.session.user_id }}).sort({createdAt: 'desc'}).populate({ path: "comments", populate: { path: "author" } });;
+    res.render("users/profile", { Title: "Profile Page", user: user, userPosts: userPosts });
 	},
 
 };

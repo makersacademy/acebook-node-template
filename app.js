@@ -7,6 +7,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var hbs = require('hbs');
+// var exphbs = require("express-handlebars")
 
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -19,6 +21,9 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+
+// app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 app.use(session({secret: 'secretsession'}));

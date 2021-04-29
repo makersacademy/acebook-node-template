@@ -58,7 +58,7 @@
 
   <div id="split" class="container overflow-hidden">
     <div class="row gx-5">
-      <div class="col">
+      <div class="col-4">
         <div class="p-3 border bg-light">
           <h1> Profile </h1>
           <div class="text-center">
@@ -67,14 +67,91 @@
           <h4 class="username">{{user.username}}</h4>
           <p class="bio">{{user.bio}} </p>
           <a href="/users/{{user.id}}/edit"> Edit Bio </a>
+          <div class="text-center">
+            <h5> Followers:</h5>
+            <p>
+              12,046
+            </p>
+            <h5> Following:</h5>
+            <p>
+              476
+            </p>
+          </div>
         </div>
+
       </div>
-      <div class="col">
+      <div class="col-8">
+
         <div class="p-3 border bg-light">
           <h1> My Posts </h1>
-          {{!-- {{#each posts}}
-          {{this.message}}
-          {{/posts}} --}}
+          <div class="posts">
+            <ul class="list-group list-group-flush">
+              {{#each userPosts}}
+
+              <div class="container-fluid">
+                <li class="list-group-item">
+                  <p id="post-msg">
+                    {{this.message}}
+                  </p>
+                  <div>
+                    {{#each images}}
+                    <img src="{{this.url}}" alt="image" class="class img-fluid" width="200" height="200" ;>
+                    {{/each}}
+                  </div>
+                  <p id="post-auth">
+                    {{#each this.author}}
+                    Posted by <a href="/users/:id">{{this.username}}</a>
+                    {{/each}}
+                    on {{this.createdAt}}
+                    {{#if updatedAt}}
+                  <p>
+                    Updated on {{this.updatedAt}}
+                  </p>
+                  {{/if}}
+
+            
+                  <p>
+                  <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                    <form action='/posts/{{this.id}}/delete' method='post'>
+                      <input class="btn btn-outline-secondary" type='submit' value='Delete'>
+                    </form>
+                  </div>
+                  <div class="btn-group" role="group" aria-label="...">
+                    <form action='/posts/{{this.id}}/edit' method='get'>
+                      <input class="btn btn-outline-secondary" type='submit' value='Edit'>
+                    </form>
+                  </div>
+                  </p>
+
+
+
+
+
+                  <div class="card" id="collapseExample">
+                    <div class="card card-body">
+                      <h5> Comments Section </h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item" id='comments'>
+                          {{#each this.comments}}
+                          <p>{{this.comment}}</p>
+                          Posted by
+                          {{#each this.author}}
+                          <a href="/users/:id">{{this.username}}</a>
+                          {{/each}}
+                          <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit"
+                              value="Delete">
+                          </form>
+                          {{/each}}
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </div>
+              {{/each}}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -112,6 +189,10 @@
     text-align: center;
   }
 
+  #post-msg {
+    font-size: 30px;
+  }
+
   #split {
     padding-top: 50px;
     width: 100%;
@@ -120,7 +201,7 @@
 
   footer {
     bottom: 0;
-    position: absolute;
+
     padding: 25px;
     width: 100%;
   }
