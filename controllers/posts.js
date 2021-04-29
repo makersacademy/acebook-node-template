@@ -14,7 +14,7 @@ var PostsController = {
 
       res.render('posts/index', { posts: posts, currentUser });
     }).populate('images').populate({path:'comments', populate: {path: 'author'}}).populate('author').sort({createdAt: -1})
-    
+
   },
 
   ViewImage: function(req, res) {
@@ -29,7 +29,7 @@ var PostsController = {
     if(req.user) {
 
    
-      if(files == undefined){
+      if(files.length === 0 ) {
         alert('You dizzy?!! Choose a pic to upload!!!')
         return res.status(401).redirect('/posts')
       }
@@ -54,8 +54,6 @@ var PostsController = {
           newImage = new Image (finalImg);
           newImage.save((saveImageError) => {
             if(saveImageError) { throw saveImageError; }
-              console.log(post)
-              console.log(newImage._id)
               post.images.push(newImage);
 
               post.save((savePostError) => {
@@ -74,7 +72,6 @@ var PostsController = {
       alert('Fam! Log in first!')
       return res.status(401).redirect('/posts')
     }
-    
   },
 
   New: function(req, res) {
