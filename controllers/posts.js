@@ -94,13 +94,12 @@ var PostsController = {
 		const postsSearch = req.query.search;
 		await Post.find(
 			{ $text: { $search: postsSearch } },
-			function (err, postsSearch) {
+			async function (err, postsSearch) {
 				if (err) {
-					throw err;
+			 throw err;
 				}
-				console.log(postsSearch);
-				if (postsSearch === []){
-					req.flash('noResults', 'There are no search results');
+				if (postsSearch.length === 0){
+					await req.flash('noResults', 'There are no search results');
 				}
 				res.render("posts/search", { postsSearch: postsSearch, resultError: req.flash('noResults')});
 			}
