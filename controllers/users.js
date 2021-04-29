@@ -6,7 +6,6 @@ var UsersController = {
 		res.render("users/index", {messages: req.flash('err')});
 	},
 	CreateUser: async function (req, res) {
-
 		const { email, password, username, bio, profilePicture } = req.body;
     const emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
     const passwordValidator = /.*[0-9].*/
@@ -21,7 +20,6 @@ var UsersController = {
       req.flash('err', 'This username is already registered');
       return res.status(400).redirect('/users/signup');
     } 
-    
 		if ((emailValidator).test(email) === false) {
 			req.flash('err', 'You must provide a valid email address')
       return res.status(400).redirect('/users/signup');
@@ -35,7 +33,7 @@ var UsersController = {
       return res.status(400).redirect('/users/signup');
 		} else {
 			const hash = await bcrypt.hash(password, 12);
-  
+    
 			var user = new User({
 				email,
 				password: hash,
@@ -43,14 +41,16 @@ var UsersController = {
 				bio,
         profilePicture
 			});
-       await user.save(function(err){
+
+      await user.save(function(err){
       if (err) { 
         throw err 
       }
       res.status(201).redirect('/users/welcome');
-   
-    });
+      });
+    }
   },
+
   Welcome: function(req, res){
     res.render('users/welcome', {});
   },
@@ -77,27 +77,6 @@ var UsersController = {
       res.redirect('/users/login');
     }
   },
-	Welcome: function (req, res) {
-		res.render("users/welcome", {});
-	},
-	Login: function (req, res) {
-		res.render("users/login", {});
-	},
-	Authenticate: async function (req, res) {
-		const { email, password } = req.body;
-		const user = await User.findOne({ email });
-		const validPassword = await bcrypt.compare(password, user.password);
-		if (validPassword) {
-			req.session.user_id = user._id;
-			res.redirect("/posts");
-		} else {
-			res.redirect("/users/login");
-		}
-	},
-	LogOut: function (req, res) {
-		req.session.user_id = null;
-		res.redirect("/users/login");
-	},
   EditBio: async (req, res) => {
     if (!req.session.user_id){
       res.redirect('/users/login')
