@@ -68,9 +68,9 @@
               <input type="submit" value="Save edit">
             </form>
             {{!--Like post--}}
-            <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST">
-              <label for="likes">{{this.likes}} </label>
-              <input name="likes" type="submit" value="Like">
+            <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST" onsubmit="like.disabled = true; return true;">
+              <p class="likes" >{{this.likes}} </p>
+              <input name="like" type="submit" value="Like">
             </form>
 
 
