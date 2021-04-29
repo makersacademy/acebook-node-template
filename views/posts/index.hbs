@@ -41,7 +41,16 @@
         {{#each posts}}
         <div class="card">
           <div class="thumbnail">
-            <p>Thumbnail</p>
+            <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
+                <div>
+                    <div>
+                        <input type="file" class="form-control" name="images" id="formFile">
+                    </div>
+                    <div>
+                        <input type="submit" value="Upload Image">
+                    </div>
+                </div>
+            </form>
           </div>
           <div class="card-text">
             {{this.message}}
