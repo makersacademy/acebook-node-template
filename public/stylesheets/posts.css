@@ -255,7 +255,9 @@ html,body{
     padding: 0 100px 0 100px;
     opacity: .7;
     font-size: 17px;
-    line-height: 1.6; }
+    line-height: 1.6;
+    margin-bottom: 100px;
+   }
   
   .footer-link {
     text-decoration: none;
@@ -273,4 +275,21 @@ html,body{
 
 .comments {
     display: none;
+}
+.mars {
+  text-align: center;
+}
+.new-post-link {
+  text-align: center;
+  margin-left: 650px;
+  padding-left: 20px;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  
 }

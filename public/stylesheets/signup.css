@@ -188,4 +188,18 @@ html,body{
     text-align: center;
     border-top: #d1d1d1 solid 1px;
     margin: 0px 20px;
+    margin-top: 150px;
+    background-color;
+  }
+  .gotopost {
+  text-align: center;
+  padding-left: 20px;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
   }

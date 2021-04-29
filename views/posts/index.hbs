@@ -26,17 +26,26 @@
       </div>
     </div>
     <article>
-      <div class="heading">
+        <div class="heading">
         <p class="heading-title">User Posts</p>
         <div class="heading-text">
           Whether you want to show the world your new dog, <br />complain about how the train prices have gone up over
           the last 10 years<br /> or talk about your favourite TV show. <br> There's always something to discuss below.
         </div>
+              <h6 class="mars">A Team Mars Production</h6>
+
       </div>
 
-      {{!-- Log out form --}}
+      
+       {{!-- New post --}}
+      {{#if currentUser}}
+        <a class="new-post-link" href="/posts/new">New post</a>
 
+        <a class="new-post-link" href="/posts/dashboard">My Dashboard</a>
+
+      {{/if}}
       {{!-- Show each post --}}
+      
       <div class="cards">
         {{#each posts}}
         <div class="card">
@@ -70,6 +79,12 @@
               <input id="message" type="text" name="edited" value="">
               <input type="submit" value="Save edit">
             </form>
+            {{!--Like post--}}
+            <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST" onsubmit="like.disabled = true; return true;">
+              <p class="likes" >{{this.likes}} </p>
+              <input name="like" type="submit" value="Like">
+            </form>
+
 
             {{!-- New comment --}}
             <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
@@ -107,9 +122,6 @@
         {{/each}}
       </div>
       {{!-- New post --}}
-      {{#if currentUser}}
-        <a class="new-post-link" href="/posts/new">New post</a>
-      {{/if}}
     </article>
   </section>
   <script src="javascripts/posts.js"></script>
