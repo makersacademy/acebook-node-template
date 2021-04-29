@@ -5,7 +5,11 @@ var PostSchema = new mongoose.Schema(
   {message: {type: String, required: true},
   author :  { type: Schema.Types.ObjectId, ref: "User"} ,
   comments:[ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
+
+  images: [{ type: Schema.Types.ObjectId, ref: 'Image' }, ],
+
   likes: {type: Number}
+
   },
   { timestamps: true }
 );
