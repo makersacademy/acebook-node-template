@@ -61,7 +61,7 @@ var PostsController = {
               post.save((savePostError) => {
                 if(savePostError) { throw savePostError; }
                 
-                res.status(201).redirect('/posts/image')
+                res.status(201).redirect('/posts')
               })
           })
           }else {

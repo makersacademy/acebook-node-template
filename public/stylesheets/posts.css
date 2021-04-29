@@ -205,11 +205,16 @@ html,body{
     height: 225px;
     display: -ms-grid;
     display: grid;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     background-color: #54595c;
     color: white;
     border-radius: 4px 4px 0 0; }
+
+  img {
+      height: 225px;
+    width: 190px;
+  align-self: end; }
   
   .card-text {
     padding: 20px;
