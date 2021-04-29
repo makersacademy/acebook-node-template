@@ -15,13 +15,16 @@
     <div class="container">
       <div class="header-nalsv">
         <div class="logo">
-          <a href="#">Acebook<em class="smallc"> &copy</em></a>
+          <a href="/posts">Acebook<em class="smallc"> &copy</em></a>
         </div>
         {{#if currentUser}}
         <form id="logoutbutton" class="logoutbutton" method="post" action="/logout">
           <input type="submit" value="Log Out">
         </form>
         {{/if}}
+        {{#unless currentUser}}
+        <a href="/" class="gotopost">Log In or Register</a>
+        {{/unless}}
         <main>
       </div>
     </div>
