@@ -155,9 +155,7 @@ var PostsController = {
      alert('Fam! Log in first!')
      return res.status(401).redirect('/posts')
     }
-  }
-
-};
+  },
 
   Dashboard: function(req, res) {
       var currentUser = req.user;
