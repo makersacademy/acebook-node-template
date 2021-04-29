@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylesheets/posts.css">
+    <link rel="stylesheet" href="/stylesheets/posts.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="header-nalsv">
                 <div class="logo">
-                    <a href="#">Acebook<em class="smallc"> &copy</em></a>
+                    <a href="/posts">Acebook<em class="smallc"> &copy</em></a>
                 </div>
                 {{#if currentUser}}
                 <form id="logoutbutton" class="logoutbutton" method="post" action="/logout">
@@ -27,7 +27,7 @@
         </div>
         <article>
             <div class="heading">
-                <p class="heading-title">My Posts</p>
+                <p class="heading-title">Your Dashboard</p>
                 <div class="heading-text">
                     Welcome to your dashboard! View, Edit and Comment on your own posts below.
                 </div>
@@ -40,6 +40,8 @@
             {{#if currentUser}}
             <a class="new-post-link" href="/posts/new">New post</a>
             {{/if}}
+
+            
             {{!-- Show each post --}}
 
             <div class="cards">
@@ -107,7 +109,7 @@
             {{!-- New post --}}
         </article>
     </section>
-    <script src="javascripts/posts.js"></script>
+    <script src="/javascripts/posts.js"></script>
 </body>
 
 </html>
