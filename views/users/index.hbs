@@ -43,6 +43,7 @@
 
       <div id="right"> 
         <div class="sign-up">
+          {{messages}}
           <form id="sign-up-form" action="/users/signup" method="post">
             <h3> <b> Create An Account </b> </h3>
             <p> It's quick and easy! </p>
@@ -61,7 +62,8 @@
             <div class="form-group">
               <input type="submit" class="btn btn-success btn-lg btn-block signup-btn" value="Submit">
             </div>  
-          </form>  
+          </form>
+          {{messages}}  
           <h4>If you already have an account please <a class="log-in-link" href="/users/login"> log in.</a></h4>
         </div>
       </div>
