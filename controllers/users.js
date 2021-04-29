@@ -1,79 +1,95 @@
-var User = require('../models/user');
-const bcrypt = require('bcrypt');
+var User = require("../models/user");
+const bcrypt = require("bcrypt");
 
 var UsersController = {
-  Signup: function(req, res){
-    res.render('users/index', {});
-  },
-  CreateUser: async function(req, res){
-    console.log(req.body);
-    const { email, password, username, bio } = req.body;
-    const hash = await bcrypt.hash(password, 12); 
+	Signup: function (req, res) {
+		res.render("users/index", {messages: req.flash('err')});
+	},
+	CreateUser: async function (req, res) {
+		console.log(req.body);
+		const { email, password, username, bio } = req.body;
+    const emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
+    const passwordValidator = /.*[0-9].*/
 
-    var user = new User( {
-      email,
-      password: hash,
-      username,
-      bio
-    });
-    
-    console.log(user);
+		if ((emailValidator).test(email) === false) {
+			req.flash('err', 'You must provide a valid email address')
+      return res.status(400).redirect('/users/signup');
+		}
+    if ((passwordValidator).test(password) === false) {
+			req.flash('err', 'Your password must have a least one number')
+      return res.status(400).redirect('/users/signup');
+		}
+		if (password.length < 6) {
+      req.flash('err', 'Your password must be at least 6 characters long')
+      return res.status(400).redirect('/users/signup');
+		} else {
+			const hash = await bcrypt.hash(password, 12);
 
-    await user.save(function(err){
-      if (err) { 
-        throw err 
-      }
-      
-      res.status(201).redirect('/users/welcome');
-    });
-  },
-  Welcome: function(req, res){
-    res.render('users/welcome', {});
-  },
-  Login: function(req, res){
-    res.render('users/login', {});
-  },
-  Authenticate: async function(req, res){
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    const validPassword = await bcrypt.compare(password, user.password);
-    if(validPassword){
-      req.session.user_id = user._id;
-      res.redirect('/posts');
-    } 
-    else{
-      res.redirect('/users/login');
-    }
-  },
-  LogOut: function(req, res){
-    req.session.user_id = null;
-    res.redirect('/users/login');
-  },
+			var user = new User({
+				email,
+				password: hash,
+				username,
+				bio,
+			});
 
-  Profile: async (req, res) => {
-    if (!req.session.user_id){
-      res.redirect('/users/login')
-    }
-    const user = await User.findById(req.session.user_id);
-    res.render('users/profile', {Title: 'Profile Page', user: user});
-  },
+			console.log(user);
 
-  EditBio: async (req, res) => {
-    if (!req.session.user_id){
-      res.redirect('/users/login')
-    }
-    const user = await User.findById(req.session.user_id);
-    res.render('users/edit', { Title: 'Edit Bio', user: user});
-  },
+			await user.save(function (err) {
+				if (err) {
+					throw err;
+				}
 
-  UpdateBioDB: async (req,res) => {
-    if (!req.session.user_id){
-      res.redirect('/users/login')
-    }
-    const user = await User.findByIdAndUpdate(req.session.user_id, {bio: req.body.message});
-    res.status(201).redirect(`/users/${user._id}`);
-  },
+				res.status(201).redirect("/users/welcome");
+			});
+		}
+	},
+	Welcome: function (req, res) {
+		res.render("users/welcome", {});
+	},
+	Login: function (req, res) {
+		res.render("users/login", {});
+	},
+	Authenticate: async function (req, res) {
+		const { email, password } = req.body;
+		const user = await User.findOne({ email });
+		const validPassword = await bcrypt.compare(password, user.password);
+		if (validPassword) {
+			req.session.user_id = user._id;
+			res.redirect("/posts");
+		} else {
+			res.redirect("/users/login");
+		}
+	},
+	LogOut: function (req, res) {
+		req.session.user_id = null;
+		res.redirect("/users/login");
+	},
 
-}
+	Profile: async (req, res) => {
+		if (!req.session.user_id) {
+			res.redirect("/users/login");
+		}
+		const user = await User.findById(req.session.user_id);
+		res.render("users/profile", { Title: "Profile Page", user: user });
+	},
+
+	EditBio: async (req, res) => {
+		if (!req.session.user_id) {
+			res.redirect("/users/login");
+		}
+		const user = await User.findById(req.session.user_id);
+		res.render("users/edit", { Title: "Edit Bio", user: user });
+	},
+
+	UpdateBioDB: async (req, res) => {
+		if (!req.session.user_id) {
+			res.redirect("/users/login");
+		}
+		const user = await User.findByIdAndUpdate(req.session.user_id, {
+			bio: req.body.message,
+		});
+		res.status(201).redirect(`/users/${user._id}`);
+	},
+};
 
 module.exports = UsersController;
