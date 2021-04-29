@@ -14,10 +14,10 @@
             </div>
         </div>
     </div>
-    {{#each this.author}}
+    {{!-- {{#each this.author}}
     {{log ../../userId._id}}
     {{log this.id}}
-    {{#if_eq ../../userId._id this.id}}
+    {{#if_eq ../../userId._id this.id}} --}}
     {{!-- {{#if_eq ../../userId.username this.username}} --}}
       <form action='/posts/{{this.id}}/delete' method='post'>
       <input type='submit' value='Delete'>
@@ -25,8 +25,8 @@
       <form action='/posts/{{this.id}}/edit' method='get'>
       <input type='submit' value='Edit'>
       </form>
-    {{/if_eq}}
-    {{/each}}
+    {{!-- {{/if_eq}}
+    {{/each}} --}}
   </li>
 
   {{/each}}
