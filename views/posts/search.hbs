@@ -1,9 +1,16 @@
 <ul class="search">
-{{resultError}}
+    {{searchResultMessage}}
+    {{resultError}}
 
-{{#each postsSearch}}
+    {{#each postCollection}}
     <li>{{message}}</li>
 
-{{/each}}
+    {{/each}}
+    {{#each userCollection}}
+    <li>{{username}}</li>
+    <li>{{bio}}</li>
+    <img src="{{profilePicture}}" alt="" width="400" height="400">
+
+    {{/each}}
 </ul>
 <a href="/posts">Back to Homepage</a>
