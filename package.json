@@ -24,6 +24,7 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-session": "^1.17.1",
+    "handlebars-dateformat": "^1.1.1",
     "hbs": "^4.1.2",
     "http-errors": "~1.6.3",
     "mongoose": "^5.12.5",

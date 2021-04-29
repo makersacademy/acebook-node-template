@@ -1,5 +1,6 @@
 var User = require("../models/user");
 const bcrypt = require("bcrypt");
+const Post = require("../models/post");
 
 var UsersController = {
 	Signup: function (req, res) {
@@ -60,6 +61,10 @@ var UsersController = {
   Authenticate: async function(req, res){
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    if(!user){
+      req.flash('logstatus', 'Your credentials are incorrect, please try again');
+      res.redirect('/users/login');
+    }
     const validPassword = await bcrypt.compare(password, user.password);
     if(validPassword){
       req.session.user_id = user._id;
@@ -99,7 +104,9 @@ var UsersController = {
 			res.redirect("/users/login");
 		}
 		const user = await User.findById(req.session.user_id);
-		res.render("users/profile", { title: 'Profile Page', user: user });
+
+    const userPosts = await Post.find({ author: { _id:  req.session.user_id }}).sort({createdAt: 'desc'});
+    res.render("users/profile", { title: "Profile Page", user: user, userPosts: userPosts });
 	},
 
 };

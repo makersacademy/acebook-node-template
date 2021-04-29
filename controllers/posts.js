@@ -14,6 +14,7 @@ var PostsController = {
 				throw err;
 			}
 			const user = await User.findById(req.session.user_id);
+
 			const posts = await Post.find({})
 				.populate("author")
 				.sort({ createdAt: "desc" });
