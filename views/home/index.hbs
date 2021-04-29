@@ -22,8 +22,12 @@
             <div class="col-6">
                 <div class="p-3">
                     <div class="d-grid gap-2" id="buttons">
-                        <button class="btn btn-secondary" type="button"><a href="/users/signup"> Sign Up </a></button>
-                        <button class="btn btn-secondary" type="button"><a href="/users/login">Log In</a></button>
+                        <button id="signup" class="btn btn-secondary" type="button">
+                          <a href="/users/signup"> Sign Up </a>
+                        </button>
+                        <button class="btn btn-secondary visible" type="button">
+                          <a href="/users/login">Log In</a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -46,11 +50,14 @@
       float: right;
       padding-right: 50px;
   }
+  .visible {
+    visibility: visible;
+  }
   body {
       background-image: url('https://res.cloudinary.com/diw18eqtr/image/upload/v1619628549/Untitled_design_sg4wph.gif');
       background-repeat repeat;
   }
-  a{
+  a {
       text-decoration: none;
       color: white;
   }
@@ -73,66 +80,8 @@
       height: 300px;
       padding: 50px;
   }
-  .form-control {
-    font-size: 16px;
-    transition: all 0.4s;
-    box-shadow: none;
-  }
 
-  .form-control:focus {
-    border-color: #5cb85c;
-  }
 
-  .sign-up {
-    width: 480px;
-    margin: 0 auto;
-    padding: 30px ;
-  }
-
-  .sign-up form {
-	  border-radius: 5px;
-    margin-bottom: 20px;
-    background: #fff;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    padding: 40px;
-  }
-
-  .sign-up a {
-		color: #5cb85c;
-	}
-
-  .sign-up h2 {
-		text-align: center;
-		font-size: 34px;
-		margin: 10px 0 15px;
-	}
-
-	.sign-up .hint-text {
-		color: #999;
-		text-align: center;
-		margin-bottom: 20px;
-	}
-
-	.sign-up .form-group {
-		margin-bottom: 20px;
-	}
-
-  .sign-up .btn {        
-    font-size: 18px;
-		line-height: 26px;
-    font-weight: bold;
-		text-align: center;
-  }
-
-	.signup-btn {
-		text-align: center;
-		border-color: #5cb85c;
-		transition: all 0.4s;
-	}
-	.signup-btn:hover {
-		background: #5cb85c;
-		opacity: 0.8;
-	}
   footer {
     bottom: 0;
     padding: 25px;

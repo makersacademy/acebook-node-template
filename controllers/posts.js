@@ -2,149 +2,149 @@ var Post = require("../models/post");
 var Comment = require("../models/comment");
 var User = require("../models/user");
 
-
 var PostsController = {
-	Index: function(req, res) {
-		if (!req.session.user_id){
-			res.redirect('/users/login')
-		}
+  Index: function (req, res) {
+    if (!req.session.user_id) {
+      res.redirect("/users/login");
+    }
 
-		Post.find(async function (err) {
-			if (err) { throw err; }
-			const user = await User.findById(req.session.user_id);
-			const posts = await Post.find({}).populate('author').sort({createdAt: 'desc'}).populate('comments').sort({createdAt: 'desc'}).populate({path: 'comments', populate: {path: 'author'}});
-			res.render("posts/index", { posts: posts, userId: user})
+    Post.find(async function (err) {
+      if (err) {
+        throw err;
+      }
+      const user = await User.findById(req.session.user_id);
+      const posts = await Post.find({})
+        .populate("author")
+        .sort({ createdAt: "desc" })
+        .populate("comments")
+        .sort({ createdAt: "desc" })
+        .populate({ path: "comments", populate: { path: "author" } });
+      res.render("posts/index", { posts: posts, userId: user });
     });
   },
-  
-  New: function(req, res) {
-    if (!req.session.user_id){
-      res.redirect('/users/login')
+
+  New: function (req, res) {
+    if (!req.session.user_id) {
+      res.redirect("/users/login");
     }
-    res.render('posts/new', {});
+    res.render("posts/new", {});
   },
-		Create: async function (req, res) {
-		if (!req.session.user_id) {
-			res.redirect("/users/login");
-		}
-		var user = await User.findById(req.session.user_id);
+  Create: async function (req, res) {
+    if (!req.session.user_id) {
+      res.redirect("/users/login");
+    }
+    var user = await User.findById(req.session.user_id);
 
-		var newPost = new Post({
-			message: req.body.message,
-			author: (user._id)
-		})
-    
-    newPost.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
-		
-		newPost.save(function(err){
-			if (err) { throw err }
-				res.status(201).redirect('/posts');		
-		});
-	},
+    var newPost = new Post({
+      message: req.body.message,
+      author: user._id,
+    });
 
-	Delete: function (req, res) {
-		Post.findByIdAndRemove(req.params.id, function (err) {
-			if (err) {
-				throw err;
-			}
-			res.status(201).redirect("/posts");
-		});
-	},
+    newPost.images = req.files.map((f) => ({
+      url: f.path,
+      filename: f.filename,
+    }));
 
-	Sort: function (req, res) {
-		Post.find()
-			.sort("-createdAt")
-			.exec(function (err, posts) {
-				if (err) {
-					throw err;
-				}
-				res.render("posts/index", { posts: posts });
-			});
-	},
+    newPost.save(function (err) {
+      if (err) {
+        throw err;
+      }
+      res.status(201).redirect("/posts");
+    });
+  },
 
-	EditPage: async function (req, res) {
-		const { id } = req.params;
-		const post = await Post.findById(id);
-		res.render("posts/edit", {
-			post,
-			message: req.body.message,
-			id: req.params.id,
-		});
-	},
+  Delete: function (req, res) {
+    Post.findByIdAndRemove(req.params.id, function (err) {
+      if (err) {
+        throw err;
+      }
+      res.status(201).redirect("/posts");
+    });
+  },
 
-	Edit: function (req, res) {
-		Post.findByIdAndUpdate(
-			{ _id: req.params.id },
-			{ $set: { message: req.body.message } },
-			{ new: true },
-			function (err) {
-				if (err) {
-					throw err;
-				} else {
-					console.log("Updated post");
-					res.status(201).redirect("/posts");
-				}
-			}
-		);
-	},
-  
-	Search: async function (req, res) {
-		if (!req.session.user_id) {
-			res.redirect("/users/login");
-		}
-		const postsSearch = req.query.search;
-		await Post.find(
-			{ $text: { $search: postsSearch } },
-			function (err, postsSearch) {
-				if (err) {
-					throw err;
-				}
-				const user = User.findById(req.session.user_id);
-				res.render("posts/search", { postsSearch: postsSearch, userId: user });
-			}
-		).populate('author');
-	},
+  Sort: function (req, res) {
+    Post.find()
+      .sort("-createdAt")
+      .exec(function (err, posts) {
+        if (err) {
+          throw err;
+        }
+        res.render("posts/index", { posts: posts });
+      });
+  },
 
-	// ProfilePost: async function (req, res) {
-	// 	if (!req.session.user_id) {
-	// 		res.redirect("/users/login");
-	// 	}
-	// 	Post.find({'author.id': req.user._id}, function (err, posts) {
-	// 		if (err) { throw err; } else {
-	// 		res.render("posts/index", { posts: posts})
-	// 		}
-    // 	});
-	// },
+  EditPage: async function (req, res) {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    res.render("posts/edit", {
+      post,
+      message: req.body.message,
+      id: req.params.id,
+    });
+  },
 
-	Comment: function (req, res) {
-		Post.findById(req.params.id, (err, post) => {
-			var comment = new Comment(req.body);
-			comment.author = req.session.user_id;
-			comment.save((saveErr) => {
-				if (saveErr) {
-					throw saveErr;
-				}
-				post.comments.push(comment);
-				post.save((postErr) => {
-					if (postErr) {
-						throw postErr;
-					}
-					res.status(201).redirect("/posts");
-				});
-			});
-		});
-	},
+  Edit: function (req, res) {
+    Post.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $set: { message: req.body.message } },
+      { new: true },
+      function (err) {
+        if (err) {
+          throw err;
+        } else {
+          console.log("Updated post");
+          res.status(201).redirect("/posts");
+        }
+      }
+    );
+  },
 
-	DeleteComment: function(req, res) {
-		var comment = Comment.findById(req.params.id)
-		console.log(comment.id)
-		comment.deleteOne( function(err) {
-			if (err) {
-				throw err;
-			}
-			res.status(201).redirect('/posts');
-		})
-	}
+  Search: async function (req, res) {
+    if (!req.session.user_id) {
+      res.redirect("/users/login");
+    }
+    const postsSearch = req.query.search;
+    await Post.find(
+      { $text: { $search: postsSearch } },
+      function (err, postsSearch) {
+        if (err) {
+          throw err;
+        }
+        const user = User.findById(req.session.user_id);
+        res.render("posts/search", { postsSearch: postsSearch, userId: user });
+      }
+    ).populate("author");
+  },
+
+  Comment: function (req, res) {
+    Post.findById(req.params.id, (err, post) => {
+      var comment = new Comment(req.body);
+      comment.author = req.session.user_id;
+      comment.save((saveErr) => {
+        if (saveErr) {
+          throw saveErr;
+        }
+        post.comments.push(comment);
+        post.save((postErr) => {
+          if (postErr) {
+            throw postErr;
+          }
+          res.status(201).redirect("/posts");
+        });
+      });
+    });
+  },
+
+  DeleteComment: function (req, res) {
+    var comment = Comment.findById(req.params.id);
+    console.log(comment.id);
+    comment.deleteOne(function (err) {
+      if (err) {
+        throw err;
+      }
+      res.status(201).redirect("/posts");
+    });
+  },
 };
 
 module.exports = PostsController;
