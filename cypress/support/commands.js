@@ -17,7 +17,7 @@ Cypress.Commands.add("signupAndLogin", () => {
   cy.get('#sign-up-form').find('#password').type('test123');
   cy.get('#sign-up-form').find('#username').type('user1');
   cy.get('#sign-up-form').submit();
-
+  cy.visit('/users/login');
   cy.get('#log-in-form').find('#email').type('email@test.co.uk');
   cy.get('#log-in-form').find('#password').type('test123');
   cy.get('#log-in-form').submit();

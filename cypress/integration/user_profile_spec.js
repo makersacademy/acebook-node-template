@@ -23,7 +23,7 @@ describe('Profile', function() {
 	
 			cy.contains('Edit Profile').click();
 			cy.get('#edit-profile-form').find('#message').type('I am a robot');
-			cy.contains('Edit Profile').click();
+			cy.get('#edit-profile-button').click();
 
 			cy.contains('I am a robot');
 	

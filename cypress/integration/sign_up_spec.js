@@ -1,8 +1,8 @@
 describe('Sign up', function(){
-  // before(async (done) => {
-  //   await cy.task("db:drop");
-  //   done();
-  // })
+  before(async (done) => {
+    await cy.task("db:drop");
+    done();
+  })
 
   it('has a sign up form', function() {
     cy.visit('/users/signup');
