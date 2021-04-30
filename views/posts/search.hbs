@@ -91,10 +91,10 @@
       </div>
       <div id="split" class="col">
         <div class="p-3 border bg-light">
-          <h4> Users matching your search </h4>
+          <h4> Users matching your search </h4> 
+          {{#each userCollection}}
           <ul class="list-group list-group-flush">
-            <div class="container-fluid">
-              {{#each userCollection}}
+              <div class="container-fluid">
               <div class="p-3 border bg-light">
                 <h1> Profile </h1>
                 <div class="text-center">
@@ -112,8 +112,8 @@
                     476
                   </p>
                 </div>
-                {{/each}}
-          </ul>
+              </ul>  
+          {{/each}}
         </div>
       </div>
     </div>
