@@ -57,6 +57,7 @@
             {{#each this}}
             {{#if imageBase64 }}
             <img src='data:{{contentType}};base64,{{imageBase64}}' alt="...">
+            <form method="post" action="/posts/{{this._id}}/delete-image"><input type="submit" value="Delete Picture"></form>
             {{/if}}
             {{/each}}
             {{/each}}

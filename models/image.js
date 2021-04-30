@@ -13,7 +13,8 @@ var ImageSchema = new mongoose.Schema({
         type : String,
         required: true
     },
-    posts: { type: Schema.Types.ObjectId, ref: "Post" } 
+    posts: { type: Schema.Types.ObjectId, ref: "Post" },
+    author : { type: Schema.Types.ObjectId, ref: "User"}
 })
 var Image = mongoose.model('Image', ImageSchema);
 
