@@ -111,14 +111,19 @@
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item" id='comments'>
                     {{#each this.comments}}
-                    <p>{{this.comment}}</p>
-                    Posted by
-                    {{#each this.author}}
-                    <a href="/users/:id">{{this.username}}</a>
-                    {{/each}}
-                    at {{dateFormat this.createdAt "HH:MM, DD/MM/YYYY"}}
-                    <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete">
-                    </form>
+                      <p>{{this.comment}}</p>
+                        Posted by
+                        {{#each this.author}}
+                          <a href="/users/:id">{{this.username}}</a>
+                        {{/each}}
+                      at {{dateFormat this.createdAt "HH:MM, DD/MM/YYYY"}}
+                        {{log this.author._id}}
+                        {{log ../../userId._id}}
+                          {{#if_eq ../../userId._id this.author._id}}
+                          {{log this._id}}
+                          <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete">
+                          </form>
+                          {{/if_eq}}
                     {{/each}}
                   </li>
 
