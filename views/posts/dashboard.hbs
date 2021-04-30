@@ -41,95 +41,91 @@
             <a class="new-post-link" href="/posts/new">New post</a>
             {{/if}}
 
-
             {{!-- Show each post --}}
 
-            {{!-- Show each post --}}
-
-            <div class="cards">
-                {{#each posts}}
-                <div class="card">
-                    <div class="thumbnail">
-                        {{#each images}}
-                        {{#each this}}
-                        {{#if imageBase64 }}
-                        <img src='data:{{contentType}};base64,{{imageBase64}}' alt="...">
-                        {{/if}}
-                        {{/each}}
-                        {{/each}}
-                        {{#unless images}}
-                        <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
-                            <input type="file" class="form-control" name="images" id="formFile">
-                            <input type="submit" value="Upload Image">
-                        </form>
-                        {{/unless}}
-                    </div>
-                    <div class="card-text">
-                        {{this.message}}
-                    </div>
-                    <div class="card-buttons">
-                        <div class="card-button-1 hover-effect add-cursor">
-                        </div>
-                        <div class="card-button-2 hover-effect add-cursor">
-                        </div><br><br>
-
-                        <section class="postarea">
-
-                            {{!-- Date time --}}
-                            <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete">
-                            </form>
-                            {{!-- Edit post --}}
-                            <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
-                                <label for="message">Edit post: </label>
-                                <input id="message" type="text" name="edited" value="">
-                                <input type="submit" value="Save edit">
-                            </form>
-                            {{!--Like post--}}
-                            <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST"
-                                onsubmit="like.disabled = true; return true;">
-                                <p class="likes">{{this.likes}} </p>
-                                <input name="like" type="submit" value="Like">
-                            </form>
-                            <form method="post" action="/posts/{{this.id}}/dislike"><input type="submit"
-                                    value="Dislike"></form>
-
-                            {{!-- New comment --}}
-                            <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
-                                <label for="message">Comment: </label>
-                                <input id="message" type="text" name="comment" value="">
-                                <input type="submit" value="Submit">
-                            </form><br>
-                            {{!-- Show comments --}}
-                            <p class="card-bottom-text">
-                                {{this.author.username}}
-                                Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
-                                Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}
-                            </p>
-                            <button class="showcomments">{{this.comments.length}} Comments</button>
-
-                            {{#each this.comments}}
-                            <div class="comments">
-                                <h4>{{this.comment}}</h4><br>
-
-                                <h6>{{this.author.username}}
-                                    Commented {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
-                                    Edited Comment {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
-                                {{!-- Edit comments --}}
-                                <form id="edit-comment-form" action="/posts/{{this.id}}/edit-comment" method="POST">
-                                    <label for="message">Edit comment: </label>
-                                    <input id="message" type="text" name="edited" value="">
-                                    <input type="submit" value="Save edit">
-                                </form>
-                                <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit"
-                                        value="Delete">
-                                </form>
-                            </div>
-                            {{/each}}
-                        </section>
-                    </div>
-                </div>
-                {{/each}}
+      <div class="cards">
+        {{#each posts}}
+        <div class="card">
+          <div class="thumbnail">
+            {{#each images}}
+            {{#each this}}
+            {{#if imageBase64 }}
+            <img src='data:{{contentType}};base64,{{imageBase64}}' alt="...">
+            <form method="post" action="/posts/{{this._id}}/delete-image"><input type="submit" value="Delete Picture"></form>
+            {{/if}}
+            {{/each}}
+            {{/each}}
+            {{#unless images}}
+            <div class="imagebutton">
+                <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
+                <input type="file" class="form-control" name="images" id="formFile" style="margin-left: 100px;">
+                <input type="submit" value="Upload Image">
+              </div>
+            </form>
+            {{/unless}}
+          </div>
+          <div class="card-text">
+            {{this.message}}
+          </div>
+          <div class="card-buttons">
+            <div class="card-button-1 hover-effect add-cursor">
             </div>
+            <div class="card-button-2 hover-effect add-cursor">
+            </div><br><br>
+
+            <section class="postarea">
+
+            {{!-- Date time --}}
+            <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete"></form>
+            {{!-- Edit post --}}
+            <form id="edit-post-form" action="/posts/{{this.id}}/edit" method="POST">
+              <label for="message">Edit post: </label>
+              <input id="message" type="text" name="edited" value="">
+              <input type="submit" value="Save edit">
+            </form>
+            {{!--Like post--}}
+            <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST" onsubmit="like.disabled = true; return true;">
+              <p class="likes" >{{this.likes}} </p>
+              <input name="like" type="submit" value="Like">
+            </form>
+             <form method="post" action="/posts/{{this.id}}/dislike"><input type="submit" value="Dislike"></form>
+
+              {{!-- New comment --}}
+              <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
+                <label for="message">Comment: </label>
+                <input id="message" type="text" name="comment" value="">
+                <input type="submit" value="Submit">
+              </form><br>
+              {{!-- Show comments --}}
+              <p class="card-bottom-text">
+                {{this.author.username}}
+                Created {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+                Updated {{moment this.updatedAt "YYYYMMDD" fromNow=null}}
+              </p>
+              <button class="showcomments">{{this.comments.length}} Comments</button>
+
+              {{#each this.comments}}
+              <div class="comments">
+                <h4>{{this.comment}}</h4><br>
+
+                <h6>{{this.author.username}}
+                  Commented {{moment this.createdAt "YYYYMMDD" fromNow=null}}<br>
+                  Edited Comment {{moment this.updatedAt "YYYYMMDD" fromNow=null}}</h6>
+                {{!-- Edit comments --}}
+                <form id="edit-comment-form" action="/posts/{{this.id}}/edit-comment" method="POST">
+                  <label for="message">Edit comment: </label>
+                  <input id="message" type="text" name="edited" value="">
+                  <input type="submit" value="Save edit">
+                </form>
+                <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit" value="Delete">
+                </form>
+              </div>
+              {{/each}}
+            </section>
+          </div>
+        </div>
+        {{/each}}
+      </div>
             {{!-- New post --}}
         </article>
     </section>
