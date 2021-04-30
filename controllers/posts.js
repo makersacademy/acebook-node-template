@@ -1,7 +1,6 @@
 var Post = require("../models/post");
-
+var Comment = require("../models/comment");
 var User = require("../models/user");
-
 
 var PostsController = {
 	Index: function (req, res) {
@@ -17,7 +16,10 @@ var PostsController = {
 
 			const posts = await Post.find({})
 				.populate("author")
-				.sort({ createdAt: "desc" });
+				.sort({ createdAt: "desc" })
+        .populate("comments")
+        .sort({ createdAt: "desc" })
+        .populate({ path: "comments", populate: { path: "author" } });
 			res.render("posts/index", { posts: posts, userId: user, title: 'Homepage'});
 		});
 	},
@@ -51,25 +53,14 @@ var PostsController = {
 		});
 	},
 
-	Delete: function (req, res) {
-		Post.findByIdAndRemove(req.params.id, function (err) {
-			if (err) {
-				throw err;
-			}
-			res.status(201).redirect("/posts");
-		});
-	},
-
-	Sort: function (req, res) {
-		Post.find()
-			.sort("-createdAt")
-			.exec(function (err, posts) {
-				if (err) {
-					throw err;
-				}
-				res.render("posts/index", { posts: posts });
-			});
-	},
+  Delete: function (req, res) {
+    Post.findByIdAndRemove(req.params.id, function (err) {
+      if (err) {
+        throw err;
+      }
+      res.status(201).redirect("/posts");
+    });
+  },
 
 	EditPage: async function (req, res) {
 		const { id } = req.params;
@@ -144,6 +135,36 @@ var PostsController = {
 			searchResultMessage: searchResultMsg
 		});
 	},
+
+  Comment: function (req, res) {
+    Post.findById(req.params.id, (err, post) => {
+      var comment = new Comment(req.body);
+      comment.author = req.session.user_id;
+      comment.save((saveErr) => {
+        if (saveErr) {
+          throw saveErr;
+        }
+        post.comments.push(comment);
+        post.save((postErr) => {
+          if (postErr) {
+            throw postErr;
+          }
+          res.status(201).redirect("/posts");
+        });
+      });
+    });
+  },
+
+  DeleteComment: function (req, res) {
+    var comment = Comment.findById(req.params.id);
+    console.log(comment.id);
+    comment.deleteOne(function (err) {
+      if (err) {
+        throw err;
+      }
+      res.status(201).redirect("/posts");
+    });
+  },
 };
 
 module.exports = PostsController;

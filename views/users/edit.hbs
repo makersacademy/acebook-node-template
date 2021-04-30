@@ -1,45 +1,162 @@
-<h1>Edit your profile</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form id="edit-profile-form" action="/users/{{user._id}}/edit" method="POST">
-  <input type="hidden" name="_method" value="put">
-  <div>
-    <input type="radio" id="desert" name="profilePic" value="https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80" checked>
-    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80'>
-    <label for="desert">Desert</label>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <title>Edit Profile</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/posts">Acebook</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="/users/{{userId._id}}"> {{userId.username}} </a>
+
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link active" aria-current="page" href="/posts">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Settings
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/users/{{user._id}}/edit">Profile Settings</a></li>
+            </ul>
+          </li>
+          <li class="nav-item active">
+            <form id="log-out-form" action="/users/logout" method="post">
+              <button class="btn btn-outline-secondary" value="Log Out">Log out</button>
+            </form>
+          </li>
+        </ul>
+        <form class="d-flex" id="search-post-form" action='/posts/search' method='get'>
+          <input type="text" name="search" name="search" />
+          <input class="btn btn-outline-success" placeholder="Search" type="submit" value="Search"></input>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div id="title" class="jumbotron jumbotron-fluid">
+    <div class="container-fluid">
+      <h1 class="display-4">Update a your Profile</h1>
+      <p class="lead">Fill this form out to update your profile information! </p>
+    </div>
   </div>
-  <div>
-    <input type="radio" id="beach" name="profilePic" value='https://images.unsplash.com/photo-1619509943800-81ce9ac042e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'>
-    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619509943800-81ce9ac042e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'>
-    <label for="beach">Beach</label>
+  <div class="container" id="container">
+    <form id="edit-profile-form" action="/users/{{user.id}}/edit" method="POST">
+      <input type="hidden" name="_method" value="put">
+
+        <input type="radio" id="desert" name="profilePic" value="https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80" checked>
+        <img src='https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80'>
+
+
+        <input type="radio" id="beach" name="profilePic" value='https://images.unsplash.com/photo-1619509943800-81ce9ac042e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'>
+        <img src='https://images.unsplash.com/photo-1619509943800-81ce9ac042e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'>
+     
+
+        <input type="radio" id="river" name="profilePic" value='https://images.unsplash.com/photo-1619460636045-ed08799e25f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80'>
+        <img src='https://images.unsplash.com/photo-1619460636045-ed08799e25f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80'>
+    
+        <input type="radio" id="building" name="profilePic" value='https://images.unsplash.com/photo-1619550147327-c0038188f4ef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'>
+        <img src='https://images.unsplash.com/photo-1619550147327-c0038188f4ef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'>
+   
+
+        <input type="radio" id="hotairballoon" name="profilePic" value='https://images.unsplash.com/photo-1619547871672-b6562e042c1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
+        <img src='https://images.unsplash.com/photo-1619547871672-b6562e042c1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
+  
+
+        <input type="radio" id="flowers" name="profilePic" value='https://images.unsplash.com/photo-1619612200694-69b4d3d13e4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
+        <img src='https://images.unsplash.com/photo-1619612200694-69b4d3d13e4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
+    <div id="post-box" class="container">
+      <div class="mb-3">
+        <label for="message" class="form-label"> Bio: </label>
+        <input class="form-control" id="message" type="text" name="message" value="{{user.bio}}">
+      </div>
+        <input type="submit" value="Edit Bio">
+      <div class="backtoprofile">
+        <a href="/users/{{user._id}}">Back to Profile</a>
+      </div>
+    </div>
+    </form>
   </div>
-  <div>
-    <input type="radio" id="river" name="profilePic" value='https://images.unsplash.com/photo-1619460636045-ed08799e25f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80'>
-    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619460636045-ed08799e25f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80'>
-    <label for="river">River</label>
-  </div>
-  <div>
-    <input type="radio" id="building" name="profilePic" value='https://images.unsplash.com/photo-1619550147327-c0038188f4ef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'>
-    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619550147327-c0038188f4ef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'>
-    <label for="building">Building</label>
-  </div>
-  <div>
-    <input type="radio" id="hotairballoon" name="profilePic" value='https://images.unsplash.com/photo-1619547871672-b6562e042c1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
-    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619547871672-b6562e042c1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
-    <label for="hotairballoon">Hot Air Balloon</label>
-  </div>
-  <div>
-    <input type="radio" id="flowers" name="profilePic" value='https://images.unsplash.com/photo-1619612200694-69b4d3d13e4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
-    <img style="width:150px; height:225px; object-fit:cover;" src='https://images.unsplash.com/photo-1619612200694-69b4d3d13e4b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'>
-    <label for="flowers">Flowers</label>
-  </div>
+  
 
+ 
 
+  <footer>
+    <div id="footersubdiv">
+      <div id="license">
+        <p> Dream Team | 2021 ltd</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Optional JavaScript; choose one of the two! -->
 
-  <label for="message">Bio: </label>
-  <input id="message" type="text" name="message" class="message" value="{{{user.bio}}}">
-  <input type="submit" value="Edit Profile">
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
 
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+</body>
 
-</form>
+</html>
+<style>
+  #title {
+    padding-top: 50px;
+    text-align: center;
+  }
 
-<a href="/users/{{user._id}}">Back to Profile</a>
+  #post-box {
+    width: 50%;
+    text-align: center;
+  }
+
+  .backtoprofile {
+    padding-top: 100px;
+  }
+  #container {
+    display: inline;
+    width: 70%;
+    text-align: center;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  footer {
+    bottom: 0;
+    padding: 25px;
+    width: 100%;
+  }
+
+  #license {
+    text-align: center;
+  }
+
+  label {
+    font-size: 25px;
+  }
+</style>
