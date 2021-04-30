@@ -21,6 +21,7 @@ var PostsController = {
         .sort({ createdAt: "desc" })
         .populate({ path: "comments", populate: { path: "author" } });
 			res.render("posts/index", { posts: posts, userId: user, title: 'Homepage'});
+			console.log(posts[0].author)
 		});
 	},
 	New: function (req, res) {
@@ -63,6 +64,9 @@ var PostsController = {
   },
 
 	EditPage: async function (req, res) {
+		if (!req.session.user_id) {
+			res.redirect("/users/login");
+		}
 		const { id } = req.params;
 		const post = await Post.findById(id);
 		res.render("posts/edit", {
