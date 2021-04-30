@@ -40,7 +40,6 @@
     </div>
   </div>
   <div class="sign-in">
-    {{messages}}
     <form id="log-in-form" action="/users/login" method="post">
       <h3> <b> Sign In</b></h3>
       <p> Welcome back!</p>
@@ -55,6 +54,11 @@
       <div class="form-group">
         <input type="submit" class="btn btn-success btn-lg btn-block signup-btn" value="Submit">
       </div>
+      {{#if messages}}
+        <div class="alert alert-danger" role="alert" >
+          {{messages}}
+        </div>
+      {{/if}}
   </form>
 
   <h4>Haven't got an account, please <a class="sign-up-link" href="/users/signup"> sign up.</a></h4>  
