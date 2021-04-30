@@ -13,7 +13,7 @@ var PostsController = {
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts, currentUser });
-    }).populate('images').populate({path:'comments', populate: {path: 'author'}}).populate('author').sort({createdAt: -1})
+    }).populate({path:'images', populate: {path: 'author'}}).populate({path:'comments', populate: {path: 'author'}}).populate('author').sort({createdAt: -1})
 
   },
 
@@ -27,8 +27,6 @@ var PostsController = {
   UploadImages: function(req, res) {
     const files = req.files;
     if(req.user) {
-
-   
       if(files.length === 0 ) {
         alert('You dizzy?!! Choose a pic to upload!!!')
         return res.status(401).redirect('/posts')
@@ -52,15 +50,16 @@ var PostsController = {
 
           
           newImage = new Image (finalImg);
+          newImage.author = req.user._id;
           newImage.save((saveImageError) => {
             if(saveImageError) { throw saveImageError; }
               post.images.push(newImage);
 
-              post.save((savePostError) => {
-                if(savePostError) { throw savePostError; }
+            post.save((savePostError) => {
+              if(savePostError) { throw savePostError; }
                 
-                res.status(201).redirect('/posts')
-              })
+              res.status(201).redirect('/posts')
+            })
           })
           }else {
             alert('Fam! You cant be uploading your ugly pics here! go to your posts!')
@@ -69,6 +68,26 @@ var PostsController = {
         })
       });
     } else {
+      alert('Fam! Log in first!')
+      return res.status(401).redirect('/posts')
+    }
+  },
+
+  DeleteImage: function(req, res) {
+    if(req.user) {
+      Image.findById(req.params.id, (err, image) => {
+        if(req.user._id == image.author) {
+          image.deleteOne( function(err) {
+            if (err) { throw err;}
+            res.status(201).redirect('/posts');
+        });
+        }else {
+          alert('Bruh! You cant be deleting ppls pictures like that!')
+          return res.status(401).redirect('/posts')
+        }
+          
+      })
+    }else {
       alert('Fam! Log in first!')
       return res.status(401).redirect('/posts')
     }
@@ -257,13 +276,18 @@ var PostsController = {
   },
 
   Dashboard: function(req, res) {
+    if(req.user) {
       var currentUser = req.user;
       var currentUserId = currentUser._id
       Post.find({author: currentUserId}, function(err, posts) {
         if (err) { throw err; }
   
         res.render('posts/dashboard', { posts: posts, currentUser });
-      }).populate({path:'comments', populate: {path: 'author'}}).populate('author').sort({createdAt: -1})
+      }).populate({path:'images', populate: {path: 'author'}}).populate({path:'comments', populate: {path: 'author'}}).populate('author').sort({createdAt: -1})
+    } else {
+      alert('Fam! Log in first!')
+      return res.status(401).redirect('/posts')
+     }
     }
     
   };

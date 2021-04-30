@@ -6,7 +6,8 @@ var PostsController = require('../controllers/posts')
 router.get('/', PostsController.Index);
 router.get('/image', PostsController.ViewImage);
 router.post('/', PostsController.Create);
-router.post('/:id/upload', store.array('images', 1), PostsController.UploadImages);
+router.post('/:id/delete-image', PostsController.DeleteImage);
+router.post('/:id/upload', store.array('images', 2), PostsController.UploadImages);
 router.get('/new', PostsController.New);
 router.post('/:id/delete', PostsController.Delete);
 router.post('/:id/comment', PostsController.Comment);
