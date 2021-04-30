@@ -41,14 +41,28 @@
             <a class="new-post-link" href="/posts/new">New post</a>
             {{/if}}
 
-            
+
+            {{!-- Show each post --}}
+
             {{!-- Show each post --}}
 
             <div class="cards">
                 {{#each posts}}
                 <div class="card">
                     <div class="thumbnail">
-                        <p>Thumbnail</p>
+                        {{#each images}}
+                        {{#each this}}
+                        {{#if imageBase64 }}
+                        <img src='data:{{contentType}};base64,{{imageBase64}}' alt="...">
+                        {{/if}}
+                        {{/each}}
+                        {{/each}}
+                        {{#unless images}}
+                        <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
+                            <input type="file" class="form-control" name="images" id="formFile">
+                            <input type="submit" value="Upload Image">
+                        </form>
+                        {{/unless}}
                     </div>
                     <div class="card-text">
                         {{this.message}}
@@ -60,6 +74,7 @@
                         </div><br><br>
 
                         <section class="postarea">
+
                             {{!-- Date time --}}
                             <form method="post" action="/posts/{{this.id}}/delete"><input type="submit" value="Delete">
                             </form>
@@ -69,6 +84,14 @@
                                 <input id="message" type="text" name="edited" value="">
                                 <input type="submit" value="Save edit">
                             </form>
+                            {{!--Like post--}}
+                            <form id="like-post-form" action="/posts/{{this.id}}/like" method="POST"
+                                onsubmit="like.disabled = true; return true;">
+                                <p class="likes">{{this.likes}} </p>
+                                <input name="like" type="submit" value="Like">
+                            </form>
+                            <form method="post" action="/posts/{{this.id}}/dislike"><input type="submit"
+                                    value="Dislike"></form>
 
                             {{!-- New comment --}}
                             <form id="new-comment-form" action="/posts/{{this.id}}/comment" method="post">
@@ -98,7 +121,8 @@
                                     <input type="submit" value="Save edit">
                                 </form>
                                 <form method="post" action="/posts/{{this.id}}/delete-comment"><input type="submit"
-                                        value="Delete"></form>
+                                        value="Delete">
+                                </form>
                             </div>
                             {{/each}}
                         </section>
