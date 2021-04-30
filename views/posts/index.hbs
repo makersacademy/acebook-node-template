@@ -62,9 +62,11 @@
             {{/each}}
             {{/each}}
             {{#unless images}}
-            <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
-              <input type="file" class="form-control" name="images" id="formFile">
-              <input type="submit" value="Upload Image">
+            <div class="imagebutton">
+                <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
+                <input type="file" class="form-control" name="images" id="formFile" style="margin-left: 100px;">
+                <input type="submit" value="Upload Image">
+              </div>
             </form>
             {{/unless}}
           </div>
