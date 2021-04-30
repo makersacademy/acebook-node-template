@@ -83,18 +83,23 @@
                   {{#each this.author}}
                   Posted by <a href="/users/:id">{{this.username}}</a>
                   {{/each}}
-                  on {{this.createdAt}}
+                  on {{dateFormat this.createdAt "HH:MM, DD/MM/YYYY"}}
                 </p>
+                {{#if updatedAt}}
+                <p>
+                  Updated on {{dateFormat this.updatedAt "HH:MM, DD/MM/YYYY"}}
+                </p>
+                {{/if}}
                 {{/each}}
           </ul>
         </div>
       </div>
       <div id="split" class="col">
         <div class="p-3 border bg-light">
-          <h4> Users matching your search </h4> 
+          <h4> Users matching your search </h4>
           {{#each userCollection}}
           <ul class="list-group list-group-flush">
-              <div class="container-fluid">
+            <div class="container-fluid">
               <div class="p-3 border bg-light">
                 <h1> Profile </h1>
                 <div class="text-center">
@@ -112,7 +117,7 @@
                     476
                   </p>
                 </div>
-              </ul>  
+          </ul>
           {{/each}}
         </div>
       </div>
@@ -147,6 +152,7 @@
   #main {
     padding: 40px;
   }
+
   #split {
     text-align: center;
   }
@@ -160,7 +166,8 @@
   #license {
     text-align: center;
   }
-    label {
+
+  label {
     font-size: 25px;
   }
 
