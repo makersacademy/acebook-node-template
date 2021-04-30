@@ -57,13 +57,16 @@
             {{#each this}}
             {{#if imageBase64 }}
             <img src='data:{{contentType}};base64,{{imageBase64}}' alt="...">
+            <form method="post" action="/posts/{{this._id}}/delete-image"><input type="submit" value="Delete Picture"></form>
             {{/if}}
             {{/each}}
             {{/each}}
             {{#unless images}}
-            <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
-              <input type="file" class="form-control" name="images" id="formFile">
-              <input type="submit" value="Upload Image">
+            <div class="imagebutton">
+                <form action="/posts/{{this.id}}/upload" enctype="multipart/form-data" method="POST">
+                <input type="file" class="form-control" name="images" id="formFile" style="margin-left: 100px;">
+                <input type="submit" value="Upload Image">
+              </div>
             </form>
             {{/unless}}
           </div>

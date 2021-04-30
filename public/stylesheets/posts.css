@@ -296,5 +296,7 @@ html,body{
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  
+}
+.imagebutton {
+  text-align: center;
 }
