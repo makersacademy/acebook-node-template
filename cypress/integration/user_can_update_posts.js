@@ -10,12 +10,12 @@ describe('Update Posts', () => {
 
   it('can submit posts and view them', function () {
     cy.visit('/posts');
-    cy.contains('New post').click();
+    cy.get('.new-post-link').click();
 
     cy.get('#new-post-form').find('[type="text"]').type('What is up!');
     cy.get('#new-post-form').submit();
 
-    cy.contains('Edit').click();
+    cy.get('#edit-button').click();
 
     cy.get('#update-post-form').find('[type="text"]').type('Goodbye, world!');
     cy.get('#update-post-form').submit();
