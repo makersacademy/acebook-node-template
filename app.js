@@ -23,6 +23,15 @@ var hbs = require('hbs');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+hbs.registerHelper('if_eq', function(a, b, opts) {
+  a = a.toString()
+  b = b.toString()
+  if (a === b) {
+      return opts.fn(this);
+  } else {
+      return opts.inverse(this);
+  }
+});
 
 // app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');

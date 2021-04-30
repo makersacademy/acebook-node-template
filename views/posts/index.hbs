@@ -88,19 +88,22 @@
                   Updated at {{dateFormat this.updatedAt "HH:MM, DD/MM/YYYY"}}
                 </p>
               {{/if}}
+              {{#each this.author}}
+                {{#if_eq ../../userId._id this.id}}
                   <p>
                       <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                        <form action='/posts/{{this.id}}/delete' method='post'>
+                        <form action='/posts/{{../this.id}}/delete' method='post'>
                           <input class="btn btn-outline-secondary" type='submit' value='Delete'>
                         </form>
                       </div>
                       <div class="btn-group" role="group" aria-label="...">
-                        <form action='/posts/{{this.id}}/edit' method='get'>
+                        <form action='/posts/{{../this.id}}/edit' method='get'>
                           <input class="btn btn-outline-secondary" type='submit' value='Edit'>
                         </form>
                       </div>
                   </p>
-
+                {{/if_eq}}
+              {{/each}}
 
             <div class="card" id="collapseExample">
               <div class="card card-body">
