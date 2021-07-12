@@ -80,3 +80,10 @@ npm run start:test
 ```
 This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
 so that integration tests do not interact with the development server.
+
+### MVC diagrams
+
+[Acebook - home route .pdf](https://github.com/makersacademy/acebook-node-template/files/6801972/Acebook.-.home.route.pdf)
+
+[Acebook - posts route.pdf](https://github.com/makersacademy/acebook-node-template/files/6801978/Acebook.-.posts.route.pdf)
+
