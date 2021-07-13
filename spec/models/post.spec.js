@@ -37,4 +37,34 @@ describe('Post model', function() {
       });
     });
   });
+
+  it('can delete a post', function(done) {
+    var post = new Post({ message: 'a message to be deleted' });
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      Post.find(function(err, posts) {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: 'a message to be deleted' });
+        done();
+      });
+    });
+
+    post.deleteOne( { message: 'a message to be deleted' } , function(err, posts){
+      if (!err) {
+        expect( {message: 'a message to be deleted'}).toBeNull
+      }
+      else {
+        console.log(err);
+      }
+
+      Post.find(function(err, posts) {
+        expect(err).toBeNull();
+
+        expect({message: 'a message to be deleted'}).toBeNull
+      });
+    });
+  });
 });
