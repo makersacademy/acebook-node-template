@@ -40,11 +40,17 @@ describe('Post model', function() {
 
   it('can update a saved post', function(done) {
     var post = new Post({ message: 'some message' });
-
     post.save(function(err) {
       expect(err).toBeNull();
-      
     });
+    Post.updateOne( {message: 'some message'}, {message: 'updated message'}, function(err, posts) {
+      if (!err)  {
+        expect(posts[0]).toMatchObject({ message: 'updated message' });
+      } else {
+        console.log(err);
+      }
+    });
+    // done();
   });
 
   it('can delete a post', function(done) {
@@ -56,7 +62,7 @@ describe('Post model', function() {
       Post.find(function(err, posts) {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: 'a message to be deleted' });
+        expect(posts[1]).toMatchObject({ message: 'a message to be deleted' });
         done();
       });
     });

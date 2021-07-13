@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
+  id: String,
   message: String,
 });
 

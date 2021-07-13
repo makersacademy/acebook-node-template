@@ -1,7 +1,11 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <li>
+    <div hidden>{{this._id}} </div>
+    {{this.message}}
+    <a class="update-post-link" href="/posts/update">Update post</a>
+  </li>
   {{/each}}
 </ul>
 
