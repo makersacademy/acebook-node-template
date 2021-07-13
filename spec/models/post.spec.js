@@ -38,6 +38,15 @@ describe('Post model', function() {
     });
   });
 
+  it('can update a saved post', function(done) {
+    var post = new Post({ message: 'some message' });
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+      
+    });
+  });
+
   it('can delete a post', function(done) {
     var post = new Post({ message: 'a message to be deleted' });
 
