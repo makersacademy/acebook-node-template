@@ -1,8 +1,13 @@
 <h1>Timeline</h1>
 <ul class="posts">
+  <form action="/posts" method="post" id="delete-post">
   {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
+  <li>{{this.message}}
+      <input type="hidden" name="id" value="{{this._id}}">
+      {{/each}}
+      <button type="submit" id="delete">Delete</button>
+  </li>
+  </form>
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
