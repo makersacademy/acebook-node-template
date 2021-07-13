@@ -50,7 +50,7 @@ describe('Post model', function() {
         console.log(err);
       }
     });
-    // done();
+    done();
   });
 
   it('can delete a post', function(done) {
@@ -67,7 +67,7 @@ describe('Post model', function() {
       });
     });
 
-    post.deleteOne( { message: 'a message to be deleted' } , function(err, posts){
+    post.deleteOne( { message: 'a message to be deleted' } , function(err){
       if (!err) {
         expect( {message: 'a message to be deleted'}).toBeNull
       }
@@ -75,7 +75,7 @@ describe('Post model', function() {
         console.log(err);
       }
 
-      Post.find(function(err, posts) {
+      Post.find(function(err) {
         expect(err).toBeNull();
 
         expect({message: 'a message to be deleted'}).toBeNull
