@@ -37,49 +37,50 @@ describe('Post model', function() {
       });
     });
   });
+})
 
-  it('can update a saved post', function(done) {
-    var post = new Post({ message: 'some message' });
-    post.save(function(err) {
-      expect(err).toBeNull();
-    });
-    Post.updateOne( {message: 'some message'}, {message: 'updated message'}, function(err, posts) {
-      if (!err)  {
-        expect(posts[0]).toMatchObject({ message: 'updated message' });
-      } else {
-        console.log(err);
-      }
-    });
-    done();
-  });
+//   it('can update a saved post', function(done) {
+//     var post = new Post({ message: 'some message' });
+//     post.save(function(err) {
+//       expect(err).toBeNull();
+//     });
+//     Post.updateOne( {message: 'some message'}, {message: 'updated message'}, function(err, posts) {
+//       if (!err)  {
+//         expect(posts[0]).toMatchObject({ message: 'updated message' });
+//       } else {
+//         console.log(err);
+//       }
+//     });
+//     done();
+//   });
 
-  it('can delete a post', function(done) {
-    var post = new Post({ message: 'a message to be deleted' });
+//   it('can delete a post', function(done) {
+//     var post = new Post({ message: 'a message to be deleted' });
 
-    post.save(function(err) {
-      expect(err).toBeNull();
+//     post.save(function(err) {
+//       expect(err).toBeNull();
 
-      Post.find(function(err, posts) {
-        expect(err).toBeNull();
+//       Post.find(function(err, posts) {
+//         expect(err).toBeNull();
 
-        expect(posts[1]).toMatchObject({ message: 'a message to be deleted' });
-        done();
-      });
-    });
+//         expect(posts[1]).toMatchObject({ message: 'a message to be deleted' });
+//         done();
+//       });
+//     });
 
-    post.deleteOne( { message: 'a message to be deleted' } , function(err){
-      if (!err) {
-        expect( {message: 'a message to be deleted'}).toBeNull
-      }
-      else {
-        console.log(err);
-      }
+//     post.deleteOne( { message: 'a message to be deleted' } , function(err){
+//       if (!err) {
+//         expect( {message: 'a message to be deleted'}).toBeNull
+//       }
+//       else {
+//         console.log(err);
+//       }
 
-      Post.find(function(err) {
-        expect(err).toBeNull();
+//       Post.find(function(err) {
+//         expect(err).toBeNull();
 
-        expect({message: 'a message to be deleted'}).toBeNull
-      });
-    });
-  });
-});
+//         expect({message: 'a message to be deleted'}).toBeNull
+//       });
+//     });
+//   });
+// });

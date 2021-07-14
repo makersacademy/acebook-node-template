@@ -1,14 +1,5 @@
-<form id="update-post-form" action="/posts" method="post">
+<form id="update-post-form" action="/posts/update" method="post">
   <label for="message">Message: </label>
   <input id="message" type="text" name="message" value="">
   <input type="submit" value="Submit">
 </form>
-
-<ul class="posts">
-  {{#each posts}}
-  <li>
-    {{this.message}}
-    <a class="update-post-link" href="/posts/update">Update post</a>
-  </li>
-  {{/each}}
-</ul>
