@@ -17,6 +17,8 @@ var PostsController = {
   
   Create: function(req, res) {
     var post = new Post(req.body);
+    // console.log('*******************CREATE************************');
+    console.log(req.body);
     post.save(function(err) {
       if (err) { throw err; }
 
@@ -24,19 +26,32 @@ var PostsController = {
     });
   },
 
-  Update: function(req, res){
-    var id = req.body.id
-    var message = req.body.message
-    Post.updateOne({"_id" : id}, {$set: {"message": message}}, {upsert: true}, function(err){
-      if(err) { throw err; }
+  // Update: function(req, res){
+  //   var id = req.body.id
+  //   var message = req.body.message
+  //   Post.updateOne({"_id" : id}, {$set: {"message": message}}, {upsert: true}, function(err){
+  //     if(err) { throw err; }
 
-      res.status(201).redirect('/posts')
-    })
-  },
+  //     res.status(201).redirect('/posts')
+  //   })
+  // },
 
-  UpdatePage: function(req, res) {
-    res.render('posts/update', {});
-  }
-}
+  // UpdatePage: function(req, res) {
+  //   res.render('posts/update', {});
+  // },
+
+  Delete: function(req, res){ 
+    var id = req.params.id; 
+    // console.log('*********************DELETE**********************');
+    console.log(req.body);
+    console.log(id);
+    Post.findByIdAndRemove(id, function(err){
+      if(err){
+        console.log(err);
+      }
+      res.status(201).redirect('/posts');
+    });
+  } 
+};
 
 module.exports = PostsController;

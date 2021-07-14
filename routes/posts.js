@@ -5,10 +5,10 @@ var PostsController = require('../controllers/posts')
 
 router.get('/', PostsController.Index);
 router.post('/', PostsController.Create);
+router.delete('/:id', PostsController.Delete);
 router.get('/new', PostsController.New);
-router.post('/update', PostsController.Update);
-// router.post('/retrieve', PostsController.findOne);
-router.get('/update', PostsController.UpdatePage);
+// router.post('/update', PostsController.Update);
+// router.get('/update', PostsController.UpdatePage);
 
 
 module.exports = router;
