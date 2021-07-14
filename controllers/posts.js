@@ -1,5 +1,5 @@
 var Post = require('../models/post');
-const { post } = require('../routes/posts');
+// const { post } = require('../routes/posts');
 
 var PostsController = {
   
