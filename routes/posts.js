@@ -7,8 +7,8 @@ router.get('/', PostsController.Index);
 router.post('/', PostsController.Create);
 router.delete('/:id', PostsController.Delete);
 router.get('/new', PostsController.New);
-// router.post('/update', PostsController.Update);
-// router.get('/update', PostsController.UpdatePage);
+router.post('/update', PostsController.Update);
+router.get('/update/:id', PostsController.UpdatePage);
 
 
 module.exports = router;
