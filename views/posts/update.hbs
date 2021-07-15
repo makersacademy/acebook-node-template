@@ -1,5 +1,5 @@
-<form id="update-post-form" action="/posts/update" method="post">
+<form id="update-post-form" action="/posts/update/{{id}}" method="post">
   <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="{{post.message}}">
+  <input id="message" type="text" name="message" value="{{message}}">
   <input type="submit" value="Submit">
 </form>
