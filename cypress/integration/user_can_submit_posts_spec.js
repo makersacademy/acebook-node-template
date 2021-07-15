@@ -7,5 +7,6 @@ describe('Timeline', function() {
     cy.get('#new-post-form').submit();
 
     cy.get('.posts').should('contain', 'Hello, world!');
+
   });
 });

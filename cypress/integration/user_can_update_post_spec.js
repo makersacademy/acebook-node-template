@@ -11,6 +11,7 @@ describe('Timeline', function() {
     cy.get('#update-post-form').submit();
 
     cy.get('.posts').should('contain', 'This was changed');
+   
 
   });
 });
