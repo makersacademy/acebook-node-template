@@ -65,16 +65,15 @@ describe('Post model', function() {
     post.save(function(err) {
       expect(err).toBeNull();
       Post.updateOne( {message: 'some message'}, {message: 'updated message'}, function(err) {
-      if (!err)  {
-        Post.find(function(err, posts) {
-        expect(err).toBeNull();
-        expect(posts[0]).toContain({ message: 'updated message' });
-        done();
-      })} else {
-        console.log(err);
-      }
+        if (!err)  {
+          Post.find(function(posts) {
+          expect(posts[0]).toContain({ message: 'updated message' });
+          done();
+        })} else {
+          console.log(err);
+        }
       done();
+      });
     });
-  });
   })
 })

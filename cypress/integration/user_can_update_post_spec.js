@@ -1,5 +1,5 @@
 describe('Timeline', function() {
-  it('can delete a post', function() {
+  it('can update a post', function() {
     cy.visit('/posts');
     
     cy.contains('New post').click();
