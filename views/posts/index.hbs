@@ -5,6 +5,7 @@
     <li>{{this.message}}
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="delete-button"><i class="fas fa-trash-alt fa-1x"></i></button>
+         <a class="update-post-link" href="/posts/update/{{this._id}}">Update post</a>
     </li>
   </form>
   {{/each}}
