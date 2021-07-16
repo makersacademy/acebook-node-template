@@ -8,9 +8,13 @@
         <a class="update-post-link" href="/posts/update/{{this._id}}">Update post</a>
     </li>
   </form>
-  {{!-- <div class="like-button">
-    <button class="btn"><i class="fas fa-thumbs-up fa-2x"></i></button><span>1</span>
-  </div> --}}
+  <div>
+    <button id="like-button">
+      <i class="fas fa-thumbs-up fa-2x"></i>
+    </button>
+    <span id="like-counter">0</span>
+  </div>
+  
   {{/each}}
 </ul>
 
