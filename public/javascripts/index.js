@@ -2,10 +2,11 @@ window.onload = function() {
     var counter = 1;
     var likeCounter = document.getElementById("like-counter");
     var likeButton = document.getElementById("like-button");
-
+    likeCounter.innerHTML = ""
 
     likeButton.addEventListener("click", function(){
-    likeCounter.innerHTML = counter++; 
-    console.log("YOU CLICKED ON ME");
+      console.log(sessionStorage.clickcount)
+        sessionStorage.clickcount = Number(sessionStorage.clickcount) + counter;
+        likeCounter.innerHTML = sessionStorage.clickcount;
     });
 }
