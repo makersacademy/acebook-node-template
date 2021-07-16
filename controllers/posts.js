@@ -13,8 +13,6 @@ var PostsController = {
   },
   Create: function(req, res) {
     var post = new Post(req.body);
-    console.log('*******************CREATE************************');
-    console.log(req.body);
     post.save(function(err) {
       if (err) { throw err; }
 
@@ -23,9 +21,6 @@ var PostsController = {
   },
   Delete: function(req, res){ 
     var id = req.params.id; 
-    console.log('*********************DELETE**********************');
-    console.log(req.body);
-    console.log(id);
     Post.findByIdAndRemove(id, function(err){
       if(err){
         console.log(err);
