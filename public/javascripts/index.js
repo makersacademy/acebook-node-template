@@ -1,9 +1,4 @@
 
-var likeElements = document.querySelectorAll('#likeCounter');
-likeElements.forEach(function(navElement) {
-  console.log('navElement: ', navElement);
-  })
-
 
 window.onload = function() {
   var likeCounters = document.querySelectorAll("#like-counter");
