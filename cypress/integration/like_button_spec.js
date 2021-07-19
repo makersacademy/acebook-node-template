@@ -7,11 +7,14 @@ describe("like button", function(){
 
         cy.get('#like-button:last').click();
         cy.get('#like-counter:last').should('contain', 1);
-        
+
+        cy.get('#dislike-button:last').click();
+        cy.get('#dislike-counter:last').should('contain', 1);
+
         cy.get('#like-button:last').click();
         cy.get('#like-counter:last').should('contain', 2);
 
         cy.get('.delete-button:last').click();
-       
+
     });
 });
