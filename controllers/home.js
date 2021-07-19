@@ -10,10 +10,10 @@ var HomeController = {
     user.save(function(err, username) {
       if (err) { throw err; }
 
-      res.render('home/success', {users: username} );
+      res.render('home/signin', { users: username } ); 
     });
-  },
 
+  },
 
 };
 
