@@ -29,7 +29,7 @@ describe('Post model', function() {
       expect(err).toBeNull();
       Post.find(function(err, posts) {
         expect(err).toBeNull();
-        expect(posts[0]).toMatchObject({ message: 'some message' });
+        expect(posts[0].message).toEqual('some message');
         done();
       });
     });
