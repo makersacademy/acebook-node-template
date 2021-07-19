@@ -45,6 +45,7 @@ describe('Post model', function() {
         done();
       });
     });
+
     post.deleteOne( { message: 'a message to be deleted' } , function(err){
       if (!err) {
         expect( {message: 'a message to be deleted'}).toBeNull
@@ -52,6 +53,7 @@ describe('Post model', function() {
       else {
         console.log(err);
       }
+
       Post.find(function(err) {
         expect(err).toBeNull();
         expect({message: 'a message to be deleted'}).toBeNull

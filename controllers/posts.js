@@ -16,13 +16,13 @@ var PostsController = {
   Create: function(req, res) {
     var post = new Post(req.body);
 
-    console.log(req.body);
     post.save(function(err) {
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
     });
   },
+
 
   UpdatePage: function(req, res) {
     var id = req.params.id;
@@ -47,6 +47,7 @@ var PostsController = {
 
   Delete: function(req, res){
     var id = req.params.id;
+
     Post.findByIdAndRemove(id, function(err){
       if(err){
         console.log(err);
