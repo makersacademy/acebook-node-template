@@ -7,14 +7,14 @@ var HomeController = {
 
   Create: function(req, res) {
     var user = new User(req.body);
-    user.save(function(err) {
+    user.save(function(err, username) {
       if (err) { throw err; }
 
-      res.status(201).redirect('/');
+      res.render('home/success', {users: username} );
     });
   },
-  
-  
+
+
 };
 
 module.exports = HomeController;
