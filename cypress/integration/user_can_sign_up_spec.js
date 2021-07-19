@@ -5,7 +5,7 @@ describe('Home page', function() {
     cy.get('#sign-up-form').find('[name = "email"]').type('ehelsan@e.com');
     cy.get('#sign-up-form').find('[name = "password"]').type('hello');
     cy.get('#sign-up-form').submit();
-    cy.get('.greeting').should('contain', 'Hello, ehelsan13!');
+    cy.get('/signin').should('contain', 'Hello, ehelsan13!');
   });
 
 });
