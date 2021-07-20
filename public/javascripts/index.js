@@ -6,6 +6,7 @@ window.onload = function() {
   var dislikeButtons = document.querySelectorAll("#dislike-button");
   var dislikeCounters = document.querySelectorAll("#dislike-counter");
   var commentBoxes = document.querySelectorAll("#comment-box");
+  var commentButton = document.querySelector('#commentButton');
 
 likeButtons.forEach(function(likeButton, i) {
   var counter = 1;
@@ -23,7 +24,7 @@ likeButtons.forEach(function(likeButton, i) {
   
   commentBoxes.forEach(function(commentBox) {
     commentBox.addEventListener("click", function(){
-     var form = document.getElementById('myForm')
+     var form = document.getElementById('commentBox')
       if (form.style.display == "block") {
         form.style.display = "none"
       } else {
