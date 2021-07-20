@@ -5,8 +5,7 @@ window.onload = function() {
   var likeButtons = document.querySelectorAll("#like-button");
   var dislikeButtons = document.querySelectorAll("#dislike-button");
   var dislikeCounters = document.querySelectorAll("#dislike-counter");
-  var commentBoxes = document.querySelectorAll("#comment-box");
-  var commentButton = document.querySelector('#commentButton');
+  var commentToggles = document.querySelectorAll(".comment-toggle");
 
 likeButtons.forEach(function(likeButton, i) {
   var counter = 1;
@@ -22,9 +21,9 @@ likeButtons.forEach(function(likeButton, i) {
     })
   });
   
-  commentBoxes.forEach(function(commentBox) {
-    commentBox.addEventListener("click", function(){
-     var form = document.getElementById('commentBox')
+  commentToggles.forEach(function(commentToggle) {
+    commentToggle.addEventListener("click", function(e){
+     var form = document.getElementById(`commentform-${e.target.id}`)
       if (form.style.display == "block") {
         form.style.display = "none"
       } else {

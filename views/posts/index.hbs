@@ -21,15 +21,20 @@
   </div>
 
   
+  <div class="comment-toggle" id="{{this._id}}">Comment</div>
 
-  <div class="form-popup" id="commentBox">
-  <button type="button" class="button" id="commentButton">Comment</button>
-  <form action="/posts" class="form-container">
+  <div class="form-popup" id="commentFormBox">
+  <form action="/posts" class="form-container" id="commentform-{{this._id}}" style="display: none;">
     <input type="text" placeholder="Enter Comment" name="comment-text" required> 
     <button type="submit" class="btn">Send</button>
   </form>
-</div>
+  </div>
 
+  <!-- create a new div, with id commentBox, 
+  new form action with posts/:id/comments
+  and map the comments array
+  {{this.comments.comment}}
+  -->
   {{/each}}
 </ul>
 
