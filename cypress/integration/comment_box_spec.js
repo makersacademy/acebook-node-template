@@ -1,5 +1,6 @@
 describe('Timeline', function() {
   it('can view a post and comment', function() {
+
 //     cy.visit('/posts');
 //     cy.contains('New post').click();
 
