@@ -17,9 +17,25 @@
       <i class="fas fa-thumbs-down fa-2x"></i>
     </button>
     <span id="dislike-counter"></span>
+    <span id="commentBox"></span>
   </div>
+
+  
+
+  <div class="form-popup" id="commentBox">
+  <button type="button" class="button" id="commentButton">Comment</button>
+  <form action="/posts" class="form-container">
+    <input type="text" placeholder="Enter Comment" name="comment-text" required> 
+    <button type="submit" class="btn">Send</button>
+  </form>
+</div>
 
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+
+
+
+
