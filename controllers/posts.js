@@ -1,4 +1,5 @@
 var Post = require('../models/post');
+// var User = require('../models/user');
 
 var PostsController = {
 
@@ -54,7 +55,27 @@ var PostsController = {
       }
       res.status(201).redirect('/posts');
     });
-  }
+  },
+
+  // SignOut: function(req, res) {
+  //   User.find(function(err, users) {
+  //     if (err) { throw err; }
+      
+  //     for(var i=0; i<users.length; i++) {
+
+  //       if(users[i].active === true) {
+  //         users[i].active = false;
+  //         users[i].save();
+  //         return res.status(201).redirect('/');
+  //       } 
+
+  //     }
+
+
+  //   });
+
+  // },
+  
 };
 
 module.exports = PostsController;
