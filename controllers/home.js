@@ -7,10 +7,11 @@ var HomeController = {
 
   Create: function(req, res) {
     var user = new User(req.body);
+    
     user.save(function(err) {
       if (err) { throw err; }
 
-      res.status(201).redirect('home/sessions');
+      res.status(201).redirect('/sessions');
     });
 
   },
@@ -30,6 +31,9 @@ var HomeController = {
 
         if(users[i].username === username) {
           if(users[i].password === password) {
+            users[i].active = true;
+            users[i].save();
+            
             return res.status(201).redirect('/posts');
           } 
         } 

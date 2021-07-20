@@ -5,12 +5,12 @@ describe('Home page', function() {
       cy.get('#sign-up-form').find('[name = "email"]').type('emma@example.com');
       cy.get('#sign-up-form').find('[name = "password"]').type('ilovethenorrf');
       cy.get('#sign-up-form').submit();
-      cy.contains('Welcome, emma7563');
+      cy.contains('Welcome!');
 
       cy.get('#sign-in-form').find('[name = "username"]').type('emma7563');
       cy.get('#sign-in-form').find('[name = "password"]').type('ilovethenorrf');
       cy.get('#sign-in-form').submit();
 
-      cy.contains('.posts');
+      cy.contains('Timeline');
     });
 });
