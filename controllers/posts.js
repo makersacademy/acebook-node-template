@@ -59,31 +59,30 @@ var PostsController = {
   UpdateLikes: function(req, res){
     var id = req.params.id;
     Post.findById(id, function (err, post) {
-    if (err) {throw err;}
-
-    post.postLikeCounter += 1;
-
-    post.save(function(err) {
       if (err) {throw err;}
-      res.status(201).redirect('/posts')
+
+      post.postLikeCounter += 1;
+
+      post.save(function(err) {
+        if (err) {throw err;}
+        res.status(201).redirect('/posts')
+      });
     });
-  });
-},
+  },
 
+  UpdateDislikes: function(req, res){
+    var id = req.params.id;
+    Post.findById(id, function (err, post) {
+      if (err) {throw err;}
 
-UpdateDislikes: function(req, res){
-  var id = req.params.id;
-  Post.findById(id, function (err, post) {
-  if (err) {throw err;}
+      post.postDislikeCounter += 1;
 
-  post.postDislikeCounter += 1;
-
-  post.save(function(err) {
-    if (err) {throw err;}
-    res.status(201).redirect('/posts')
-  });
-});
-}
+      post.save(function(err) {
+        if (err) {throw err;}
+        res.status(201).redirect('/posts')
+      });
+    });
+  }
 };
 
 module.exports = PostsController;

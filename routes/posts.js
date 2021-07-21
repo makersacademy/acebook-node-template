@@ -10,6 +10,7 @@ router.get('/new', PostsController.New);
 router.post('/update/:id', PostsController.Update);
 router.post('/updateLikes/:id', PostsController.UpdateLikes);
 
+
 router.post('/updateDislikes/:id', PostsController.UpdateDislikes);
 
 
