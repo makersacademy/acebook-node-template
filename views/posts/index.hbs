@@ -8,7 +8,7 @@
         <a class="update-post-link" href="/posts/update/{{this._id}}">Update post</a>
     </li>
   </form>
-  <div>
+  <!-- <div>
     <button id="like-button">
       <i class="fas fa-thumbs-up fa-2x"></i>
     </button>
@@ -17,8 +17,20 @@
       <i class="fas fa-thumbs-down fa-2x"></i>
     </button>
     <span id="dislike-counter"></span>
-  </div>
-
+  </div> -->
+  <ul style="list-style-type:none"><li>Likes: {{this.postLikeCounter}}, Dislikes: {{this.postDislikeCounter}}</li></ul>
+  <div>
+  <form action="/posts/updateLikes/{{this.id}}" method="post">
+    <button id="like-button">
+      <i class="fas fa-thumbs-up fa-2x"></i>
+    </button>
+  </form>
+  <form action"/posts/UpdateDislikes/{{this.id}}" method="post">
+    <button id="dislike-button">
+      <i class="fas fa-thumbs-up fa-2x"></i>
+    </button>
+</form>
+</div>
   {{/each}}
 </ul>
 
