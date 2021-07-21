@@ -15,8 +15,9 @@
     <button id="like-button">
       <i class="fas fa-thumbs-up fa-2x"></i>
     </button>
+    <a id="dislike-button" href="/posts/UpdateDislikes/{{this._id}}"><i class="fas fa-thumbs-down fa-2x"></i></a>
   </form>
-  <form action="/posts/UpdateDislikes/{{this.id}}" method="post">
+  <form action="/posts/updateDislikes/{{this.id}}" method="post">
     <button id="dislike-button">
       <i class="fas fa-thumbs-down fa-2x"></i>
     </button>
