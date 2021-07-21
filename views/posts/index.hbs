@@ -10,7 +10,6 @@
   </form>
 
   <ul style="list-style-type:none"><li>Likes: {{this.postLikeCounter}}, Dislikes: {{this.postDislikeCounter}}</li></ul>
-  <div>
 
   <form action="/posts/updateLikes/{{this.id}}" method="post">
     <button id="like-button">
@@ -19,10 +18,12 @@
   </form>
   <form action="/posts/UpdateDislikes/{{this.id}}" method="post">
     <button id="dislike-button">
-      <i class="fas fa-thumbs-up fa-2x"></i>
+      <i class="fas fa-thumbs-down fa-2x"></i>
     </button>
-</form>
-</div>
+  </form>
+
+
+
   {{/each}}
 </ul>
 

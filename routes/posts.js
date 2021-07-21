@@ -11,8 +11,6 @@ router.post('/update/:id', PostsController.Update);
 router.get('/update/:id', PostsController.UpdatePage);
 
 router.post('/updateLikes/:id', PostsController.UpdateLikes);
-
-
 router.post('/updateDislikes/:id', PostsController.UpdateDislikes);
 
 
