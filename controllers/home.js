@@ -39,29 +39,32 @@ var HomeController = {
         } 
       }
 
-      res.status(201).redirect('/sessions');
+      res.status(201).redirect('/');
 
     });
   },
 
-  // SignOut: function(req, res) {
-  //   User.find(function(err, users) {
-  //     if (err) { throw err; }
+  Signout: function(req, res) {
+
+
+    User.find(function(err, users) {
+      if(err) { throw err }
+
+      for(var i=0; i<users.length; i++) {
+        if(users[i].active === true) {
       
-  //     for(var i=0; i<users.length; i++) {
+            users[i].active = false;
+            users[i].save();
+            
+            return res.status(201).redirect('/');
+          
+        } 
+      }
 
-  //       if(users[i].active === true) {
-  //         users[i].active = false;
-  //         users[i].save();
-  //         return res.status(201).redirect('/');
-  //       } 
+      res.redirect('/');
 
-  //     }
-
-
-  //   });
-
-  // },
+    });
+  },
 
 };
 
