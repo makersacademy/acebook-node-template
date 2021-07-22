@@ -1,5 +1,9 @@
-<form id="update-post-form" action="/posts/update/{{id}}" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="{{message}}">
-  <input type="submit" value="Submit">
-</form>
+<div class="d-flex justify-content-center">
+  <div class="large-form-style shadow p-5 rounded card">
+    <form id="update-post-form" action="/posts/update/{{id}}" method="post">
+      <label for="message" class="form-header p-2">Message: </label>
+      <textarea id="message" class="mt-3 p-2 post-input" type="text" name="message" value="{{message}}"></textarea>
+      <input type="submit" value="Submit" class="btn btn-outline-danger mt-3 p-2">
+    </form>
+  </div>
+</div>

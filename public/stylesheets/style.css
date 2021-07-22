@@ -15,6 +15,16 @@ a {
   background-size: cover;
 }
 
+.large-form-style {
+  height: 20rem; 
+  width: 50rem;
+  margin-top: 7.5%;
+  background-image: url("https://i.ibb.co/xSkx66J/Hearts-ace-on-cards.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .posts {
   margin: 5% 17.5%;
 }
@@ -22,5 +32,15 @@ a {
 .post-container {
   border: 2px solid red;
   border-radius: 20px;
+}
+
+.post-input {
+  width: 90%;
+  height: 70%;
+}
+
+.form-header {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
