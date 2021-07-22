@@ -39,7 +39,7 @@ var HomeController = {
         } 
       }
 
-      res.status(201).redirect('/');
+      res.status(201).redirect('/sessions');
 
     });
   },
