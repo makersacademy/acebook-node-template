@@ -21,7 +21,8 @@
   </div>
 
   
-  <div class="comment-toggle" id="{{this._id}}">Comment</div>
+
+  <button class="comment-toggle" id="{{this._id}}">Comment</button>
 
   <div class="form-popup" id="commentFormBox">
   <form action="/posts/{{this._id}}/comments" method="post" class="form-container" id="commentform-{{this._id}}" style="display: none;">
@@ -29,15 +30,14 @@
     <button type="submit" class="btn">Send</button>
     <br>
     {{#each this.comments}}
-    <ul>
+    <ul class="comment-list">
       <li>{{this}}</li>
     </ul>
     {{/each}}
     <br>
-  </form>
-   
-    
+  </form>   
   </div>
+ 
   {{/each}}
 </ul>
 
