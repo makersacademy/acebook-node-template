@@ -29,7 +29,7 @@ describe('Post model', function() {
       expect(err).toBeNull();
       Post.find(function(err, posts) {
         expect(err).toBeNull();
-        expect(posts[0]).toMatchObject({ message: 'some message' });
+        expect(posts[0].message).toEqual('some message');
         done();
       });
     });
@@ -78,4 +78,21 @@ describe('Post model', function() {
       });
     });
   })
+
+  // it('can create a comment', function() {
+  //   var post = new Post({comments: [{comment: 'A comment'}]})
+  //   expect(post.comments[0].comment).toEqual('A comment')
+  // });
+  
+  // it('can save a comment', function(done) {
+  //   var post = new Post({message: 'A message 2', comments: [{comment: 'A comment 2'}]})
+  //   post.save(function(err) {
+  //     expect(err).toBeNull();
+  //     Post.find({ message: 'A message 2' }, function(err, posts){
+  //       expect(err).toBeNull();
+  //       expect(posts[0].comments[0].comment).toEqual('A comment 2');
+  //       done();
+  //     });
+  //   });
+  // });
 })
