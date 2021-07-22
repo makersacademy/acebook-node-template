@@ -15,3 +15,12 @@ a {
   background-size: cover;
 }
 
+.posts {
+  margin: 5% 17.5%;
+}
+
+.post-container {
+  border: 2px solid red;
+  border-radius: 20px;
+}
+

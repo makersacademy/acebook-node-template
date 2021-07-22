@@ -6,7 +6,7 @@ describe('Timeline', function() {
     cy.get('#new-post-form').find('[type="text"]').type('Hello, world!');
     cy.get('#new-post-form').submit();
 
-    cy.contains('Update post').click();
+    cy.get('.update-post-link:last').click();
     cy.get('#update-post-form').find('[type="text"]').type('This was changed');
     cy.get('#update-post-form').submit();
 
