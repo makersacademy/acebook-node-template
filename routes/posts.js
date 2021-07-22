@@ -12,5 +12,4 @@ router.get('/update/:id', PostsController.UpdatePage);
 router.post('/:id/comments', PostsController.Comment);
 
 
-
 module.exports = router;

@@ -16,7 +16,10 @@ var UserSchema = new mongoose.Schema({
     min: [5, 'Too few characters'],
     required: true 
   },
-
+  active: { 
+    type: Boolean, 
+    default: false 
+  }
 });
 
 var User = mongoose.model('User', UserSchema);
