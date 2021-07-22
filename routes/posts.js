@@ -10,5 +10,4 @@ router.get('/new', PostsController.New);
 router.post('/update/:id', PostsController.Update);
 router.get('/update/:id', PostsController.UpdatePage);
 
-
 module.exports = router;

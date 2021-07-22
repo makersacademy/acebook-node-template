@@ -54,7 +54,8 @@ var PostsController = {
       }
       res.status(201).redirect('/posts');
     });
-  }
+  },
+  
 };
 
 module.exports = PostsController;

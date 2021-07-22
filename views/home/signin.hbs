@@ -1,4 +1,8 @@
 
-<h5>Welcome, {{users.username}}</h5>
+<h5>Welcome!</h5>
 
-<button type='submit' value='submit'>Please Sign In</button>
+<form id='sign-in-form' action='/sessions/new' method='post'>
+  <input type='text' name='username' placeholder='username' required>
+  <input type='password' name='password' placeholder='password' required>
+  <input type='submit' value='Submit'>  
+</form>
