@@ -6,3 +6,21 @@ a {
   color: #00B7FF;
 }
 
+.form-style {
+  width: 18rem; 
+  margin-top: 1%;
+  background-image: url("https://i.ibb.co/xSkx66J/Hearts-ace-on-cards.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.posts {
+  margin: 5% 17.5%;
+}
+
+.post-container {
+  border: 2px solid red;
+  border-radius: 20px;
+}
+

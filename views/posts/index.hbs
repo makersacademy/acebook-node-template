@@ -2,18 +2,19 @@
 <ul class="posts">
   {{#each posts}}
   <form action="/posts/{{this._id}}?_method=DELETE" method="post">
-    <li>{{this.message}}
+    <li class="post-container">{{this.message}}
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="delete-button"><i class="fas fa-trash-alt fa-1x"></i></button>
-        <a class="update-post-link" href="/posts/update/{{this._id}}">Update post</a>
+        <a class="update-post-link" href="/posts/update/{{this._id}}"><i class="fas fa-pencil-alt fa-1x"></i></a>
     </li>
   </form>
   <div>
-    <button id="like-button">
+    <button id="like-button" class="btn">
       <i class="fas fa-thumbs-up fa-2x"></i>
     </button>
     <span id="like-counter"></span>
-    <button id="dislike-button">
+
+    <button id="dislike-button" class="btn">
       <i class="fas fa-thumbs-down fa-2x"></i>
     </button>
     <span id="dislike-counter"></span>
