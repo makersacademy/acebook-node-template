@@ -18,9 +18,35 @@
       <i class="fas fa-thumbs-down fa-2x"></i>
     </button>
     <span id="dislike-counter"></span>
+    <span id="commentBox"></span>
   </div>
 
+  
+
+  <button class="comment-toggle" id="{{this._id}}">Comment</button>
+
+  <div class="form-popup" id="commentFormBox">
+  <form action="/posts/{{this._id}}/comments" method="post" class="form-container" id="commentform-{{this._id}}" style="display: none;">
+    <input type="text" placeholder="Enter Comment" name="comment" required> 
+    <button type="submit" class="btn">Send</button>
+  </form> 
+      <br>
+    {{#each this.comments}}
+    <ul class="comment-list">
+      <li>{{this}}</li>
+    </ul>
+    {{/each}}
+    <br>  
+  </div>
+ 
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+
+
+
+
+
+
