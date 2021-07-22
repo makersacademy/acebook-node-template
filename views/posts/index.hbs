@@ -28,8 +28,15 @@
     <input type="text" placeholder="Enter Comment" name="comment" required> 
     <button type="submit" class="btn">Send</button>
     <br>
+    {{#each this.comments}}
+    <ul>
+      <li>{{this}}</li>
+    </ul>
+    {{/each}}
+    <br>
   </form>
-    <li>{{this.comments}}</li>
+   
+    
   </div>
   {{/each}}
 </ul>
