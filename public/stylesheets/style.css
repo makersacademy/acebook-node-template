@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Montserrat", sans-serif;
 }
 
 a {
@@ -19,6 +19,7 @@ a {
   height: 20rem; 
   width: 50rem;
   margin-top: 7.5%;
+  border-radius: 20px;
   background-image: url("https://i.ibb.co/xSkx66J/Hearts-ace-on-cards.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -37,6 +38,7 @@ a {
 .post-input {
   width: 90%;
   height: 70%;
+  border-radius: 10px;
 }
 
 .form-header {
