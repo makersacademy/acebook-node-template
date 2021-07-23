@@ -2,7 +2,7 @@ describe('Timeline', function() {
   it('can update a post', function() {
     cy.visit('/posts');
 
-    cy.contains('New post').click();
+    cy.contains('New post').click({force:true});
     cy.get('#new-post-form').find('[type="text"]').type('Hello, world!');
     cy.get('#new-post-form').submit();
 
