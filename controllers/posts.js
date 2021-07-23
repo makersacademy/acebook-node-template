@@ -26,7 +26,7 @@ var PostsController = {
 
   UpdatePage: function(req, res) {
     var id = req.params.id;
-    
+
     Post.findById(id, function(err, post){
       if (err) { throw err; }
 
@@ -56,16 +56,44 @@ var PostsController = {
     });
   },
 
+  UpdateLikes: function(req, res){
+    var id = req.params.id;
+    Post.findById(id, function (err, post) {
+      if (err) {throw err;}
+
+      post.postLikeCounter += 1;
+
+      post.save(function(err) {
+        if (err) {throw err;}
+        res.status(201).redirect('/posts')
+      });
+    });
+  },
+
+  UpdateDislikes: function(req, res){
+    var id = req.params.id;
+    Post.findById(id, function (err, post) {
+      if (err) {throw err;}
+
+      post.postDislikeCounter += 1;
+
+      post.save(function(err) {
+        if (err) {throw err;}
+        res.status(201).redirect('/posts')
+      });
+    });
+  },
+
   Comment: function(req, res){
     var id = req.params.id
     var newComment = req.body.comment
 
       Post.findById(id, function(err, post) {
       if (err) { throw err; }
-      
+
       post.comments.push(newComment)
-      post.save(); 
-      
+      post.save();
+
       res.render('/posts', {id: post.id, comments: post.comments});
       res.status(201).redirect('/posts')
 
