@@ -1,7 +1,48 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <form action="/posts/{{this._id}}?_method=DELETE" method="post">
+    <li class="post-container">{{this.message}}
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="delete-button"><i class="fas fa-trash-alt fa-1x"></i></button>
+        <a class="update-post-link" href="/posts/update/{{this._id}}"><i class="fas fa-pencil-alt fa-1x"></i></a>
+    </li>
+  </form>
+
+  <ul style="list-style-type:none"><li>Likes: {{this.postLikeCounter}}, Dislikes: {{this.postDislikeCounter}}</li></ul>
+
+  <form action="/posts/updateLikes/{{this.id}}" method="post">
+    <button id="like-button">
+      <i class="fas fa-thumbs-up fa-1x"></i>
+    </button>
+  </form>
+  <form action="/posts/updateDislikes/{{this.id}}" method="post">
+    <button id="dislike-button">
+      <i class="fas fa-thumbs-down fa-1x"></i>
+    </button>
+  </form>
+  <div>
+    <span id="commentBox"></span>
+  </div>
+
+
+
+  <button class="comment-toggle" id="{{this._id}}">Comment</button>
+
+  <div class="form-popup" id="commentFormBox">
+  <form action="/posts/{{this._id}}/comments" method="post" class="form-container" id="commentform-{{this._id}}" style="display: none;">
+    <input type="text" placeholder="Enter Comment" name="comment" required>
+    <button type="submit" class="btn">Send</button>
+  </form>
+      <br>
+    {{#each this.comments}}
+    <ul class="comment-list">
+      <li>{{this}}</li>
+    </ul>
+    {{/each}}
+    <br>
+  </div>
+
   {{/each}}
 </ul>
 

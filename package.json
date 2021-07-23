@@ -16,14 +16,20 @@
     "node": ">=12.14.1"
   },
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-flash-message": "^2.1.0",
+    "express-session": "^1.17.2",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
+    "method-override": "^3.0.0",
     "mongoose": "^5.8.11",
     "morgan": "~1.9.1",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "cypress": "^3.8.3",

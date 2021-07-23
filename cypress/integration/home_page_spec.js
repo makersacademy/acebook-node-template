@@ -3,4 +3,5 @@ describe('Home page', function() {
     cy.visit('/');
     cy.get('.title').should('contain', 'Acebook');
   });
+
 });
