@@ -18,7 +18,19 @@ var PostsController = {
 
       res.status(201).redirect('/posts');
     });
-  }
+  },
+  Delete: function(req, res) {
+    res.render('posts/delete', {})
+  },
+
+  Remove: function(req, res) {
+    var post = new Post(req.body);
+    post.remove(function(err) {
+      if (err) { throw err; }
+
+      res.status(201).redirect('/posts');
+    });
+  },
 };
 
 module.exports = PostsController;
