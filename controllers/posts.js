@@ -24,8 +24,9 @@ var PostsController = {
   },
 
   Remove: function(req, res) {
-    var post = new Post(req.body);
-    post.remove(function(err) {
+    console.log(req.body.message)
+    // var post = new Post(req.body);
+    Post.deleteOne({ message: req.body.message }, function(err) {
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
