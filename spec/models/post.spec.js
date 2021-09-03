@@ -38,22 +38,21 @@ describe('Post model', function() {
     });
   });
 
-  // it('can delete a post', function(done) {
-  //   var post = new Post({ message: 'some message' });
-
-  //   post.save(function(err) {
-  //     expect(err).toBeNull();
-  //   });
+  it('can delete a post', function(done) {
+    var post = new Post({ message: 'check message' });
     
-  //   post.remove({ message: 'some message' }, function(err) {
-  //     expect(err).toBeNull();
+    post.save(function(err) {
+      expect(err).toBeNull();
+    });
+    // `${post._id}`
+    Post.findByIdAndRemove({ _id: `${post._id}` }, function(err) {
+      expect(err).toBeNull();
 
-  //     Post.find(function(err, posts) {
-  //       expect(err).toBeNull();
-  //       expect(posts[0]).toBeUndefined();
-  //       done();
-  //     });
-  //   });
-  // });
-
+      Post.find(function(err, posts) {
+        expect(err).toBeNull();
+        expect(posts[0]).toBeUndefined();
+        done();
+      });
+    });
+  });
 });
