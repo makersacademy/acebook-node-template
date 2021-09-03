@@ -6,7 +6,7 @@ var HomeController = {
   },
 
   New: function(req, res) {
-    var user = new User(req.body);
+    var user = new User( { name: req.body.name, email: req.body.email, password: req.body.password});
     user.save(function(err) {
       if (err) { throw err; }
 
