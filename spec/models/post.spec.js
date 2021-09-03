@@ -45,10 +45,11 @@ describe('Post model', function() {
       expect(err).toBeNull();
     });
     
-    post.remove({ message: 'some message' }, function(err) {
+    Post.findByIdAndRemove({ _id: '6131e9dcaaddeba0e24cae87' }, function(err) {
       expect(err).toBeNull();
 
       Post.find(function(err, posts) {
+        console.log(posts)
         expect(err).toBeNull();
         expect(posts[0]).toBeUndefined();
         done();

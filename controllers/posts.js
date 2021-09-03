@@ -19,14 +19,11 @@ var PostsController = {
       res.status(201).redirect('/posts');
     });
   },
-  Delete: function(req, res) {
-    res.render('posts/delete', {})
-  },
-
+  
   Remove: function(req, res) {
-    console.log(req.body.message)
+    console.log(req.body.id)
     // var post = new Post(req.body);
-    Post.deleteOne({ message: req.body.message }, function(err) {
+    Post.findByIdAndRemove({ _id: req.body.id }, function(err) {
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
