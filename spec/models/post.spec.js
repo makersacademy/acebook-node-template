@@ -39,22 +39,20 @@ describe('Post model', function() {
   });
 
   it('can delete a post', function(done) {
-    var post = new Post({ message: 'some message' });
-
+    var post = new Post({ message: 'check message' });
+    
     post.save(function(err) {
       expect(err).toBeNull();
     });
     
-    Post.findByIdAndRemove({ _id: '6131e9dcaaddeba0e24cae87' }, function(err) {
+    Post.findByIdAndRemove({ _id: `${post._id}` }, function(err) {
       expect(err).toBeNull();
 
       Post.find(function(err, posts) {
-        console.log(posts)
         expect(err).toBeNull();
         expect(posts[0]).toBeUndefined();
         done();
       });
     });
   });
-
 });
