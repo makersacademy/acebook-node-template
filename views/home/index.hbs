@@ -1,2 +1,102 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href="sign-up-page.css" type="text/css">
+  <title>Sign up</title>
+</head>
+<body>
+  <nav class="navbar" style="text-align: right;">
+  <a class="navbarlink" href="#">Sign In</a>
+</nav>
+<div class="header">
+  <h1 class="title">{{title}}</h1>
+    <p>Welcome to {{title}}</p>
+</div>
+<div class="sign-up-form-styles">
+  <h1>Sign up!</h1>
+  <form id="sign-up-form" action="/" method="post">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" placeholder="Name"> <br>
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" placeholder="Email"> <br>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="Password"> <br>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+<style type="text/css">
+.sign-up-form-styles{
+	font: 95% Arial, Helvetica, sans-serif;
+	max-width: 400px;
+	margin: 10px auto;
+	padding: 16px;
+	background: #F7F7F7;
+}
+.sign-up-form-styles h1{
+	background: #43D1AF;
+	padding: 20px 0;
+	font-size: 140%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+	margin: -16px -16px 16px -16px;
+}
+.sign-up-form-styles input[type="text"],
+.sign-up-form-styles input[type="password"],
+.sign-up-form-styles input[type="email"]
+{
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 4%;
+	border: 1px solid #ccc;
+	padding: 3%;
+	color: #555;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+.sign-up-form-styles input[type="text"]:focus,
+.sign-up-form-styles input[type="password"]:focus,
+.sign-up-form-styles input[type="email"]:focus,
+.sign-up-form-styles textarea:focus,
+.sign-up-form-styles select:focus
+{
+	box-shadow: 0 0 5px #43D1AF;
+	padding: 3%;
+	border: 1px solid #43D1AF;
+}
+
+.sign-up-form-styles input[type="submit"] {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	padding: 3%;
+	background: #43D1AF;
+	border-bottom: 2px solid #30C29E;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;	
+	color: #fff;
+}
+.sign-up-form-styles input[type="submit"]:hover {
+	background: #2EBC99;
+}
+
+.header {
+  text-align: center;
+}
+</style>
+  
+</body>
+</html>
+
