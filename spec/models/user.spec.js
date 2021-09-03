@@ -11,7 +11,7 @@ describe('User model', function() {
 });
 
   it('saves a user', function(done) {
-    var user = new User({ name: 'jim' });
+    var user = new User({  name: 'jim', email: 'email@test.com', password: '1234' });
 
     user.save(function(err) {
       expect(err).toBeNull();
@@ -19,7 +19,7 @@ describe('User model', function() {
       User.find(function(err, user) {
         expect(err).toBeNull();
 
-        expect(user[0]).toMatchObject({ name: 'jim' });
+        expect(user[0]).toMatchObject({ name: 'jim', email: 'email@test.com', password: '1234' });
         done();
       });
     });

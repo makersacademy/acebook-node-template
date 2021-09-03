@@ -5,7 +5,5 @@ var PostSchema = new mongoose.Schema({
 });
 
 var Post = mongoose.model('Post', PostSchema);
-// var RemovePost = mongoose.findOneAndRemove();
 
 module.exports = Post;
-// module.exports = RemovePost;
