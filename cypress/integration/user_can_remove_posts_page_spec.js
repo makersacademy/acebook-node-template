@@ -1,27 +1,28 @@
-var mongoose = require('mongoose');
+var faker = require('faker');
 
 // require('../mongodb_helper')
 // var Post = require('../../models/post');
 
 
 describe('Timeline', function() {
-
-  beforeEach(function(done) {
-      mongoose.connection.collections.posts.drop(function() {
-          done();
-      });
-  });
-
   it('can remove posts and see there changes', function() {
+    let randomText1 = faker.lorem.words()
+    let randomText2 = faker.lorem.words()
+
     cy.visit('/posts');
     cy.contains('New post').click();
-
-    cy.get('#new-post-form').find('[type="text"]').type('Hello, world!');
+    cy.get('#new-post-form').find('[type="text"]').type(randomText1);
     cy.get('#new-post-form').submit();
 
-    cy.contains('Delete').click();
-   
+    cy.visit('/posts');
+    cy.contains('New post').click();
+    cy.get('#new-post-form').find('[type="text"]').type(randomText2);
+    cy.get('#new-post-form').submit();
 
-    cy.get('.posts').should('not.contain', 'Hello, world!');  
+    cy.get('.posts').should('contain', randomText1);
+    cy.get('.posts').should('contain', randomText2);
+  
+   cy.contains(randomText1).submit();
+   cy.get('.posts').should('not contain', randomText1); 
   });
 });

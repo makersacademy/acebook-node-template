@@ -3,7 +3,7 @@
   {{#each posts}}
   <div>
     {{this.message}}
-    <form name="{{this.message}}" id="delete-post-form" action="/posts/delete" method="post">
+    <form name="delete-post-form" id="{{this.message}}" action="/posts/delete" method="post">
       <input id="id" type="hidden" name="id" value="{{this._id}}">
       <input type="submit" id= this._id value="Delete">
     </form>
