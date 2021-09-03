@@ -2,10 +2,10 @@
 <ul class="posts">
   {{#each posts}}
   <div>
-    <form id="delete-post-form" action="/posts/delete" method="post">
-      {{this.message}}
+    {{this.message}}
+    <form name="{{this.message}}" id="delete-post-form" action="/posts/delete" method="post">
       <input id="id" type="hidden" name="id" value="{{this._id}}">
-      <input type="submit" value="Delete">
+      <input type="submit" id= this._id value="Delete">
     </form>
   </div>
   {{/each}}
