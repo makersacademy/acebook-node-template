@@ -2,11 +2,11 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: function(req, res) {
-    Post.find(function(err, posts) {
+    Post.find({}, function(err, posts) {
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts });
-    });
+    }).sort({ 'created_on': -1 });
   },
   New: function(req, res) {
     res.render('posts/new', {});
