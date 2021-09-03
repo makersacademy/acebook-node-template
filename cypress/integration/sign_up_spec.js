@@ -6,6 +6,6 @@ describe('Sign Up', function() {
     cy.get('#sign-up-form').find('[type="email"]').type('email@email.com');
     cy.get('#sign-up-form').find('[type="password"]').type('1234');
     
-    cy.submit('#sign-up-form').submit();
+    cy.get('#sign-up-form').submit();
   });
 });
