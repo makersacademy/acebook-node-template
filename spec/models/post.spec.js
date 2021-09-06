@@ -44,7 +44,7 @@ describe('Post model', function() {
     post.save(function(err) {
       expect(err).toBeNull();
     });
-    // `${post._id}`
+ 
     Post.findByIdAndRemove({ _id: `${post._id}` }, function(err) {
       expect(err).toBeNull();
 
@@ -55,4 +55,26 @@ describe('Post model', function() {
       });
     });
   });
-});
+
+  it('the default value of likes is 0', function() {
+    var post = new Post({ message: 'check message' });
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+    });
+      expect(post.likes).toEqual(0);
+    });
+
+  it('adds 1 to likes value', function(done) {
+    var post = new Post({ message: 'check message' });
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+    });
+
+    Post.findOneAndUpdate({ _id: `${post._id}`}, {$inc: { likes : 1 }}).exec();
+      expect(post.likes).toEqual(1);
+      done();
+    });
+  });
+

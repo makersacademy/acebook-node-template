@@ -7,3 +7,5 @@ describe('Nav bar links', function() {
     cy.url('/posts')
   });
 });
+
+// tests for log out and profile links to be written once functional

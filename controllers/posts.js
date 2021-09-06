@@ -29,6 +29,8 @@ var PostsController = {
       res.status(201).redirect('/posts');
     });
   },
+
+  // Like: add 1 to the int or increment
 };
 
 module.exports = PostsController;
