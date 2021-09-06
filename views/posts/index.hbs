@@ -7,7 +7,7 @@
       <input id="id" type="hidden" name="id" value="{{this._id}}">
       <input type="submit" id= this._id value="Delete">
     </form>
-    <form action="/posts/comments" method="get">
+    <form id="{{this.message}}" action="/posts/comments" method="get">
       <input id="comment-button" type="submit" name="comment-button" value="Comment">
     </form>
   </div>

@@ -9,7 +9,7 @@ var CommentController = {
     }).sort({ 'created_on': -1 });
   },
   New: function(req, res) {
-    var comment = new Comment(req.body.message);
+    var comment = new Comment({ comment: req.body.comment });
     comment.save(function(err) {
       if (err) { throw err; }
 

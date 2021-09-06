@@ -4,10 +4,11 @@
   <input id="comment" type="text" name="comment">
   <input type="submit" value="Submit">
 </form>
+
 <ul class="comments">
   {{#each comments}}
   <div>
-    {{this.message}}
+    {{this.comment}}
   </div>
   {{/each}}
 </ul>

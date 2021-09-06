@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var CommentSchema = new mongoose.Schema({ 
-  message: String,},
+  comment: String,},
   { timestamps: { createdAt: 'created_on', updatedAt: 'updated_on' } 
 });
 
