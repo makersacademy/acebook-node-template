@@ -10,12 +10,12 @@ describe('Timeline', function() {
     let randomText2 = faker.lorem.words()
 
     cy.visit('/posts');
-    cy.contains('New post').click();
+    cy.contains('New Post').click();
     cy.get('#new-post-form').find('[type="text"]').type(randomText1);
     cy.get('#new-post-form').submit();
 
     cy.visit('/posts');
-    cy.contains('New post').click();
+    cy.contains('New Post').click();
     cy.get('#new-post-form').find('[type="text"]').type(randomText2);
     cy.get('#new-post-form').submit();
 
