@@ -29,6 +29,9 @@ var PostsController = {
       res.status(201).redirect('/posts');
     });
   },
+  Comment: function(req, res) {
+    res.render('posts/comments', {});
+  },
 };
 
 module.exports = PostsController;

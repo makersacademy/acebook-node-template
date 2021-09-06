@@ -1,4 +1,5 @@
 describe('Comments', function() {
+  // This should be split in two
   it('can comment and see there comments displayed', function() {
     cy.visit('/posts');
     cy.contains('comment').click();
