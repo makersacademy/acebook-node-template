@@ -30,7 +30,15 @@ var PostsController = {
     });
   },
 
-  // Like: add 1 to the int or increment
+  Like: function(req, res) {
+    console.log(req.body.id)
+    Post.updateOne({ _id: req.body.id }, { likes: 7 }), function(err) {
+      if (err) { throw err; }
+
+      res.status(201).redirect('/posts');
+    };  
+  }
 };
+
 
 module.exports = PostsController;
