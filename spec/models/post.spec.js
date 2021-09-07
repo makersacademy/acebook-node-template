@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 require('../mongodb_helper')
 var Post = require('../../models/post');
-
+console.log(Post)
 describe('Post model', function() {
   beforeEach(function(done) {
       mongoose.connection.collections.posts.drop(function() {
@@ -25,7 +25,7 @@ describe('Post model', function() {
 
   it('can save a post', function(done) {
     var post = new Post({ message: 'some message' });
-
+     console.log(post._id)
     post.save(function(err) {
       expect(err).toBeNull();
 
@@ -43,17 +43,18 @@ describe('Post model', function() {
     
     post.save(function(err) {
       expect(err).toBeNull();
-    });
+    
  
-    Post.findByIdAndRemove({ _id: `${post._id}` }, function(err) {
-      expect(err).toBeNull();
-
-      Post.find(function(err, posts) {
+      Post.findByIdAndRemove({ _id: `${post._id}` }, function(err) {
         expect(err).toBeNull();
-        expect(posts[0]).toBeUndefined();
-        done();
+
+        Post.find(function(err, posts) {
+          expect(err).toBeNull();
+          expect(posts[0]).toBeUndefined();
+          done();
+        });
       });
-    });
+    });  
   });
 
   it('the default value of likes is 0', function() {
@@ -62,19 +63,34 @@ describe('Post model', function() {
     post.save(function(err) {
       expect(err).toBeNull();
     });
-      expect(post.likes).toEqual(0);
-    });
 
-  it('adds 1 to likes value', function(done) {
-    var post = new Post({ message: 'check message' });
-
-    post.save(function(err) {
-      expect(err).toBeNull();
-    });
-
-    Post.findOneAndUpdate({ _id: `${post._id}`}, {$inc: { likes : 1 }}).exec();
-      expect(post.likes).toEqual(1);
-      done();
-    });
+    expect(post.likes).toEqual(0);
   });
 
+  it('adds 1 to likes value', function(done) {
+    var post = new Post({ message: 'like message' });
+    
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      Post.find(function(err, posts) {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: 'like message' });
+        done();
+
+        Post.findByIdAndUpdate(
+          { _id: post._id },
+          {$inc:{ likes: 1 }},
+          function(err) {
+            if (err) {
+              console.log("This is an error");
+            } else {
+              console.log("It worked-ish");
+            }
+          }
+        );
+      });
+    });
+  });
+});
