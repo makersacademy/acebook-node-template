@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <nav class="navbar" style="text-align: center;">
-   <a class="new-post" href="/posts/new">New Post</a>
-    <a class="profile" href="#">Profile</a>
-     <a class="logout" href="#">Log Out</a>
-</nav>
-  <h1>Timeline</h1>
+  <head>
+    <nav class="navbar" style="text-align: center;">
+    <a class="new-post" href="/posts/new">New Post</a>
+      <a class="profile" href="#">Profile</a>
+      <a class="logout" href="#">Log Out</a>
+    </nav>
   </head>
-
-<body style="text-align: center;">
-<ul class="posts">
-  {{#each posts}}
-  <div>
-    <p> {{this.message}} </p>
-    <p> Likes: {{this.likes}} </p>
-    <div>
-      <form name="delete-post-form" id="{{this.message}}" action="/posts/delete" method="post">
-        <input id="id" type="hidden" name="id" value="{{this._id}}">
-        <input type="submit" id= this._id value="Delete">
-      </form>
-   
-      <form name="like-post-form" id="{{this.message}}" action="/posts/like" method="post">
-        <input id="id" type="hidden" name="id" value="{{this._id}}">
-        <input type="submit" id= this._id value="Like">
-      </form> 
-   
-    </div> 
-  </div>
-  {{/each}}
-</ul>
-  
-</body>
+  <body style="text-align: center;">
+    <h1>Timeline</h1>  
+      <ul class="posts" >
+        {{#each posts}}
+        <div>
+          <p ><b> {{this.message}} </b></p>
+          <p> Likes: {{this.likes}} </p>
+          <div>
+            <form name="delete-post-form" id="{{this.message}}" action="/posts/delete" method="post">
+              <input id="id" type="hidden" name="id" value="{{this._id}}">
+              <input type="submit" id= this._id value="Delete">
+            </form>
+        
+            <form name="like-post-form" id="{{this.message}}" action="/posts/like" method="post">
+              <input id="id" type="hidden" name="id" value="{{this._id}}">
+              <input type="submit" id= this._id value="Like">
+            </form> 
+        
+          </div> 
+        </div>
+        {{/each}}
+      </ul>
+    
+  </body>
 </html>
