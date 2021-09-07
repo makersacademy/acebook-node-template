@@ -1,14 +1,106 @@
-<h1 class="comment-header">Add a comment!</h1>
-<form id="new-comment-form" action="/posts/comments" method="post">
-  <label for="comment">Comment: </label>
-  <input id="comment" type="text" name="comment">
-  <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="comment-form-styles">
+  <h1 class="comment-header">Add a comment!</h1>
+  <form id="new-comment-form" action="/posts/comments" method="post">
+    <input id="comment" type="text" name="comment">
+    <input type="submit" value="Submit">
+  </form>
 
-<ul class="comments">
-  {{#each comments}}
-  <div>
-    {{this.comment}}
-  </div>
-  {{/each}}
-</ul>
+  <ul class="comments">
+    {{#each comments}}
+    <div class="comment-text">
+      {{this.comment}}
+    </div>
+    {{/each}}
+  </ul>
+</div>
+
+<style type="text/css">
+.comment-form-styles{
+	font: 95% Arial, Helvetica, sans-serif;
+	max-width: 400px;
+	margin: 10px auto;
+	padding: 16px;
+	background: #F7F7F7;
+}
+
+.comment-text {
+  font-size: 1.2em;
+  border: 1px solid #43D1AF;
+  border-radius: 1px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-right: 11.5%;
+  word-wrap: break-word;
+}
+.comment-form-styles h1{
+	background: #43D1AF;
+	padding: 20px 0;
+	font-size: 140%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+	margin: -16px -16px 16px -16px;
+}
+.comment-form-styles input[type="text"],
+.comment-form-styles input[type="password"],
+.comment-form-styles input[type="email"]
+{
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 4%;
+	border: 1px solid #ccc;
+	padding: 3%;
+	color: #555;
+	font: 95% Arial, Helvetica, sans-serif;
+}
+.comment-form-styles input[type="text"]:focus,
+.comment-form-styles input[type="password"]:focus,
+.comment-form-styles input[type="email"]:focus,
+.comment-form-styles textarea:focus,
+.comment-form-styles select:focus
+{
+	box-shadow: 0 0 5px #43D1AF;
+	padding: 3%;
+	border: 1px solid #43D1AF;
+}
+
+.comment-form-styles input[type="submit"] {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	padding: 3%;
+	background: #43D1AF;
+	border-bottom: 2px solid #30C29E;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;	
+	color: #fff;
+}
+.comment-form-styles input[type="submit"]:hover {
+	background: #2EBC99;
+}
+
+.header {
+  text-align: center;
+}
+</style>
+</body>
+</html>
