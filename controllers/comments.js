@@ -14,7 +14,7 @@ var CommentController = {
     comment.save(function(err) {
       if (err) { throw err; }
 
-      res.status(201).redirect('/posts/comments');
+      res.status(201).redirect('/posts/comments/all');
     });
   }
 };

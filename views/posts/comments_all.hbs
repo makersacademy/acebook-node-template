@@ -1,0 +1,14 @@
+<h1 class="comment-header">Add a comment!</h1>
+<form id="new-comment-form" action="/posts/comments/all" method="post">
+  <label for="comment">Comment: </label>
+  <input id="comment" type="text" name="comment">
+  <input type="submit" value="Submit">
+</form>
+
+<ul class="comments">
+  {{#each comments}}
+  <div>
+    {{this.comment}}
+  </div>
+  {{/each}}
+</ul>

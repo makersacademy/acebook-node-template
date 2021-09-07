@@ -5,7 +5,7 @@ var faker = require('faker');
 
 
 describe('Timeline', function() {
-  it('can remove posts and see there changes', function() {
+  it('can remove posts and see the changes', function() {
     let randomText1 = faker.lorem.words()
     let randomText2 = faker.lorem.words()
 
