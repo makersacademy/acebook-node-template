@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
-
 require('../mongodb_helper')
 var Post = require('../../models/post');
-console.log(Post)
+
+
 describe('Post model', function() {
+  
   beforeEach(function(done) {
       mongoose.connection.collections.posts.drop(function() {
           done();
@@ -12,6 +13,7 @@ describe('Post model', function() {
 
   it('has a message', function() {
     var post = new Post({ message: 'some message' });
+    
     expect(post.message).toEqual('some message');
   });
 
@@ -25,11 +27,12 @@ describe('Post model', function() {
 
   it('can save a post', function(done) {
     var post = new Post({ message: 'some message' });
-     console.log(post._id)
+
     post.save(function(err) {
       expect(err).toBeNull();
 
       Post.find(function(err, posts) {
+       
         expect(err).toBeNull();
 
         expect(posts[0]).toMatchObject({ message: 'some message' });
@@ -44,7 +47,6 @@ describe('Post model', function() {
     post.save(function(err) {
       expect(err).toBeNull();
     
- 
       Post.findByIdAndRemove({ _id: `${post._id}` }, function(err) {
         expect(err).toBeNull();
 
@@ -63,7 +65,6 @@ describe('Post model', function() {
     post.save(function(err) {
       expect(err).toBeNull();
     });
-
     expect(post.likes).toEqual(0);
   });
 
@@ -72,13 +73,10 @@ describe('Post model', function() {
     
     post.save(function(err) {
       expect(err).toBeNull();
-
       Post.find(function(err, posts) {
         expect(err).toBeNull();
-
         expect(posts[0]).toMatchObject({ message: 'like message' });
         done();
-
         Post.findByIdAndUpdate(
           { _id: post._id },
           {$inc:{ likes: 1 }},
