@@ -32,11 +32,11 @@ var PostsController = {
 
   Like: function(req, res) {
     console.log(req.body.id)
-    Post.updateOne({ _id: req.body.id }, { likes: 7 }), function(err) {
-      if (err) { throw err; }
+    Post.findByIdAndUpdate({ _id: req.body.id },{$inc:{ likes: 1 }},function(err) {
+        if (err) { throw err;} 
 
-      res.status(201).redirect('/posts');
-    };  
+        res.status(201).redirect('/posts');
+      }); 
   }
 };
 

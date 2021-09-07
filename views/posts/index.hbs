@@ -9,23 +9,24 @@
   <h1>Timeline</h1>
   </head>
 
-<body>
+<body style="text-align: center;">
 <ul class="posts">
   {{#each posts}}
   <div>
-    {{this.message}}
-    <form name="delete-post-form" id="{{this.message}}" action="/posts/delete" method="post">
-      <input id="id" type="hidden" name="id" value="{{this._id}}">
-      <input type="submit" id= this._id value="Delete">
-    </form>
+    <p> {{this.message}} </p>
+    <p> Likes: {{this.likes}} </p>
+    <div>
+      <form name="delete-post-form" id="{{this.message}}" action="/posts/delete" method="post">
+        <input id="id" type="hidden" name="id" value="{{this._id}}">
+        <input type="submit" id= this._id value="Delete">
+      </form>
    
-    <form>
-     <!-- name="like-post-form" id="{{this.message}}" action="/posts/like" method="post">
-      <input id="id" type="hidden" name="id" value="{{this._id}}">
-       -->
-      <input type="submit" id= this._id value="Like">
-    </form> 
+      <form name="like-post-form" id="{{this.message}}" action="/posts/like" method="post">
+        <input id="id" type="hidden" name="id" value="{{this._id}}">
+        <input type="submit" id= this._id value="Like">
+      </form> 
    
+    </div> 
   </div>
   {{/each}}
 </ul>
