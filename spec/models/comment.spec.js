@@ -11,11 +11,11 @@ describe('Comment model', function() {
   });
 
   it('has a message', function() {
-    var comment = new Comment({ message: 'some message' });
-    expect(comment.message).toEqual('some message');
+    var comment = new Comment({ comment: 'some message' });
+    expect(comment.comment).toEqual('some message');
   });
 
-  it('can list all posts', function(done) {
+  it('can list all comments', function(done) {
     Comment.find(function(err, posts) {
       expect(err).toBeNull();
       expect(posts).toEqual([]);
@@ -23,16 +23,16 @@ describe('Comment model', function() {
     });
   });
 
-  it('can save a post', function(done) {
-    var comment = new Comment({ message: 'some message' });
+  it('can save a comment', function(done) {
+    var comment = new Comment({ comment: 'some message' });
 
     comment.save(function(err) {
       expect(err).toBeNull();
 
-      comment.find(function(err, posts) {
+      Comment.find(function(err, posts) {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: 'some message' });
+        expect(posts[0]).toMatchObject({ comment: 'some message' });
         done();
       });
     });

@@ -10,6 +10,7 @@ var CommentController = {
   },
   New: function(req, res) {
     var comment = new Comment({ comment: req.body.comment });
+    console.log('!bug fixing!')
     comment.save(function(err) {
       if (err) { throw err; }
 
