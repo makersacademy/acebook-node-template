@@ -11,6 +11,22 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
+## User Stories
+
+- As a user, so I can login, I would like to sign up
+- As a user, so I can sign up, I would like to enter info about me (DOB, bio, work, profile pic)
+- As a user, so I can access my account, I would like to login
+- As a user, so I can change accounts, I would like to log out.
+- As a user, so I can view my posts, I would like to upload posts (consisting of picture and text) 
+- As a user, so I can see view other people's posts, I would like to view all posts (recent first).
+- As a user, so I can see who wrote a post, I would like to see their name and photo next to it.
+- As a user, so I can navigate the site, I would like a useful nav bar.
+- As a user, so I can support a post/comment, I want to be able to like it.
+- As a user, so I can share my opinion, I would like to add a comment to a post.
+- As a user, so I can correct my typos, I would like to edit my post/comment after posting.
+- As a user, so I can redact my opinion, I would like to delete a post/comment.
+- As a user, so everything looks good, I would like a nice UI.
+
 ## Card wall
 
 [Trello Board](https://trello.com/b/o0oJVI0n/acebook-pandas)
