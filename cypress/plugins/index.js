@@ -10,8 +10,19 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
+const mongoose = require("mongoose")
 
-module.exports = function() {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+module.exports = (on) => {
+    on('task', {
+        'db:drop:all': () => {
+            // Drop all collections 
+            const conn = mongoose.createConnection('mongodb://localhost/acebook_test');
+            return conn.dropDatabase();
+        }
+    })
 }
+
+// module.exports = function() {
+//   // `on` is used to hook into various events Cypress emits
+//   // `config` is the resolved Cypress config
+// }
