@@ -1,13 +1,24 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
+    <nav>
+      <ul>
+        <li style="font-size: 2rem;"><a href="/">Acebook</a></li>
+        <li><a href="/posts/">Posts</a></li>
+        <li><a href="/posts/new">New Post</a></li>
+        <li><a href="/sessions/new">Sign Up</a></li>
+        <li><a href="#">Log in</a></li>
+        <li style="float: right;">
+          <a>
+            <form action="/sessions?_method=DELETE" method="POST">
+              <input type="submit" value="Log Out" />
+            </form></a>
+        </li>
+      </ul>
+    </nav>
     {{{body}}}
   </body>
 </html>
