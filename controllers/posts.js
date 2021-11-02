@@ -6,7 +6,7 @@ var PostsController = {
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts });
-    });
+    }).sort({ createdAt: 'desc' });
   },
   New: function(req, res) {
     res.render('posts/new', {});
