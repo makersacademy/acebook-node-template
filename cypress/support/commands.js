@@ -24,14 +24,35 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("visitSignUpPage", function() {
-    cy.visit('/');
-    cy.contains('Sign Up').click();
+Cypress.Commands.add("visitSignUpPage", function () {
+  cy.visit("/");
+  cy.contains("Sign Up").click();
 });
 
-Cypress.Commands.add("signUpNewUser", function(name, email) {
-    cy.get('#new-user-form').find('#name').type(name);
-    cy.get('#new-user-form').find('#email').type(`${email}@example.com`);
-    cy.get('#new-user-form').find('#password').type('12345');
-    cy.get('#new-user-form').submit();
+Cypress.Commands.add("signUpNewUser", function (name, email) {
+  cy.deleteUser(email);
+  cy.get("#new-user-form").find("#name").type(name);
+  cy.get("#new-user-form").find("#email").type(`${email}@example.com`);
+  cy.get("#new-user-form").find("#password").type("12345");
+  cy.get("#new-user-form").submit();
+});
+
+Cypress.Commands.add("signUpExistingUser", function (name, email) {
+  cy.get("#new-user-form").find("#name").type(name);
+  cy.get("#new-user-form").find("#email").type(`${email}@example.com`);
+  cy.get("#new-user-form").find("#password").type("12345");
+  cy.get("#new-user-form").submit();
+});
+
+Cypress.Commands.add("signInUser", function (email, password) {
+  cy.visit("/sessions/new");
+  cy.get("#new-session-form").find("#email").type(`${email}@example.com`);
+  cy.get("#new-session-form").find("#password").type(password);
+  cy.get("#new-session-form").submit();
+});
+
+Cypress.Commands.add("deleteUser", function (email) {
+  cy.exec(
+    `mongo acebook_test --eval 'db.users.deleteOne({email: "${email}@example.com"})'`
+  );
 });
