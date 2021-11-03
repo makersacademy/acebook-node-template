@@ -16,9 +16,9 @@ describe('Sign up', function() {
 
     // TODO: Handle duplicate user sign up
 
-    // it("Doesn't allow pre-existing users to sign up again", function() {
-    //     cy.visitSignUpPage();
-    //     cy.signUpNewUser("Hermione Granger", "hermione");
-
-    // });
+    it("Doesn't allow pre-existing users to sign up again", function() {
+        cy.visitSignUpPage();
+        cy.signUpNewUser("Hermione Granger", "hermione");
+        cy.get('title').should('contain', 'Log In');
+    });
 });
