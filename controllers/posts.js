@@ -2,7 +2,11 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: function(req, res) {
+    console.log("POST:", Post);
     Post.find(function(err, posts) {
+      console.log("error:", err);
+      console.log("posts:", posts);
+      
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts });

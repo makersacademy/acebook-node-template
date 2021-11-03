@@ -1,11 +1,20 @@
 <h1>Timeline</h1>
-<ul class="posts">
   {{#each posts}}
-  <div style="border-style: groove; margin: 25px; padding: 30px;">
-    <p>{{this.message}}</p>
-    <p style="text-align: right;">{{this.createdAt}}</p>
+  <div class="card">
+    <div class="card-body">
+        <div class="d-flex">
+          <img class="post-profile-photo" src="https://png.pngitem.com/pimgs/s/111-1114718_transparent-sleep-icon-png-person-icon-circle-png.png">
+          <div>
+            <p class="card-title">Joe Bloggs</p>
+            <p><small class="text-muted">{{this.createdAt}}</small></p>
+          </div>
+        </div>
+      <div>
+        <p class="card-text">{{this.message}}</p>
+      </div>
+    </div>
+    <img src="..." class="card-img-bottom" alt="...">
   </div>
   {{/each}}
-</ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>

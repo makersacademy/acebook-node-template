@@ -1,7 +1,19 @@
-<form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input type="submit" value="Submit">
-</form>
+<div class="container login-container">
+  <div class="row">
+    <div class="login-form">
+      <h3>Login to Acebook</h3>
+      <form id="new-session-form" action="/sessions" method="post">
+        <div class="form-group">
+          <input id="email" type="email" name="email" value="" placeholder="Your Email">
+        </div>
+        <div class="form-group">
+          <input id="password" type="password" name="password" value="" placeholder="Your Password">
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+      <p style="text-align: center;"><small>Don't yet have an account? <a href="/users/new">Sign Up here</a></small></p>
+    </div>
+  </div>
+</div>
