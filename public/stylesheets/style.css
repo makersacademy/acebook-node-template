@@ -26,14 +26,44 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+h1 {
+  text-align: center;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 20px;
+}
+
+h4 {
+  text-align: center;
+}
+
+.cover-container {
+  max-width: 42em;
+}
+
 .brand-name {
   font-family: serif;
   font-size: 2rem;
 }
 
-
 a {
   color: #00b7ff;
+}
+
+.signup-button {
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 50%;
+  font-size: 13px;
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  border-radius: 5px 5px 5px 5px;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 20px;
 }
 
 ul {
@@ -129,4 +159,8 @@ input[type=submit]:not(.navbar input[type=submit]) {
 
 .card {
   margin-bottom: 20px;
+  border: none;
+  color: black;
+  box-shadow: 0 5px 30px 0 rgba(95,186,233,0.3);
+  border-radius: 5px 5px 5px 5px;
 }
