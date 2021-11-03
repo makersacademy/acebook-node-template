@@ -32,3 +32,13 @@ li a {
 li a:hover {
   background-color: #111;
 }
+
+.date-posted {
+  text-align: right;
+}
+
+.post-profile-photo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}

@@ -43,15 +43,6 @@ app.use((req, res, next) => {
 });
 
 // middleware function to check for logged-in users
-<<<<<<< HEAD
-// var sessionChecker = (req, res, next) => {
-//   if (!req.session.user && !req.cookies.user_sid) {
-//     res.redirect('/sessions/new');
-//   } else {
-//     next();
-//   }
-// };
-=======
 var sessionChecker = (req, res, next) => {
   // if (!req.session.user && !req.cookies.user_sid) {
   //   res.redirect('/sessions/new');
@@ -59,14 +50,12 @@ var sessionChecker = (req, res, next) => {
     next();
   // }
 };
->>>>>>> master
 
 
 
 // route setup
 app.use('/', homeRouter);
-// app.use('/posts', sessionChecker, postsRouter);
-app.use('/posts', postsRouter);
+app.use('/posts', sessionChecker, postsRouter);
 app.use('/sessions', sessionsRouter);
 app.use('/users', usersRouter);
 
