@@ -5,12 +5,13 @@ describe('Sign up', function() {
     // })
 
     it('can make a new account', function() {
-        cy.exec("mongo acebook_test --eval 'db.users.deleteMany({})'")
+        cy.exec("mongo acebook_test --eval 'db.users.deleteOne({email: \"hermione@example.com\"})'");
 
         cy.visitSignUpPage();
         cy.signUpNewUser("Hermione Granger", "hermione");
 
         cy.get('h1').should('contain', 'Timeline');
+
     });
 
     // TODO: Handle duplicate user sign up
@@ -18,5 +19,6 @@ describe('Sign up', function() {
     // it("Doesn't allow pre-existing users to sign up again", function() {
     //     cy.visitSignUpPage();
     //     cy.signUpNewUser("Hermione Granger", "hermione");
+
     // });
 });
