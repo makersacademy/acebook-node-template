@@ -1,9 +1,36 @@
+.navbar {
+  background-color: rgba(95,186,233,0.8);
+}
+
+.navbar a {
+  color: white;
+}
+
+.navbar input[type=submit] {
+  color: white;
+  background: none!important;
+  border: none;
+  margin: auto;
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  vertical-align: center;
+  text-align: center;
+}
+
 body {
   max-width: 50rem;
   margin: auto;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+.brand-name {
+  font-family: serif;
+  font-size: 2rem;
+}
+
 
 a {
   color: #00b7ff;
@@ -14,7 +41,6 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
 }
 
 li {
@@ -25,7 +51,7 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0px;
   text-decoration: none;
 }
 
@@ -84,7 +110,7 @@ input[type=email], [type=password], [type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=submit] {
+input[type=submit]:not(.navbar input[type=submit]) {
   background-color: #56baed;
   border: none;
   color: white;
@@ -92,7 +118,6 @@ input[type=submit] {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  text-transform: uppercase;
   width: 50%;
   font-size: 13px;
   box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
