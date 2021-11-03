@@ -126,3 +126,7 @@ input[type=submit]:not(.navbar input[type=submit]) {
   margin-right: 25%;
   margin-top: 20px;
 }
+
+.card {
+  margin-bottom: 20px;
+}
