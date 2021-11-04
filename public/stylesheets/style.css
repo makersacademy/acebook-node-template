@@ -103,5 +103,5 @@ input[type=submit] {
 }
 
 .post-img {
-  width: auto;
+  max-width: 100%;
 }

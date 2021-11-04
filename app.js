@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(fileUpload({
-  limits: { fileSize: 5 * 1024 * 1024 }
+  limits: { fileSize: 1024 * 1024 }
 }));
 
 app.use(session({ key: 'user_sid',

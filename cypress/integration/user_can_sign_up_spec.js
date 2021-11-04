@@ -5,7 +5,7 @@ describe('Sign up', function() {
     // })
 
     it('can make a new account', function() {
-        cy.exec("mongo acebook_test --eval 'db.users.deleteMany({})'")
+        cy.exec("mongo acebook_test --eval 'db.users.deleteMany({});'")
 
         cy.visitSignUpPage();
         cy.signUpNewUser("Hermione Granger", "hermione");

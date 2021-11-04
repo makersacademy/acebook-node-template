@@ -20,6 +20,8 @@ var PostsController = {
       console.log("\nPOST CREATE REQ FILES IMAGE:");
       console.log(req.files.image, '\n');
       const img = req.files.image;
+      img.name = img.name.replaceAll(/\s/g, "_");
+      console.log(img.name);
       const uploadPath = `/images/post_imgs/${img.name}`;
       img.mv(`public${uploadPath}`, function(err) {
         if (err) {
