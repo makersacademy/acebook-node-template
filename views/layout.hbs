@@ -32,7 +32,7 @@
         <!-- navbar right items -->
         <div class="d-flex align-items-center">
           {{!-- {{#if req.session.user}} --}}
-              <form class="text-reset me-3" action="/sessions?_method=DELETE" method="POST">
+              <form id="logout-form" class="text-reset me-3" action="/sessions?_method=DELETE" method="POST">
                 <input type="submit" value="Log Out" />
               </form>
               {{!-- {{else}} --}}
@@ -53,6 +53,5 @@
     </div>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="interface.js"></script>
   </body>
 </html>
