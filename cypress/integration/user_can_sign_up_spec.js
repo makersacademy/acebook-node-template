@@ -5,12 +5,12 @@ describe("Sign up", function () {
   // })
 
   it("can make a new account", function () {
-    cy.logOutUser();
     cy.deleteUser("hermione");
     cy.visitSignUpPage();
     cy.signUpNewUser("Hermione Granger", "hermione");
 
     cy.get("h1").should("contain", "Timeline");
+    // cy.get("#alert-message").should("contain", "Welcome, Hermione Granger!");
   });
 
   it("Doesn't allow pre-existing users to sign up again", function () {

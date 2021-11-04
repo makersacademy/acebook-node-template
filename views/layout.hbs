@@ -37,11 +37,10 @@
 
           <!-- navbar right items -->
           <div class="d-flex align-items-center">
-            <p>{{{user}}}</p>
-            {{#if user}}
-            <form id="logout-form" class="text-reset me-3" action="/sessions?_method=DELETE" method="POST">
-              <input type="submit" value="Log Out" />
-            </form>
+            {{#if userExists}}
+              <form id="logout-form" action="/sessions?_method=DELETE" method="POST" style="margin:0px; padding:0px">
+                <input type="submit" value="Log Out" />
+              </form>
             {{else}}
             <ul id="no-session-state">
               <li class="nav-item text-reset me-3">
@@ -56,6 +55,7 @@
     </div>
   </nav>
   <div class="container">
+    <p>{{{userExists}}}</p>
     {{{body}}}
   </div>
   <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>

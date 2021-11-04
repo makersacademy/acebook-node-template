@@ -17,8 +17,9 @@ describe("Sign out", function() {
 
     it("should have a logout button for logged in users", function() {
         cy.visit('/');
+        cy.visitSignInPage();
         cy.signInUser("freddy", "12345");
-        
+
         cy.get('#no-session-state').should('not.exist');
         cy.get('#logout-form').should('exist')
     });

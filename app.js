@@ -55,6 +55,11 @@ var sessionChecker = (req, res, next) => {
     }
 };
 
+app.use(function(req, res, next) {
+    res.locals.userExists = req.session.user ? true : false;
+    next();
+});
+
 // route setup
 app.use("/", homeRouter);
 app.use('/posts', sessionChecker, postsRouter);
