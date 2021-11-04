@@ -2,7 +2,7 @@
 describe("Sign in", function () {
   it("can sign in a returning user", function () {
     cy.visitSignUpPage();
-    cy.signUpNewUser("freddy", "freddy");
+    cy.signUpNewUser("Freddy", "freddy");
     cy.logOutUser();
     cy.visitSignInPage();
     cy.signInUser("freddy", "12345");
