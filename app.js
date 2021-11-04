@@ -55,6 +55,7 @@ var sessionChecker = (req, res, next) => {
     }
 };
 
+// middleware to check if a user is logged in
 app.use(function(req, res, next) {
     res.locals.userExists = req.session.user ? true : false;
     next();

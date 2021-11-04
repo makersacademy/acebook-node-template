@@ -3,7 +3,12 @@ var bcrypt = require("bcrypt")
 
 var SessionsController = {
     New: function(req, res) {
-        res.render('sessions/new', { title: "Log In" });
+        if (req.session.user) {
+            res.redirect('/posts');
+            //to-do add amber alert flash message
+        } else {
+            res.render('sessions/new', { title: "Log In" });
+        }
     },
 
     Create: function(req, res) {
