@@ -1,6 +1,8 @@
 # images
 public/images/post_imgs
 
+.DS_Store
+
 # Logs
 logs
 *.log

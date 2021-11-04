@@ -1,25 +1,28 @@
+<a class="new-post-link" href="/posts/new">New post</a>
 <h1>Timeline</h1>
 <main class="posts">
   {{#each posts}}
-  <div class="card">
-    <div class="card-body">
+    <div class="card">
+      <div class="card-body">
         <div class="d-flex">
-          <img class="post-profile-photo" src="https://png.pngitem.com/pimgs/s/111-1114718_transparent-sleep-icon-png-person-icon-circle-png.png">
+          <img
+            class="post-profile-photo"
+            src="https://png.pngitem.com/pimgs/s/111-1114718_transparent-sleep-icon-png-person-icon-circle-png.png"
+          />
           <div>
             <p class="card-title">Joe Bloggs</p>
             <p><small class="text-muted">{{this.createdAt}}</small></p>
           </div>
         </div>
-      <div>
-        <p class="card-text">{{this.message}}</p>
+        <div>
+          <p class="card-text">{{this.message}}</p>
+        </div>
       </div>
+      {{#if this.imageLink}}
+        <div class="card-img-bottom">
+          <img src={{this.imageLink}} class="post-img" alt="post image" />
+        </div>
+      {{/if}}
     </div>
-    {{#if this.imageLink}}
-      <div class="card-img-bottom">
-        <img src={{this.imageLink}} class="post-img" alt="post image" />
-      </div>
-    {{/if}}
-  </div>
   {{/each}}
 </main>
-<a class="new-post-link" href="/posts/new">New post</a>
