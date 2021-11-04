@@ -55,6 +55,13 @@ var sessionChecker = (req, res, next) => {
     }
 };
 
+// flash middleware
+app.use(function(req, res, next) {
+    res.locals.message = req.session.message;
+    delete req.session.message;
+    next();
+});
+
 // middleware to check if a user is logged in
 app.use(function(req, res, next) {
     res.locals.userExists = req.session.user ? true : false;

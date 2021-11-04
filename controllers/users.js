@@ -18,7 +18,11 @@ var UsersController = {
         User.findOne({ email: user.email }).then(
             (userReturned) => {
                 if (userReturned) {
-                    console.log("User exists");
+                    req.session.message = {
+                        type: "danger",
+                        intro: "User already exists!",
+                        message: "If you already have an account, please sign in."
+                    }
                     res.status(400).redirect('/sessions/new');
 
                 } else {
@@ -26,7 +30,11 @@ var UsersController = {
                         if (err) {
                             throw err;
                         }
-                        console.log("New user: " + req.session.user);
+                        req.session.message = {
+                            type: "success",
+                            intro: `Welcome, ${user.name}!`,
+                            message: "Enjoy your time at Acebook Pandas!"
+                        }
                         req.session.user = user;
                         res.status(201).redirect('/posts');
                     });
