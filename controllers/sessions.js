@@ -3,7 +3,12 @@ var bcrypt = require("bcrypt")
 
 var SessionsController = {
     New: function(req, res) {
-        res.render('sessions/new', { title: "Log In" });
+        if (req.session.user) {
+            res.redirect('/posts');
+            //to-do add amber alert flash message
+        } else {
+            res.render('sessions/new', { title: "Log In" });
+        }
     },
 
     Create: function(req, res) {
@@ -46,11 +51,10 @@ var SessionsController = {
     },
 
     Destroy: function(req, res) {
-        console.log('logging out')
         if (req.session.user && req.cookies.user_sid) {
             res.clearCookie('user_sid');
         }
-        res.redirect('/sessions/new');
+        res.redirect('/');
     }
 };
 

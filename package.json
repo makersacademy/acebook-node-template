@@ -1,44 +1,45 @@
 {
-  "name": "acebook",
-  "version": "0.0.0",
-  "description": "Template for the AceBook project",
-  "license": "CC BY-NC-SA",
-  "private": true,
-  "scripts": {
-    "lint": "eslint .",
-    "start": "nodemon ./bin/www",
-    "start:test": "PORT=3030 MONGODB_URL='mongodb://localhost/acebook_test' npm start",
-    "test": "npm run lint && npm run test:unit && npm run test:integration",
-    "test:unit": "jest",
-    "test:integration": "cypress run"
-  },
-  "engines": {
-    "node": ">=12.14.1"
-  },
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.0",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "express-session": "^1.17.2",
-    "hbs": "^4.1.0",
-    "http-errors": "~1.6.3",
-    "method-override": "^3.0.0",
-    "mongodb": "^3.4.1",
-    "mongoose": "^5.8.11",
-    "morgan": "~1.9.1",
-    "nodemon": "^1.19.4"
-  },
-  "devDependencies": {
-    "cypress": "^3.8.3",
-    "eslint": "^6.8.0",
-    "eslint-plugin-cypress": "^2.8.1",
-    "eslint-plugin-jest": "^22.21.0",
-    "eslint-plugin-node": "^10.0.0",
-    "jest": "^24.9.0"
-  },
-  "nodemonConfig": {
-    "ext": "js,hbs"
-  }
+    "name": "acebook",
+    "version": "0.0.0",
+    "description": "Template for the AceBook project",
+    "license": "CC BY-NC-SA",
+    "private": true,
+    "scripts": {
+        "lint": "eslint .",
+        "start": "nodemon ./bin/www",
+        "start:test": "PORT=3030 MONGODB_URL='mongodb://localhost/acebook_test' npm start",
+        "test": "npm run lint && npm run test:unit && npm run test:integration",
+        "test:unit": "jest",
+        "test:integration": "cypress run",
+        "cy:run": "cypress run"
+    },
+    "engines": {
+        "node": ">=12.14.1"
+    },
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "body-parser": "^1.19.0",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "express": "~4.16.1",
+        "express-session": "^1.17.2",
+        "hbs": "^4.1.0",
+        "http-errors": "~1.6.3",
+        "method-override": "^3.0.0",
+        "mongodb": "^3.4.1",
+        "mongoose": "^5.8.11",
+        "morgan": "~1.9.1",
+        "nodemon": "^1.19.4"
+    },
+    "devDependencies": {
+        "cypress": "^3.8.3",
+        "eslint": "^6.8.0",
+        "eslint-plugin-cypress": "^2.8.1",
+        "eslint-plugin-jest": "^22.21.0",
+        "eslint-plugin-node": "^10.0.0",
+        "jest": "^24.9.0"
+    },
+    "nodemonConfig": {
+        "ext": "js,hbs"
+    }
 }

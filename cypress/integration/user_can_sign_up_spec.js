@@ -5,7 +5,6 @@ describe("Sign up", function() {
     // })
 
     it("can make a new account", function() {
-        cy.logOutUser();
         cy.deleteUser("hermione");
         cy.visitSignUpPage();
         cy.signUpNewUser("Hermione Granger", "hermione");
