@@ -17,16 +17,16 @@
     <div class="container-fluid">
       <a class="navbar-brand mt-lg-0 brand-name" href="/">
         <img src="https://2vvkl84czfcv3uc0ukz7sgl1-wpengine.netdna-ssl.com/wp-content/uploads/2021/04/favicon-1.png"
-          height="30" alt="" loading="lazy" />
+          height="30" alt="" loading="lazy" style="margin-left: 12px;"/>
       </a>
-      <a class="navbar-brand mt-lg-0 brand-name" href="/">Acebook</a>
+      <a class="navbar-brand mt-lg-0 brand-name" href="/" style="margin-left: 8px; margin-right: 8px;">Acebook</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
         <!-- navbar left items -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-lg-0" >
             <li class="nav-item">
               <a class="nav-link" href="/posts">Posts</a>
             </li>
@@ -38,7 +38,7 @@
 
         <!-- navbar right items -->
           {{#if userExists}}
-          <ul class="nav navbar-nav navbar-right mb-2 mb-lg-0">
+          <ul class="nav navbar-nav navbar-right mb-lg-0">
             <li class="nav-item">
               <form id="logout-form" action="/sessions?_method=DELETE" method="POST" style="margin:0px; padding:0px">
                 <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit(); return: false;">Log Out</a>
@@ -50,7 +50,7 @@
             </li>
           </ul>
           {{else}}
-          <ul class="nav navbar-nav navbar-right mb-2 mb-lg-0">
+          <ul id="no-session-state" class="nav navbar-nav navbar-right mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link" href="/users/new">Sign Up</a>
             </li>

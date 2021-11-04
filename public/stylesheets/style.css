@@ -49,6 +49,7 @@ h4 {
 }
 
 .brand-name {
+  margin: 0px;
   font-family: serif;
   font-size: 2rem;
 }
