@@ -19,6 +19,7 @@ var UsersController = {
             (userReturned) => {
                 if (userReturned) {
                     res.status(400).redirect('/sessions/new');
+                    
                 } else {
                     user.save(function(err) {
                         if (err) {
