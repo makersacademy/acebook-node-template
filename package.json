@@ -20,6 +20,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
@@ -35,6 +36,8 @@
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
+    "express-busboy": "^8.0.0",
+    "express-fileupload": "^1.2.1",
     "jest": "^24.9.0"
   },
   "nodemonConfig": {

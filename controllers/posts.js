@@ -16,12 +16,31 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
-    post.save(function(err) {
-      if (err) { throw err; }
+    if (req.files && req.files.image) {
+      console.log("\nPOST CREATE REQ FILES IMAGE:");
+      console.log(req.files.image, '\n');
+      const img = req.files.image;
+      const uploadPath = `/images/post_imgs/${img.name}`;
+      img.mv(`public${uploadPath}`, function(err) {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        req.body.imageLink = uploadPath;
+        const post = new Post(req.body);
+        post.save(function(err) {
+          if (err) { throw err; }
 
-      res.status(201).redirect('/posts');
-    });
+          res.status(201).redirect('/posts');
+        });
+      });
+      // req.body.imageLink = uploadPath;
+    } else {
+      const post = new Post(req.body);
+      post.save(function(err) {
+        if (err) { throw err; }
+        res.status(201).redirect('/posts');
+      });
+    }
   }
 };
 

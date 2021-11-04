@@ -101,3 +101,7 @@ input[type=submit] {
   margin-right: 25%;
   margin-top: 20px;
 }
+
+.post-img {
+  width: auto;
+}
