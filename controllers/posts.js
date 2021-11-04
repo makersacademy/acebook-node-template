@@ -2,23 +2,20 @@ var Post = require('../models/post');
 
 var PostsController = {
   Index: function(req, res) {
-    console.log("POST:", Post);
     Post.find(function(err, posts) {
-      console.log("error:", err);
-      console.log("posts:", posts);
-      
-      if (err) { throw err; }
-
-      res.render('posts/index', { posts: posts });
+      if (err) { 
+        throw err; 
+      }
+      res.render('posts/index', { posts: posts, title: "Posts" });
     }).sort({ createdAt: 'desc' });
   },
+
   New: function(req, res) {
-    res.render('posts/new', {});
+    res.render('posts/new', { title: "New Post" });
   },
+  
   Create: function(req, res) {
     if (req.files && req.files.image) {
-      console.log("\nPOST CREATE REQ FILES IMAGE:");
-      console.log(req.files.image, '\n');
       const img = req.files.image;
       img.name = img.name.replaceAll(/\s/g, "_");
       console.log(img.name);
@@ -35,10 +32,9 @@ var PostsController = {
           res.status(201).redirect('/posts');
         });
       });
-      // req.body.imageLink = uploadPath;
     } else {
       const post = new Post(req.body);
-      post.save(function(err) {
+      post.save((err) => {
         if (err) { throw err; }
         res.status(201).redirect('/posts');
       });
