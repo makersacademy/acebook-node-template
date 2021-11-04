@@ -30,6 +30,12 @@ Cypress.Commands.add("visitSignUpPage", function () {
   cy.contains("Sign Up").click();
 });
 
+Cypress.Commands.add("visitSignInPage", function () {
+  cy.visit("/");
+  cy.contains("Log in").click();
+});
+
+
 Cypress.Commands.add("signUpNewUser", function (name, email) {
   cy.deleteUser(email);
   cy.get("#new-user-form").find("#name").type(name);
@@ -46,7 +52,6 @@ Cypress.Commands.add("signUpExistingUser", function (name, email) {
 });
 
 Cypress.Commands.add("signInUser", function (email, password) {
-  cy.visit("/sessions/new");
   cy.get("#new-session-form").find("#email").type(`${email}@example.com`);
   cy.get("#new-session-form").find("#password").type(password);
   cy.get("#new-session-form").submit();
@@ -60,5 +65,5 @@ Cypress.Commands.add("deleteUser", function (email) {
 
 Cypress.Commands.add("logOutUser", function () {
   cy.visit("/");
-  cy.get("#logout-form").submit();
+  cy.get("#logout-button").click();
 });
