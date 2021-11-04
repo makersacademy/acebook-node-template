@@ -26,7 +26,7 @@ var UsersController = {
                         if (err) {
                             throw err;
                         }
-                        console.log("New user");
+                        console.log("New user: " + req.session.user);
                         req.session.user = user;
                         res.status(201).redirect('/posts');
                     });

@@ -19,6 +19,8 @@ var SessionsController = {
                 try {
                     if (await bcrypt.compare(password, user.password)) {
                         req.session.user = user;
+
+                        console.log("Logged in: " + req.session.user);
                         res.redirect('/posts');
                     } else {
                         res.redirect('/sessions/new');
