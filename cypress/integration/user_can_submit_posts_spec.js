@@ -1,5 +1,13 @@
 describe('Timeline', function() {
+  it('stops non-logged in user from viewing posts', function() {
+    cy.visit('/posts');
+    cy.get('.login-form').should('exist');
+  });
+
   it('can submit posts and view them', function() {
+    cy.visitSignUpPage();
+    cy.signUpNewUser("Hermione Granger", "hermione");
+
     cy.visit('/posts');
     cy.contains('New post').click();
 

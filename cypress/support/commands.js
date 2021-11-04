@@ -56,3 +56,8 @@ Cypress.Commands.add("deleteUser", function (email) {
     `mongo acebook_test --eval 'db.users.deleteOne({email: "${email}@example.com"})'`
   );
 });
+
+Cypress.Commands.add("logOutUser", function () {
+  cy.visit("/");
+  cy.get("#logout-form").submit();
+});

@@ -8,6 +8,7 @@ describe("Sign in", function () {
   });
 
   it("Doesn't allow log in for non-existing user", function () {
+    cy.logOutUser();
     cy.signInUser("einstein", "12345");
     cy.get("title").should("contain", "Log In");
   });
