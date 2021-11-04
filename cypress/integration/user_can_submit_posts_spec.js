@@ -1,7 +1,7 @@
 describe('Timeline', function() {
   it('stops non-logged in user from viewing posts', function() {
     cy.visit('/posts');
-    cy.get('.login-form').should('contain', 'Login to Acebook');
+    cy.get('.login-form').should('exist');
   });
 
   it('can submit posts and view them', function() {
