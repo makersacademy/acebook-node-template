@@ -1,5 +1,5 @@
 # images
-public/images/post_imgs
+public/images/post_imgs/*
 
 .DS_Store
 
