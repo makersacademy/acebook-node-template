@@ -18,7 +18,11 @@
           <p class="card-text">{{this.message}}</p>
         </div>
       </div>
-      {{!-- <img src="#" class="card-img-bottom" alt="post image" /> --}}
+      {{#if this.imageLink}}
+        <div class="card-img-bottom">
+          <img src={{this.imageLink}} class="post-img" alt="post image" />
+        </div>
+      {{/if}}
     </div>
   {{/each}}
 </main>

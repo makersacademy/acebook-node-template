@@ -8,14 +8,16 @@
     },
     "extends": [
       "eslint:recommended",
-      "plugin:node/recommended"
+      "plugin:node/recommended",
+      "plugin:cypress/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2018
+        "ecmaVersion": 2018,
+        "sourceType": "module"
     },
     "plugins": [
       "cypress",
@@ -23,5 +25,11 @@
       "node"
     ],
     "rules": {
+      "node/no-unsupported-features/es-syntax": [
+        "error",
+        { "ignores": ["modules"] }
+      ],
+      "node/no-unpublished-import": "off",
+      "node/no-unpublished-require": "off"
     }
 }
