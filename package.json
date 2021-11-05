@@ -45,15 +45,15 @@
     "express-fileupload": "^1.2.1",
     "husky": "^7.0.4",
     "jest": "^24.9.0",
+    "lint-staged": "^11.2.6",
     "prettier": "2.4.1",
     "pretty-quick": "^3.1.1"
   },
   "nodemonConfig": {
     "ext": "js,hbs"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "prettier --write . && git add -A ."
-    }
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
