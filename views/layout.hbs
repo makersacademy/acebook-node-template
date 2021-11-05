@@ -106,18 +106,10 @@
     </nav>
     <div class="container">
       {{#if message}}
-        <div
-          class="alert alert-{{message.type}}"
-          style="text-align: center;margin-top:10px"
-        >
-          <button
-            type="button"
-            class="btn-close"
-            data-dismiss="alert"
-            style="float:right;"
-          ></button>
-          <p id="alert-message"><strong>{{message.intro}}</strong>
-            {{message.message}}</p>
+        <div class="alert alert-{{message.type}}" id="after-login-alert" style="text-align: center;margin-top:10px">
+          <button type="button" class="btn-close" data-dismiss="alert" style="float:right;" 
+          onclick="document.getElementById('after-login-alert').style.display = 'none'"></button>
+          <p id="alert-message"><strong>{{message.intro}}</strong> {{message.message}}</p>
         </div>
       {{/if}}
     </div>
