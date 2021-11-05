@@ -67,3 +67,10 @@ Cypress.Commands.add("logOutUser", function () {
   cy.visit("/");
   cy.get("#logout-button").click();
 });
+
+Cypress.Commands.add("makeTestPost", function() {
+  cy.visit("/posts/new");
+  cy.get("#new-post-form").find('[type="text"]').type("Panda");
+  cy.get("#new-post-form").find('[type="file"]').attachFile("../panda.jpg");
+  cy.get("#new-post-form").submit();
+});

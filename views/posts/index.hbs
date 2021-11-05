@@ -23,6 +23,17 @@
           <img src={{this.imageLink}} class="post-img" alt="post image" />
         </div>
       {{/if}}
+      <div class="like-div container mx-auto">
+        <div class="d-flex justify-content-center">
+          <div class="d-flex col-sm-12 justify-content-end">
+            <p class="like-counter" style="margin-right: 10px;"><small>number of likes</small></p>
+            <button class="like-button">
+              <img src="/images/like.png" height="10" width="10">
+              <span>Like</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   {{/each}}
 </main>
