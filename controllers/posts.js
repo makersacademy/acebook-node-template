@@ -1,20 +1,3 @@
-// var { nanoid } = require("nanoid");
-// var timeDifference = require("../js_helpers");
-
-// var PostsController = {
-//     Index: function(req, res) {
-//         Post.find(function(err, posts) {
-//             if (err) {
-//                 throw err;
-//             }
-
-//             posts.forEach((post) => {
-//                 let date = new Date(post.createdAt);
-//                 post.dateString = timeDifference(date);
-//             });
-
-//             res.render("posts/index", { posts: posts, title: "Posts" });
-//         }).sort({ createdAt: "desc" });
 var Post = require("../models/post");
 const User = require("../models/user");
 
