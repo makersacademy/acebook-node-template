@@ -1,5 +1,5 @@
-var Post = require('../models/post');
-const User = require('../models/user');
+var Post = require("../models/post");
+const User = require("../models/user");
 
 var PostsController = {
     Index: function(req, res) {
@@ -8,21 +8,20 @@ var PostsController = {
                     from: User.collection.name,
                     localField: "poster",
                     foreignField: "email",
-                    as: "posterName"
-                }
-            }])
-            .sort({ createdAt: 'desc' })
+                    as: "posterName",
+                },
+            }, ])
+            .sort({ createdAt: "desc" })
             .exec(function(err, aggregateRes) {
                 if (err) {
                     throw err;
                 } else {
-                    let formattedPosts = aggregateRes.map(post => {
-                        return {...post, posterName: post.posterName[0].name || "Unknown User" };
+                    let formattedPosts = aggregateRes.map((post) => {
+                        return {...post, posterName: (post.posterName[0] ? post.posterName[0].name : "Unknown User") };
                     });
-                    res.render('posts/index', { posts: formattedPosts, title: "Posts" });
+                    res.render("posts/index", { posts: formattedPosts, title: "Posts" });
                 }
             });
-
 
         // Post.find(function(err, posts) {
         //     if (err) {
@@ -34,7 +33,7 @@ var PostsController = {
     },
 
     New: function(req, res) {
-        res.render('posts/new', { title: "New Post" });
+        res.render("posts/new", { title: "New Post" });
     },
 
     Create: function(req, res) {
@@ -51,19 +50,23 @@ var PostsController = {
                 req.body.imageLink = uploadPath;
                 const post = new Post(req.body);
                 post.save(function(err) {
-                    if (err) { throw err; }
+                    if (err) {
+                        throw err;
+                    }
 
-                    res.status(201).redirect('/posts');
+                    res.status(201).redirect("/posts");
                 });
             });
         } else {
             const post = new Post(req.body);
             post.save((err) => {
-                if (err) { throw err; }
-                res.status(201).redirect('/posts');
+                if (err) {
+                    throw err;
+                }
+                res.status(201).redirect("/posts");
             });
         }
-    }
+    },
 };
 
 module.exports = PostsController;
