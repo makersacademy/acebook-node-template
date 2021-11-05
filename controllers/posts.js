@@ -1,61 +1,61 @@
-var Post = require("../models/post");
+var Post = require('../models/post');
 
-var { nanoid } = require("nanoid");
-var timeDifference = require("../js_helpers");
+var { nanoid } = require('nanoid');
+var timeDifference = require('../js_helpers');
 
 var PostsController = {
-    Index: function(req, res) {
-        Post.find(function(err, posts) {
-            if (err) {
-                throw err;
-            }
+  Index: function (req, res) {
+    Post.find(function (err, posts) {
+      if (err) {
+        throw err;
+      }
 
-            posts.forEach((post) => {
-                let date = new Date(post.createdAt);
-                post.dateString = timeDifference(date);
-            });
+      posts.forEach(post => {
+        let date = new Date(post.createdAt);
+        post.dateString = timeDifference(date);
+      });
 
-            res.render("posts/index", { posts: posts, title: "Posts" });
-        }).sort({ createdAt: "desc" });
-    },
+      res.render('posts/index', { posts: posts, title: 'Posts' });
+    }).sort({ createdAt: 'desc' });
+  },
 
-    New: function(req, res) {
-        res.render("posts/new", { title: "New Post" });
-    },
+  New: function (req, res) {
+    res.render('posts/new', { title: 'New Post' });
+  },
 
-    Create: function(req, res) {
-        if (req.files && req.files.image) {
-            const img = req.files.image;
-            img.name = img.name.replaceAll(/\s/g, "_");
-            // keep image extension (like .jpeg) to later append onto the unique image name
-            const imageNameExtension = img.name.split(".")[1];
-            // nanoid returns random string, and append the original image extension onto it
-            img.name = `${nanoid()}.${imageNameExtension}`;
-            const uploadPath = `/images/post_imgs/${img.name}`;
-            img.mv(`public${uploadPath}`, function(err) {
-                if (err) {
-                    return res.status(500).send(err);
-                }
-                req.body.imageLink = uploadPath;
-                const post = new Post(req.body);
-                post.save(function(err) {
-                    if (err) {
-                        throw err;
-                    }
-
-                    res.status(201).redirect("/posts");
-                });
-            });
-        } else {
-            const post = new Post(req.body);
-            post.save((err) => {
-                if (err) {
-                    throw err;
-                }
-                res.status(201).redirect("/posts");
-            });
+  Create: function (req, res) {
+    if (req.files && req.files.image) {
+      const img = req.files.image;
+      img.name = img.name.replaceAll(/\s/g, '_');
+      // keep image extension (like .jpeg) to later append onto the unique image name
+      const imageNameExtension = img.name.split('.')[1];
+      // nanoid returns random string, and append the original image extension onto it
+      img.name = `${nanoid()}.${imageNameExtension}`;
+      const uploadPath = `/images/post_imgs/${img.name}`;
+      img.mv(`public${uploadPath}`, function (err) {
+        if (err) {
+          return res.status(500).send(err);
         }
-    },
+        req.body.imageLink = uploadPath;
+        const post = new Post(req.body);
+        post.save(function (err) {
+          if (err) {
+            throw err;
+          }
+
+          res.status(201).redirect('/posts');
+        });
+      });
+    } else {
+      const post = new Post(req.body);
+      post.save(err => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect('/posts');
+      });
+    }
+  }
 };
 
 module.exports = PostsController;

@@ -11,24 +11,24 @@
   </main>
 </div> --}}
 
-<div class="hero-image" style="height: 100%;">
-  <div class="hero-text">
+<div class='hero-image' style='height: 100%;'>
+  <div class='hero-text'>
     <h1>Welcome to {{title}}</h1>
     {{#if userExists}}
       <button
-        class="signup-button"
-        type="button"
+        class='signup-button'
+        type='button'
         onclick="location.href = '/posts';"
       >View Posts</button>
     {{else}}
       <button
-        class="signup-button"
-        type="button"
+        class='signup-button'
+        type='button'
         onclick="location.href = '/users/new';"
       >Sign Up</button>
       <button
-        class="signup-button"
-        type="button"
+        class='signup-button'
+        type='button'
         onclick="location.href = '/sessions/new';"
       >Login</button>
     {{/if}}

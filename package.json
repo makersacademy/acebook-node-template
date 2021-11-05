@@ -11,7 +11,8 @@
     "test": "npm run lint && npm run test:unit && npm run test:integration",
     "test:unit": "jest",
     "test:integration": "cypress run",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "prepare": "husky install"
   },
   "engines": {
     "node": ">=12.14.1"
@@ -42,9 +43,17 @@
     "eslint-plugin-node": "^10.0.0",
     "express-busboy": "^8.0.0",
     "express-fileupload": "^1.2.1",
-    "jest": "^24.9.0"
+    "husky": "^7.0.4",
+    "jest": "^24.9.0",
+    "prettier": "2.4.1",
+    "pretty-quick": "^3.1.1"
   },
   "nodemonConfig": {
     "ext": "js,hbs"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "prettier --write . && git add -A ."
+    }
   }
 }

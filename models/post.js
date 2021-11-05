@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 
-var PostSchema = new mongoose.Schema({
-  message: String,
-  imageLink: String
+var PostSchema = new mongoose.Schema(
+  {
+    message: String,
+    imageLink: String
   },
-  { timestamps: true }  
+  { timestamps: true }
 );
 
 var Post = mongoose.model('Post', PostSchema);
