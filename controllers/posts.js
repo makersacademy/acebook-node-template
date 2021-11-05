@@ -10,7 +10,6 @@ var PostsController = {
         throw err;
       }
 
-
       posts.forEach((post) => {
         let date = new Date(post.createdAt);
         post.dateString = timeDifference(date);
@@ -32,7 +31,6 @@ var PostsController = {
       const imageNameExtension = img.name.split(".")[1];
       // nanoid returns random string, and append the original image extension onto it
       img.name = `${nanoid()}.${imageNameExtension}`;
-      console.log(img.name);
       const uploadPath = `/images/post_imgs/${img.name}`;
       img.mv(`public${uploadPath}`, function (err) {
         if (err) {

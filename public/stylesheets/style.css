@@ -1,5 +1,5 @@
 .navbar {
-  background-color: rgba(95,186,233,0.8);
+  background-color: rgba(95, 186, 233, 0.8);
 }
 
 .navbar-toggler {
@@ -15,9 +15,9 @@
   color: white;
 }
 
-.navbar input[type=submit] {
+.navbar input[type="submit"] {
   color: white;
-  background: none!important;
+  background: none !important;
   border: none;
   margin: auto;
   padding: 0;
@@ -68,7 +68,7 @@ a {
   display: inline-block;
   width: 50%;
   font-size: 13px;
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
   border-radius: 5px 5px 5px 5px;
   margin-left: 25%;
   margin-right: 25%;
@@ -123,12 +123,14 @@ li a:hover {
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 
-.login-form h3{
+.login-form h3 {
   text-align: center;
   color: #333;
 }
 
-input[type=email], [type=password], [type=text] {
+input[type="email"],
+[type="password"],
+[type="text"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -149,7 +151,7 @@ input[type=email], [type=password], [type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=submit]:not(.navbar input[type=submit]) {
+input[type="submit"]:not(.navbar input[type="submit"]) {
   background-color: #56baed;
   border: none;
   color: white;
@@ -159,22 +161,26 @@ input[type=submit]:not(.navbar input[type=submit]) {
   display: inline-block;
   width: 50%;
   font-size: 13px;
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
   border-radius: 5px 5px 5px 5px;
   margin-left: 25%;
   margin-right: 25%;
   margin-top: 20px;
 }
 
-
 .post-img {
   max-width: 100%;
 }
 
+.card-img-bottom {
+  text-align: center;
+}
+
 .card {
   margin-bottom: 20px;
+  max-width: 60%;
   border: none;
   color: black;
-  box-shadow: 0 5px 30px 0 rgba(95,186,233,0.3);
+  box-shadow: 0 5px 30px 0 rgba(95, 186, 233, 0.3);
   border-radius: 5px 5px 5px 5px;
 }
