@@ -1,5 +1,7 @@
 var Post = require("../models/post");
+
 var { nanoid } = require("nanoid");
+var timeDifference = require("../js_helpers");
 
 var PostsController = {
   Index: function (req, res) {
@@ -7,6 +9,13 @@ var PostsController = {
       if (err) {
         throw err;
       }
+
+
+      posts.forEach((post) => {
+        let date = new Date(post.createdAt);
+        post.dateString = timeDifference(date);
+      });
+
       res.render("posts/index", { posts: posts, title: "Posts" });
     }).sort({ createdAt: "desc" });
   },
@@ -21,8 +30,6 @@ var PostsController = {
       img.name = img.name.replaceAll(/\s/g, "_");
       // keep image extension (like .jpeg) to later append onto the unique image name
       const imageNameExtension = img.name.split(".")[1];
-      console.log(imageNameExtension);
-      console.log(img.name);
       // nanoid returns random string, and append the original image extension onto it
       img.name = `${nanoid()}.${imageNameExtension}`;
       console.log(img.name);
