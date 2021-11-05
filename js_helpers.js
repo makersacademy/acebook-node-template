@@ -1,4 +1,4 @@
-const timeDifference = (previous) => {
+const timeDifference = previous => {
   var current = Date.now();
   var msPerMinute = 60 * 1000;
   var msPerHour = msPerMinute * 60;
@@ -7,19 +7,19 @@ const timeDifference = (previous) => {
   var elapsed = current - previous;
 
   if (elapsed < msPerMinute) {
-    return Math.round(elapsed / 1000) + " seconds ago";
+    return Math.round(elapsed / 1000) + ' seconds ago';
   } else if (elapsed < msPerHour) {
-    return Math.round(elapsed / msPerMinute) + " minutes ago";
+    return Math.round(elapsed / msPerMinute) + ' minutes ago';
   } else if (elapsed < msPerDay) {
-    return Math.round(elapsed / msPerHour) + " hours ago";
+    return Math.round(elapsed / msPerHour) + ' hours ago';
   } else {
     var options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
     };
-    return previous.toLocaleDateString("en-UK", options);
+    return previous.toLocaleDateString('en-UK', options);
   }
 };
 

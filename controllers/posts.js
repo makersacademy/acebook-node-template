@@ -1,8 +1,8 @@
 var Post = require("../models/post");
 const User = require("../models/user");
 
-var { nanoid } = require("nanoid");
-var timeDifference = require("../js_helpers");
+var { nanoid } = require('nanoid');
+var timeDifference = require('../js_helpers');
 
 var PostsController = {
   Index: function (req, res) {
@@ -77,7 +77,7 @@ var PostsController = {
         res.status(201).redirect("/posts");
       });
     }
-  },
+  }
 };
 
 module.exports = PostsController;

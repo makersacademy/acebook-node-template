@@ -15,13 +15,13 @@
   color: white;
 }
 
-.navbar input[type="submit"] {
+.navbar input[type='submit'] {
   color: white;
   background: none !important;
   border: none;
   margin: auto;
   padding: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
   text-decoration: none;
   cursor: pointer;
   vertical-align: center;
@@ -29,7 +29,7 @@
 }
 
 .hero-image {
-  background-image: url("https://images.unsplash.com/photo-1448387473223-5c37445527e7?dpr=1&auto=format&fit=crop&w=440&h=220&q=60 1x, https://images.unsplash.com/photo-1448387473223-5c37445527e7?dpr=2&auto=format&fit=crop&w=440&h=220&q=60 2x");
+  background-image: url('https://images.unsplash.com/photo-1448387473223-5c37445527e7?dpr=1&auto=format&fit=crop&w=440&h=220&q=60 1x, https://images.unsplash.com/photo-1448387473223-5c37445527e7?dpr=2&auto=format&fit=crop&w=440&h=220&q=60 2x');
   max-height: 92%;
   background-position: center;
   background-repeat: no-repeat;
@@ -54,19 +54,19 @@
 .hero-text h1 {
   text-shadow: -0.5px 0 rgba(0, 0, 0, 0.459), 0 0.5px rgba(0, 0, 0, 0.459),
     0.5px 0 rgba(0, 0, 0, 0.459), 0 -0.5px rgba(0, 0, 0, 0.459);
-  font-family: "Courier New", serif;
+  font-family: 'Courier New', serif;
   color: rgba(0, 0, 0, 0.459);
 }
 
 body {
   margin: auto;
   padding: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 h1 {
   text-align: center;
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
   margin: 20px;
 }
 
@@ -80,7 +80,7 @@ h4 {
 
 .brand-name {
   margin: 0px;
-  font-family: "Courier New", serif;
+  font-family: 'Courier New', serif;
   font-size: 2rem;
 }
 
@@ -156,9 +156,9 @@ li a:hover {
   color: #333;
 }
 
-input[type="email"],
-[type="password"],
-[type="text"] {
+input[type='email'],
+[type='password'],
+[type='text'] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -179,7 +179,7 @@ input[type="email"],
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type="submit"]:not(.navbar input[type="submit"]) {
+input[type='submit']:not(.navbar input[type='submit']) {
   background-color: #56baed;
   border: none;
   color: white;
