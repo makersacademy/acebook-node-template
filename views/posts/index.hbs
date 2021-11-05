@@ -1,13 +1,13 @@
-<a class="new-post-link" href="/posts/new">New post</a>
+<a class='new-post-link' href='/posts/new'>New post</a>
 <h1>Timeline</h1>
-<main class="posts">
+<main class='posts'>
   {{#each posts}}
-    <div class="card mx-auto">
-      <div class="card-body">
-        <div class="d-flex">
+    <div class='card mx-auto'>
+      <div class='card-body'>
+        <div class='d-flex'>
           <img
-            class="post-profile-photo"
-            src="https://png.pngitem.com/pimgs/s/111-1114718_transparent-sleep-icon-png-person-icon-circle-png.png"
+            class='post-profile-photo'
+            src='https://png.pngitem.com/pimgs/s/111-1114718_transparent-sleep-icon-png-person-icon-circle-png.png'
           />
           <div>
             <p class="card-title">{{this.posterName}}</p>
@@ -15,12 +15,12 @@
           </div>
         </div>
         <div>
-          <p class="card-text">{{this.message}}</p>
+          <p class='card-text'>{{this.message}}</p>
         </div>
       </div>
       {{#if this.imageLink}}
-        <div class="card-img-bottom">
-          <img src={{this.imageLink}} class="post-img" alt="post image" />
+        <div class='card-img-bottom'>
+          <img src={{this.imageLink}} class='post-img' alt='post image' />
         </div>
       {{/if}}
       <div class="like-div container mx-auto" id="like-{{this._id}}">

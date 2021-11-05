@@ -1,8 +1,8 @@
-var Post = require("../models/post");
-const User = require("../models/user");
+var Post = require('../models/post');
+const User = require('../models/user');
 
-var { nanoid } = require("nanoid");
-var timeDifference = require("../js_helpers");
+var { nanoid } = require('nanoid');
+var timeDifference = require('../js_helpers');
 
 var PostsController = {
   Index: function (req, res) {
@@ -10,23 +10,28 @@ var PostsController = {
       {
         $lookup: {
           from: User.collection.name,
-          localField: "poster",
-          foreignField: "email",
-          as: "posterName",
-        },
-      },
+          localField: 'poster',
+          foreignField: 'email',
+          as: 'posterName'
+        }
+      }
     ])
-      .sort({ createdAt: "desc" })
+      .sort({ createdAt: 'desc' })
       .exec(function (err, aggregateRes) {
         if (err) {
           throw err;
         } else {
-          let formattedPosts = aggregateRes.map((post) => {
+          let formattedPosts = aggregateRes.map(post => {
             let date = new Date(post.createdAt);
             post.dateString = timeDifference(date);
-            return {...post, posterName: post.posterName[0] ? post.posterName[0].name : "Unknown User"};
+            return {
+              ...post,
+              posterName: post.posterName[0]
+                ? post.posterName[0].name
+                : 'Unknown User'
+            };
           });
-          res.render("posts/index", { posts: formattedPosts, title: "Posts" });
+          res.render('posts/index', { posts: formattedPosts, title: 'Posts' });
         }
       });
 
@@ -40,7 +45,7 @@ var PostsController = {
   },
 
   New: function (req, res) {
-    res.render("posts/new", { title: "New Post" });
+    res.render('posts/new', { title: 'New Post' });
   },
 
   Create: function (req, res) {
@@ -48,9 +53,9 @@ var PostsController = {
     console.log(req.body.poster);
     if (req.files && req.files.image) {
       const img = req.files.image;
-      img.name = img.name.replaceAll(/\s/g, "_");
+      img.name = img.name.replaceAll(/\s/g, '_');
       // keep image extension (like .jpeg) to later append onto the unique image name
-      const imageNameExtension = img.name.split(".")[1];
+      const imageNameExtension = img.name.split('.')[1];
       // nanoid returns random string, and append the original image extension onto it
       img.name = `${nanoid()}.${imageNameExtension}`;
       const uploadPath = `/images/post_imgs/${img.name}`;
@@ -65,19 +70,19 @@ var PostsController = {
             throw err;
           }
 
-          res.status(201).redirect("/posts");
+          res.status(201).redirect('/posts');
         });
       });
     } else {
       const post = new Post(req.body);
-      post.save((err) => {
+      post.save(err => {
         if (err) {
           throw err;
         }
-        res.status(201).redirect("/posts");
+        res.status(201).redirect('/posts');
       });
     }
-  },
+  }
 };
 
 module.exports = PostsController;

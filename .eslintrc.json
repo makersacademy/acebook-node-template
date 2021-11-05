@@ -1,35 +1,31 @@
 {
-    "env": {
-        "commonjs": true,
-        "es6": true,
-        "node": true,
-        "jest/globals": true,
-        "cypress/globals": true
-    },
-    "extends": [
-      "eslint:recommended",
-      "plugin:node/recommended",
-      "plugin:cypress/recommended"
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jest/globals": true,
+    "cypress/globals": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "plugin:cypress/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["cypress", "jest", "node"],
+  "rules": {
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      { "ignores": ["modules"] }
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-      "cypress",
-      "jest",
-      "node"
-    ],
-    "rules": {
-      "node/no-unsupported-features/es-syntax": [
-        "error",
-        { "ignores": ["modules"] }
-      ],
-      "node/no-unpublished-import": "off",
-      "node/no-unpublished-require": "off"
-    }
+    "node/no-unpublished-import": "off",
+    "node/no-unpublished-require": "off"
+  }
 }
