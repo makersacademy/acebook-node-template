@@ -60,7 +60,6 @@ describe('Creating posts', function () {
   });
 
   it('records a post with relevant user name', () => {
-    // cy.logOutUser();
     cy.visitSignUpPage();
     cy.signUpNewUser('Hermione Granger', 'hermione');
 
