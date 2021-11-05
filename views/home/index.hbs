@@ -1,4 +1,4 @@
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+{{!-- <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <main class="px-3">
   <h1 class="title">{{title}}</h1>
   <h4>Welcome to {{title}}</h3>
@@ -9,4 +9,29 @@
     <button class="signup-button" type="button" onclick="location.href = '/sessions/new';">Login</button>
   {{/if}}
   </main>
+</div> --}}
+
+<div class="hero-image" style="height: 100%;">
+  <div class="hero-text">
+    <h1>Welcome to {{title}}</h1>
+    {{#if userExists}}
+      <button
+        class="signup-button"
+        type="button"
+        onclick="location.href = '/posts';"
+      >View Posts</button>
+    {{else}}
+      <button
+        class="signup-button"
+        type="button"
+        onclick="location.href = '/users/new';"
+      >Sign Up</button>
+      <button
+        class="signup-button"
+        type="button"
+        onclick="location.href = '/sessions/new';"
+      >Login</button>
+    {{/if}}
+  </div>
+  <!--lightbox style popup goes here-->
 </div>
