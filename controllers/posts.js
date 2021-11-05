@@ -1,22 +1,58 @@
 var Post = require("../models/post");
 
+// var { nanoid } = require("nanoid");
+// var timeDifference = require("../js_helpers");
+
+// var PostsController = {
+//     Index: function(req, res) {
+//         Post.find(function(err, posts) {
+//             if (err) {
+//                 throw err;
+//             }
+
+//             posts.forEach((post) => {
+//                 let date = new Date(post.createdAt);
+//                 post.dateString = timeDifference(date);
+//             });
+
+//             res.render("posts/index", { posts: posts, title: "Posts" });
+//         }).sort({ createdAt: "desc" });
+// const User = require("../models/user");
+
 var { nanoid } = require("nanoid");
 var timeDifference = require("../js_helpers");
 
 var PostsController = {
     Index: function(req, res) {
-        Post.find(function(err, posts) {
-            if (err) {
-                throw err;
-            }
-
-            posts.forEach((post) => {
-                let date = new Date(post.createdAt);
-                post.dateString = timeDifference(date);
+        Post.aggregate([{
+                $lookup: {
+                    from: User.collection.name,
+                    localField: "poster",
+                    foreignField: "email",
+                    as: "posterName",
+                },
+            }, ])
+            .sort({ createdAt: "desc" })
+            .exec(function(err, aggregateRes) {
+                if (err) {
+                    throw err;
+                } else {
+                    let formattedPosts = aggregateRes.map((post) => {
+                        let date = new Date(post.createdAt);
+                        post.dateString = timeDifference(date);
+                        return {...post, posterName: (post.posterName[0] ? post.posterName[0].name : "Unknown User") };
+                    });
+                    res.render("posts/index", { posts: formattedPosts, title: "Posts" });
+                }
             });
 
-            res.render("posts/index", { posts: posts, title: "Posts" });
-        }).sort({ createdAt: "desc" });
+        // Post.find(function(err, posts) {
+        //     if (err) {
+        //         throw err;
+        //     }
+        //     console.log(posts);
+        //     res.render('posts/index', { posts: posts, title: "Posts" });
+        // }).sort({ createdAt: 'desc' });
     },
 
     New: function(req, res) {
@@ -24,6 +60,7 @@ var PostsController = {
     },
 
     Create: function(req, res) {
+<<<<<<< HEAD
         if (req.files && req.files.image) {
             const img = req.files.image;
             img.name = img.name.replaceAll(/\s/g, "_");
@@ -31,6 +68,13 @@ var PostsController = {
             const imageNameExtension = img.name.split(".")[1];
             // nanoid returns random string, and append the original image extension onto it
             img.name = `${nanoid()}.${imageNameExtension}`;
+=======
+        req.body.poster = req.session.user.email;
+        if (req.files && req.files.image) {
+            const img = req.files.image;
+            img.name = img.name.replaceAll(/\s/g, "_");
+            console.log(img.name);
+>>>>>>> 88a49af79fbb1e948dda424f70a2f2ec3377810c
             const uploadPath = `/images/post_imgs/${img.name}`;
             img.mv(`public${uploadPath}`, function(err) {
                 if (err) {

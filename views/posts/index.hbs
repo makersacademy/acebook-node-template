@@ -2,7 +2,7 @@
 <h1>Timeline</h1>
 <main class="posts">
   {{#each posts}}
-    <div class="card mx-auto">
+    <div class="card">
       <div class="card-body">
         <div class="d-flex">
           <img
@@ -10,7 +10,7 @@
             src="https://png.pngitem.com/pimgs/s/111-1114718_transparent-sleep-icon-png-person-icon-circle-png.png"
           />
           <div>
-            <p class="card-title">Joe Bloggs</p>
+            <p class="card-title">{{this.posterName}}</p>
             <p><small class="text-muted">{{this.dateString}}</small></p>
           </div>
         </div>
