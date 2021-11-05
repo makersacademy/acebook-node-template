@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(fileUpload({
-  limits: { fileSize: 1024 * 1024 }
+    limits: { fileSize: 1024 * 1024 }
 }));
 
 app.use(
@@ -37,7 +37,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 600000,
+            expires: null,
         },
     })
 );
