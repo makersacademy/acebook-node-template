@@ -30,6 +30,7 @@
     "mongodb": "^3.4.1",
     "mongoose": "^5.8.11",
     "morgan": "~1.9.1",
+    "nanoid": "^3.1.30",
     "nodemon": "^1.19.4"
   },
   "devDependencies": {
