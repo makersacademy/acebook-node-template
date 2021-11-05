@@ -11,9 +11,9 @@ describe('Sign in', function () {
   });
 
   it("Doesn't allow log in for non-existing user", function () {
-    cy.visitSignInPage();
-    cy.signInUser('einstein', '12345');
-    cy.get('title').should('contain', 'Log In');
-    cy.get('#alert-message').should('contain', 'User not found!');
+        cy.visitSignInPage();
+        cy.signInUser('einstein', '12345');
+        cy.get('title').should('contain', 'Log In');
+        cy.get('#alert-message').should('contain', 'User not found!');
   });
 });
