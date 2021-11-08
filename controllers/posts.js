@@ -24,6 +24,9 @@ var PostsController = {
           let formattedPosts = aggregateRes.map(post => {
             let date = new Date(post.createdAt);
             post.dateString = timeDifference(date);
+            if (post.likes == undefined) {
+              post.likes = [];
+            }
             return {
               ...post,
               posterName: post.posterName[0]
