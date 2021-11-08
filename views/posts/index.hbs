@@ -26,14 +26,15 @@
       <div class="like-div container mx-auto" id="like-{{this._id}}">
         <div class="d-flex justify-content-center">
           <div class="d-flex col-sm-12 justify-content-end">
-            <p class="like-counter" style="margin-right: 10px;"><small class="like-number">0</small><small> likes</small></p>
+            <p class="like-counter" style="margin-right: 10px;"><small class="like-number">{{this.postLikes}}</small><small> likes</small></p>
             <button class="like-button" onclick="addLike('{{this._id}}')">
               <img src="/images/like.png" height="15" width="15">
-              <span class="like-text">Like</span>
+              <span class="like-text">{{#if this.postLiked}}Liked{{else}}Like{{/if}}</span>
             </button>
           </div>
         </div>
       </div>
     </div>
   {{/each}}
+  <script src="interface.js"></script>
 </main>

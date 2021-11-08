@@ -54,11 +54,15 @@ app.use((req, res, next) => {
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
-  // if (!req.session.user && !req.cookies.user_sid) {
-  //   res.redirect("/sessions/new");
-  // } else {
-  next();
-  // }
+  if (
+    req.session === undefined ||
+    req.session.user === undefined ||
+    (!req.session.user && !req.cookies.user_sid)
+  ) {
+    res.redirect('/sessions/new');
+  } else {
+    next();
+  }
 };
 
 // flash middleware

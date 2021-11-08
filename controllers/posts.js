@@ -28,7 +28,9 @@ var PostsController = {
               ...post,
               posterName: post.posterName[0]
                 ? post.posterName[0].name
-                : 'Unknown User'
+                : 'Unknown User',
+              postLikes: post.likes.length,
+              postLiked: post.likes.includes(req.session.user.email)
             };
           });
           res.render('posts/index', { posts: formattedPosts, title: 'Posts' });
@@ -50,7 +52,8 @@ var PostsController = {
 
   Create: function (req, res) {
     req.body.poster = req.session.user.email;
-    console.log(req.body.poster);
+    // console.log(req.body.poster);
+
     if (req.files && req.files.image) {
       const img = req.files.image;
       img.name = img.name.replaceAll(/\s/g, '_');
@@ -81,6 +84,26 @@ var PostsController = {
         }
         res.status(201).redirect('/posts');
       });
+    }
+  },
+  Like: async function (req) {
+    const likerEmail = req.session.user.email;
+    const postId = req.body.postId;
+    const postLikes = await Post.findOne({ _id: postId }).then(post => {
+      return post.likes;
+    });
+    if (postLikes.includes(likerEmail)) {
+      Post.updateOne({ _id: postId }, { $pull: { likes: likerEmail } }).then(
+        response => {
+          return response;
+        }
+      );
+    } else {
+      Post.updateOne({ _id: postId }, { $push: { likes: likerEmail } }).then(
+        response => {
+          return response;
+        }
+      );
     }
   }
 };
