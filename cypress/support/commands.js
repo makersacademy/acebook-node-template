@@ -37,7 +37,13 @@ const testHelper = {
     cy.get('#new-user-form').find('[type="email"]').type(username);
     cy.get('#new-user-form').find('[type="password"]').type(password);
     cy.get('#new-user-form').submit();
-  }
+  },
+  loginTestUser: (username, password) => {
+    cy.visit('/sessions/new');
+    cy.get('#new-session-form').find('[type="email"]').type(username);
+    cy.get('#new-session-form').find('[type="password"]').type(password);
+    cy.get('#new-session-form').submit();
+  },
 }
 
 if(typeof process === 'object') module.exports = testHelper;
