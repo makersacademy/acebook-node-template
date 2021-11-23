@@ -1,3 +1,5 @@
+const testHelper = require('../support/commands.js')
+
 describe('Timeline', function() {
   it('can submit posts and view them', function() {
     cy.visit('/users/new');
@@ -12,41 +14,23 @@ describe('Timeline', function() {
     cy.get('#new-session-form').submit();
 
     cy.visit('/posts');
-    cy.contains('New post').click();
-
-    cy.get('#new-post-form').find('[type="text"]').type('Hello, world!');
-    cy.get('#new-post-form').submit();
+    testHelper.createTestPost('Hello, world!')
 
     cy.get('.posts').should('contain', 'Hello, world!');
   });
 
     it ('puts latest posts on top',function() {
-      cy.visit('/users/new');
-  
-      cy.get('#new-user-form').find('[type="email"]').type('123@123.com');
-      cy.get('#new-user-form').find('[type="password"]').type('123');
-      cy.get('#new-user-form').submit();
-      cy.visit('/sessions/new');
+
+      testHelper.signUpTestUser('123@123.com', '123')
   
       cy.get('#new-session-form').find('[type="email"]').type('123@123.com');
       cy.get('#new-session-form').find('[type="password"]').type('123');
       cy.get('#new-session-form').submit();
   
       cy.visit('/posts');
-      cy.contains('New post').click();
-  
-      cy.get('#new-post-form').find('[type="text"]').type('First Post - lowest');
-      cy.get('#new-post-form').submit();
-
-      cy.contains('New post').click();
-
-      cy.get('#new-post-form').find('[type="text"]').type('Second Post- middle');
-      cy.get('#new-post-form').submit();
-
-      cy.contains('New post').click();
-
-      cy.get('#new-post-form').find('[type="text"]').type('Third Post - top');
-      cy.get('#new-post-form').submit();
+      testHelper.createTestPost('First Post - lowest');
+      testHelper.createTestPost('Second Post- middle');
+      testHelper.createTestPost('Third Post - top');
   
       cy.get('.posts > li').should(($lis) => {
         
