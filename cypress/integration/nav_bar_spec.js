@@ -1,8 +1,13 @@
 describe('Navbar', function() {
   it('shows up on homepage', function() {
-    // visit homepage
     cy.visit('/');
-    // expect to see nav bar
+    cy.get('nav#aceBookNavBar').should('contain', 'Navbar');
+  });
+  it('can be used to navigate to the signup page', function() {
+    cy.visit('/');
+    cy.get('nav#aceBookNavBar').should('contain', 'Sign Up');
+    cy.get('a#sign-up').click()
+    cy.url().should('eq', 'http://localhost:3030/users/new');
     cy.get('nav#aceBookNavBar').should('contain', 'Navbar');
   });
 });
