@@ -10,4 +10,11 @@ describe('Navbar', function() {
     cy.url().should('eq', 'http://localhost:3030/users/new');
     cy.get('nav#aceBookNavBar').should('contain', 'Navbar');
   });
+  it('can be used to navigate to the signin page', function() {
+    cy.visit('/');
+    cy.get('nav#aceBookNavBar').should('contain', 'Sign In');
+    cy.get('a#sign-in').click()
+    cy.url().should('eq', 'http://localhost:3030/sessions/new');
+    cy.get('nav#aceBookNavBar').should('contain', 'Navbar');
+  });
 });
