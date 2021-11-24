@@ -17,7 +17,7 @@ describe('User model', function() {
       expect(user.email).toEqual('test@test.com');
       expect(user.password).toEqual('1234');
     });
-
+ //this saves the data into the database 
     it('can save a account', function(done) {
         var user = new User({ email: 'test@test.com', password: '1234' });
     
