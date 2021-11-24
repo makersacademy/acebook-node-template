@@ -11,19 +11,18 @@ describe('User model', function() {
         });
     });
   
-
     it('user has an account', function() {
       var user = new User({ email: 'test@test.com', password: '1234' });
       expect(user.email).toEqual('test@test.com');
       expect(user.password).toEqual('1234');
     });
- //this saves the data into the database 
-    it('can save a account', function(done) {
+ 
+    it('can save a user and retrive user from the database', function(done) {
         var user = new User({ email: 'test@test.com', password: '1234' });
-    
+    //this saves the data into the database 
         user.save(function(err) {
           expect(err).toBeNull();
-    
+    //retrieving user from the database
           User.find(function(err, user) {
             expect(err).toBeNull();
     
