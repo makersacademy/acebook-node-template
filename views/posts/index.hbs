@@ -1,11 +1,13 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>
+  <li id="{{@index}}" class="post">
     {{this.message}}
+    <span>0</span>
     <button class="like"> Like </button>
   </li>
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+<script src="/javascripts/addLike.js"></script>
