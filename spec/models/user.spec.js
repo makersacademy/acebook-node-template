@@ -11,7 +11,7 @@ describe('User model', function() {
         });
     });
   
-    it('user has an account', function() {
+    it('user has an email and password property', function() {
       var user = new User({ email: 'test@test.com', password: '1234' });
       expect(user.email).toEqual('test@test.com');
       expect(user.password).toEqual('1234');
