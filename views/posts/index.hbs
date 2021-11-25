@@ -2,8 +2,7 @@
 <ul class="posts">
   {{#each posts}}
   <li id="{{@index}}" class="post">
-    {{!-- hardcoded line 6 to pass 'user name is shown next to post' spec, needs to be fixed --}}
-    <span class="user_name">123@123.com</span>
+    <span class="user_name">{{this.user_name}}</span>
     <br>
     {{this.message}}
     <span>0</span>
