@@ -3,7 +3,6 @@ var User = require('../../models/user');
 
 require('../mongodb_helper')
 
- 
 describe('User model', function() {
     beforeEach(function(done) {
         mongoose.connection.collections.users.drop(function() {
@@ -15,51 +14,27 @@ describe('User model', function() {
       var user = new User({ email: 'test@test.com', password: '1234' });
       expect(user.email).toEqual('test@test.com');
       expect(user.password).toEqual('1234');
-    }); 
- 
-    // it('can save a user and retrive user from the database', function(done) { 
-    //   var user = new User({ email: 'test@test.com', password: '1234' });
-      
-    //     user.save(function(err) { 
-    //       expect(err).toBeNull();
-        
-    //       User.find(function(err, user) {
-    //         expect(err).toBeNull();
-    
-    //         expect(user[0]).toMatchObject({ email: 'test@test.com', password: '1234' });
-    //         done();
-    //       }); 
-      
-    //   });
-    // }); 
+    });
 
-      it('Can test if password is encrypted', function(done) {
-        var user = new User({ email: 'happy@test.com', password: '098' });
-        user.save(function(err) {
-          expect(err).toBeNull(); 
-          done();  
-        });
+    it('Can test if password is encrypted', function(done) {
+      var user = new User({ email: 'happy@test.com', password: '098' });
+      user.save(function(err) {
+        expect(err).toBeNull(); 
+        done();  
+      });
      
-        
-
         User.findOneAndUpdate({ email: 'happy@test.com' }, function(err, user) {
           if (err) throw err; 
-
+        
           user.comparePassword('098', function(err, isMatch) {
             if (err) throw err;
             console.log('098:', isMatch); 
           }); 
-        }); 
-       
-        user.comparePassword('4321', function(err, isMatch) {
+              
+          user.comparePassword('4321', function(err, isMatch) {
           if (err) throw err;
           console.log('4321:', isMatch); 
+          });
         });
-        
-
-      }); 
-
+    }); 
 }); 
-
-
-
