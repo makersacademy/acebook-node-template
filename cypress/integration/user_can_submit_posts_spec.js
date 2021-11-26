@@ -12,7 +12,7 @@ describe('Timeline', function() {
       testHelper.createTestPost('Second Post- middle');
       testHelper.createTestPost('Third Post - top');
   
-      cy.get('.posts > li').should(($lis) => {
+      cy.get('#posts > .post').should(($lis) => {
         
         expect($lis.eq(0)).to.contain('Third Post - top')
         expect($lis.eq(1)).to.contain('Second Post- middle')
