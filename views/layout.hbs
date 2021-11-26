@@ -15,12 +15,14 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" id="sign-up" href="/users/new">Sign Up</a>
           <a class="nav-item nav-link" id="sign-in" href="/sessions/new">Sign In</a>
+          <a class="nav-item" id="log-out">
+            <form class="form-inline" action='/sessions?_method=DELETE' method='POST'>
+              <input type="submit" value="Log Out" class="btn btn-sm btn-lnk">
+            </form>
+          </a>
         </div>
       </div>
     </nav>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
     {{{body}}}
   </body>
 </html>
