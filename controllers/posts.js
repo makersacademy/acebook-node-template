@@ -4,7 +4,6 @@ var PostsController = {
   Index: function(req, res) {
     Post.find({}).sort('-createdAt').exec(function(err, posts) {
       if (err) { throw err; }
-
       res.render('posts/index', { posts: posts });
     });
   },
@@ -12,7 +11,11 @@ var PostsController = {
     res.render('posts/new', {});
   },
   Create: function(req, res) {
-    var post = new Post(req.body);
+    const post = new Post({
+      message :req.body.message, 
+      user_name: req.session.user.email, 
+      user_id: req.session.user.email._id
+      });
     post.save(function(err) {
       if (err) { throw err; }
 
