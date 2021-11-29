@@ -24,6 +24,5 @@ describe('Like model', function() {
       });
     });
   });
-  
 
 });

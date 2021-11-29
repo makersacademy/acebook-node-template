@@ -7,4 +7,10 @@ const LikeSchema = new mongoose.Schema({
 
 const Like = mongoose.model('Like', LikeSchema);
 
+Like.prototype.countAllLikes = function() {
+  Like.aggregate().
+  group('postID').
+  count().
+  exec();
+};
 module.exports = Like;

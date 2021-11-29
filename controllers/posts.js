@@ -14,7 +14,7 @@ var PostsController = {
     const post = new Post({
       message :req.body.message, 
       user_name: req.session.user.email, 
-      user_id: req.session.user.email._id
+      user_id: req.session.user._id
       });
     post.save(function(err) {
       if (err) { throw err; }
