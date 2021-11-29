@@ -2,12 +2,13 @@
 <h5 class="text-center"><a class="new-post-link" href="/posts/new">New post</a></h5>
 <div class="container" id="posts">
   {{#each posts}}
-  <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative post" id="{{@index}}">
+  <div class="post-container mb-4">
+  <div class="row no-gutters border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative post" id="{{@index}}">
     <div class="col p-4 d-flex flex-column position-static">
       <h6 class="mb-2 user_name">{{this.user_name}}:</h6>
       <p class="card-text mb-2 message">{{this.message}} </p>
       <div class="d-flex flex-row-reverse justify-text-center">
-        <button>
+        <button id="comment-btn" type="button" class="btn btn-outline-secondary btn-sm comment">
           Comment
         </button>
         <button id="like-btn" type="button" class="btn btn-outline-secondary btn-sm like">
@@ -18,6 +19,11 @@
         <span class="mr-2 like-counter">0</span>
       </div>
     </div>
+  </div>
+  <form id="comment-form" action="posts" method="post">
+      <input type="text" />
+      <input type="submit" value="Submit" />
+    </form>
   </div>
   {{/each}}
 </div>
