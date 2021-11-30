@@ -1,10 +1,21 @@
 var Post = require('../models/post');
+var Like = require('../models/like');
 
 var PostsController = {
   Index: function(req, res) {
-    Post.find({}).sort('-createdAt').exec(function(err, posts) {
+    Like.countAllLikes(function(err, allLikes){
       if (err) { throw err; }
-      res.render('posts/index', { posts: posts });
+      Post.find({}).sort('-createdAt').exec(function(err, posts) {
+        if (err) { throw err; }
+
+        const likeCount = new Map();
+        allLikes.forEach(function(element){
+          likeCount.set(element._id, element.count )
+          likeCount.get(element._id) 
+        });
+        console.log(likeCount)
+        res.render('posts/index', { posts: posts, likeCount: likeCount });
+      });
     });
   },
   New: function(req, res) {

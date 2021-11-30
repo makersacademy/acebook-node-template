@@ -3,9 +3,10 @@ const Like = require('../models/like');
 
 var LikesController = {
 
-  Create: function(req, res) { console.log(req.body)
+  Create: function(req, res) { 
+    console.log(req.body.post_id);
     const like = new Like({
-      postID: req.body.user_id,
+      postID: req.body.post_id,
       userID: req.session.user._id
       });
     like.save(function(err) {
