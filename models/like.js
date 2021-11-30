@@ -5,12 +5,17 @@ const LikeSchema = new mongoose.Schema({
   postID: String,
   });
 
+LikeSchema.statics.countAllLikes = function(cb) {
+  const aggregatorOpts = [
+    {
+      $group: {
+          _id: '$postID',
+          count: { $sum: 1 }
+      }
+    }]
+  return mongoose.model('Like').aggregate(aggregatorOpts, cb);
+};
+
 const Like = mongoose.model('Like', LikeSchema);
 
-Like.prototype.countAllLikes = function() {
-  Like.aggregate().
-  group('postID').
-  count().
-  exec();
-};
 module.exports = Like;
