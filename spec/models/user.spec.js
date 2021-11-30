@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose');
 var User = require('../../models/user');
 
@@ -16,25 +18,34 @@ describe('User model', function() {
       expect(user.password).toEqual('1234');
     });
 
-    it('Can test if password is encrypted', function(done) {
+    it('Can test if an encrypted password matches', function(done) {
       var user = new User({ email: 'happy@test.com', password: '098' });
       user.save(function(err) {
-        expect(err).toBeNull(); 
-        done();  
-      });
-     
-        User.findOneAndUpdate({ email: 'happy@test.com' }, function(err, user) {
+        expect(err).toBeNull();
+        User.find({ email: 'happy@test.com' }, function(err, user) {
           if (err) throw err; 
-        
-          user.comparePassword('098', function(err, isMatch) {
+          user[0].comparePassword('098', function(err, isMatch) {
             if (err) throw err;
-            console.log('098:', isMatch); 
+            expect(isMatch).toBe(true); 
+            done(); 
           }); 
-              
-          user.comparePassword('4321', function(err, isMatch) {
-          if (err) throw err;
-          console.log('4321:', isMatch); 
-          });
         });
+      });
     }); 
+
+    it('Can test if an encrypted password does not match', function(done) {
+      var user = new User({ email: 'happy@test.com', password: '098' });
+      user.save(function(err) {
+        expect(err).toBeNull();
+        User.find({ email: 'happy@test.com' }, function(err, user) {
+          if (err) throw err; 
+          user[0].comparePassword('12345', function(err, isMatch) {
+            if (err) throw err;
+            expect(isMatch).toBe(false); 
+            done(); 
+          }); 
+        });
+      });
+    }); 
+
 }); 
