@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-    </style>
     <title>{{title}}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -14,8 +12,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup"></div>
+  
     {{#unless loggedIn}} 
         <div class="navbar-nav">
           <a class="nav-item nav-link" id="sign-up" href="/users/new">Sign Up</a>
@@ -31,7 +28,6 @@
           </a>
         </div>
       {{/unless}}
-      </div>
     </nav>
     {{{body}}}
   </body>
