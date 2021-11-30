@@ -27,7 +27,7 @@ describe('Navbar', function() {
     testHelper.signUpTestUser('123@123.com', '123')
     testHelper.loginTestUser('123@123.com', '123')
     cy.get('nav#aceBookNavBar').should('contain', 'Log Out');
-    cy.get('nav#aceBookNavBar').should('contain', 'New Post');
+    cy.get('nav#aceBookNavBar').should('contain', 'Post');
   });
 
 });

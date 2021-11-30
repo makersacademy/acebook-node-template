@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+    </style>
     <title>{{title}}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -13,17 +15,17 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup"></div>
     {{#unless loggedIn}} 
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" id="sign-up" href="/users/new">Sign Up</a>
           <a class="nav-item nav-link" id="sign-in" href="/sessions/new">Sign In</a>
         </div>
      {{else}}
          <div class="navbar-nav2">
-          <a class="nav-item nav-link" id="new-post" href="/posts">Posts</a>
+          <a class="nav-item nav-link" id="new-post" href="/posts" style= "float: left"; "display: inline" >Timeline</a>
           <a class="nav-item" id="log-out">
-            <form class="form-inline" action='/sessions?_method=DELETE' method='POST'>
+            <form class="form-inline" action='/sessions?_method=DELETE' method='POST' style= "float: left"; "display: inline">
               <input type="submit" value="Log Out" class="btn btn-sm btn-lnk">
             </form>
           </a>
