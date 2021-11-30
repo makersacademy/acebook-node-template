@@ -7,14 +7,14 @@ var PostsController = {
       if (err) { throw err; }
       Post.find({}).sort('-createdAt').exec(function(err, posts) {
         if (err) { throw err; }
-
-        const likeCount = new Map();
-        allLikes.forEach(function(element){
-          likeCount.set(element._id, element.count )
-          likeCount.get(element._id) 
+        // storing the like count inside the post object, 
+        // because switching context in handlebars seems more complicated
+        // probably good to move it into the post model though
+        posts.forEach(function(post){
+          const likesForPost = allLikes.filter((like) => like._id == post._id);
+          post.count = (likesForPost.length !== 0 ? likesForPost[0].count : 0)
         });
-        console.log(likeCount)
-        res.render('posts/index', { posts: posts, likeCount: likeCount });
+        res.render('posts/index', { posts: posts });
       });
     });
   },
