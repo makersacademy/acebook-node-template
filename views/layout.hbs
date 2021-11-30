@@ -6,21 +6,29 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="aceBookNavBar">
       <a class="navbar-brand" href="/">Acebook</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+    {{#unless loggedIn}} 
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" id="sign-up" href="/users/new">Sign Up</a>
           <a class="nav-item nav-link" id="sign-in" href="/sessions/new">Sign In</a>
+        </div>
+     {{else}}
+         <div class="navbar-nav2">
+          <a class="nav-item nav-link" id="new-post" href="/posts">Posts</a>
           <a class="nav-item" id="log-out">
             <form class="form-inline" action='/sessions?_method=DELETE' method='POST'>
               <input type="submit" value="Log Out" class="btn btn-sm btn-lnk">
             </form>
           </a>
         </div>
+      {{/unless}}
       </div>
     </nav>
     {{{body}}}
