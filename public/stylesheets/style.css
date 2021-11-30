@@ -10,3 +10,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.navbar-brand img {
+  width: 50px;
+}
