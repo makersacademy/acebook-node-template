@@ -5,8 +5,7 @@ var LikesController = {
 
   Create: function(req, res) { console.log(req.body)
     const like = new Like({
-
-      postID: req.post._id, 
+      postID: req.body.user_id,
       userID: req.session.user._id
       });
     like.save(function(err) {
