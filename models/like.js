@@ -15,6 +15,9 @@ LikeSchema.statics.countAllLikes = function(cb) {
     }]
   return mongoose.model('Like').aggregate(aggregatorOpts, cb);
 };
+LikeSchema.statics.userLiked = function(userID ,cb) {
+  return mongoose.model('Like').find({ userID: userID}).exec(cb);
+}; 
 
 const Like = mongoose.model('Like', LikeSchema);
 
