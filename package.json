@@ -17,22 +17,22 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "cookie-parser": "~1.4.4",
+    "cookie-parser": "^1.4.6",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-session": "^1.17.2",
-    "hbs": "^4.1.0",
+    "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
-    "mongodb": "^3.4.1",
-    "mongoose": "^5.8.11",
+    "mongodb": "^3.7.3",
+    "mongoose": "^5.13.13",
     "morgan": "~1.9.1",
     "nodemon": "^1.19.4"
   },
   "devDependencies": {
     "cypress": "^3.8.3",
     "eslint": "^6.8.0",
-    "eslint-plugin-cypress": "^2.8.1",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
     "jest": "^24.9.0"

@@ -1,7 +1,30 @@
-<form id="new-user-form" action="/users" method="post">
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel='stylesheet' href='/stylesheets/signInUp.css' />
+  </head>
+
+ <body>
+
+ <div id="formContent">
+    <form id="new-user-form" action="/users" method="post">
+      <br>
+      <legend id="title">Create an account</legend>
+      <input type="text" id="email" class="" name="email" placeholder="email">
+      <input type="text" id="password" class="" name="password" placeholder="password">
+      <input type="submit" class="" value="Submit">
+    </form>
+
+{{!-- <form id="new-user-form" action="/users" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="">
   <input type="submit" value="Submit">
-</form>
+</form> --}}
+
+</div>
+
+</body>
+</html>
