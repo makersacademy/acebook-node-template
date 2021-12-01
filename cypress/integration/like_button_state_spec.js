@@ -14,6 +14,8 @@ describe('Like Button', function() {
     cy.get('#0').find('.like').should('not.have.class', 'active')
     cy.get('#0').find('.like').click();
     cy.get('#0').find('.like').should('have.class', 'active')
+    cy.get('#0').find('.like').click();
+    cy.get('#0').find('.like').should('not.have.class', 'active')
 
 
   })
