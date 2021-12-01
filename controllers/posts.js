@@ -7,7 +7,7 @@ var PostsController = {
   Index: function(req, res) {
     Post.find({}).sort('-createdAt').exec(function(err, posts) {
       if (err) { throw err; }
-      res.render('posts/index', {loggedIn: activeUser, posts: posts });
+      res.render('posts/index', {loggedIn: activeUser, posts: posts, title: 'Posts' });
     });
   },
   New: function(req, res) {

@@ -2,7 +2,7 @@ var User = require('../models/user');
 
 var UsersController = {
   New: function(req, res) {
-    res.render('users/new', {});
+    res.render('users/new', { title: 'Sign-up' });
   },
 
   Create: function(req, res) {
