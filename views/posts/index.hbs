@@ -16,10 +16,16 @@
         </button>
         <span class="mr-2 like-counter">0</span>
       </div>
-      <p>{{this.comment}}</p>
-      <form id="comment-form" class="comment invisible" action="/" method="post">
-          <input type="text" />
-          <input type="submit" value="Submit" />
+      {{#each this.comments}}
+      {{#if this.comment}}
+      <p>{{this.user_name}}</p>
+      <p class="comments">{{this.comment}}</p>
+      {{/if}}
+      {{/each}}
+      <form id="comment-form" class="comment invisible" action="/comments" method="post">
+        <input id="comment" name="comment" type="text" />
+        <input id="submit" type="submit" value="Submit" />
+        <input type="hidden" name="post_id" value="{{this._id}}">
       </form>
     </div>
   </div>

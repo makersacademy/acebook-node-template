@@ -1,10 +1,20 @@
 var Post = require('../models/post');
+const Comment = require('../models/comment');
 
 var PostsController = {
   Index: function(req, res) {
     Post.find({}).sort('-createdAt').exec(function(err, posts) {
       if (err) { throw err; }
-      res.render('posts/index', { posts: posts });
+      Comment.find({}).exec(function(err, comments) {
+        if (err) { throw err; }
+        console.log(comments);
+        posts.forEach(function(post){
+          const hasComment = comments.filter((comment) => comment.post_id == post._id);
+          console.log(hasComment);
+          post.comments = hasComment
+        })
+        res.render('posts/index', { posts: posts });
+      })
     });
   },
   New: function(req, res) {
@@ -12,7 +22,7 @@ var PostsController = {
   },
   Create: function(req, res) {
     const post = new Post({
-      message :req.body.message, 
+      message: req.body.message, 
       user_name: req.session.user.email, 
       user_id: req.session.user.email._id
       });
