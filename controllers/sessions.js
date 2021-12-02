@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var bcrypt = require('bcrypt'); 
 
 var SessionsController = {
   New: function(req, res) {
@@ -10,18 +11,24 @@ var SessionsController = {
     var email = req.body.email;
     var password = req.body.password;
 
-    User.findOne({email: email}).then(
-      (user) => {
-        if(!user) {
-          res.redirect('/sessions/new');
-        } else if(user.password != password) {
-          res.redirect('/sessions/new');
-        } else {
-          req.session.user = user;
-          res.redirect('/posts');
-        }
-      }
-    )
+    User.findOne({email: email}).then(user => {
+       
+        if (!user) return res.status(400).json({ msg: "User unknown" })
+   
+        bcrypt.compare(password, user.password, (err, data) => {
+            if (err) throw err
+          
+            if (data) {
+              req.session.user = user;
+              res.redirect('/posts');
+
+            } else {
+                return res.status(401).json({ msg: "Invalid password" })
+            }
+
+        })
+
+    })
   },
 
   Destroy: function(req, res) {
@@ -34,3 +41,4 @@ var SessionsController = {
 };
 
 module.exports = SessionsController;
+
