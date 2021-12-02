@@ -30,4 +30,12 @@ describe('Navbar', function() {
     cy.get('nav#aceBookNavBar').should('contain', 'Timeline');
   });
 
+  it('shows active button ', function() {
+    cy.visit('/');
+    cy.get('nav#aceBookNavBar').should('contain', 'Sign In');
+    cy.get('nav#aceBookNavBar').should('contain', 'Sign Up');
+    cy.get('a#sign-in').click();
+    cy.get('a#sign-in').should('be.active');
+  });
+
 });
