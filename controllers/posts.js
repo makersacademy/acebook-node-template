@@ -7,10 +7,8 @@ var PostsController = {
       if (err) { throw err; }
       Comment.find({}).exec(function(err, comments) {
         if (err) { throw err; }
-        console.log(comments);
         posts.forEach(function(post){
           const hasComment = comments.filter((comment) => comment.post_id == post._id);
-          console.log(hasComment);
           post.comments = hasComment
         })
         res.render('posts/index', { posts: posts });
