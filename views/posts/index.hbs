@@ -8,7 +8,7 @@
       <p class="card-text mb-2 message">{{this.message}} </p>
       <div class="d-flex flex-row-reverse justify-text-center">
         {{#if this.liked }}
-        <form action="/likes?_method=DELETE" method="POST"></form> 
+        <form action="/likes?_method=DELETE" method="POST">
         <button type="submit" class="btn btn-outline-secondary btn-sm like active">
         {{else}} 
         <form action="/likes" method="POST">

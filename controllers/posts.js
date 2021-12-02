@@ -16,10 +16,9 @@ var PostsController = {
           if (err) { throw err; } 
           posts.forEach(function(post){
             const isPostLiked = likedPosts.filter((like) => like.postID == post._id);
-           console.log(post.liked = isPostLiked)
+            post.liked = isPostLiked
           })
           res.render('posts/index', { posts: posts, likeCount: likeCount });
-
         })
       });
     });

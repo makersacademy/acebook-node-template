@@ -11,7 +11,6 @@ var LikesController = {
       });
     like.save(function(err) {
       if (err) { throw err; }
-
       res.status(201).redirect('/posts');
     });
   },
@@ -20,11 +19,9 @@ var LikesController = {
     console.log('deleting Like')
     Like.deleteOne({
       postID: req.body.post_id, 
-      userID: req.session.user._id });
-      
-      res.status(201).redirect('/posts');
-
-      
+      userID: req.session.user._id }).exec(function(){
+        res.status(201).redirect('/posts');
+      });
   },
 }
 
