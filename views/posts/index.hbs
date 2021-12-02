@@ -1,6 +1,10 @@
 <h1 class="text-center">Timeline</h1>
-<h5 class="text-center"><a class="new-post-link" href="/posts/new">New post</a></h5>
 <div class="container" id="posts">
+  <form id="new-post-form" action="/posts" method="post">
+  <label for="message">Message: </label>
+  <input id="message" type="text" name="message" value="">
+  <input type="submit" class="submit" value="Post">
+</form>
   {{#each posts}}
   <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative post" id="{{@index}}">
     <div class="col p-4 d-flex flex-column position-static">
