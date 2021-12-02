@@ -44,6 +44,15 @@ describe('Likes', function() {
       cy.visit('/posts');
       
       cy.get('#0').find('span').should('contain', '1')
+      cy.get('#LogOut').click();
+
+      testHelper.signUpTestUser('456@456.com', '456')
+      testHelper.loginTestUser('456@456.com', '456')
+      
+      cy.get('#0').find('span').should('contain', '1')
+      cy.get('#0').find('.like').click();
+      cy.get('#0').find('span').should('contain', '2')
+
     });
 
 });

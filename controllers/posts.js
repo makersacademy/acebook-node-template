@@ -14,7 +14,15 @@ var PostsController = {
         allLikes.forEach (function(like){
           likeCount[like._id] = like.count
         });
-      res.render('posts/index', {loggedIn: activeUser, posts: posts, likeCount: likeCount });
+        const userID = req.session.user._id
+        Like.userLiked(userID, function(err, likedPosts){
+          if (err) { throw err; } 
+          posts.forEach(function(post){
+            const isPostLiked = likedPosts.filter((like) => like.postID == post._id);
+            post.liked = isPostLiked
+          })
+          res.render('posts/index', {loggedIn: activeUser, posts: posts, likeCount: likeCount });
+        })
       });
     });
   },
