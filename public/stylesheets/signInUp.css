@@ -1,10 +1,10 @@
 * {
-  max-width: 1000px;
-  margin: auto;
+ max-width: 1000px;
 }
 
 html {
   background-color: #cccccc;
+  margin: auto;
 }
 
 body {
@@ -47,6 +47,7 @@ body {
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
+  margin: auto;
 }
 
 #formFooter {
