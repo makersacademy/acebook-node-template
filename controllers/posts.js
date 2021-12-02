@@ -1,6 +1,9 @@
 var Post = require('../models/post');
 var Like = require('../models/like');
 
+// add new var for dynamic nav bar and added to line 10 and 14
+var activeUser = true;
+
 var PostsController = {
   Index: function(req, res) {
     Like.countAllLikes(function(err, allLikes){
@@ -18,13 +21,13 @@ var PostsController = {
             const isPostLiked = likedPosts.filter((like) => like.postID == post._id);
             post.liked = isPostLiked
           })
-          res.render('posts/index', { posts: posts, likeCount: likeCount });
+          res.render('posts/index', {loggedIn: activeUser, posts: posts, likeCount: likeCount });
         })
       });
     });
   },
   New: function(req, res) {
-    res.render('posts/new', {});
+    res.render('posts/new', {loggedIn: activeUser});
   },
   Create: function(req, res) {
     const post = new Post({
