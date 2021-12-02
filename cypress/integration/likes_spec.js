@@ -44,7 +44,7 @@ describe('Likes', function() {
       cy.visit('/posts');
       
       cy.get('#0').find('span').should('contain', '1')
-      cy.get('#LogOut').click();
+      cy.get('#log-out').click();
 
       testHelper.signUpTestUser('456@456.com', '456')
       testHelper.loginTestUser('456@456.com', '456')
