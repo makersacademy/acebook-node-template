@@ -11,6 +11,7 @@ var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var sessionsRouter = require('./routes/sessions');
 var usersRouter = require('./routes/users');
+var commentsRouter = require('./routes/comments');
 
 var app = express();
 
@@ -58,6 +59,7 @@ app.use('/', homeRouter);
 app.use('/posts', sessionChecker, postsRouter);
 app.use('/sessions', sessionsRouter);
 app.use('/users', usersRouter);
+app.use('/comments', sessionChecker, commentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
