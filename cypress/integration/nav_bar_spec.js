@@ -27,7 +27,7 @@ describe('Navbar', function() {
     testHelper.signUpTestUser('123@123.com', '123'); 
     testHelper.loginTestUser('123@123.com', '123');
     cy.get('a#new-post').should('contain', 'Timeline');  
-    cy.get('a#log-out').should('contain', 'Log Out'); 
+    cy.get('input#log-out').should('contain', 'Log Out'); 
   });
 
   it('shows active button ', function() {
