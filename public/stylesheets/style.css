@@ -11,6 +11,11 @@ a {
   color: #00B7FF;
 }
 
+
+.active {
+  text-decoration: underline;
+}
+
 .navbar-brand img {
   width: 50px;
 }
