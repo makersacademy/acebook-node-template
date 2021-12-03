@@ -1,5 +1,5 @@
 html {
-  background-color:white;
+  background-color:rgb(228, 226, 226);
 }
 
 body {
@@ -11,6 +11,12 @@ a {
   color: #00B7FF;
 }
 
+
+.active {
+  text-decoration: underline;
+}
+
 .navbar-brand img {
   width: 50px;
 }
+

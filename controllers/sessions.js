@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 
 var SessionsController = {
   New: function(req, res) {
-    res.render('sessions/new', {});
+    res.render('sessions/new', { title: 'Sign-in' });
   },
 
   Create: function(req, res) {
@@ -13,7 +13,7 @@ var SessionsController = {
 
     User.findOne({email: email}).then(user => {
        
-        if (!user) return res.status(400).json({ msg: "User unknown" })
+        if (!user) return res.render("error_User")
    
         bcrypt.compare(password, user.password, (err, data) => {
             if (err) throw err
@@ -23,7 +23,7 @@ var SessionsController = {
               res.redirect('/posts');
 
             } else {
-                return res.status(401).json({ msg: "Invalid password" })
+                return res.render("error_password")
             }
 
         })

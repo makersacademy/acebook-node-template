@@ -22,12 +22,20 @@ describe('Navbar', function() {
     cy.get('nav#aceBookNavBar').should('be.visible');
   });
 
-  it('only shows log out and post button once signed in', function() {
+  it('only shows log out and timeline button once signed in', function() {
 
-    testHelper.signUpTestUser('123@123.com', '123')
-    testHelper.loginTestUser('123@123.com', '123')
-    cy.get('nav#aceBookNavBar').should('contain', 'Log Out');
-    cy.get('nav#aceBookNavBar').should('contain', 'Timeline');
+    testHelper.signUpTestUser('123@123.com', '123'); 
+    testHelper.loginTestUser('123@123.com', '123');
+    cy.get('a#new-post').should('contain', 'Timeline');  
+    cy.get('input#log-out').should('contain', 'Log Out'); 
   });
 
-});
+  it('shows active button ', function() {
+    cy.visit('/');
+    cy.get('nav#aceBookNavBar').should('contain', 'Sign In');
+    cy.get('nav#aceBookNavBar').should('contain', 'Sign Up');
+    cy.get('a#sign-in').click();
+    cy.get('a#sign-in').should('have.class', 'nav-item nav-link active');
+  });
+
+}); 

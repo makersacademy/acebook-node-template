@@ -8,14 +8,25 @@ var PostsController = {
   Index: function(req, res) {
     Like.countAllLikes(function(err, allLikes){
       if (err) { throw err; }
+
+
       Post.find({}).sort('-createdAt').exec(function(err, posts) {
         if (err) { throw err; }
         const likeCount ={};
         allLikes.forEach (function(like){
           likeCount[like._id] = like.count
         });
-      res.render('posts/index', {loggedIn: activeUser, posts: posts, likeCount: likeCount });
+        const userID = req.session.user._id
+        Like.userLiked(userID, function(err, likedPosts){
+          if (err) { throw err; } 
+          posts.forEach(function(post){
+            const isPostLiked = likedPosts.filter((like) => like.postID == post._id);
+            post.liked = isPostLiked
+          })
+          res.render('posts/index', {loggedIn: activeUser, posts: posts, likeCount: likeCount });
+        })
       });
+
     });
   },
   New: function(req, res) {
