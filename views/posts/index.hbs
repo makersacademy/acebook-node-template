@@ -1,14 +1,14 @@
 <link rel='stylesheet' href='/stylesheets/posts.css' />
 
 <h1 class="text-center">Timeline</h1>
-<div class="container center" id="posts">
-  <div class="center">   
+<div class="container" id="posts">
+  {{!-- <div class="center">    --}}
   <form id="new-post-form" action="/posts" method="post">
   <label for="message">What's on your mind? </label>  
-  </div>
+  {{!-- </div>  --}}
   <input id="message" type="text" name="message" placeholder="Write something..." value="">
   <input type="submit" class="submit" value="Post">
-  </div> 
+  {{!-- </div>  --}}
 </form>
 
   {{#each posts}}
@@ -59,6 +59,7 @@
     </div>
   </div>
   {{/each}}
+</div>
 </div>
 
 <script src="/javascripts/addComment.js"></script>
