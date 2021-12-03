@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 
 var SessionsController = {
   New: function(req, res) {
-    res.render('sessions/new', {});
+    res.render('sessions/new', { title: 'Sign-in' });
   },
 
   Create: function(req, res) {

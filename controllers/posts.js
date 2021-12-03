@@ -8,6 +8,8 @@ var PostsController = {
   Index: function(req, res) {
     Like.countAllLikes(function(err, allLikes){
       if (err) { throw err; }
+
+
       Post.find({}).sort('-createdAt').exec(function(err, posts) {
         if (err) { throw err; }
         const likeCount ={};
@@ -24,6 +26,7 @@ var PostsController = {
           res.render('posts/index', {loggedIn: activeUser, posts: posts, likeCount: likeCount });
         })
       });
+
     });
   },
   New: function(req, res) {
