@@ -6,7 +6,11 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
+
   background-color:rgb(233, 231, 231);
+
+
+  height: auto;
 
 }
 
