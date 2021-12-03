@@ -1,8 +1,9 @@
 var User = require('../models/user');
+var bcrypt = require('bcrypt'); 
 
 var SessionsController = {
   New: function(req, res) {
-    res.render('sessions/new', {});
+    res.render('sessions/new', { title: 'Sign-in' });
   },
 
   Create: function(req, res) {
@@ -10,18 +11,24 @@ var SessionsController = {
     var email = req.body.email;
     var password = req.body.password;
 
-    User.findOne({email: email}).then(
-      (user) => {
-        if(!user) {
-          res.redirect('/sessions/new');
-        } else if(user.password != password) {
-          res.redirect('/sessions/new');
-        } else {
-          req.session.user = user;
-          res.redirect('/posts');
-        }
-      }
-    )
+    User.findOne({email: email}).then(user => {
+       
+        if (!user) return res.render("error_User")
+   
+        bcrypt.compare(password, user.password, (err, data) => {
+            if (err) throw err
+          
+            if (data) {
+              req.session.user = user;
+              res.redirect('/posts');
+
+            } else {
+                return res.render("error_password")
+            }
+
+        })
+
+    })
   },
 
   Destroy: function(req, res) {
@@ -34,3 +41,4 @@ var SessionsController = {
 };
 
 module.exports = SessionsController;
+
