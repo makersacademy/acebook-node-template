@@ -1,11 +1,21 @@
+<link rel='stylesheet' href='/stylesheets/posts.css' />
+
 <h1 class="text-center">Timeline</h1>
-<h5 class="text-center"><a class="new-post-link" href="/posts/new">New post</a></h5>
-<div class="container" id="posts">
+<div class="container center" id="posts">
+  <div class="center">   
+  <form id="new-post-form" action="/posts" method="post">
+  <label for="message">What's on your mind? </label>  
+  </div>
+  <input id="message" type="text" name="message" placeholder="Write something..." value="">
+  <input type="submit" class="submit" value="Post">
+  </div> 
+</form>
+
   {{#each posts}}
   <div class="post-container mb-4">
     <div class="row no-gutters border rounded overflow-hidden flex-md-row shadow-sm h-md-250 position-relative post" id="{{@index}}">
       <div class="col p-4 d-flex flex-column position-static">
-        <h6 class="mb-2 user_name">{{this.user_name}}:</h6>
+        <h6 class="mb-2 user_name font-weight-bold">{{this.user_name}}:</h6>
         <p class="card-text mb-2 message">{{this.message}} </p>
         
         <form id="comment-form" class="comment invisible border-top pt-1" action="/comments" method="post">
@@ -37,14 +47,14 @@
         </form>
           <span class="mr-2 like-counter">{{ lookup ../likeCount this._id }}</span>
         </div>
+        </div>
         {{#each this.comments}}
         {{#if this.comment}}
         
-        <p class="border-top">{{this.user_name}}</p>
+        <p class="border-top font-weight-bold">{{this.user_name}}</p> 
         <p class="comments">{{this.comment}}</p>
         {{/if}}
         {{/each}}
-        </div>
       </div>
     </div>
   </div>

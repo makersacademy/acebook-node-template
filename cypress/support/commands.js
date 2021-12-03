@@ -28,7 +28,6 @@
 
 const testHelper = { 
   createTestPost: (message) => {
-  cy.contains('New post').click();
   cy.get('#new-post-form').find('[type="text"]').type(message);
   cy.get('#new-post-form').submit();
   },
