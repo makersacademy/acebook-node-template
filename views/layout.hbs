@@ -4,23 +4,38 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel='stylesheet' href='/stylesheets/signInUp.css' />
+    <link rel='stylesheet' href='/stylesheets/home.css' />
   </head>
+
   <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="aceBookNavBar">
-      <a class="navbar-brand" href="/">Acebook</a>
+      <a class="navbar-brand" href="/"><img src="../images/logo.png" /></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+   
+  
+    {{#unless loggedIn}} 
         <div class="navbar-nav">
           <a class="nav-item nav-link" id="sign-up" href="/users/new">Sign Up</a>
           <a class="nav-item nav-link" id="sign-in" href="/sessions/new">Sign In</a>
         </div>
-      </div>
+     {{else}}
+         <div class="navbar-nav2">
+          <a class="nav-item nav-link" id="new-post" href="/posts" style= "float: left"; "display: inline" >Timeline</a>
+          <a class="nav-item">
+            <form class="form-inline" action='/sessions?_method=DELETE' method='POST' style= "float: left"; "display: inline">
+              <input type="submit" id="log-out" value="Log Out" class="btn btn-sm btn-lnk">
+            </form>
+          </a>
+        </div>
+      {{/unless}}
     </nav>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
     {{{body}}}
+    <script src="/javascripts/saveScrollPosition.js"></script>
   </body>
+  
 </html>

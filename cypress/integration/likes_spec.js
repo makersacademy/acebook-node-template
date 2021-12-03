@@ -21,9 +21,38 @@ describe('Likes', function() {
       cy.visit('/posts');
       testHelper.createTestPost('First Post - lowest');
 
-      cy.get('#0').find('span').should('contain', '0')
+      cy.get('#0').find('span').should('be.empty')
       cy.get('#0').find('.like').click();
       cy.get('#0').find('span').should('contain', '1')
+    });
+    
+    it ('shows the number of times a like button was clicked persistently',function() {
+      
+      testHelper.signUpTestUser('123@123.com', '123')
+      testHelper.loginTestUser('123@123.com', '123')
+      
+      cy.visit('/posts');
+      testHelper.createTestPost('This post should be liked 2 times');
+      
+      cy.get('#0').find('span').should('be.empty')
+      cy.get('#0').find('.like').click();
+      cy.get('#0').find('span').should('contain', '1')
+
+      cy.get('#log-out').click();
+
+      testHelper.loginTestUser('123@123.com', '123')
+      cy.visit('/posts');
+      
+      cy.get('#0').find('span').should('contain', '1')
+      cy.get('#log-out').click();
+
+      testHelper.signUpTestUser('456@456.com', '456')
+      testHelper.loginTestUser('456@456.com', '456')
+      
+      cy.get('#0').find('span').should('contain', '1')
+      cy.get('#0').find('.like').click();
+      cy.get('#0').find('span').should('contain', '2')
+
     });
 
 });
