@@ -9,10 +9,31 @@
 
 }
 .image {
-  display: flex; 
+  display: block;
+  margin: auto; 
   justify-content: center;
   align-items: center;
   width: 50%;
   padding: 20px;
   margin-top: 20px;
+}
+.figure {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  margin-top: 20px;
+}
+/* Rotate */
+.hover06 figure img {
+  
+	-webkit-transform: rotate(0) scale(1);
+	transform: rotate(15deg) scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover06 figure:hover img {
+	-webkit-transform: rotate(15deg) scale(1);
+	transform: rotate(0) scale(1.4);
 }
