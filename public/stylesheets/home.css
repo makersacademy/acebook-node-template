@@ -6,6 +6,7 @@
   min-height: 100%;
   padding: 20px;
   margin-top: 20px;
+  overflow: hidden;
 
 }
 .image {
@@ -16,6 +17,7 @@
   width: 50%;
   padding: 20px;
   margin-top: 20px;
+  overflow: hidden;
 }
 .figure {
   display: flex; 
@@ -24,6 +26,7 @@
   width: 100%;
   padding: 20px;
   margin-top: 20px;
+  overflow: hidden;
 }
 /* Rotate */
 .hover06 figure img {

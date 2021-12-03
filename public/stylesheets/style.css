@@ -1,14 +1,17 @@
 html {
-  background-color:rgb(228, 226, 226);
+  background-color:rgb(233, 231, 231);
 }
 
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:rgb(233, 231, 231);
+
 }
 
 a {
   color: #00B7FF;
+  
 }
 
 
@@ -19,4 +22,25 @@ a {
 .navbar-brand img {
   width: 50px;
 }
-
+/* Rotate */
+.navbar-brand  {
+  
+	-webkit-transform: rotate(0) scale(1);
+	transform: rotate(15deg) scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.navbar-brand :hover {
+	-webkit-transform: rotate(15deg) scale(1);
+	transform: rotate(0) scale(1.4);
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  
+}

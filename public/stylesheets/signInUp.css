@@ -1,15 +1,13 @@
-* {
- max-width: 1000px;
-}
 
 html {
-  background-color: #cccccc;
-  margin: auto;
+    margin: auto;
+    background-color:rgb(233, 231, 231);
 }
 
 body {
   font-family: "Poppins", sans-serif;
-  height: 100vh;
+  background-color:rgb(233, 231, 231);
+
 }
 
 
