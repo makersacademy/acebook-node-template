@@ -1,0 +1,42 @@
+.home {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+
+}
+.image {
+  display: block;
+  margin: auto; 
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.figure {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+/* Rotate */
+.hover06 figure img {
+  
+	-webkit-transform: rotate(0) scale(1);
+	transform: rotate(15deg) scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover06 figure:hover img {
+	-webkit-transform: rotate(15deg) scale(1);
+	transform: rotate(0) scale(1.4);
+}
