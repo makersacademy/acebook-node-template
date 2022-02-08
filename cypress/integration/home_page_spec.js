@@ -9,4 +9,11 @@ describe('Home page', function() {
     cy.contains('Log in').click();
     cy.url().should('include', '/sessions/new');
   });
+
+  it('has a sign up button', function() {
+    cy.visit('/');
+    cy.contains('Sign Up').click();
+    cy.url().should('include', '/users/new');
+  });
+  
 });
