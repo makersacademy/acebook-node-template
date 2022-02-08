@@ -12,6 +12,7 @@ var SessionsController = {
 
     User.findOne({email: email}).then(
       (user) => {
+        console.log(user)
         if(!user) {
           res.redirect('/sessions/new');
         } else if(user.password != password) {
