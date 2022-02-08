@@ -45,17 +45,18 @@ app.use((req, res, next) => {
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
-  if (!req.session.user && !req.cookies.user_sid) {
-    res.redirect('/sessions/new');
-  } else {
+  if (req.originalUrl == '/posts' && !req.session.user && !req.cookies.user_sid) {  // post session checker
+      res.redirect('/sessions/new');
+  } else if (req.originalUrl == '/' && (req.session.user || req.cookies.user_sid)) {  // home session checker
+      res.redirect('/posts');
+  }
+  else {
     next();
   }
 };
 
-
-
 // route setup
-app.use('/', homeRouter);
+app.use('/', sessionChecker, homeRouter);
 app.use('/posts', sessionChecker, postsRouter);
 app.use('/sessions', sessionsRouter);
 app.use('/users', usersRouter);
