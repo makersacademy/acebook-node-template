@@ -32,7 +32,7 @@ app.use(session({ key: 'user_sid',
   saveUninitialized: false,
   cookie: {
   expires: 600000 }
-})
+  })
 );
 
 // clear the cookies after user logs out
