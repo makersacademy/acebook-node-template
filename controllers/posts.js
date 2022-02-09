@@ -13,7 +13,7 @@ var PostsController = {
   },
   Create: function(req, res) {
     var post = new Post(req.body);
-    post.save(function(err) {
+    post.save(function(err) { 
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
