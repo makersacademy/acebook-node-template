@@ -27,12 +27,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 
 app.use(session({ key: 'user_sid',
-secret: 'super_secret',
-resave: false,
-saveUninitialized: false,
-cookie: {
+  secret: 'super_secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
   expires: 600000 }
-}));
+  })
+);
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {
