@@ -1,7 +1,7 @@
 describe('Timeline', function() {
   it('can submit posts and view them', function() {
     cy.visit('/sessions/new');
-    cy.pause();
+    // cy.pause();
     cy.get('#new-session-form').submit();
     cy.url('/posts');
 
