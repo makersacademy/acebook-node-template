@@ -2,7 +2,7 @@
   "name": "acebook",
   "version": "0.0.0",
   "description": "Template for the AceBook project",
-  "license": "CC BY-NC-SA",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "lint": "eslint .",
@@ -25,19 +25,29 @@
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
     "mongodb": "^3.4.1",
-    "mongoose": "^5.8.11",
+    "mongoose": "^6.2.0",
     "morgan": "~1.9.1",
-    "nodemon": "^1.19.4"
+    "nodemon": "^2.0.15"
   },
   "devDependencies": {
-    "cypress": "^3.8.3",
-    "eslint": "^6.8.0",
+    "cypress": "^9.4.1",
+    "eslint": "^8.8.0",
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
-    "jest": "^24.9.0"
+    "jest": "^27.5.0"
   },
   "nodemonConfig": {
     "ext": "js,hbs"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliaguida/acebook-js1.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/juliaguida/acebook-js1/issues"
+  },
+  "homepage": "https://github.com/juliaguida/acebook-js1#readme"
 }
