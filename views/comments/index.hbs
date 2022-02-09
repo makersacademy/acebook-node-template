@@ -1,0 +1,8 @@
+<h1>Comments</h1>
+  {{#each post_comments}}
+    <li><h4 class="card-title">{{this.comment}}</h4></li>
+{{/each}}
+    {{this.comments}}
+<form action='/comments/{{post_id}}/new' method='Get'>
+        <input type="submit" value="New comment">
+</form>
