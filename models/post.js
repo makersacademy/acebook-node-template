@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
-  message: String,
+  message: Object,
+  postedBy: Object
 });
 
 var Post = mongoose.model('Post', PostSchema);
