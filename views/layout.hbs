@@ -2,14 +2,33 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
   <body>
- <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-      </div>
-    </form>
+    <div class="navbar" id="myNavbar">
+      <a class="active" href="/">Profile</a>
+      <a href="/posts">Feed</a>
+      <a href="/contact">Contact</a>
+      <a href="/about">About</a>
+      <form action="/sessions?_method=DELETE" method="POST">
+        <button type="submit" value="Log Out" class="link-button">Log Out</button>
+      </form>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
     {{{body}}}
-     <div class="overlay"></div>
+    <div class="overlay"></div>
+    <script> 
+      function myFunction() {
+        var x = document.getElementById("myNavbar");
+        if (x.className === "navbar") {
+        x.className += " responsive";
+        } else {
+        x.className = "navbar";
+        }
+      }
+    </script>
   </body>
 </html>
