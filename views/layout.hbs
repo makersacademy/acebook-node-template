@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <!--<title>{{title}}</title>-->
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navBar.css">
+    <script src="navBar.js"></script>
   </head>
   <body>
-      <form action='/sessions?_method=DELETE' method='POST'>
-        <input type="submit" value="Log Out">
-      </form>
+
+    <form action='/sessions?_method=DELETE' method='POST'>
+    </form>
+
+    <nav class="navBar">
+      <div class="navBar-title">Acebook</div>
+      <a href="#" class="toggle-button">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </a>
+    <div class="navBar-links">
+      <ul>
+        <li><a href="/users/new">Sign Up</a></li>
+        <li><a href="/sessions/new">Sign In</a></li>
+        <li><a href="/sessions?_method=DELETE">Log Out</a></li>
+        </ul>
+      </div> 
+    </nav>
     {{{body}}}
   </body>
 </html>
