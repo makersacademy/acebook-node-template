@@ -25,7 +25,7 @@
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
     "mongodb": "^3.4.1",
-    "mongoose": "^5.13.14",
+    "mongoose": "^6.0.0",
     "morgan": "~1.9.1",
     "nodemon": "^1.19.4"
   },
