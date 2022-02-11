@@ -40,6 +40,10 @@ Trello Board: https://trello.com/b/CjpsWtwO/acebook-team-flamingos
     npm install
     ```
 1. Install an ESLint plugin for your editor. For example: [linter-eslint](https://github.com/AtomLinter/linter-eslint) for Atom.
+1. Install the cypress 9.4.1
+    ```
+    npm install --sav-dev cypress@9.4.1
+    ```
 1. Install MongoDB
     ```
     brew tap mongodb/brew
