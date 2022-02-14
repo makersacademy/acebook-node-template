@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
   message: String,
-  postedBy: String
+  postedBy: String,
+  likes: Number,
   },
   { timestamps: true},
 );

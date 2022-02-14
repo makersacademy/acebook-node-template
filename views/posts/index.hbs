@@ -1,8 +1,20 @@
 <h1>Timeline</h1>
-{{#each posts}}
-<div class="posts">
-{{this.message}}  <button type="button" >Like &#128077;</button>
-</div>
-{{/each}}
+<ul class="posts">
+  {{#each posts}}
+  <li>{{this.message}} <button style="border-radius: 20px;"  
+  id="btn" onclick="CountLikes(this);" type="button" >Like &#128077;
+  <p id="display">0</p></button></li>
+
+    <script type="text/javascript">
+        var count = 0;
+        function CountLikes(element) {
+          element.getElementsByTagName('p')[0].innerText++
+        console.log(element)
+        }
+    </script>
+
+  {{/each}}
+</ul>
+
 
 <a class="new-post-link" href="/posts/new">New post</a>
