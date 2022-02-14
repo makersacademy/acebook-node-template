@@ -23,14 +23,6 @@ var PostsController = {
       res.status(201).redirect('/posts');
     });
   },
-  CountLikes: function(req, res) {
-    post.likes++; 
-    post.save(function(err) {
-      if (err) { throw err; }
-
-      res.render('/posts/index', { posts: likes} );
-    })
-  }
 };
 
 module.exports = PostsController;
