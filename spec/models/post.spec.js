@@ -44,7 +44,14 @@ describe('Post model', function() {
       
       Post.findOneAndUpdate(
         { message: 'Testing comments' },
-        { $push: { comments: 'Test comment for unit' } },
+        { $push: { 
+          comments: { 
+            comment: 'Test comment for unit',
+            user: 'Jest',
+            datetime: 'Today'
+            } 
+          } 
+        },
         {new:true},
         function(err, post) {
           expect(err).toBeNull();
