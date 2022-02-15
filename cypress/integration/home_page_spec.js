@@ -1,4 +1,13 @@
 describe('Home page', function() {
+
+  before(() => {
+    cy.visit('/users/new');
+    cy.get('#email').type('jackie@jackie.com');
+    cy.get('#password').type('jackie');
+    cy.get('#firstname').type('jackie');
+    cy.get('#surname').type('jackie');
+    cy.get('#new-user-form').submit();
+  })
   it('has a title', function() {
     cy.visit('/');
 

@@ -1,0 +1,11 @@
+<h1>My Profile </h1>
+
+
+<h2>Posts:</h2>
+{{#each posts}}
+<div class="posts">
+{{this.message}} 
+</div>
+{{/each}}
+
+<a class="new-post-link" href="/posts/new">Add a new post</a>

@@ -50,6 +50,10 @@ var sessionChecker = (req, res, next) => {
   } else if (req.originalUrl == '/' && (req.session.user || req.cookies.user_sid)) {  // home session checker
       res.redirect('/posts');
   }
+   else if (req.originalUrl == '/users/profile' && !req.session.user && !req.cookies.user_sid) {  // post session checker
+        res.redirect('/sessions/new');
+        
+   }
   else {
     next();
   }
@@ -59,7 +63,7 @@ var sessionChecker = (req, res, next) => {
 app.use('/', sessionChecker, homeRouter);
 app.use('/posts', sessionChecker, postsRouter);
 app.use('/sessions', sessionsRouter);
-app.use('/users', usersRouter);
+app.use('/users', sessionChecker,  usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
