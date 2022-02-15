@@ -5,15 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var sessionsRouter = require('./routes/sessions');
 var usersRouter = require('./routes/users');
 
+const app = express();
 
-var app = express();
+// upload images
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
