@@ -6,11 +6,12 @@ var PostsController = {
       if (err) { throw err; }
 
       res.render('posts/index', { posts: posts });
-    });
-  },
+     });
+    },
   New: function(req, res) {
     res.render('posts/new', {});
   },
+  
   Create: function(req, res) {
 
     var post = new Post({
