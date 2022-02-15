@@ -14,14 +14,15 @@ var PostsController = {
   Create: function(req, res) {
     var post = new Post({ 
       message: req.body.message, 
-      postedBy: req.session.user._id
+      postedBy: req.session.user._id,
+      likes: 0,
     });
     post.save(function(err) {
       if (err) { throw err; }
 
       res.status(201).redirect('/posts');
     });
-  }
+  },
 };
 
 module.exports = PostsController;
