@@ -23,6 +23,39 @@ a {
   color: #ff0080;
 }
 
+
+/* FEED PAGE STYLING */
+/* --------------------------------------------- */
+
+.posts {
+  border-style: solid;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  padding-bottom: 7px;
+  line-height: 1.2;
+  text-indent: 15px;
+}
+
+.posts .like-button {
+  vertical-align:   middle;
+}
+
+.comments {
+  background-color: #e767a7c0;
+  border-color: #ff0080;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: smaller;
+}
+
+.container {
+  text-indent: 100px;
+  font-size: 20px;
+}
+/* --------------------------------------------- */
+
 /* Navigation bar formatting */
 .navbar {
   background-color: #333;
