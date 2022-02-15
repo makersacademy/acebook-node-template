@@ -4,7 +4,8 @@ const PostSchema = new mongoose.Schema({
   message: String,
   posterID: String,
   posterName: String,
-  comments: Array
+  comments: Array,
+  likes: Number,
   },
   { timestamps: true},
 );
