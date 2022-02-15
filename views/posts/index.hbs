@@ -2,9 +2,10 @@
 
 {{#each posts}}
   <div class="posts">
-    {{this.message}} <button style="border-radius: 20px;"  
+  <div><b>{{this.posterName}}:</b> 
+   {{this.message}} <button style="border-radius: 20px;"  
   id="btn" class="btnclick" onclick="CountLikes(this);" type="button" >Like &#128077;
-  <p id="display">0</p></button>
+  <p id="display">0</p></button></div>
     <script type="text/javascript">
         var count = 0;
         function CountLikes(element) {
