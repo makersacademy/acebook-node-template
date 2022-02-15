@@ -1,8 +1,11 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var PostSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
   message: String,
-  postedBy: String
+  posterID: String,
+  posterName: String,
+  comments: Array,
+  likes: Number,
   },
   { timestamps: true},
 );

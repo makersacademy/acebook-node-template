@@ -37,4 +37,23 @@ describe('Post model', function() {
       });
     });
   });
+
+  it('can save a comment to a post', function(done) {
+    Post.create({ message: 'Testing comments' } , function (err) {
+      expect(err).toBeNull();
+      
+      Post.findOneAndUpdate(
+        { message: 'Testing comments' },
+        { $push: { comments: 'Test comment for unit' } },
+        {new:true},
+        function(err, post) {
+          expect(err).toBeNull();
+
+          expect(post).toMatchObject({message: 'Testing comments' }, { comments: ['Test comment for unit'] });
+          done();
+        }
+      )
+    });
+  });
+  
 });
