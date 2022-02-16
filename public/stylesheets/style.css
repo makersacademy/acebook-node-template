@@ -21,7 +21,7 @@ html {
 }
 
 a {
-  color: #e86aa9;
+  color: #f08fbf;
 }
 
 h1 {
@@ -50,7 +50,7 @@ h1 {
   vertical-align:   middle;
 }
 
-.comments {
+/* .comments {
   background-color: #f08fbfc2;
   border-color: #ff0080;
   border-radius: 10px;
@@ -59,10 +59,10 @@ h1 {
   color: rgb(0, 0, 0);
   font-size: smaller;
   padding: 8px
-}
+} */
 
 .individual-comment {
-  background-color: #e86aa9;
+  background-color: #f08fbf;
   border-radius: 10px;
   padding: 8px 15px 8px 15px;
   display: inline;
@@ -79,7 +79,7 @@ h1 {
 }
 
 input[type=submit] {
-  background-color: #e86aa9;
+  background-color: #f08fbf;
   border: none;
   border-radius: 10px;
   color: black;
@@ -99,7 +99,7 @@ input[type=text] {
 
 .new-post-link {
   float: left;
-  background: #e86aa9;
+  background: #f08fbf;
   border-radius: 10px;
   color: black;
   cursor: pointer;
@@ -132,7 +132,7 @@ input[type=text] {
 }
 
 .navbar a.active {
-  background-color: #e86aa9;
+  background-color: #f08fbf;
   color: white;
 }
 
