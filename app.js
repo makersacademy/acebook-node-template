@@ -5,15 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 
 var homeRouter = require('./routes/home');
 var postsRouter = require('./routes/posts');
 var sessionsRouter = require('./routes/sessions');
 var usersRouter = require('./routes/users');
 
-
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,12 +51,9 @@ var sessionChecker = (req, res, next) => {
       res.redirect('/sessions/new');
   } else if (req.originalUrl == '/' && (req.session.user || req.cookies.user_sid)) {  // home session checker
       res.redirect('/posts');
-  }
-   else if (req.originalUrl == '/users/profile' && !req.session.user && !req.cookies.user_sid) {  // post session checker
-        res.redirect('/sessions/new');
-        
-   }
-  else {
+  } else if (req.originalUrl == '/users/profile' && !req.session.user && !req.cookies.user_sid) {  // post session checker
+        res.redirect('/sessions/new');   
+  } else {
     next();
   }
 };
