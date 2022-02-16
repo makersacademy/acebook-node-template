@@ -18,7 +18,6 @@ var PostsController = {
       message: req.body.message,
       posterID: req.session.user._id,
       posterName: req.session.user.firstname,
-      comments: {},
       likes: 0,
     });
     post.save(function(err) {
