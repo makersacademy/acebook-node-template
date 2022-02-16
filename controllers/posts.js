@@ -49,7 +49,7 @@ var PostsController = {
     res.redirect('/posts');
   },
 
-  CountLikes: function(req, res) {
+  CountLikes: function(req) {
     Post.findByIdAndUpdate(
       req.params.id,
        { $inc: { likes: 1 } },
