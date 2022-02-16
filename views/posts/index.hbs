@@ -1,17 +1,18 @@
-<h1>Timeline</h1>
+<h1 style = " color:#ffffff;text-shadow: 8px 8px 16px #f08fbf; ">Flamingo Lingo</h1>
 
 <a class="new-post-link" href="/posts/new">New post</a><br><br>
 
 {{#each posts}}
-  <div class="posts">
+  <div style = "padding: 20px" class="posts">
   <div><b>{{this.posterName}}:</b> 
-   {{this.message}} <button style="border-radius: 20px;"  
-  id="btn" class="btnclick" onclick="CountLikes(this);" type="button" >Like &#128077;
-  <p id="display">0</p></button></div>
+   {{this.message}}
+    <button style="padding: 6px; background-color: #f08fbf; border-radius: 8px;"
+  id="btn" class="btnclick" onclick="CountLikes(this);" type="button" > <b id="display">0 </b> Likes &#128077;
+   </button></div>
     <script type="text/javascript">
         var count = 0;
         function CountLikes(element) {
-          element.getElementsByTagName('p')[0].innerText++
+          element.getElementsByTagName('b')[0].innerText++
         console.log(element)
         }
     </script>

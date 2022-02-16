@@ -37,12 +37,13 @@ h1 {
   border-style: solid;
   border-width: 1px;
   border-radius: 10px;
-  background-color: white;
-  color: black;
-  padding-bottom: 0px;
-  padding-left: 15px;
+  border-color: #0e4d58;
+  background-color: rgba(108, 205, 235, 0.671);
+  color: rgb(0, 0, 0);
+  padding-bottom: 7px;
   line-height: 1.2;
-  
+  text-indent: 15px;
+  font-family: Garamond, serif;
 }
 
 .posts .like-button {
@@ -50,9 +51,14 @@ h1 {
 }
 
 .comments {
+  background-color: #f08fbfc2;
+  border-color: #ff0080;
+  border-radius: 10px;
   margin-left: 20px;
   margin-right: 20px;
-  font-size: 18px;
+  color: rgb(0, 0, 0);
+  font-size: smaller;
+  padding: 8px
 }
 
 .individual-comment {
