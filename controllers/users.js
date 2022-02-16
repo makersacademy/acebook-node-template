@@ -34,11 +34,13 @@ var UsersController = {
       req.session.user._id, 
       { profilePicture: '/images/' + req.file.filename }, 
       {new:true}, 
-      function(err) {
+      function(err, user) {
         if (err) { throw err; }
+        req.session.user = user;
+        res.status(201).redirect('/users/profile');
       }
     );
-    res.status(201).redirect('/users/profile');
+    
   }
 };
 

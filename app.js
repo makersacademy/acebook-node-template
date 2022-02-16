@@ -14,8 +14,6 @@ var usersRouter = require('./routes/users');
 
 const app = express();
 
-// upload images
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -53,12 +51,9 @@ var sessionChecker = (req, res, next) => {
       res.redirect('/sessions/new');
   } else if (req.originalUrl == '/' && (req.session.user || req.cookies.user_sid)) {  // home session checker
       res.redirect('/posts');
-  }
-   else if (req.originalUrl == '/users/profile' && !req.session.user && !req.cookies.user_sid) {  // post session checker
-        res.redirect('/sessions/new');
-        
-   }
-  else {
+  } else if (req.originalUrl == '/users/profile' && !req.session.user && !req.cookies.user_sid) {  // post session checker
+        res.redirect('/sessions/new');   
+  } else {
     next();
   }
 };

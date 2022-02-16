@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 const multer = require('multer');
 
+// set up for the upload picture feature
 var UsersController = require('../controllers/users');
-
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './public/images');
@@ -12,7 +12,6 @@ const fileStorageEngine = multer.diskStorage({
     cb(null, Date.now() + '--' + file.originalname);
   }
 });
-
 const upload = multer({ storage: fileStorageEngine });
 
 router.get('/new', UsersController.New);
