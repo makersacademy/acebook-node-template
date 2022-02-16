@@ -4,6 +4,7 @@
 
 {{#each posts}}
   <div class="posts">
+    <div><b>{{this.posterName}}:</b>
 
     {{this.message}} <button style="border-radius: 20px;"  
   id={{this.id}} class="btnclick" onclick="CountLikes(this);" type="button" >Like &#128077;
