@@ -4,16 +4,28 @@
 
 {{#each posts}}
   <div style = "padding: 20px" class="posts">
-  <div><b>{{this.posterName}}:</b> 
-   {{this.message}}
-    <button style="padding: 6px; background-color: #f08fbf; border-radius: 8px;"
-  id="btn" class="btnclick" onclick="CountLikes(this);" type="button" > <b id="display">0 </b> Likes &#128077;
-   </button></div>
+    <div><b>{{this.posterName}}:</b>
+
+    {{this.message}} <button style="border-radius: 20px;"  
+  id={{this.id}} class="btnclick" onclick="CountLikes(this);" type="button" >Like &#128077;
+  <p id="display">{{this.likes}}</p></button>
+
     <script type="text/javascript">
         var count = 0;
         function CountLikes(element) {
-          element.getElementsByTagName('b')[0].innerText++
-        console.log(element)
+          fetch(`/posts/${element.id}/likes`, {
+          method: 'POST',
+          mode: 'cors',
+          cache: 'no-cache',
+          credentials: 'same-origin', 
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer', 
+        });
+          element.getElementsByTagName('p')[0].innerText++
+          console.log(element)
         }
     </script>
     <br>
@@ -36,4 +48,5 @@
     <br>
   </div>
   <br>
+  </div>
 {{/each}}

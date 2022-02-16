@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-const PostSchema = new mongoose.Schema({
+var PostSchema = new mongoose.Schema({
   message: String,
   posterID: String,
   posterName: String,

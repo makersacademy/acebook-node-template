@@ -47,8 +47,18 @@ var PostsController = {
     )
 
     res.redirect('/posts');
-  }
+  },
 
+  CountLikes: function(req) {
+    Post.findByIdAndUpdate(
+      req.params.id,
+       { $inc: { likes: 1 } },
+      {new: true}, 
+      function(err) {
+        if (err) { throw err; }
+      }
+    )
+    },
 };
 
 module.exports = PostsController;
