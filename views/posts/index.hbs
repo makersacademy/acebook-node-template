@@ -1,9 +1,9 @@
-<h1>Timeline</h1>
+<h1 style = " color:#ffffff;text-shadow: 8px 8px 16px #f08fbf; ">Flamingo Lingo</h1>
 
 <a class="new-post-link" href="/posts/new">New post</a><br><br>
 
 {{#each posts}}
-  <div class="posts">
+  <div style = "padding: 20px" class="posts">
     <div><b>{{this.posterName}}:</b>
 
     {{this.message}} <button style="border-radius: 20px;"  
@@ -25,7 +25,7 @@
           referrerPolicy: 'no-referrer', 
         });
           element.getElementsByTagName('p')[0].innerText++
-        console.log(element)
+          console.log(element)
         }
     </script>
     <br>
@@ -48,4 +48,5 @@
     <br>
   </div>
   <br>
+  </div>
 {{/each}}
