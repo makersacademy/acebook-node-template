@@ -61,7 +61,6 @@ a {
   background-color: #333;
   overflow: hidden;
 }
-
 .navbar a {
   float: left;
   color: #f2f2f2;
@@ -70,17 +69,14 @@ a {
   text-decoration: none;
   font-size: 17px;
 }
-
 .navbar a:hover {
   background-color: #ddd;
   color: black;
 }
-
 .navbar a.active {
-  background-color: #f29fefc3;
+  background-color: #e86aa9;
   color: white;
 }
-
 .navbar .link-button {
   float: left;
   background: none;
@@ -92,18 +88,15 @@ a {
   text-decoration: none;
   font-size: 17px;
 }
-
 .navbar .link-button:hover {
   background-color: #ddd;
   color: black;
 }
-
 /* formats the icon bar for smaller screens */
 @font-face {
   font-family: FontAwesome;
   src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0)
 }
-
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -112,20 +105,16 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 i {
   font-style: italic;
 }
-
 .fa-navicon:before, .fa-reorder:before, .fa-bars:before {
   content: "\f0c9";
 }
-
 /* hides the icon bar on larger screens */
 .navbar .icon {
   display: none;
 }
-
 /* formats the nav bar on smaller screens to only show icon */
 @media screen and (max-width: 768px) {
   .navbar a:not(:first-child) {display: none;}
@@ -134,7 +123,6 @@ i {
     display: block;
   }
 }
-
 /* makes the animation of the nav bar nice on small screens */
 @media screen and (max-width: 768px) {
   .navbar.responsive {position: relative;}
@@ -149,19 +137,3 @@ i {
     text-align: left;
   }
 }
-
-/* .navbar .icon {
-  display: none;
-} */
-
-/* .posts {
-  color: black;
-  text-align: left;
-  text-indent: 10px;
-  background-color: #ddd;
-  border-radius: 10px;
-}
-
-.posts button {
-  vertical-align: middle;
-} */
