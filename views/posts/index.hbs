@@ -6,9 +6,10 @@
   <div style = "padding: 20px" class="posts">
     <div><b>{{this.posterName}}:</b>
 
-    {{this.message}} <button style="border-radius: 20px;"  
-  id={{this.id}} class="btnclick" onclick="CountLikes(this);" type="button" >Like &#128077;
-  <p id="display">{{this.likes}}</p></button>
+    {{this.message}} <button style="padding: 6px; background-color: #f08fbf; border-radius: 8px;"  
+  id={{this.id}} class="btnclick" onclick="CountLikes(this);" type="button" > <b id="display">{{this.likes}} </b> Likes &#128077;
+  </button>
+  </div>
 
     <script type="text/javascript">
         var count = 0;
@@ -24,7 +25,7 @@
           redirect: 'follow',
           referrerPolicy: 'no-referrer', 
         });
-          element.getElementsByTagName('p')[0].innerText++
+          element.getElementsByTagName('b')[0].innerText++
           console.log(element)
         }
     </script>

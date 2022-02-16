@@ -8,7 +8,7 @@ describe('Timeline', function() {
     cy.url().should('include', '/posts');
     cy.get('#comment-form').first().find('[type="text"]').type('Test comment for integration');
     cy.get('#comment-form').submit();
-
+    cy.visit('/posts');
     cy.get('.comments').first().should('contain', 'Test comment for integration');
   });
 });
