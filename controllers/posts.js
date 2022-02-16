@@ -5,7 +5,6 @@ var PostsController = {
   Index: function(req, res) {
     OrderedPost.find(function(err,posts) {
       if (err) { throw err; }
-      /*Post.find ().sort ( { createdAt : 1 } )*/
       res.render('posts/index', { posts: posts });
      });
     },
