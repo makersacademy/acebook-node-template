@@ -39,7 +39,13 @@ describe('Post model', function() {
   });
 
   it('can save a comment to a post', function(done) {
-    Post.create({ message: 'Testing comments', posterName: 'Jest' } , function (err) {
+    const options = { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }
+    Post.create({
+      message: 'Testing comments', 
+      posterName: 'Jest', 
+      datetime: new Date().toLocaleDateString("en-GB", options),
+      },
+      function (err) {
       expect(err).toBeNull();
       
       Post.findOneAndUpdate(

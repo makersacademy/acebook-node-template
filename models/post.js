@@ -6,8 +6,9 @@ var PostSchema = new mongoose.Schema({
   posterName: String,
   comments: Array,
   likes: Number,
+  datetime: String
   },
-  { timestamps: true},
+  {timestamps:true}
 );
 
 var Post = mongoose.model('Post', PostSchema);
