@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+  </head>
+  <body>
+    <div class='navbar' id='myNavbar'>
+      <a class='active' href='/users/profile'>Profile</a>
+      <a href='/posts'>Feed</a>
+      <a href='/contact'>Contact</a>
+      <a href='/about'>About</a>
+      <a href='/users/new'>Sign Up</a>
+      <a href='javascript:void(0);' class='icon' onclick='myFunction()'>
+        <i class='fa fa-bars'></i>
+      </a>
+    </div>
+    {{{body}}}
+    <script>
+      function myFunction() {
+        var x = document.getElementById('myNavbar');
+        if (x.className === 'navbar') {
+        x.className += ' responsive';
+        } else {
+        x.className = 'navbar';
+        }
+      }
+    </script>
+  </body>
+</html>
