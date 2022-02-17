@@ -8,9 +8,6 @@ var PostsController = {
       res.render('posts/index', { posts: posts });
      });
     },
-  New: function(req, res) {
-    res.render('posts/new', {});
-  },
   
   Create: function(req, res) {
 

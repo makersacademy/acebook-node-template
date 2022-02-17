@@ -97,16 +97,15 @@ input[type=text] {
   width: 25%;
 }
 
-.new-post-link {
-  float: left;
-  background: #f08fbf;
+.new-post-form {
+  border-style: solid;
+  border-width: 1px;
   border-radius: 10px;
-  color: black;
-  cursor: pointer;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+  border-color: #0e4d58;
+  background-color: rgba(108, 205, 235, 0.671);
+  padding: 20px;
+  color: rgb(0, 0, 0);
+  font-family: Garamond, serif;
 }
 
 /* --------------------------------------------- */

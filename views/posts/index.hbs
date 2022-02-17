@@ -1,6 +1,11 @@
 <h1 style = " color:#ffffff;text-shadow: 8px 8px 16px #f08fbf; ">Flamingo Lingo</h1>
 
-<a class="new-post-link" href="/posts/new">New post</a><br><br>
+<form class="new-post-form" id="new-post-form" action="/posts" method="post">
+  <label for="message">New Post: </label>
+  <input id="message" type="text" name="message" value="">
+  <input type="submit" value="Submit">
+</form>
+<br>
 
 {{#each posts}}
   <div style = "padding: 20px" class="posts">
