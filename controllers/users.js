@@ -3,7 +3,7 @@ var Post = require('../models/post')
 
 var UsersController = {
   New: function(req, res) {
-    res.render('users/new', {});
+    res.render('users/new', { layout: '/layoutUsersNew' });
   },
 
   Profile: function(req, res) {
