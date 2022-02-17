@@ -2,6 +2,7 @@
 
 <img src="{{user.profilePicture}}" alt="No profile picture found" style="height:150px">
 
+<form action="/users/upload" method="post" enctype="multipart/form-data">
 <form class="upload-picture-form" action="/users/upload" method="post" enctype="multipart/form-data">
   <input type="file" name="profile-picture" />
   <input type="submit" value="Upload">

@@ -5,6 +5,7 @@ var PostSchema = new mongoose.Schema({
   posterID: String,
   posterName: String,
   comments: Array,
+  posterPic: String,
   likes: Number,
   datetime: String
   },
