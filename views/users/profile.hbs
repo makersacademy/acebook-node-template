@@ -10,11 +10,15 @@
 
 <h2>{{user.firstname}}'s Posts:</h2>
 
+<a class="new-post-link" href="/posts/new">Add a new post</a>
+<br>
+<br>
+
 {{#each posts}}
   <div class="posts">
 
     <div class="post">
-      <b class="poster-name">{{this.posterName}}:</b> {{this.message}} - {{this.likes}} Likes
+      <b class="poster-name">{{this.posterName}}:</b> {{this.message}} ({{this.datetime}}) - {{this.likes}} Likes
     </div>
 
     <br>
@@ -23,7 +27,7 @@
       {{#each this.comments}}
 
       <div class="individual-comment">
-        <b class="poster-name">{{this.user}}:</b> {{this.comment}} - {{this.datetime}}
+        <b class="poster-name">{{this.user}}:</b> {{this.comment}} ({{this.datetime}})
         <br>
       </div>
 
@@ -32,8 +36,6 @@
     </div>
 
   </div>
-  
+
   <br>
 {{/each}}
-
-<a class="new-post-link" href="/posts/new">Add a new post</a>

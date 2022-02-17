@@ -8,7 +8,7 @@
   
     <div class="post">
       <img src="{{this.posterPic}}" alt="No profile picture found" style="height:40px">
-      <b class="poster-name">{{this.posterName}}:</b> {{this.message}} 
+      <b class="poster-name">{{this.posterName}}:</b> {{this.message}} ({{this.datetime}}) 
       <button style="padding: 6px; background-color: #f08fbf; border-radius: 8px;" id={{this.id}} class="btnclick" onclick="CountLikes(this);" type="button"> 
         <b id="display">{{this.likes}}</b> Likes &#128077;
       </button>
@@ -38,7 +38,7 @@
     <div class="comments">
       {{#each this.comments}}
       <div class="individual-comment">
-        <b class="poster-name">{{this.user}}:</b> {{this.comment}} - {{this.datetime}}
+        <b class="poster-name">{{this.user}}:</b> {{this.comment}} ({{this.datetime}})
         <br>
       </div>
       <br>
