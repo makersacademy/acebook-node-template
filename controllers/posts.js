@@ -5,7 +5,8 @@ var PostsController = {
     var OrderedPost = Post.find().sort( { createdAt : -1 } )
     OrderedPost.find(function(err,posts) {
       if (err) { throw err; }
-      res.render('posts/index', { posts: posts });
+      console.log(req.session.user)
+      res.render('posts/index', { posts: posts});
      });
     },
   New: function(req, res) {
@@ -18,6 +19,7 @@ var PostsController = {
       message: req.body.message,
       posterID: req.session.user._id,
       posterName: req.session.user.firstname,
+      posterPic: req.session.user.profilePicture,
       likes: 0,
     });
     post.save(function(err) {

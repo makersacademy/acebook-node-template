@@ -1,5 +1,12 @@
 <h1>My Profile </h1>
 
+<img src="{{user.profilePicture}}" alt="No profile picture found" style="height:150px">
+
+<form action="/users/upload" method="post" enctype="multipart/form-data">
+<form class="upload-picture-form" action="/users/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="profile-picture" />
+  <input type="submit" value="Upload">
+</form>
 
 <h2>Posts:</h2>
 {{#each posts}}

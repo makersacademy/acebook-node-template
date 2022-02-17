@@ -2,9 +2,11 @@
 
 <a class="new-post-link" href="/posts/new">New post</a><br><br>
 
+
 {{#each posts}}
+
   <div style = "padding: 20px" class="posts">
-    <div><b>{{this.posterName}}:</b>
+    <div><img src="{{this.posterPic}}" alt="No profile picture found" style="height:40px"><b> {{this.posterName}}:</b>
 
     {{this.message}} <button style="padding: 6px; background-color: #f08fbf; border-radius: 8px;"  
   id={{this.id}} class="btnclick" onclick="CountLikes(this);" type="button" > <b id="display">{{this.likes}} </b> Likes &#128077;
