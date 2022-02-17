@@ -2,45 +2,49 @@
 
 <a class="new-post-link" href="/posts/new">New post</a><br><br>
 
-
 {{#each posts}}
 
-  <div style = "padding: 20px" class="posts">
-    <div><img src="{{this.posterPic}}" alt="No profile picture found" style="height:40px"><b> {{this.posterName}}:</b>
-
-    {{this.message}} <button style="padding: 6px; background-color: #f08fbf; border-radius: 8px;"  
-  id={{this.id}} class="btnclick" onclick="CountLikes(this);" type="button" > <b id="display">{{this.likes}} </b> Likes &#128077;
-  </button>
-  </div>
+  <div class="posts">
+  
+    <div class="post">
+      <img src="{{this.posterPic}}" alt="No profile picture found" style="height:40px">
+      <b class="poster-name">{{this.posterName}}:</b> {{this.message}} 
+      <button style="padding: 6px; background-color: #f08fbf; border-radius: 8px;" id={{this.id}} class="btnclick" onclick="CountLikes(this);" type="button"> 
+        <b id="display">{{this.likes}}</b> Likes &#128077;
+      </button>
+    </div>
 
     <script type="text/javascript">
         var count = 0;
         function CountLikes(element) {
           fetch(`/posts/${element.id}/likes`, {
-          method: 'POST',
-          mode: 'cors',
-          cache: 'no-cache',
-          credentials: 'same-origin', 
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          redirect: 'follow',
-          referrerPolicy: 'no-referrer', 
-        });
-          element.getElementsByTagName('b')[0].innerText++
-          console.log(element)
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin', 
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer', 
+          });
+          element.getElementsByTagName('b')[0].innerText++;
+          console.log(element);
         }
     </script>
+
     <br>
-    <br>
+
     <div class="comments">
       {{#each this.comments}}
       <div class="individual-comment">
-      {{this.user}}: {{this.comment}} - {{this.datetime}}<br>
+        <b class="poster-name">{{this.user}}:</b> {{this.comment}} - {{this.datetime}}
+        <br>
       </div>
       <br>
       {{/each}}
     </div>
+
     <div class="add-comments">
       <form action="posts/comment/new" method="post" id="comment-form">
         <input type="text" name="comment" id="comment" placeholder="Add a comment">
@@ -48,8 +52,9 @@
         <input type="submit">
       </form>
     </div>
-    <br>
+
   </div>
+
   <br>
-  </div>
+
 {{/each}}
