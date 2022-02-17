@@ -11,12 +11,12 @@ describe('Home page', function() {
   it('has a title', function() {
     cy.visit('/');
 
-    cy.get('.title').should('contain', 'Acebook');
+    cy.get('.title').should('contain', 'Flamingo Lingo');
   });
 
   it('has a log in button', function() {
     cy.visit('/');
-    cy.contains('Log in').click();
+    cy.contains('Log In').click();
 
     cy.url().should('include', '/sessions/new');
   });
