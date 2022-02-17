@@ -39,7 +39,7 @@ describe('Post model', function() {
   });
 
   it('can save a comment to a post', function(done) {
-    Post.create({ message: 'Testing comments' } , function (err) {
+    Post.create({ message: 'Testing comments', posterName: 'Jest' } , function (err) {
       expect(err).toBeNull();
       
       Post.findOneAndUpdate(
