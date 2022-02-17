@@ -9,9 +9,6 @@ var PostsController = {
       res.render('posts/index', { posts: posts});
      });
     },
-  New: function(req, res) {
-    res.render('posts/new', {});
-  },
   
   Create: function(req, res) {
     const options = { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }

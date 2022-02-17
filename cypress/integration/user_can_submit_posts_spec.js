@@ -8,8 +8,6 @@ describe('Timeline', function() {
     cy.get('#new-session-form').submit();
     cy.visit('/posts');
     cy.url().should('include', '/posts');
-    cy.contains('Flamingo Lingo').click();
-    cy.get('.new-post-link').click()
     cy.get('#new-post-form').find('[type="text"]').type('Hello, world!');
     cy.get('#new-post-form').submit();
 
