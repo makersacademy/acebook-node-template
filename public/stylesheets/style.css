@@ -1,11 +1,11 @@
 body {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
   height: 80%;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
   padding: 50px;
   font: 30px "Lucida Grande", Helvetica, Arial, sans-serif; color: floralwhite
 }
@@ -27,6 +27,12 @@ a {
 h1 {
   -webkit-text-stroke: 2px black;
   margin-bottom: 10px;
+  text-transform: capitalize;
+}
+h2 {
+  -webkit-text-stroke: 2px black;
+  margin-bottom: 10px;
+  text-transform: capitalize;
 }
 
 
@@ -40,26 +46,24 @@ h1 {
   border-color: #0e4d58;
   background-color: rgba(108, 205, 235, 0.671);
   color: rgb(0, 0, 0);
-  padding-bottom: 7px;
+  padding: 20px;
   line-height: 1.2;
-  text-indent: 15px;
   font-family: Garamond, serif;
+}
+
+.poster-name {
+  text-transform: capitalize;
 }
 
 .posts .like-button {
   vertical-align:   middle;
 }
 
-/* .comments {
-  background-color: #f08fbfc2;
-  border-color: #ff0080;
-  border-radius: 10px;
+.comments {
   margin-left: 20px;
   margin-right: 20px;
-  color: rgb(0, 0, 0);
-  font-size: smaller;
-  padding: 8px
-} */
+  font-size: 20px;
+}
 
 .individual-comment {
   background-color: #f08fbf;
@@ -97,16 +101,15 @@ input[type=text] {
   width: 25%;
 }
 
-.new-post-link {
-  float: left;
-  background: #f08fbf;
+.new-post-form {
+  border-style: solid;
+  border-width: 1px;
   border-radius: 10px;
-  color: black;
-  cursor: pointer;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+  border-color: #0e4d58;
+  background-color: rgba(108, 205, 235, 0.671);
+  padding: 20px;
+  color: rgb(0, 0, 0);
+  font-family: Garamond, serif;
 }
 
 /* --------------------------------------------- */

@@ -2,7 +2,7 @@ var User = require('../models/user');
 
 var SessionsController = {
   New: function(req, res) {
-    res.render('sessions/new', {});
+    res.render('sessions/new', { layout: '/layoutLogInPage.hbs'});
   },
 
   Create: function(req, res) {
