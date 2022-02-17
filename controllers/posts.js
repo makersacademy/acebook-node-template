@@ -1,9 +1,9 @@
 var Post = require('../models/post');
-/*var OrderedPost = Post.find().sort( { createdAt : -1 } )*/
 
 var PostsController = {
   Index: function(req, res) {
-    Post.find(function(err,posts) {
+    var OrderedPost = Post.find().sort( { createdAt : -1 } )
+    OrderedPost.find(function(err,posts) {
       if (err) { throw err; }
       res.render('posts/index', { posts: posts });
      });
