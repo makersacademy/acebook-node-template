@@ -1,3 +1,7 @@
+@font-face {
+  font-family:'Flamenco', cursive;
+  src: url(https://fonts.googleapis.com/css2?family=Flamenco&display=swap)
+}
 body {
   position: absolute;
   top: 50%;
@@ -7,7 +11,8 @@ body {
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
   padding: 50px;
-  font: 30px "Lucida Grande", Helvetica, Arial, sans-serif; color: floralwhite
+  font: 30px; color: floralwhite;
+  font-family: 'Flamenco', cursive; color: floralwhite
 }
 
 html {
@@ -21,6 +26,7 @@ html {
 }
 
 a {
+  font-family: 'Flamenco', cursive;
   color: #f08fbf;
 }
 
@@ -28,11 +34,13 @@ h1 {
   -webkit-text-stroke: 2px black;
   margin-bottom: 10px;
   text-transform: capitalize;
+  font-family: 'Flamenco', cursive;
 }
 h2 {
   -webkit-text-stroke: 2px black;
   margin-bottom: 10px;
   text-transform: capitalize;
+  font-family: 'Flamenco', cursive;
 }
 
 
@@ -48,7 +56,7 @@ h2 {
   color: rgb(0, 0, 0);
   padding: 20px;
   line-height: 1.2;
-  font-family: Garamond, serif;
+  font-family: 'Flamenco', cursive;
 }
 
 .poster-name {
@@ -57,6 +65,7 @@ h2 {
 
 .posts .like-button {
   vertical-align:   middle;
+  font-family: 'Flamenco', cursive;
 }
 
 .comments {
@@ -80,6 +89,7 @@ h2 {
 
 .add-comments {
   padding-left: 25px;
+  font-family: 'Flamenco', cursive;
 }
 
 input[type=submit] {
@@ -92,6 +102,7 @@ input[type=submit] {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  font-family: 'Flamenco', cursive;
 }
 
 input[type=text] {
@@ -99,6 +110,7 @@ input[type=text] {
   border: 1px solid black;
   padding: 6px;
   width: 25%;
+  font-family: 'Flamenco', cursive;
 }
 
 .new-post-form {
@@ -109,7 +121,7 @@ input[type=text] {
   background-color: rgba(108, 205, 235, 0.671);
   padding: 20px;
   color: rgb(0, 0, 0);
-  font-family: Garamond, serif;
+  font-family: 'Flamenco', cursive;
 }
 
 /* --------------------------------------------- */
@@ -118,6 +130,7 @@ input[type=text] {
 .navbar {
   background-color: #333;
   overflow: hidden;
+  font-family: 'Flamenco', cursive;
 }
 .navbar a {
   float: left;
@@ -126,6 +139,7 @@ input[type=text] {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  font-family: 'Flamenco', cursive;
 }
 .navbar a:hover {
   background-color: #ddd;
@@ -145,6 +159,7 @@ input[type=text] {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  font-family: 'Flamenco', cursive;
 }
 .navbar .link-button:hover {
   background-color: #ddd;
