@@ -8,7 +8,7 @@ var UsersController = {
 
   Profile: function(req, res) {
     var OrderedPost = Post.find().sort( { createdAt : -1 } )
-    OrderedPost.find({postedBy: req.session.user._id})
+    OrderedPost.find({posterID: req.session.user._id})
     .then(posts => {
       res.render('users/profile', {posts: posts, user: req.session.user})
     })
