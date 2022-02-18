@@ -14,9 +14,10 @@ var UsersController = {
     })
   },
 
+
   Create: function(req, res) {
     var user = new User({
-      email: req.body.email,
+      email: { type: req.body.email },
       password: req.body.password,
       firstname: req.body.firstname,
       surname: req.body.surname,
@@ -28,6 +29,7 @@ var UsersController = {
       console.log(req.body)
     });
   },
+
 
   UploadPicture: function(req, res) {
 
