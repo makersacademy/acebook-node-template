@@ -1,5 +1,9 @@
 # Acebook
 
+<link href="https://github.com/Chloeem/acebook-SACDWS/projects/1">Project Board</link>
+
+-----
+
 This is a Node.js template for the Acebook engineering project.
 
 It uses:
