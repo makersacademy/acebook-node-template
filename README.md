@@ -1,5 +1,63 @@
 # Acebook
 
+## User Stories
+
+~~~~
+As a user of Acebook
+So I can know how users are feeling
+I want to be able to view their posts
+~~~~
+
+~~~~
+As a user of Acebook
+So I can tell the world how I am feeling
+I want to make a post
+~~~~
+
+~~~~
+As a user of Acebook
+so I can see when a post was posted
+I want to see the date and time a post was posted
+~~~~
+
+~~~~
+As a user of Acebook
+So I can express my interest in someones post
+I want to be able to like a post
+~~~~
+
+~~~~
+As a user of Acebook
+So I can show others who I am
+I want to view a profile page with my name
+~~~~
+
+~~~~
+As a user of Acebook
+So other users can see all my posts
+I want to view all my posts on my profile page
+~~~~
+
+~~~~
+As a new user to Acebook
+so I can join in the fun of social media
+I want to create an account
+~~~~
+
+~~~~
+As a user of Acebook
+So I can access my account
+I want to securely log in
+~~~~
+
+~~~~
+As a user of Acebook
+so I can exit mmy account
+I want to log out
+~~~~
+
+-----------------------
+
 This is a Node.js template for the Acebook engineering project.
 
 It uses:
