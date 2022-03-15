@@ -15,6 +15,12 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("has a timestamp", () => {
+    var post = new Post({ message: "some message" });
+    var currentTime = new Date();
+    expect(post.createdAt).toEqual(currentTime)
+  })
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
