@@ -24,5 +24,7 @@ describe("Timeline", () => {
     // store date in javascript variable
     let currentTime = Date.now();
     cy.get(".posts").should("contain", currentTime);
+    //cy.get("/").should("contain", "like");
+
   });
 });
