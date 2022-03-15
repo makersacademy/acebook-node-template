@@ -22,7 +22,9 @@ describe("Timeline", () => {
     cy.get(".posts").should("contain", "Hello, world!");
 
     // store date in javascript variable
-    let currentTime = Date.now();
+    const date = new Date();
+    let currentTime = date.toString;
+    currentTime = currentTime.replace(',','');
     cy.get(".posts").should("contain", currentTime);
     //cy.get("/").should("contain", "like");
 
