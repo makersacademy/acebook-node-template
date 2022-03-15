@@ -3,17 +3,16 @@ const User = require("../models/user");
 const UsersController = {
 
   Show: (req, res) => {
-    console.log("Params", req.params.id)
-    //let user
-    User.findById(req.params.id)
-    .then( (user) => {
-      if (!user) { throw err } //should add a 404 page for our errors
-      res.render("users/show", { user: user });
-    }) 
-    
+    User.findOne({_id: req.params.id })
+      .then((user) => { 
+        if (!user) { return res.status(404).end() } 
+        res.render("users/show", { user: user });
+      })
+      .catch(err => next(err))
   },
 
   New: (req, res) => {
+    console.log("Params NEW", req.params.id)
     res.render("users/new", {});
   },
 
@@ -26,8 +25,6 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
-
-
 
 };
 

@@ -20,4 +20,5 @@ describe("View Profile", () => {
     cy.url().should("include", "/users/show");
     cy.contains("p", "test name");
   });
+
 });
