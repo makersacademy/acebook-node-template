@@ -21,8 +21,8 @@ describe("View Profile", () => {
     cy.contains("p", "test name");
   });
 
-  it("shows gives a 404 page not found if no user is found", () => {
-    
+  it("gives a 404 page not found if no user is found", () => {
+
     cy.request({
       url:'127.0.0.1:3000//users/6230aed25edef17cd0a07d40',
       failOnStatusCode: false
