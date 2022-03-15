@@ -1,4 +1,79 @@
-# Acebook
+# Acebook - Jest In Time
+
+## User Stories
+
+```
+As a user of Acebook,
+So that I can log in to the site,
+I want to be able to create an account
+```
+
+```
+As a user of Acebook,
+So that my account is secure,
+I want to be able to log out of my account
+```
+
+```
+As a user of Acebook,
+So that I can access my account,
+I want to be able to log into the site
+```
+
+```
+As a user of Acebook,
+So that I can interact with other users,
+I want to be able to comment on other users posts
+```
+
+```
+As a user of Acebook,
+So that I can view feeds in chronological order,
+I want to be able to see the most recent posts first
+```
+
+```
+As a user of Acebook,
+So that I can see the popularity of a post,
+I want to be able to see the number of likes
+```
+
+```
+As a user of Acebook,
+So that I can express my opinion on posts,
+I want to be able to like a post
+```
+
+```
+As a user of Acebook,
+So that I can see who made the post,
+I want to be able to see a little photo of the user next to their post
+```
+
+```
+As a user of Acebook,
+So that I can view authored the posts,
+I want to be able to see the user's name next to their post
+```
+
+```
+As a user of Acebook,
+So that I can access additional content of the site,
+I want to be able to navigate the site using a nav bar
+```
+
+```
+As a user of Acebook,
+So that I can share photos,
+I want to be able to upload photos
+```
+
+```
+As a user of Acebook,
+So that I can share my news,
+I want to be able to add a post
+```
+
 
 This is a Node.js template for the Acebook engineering project.
 
@@ -14,7 +89,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/b/K2tXzdUW/acebook-jest-in-time
 
 ## Quickstart
 
@@ -26,7 +101,7 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    ```
    Then follow the instructions to update your `~/.bash_profile`.
 2. Open a new terminal
-3. Install the latest long term support (LTS) version of [Node.js](https://nodejs.org/en/), currently `16.14.0`.
+3. Install the latest long term support (LTS) version of [Node.js](https://nodejs.org/en/), currently `17.7.1`.
    ```
    nvm install 16
    ```
@@ -44,11 +119,11 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 6. Install MongoDB
    ```
    brew tap mongodb/brew
-   brew install mongodb-community@4.4
+   brew install mongodb-community@5.0
    ```
 7. Start MongoDB
    ```
-   brew services start mongodb-community@4.4
+   brew services start mongodb-community@5.0
    ```
 
 ### Start
