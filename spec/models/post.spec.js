@@ -15,7 +15,12 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
-  it("can list all posts", (done) => {
+  it('has a time stamp by default', () => {
+    var post = new Post({ message: "some message" });
+    expect(post.createdAt[0, 10]).toEqual(Date.now()[0, 10])
+  })
+
+  it("can list all posts in newest first order", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
       expect(posts).toEqual([]);
