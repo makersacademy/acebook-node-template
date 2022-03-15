@@ -59,10 +59,6 @@ So that I socialise with my friends
 I want to comment on posts 
 
 As a User
-So that people can know more about me
-I want to be able to create a profile
-
-As a User
 So I can clarify who I'm talking to
 I want to see a user's name and photo with their posts
 
@@ -73,10 +69,6 @@ I want to be able to post photos
 As a User
 So that I can get around the site easily
 I want to see a nav bar at the top of every page
-
-As a User
-So that I can see my past posts and profile
-I want to be able to visit my profile
 
 As a User
 So that I can show my appreciation on a post
