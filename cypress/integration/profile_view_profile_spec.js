@@ -22,8 +22,15 @@ describe("View Profile", () => {
   });
 
   it("shows gives a 404 page not found if no user is found", () => {
-    cy.visit("/users/6230a23a415ce14c6cf0f93d")
-    cy.contains("Not Found");
+    
+    cy.request({
+      url:'127.0.0.1:3000//users/6230aed25edef17cd0a07d40',
+      failOnStatusCode: false
+    }).should((response) => {
+      expect(response.status).to.eq(404)
+      expect(response.body).to.contain("Not Found")
+    })
+
   })
 
   it("shows Error if something goes wrong or nonsense passed in URL", () => {
@@ -35,6 +42,7 @@ describe("View Profile", () => {
       expect(response.status).to.eq(404)
       expect(response.body).to.contain("Error")
     })
+
   }) 
 
 });

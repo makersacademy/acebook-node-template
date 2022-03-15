@@ -14,7 +14,6 @@ const UsersController = {
   },
 
   New: (req, res) => {
-    console.log("Params NEW", req.params.id)
     res.render("users/new", {});
   },
 
