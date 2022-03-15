@@ -5,11 +5,14 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
     <form action='/users/new' method='GET'>
       <input type="submit" value="Sign up">
+    </form>
+    <form action='/sessions/new' method='GET'>
+      <input type="submit" value="Log in">
+    </form>
+    <form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out">
     </form>
     {{{body}}}
   </body>
