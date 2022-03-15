@@ -5,10 +5,12 @@ const UsersController = {
   Show: (req, res) => {
     User.findOne({_id: req.params.id })
       .then((user) => { 
-        if (!user) { return res.status(404).end() } 
+        if (!user) { return res.status(404).send("Not Found") } 
         res.render("users/show", { user: user });
       })
-      .catch(err => next(err))
+      .catch((err) => {
+        res.status(404).send(`Error in users show route ${err}`)
+      })
   },
 
   New: (req, res) => {
