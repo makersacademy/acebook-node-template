@@ -1,9 +1,5 @@
 # Acebook
 
-<a href="https://github.com/Chloeem/acebook-SACDWS/projects/1">Project Board</a>
-
------
-
 This is a Node.js template for the Acebook engineering project.
 
 It uses:
@@ -18,7 +14,76 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+<a href="https://github.com/Chloeem/acebook-SACDWS/projects/1">Project Board</a>
+
+## MVP
+- Sign up
+- Log in
+- Log out
+- Create a text post
+- View post on the feed
+
+## MVP User stories
+```
+As a User
+So that I can have my own personalised profile
+I want to be able to sign up
+
+As a User
+So that I can retrieve my profile
+I can log in
+
+As a User
+So that I can keep my profile secure
+I can log out
+
+As a User
+So that I can share details of my activities
+I want to be able to create a post
+
+As a User
+So that I can view all mine and my friends posts
+I want to be able to view them in a Feed
+
+As a User
+So that I keep up to date with my friend's latest posts 
+They should be displayed in reverse chronological order
+```
+
+## Additional user stories
+```
+As a User
+So that I socialise with my friends
+I want to comment on posts 
+
+As a User
+So that people can know more about me
+I want to be able to create a profile
+
+As a User
+So I can clarify who I'm talking to
+I want to see a user's name and photo with their posts
+
+As a User
+So that I visually share my life with my followers
+I want to be able to post photos
+
+As a User
+So that I can get around the site easily
+I want to see a nav bar at the top of every page
+
+As a User
+So that I can see my past posts and profile
+I want to be able to visit my profile
+
+As a User
+So that I can show my appreciation on a post
+I want to be able to like a post and see all the likes
+
+As a User
+So that I can use the website
+I want to access the site from a Heroku link
+```
 
 ## Quickstart
 
