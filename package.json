@@ -38,5 +38,16 @@
   },
   "nodemonConfig": {
     "ext": "js,hbs"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meghanblyth/maker-mate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/meghanblyth/maker-mate/issues"
+  },
+  "homepage": "https://github.com/meghanblyth/maker-mate#readme"
 }
