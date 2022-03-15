@@ -9,7 +9,7 @@ const UsersController = {
         res.render("users/show", { user: user });
       })
       .catch((err) => {
-        res.status(404).send(`Error in users show route ${err}`)
+        res.status(404).send(`Error - ${err}`)
       })
   },
 
