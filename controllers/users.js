@@ -9,8 +9,7 @@ const UsersController = {
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
-        res.status
-        console.log('Duplicate email');
+        throw err
       }
       res.status(201).redirect("/posts");
     });
