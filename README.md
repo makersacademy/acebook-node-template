@@ -18,12 +18,12 @@ It uses:
 <a href="https://github.com/Chloeem/acebook-SACDWS/projects/1">Project Board</a>
 
 ## MVP
-- Sign up
-- Log in
-- Log out
-- Create a text post
-- View post on the feed
+- Sign up: validation
+- Log in: validation
+- Log out: end the session
 - Show posts in reverse chronological order
+- I want to be able to create a profile
+- I want to be able to visit my profile
 
 ## MVP User stories
 ```
@@ -40,16 +40,16 @@ So that I can keep my profile secure
 I can log out
 
 As a User
-So that I can share details of my activities
-I want to be able to create a post
-
-As a User
-So that I can view all mine and my friends posts
-I want to be able to view them in a Feed
-
-As a User
 So that I keep up to date with my friend's latest posts 
 They should be displayed in reverse chronological order
+
+As a User
+So that people can know more about me
+I want to be able to create a profile
+
+As a User
+So that I can see my past posts and profile
+I want to be able to visit my profile
 ```
 
 ## Additional user stories
