@@ -23,6 +23,7 @@ It uses:
 - Log out
 - Create a text post
 - View post on the feed
+- Show posts in reverse chronological order
 
 ## MVP User stories
 ```
