@@ -20,5 +20,9 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+
+    // store date in javascript variable
+    let currentTime = Date.now();
+    cy.get(".posts").should("contain", currentTime);
   });
 });
