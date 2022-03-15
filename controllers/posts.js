@@ -2,7 +2,7 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find({}, 'message', {sort: {'_id': -1}},(err, posts) => {
+    Post.find({}, 'message createdAt', {sort: {'_id': -1}},(err, posts) => {
       if (err) {
         throw err;
       }
