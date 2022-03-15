@@ -7,6 +7,9 @@ beforeAll(function(done) {
   });
 
   var db = mongoose.connection;
+
+  db.collection('user').deleteMany({});
+
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
   db.on('open', function() {
     done();
