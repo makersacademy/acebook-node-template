@@ -2,7 +2,9 @@ describe("Home page", () => {
   it("has a title", () => {
     cy.visit("/");
     cy.get(".title").should("contain", "Acebook");
+    cy.contains('Log In').click();
   });
+
 
   it("has a sign-up button", () => {
     cy.visit("/");
@@ -11,3 +13,6 @@ describe("Home page", () => {
     cy.url().should("include", "/users/new");
   })
 });
+
+});
+

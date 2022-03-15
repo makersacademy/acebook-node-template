@@ -1,6 +1,19 @@
+<!DOCTYPE html>
+
 <h1 class="title">{{title}}</h1>
 <p>Welcome to {{title}}</p>
+
 
 <form action='/users/new' method='GET'>
       <input id="sign-up-button" type="submit" value="Sign Up" >
 </form>
+
+  <body>
+    <div style="float:left;">
+    <form action='/sessions' method='POST'>
+      <input type="submit" value="Log In">
+    </form>
+    </div>
+    {{{body}}}
+  </body>
+
