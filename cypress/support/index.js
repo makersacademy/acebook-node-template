@@ -22,8 +22,12 @@
 // Alternatively you can use CommonJS syntax:
 require('./commands')
 
-// beforeEach(() => {
-//   // now this runs prior to every test
-//   // across all files no matter what
-//   cy.resetDb()
-// })
+beforeEach(() => {
+  // This runs prior to every test and clears all the data
+  cy.task('resetDb')
+})
+
+// ran at the end of all the specs
+after(() => {
+  cy.task('closeDbConnection')
+})
