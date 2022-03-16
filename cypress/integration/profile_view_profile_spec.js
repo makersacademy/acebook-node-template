@@ -24,7 +24,7 @@ describe("View Profile", () => {
   it("gives a 404 page not found if no user is found", () => {
 
     cy.request({
-      url:'127.0.0.1:3000//users/6230aed25edef17cd0a07d40',
+      url:'127.0.0.1:3030//users/6230aed25edef17cd0a07d40',
       failOnStatusCode: false
     }).should((response) => {
       expect(response.status).to.eq(404)
@@ -36,7 +36,7 @@ describe("View Profile", () => {
   it("shows Error if something goes wrong or nonsense passed in URL", () => {
 
     cy.request({
-      url:'127.0.0.1:3000//users/nonsenseblah',
+      url:'127.0.0.1:3030//users/nonsenseblah',
       failOnStatusCode: false
     }).should((response) => {
       expect(response.status).to.eq(404)

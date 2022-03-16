@@ -23,7 +23,7 @@ var Post = require("../../models/post");
 module.exports = (on, config) => {
   on('task', {
     async 'resetDb'() {
-      
+     
       mongoose.connect('mongodb://127.0.0.1/acebook_test', {
         useNewUrlParser: true,
         useUnifiedTopology: true
