@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", {title: "Acebook - Log in"});
   },
 
   Create: (req, res) => {
@@ -27,7 +27,7 @@ const SessionsController = {
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie("user_sid");
     }
-    res.redirect("/sessions/new");
+    res.redirect("/");
   },
 };
 
