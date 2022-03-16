@@ -21,6 +21,8 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
+    //req.body.posted_by = req.session.user._id;
+    req.body.posted_by = req.session.user.email;
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
