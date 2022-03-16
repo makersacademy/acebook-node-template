@@ -1,3 +1,5 @@
+//const { json } = require("express/lib/response");
+
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
     // sign up
@@ -21,12 +23,27 @@ describe("Timeline", () => {
 
     cy.get(".posts").should("contain", "Hello, world!");
 
-    // store date in javascript variable
-    const date = new Date();
-    let currentTime = date.toString;
-    currentTime = currentTime.replace(',','');
-    cy.get(".posts").should("contain", currentTime);
-    //cy.get("/").should("contain", "like");
+
+    // 1. Extract date/time from page in variable
+    cy.get('#createdAt').then(($createdAt) => {
+      cy.log('$createdAt:' +$createdAt.text());
+
+      // 2. Convert date/time string to Date format
+      
+      const postedTime = Date.parse($createdAt.text());
+      cy.log('postedTime:' +postedTime);
+
+      // 3. Store curent date/time in variable
+      const currentTime = Date.now();
+      cy.log('currentTime:' +currentTime);
+
+      // 4. Get difference in time in seconds
+      const differenceInSeconds = currentTime - postedTime;
+      cy.log('differenceInSeconds:' +differenceInSeconds);
+
+      // 5. Check if less than 50 seconds
+      cy.wrap(differenceInSeconds).should('be.lt', 5000);
+    });
 
   });
 });
