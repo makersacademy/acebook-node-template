@@ -10,6 +10,15 @@ describe("User model", () => {
     });
   });
 
+  it("has a name", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "test name",
+    })
+    expect(user.name).toEqual("test name");
+  })
+
   it("has an email address", () => {
     const user = new User({
       email: "someone@example.com",

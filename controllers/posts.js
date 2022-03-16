@@ -7,12 +7,14 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts, userid: req.session.user._id });
     });
   },
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
+
   Create: (req, res) => {
     const post = new Post(req.body);
     post.save((err) => {
