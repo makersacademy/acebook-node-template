@@ -54,4 +54,26 @@ describe("User model", () => {
       });
     });
   });
+
+  it("won't allow the same email to be used twice", (done) => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    user.save((err) => {
+      expect(err).toBeNull();
+      done();
+    });
+
+    const user2 = new User({
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    user2.save((err) => {
+      expect(err).not.toBeNull();
+      done();
+    });
+  });
 });
