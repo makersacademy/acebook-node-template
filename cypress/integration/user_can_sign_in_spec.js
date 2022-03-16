@@ -1,5 +1,6 @@
+
 describe("Authentication", () => {
-  it("A user signs in and is redirected to /posts", () => {
+  it("A user signs in and is redirected to /posts", () => {    
     // sign up
     cy.visit("/");
     cy.get("#signup").click();
