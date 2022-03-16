@@ -16,5 +16,14 @@
 // Import commands.js using ES2015 syntax:
 // import './commands'
 
+// var mongoose = require('mongoose');
+
+
 // Alternatively you can use CommonJS syntax:
 require('./commands')
+
+// beforeEach(() => {
+//   // now this runs prior to every test
+//   // across all files no matter what
+//   cy.resetDb()
+// })
