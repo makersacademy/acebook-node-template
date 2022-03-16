@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const bcrypt = require("bcrypt")
+const saltRounds = 10;
 
 const UsersController = {
 
@@ -18,6 +20,10 @@ const UsersController = {
   },
 
   Create: (req, res) => {
+
+    const hash = bcrypt.hashSync(req.body.password, saltRounds);
+    req.body.password = hash
+
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
