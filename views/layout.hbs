@@ -5,13 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{log user}}
-    {{log session.user}}
-    {{log session}}
-    {{log sessionChecker}}
-    {{log cookies.user_sid}}
-    {{#if session.user}}
-    
+    {{#if loggedIn}}
     <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
     </form>
