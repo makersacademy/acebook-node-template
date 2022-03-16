@@ -3,9 +3,7 @@
   {{#each posts}}
   <div>{{this.posted_by}} <br>
   {{this.message}}     -      {{this.postedAt}} <br>
-  Like count                  Number of comments<br>
-  <a href="/post/like">Like</a> 
-
+  <a href="/post/like">Like</a> - {{this.likes}} 
   </div>
     <br>
   {{/each}}

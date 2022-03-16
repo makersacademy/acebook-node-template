@@ -23,6 +23,7 @@ const PostsController = {
   Create: (req, res) => {
     //req.body.posted_by = req.session.user._id;
     req.body.posted_by = req.session.user.email;
+    req.body.likes = 0;
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
