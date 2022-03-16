@@ -18,8 +18,7 @@ describe("Post model", () => {
     var post = new Post({ message: "message for testing" });
     await post.save();
     var currentTime = new Date();
-    console.log(post.toJSON());
-    expect(post.createdAt).toEqual(currentTime);
+    expect(post.createdAt.setMilliseconds(0)).toEqual(currentTime.setMilliseconds(0));
   });
 
   it("can list all posts", async () => {
