@@ -1,8 +1,14 @@
 <h1>Timeline</h1>
-<ul class="posts">
+<div class="posts">
   {{#each posts}}
-  <li>{{this.message}}, {{this.postedAt}}, {{this.posted_by}}</li>
+  <div>{{this.posted_by}} <br>
+  {{this.message}}     -      {{this.postedAt}} <br>
+  Like count                  Number of comments<br>
+  <a href="/post/like">Like</a> 
+
+  </div>
+    <br>
   {{/each}}
-</ul>
+<div>
 
 <a class="new-post-link" href="/posts/new">New post</a>

@@ -21,5 +21,6 @@ describe("Timeline", () => {
 
     cy.get(".posts").should("contain", "Hello, world!");
     cy.get(".posts").should("contain", "Date");
+    
   });
 });
