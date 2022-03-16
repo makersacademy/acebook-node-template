@@ -13,6 +13,3 @@ describe("Home page", () => {
     cy.url().should("include", "/users/new");
   })
 });
-
-});
-
