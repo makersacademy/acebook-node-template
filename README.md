@@ -69,6 +69,7 @@ It uses:
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
+- [Bcrypt](https://www.npmjs.com/package/bcrypt) for password encyption
 - [Bootstrap](https://getbootstrap.com/) for css templating
 
 ## Card wall
