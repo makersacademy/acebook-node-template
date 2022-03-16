@@ -31,25 +31,22 @@ describe("User model", () => {
   });
 
   it("can save a user",  async () => {
-    const user = await new User({
+    const user = new User({
       email: "someone@example.com",
       password: "password",
     });
 
-    await user.save((err) => {
-      expect(err).toBeNull()
-    });
+    await user.save();
 
-    const users = await User.find((err, users) => {
-      
-    };
-
-    console.log(users[0])
-      
-    expect(users[0]).toMatchObject({
+    const users = User.find({}) 
+      console.log(users);
+      expect(users[0]).toMatchObject({
         email: "someone@example.com",
         password: "password",
-    });
+      });
+  
+
+    
   });
 
   it("can't save a user with an email aready signed up", (done) => {
