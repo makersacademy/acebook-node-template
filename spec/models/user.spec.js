@@ -4,10 +4,8 @@ require("../mongodb_helper");
 const User = require("../../models/user");
 
 describe("User model", () => {
-  beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
-      done();
-    });
+  beforeEach( async () => {
+    await mongoose.connection.collections.users.deleteMany({});
   });
 
   it("has an email address", () => {
@@ -26,32 +24,31 @@ describe("User model", () => {
     expect(user.password).toEqual("password");
   });
 
-  it("can list all users", (done) => {
-    User.find((err, users) => {
-      expect(err).toBeNull();
-      expect(users).toEqual([]);
-      done();
-    });
+  it("can list all users", async () => {
+    let users = await User.find();
+
+    expect(users).toEqual([]);
   });
 
-  it("can save a user", (done) => {
-    const user = new User({
+  it("can save a user",  async () => {
+    const user = await new User({
       email: "someone@example.com",
       password: "password",
     });
 
-    user.save((err) => {
-      expect(err).toBeNull();
+    await user.save((err) => {
+      expect(err).toBeNull()
+    });
 
-      User.find((err, users) => {
-        expect(err).toBeNull();
+    const users = await User.find((err, users) => {
+      
+    };
 
-        expect(users[0]).toMatchObject({
-          email: "someone@example.com",
-          password: "password",
-        });
-        done();
-      });
+    console.log(users[0])
+      
+    expect(users[0]).toMatchObject({
+        email: "someone@example.com",
+        password: "password",
     });
   });
 
@@ -63,16 +60,21 @@ describe("User model", () => {
 
     const user2 = new User({
       email: "someone@example.com",
-      password: "password",
+      password: "1234",
     });
 
     user1.save((err) => {
       expect(err).toBeNull();
-
+    
       user2.save((err) => {
-        expect(err).toThrow();
-      })
-      done();
+        expect(err).not.toBeNull();
+
+        User.find((err, users) => {
+          expect(err).toBeNull();
+          expect(users.length).toEqual(1)
+        });
+    done();
+      });
     });
   });
 
