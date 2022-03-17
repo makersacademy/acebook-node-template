@@ -10,22 +10,13 @@ describe("Post model", () => {
     });
   });
 
-  it("has a message", () => {
-    var post = new Post({ message: "some message" });
-    expect(post.message).toEqual("some message");
-  });
-
-  it("displays the posters name", () => {
-    var post = new Post({ posted_by: "Claire" });
-    expect(post.posted_by).toEqual("Claire");
-  });
-
-  it("has a posting date", () => {
+  it("has a post with details", () => {
     let date = new Date("2022-03-16T12:44:46Z")
-    var post = new Post({ createdAt: date })
+    var post = new Post({ message: "some message", posted_by: "Ed", createdAt: date });
+    expect(post.message).toEqual("some message");
+    expect(post.posted_by).toEqual("Ed");
     expect(post.createdAt).toEqual(date)
-  })
-
+  });
 
 
   it("can list all posts", (done) => {
@@ -37,7 +28,7 @@ describe("Post model", () => {
   });
 
   it("can save a post", (done) => {
-    var post = new Post({ message: "some message" });
+    var post = new Post({ message: "some message", posted_by: "Ed"});
 
     post.save((err) => {
       expect(err).toBeNull();
