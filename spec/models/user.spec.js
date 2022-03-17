@@ -10,6 +10,7 @@ describe("User model", () => {
 
   it("has an email address", () => {
     const user = new User({
+      fullname: "Ali Cocelli",
       email: "someone@example.com",
       password: "password",
     });
@@ -18,17 +19,44 @@ describe("User model", () => {
 
   it("has a password", () => {
     const user = new User({
+      fullname: "Ali Cocelli",
       email: "someone@example.com",
       password: "password",
     });
     expect(user.password).toEqual("password");
   });
 
+
+  it("has a fullname", () => {
+    const user = new User({
+      fullname: "Ali Cocelli",
+      email: "someone@example.com",
+      password: "password",
+    });
+    expect(user.fullname).toEqual("Ali Cocelli");
+  });
+
+  it("can list all users", (done) => {
+    User.find((err, users) => {
+      expect(err).toBeNull();
+      expect(users).toEqual([]);
+      done();
+    });
+  });
+
+  it("can save a user", (done) => {
+    const user = new User({
+      fullname: "Ali Cocelli",
+      email: "someone@example.com",
+      password: "password",
+    });
+
   it("can list all users", async () => {
     let users = await User.find();
 
     expect(users).toEqual([]);
   });
+
 
   it("can save a user",  async () => {
     const user = new User({ email: "someone@example.com", password: "password" });
@@ -45,11 +73,13 @@ describe("User model", () => {
 
   it("can't save a user with an email aready signed up", async () => {
     const user1 = new User({
+      fullname: "Ali Cocelli",
       email: "someone@example.com",
       password: "password",
     });
 
     const user2 = new User({
+      fullname: "Ali Cocelli",
       email: "someone@example.com",
       password: "1234",
     });
