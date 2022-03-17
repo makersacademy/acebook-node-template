@@ -1,6 +1,21 @@
 <h1>Sign up</h1>
 <h3>Create a new account</h3>
 
+
+<div>
+  <form id="new-user-form" action="/users" method="post">
+    <label for="email">Email: </label>
+    <input id="email" type="email" name="email" value="">
+    <br>
+    <br>
+    <label for="password">Password: </label>
+    <input id="password" type="password" name="password" value="">
+    <br>
+    <br>
+    <input id="submit" type="submit" value="Submit">
+  </form>
+</div>
+
 <form id="new-user-form" action="/users" method="post">
   <label for="fullname">Full name: </label>
   <input id="fullname" type="text" name="fullname" value="">
@@ -10,6 +25,7 @@
   <input id="password" type="password" name="password" value="">
   <input id="submit" type="submit" value="Sign-up!">
 </form>
+
 
 
 
