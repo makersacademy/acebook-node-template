@@ -1,6 +1,4 @@
 const User = require("../models/user");
-const SessionsController = require("./sessions");
-//const SessionsController = require("./sessions")
 
 const UsersController = {
   New: (req, res) => {
