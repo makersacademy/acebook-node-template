@@ -1,13 +1,7 @@
 describe("View Profile", () => {
   it("View the profile page", async () => {
-    // sign up
 
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#name").type("test name");
-    
-    cy.get("#submit").click();
+    cy.task("signUp")
 
     // sign in
     cy.visit("/sessions/new");

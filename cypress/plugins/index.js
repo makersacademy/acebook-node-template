@@ -62,7 +62,22 @@ module.exports = (on, config) => {
       });
 
       return null
-    }
-    
+    } 
   })
+
+  on('task', {
+    async 'signUp'() {
+      // sign up
+      cy.visit("/users/new");
+      cy.get("#email").type("someone@example.com");
+      cy.get("#password").type("password");
+      cy.get("#name").type("test name");
+      cy.get("#submit").click();
+
+      return null
+    } 
+  })
+
+  
+
 }
