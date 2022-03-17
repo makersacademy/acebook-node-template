@@ -6,15 +6,15 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.render("posts/index", { posts: posts });
-    });
+    }).populate('user');
   },
   New: (req, res) => {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const post = new Post({user: req.session.user._id, message: req.body.message});
+    console.log(req.user)
     post.save((err) => {
       if (err) {
         throw err;

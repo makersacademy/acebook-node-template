@@ -1,8 +1,9 @@
+
 var mongoose = require("mongoose");
 
 require("../mongodb_helper");
 var Post = require("../../models/post");
-
+const User = require("../../models/user");
 describe("Post model", () => {
   beforeEach( async () => {
     
@@ -19,6 +20,24 @@ describe("Post model", () => {
     await post.save();
     var currentTime = new Date();
     expect(post.createdAt.setMilliseconds(0)).toEqual(currentTime.setMilliseconds(0));
+  });
+
+  it("has a user asigned to the post", async () => {
+   var user = new User({ firstName: "first name", 
+   surName: "surname", 
+   email: "email", 
+   password: "password"})
+   await user.save() 
+   console.log(user._id)
+   var post = new Post({
+   message: "message for testing",
+   user: user._id 
+    
+   });
+   await post.save()
+   console.log(post)
+
+   expect(post.user).toEqual(user._id)
   });
 
   it("can list all posts", async () => {
