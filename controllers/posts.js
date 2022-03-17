@@ -1,4 +1,3 @@
-const { useColors } = require("debug/src/browser");
 const Post = require("../models/post");
 const User = require("../models/user");
 
