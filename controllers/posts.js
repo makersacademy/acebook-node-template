@@ -8,6 +8,7 @@ const PostsController = {
       }
 
       res.render("posts/index", { posts: posts });
+      console.log(res)
     });
   },
   New: (req, res) => {
