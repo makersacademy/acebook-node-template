@@ -1,1 +1,13 @@
 <h1 class="profile">Profile of {{user.name}}</h1>
+
+<h1>Timeline</h1>
+<ul class="posts">
+  Hello, world!
+  {{#each posts}}
+  <li>
+    {{this.message}}
+    <br>
+    Posted at: <div id="createdAt">{{this.createdAt}}</div>
+  </li>
+  {{/each}}
+</ul>

@@ -1,17 +1,23 @@
 describe("View Profile", () => {
-  it("View the profile page", async () => {
+  it("View the profile page", () => {
 
     cy.visit("/");
     cy.get("#signup").click();
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#username").type("someone123");
+    cy.get("#name").type("test name")
     cy.get("#submit").click();
+
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").submit();
 
     cy.get("#view-profile").click();
 
-    cy.url().should("include", "/users/show");
-    cy.contains("p", "test name");
+    cy.get(".profile").should("contain", "test name");
+    cy.get(".posts").should("contain", "Hello, world!");
   });
 
   it("gives a 404 page not found if no user is found", () => {
