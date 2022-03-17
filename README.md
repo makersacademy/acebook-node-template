@@ -15,7 +15,7 @@ It uses:
 
 ## Card wall
 
-<a href="https://github.com/Chloeem/acebook-SACDWS/projects/1">Project Board</a>
+<a href="https://trello.com/b/i0GzPkoZ/acebook-board-super-awesome-cool-dynamite-wolf-squadron">Project Board</a>
 
 ## MVP
 - Sign up: validation
