@@ -9,7 +9,7 @@ const UsersController = {
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
-        throw err
+        return res.redirect('users/new');
       }
       res.status(201).redirect("/posts");
     });

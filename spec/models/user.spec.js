@@ -4,10 +4,8 @@ require("../mongodb_helper");
 const User = require("../../models/user");
 
 describe("User model", () => {
-  beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
-      done();
-    });
+  beforeEach( async () => {
+    await mongoose.connection.collections.users.deleteMany({});
   });
 
   it("has an email address", () => {
@@ -26,36 +24,27 @@ describe("User model", () => {
     expect(user.password).toEqual("password");
   });
 
-  it("can list all users", (done) => {
-    User.find((err, users) => {
-      expect(err).toBeNull();
-      expect(users).toEqual([]);
-      done();
-    });
+  it("can list all users", async () => {
+    let users = await User.find();
+
+    expect(users).toEqual([]);
   });
 
-  it("can save a user", (done) => {
-    const user = new User({
+  it("can save a user",  async () => {
+    const user = new User({ email: "someone@example.com", password: "password" });
+
+    await user.save();
+    const data = await User.find()
+
+    console.log(data);
+    expect(data[0]).toMatchObject({
       email: "someone@example.com",
       password: "password",
-    });
-
-    user.save((err) => {
-      expect(err).toBeNull();
-
-      User.find((err, users) => {
-        expect(err).toBeNull();
-
-        expect(users[0]).toMatchObject({
-          email: "someone@example.com",
-          password: "password",
-        });
-        done();
-      });
-    });
+      }); 
   });
 
-  it("can't save a user with an email aready signed up", (done) => {
+
+  it("can't save a user with an email aready signed up", async () => {
     const user1 = new User({
       email: "someone@example.com",
       password: "password",
@@ -63,18 +52,19 @@ describe("User model", () => {
 
     const user2 = new User({
       email: "someone@example.com",
-      password: "password",
+      password: "1234",
     });
 
-    user1.save((err) => {
-      expect(err).toBeNull();
+    await user1.save()
+    
+    await user2.save((err) =>{
+      expect(err).toBeTruthy()
+    })
 
-      user2.save((err) => {
-        expect(err).toThrow();
-      })
-      done();
-    });
-  });
-
-
+    const data = await User.find() 
+    console.log(data)
+    
+    expect(data.length).toEqual(1)
+  
+  }); 
 });

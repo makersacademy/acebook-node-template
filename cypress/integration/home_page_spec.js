@@ -14,5 +14,4 @@ describe("Home page", () => {
   })
 });
 
-});
 
