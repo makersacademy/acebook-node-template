@@ -14,6 +14,15 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
+
+  Profile: (req, res) => {
+    console.log(req.session.user._id);
+    res.render("users/profile", { 
+          title: "Acebook",
+          name: req.session.user.name,
+          username: req.session.user.username,
+    });
+  },
 };
 
 module.exports = UsersController;

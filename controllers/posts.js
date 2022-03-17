@@ -7,7 +7,11 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts,
+          title: "Acebook",
+          name: req.session.user.name,
+          username: req.session.user.username
+      });
     });
   },
   New: (req, res) => {
