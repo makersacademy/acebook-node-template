@@ -12,10 +12,15 @@ const PostsController = {
         post.postedAt = post.createdAt.toLocaleString();
       })
 
-      res.render("posts/index", { posts: posts });
+
+      res.render("posts/index", { posts: posts,
+          title: "Acebook",
+          name: req.session.user.name,
+          username: req.session.user.username
+      });
     })
     .sort({createdAt: -1 });
-    
+   
   },
   New: (req, res) => {
     res.render("posts/new", {});

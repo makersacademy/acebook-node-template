@@ -1,5 +1,7 @@
-<h1>Timeline</h1>
-<div class="posts">
+
+<h1>Timeline for {{ name }} </h1>
+ <h4 class="name">{{user.name}}</h4>
+<ul class="posts">
   {{#each posts}}
   <div>{{this.posted_by}} <br>
   {{this.message}}     -      {{this.postedAt}} <br>
@@ -10,3 +12,5 @@
 <div>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+<a class="view-profile-link" href="./users/profile">Profile</a>
+
