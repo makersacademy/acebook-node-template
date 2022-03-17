@@ -1,25 +1,64 @@
 <!DOCTYPE html>
 
-<h1 class="title">{{title}}</h1>
-<br>
-<p>Welcome to {{title}}</p>
-
-<br>
-<br>
-
-<form action='/users/new' method='GET'>
-      <input id="sign-up-button" type="submit" value="Sign Up" >
-</form>
-
-<br>
-<br>
-
+<html>
+  <center>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  </head>
   <body>
-    <div style="float:left;">
-    <form action='/sessions' method='POST'>
-      <input type="submit" value="Log In">
-    </form>
-    </div>
-    {{{body}}}
+  <section class="hero has-background-info-dark">
+  <div class="hero-body">
+    <p class="is-family-sans-serif is-size-1 has-text-weight-bold has-text-light">
+      {{title}}
+    </p>
+    <p class="is-family-sans-serif is-size-3 has-text-light">
+      Sign Up or Log In to get started!
+    </p>
+  </div>
+</section>
   </body>
+  </center>
+</html>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<center>
+<figure class="image is-128x128">
+  <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" alt="site logo">
+</figure>
+</center>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="buttons is-centered">
+   <form action='/users/new' method='GET'>
+     <a class="button is-rounded has-background-info-dark is-large has-text-light">Sign Up</a>
+    </form>
+
+   <form action='/sessions' method='POST'>
+     <a class="button is-rounded has-background-info-dark is-large has-text-light">Log In</a>
+    </form>
+</div>
+
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Maker Mate</strong> by <a href="https://github.com/meghanblyth/maker-mate">Sarah, Camilla, Dash, Ali, Meghan, Chris, and Eddie</a>.
+    </p>
+  </div>
+</footer>
