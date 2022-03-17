@@ -71,8 +71,13 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
-    /* click on comment button
-    
-    */
+    //  click on comment button
+    cy.get("#comment").click();
+    cy.url().should("include", "/comment/new");
+
+    cy.get("#comment-form").find('[type="text"]').type("This is a comment on a post");
+    cy.get("#add-comment").submit();
+
+    cy.url().should("include", "/posts");
   })
 });
