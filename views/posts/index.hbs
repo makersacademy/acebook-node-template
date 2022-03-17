@@ -12,6 +12,8 @@
         {{else}}
         {{/if}}
 
+        <img src="" alt="">
+
         
 
         <a class="a" href="/">Home</a>
@@ -54,7 +56,14 @@
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
-    </body>
+
+<form action="/users/uploadPhoto" enctype="multipart/form-data" method="post">
+          <label for="myImage">Choose your profile pic</label>
+          <input class="choose-file-btn" type="file" name="myImage" />
+          <input class="upload-btn" type="submit" value="Upload Photo" />
+</form>
+
+  </body>
 
  </html>
 

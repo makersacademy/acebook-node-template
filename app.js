@@ -1,5 +1,7 @@
 const createError = require("http-errors");
+const multer = require("multer");
 const express = require("express");
+const fs = require("fs");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -18,6 +20,37 @@ const app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+
+//multer
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+const upload = multer({ storage: storage });
+
+//running directly from app to test
+const ImageModel = require("./models/image");
+app.post("/users/uploadPhoto", upload.single("myImage"), (req, res) =>  {
+  const obj = {
+      img: {
+          data: fs.readFileSync(path.join(__dirname + "/uploads/" + req.file.filename)),
+          contentType: "image/png"
+      }
+  }
+  const newImage = new ImageModel({
+      image: obj.img
+  });
+   newImage.save( (err) =>  {
+ err ? console.log(err) :  res.redirect("/posts");
+  });
+});
 
 app.use(logger("dev"));
 app.use(express.json());
