@@ -16,7 +16,7 @@ const PostsController = {
   },
 
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const post = new Post({userObjectId: req.session.user._id, message: req.body.message});
     post.save((err) => {
       if (err) {
         throw err;
@@ -26,5 +26,10 @@ const PostsController = {
     });
   },
 };
+
+// module.exports.getPostByUserId = (id, callback) => {
+//   message.find({userId: id}, callback)
+//   .populate('userId');
+// }
 
 module.exports = PostsController;
