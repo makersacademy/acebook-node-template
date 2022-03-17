@@ -1,4 +1,6 @@
+const { useColors } = require("debug/src/browser");
 const Post = require("../models/post");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -22,7 +24,17 @@ const PostsController = {
         throw err;
       }
 
+      User.findOne({_id: req.session.user._id}).then((user) => {
+        user.posts.push(post._id)
+        user.save( (err) => {
+          if (err) {
+            throw err;
+          }
+        })
+      })
+      
       res.status(201).redirect("/posts");
+      
     });
   },
 };
