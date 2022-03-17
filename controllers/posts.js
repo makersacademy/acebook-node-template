@@ -2,12 +2,12 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find({}, 'message createdAt user', {sort: {'createdAt': -1}},(err, posts) => {
+    Post.find({}, 'message createdAt', {sort: {'createdAt': -1}},(err, posts) => {
       if (err) {
         throw err;
       }
       res.render("posts/index", { posts: posts });
-    });
+    }).populate('user');
   },
   New: (req, res) => {
     res.render("posts/new", {});
