@@ -27,7 +27,7 @@ beforeEach(() => {
   cy.task('resetDb')
 })
 
-// ran at the end of all the specs
+// ran at the end of each specs
 after(() => {
   cy.task('closeDbConnection')
 })
