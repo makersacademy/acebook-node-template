@@ -6,10 +6,14 @@
   </head>
     <body> 
       <nav class="nav">
+
         {{#if user}}
           <h6>You are signed in as: {{user.firstName}}</h6>
         {{else}}
         {{/if}}
+
+        
+
         <a class="a" href="/">Home</a>
         <a class="a" href="/posts">Posts</a>
         <a class="a" href="/posts/new">New posts</a>
@@ -20,8 +24,12 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
+
     <li>{{this.user}}</li>
-    <li>{{this.createdAt}}</li>
+    
+
+    <li>{{dateFormat this.createdAt}}</li>
+
     <li>likes: {{this.likes}}</li>
   <ul>
     {{#each this.comments}}
