@@ -1,3 +1,8 @@
 {
-  "baseUrl": "http://localhost:3030"
+  "baseUrl": "http://localhost:3030",
+  "env": {
+    "MONGODB_URI": "mongodb://localhost:3030",
+      "MONGODB_DATABASE": "Acebook Test",
+      "MONGODB_COLLECTION": "acebook_test"
+  }
 }
