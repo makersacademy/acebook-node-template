@@ -5,7 +5,7 @@ const PostSchema = new mongoose.Schema({
   likes: Number,
   posted_by: String,
 
-  
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 },
 {
   timestamps: true
