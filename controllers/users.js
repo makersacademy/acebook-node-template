@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Post = require("../models/post");
 const bcrypt = require("bcrypt")
 const saltRounds = 10;
 
@@ -8,7 +9,11 @@ const UsersController = {
     User.findOne({_id: req.params.id })
       .then((user) => { 
         if (!user) { return res.status(404).send("Not Found") } 
-        res.render("users/show", { user: user });
+
+        Post.find().where('_id').in(user.posts).exec((err, posts) => {
+          res.render("users/show", { user: user, posts: posts });
+        });
+        
       })
       .catch((err) => {
         res.status(404).send(`Error - ${err}`)
