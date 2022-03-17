@@ -43,7 +43,6 @@ describe("User model", () => {
       }); 
   });
 
-
   it("can't save a user with an email aready signed up", async () => {
     const user1 = new User({
       email: "someone@example.com",

@@ -4,8 +4,10 @@ const PostSchema = new mongoose.Schema({
   message: String, 
   createdAt: {
     type: Date,  
-    default: () => Date.now()
-  }
+    default: Date.now()
+  },
+  comments: [],
+  likes: 0
 });
 
 const Post = mongoose.model("Post", PostSchema);
