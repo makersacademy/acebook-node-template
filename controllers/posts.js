@@ -15,12 +15,13 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const username = req.session.user.firstName + " " + req.session.user.lastName
+    const post = new Post({message: req.body.message, user: username});
     post.save((err) => {
       if (err) {
         throw err;
       }
-
+      console.log(req.body)
       res.status(201).redirect("/posts");
     });
   },
@@ -35,8 +36,9 @@ const PostsController = {
   },
 
   CreateComment: (req, res) => {
-    var comment = new Comment({ note: `${req.body.comments}`})
-  
+    const username = req.session.user.firstName + req.session.user.lastName
+    var comment = new Comment({ note: `${req.body.comments}`, user: username})
+  console.log(req.session.user)
     Post.findOneAndUpdate({
       _id: req.params._id},
     {$push: {comments: comment}},
