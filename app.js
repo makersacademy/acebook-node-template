@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const flash = require("connect-flash")
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -13,8 +12,6 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
 const app = express();
-
-app.use(flash());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
