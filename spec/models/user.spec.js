@@ -10,7 +10,8 @@ describe("User model", () => {
 
   it("has an email address", () => {
     const user = new User({
-      fullname: "Ali Cocelli",
+      firstName: "Bob",
+      lastName: "Geldof",
       email: "someone@example.com",
       password: "password",
     });
@@ -19,7 +20,8 @@ describe("User model", () => {
 
   it("has a password", () => {
     const user = new User({
-      fullname: "Ali Cocelli",
+      firstName: "Bob",
+      lastName: "Geldof",
       email: "someone@example.com",
       password: "password",
     });
@@ -27,16 +29,25 @@ describe("User model", () => {
   });
 
 
-  it("has a fullname", () => {
+  it("has a first name", () => {
     const user = new User({
-      fullname: "Ali Cocelli",
       email: "someone@example.com",
       password: "password",
+      firstName: "Bob",
+      lastName: "Geldof",
     });
-    expect(user.fullname).toEqual("Ali Cocelli");
+    expect(user.firstName).toEqual("Bob");
   });
 
-
+  it("has a last name", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      firstName: "Bob",
+      lastName: "Geldof",
+    });
+    expect(user.lastName).toEqual("Geldof");
+  });
 
 
   it("can list all users", async () => {
@@ -47,14 +58,15 @@ describe("User model", () => {
 
 
   it("can save a user",  async () => {
-    const user = new User({fullname: "Ali Cocelli", email: "someone@example.com", password: "password" });
+    const user = new User({ firstName: "Bob", lastName: "Geldof", email: "someone@example.com", password: "password" });
 
     await user.save();
     const data = await User.find()
 
 
     expect(data[0]).toMatchObject({
-      fullname: "Ali Cocelli",
+      firstName: "Bob",
+      lastName: "Geldof",
       email: "someone@example.com",
       password: "password",
       }); 
@@ -62,13 +74,15 @@ describe("User model", () => {
 
   it("can't save a user with an email aready signed up", async () => {
     const user1 = new User({
-      fullname: "Ali Cocelli",
+      firstName: "Bob",
+      lastName: "Geldof",
       email: "someone@example.com",
       password: "password",
     });
 
     const user2 = new User({
-      fullname: "Ali Cocelli",
+      firstName: "Chris",
+      lastName: "Sutton",
       email: "someone@example.com",
       password: "1234",
     });
