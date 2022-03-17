@@ -1,4 +1,8 @@
+
+
 describe("Home page", () => {
+
+
   it("has a title", () => {
     cy.visit("/");
     cy.get(".title").should("contain", "Acebook");
@@ -13,4 +17,7 @@ describe("Home page", () => {
     cy.url().should("include", "/users/new");
   })
 });
+
+// async code with cypress
+
 

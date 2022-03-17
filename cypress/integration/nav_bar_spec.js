@@ -1,3 +1,4 @@
+
   describe("Nav bar", () => {
     it('should jump to the next page', () => {
       // sign up
@@ -17,5 +18,6 @@
       cy.url().should("include", "/posts");
       cy.contains("h1", "Timeline");
       
+
     })
   })
