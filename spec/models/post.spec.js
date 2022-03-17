@@ -15,6 +15,19 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("displays the posters name", () => {
+    var post = new Post({ posted_by: "Claire" });
+    expect(post.posted_by).toEqual("Claire");
+  });
+
+  it("has a posting date", () => {
+    let date = new Date("2022-03-16T12:44:46Z")
+    var post = new Post({ createdAt: date })
+    expect(post.createdAt).toEqual(date)
+  })
+
+
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
