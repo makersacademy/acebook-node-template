@@ -23,3 +23,4 @@ describe("Registration", () => {
     cy.get("#error").should("have.text", "This email is already in use, please try again")
   });
 });
+

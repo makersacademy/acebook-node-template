@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const SessionsController = require("./sessions");
+//const SessionsController = require("./sessions")
 
 const UsersController = {
   New: (req, res) => {
@@ -19,6 +21,7 @@ const UsersController = {
           if (err) {
             throw err;
           }
+          req.session.user = user
           res.status(201).redirect("/posts");
         });
       }
