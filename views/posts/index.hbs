@@ -5,7 +5,8 @@
     <link href="../public/stylesheets/style.css" rel="stylesheet" type="text/css">
   </head>
     <body> 
-      <nav class="nav"> 
+      <nav class="nav">
+        <h6>You are signed in as: {{user.fullname}}</h6>
         <a class="a" href="/">Home</a>
         <a class="a" href="/posts">Posts</a>
         <a class="a" href="/posts/new">New posts</a>
@@ -16,7 +17,7 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
-    <li>{{this.createdAt}}</li>
+    <li>{{dateFormat this.createdAt}}</li>
     <li>likes: {{this.likes}}</li>
   <ul>
     {{#each this.comments}}

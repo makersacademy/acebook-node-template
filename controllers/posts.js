@@ -8,7 +8,7 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts, user: req.session.user });
     }).sort({'createdAt': - 1});
   },
   New: (req, res) => {
