@@ -36,20 +36,8 @@ describe("User model", () => {
     expect(user.fullname).toEqual("Ali Cocelli");
   });
 
-  it("can list all users", (done) => {
-    User.find((err, users) => {
-      expect(err).toBeNull();
-      expect(users).toEqual([]);
-      done();
-    });
-  });
 
-  it("can save a user", (done) => {
-    const user = new User({
-      fullname: "Ali Cocelli",
-      email: "someone@example.com",
-      password: "password",
-    });
+
 
   it("can list all users", async () => {
     let users = await User.find();
@@ -59,13 +47,14 @@ describe("User model", () => {
 
 
   it("can save a user",  async () => {
-    const user = new User({ email: "someone@example.com", password: "password" });
+    const user = new User({fullname: "Ali Cocelli", email: "someone@example.com", password: "password" });
 
     await user.save();
     const data = await User.find()
 
-    console.log(data);
+
     expect(data[0]).toMatchObject({
+      fullname: "Ali Cocelli",
       email: "someone@example.com",
       password: "password",
       }); 
@@ -91,7 +80,6 @@ describe("User model", () => {
     })
 
     const data = await User.find() 
-    console.log(data)
     
     expect(data.length).toEqual(1)
   
