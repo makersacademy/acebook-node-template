@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <link href="../public/stylesheets/style.css" rel="stylesheet" type="text/css">
+  </head>
+    <body> 
+      <nav class="nav"> 
+        <a class="a" href="/">Home</a>
+        <a class="a" href="/posts">Posts</a>
+        <a class="a" href="/posts/new">New posts</a>
+        <a class="a" href="/">Log Out</a>
+      </nav>
+      
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
@@ -13,16 +27,20 @@
       <input type="submit" value="Comment">
     </form>
 
-    {{!-- new untested code --}}
+    
      <form action='/posts/delete/{{this.id}}' method='POST'>
       <input type="submit" value="Delete">
     </form>
     <form action='/posts/like/{{this.id}}' method='POST'>
       <input type="submit" value="Like">
     </form>
-    {{!-- end of code --}}
+   
  
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+    </body>
+
+ </html>
+
