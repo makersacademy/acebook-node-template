@@ -12,24 +12,30 @@ const PostsController = {
         post.postedAt = post.createdAt.toLocaleString();
       })
 
-
       res.render("posts/index", { posts: posts,
           title: "Acebook",
           name: req.session.user.name,
           username: req.session.user.username
       });
-    })
-    .sort({createdAt: -1 });
-   
+    }).populate('user')
+      .sort({createdAt: -1 }) 
+      .exec(function(err, posts) {
+        if(err) throw err;
+        posts.forEach((post) => {
+          console.log(post.user.name);
+        })
+      })
   },
   New: (req, res) => {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    //req.body.posted_by = req.session.user._id;
+    req.body.user = req.session.user._id;
     req.body.posted_by = req.session.user.email;
     req.body.likes = 0;
+    console.log(req.body.user);
     const post = new Post(req.body);
+    console.log(post.user);
     post.save((err) => {
       if (err) {
         throw err;

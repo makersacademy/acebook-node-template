@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema({
   message: String,
   likes: Number,
-  posted_by: String
+  posted_by: String,
+
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 },
 {
   timestamps: true
