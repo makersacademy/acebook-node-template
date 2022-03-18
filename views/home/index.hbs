@@ -1,2 +1,11 @@
 <h1 class="title">{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{# if session.user }}
+<p>{{session.user.email}}</p>
+<form action='/sessions?_method=DELETE' method='POST'>
+    <input class="btn btn-danger" type="submit" value="Log Out">
+</form>
+{{else}}
+<a href="/sessions/new" class="btn btn-success">Log In</a>
+<a href="/users/new" class="btn btn-success">Sign Up</a>
+{{/if}}
