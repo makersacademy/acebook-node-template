@@ -69,6 +69,7 @@ It uses:
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
+- [Bcrypt](https://www.npmjs.com/package/bcrypt) for password encyption
 - [Bootstrap](https://getbootstrap.com/) for css templating
 
 ## Card wall
@@ -153,18 +154,3 @@ Some people occasionally experience MongoDB connection errors when running the t
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
 
-
-..................
-
-
-code for getting the userObjectId's 
-per like into the posts table under the likes column:
-
-
-postObjectId: req.session.post._id
-likes = []
-
-db.posts.updateOne(
-   {postObjectId: #current_post},
-   { $push: { likes: userObjectId } }
-)

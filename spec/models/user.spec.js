@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Post = require("../../models/post");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
@@ -9,6 +10,49 @@ describe("User model", () => {
       done();
     });
   });
+
+  it("has an empty array of posts", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "test name",
+    })
+
+    expect(user.posts.length).toEqual(0)
+  })
+
+  it("has a post", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "test name",
+    })
+    // Add a post to the user
+    const post = new Post({ message: "Test Message" } )
+    user.posts.push (post._id)
+
+    expect(user.posts.length).toEqual(1)
+    expect(user.posts[0]).toEqual(post._id)    
+    
+  })
+
+  it("has 2 posts", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "test name",
+    })
+    // Add a post to the user
+    const postOne = new Post({ message: "Test Message" } )
+    const postTwo = new Post({ message: "Another Test" } )
+
+    user.posts.push (postOne._id)
+    user.posts.push (postTwo._id)
+
+    expect(user.posts.length).toEqual(2)
+    expect(user.posts[1]).toEqual(postTwo._id)    
+    
+  })
 
   it("has a name", () => {
     const user = new User({

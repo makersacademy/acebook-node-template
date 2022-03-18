@@ -8,6 +8,6 @@ describe("Registration", () => {
     cy.get("#username").type("someone123");
     cy.get("#submit").click();
 
-    cy.url().should("include", "/sessions/new");
+    cy.url().should("include", "/posts");
   });
 });

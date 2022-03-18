@@ -1,16 +1,7 @@
-
-
 <a id="view-profile" href="/users/{{userid}}">View Profile</a>
 
-
-
 <h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  <button id="like">Like</button>
-  {{/each}}
-</ul>
+{{> postList }}
 
 <a class="new-post-link" href="/posts/new">New post</a>
 

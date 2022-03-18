@@ -11,7 +11,13 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+const bcrypt = require("bcrypt")
+const hbs = require('hbs')
+
 const app = express();
+
+// Set where partials are found with the view engine
+hbs.registerPartials(path.join(__dirname, '/views/partials'))
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -74,5 +80,6 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
 
 module.exports = app;
