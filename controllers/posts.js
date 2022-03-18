@@ -36,7 +36,9 @@ const PostsController = {
   },
 
   CreateComment: (req, res) => {
+
     const username = req.session.user.firstName + " " + req.session.user.lastName
+
     var comment = new Comment({ note: `${req.body.comments}`, user: username})
   console.log(req.session.user)
     Post.findOneAndUpdate({
