@@ -19,7 +19,7 @@ const PostsController = {
   Update: (req, res) => {
 
     Post.findOne({ _id: req.params.id }).then((post) => {
-      
+
       if (req.query.like == "true"){
         if (post.likes.includes(req.session.user._id) != true){
           post.likes.push(req.session.user._id)
@@ -58,6 +58,7 @@ const PostsController = {
     });
   },
 };
+
 
 
 module.exports = PostsController;
