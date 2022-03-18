@@ -8,7 +8,7 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts, userid: req.session.user._id });
+      res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user});
     });
   },
 
