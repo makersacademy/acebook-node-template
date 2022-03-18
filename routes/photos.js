@@ -45,7 +45,7 @@ router.get("/",  (req, res) => {
    if(err) {
      throw err;
    }
-   res.render("photos", { photos: photos });
+   res.render("photos", { photos: photos, user: req.session.user });
  })
 },);
 
