@@ -51,5 +51,9 @@ a:hover:after{
   width: 100%;
 }
 
+#post_image, #profile_image {
+  border-radius: 40%;
+}
+
 
 

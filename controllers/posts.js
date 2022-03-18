@@ -18,8 +18,9 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const username = req.session.user.firstName + " " + req.session.user.lastName
-    const post = new Post({message: req.body.message, user: username});
+    const userName = req.session.user.firstName + " " + req.session.user.lastName
+    const userImage = req.session.user.image.imgPath;
+    const post = new Post({message: req.body.message, user: userName, userImage: userImage });
     post.save((err) => {
       if (err) {
         throw err;
