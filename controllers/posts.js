@@ -19,7 +19,13 @@ const PostsController = {
   Update: (req, res) => {
 
     Post.findOne({ _id: req.params.id }).then((post) => {
-      post.likes.push(req.session.user.id)
+      
+      if (req.query.like == "true"){
+        if (post.likes.includes(req.session.user._id) != true){
+          post.likes.push(req.session.user._id)
+        }
+      }
+     
       post.save((err) => {
         if (err) {
           throw err
@@ -28,7 +34,6 @@ const PostsController = {
     })
 
     res.status(201).redirect("/posts")
-
   },
 
   Create: (req, res) => {
@@ -54,9 +59,5 @@ const PostsController = {
   },
 };
 
-// module.exports.getPostByUserId = (id, callback) => {
-//   message.find({userId: id}, callback)
-//   .populate('userId');
-// }
 
 module.exports = PostsController;
