@@ -22,16 +22,16 @@
           <a class="btn nav-link" aria-current="page" href="/posts">Home</a>
         </li>
         <li class="nav-item">
-          <a class="btn nav-link" href="/users/new">Sign Up</a>
+          <a class="btn nav-link" id="signup" href="/users/new">Sign Up</a>
         </li>
         {{#unless user._id }}
         <li class="nav-item">
-          <a class="btn nav-link" href="/sessions/new">Log In</a>
+          <a class="btn nav-link" id="login" href="/sessions/new">Log In</a>
         </li>
         {{/unless}}
         {{#if user._id }}
         <li class="nav-item">
-          <a class="btn nav-link" href="/users/{{userid}}">My Profile</a>
+          <a class="btn nav-link" id="view-profile" href="/users/{{userid}}">My Profile</a>
         </li>
         <li class="nav-item">
           <form id="logout" action='/sessions?_method=DELETE' method='POST'>
