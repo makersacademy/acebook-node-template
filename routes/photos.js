@@ -45,8 +45,6 @@ router.get("/",  (req, res) => {
    if(err) {
      throw err;
    }
-   console.log(photos)
-   console.log(photos[0].imgPath)
    res.render("photos", { photos: photos });
  })
 },);

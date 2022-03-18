@@ -21,7 +21,17 @@
 
   {{#each photos}}
     <img src="{{this.imgPath}}" style="width: 50%" alt="Photos not working">
+    {{#each photos.comments}}
+      {{this.note}}
+    {{/each}}
+     <form action='/photos/comment/{{this.id}}' method='GET'>
+      <input type="submit" value="Comment">
+    </form>
+     <form action='/photos/delete/{{this.id}}' method='POST'>
+      <input type="submit" value="Delete">
+    </form>
+    <form action='/photos/like/{{this.id}}' method='POST'>
+      <input type="submit" value="Like">
+    </form>
   {{/each}}
-
-  <img src="public/images/myImage-1647608714416.png" alt="Photo test">
 

@@ -6,7 +6,10 @@ const imageSchema = new mongoose.Schema({
       contentType: String
   },
   imgPath: String,
-  imgName: String
+  imgName: String,
+  comments: [{
+    type: Object,
+    }],
 });
 const ImageModel = mongoose.model("Image", imageSchema);
 
