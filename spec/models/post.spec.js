@@ -18,7 +18,7 @@ describe("Post model", () => {
       name: "testuser",
       username: "test",
       email: "someone@example.com",
-      password: "password",
+      password: "$2a$12$ccAirt0cv9bFCRk.SnD0Bef3n1tgzbkwz2R/V3MfYm88QjXwlZ5G6",
       bio: "blablabla"
     })
     await userT.save();

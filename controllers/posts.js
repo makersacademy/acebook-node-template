@@ -33,17 +33,31 @@ const PostsController = {
     req.body.user = req.session.user._id;
     req.body.posted_by = req.session.user.email;
     req.body.likes = 0;
-    console.log(req.body.user);
     const post = new Post(req.body);
-    console.log(post.user);
     post.save((err) => {
       if (err) {
         throw err;
       }
-
       res.status(201).redirect("/posts");
     });
   },
+  Test: (req, res) => {
+    res.send("Here")
+  },
+  Like: (req, res) => {
+     
+    Post
+    .findOneAndUpdate(
+      {_id: req.body.postId}, {$inc:{likes: 1}}, {new: true},
+      (err) => {
+      if (err) {
+        throw err;
+      }
+      //console.log(update);
+      res.status(201).redirect("/posts")
+    });
+
+  }
 };
 
 module.exports = PostsController;

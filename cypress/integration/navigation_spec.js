@@ -11,7 +11,7 @@ describe("Users are logged out", () => {
     it("Can only see the log-in and registration links", () => {
         cy.visit("/sessions/new");
         cy.get("#email").type("someone@example.com");
-        cy.get("#password").type("password");
+        cy.get("#password").type("PASSWORD");
         cy.get("#submit").click();
         
         cy.contains('Log-in').should('not.exist')

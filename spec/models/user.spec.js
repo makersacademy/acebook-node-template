@@ -14,7 +14,7 @@ describe("User model", () => {
       name: "testuser",
       username: "test",
       email: "someone@example.com",
-      password: "password",
+      password: "$2a$12$ccAirt0cv9bFCRk.SnD0Bef3n1tgzbkwz2R/V3MfYm88QjXwlZ5G6",
       bio: "blablabla"
     });
   });
@@ -23,8 +23,9 @@ describe("User model", () => {
     expect(user.email).toEqual("someone@example.com");
   });
 
+  //encrypted now
   it("has a password", () => {
-    expect(user.password).toEqual("password");
+    expect(user.password).toEqual("$2a$12$ccAirt0cv9bFCRk.SnD0Bef3n1tgzbkwz2R/V3MfYm88QjXwlZ5G6");
   });
 
   it("can list all users", (done) => {
@@ -47,7 +48,7 @@ describe("User model", () => {
           name: "testuser",
           username: "test",
           email: "someone@example.com",
-          password: "password",
+          password: "$2a$12$ccAirt0cv9bFCRk.SnD0Bef3n1tgzbkwz2R/V3MfYm88QjXwlZ5G6",
           bio: "blablabla"
         });
         done();
