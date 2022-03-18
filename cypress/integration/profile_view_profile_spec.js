@@ -1,13 +1,7 @@
 describe("View Profile", () => {
   it("View the profile page", () => {
 
-    cy.visit("/");
-    cy.get("#signup").click();
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#username").type("someone123");
-    cy.get("#name").type("test name")
-    cy.get("#submit").click();
+    cy.signUp()
 
     cy.contains("New post").click();
 

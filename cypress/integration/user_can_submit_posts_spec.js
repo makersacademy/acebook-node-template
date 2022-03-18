@@ -4,16 +4,7 @@ describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
     // sign up
     
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.signUp()
 
     // submit a post
     cy.visit("/posts");
@@ -23,7 +14,6 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
-
 
     // 1. Extract date/time from page in variable
     cy.get('#createdAt').then(($createdAt) => {
