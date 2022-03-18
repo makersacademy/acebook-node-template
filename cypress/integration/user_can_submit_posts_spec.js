@@ -29,6 +29,6 @@ describe("Timeline", () => {
       cy.log(currentTime)
       cy.log(postedTime)
     })
-    
+ 
   });
 });
