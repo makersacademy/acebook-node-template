@@ -5,13 +5,15 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const helpers = require('handlebars-helpers')();
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+
 const commentRouter = require("./routes/comment")
+const profileRouter = require("./routes/profile")
+
 const app = express();
 
 // view engine setup
@@ -63,8 +65,12 @@ const sessionChecker = (req, res, next) => {
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
+
 app.use("/users", usersRouter);
 app.use("/comment", commentRouter); 
+
+app.use("/users",usersRouter);
+app.use("/profile", sessionChecker, profileRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
