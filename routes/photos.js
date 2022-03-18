@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const app = express();
 const path = require("path");
 const fs = require("fs");
 
 //multer
-app.use(express.static('public/images')); 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/images/");
@@ -33,7 +31,7 @@ router.post("/" , upload.single("myImage"), (req, res) =>  {
   }
   const newImage = new ImageModel({
       image: obj.img,
-      imgPath: `public/images/${req.file.filename}`,
+      imgPath: `/images/${req.file.filename}`,
       imgName:  `${req.file.filename}`
   });
    newImage.save( (err) =>  {
