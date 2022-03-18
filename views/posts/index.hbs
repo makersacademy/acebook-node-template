@@ -10,10 +10,8 @@
           <h6>You are signed in as: {{user.firstName}}</h6>
         {{else}}
         {{/if}}
-        {{#if user.image}}
-         <img src="{{user.image.imgPath}}" style="width: 5%, border-radius: 5%" alt="profile pic">
-        {{else}}
-        {{/if}}
+          <img src="{{user.image.imgPath}}" style="width:5%" alt="profile pic">
+       
         <a class="a" href="/">Home</a>
         <a class="a" href="/posts">Posts</a>
         <a class="a" href="/posts/new">New posts</a>

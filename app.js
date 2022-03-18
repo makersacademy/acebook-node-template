@@ -59,7 +59,11 @@ const sessionChecker = (req, res, next) => {
     next();
   }
 };
-
+//handlebars helper functions
+//comparator for javascript
+hb.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
+});
 // timeformat
 hb.registerHelper('dateFormat', function (date, options) {
   const formatToUse = (arguments[1] && arguments[1].hash && arguments[1].hash.format) || "DD/MM/YYYY, H:MM"
