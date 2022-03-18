@@ -12,6 +12,7 @@ const CommentSchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now(),
   },
+  user: String,
 });
 
 const Comment = mongoose.model("Comment", CommentSchema);
