@@ -5,13 +5,13 @@ describe("Authentication", () => {
     cy.get("#name").type("name");
     cy.get("#username").type("Sample Username");
     cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("PASSWORD");
     cy.get("#submit").click();
 
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("PASSWORD");
     cy.get("#submit").click();
 
     cy.url().should("include", "/posts");
