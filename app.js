@@ -12,6 +12,7 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
 const app = express();
+const flash = require('connect-flash');
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -23,6 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+app.use(flash());
+
 
 app.use(
   session({
