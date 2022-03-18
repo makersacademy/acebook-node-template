@@ -79,6 +79,10 @@ So that I can use the website
 I want to access the site from a Heroku link
 ```
 
+## Credits
+
+Credit to Bromley and his team for some code we re-used (with permission) within the /cypress/plugins/index.js and /cypress/support/index.js to enable auto clearing of test databases (code taken from <a href="https://github.com/nyahehnagi/acebook-makerverse">here </a>)
+
 ## Quickstart
 
 ### Install Node.js
@@ -156,3 +160,4 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Try swapping `localhost`, everywhere that it appears in your codebase, with `127.0.0.1`. It might be surprising but this does sometimes make a difference.
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+
