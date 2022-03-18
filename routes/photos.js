@@ -1,0 +1,56 @@
+const express = require("express");
+const router = express.Router();
+const multer = require("multer");
+const app = express();
+const path = require("path");
+const fs = require("fs");
+
+//multer
+app.use(express.static('public/images')); 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/images/");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+const upload = multer({ storage: storage });
+
+const PhotosController = require("../controllers/photos");
+
+//running directly from app to test
+const ImageModel = require("../models/image");
+router.post("/" , upload.single("myImage"), (req, res) =>  {
+  const obj = {
+      img: {
+          data: fs.readFileSync(path.join("public/images/" + req.file.filename)),
+          contentType: "image/png"
+      }
+  }
+  const newImage = new ImageModel({
+      image: obj.img,
+      imgPath: `public/images/${req.file.filename}`,
+      imgName:  `${req.file.filename}`
+  });
+   newImage.save( (err) =>  {
+ err ? console.log(err) :  res.redirect("/photos");
+  });
+});
+
+//load photos
+router.get("/",  (req, res) => {
+  ImageModel.find({}).exec(function (err, photos) {
+   if(err) {
+     throw err;
+   }
+   console.log(photos)
+   console.log(photos[0].imgPath)
+   res.render("photos", { photos: photos });
+ })
+},);
+
+module.exports = router;

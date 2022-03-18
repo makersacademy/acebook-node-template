@@ -1,7 +1,6 @@
 const createError = require("http-errors");
 const multer = require("multer");
 const express = require("express");
-const fs = require("fs");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -14,6 +13,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const photosRouter = require("./routes/photos");
 
 const app = express();
 
@@ -21,50 +21,6 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
-//multer
-app.use(express.static('public/images')); 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/images/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
-const upload = multer({ storage: storage });
-
-//running directly from app to test
-const ImageModel = require("./models/image");
-app.post("/photos", upload.single("myImage"), (req, res) =>  {
-  const obj = {
-      img: {
-          data: fs.readFileSync(path.join(__dirname + "/public/images/" + req.file.filename)),
-          contentType: "image/png"
-      }
-  }
-  const newImage = new ImageModel({
-      image: obj.img,
-      imgPath: `public/images/${req.file.filename}`,
-      imgName:  `${req.file.filename}`
-  });
-   newImage.save( (err) =>  {
- err ? console.log(err) :  res.redirect("/photos");
-  });
-});
-
-//load photos
-app.get("/photos", (req, res) => {
-  ImageModel.find({}).exec(function (err, photos) {
-   if(err) {
-     throw err;
-   }
-   console.log(photos)
-   res.render("photos", { photos: photos });
- })
-},);
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -72,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+app.use(express.static('public/images')); 
 
 
 app.use(
@@ -114,6 +71,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/photos", sessionChecker, photosRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
