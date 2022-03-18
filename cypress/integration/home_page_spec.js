@@ -4,3 +4,4 @@ describe("Home page", () => {
     cy.get(".title").should("contain", "Acebook");
   });
 });
+
