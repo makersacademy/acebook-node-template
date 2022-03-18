@@ -19,7 +19,7 @@ const PostsController = {
   Update: (req, res) => {
 
     Post.findOne({ _id: req.params.id }).then((post) => {
-      post.likes.push(req.session.user._id)
+      post.likes.push(req.session.user.id)
       post.save((err) => {
         if (err) {
           throw err
