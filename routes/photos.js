@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const User = require("../models/user");
 
 //multer
 const storage = multer.diskStorage({
@@ -20,7 +21,7 @@ const upload = multer({ storage: storage });
 
 const PhotosController = require("../controllers/photos");
 
-//running directly from app to test
+//load a photot to snaps
 const ImageModel = require("../models/image");
 router.post("/" , upload.single("myImage"), (req, res) =>  {
   const obj = {
@@ -38,6 +39,33 @@ router.post("/" , upload.single("myImage"), (req, res) =>  {
  err ? console.log(err) :  res.redirect("/photos");
   });
 });
+
+//load a photo to profile
+router.post("/profilepic" , upload.single("myImage"), async (req, res) =>  {
+  const userid = req.params._id
+  const obj = {
+      img: {
+          data: fs.readFileSync(path.join("public/images/" + req.file.filename)),
+          contentType: "image/png",
+      }
+  }
+  const newImage = new ImageModel({
+      image: obj.img,
+      imgPath: `/images/${req.file.filename}`,
+      imgName:  `${req.file.filename}`
+  });
+  await User.findOneAndUpdate({
+    id: userid},
+  {image: newImage},
+  function(err) {
+    if (err) {
+      throw err;
+    }
+    console.log('Success')
+  res.status(201).redirect('/photos');
+  });
+});
+
 
 //load photos
 router.get("/",  (req, res) => {

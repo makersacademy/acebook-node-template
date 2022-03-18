@@ -4,6 +4,9 @@
           <h6>You are signed in as: {{user.firstName}}</h6>
         {{else}}
         {{/if}}
+         <img src="{{user.image.imgPath}}" style="width: 5%" alt="profile pic">
+        
+    
 
         <a class="a" href="/">Home</a>
         <a class="a" href="/posts">Posts</a>
@@ -15,6 +18,11 @@
 
       <form action="/photos" enctype="multipart/form-data" method="post">
           <label for="myImage">Add some holiday snaps</label>
+          <input class="choose-file-btn" type="file" name="myImage" />
+          <input class="upload-btn" type="submit" value="Upload Photo" />
+      </form>
+      <form action="/photos/profilepic" enctype="multipart/form-data" method="post">
+          <label for="myImage">Add profile pic</label>
           <input class="choose-file-btn" type="file" name="myImage" />
           <input class="upload-btn" type="submit" value="Upload Photo" />
       </form>
