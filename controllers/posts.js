@@ -8,6 +8,7 @@ const PostsController = {
       }
       res.render("posts/index", { posts: posts });
     }).populate('user');
+
   },
   New: (req, res) => {
     res.render("posts/new", {});

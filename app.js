@@ -37,6 +37,11 @@ app.use(
   })
 );
 
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
+
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
@@ -75,5 +80,6 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
 
 module.exports = app;
