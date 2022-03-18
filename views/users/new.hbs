@@ -1,13 +1,27 @@
+<div class="container d-flex justify-content-center">
+  <div class="row">
+
 <h1>Sign Up</h1>
 <form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="firstName"> First Name</label>
-  <input id="firstName" type="text" name="firstName" value="">
-  <label for="surName"> Surname</label>
-  <input id="surName" type="text" name="surName" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
+<div class="mb-3 mt-3">
+  <label class="form-label" for="email">Email: </label>
+  <input class="form-control" id="email" type="email" name="email" value="">
+</div>
+<div class="mb-3">
+  <label class="form-label" for="firstName"> First Name</label>
+  <input class="form-control" id="firstName" type="text" name="firstName" value="">
+</div>
+<div class="mb-3">
+  <label class="form-label" for="surName"> Surname</label>
+  <input class="form-control" id="surName" type="text" name="surName" value="">
+</div>
+<div class="mb-3">
+  <label class="form-label" for="password">Password: </label>
+  <input class="form-control" id="password" type="password" name="password" value="">
+</div>
+
+  <input class="btn btn-primary" id="submit" type="submit" value="Submit">
   <p id="error">{{message}}</p>
 </form>
+  </div>
+</div>
