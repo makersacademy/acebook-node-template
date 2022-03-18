@@ -22,9 +22,10 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
 //multer
+app.use(express.static('public/images')); 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads");
+    cb(null, "./public/images/");
   },
   filename: function (req, file, cb) {
     cb(
@@ -37,20 +38,33 @@ const upload = multer({ storage: storage });
 
 //running directly from app to test
 const ImageModel = require("./models/image");
-app.post("/users/uploadPhoto", upload.single("myImage"), (req, res) =>  {
+app.post("/photos", upload.single("myImage"), (req, res) =>  {
   const obj = {
       img: {
-          data: fs.readFileSync(path.join(__dirname + "/uploads/" + req.file.filename)),
+          data: fs.readFileSync(path.join(__dirname + "/public/images/" + req.file.filename)),
           contentType: "image/png"
       }
   }
   const newImage = new ImageModel({
-      image: obj.img
+      image: obj.img,
+      imgPath: `public/images/${req.file.filename}`,
+      imgName:  `${req.file.filename}`
   });
    newImage.save( (err) =>  {
- err ? console.log(err) :  res.redirect("/posts");
+ err ? console.log(err) :  res.redirect("/photos");
   });
 });
+
+//load photos
+app.get("/photos", (req, res) => {
+  ImageModel.find({}).exec(function (err, photos) {
+   if(err) {
+     throw err;
+   }
+   console.log(photos)
+   res.render("photos", { photos: photos });
+ })
+},);
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -58,6 +72,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+
 
 app.use(
   session({

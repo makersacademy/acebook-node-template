@@ -1,5 +1,8 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const ImageModel = require("../models/image");
+const { response } = require("../app");
+
 
 const PostsController = {
   Index: (req, res) => {
@@ -63,6 +66,8 @@ const PostsController = {
     res.status(201).redirect('/posts');
     });
   },
+  //image uploads
+
 
   // delete post functionality
   Delete: (req, res) => {
@@ -77,3 +82,10 @@ const PostsController = {
 
 
 module.exports = PostsController;
+// ImageModel.find((err, photos) => {
+//   if (err) {
+//     throw err;
+//   }
+
+//   res.render("posts/photos", { photos: photos });
+// });

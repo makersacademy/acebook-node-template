@@ -1,0 +1,27 @@
+     <nav class="nav">
+
+        {{#if user}}
+          <h6>You are signed in as: {{user.firstName}}</h6>
+        {{else}}
+        {{/if}}
+
+        <a class="a" href="/">Home</a>
+        <a class="a" href="/posts">Posts</a>
+        <a class="a" href="/posts/new">New posts</a>
+        <a class="a" href="/">Log Out</a>
+        <a class="a" href="/photos">Snaps</a>
+
+      </nav>
+
+      <form action="/photos" enctype="multipart/form-data" method="post">
+          <label for="myImage">Add some holiday snaps</label>
+          <input class="choose-file-btn" type="file" name="myImage" />
+          <input class="upload-btn" type="submit" value="Upload Photo" />
+      </form>
+
+  {{#each photos}}
+    <img src="{{this.imgName}}" style="width: 50%" alt="Photos not working">
+  {{/each}}
+
+  <h1>You haven't got any pictures up yet!</h1>
+
