@@ -28,14 +28,14 @@ describe("Post model", () => {
    email: "email", 
    password: "password"})
    await user.save() 
-   console.log(user._id)
+   
    var post = new Post({
    message: "message for testing",
    user: user._id 
     
    });
    await post.save()
-   console.log(post)
+   
 
    expect(post.user).toEqual(user._id)
   });
