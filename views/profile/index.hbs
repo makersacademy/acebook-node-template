@@ -7,9 +7,25 @@
   <title>Acebook</title>
 </head>
 <body>
-  <h1>{{session.user.firstName}}'s Profile</h1>
-  <p class="text-dark">{{session.user.email}}</p>
-  <div
+  <h1>{{session.user.firstName}}'s Profile</h1> 
+  <div>
+    <p>Full name:</p>
+    <p class="text-dark">{{session.user.firstName}} {{session.user.surName}}</p>
+  </div>
+  <div>
+    <p>Email:</p>
+    <p class="text-dark">{{session.user.email}}</p>
+  </div>
+    <div>
+    <p>Bio:</p>
+    <p class="text-dark">TBC</p>
+  </div>
+    <div>
+    <p>Location:</p>
+    <p class="text-dark">TBC</p>
+  </div>
+  
+<input class="btn btn-primary" id="updateProfile" type="submit" value="updateProfile">
 </body>
 </html>
 
