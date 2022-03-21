@@ -26,6 +26,8 @@ const PostsController = {
         }
       }
      
+      post.comments.push ({message: req.body.commentMessage, commenterID: req.session.user._id})
+
       post.save((err) => {
         if (err) {
           throw err

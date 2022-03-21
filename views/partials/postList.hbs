@@ -8,6 +8,10 @@
       <input type="submit" id="submitLike" value="Like">
     </form>
     <p id="numberOfLikes">{{this.likes.length}}</p>
+    <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
+     <p id="numberOfComments">comments: {{this.comments.length}}</p>
+     Comment: <input id="commentMessage" type="text" name="commentMessage" value="">
+    </form>
   </li>
 
   {{/each}}
