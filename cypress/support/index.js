@@ -18,3 +18,8 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands')
+
+beforeEach(() => {
+  cy.log("TESTING RUNNING BEFORE ALL FILES")
+})
+
