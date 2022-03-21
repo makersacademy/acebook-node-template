@@ -4,6 +4,12 @@
     {{this.message}}
     <br>
     Posted at: <div id="createdAt">{{this.createdAt}}</div>
+    <form id="likeForm" action="/posts/{{this.id}}?like=true" method="post">
+      <input type="submit" id="submitLike" value="Like">
+    </form>
+    <p id="numberOfLikes">{{this.likes.length}}</p>
   </li>
+
   {{/each}}
 </ul>
+
