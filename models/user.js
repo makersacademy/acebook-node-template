@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
   password: String,
   username: String,
   name: String,
-  posts: Array
+  posts: Array,
+  profilePic:{data:Buffer,contentType: String},
 })
 
 const User = mongoose.model('User', UserSchema)

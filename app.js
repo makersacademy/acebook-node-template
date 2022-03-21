@@ -16,6 +16,8 @@ const hbs = require('hbs')
 
 const app = express();
 
+//var upload = multer({ dest: 'uploads/' })
+
 // Set where partials are found with the view engine
 hbs.registerPartials(path.join(__dirname, '/views/partials'))
 
@@ -29,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+
 
 app.use(
   session({

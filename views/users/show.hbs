@@ -4,6 +4,11 @@
 
 <img id="profile-pic" src="https://thispersondoesnotexist.com/image" alt="https://thispersondoesnotexist.com/image" class="shrinkToFit" width="360" height="360">
 
+<h1>Upload Image</h1>
+<form action="/users/upload/" enctype="multipart/form-data" method="POST">
+    <input type="file" name="image" accept="image/*">
+    <input type="submit" value="Upload Photo">
+</form>
 
 <h1>Timeline</h1>
 {{> postList }}
