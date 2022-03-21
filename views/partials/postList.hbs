@@ -8,10 +8,19 @@
       <input type="submit" id="submitLike" value="Like">
     </form>
     <p id="numberOfLikes">{{this.likes.length}}</p>
-    <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
-     <p id="numberOfComments">comments: {{this.comments.length}}</p>
-     Comment: <input id="commentMessage" type="text" name="commentMessage" value="">
-    </form>
+    <ul class="comments">
+      {{#each comments}}
+      <li id="comments">
+        {{this.message}}
+      </li>
+      {{/each}}
+    </ul>
+      <p id="numberOfComments">Comments: {{this.comments.length}}</p>
+      <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
+       Leave a comment: <input id="commentMessage" type="text" name="commentMessage" value="">
+      <input type="submit" id="submitComment" value="Post Comment">
+      </form>
+    </c>
   </li>
 
   {{/each}}
