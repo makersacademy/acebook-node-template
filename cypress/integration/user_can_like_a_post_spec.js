@@ -1,18 +1,6 @@
 describe("Timeline", () => {
   it("Like count on a post increases by 1", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#name").type("Sample Name");
-    cy.get("#username").type("Sample Username");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("PASSWORD");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("PASSWORD");
-    cy.get("#submit").click();
+    cy.sign_up_and_sign_in();
 
     // submit a post
     cy.visit("/posts");
