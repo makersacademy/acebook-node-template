@@ -1,36 +1,41 @@
 <form id="new-comment-form" action="/comment/create" method="post">
-  <textarea id="comment" name="comment" placeholder="Add Comment" rows="4" cols="50">
-  </textarea>
-  <input type="submit" value="Submit">
-  
-</form><ul class="comment">
-  {{#each comment}}
-    <div class="card">
-      <div class="card-header">
-        <div class="d-flex justify-content-between align-items-center">
+   <div class="mb-3">
+    <label for="comment" class="form-label">Comment:</label>
+    <textarea class="form-control" id="comment" name="comment" placeholder="Add Comment" rows="4" cols="50">Keyboard warrior time!</textarea>
+  </div>
+  <input class="btn btn-primary" type="submit" value="Submit"> 
+</form>
+
+<div class="container">
+  <ul class="comment">
+    {{#each comment}}
+      <div class="card">
+        <div class="card-header">
           <div class="d-flex justify-content-between align-items-center">
-            <div class="mr-2">
-              <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
-            </div>
-            <div class="ml-2">
-              <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="mr-2">
+                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
+              </div>
+              <div class="ml-2">
+                <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
+              </div>
             </div>
           </div>
+          <div class="text-muted h7 mb-2"> <small>{{this.createdAt}}</small></div>
         </div>
-        <div class="text-muted h7 mb-2"> <small>{{this.createdAt}}</small></div>
-      </div>
-      <div class="card-body">
+        <div class="card-body">
 
-        <p class="card-text">
-          {{this.comment}}
-        </p>
+          <p class="card-text">
+            {{this.comment}}
+          </p>
+        </div>
+        <div class="card-footer">
+          {{!-- <form method="get">
+          <input type="hidden" name="like" value=1> <button class="card-link btn btn-link" type="submit">Like {{#if this.likes}}({{this.likes}}){{/if}}</button>
+          </form> --}}
+        </div>
       </div>
-      <div class="card-footer">
-        {{!-- <form method="get">
-        <input type="hidden" name="like" value=1> <button class="card-link btn btn-link" type="submit">Like {{#if this.likes}}({{this.likes}}){{/if}}</button>
-         </form> --}}
-      </div>
-    </div>
-    <br />
-  {{/each}}
-</ul>
+      <br />
+    {{/each}}
+  </ul>
+</div>
