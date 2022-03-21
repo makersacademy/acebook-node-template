@@ -13,6 +13,7 @@ const UsersController = {
         if (!user) { return res.status(404).send("Not Found") } 
 
         const profilePic = user.profilePic.data.toString('base64')
+
         Post.find().where('_id').in(user.posts).exec((err, posts) => {
           res.render("users/show", { user: user, posts: posts, profilePic: profilePic });
         });
@@ -51,6 +52,10 @@ const UsersController = {
     req.body.password = hash
 
     const user = new User(req.body);
+
+    user.profilePic.data = fs.readFileSync('./public/images/test_image.jpg')
+    user.profilePic.contentType = 'image/jpeg'
+
     user.save((err) => {
       if (err) {
         throw err;
