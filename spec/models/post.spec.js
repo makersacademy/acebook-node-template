@@ -52,8 +52,8 @@ describe("Post model", () => {
     const post = new Post({ message: "some message" });
 
     const savedPost = await post.save();
-    const updateOne = await savedPost.update({$push: {comments: commentOne}});
-    const updateTwo = await savedPost.update({$push: {comments: commentTwo}});
+    await savedPost.update({$push: {comments: commentOne}});
+    await savedPost.update({$push: {comments: commentTwo}});
    
     await Post.find({message: "some message"}, function (err, posts) {
       console.log(posts)
@@ -65,7 +65,7 @@ describe("Post model", () => {
     const post = new Post({ message: "some message" });
 
     const savedPost = await post.save();
-    const updateOne = await savedPost.update({$inc: {likes: 1}});
+    await savedPost.update({$inc: {likes: 1}});
    
     await Post.find({message: "some message"}, function (err, posts) {
       console.log(posts)
@@ -77,7 +77,7 @@ describe("Post model", () => {
     const post = new Post({ message: "some message" });
 
     const savedPost = await post.save();
-    const deletePost = await savedPost.delete({ message: "some message" });
+    await savedPost.delete({ message: "some message" });
    
     await Post.find({message: "some message"}, function (err, posts) {
       expect(posts).toEqual([]);

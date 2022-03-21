@@ -12,7 +12,7 @@ const NavBar = ()=> {
     <li><Link to="/profile">Profile</Link></li>
     <li><Link to="/timeline">Timeline</Link></li>
     <li><Link to="/signin">Sign In</Link></li>
-    <li><Link to="/signout">Sign Out</Link></li>
+    <li><Link to="/signup">Sign Up</Link></li>
   </ul>
 </div>
 </nav>
