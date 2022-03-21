@@ -6,7 +6,7 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
+    const user = new User({email: req.body.email, password: req.body.password, firstName: req.body.firstName, surName: req.body.surName});
     User.findOne({ email: user.email }, function(err, person) {
       if(err) {
         throw err;
