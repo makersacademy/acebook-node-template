@@ -52,7 +52,7 @@ I want to be able to see a little photo of the user next to their post
 
 ```
 As a user of Acebook,
-So that I can view authored the posts,
+So that I can view who authored the posts,
 I want to be able to see the user's name next to their post
 ```
 
@@ -74,6 +74,23 @@ So that I can share my news,
 I want to be able to add a post
 ```
 
+```
+As a user of Acebook,
+So that I can find new friends,
+I want to see a list of all Acebook users
+```
+
+```
+As a user of Acebook,
+So that I can increase my network connections,
+I want to be able to add another user to my friend list
+```
+
+```
+As a user of Acebook,
+So that I can showcase my friends,
+I want to display a list of my friends on my profile page
+```
 
 This is a Node.js template for the Acebook engineering project.
 
