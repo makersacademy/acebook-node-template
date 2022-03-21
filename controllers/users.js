@@ -53,7 +53,7 @@ const UsersController = {
 
     const user = new User(req.body);
 
-    user.profilePic.data = fs.readFileSync('./public/images/test_image.jpg')
+    user.profilePic.data = fs.readFileSync('./public/images/blank_profile.jpg')
     user.profilePic.contentType = 'image/jpeg'
 
     user.save((err) => {
