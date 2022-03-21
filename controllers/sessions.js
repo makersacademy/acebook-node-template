@@ -9,7 +9,6 @@ const SessionsController = {
     console.log("trying to log in");
     const email = req.body.email;
     const password = req.body.password;
-    console.log(res)
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         res.redirect("/sessions/new");
