@@ -28,6 +28,12 @@ I want to be able to like a post
 
 ~~~~
 As a user of Acebook
+So I can express my interest in someones post
+I want to be able to comment on the post
+~~~~
+
+~~~~
+As a user of Acebook
 So I can show others who I am
 I want to view a profile page with my name
 ~~~~
