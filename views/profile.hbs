@@ -3,7 +3,7 @@
 
 <div class="posts" >
   {{#each posts}}
-  <div>{{this.user.name}} <br>
+  <div><br>
   {{this.message}}     -      <div id="createdAt">{{this.postedAt}}</div> <br> 
   <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
     <button id="like" name="postId" value="{{this._id}}">Like</button>
