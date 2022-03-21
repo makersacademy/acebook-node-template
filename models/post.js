@@ -11,7 +11,7 @@ const PostSchema = new mongoose.Schema(
     comments: [{
       message: String,
       commenterId: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Commenter'
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
       }
     }] 
   },

@@ -25,8 +25,10 @@ const PostsController = {
           post.likes.push(req.session.user._id)
         }
       }
-     
-      post.comments.push ({message: req.body.commentMessage, commenterID: req.session.user._id})
+
+      if (req.body.commentMessage != undefined){
+        post.comments.push({message: req.body.commentMessage, commenterId: req.session.user._id})
+      }
 
       post.save((err) => {
         if (err) {
