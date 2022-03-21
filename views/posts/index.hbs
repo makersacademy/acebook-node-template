@@ -10,17 +10,7 @@
   </form> - <div id="likecount">{{this.likes}}</div> 
   </div>
   <br>
-  <div class = "comments">
-    {{#each this.comments}}
-      <div>{{this.user}} says {{this.comment}}</div>
-    {{/each}}
-  </div>
-  <div class="addComment">
-    <form action="/posts/comment/new" method="post">
-      <input type="text" name="comment" id="input-comment">
-      <button id="comment-btn" name="postId" value="{{this._id}}">Comment</button>
-    </form>
-  </div>
+  {{> comments}}
   {{/each}}
 <div>
 

@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const hbs = require('hbs');
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -17,6 +18,7 @@ const flash = require('connect-flash');
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+hbs.registerPartials('./views/partials');
 
 app.use(logger("dev"));
 app.use(express.json());
