@@ -11,7 +11,7 @@ describe("View Profile", () => {
     cy.get("#view-profile").click();
 
     cy.get(".profile").should("contain", "test name");
-    cy.get(".posts").should("contain", "Hello, world!");
+    cy.get("#posts").should("contain", "Hello, world!");
   });
 
   it("gives a 404 page not found if no user is found", () => {

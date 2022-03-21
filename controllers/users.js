@@ -12,10 +12,8 @@ const UsersController = {
       .then((user) => { 
         if (!user) { return res.status(404).send("Not Found") } 
 
-        const profilePic = user.profilePic.data.toString('base64')
-
         Post.find().where('_id').in(user.posts).exec((err, posts) => {
-          res.render("users/show", { user: user, posts: posts, profilePic: profilePic });
+          res.render("users/show", { user: user, posts: posts });
         });
         
       })
