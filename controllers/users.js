@@ -12,8 +12,9 @@ const UsersController = {
       .then((user) => { 
         if (!user) { return res.status(404).send("Not Found") } 
 
+        const profilePic = user.profilePic.data.toString('base64')
         Post.find().where('_id').in(user.posts).exec((err, posts) => {
-          res.render("users/show", { user: user, posts: posts });
+          res.render("users/show", { user: user, posts: posts, profilePic: profilePic });
         });
         
       })
@@ -27,10 +28,9 @@ const UsersController = {
 
     User.findOne({ _id: req.session.user._id }).then((user) => {
 
-      //user.profilePic.data = fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename))
       user.profilePic.data = fs.readFileSync(path.join('./uploads/' + req.file.filename))
       
-      user.profilePic.contentType = 'image/jpg'
+      user.profilePic.contentType = 'image/jpeg'
     
       user.save((err) => {
         if (err) {
