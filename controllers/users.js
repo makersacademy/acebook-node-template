@@ -76,7 +76,8 @@ const UsersController = {
     res.render("users/profile", { 
           title: "Acebook",
           name: req.session.user.name,
-          username: req.session.user.username,
+          // username: req.session.user.username,
+          // image: req.session.user.image
     });
   },
   

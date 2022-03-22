@@ -1,8 +1,10 @@
 <h1>Timeline for {{ name }} </h1>
  <h4 class="name">{{user.name}}</h4>
+
 <div class="posts" >
   {{#each posts}}
   <div>{{this.user.name}} <br>
+  <img src=/uploads/profileimage/{{image}} style="height:40px; width:40px;">
    {{this.message}}  <br>
    {{#if this.imagePath}}
   <img height="200" src="{{this.imagePath}}"> <br> 
