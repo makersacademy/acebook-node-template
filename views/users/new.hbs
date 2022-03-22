@@ -3,17 +3,20 @@
     {{!-- <link rel='stylesheet' href='/stylesheets/style.css' /> --}}
 </head>
 <h2>Sign up</h2>
-<form id="new-user-form" action="/users" method="post">
-  <label for="name">Name: </label>
-  <input id="name" type="text" name="name" value="">
+<form class="form-group" id="new-user-form" action="/users" method="post">
+<div class="input-group mb-3"></div>
   <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <div>
+  <input class="form-control" id="email" type="email" name="email" value="" placeholder="Enter email">
+
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <div>
-  <label for="username">Username: </label>
-  <input id="username" type="username" name="username" value="">
-  <div>
-  <input id="submit" type="submit" value="Submit">
+  <input class="form-control" id="password" type="password" name="password" value="" placeholder="password">
+
+  <label for="name">Name: </label>
+  <input class="form-control" id="name" type="text" name="name" value="">
+
+  <label  for="username">Username: </label>
+  <input class="form-control" id="username" type="username" name="username" value="">
+  <div><br>
+  <input class="btn btn-primary" id="submit" type="submit" value="Submit">
+  </div>
 </form>
