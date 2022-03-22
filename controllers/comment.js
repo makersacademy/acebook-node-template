@@ -2,7 +2,7 @@ const Comment = require("../models/comment");
 
 const CommentController = {
   Index: (req, res) => {
-    Comment.find({}, 'comment createdAt', (err, comment) => {
+    Comment.find({}, 'comment createdAt', {sort: {'createdAt': -1}}, (err, comment) => {
       if (err) {
         throw err;
       }
