@@ -22,7 +22,8 @@ const ProfileController = {
   } catch {
     console.log("error")
   }
- }
+ },
+
 };
 
 module.exports = ProfileController;
