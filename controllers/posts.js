@@ -8,7 +8,7 @@ const PostsController = {
         throw err
       }
 
-      res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user});
+      res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user, comments: posts.comments });
     });
   },
 
@@ -19,13 +19,17 @@ const PostsController = {
   Update: (req, res) => {
 
     Post.findOne({ _id: req.params.id }).then((post) => {
-
+      // const comments = post.comments
       if (req.query.like == "true"){
         if (post.likes.includes(req.session.user._id) != true){
           post.likes.push(req.session.user._id)
         }
       }
-     
+
+      if (req.body.commentMessage != undefined){
+        post.comments.push({message: req.body.commentMessage, commenterId: req.session.user._id})
+      }
+
       post.save((err) => {
         if (err) {
           throw err

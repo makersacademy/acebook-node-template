@@ -52,4 +52,18 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can comment on the saved post", () => {
+    var post = new Post({ message: "some message" });
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "test name",
+    })
+    post.comments.push ({ message: "some comment", commenterId: user._id })
+
+    expect(post.comments.length).toEqual(1)
+    expect(post.comments[0].commenterId).toEqual(user._id) 
+    expect(post.comments[0].message).toEqual("some comment")   
+  })
 });
