@@ -7,6 +7,29 @@
   <title>Document</title>
 </head>
 <body>
-  Edit User Profile!
+  <div class="container d-flex justify-content-center">
+    <div class="row">
+    <div class="mb-3"><h1>Edit User Profile!</h1></div>
+      <form id="edit-profile-form" action="/edit" method="post">
+    <div class="mb-3">
+      <label class="form-label" for="firstName"> First Name</label>
+      <input class="form-control" id="firstName" type="text" name="firstName">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="surName"> Surname</label>
+      <input class="form-control" id="surName" type="text" name="surName">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="bio">Bio: </label>
+      <input class="form-control" id="bio" type="text" name="bio">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="location">Location: </label>
+      <input class="form-control" id="location" type="text" name="location">
+    </div>
+    <input class="btn btn-primary" id="submit" type="submit" value="Submit">
+    </form>
+  </div>
+</div>
 </body>
 </html>

@@ -23,14 +23,10 @@
           <p>Location:</p>
           <p class="text-dark">{{session.user.location}}</p>
         
-        <input
-          action="/editProfile"
-          method="get"
-          class="btn btn-primary"
-          id="updateProfile"
-          type="submit"
-          value="Edit Profile"
-        />
+          <form action='/editProfile' method='get'>
+              <input class="btn btn-primary" type="submit" value="Edit Profile">
+          </form>
+
       </div>
       <div class="col-4">
         <img
