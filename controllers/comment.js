@@ -6,12 +6,12 @@ const CommentController = {
       if (err) {
         throw err;
       }
-      res.render("comment/new", { comment: comment });
+      res.render("comment/index", { comment: comment });
     }).populate('user');
   },
 
   New: (req, res) => {
-    res.render("comment/new", {} );
+    res.render("comment/index", {} );
   },
 
   Create: (req,res) => {
