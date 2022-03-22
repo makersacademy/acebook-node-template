@@ -57,15 +57,40 @@ const UsersController = {
     });
   },
 
+  UserList: async (req, res) => {
+    try{
+    const users = await User.find({'name': {$ne : req.session.user.name}})
+
+      res.render("users/userlist", { users: users,
+          title: "Acebook Users",
+          name: req.session.user.name,
+          username: req.session.user.username
+      });
+    } catch {
+      console.log("error")
+    }
+  },
+
   Profile: (req, res) => {
     console.log(req.session.user._id);
     res.render("users/profile", { 
-          title: "Acebook",
-          name: req.session.user.name,
-          username: req.session.user.username,
+      title: "Acebook",
+      name: req.session.user.name,
+      username: req.session.user.username,
     });
   },
-  
+
+  Addfriend: async (req, res) => {
+    try{
+      console.log("FRIEND TO ADD", req.body.friendReqId)
+      const users = await User.findOne({'_id': req.session.user._id});
+      users.friends.push(req.body.friendReqId);
+      users.save();
+      res.status(201).redirect("/users/userlist")
+      } catch {
+        console.log("error")
+      }
+    }  
 };
 
 module.exports = UsersController;
