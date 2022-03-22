@@ -20,6 +20,10 @@ PostSchema.virtual('likesArray').get(function () {
   return likesArray
 });
 
+PostSchema.virtual('count').get(function () {
+  return String(this.userLikes.length)
+})
+
 
 const Post = mongoose.model("Post", PostSchema);
 
