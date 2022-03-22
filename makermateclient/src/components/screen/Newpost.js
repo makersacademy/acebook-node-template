@@ -6,7 +6,7 @@ const NewPost = () => {
     const [message, setMessage] = useState('')
 
     const postdata = () => {
-        fetch("/post", {
+        fetch("/posts", {
             method: 'post',
             headers:{
                 'Content-Type':'application/json'
