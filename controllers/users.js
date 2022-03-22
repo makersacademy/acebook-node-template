@@ -85,6 +85,7 @@ const UsersController = {
       console.log("FRIEND TO ADD", req.body.friendReqId)
       const users = await User.findOne({'_id': req.session.user._id});
       users.friends.push(req.body.friendReqId);
+      users.friends = users.friends.filter((value,index) => users.friends.indexOf(value) === index);
       users.save();
       res.status(201).redirect("/users/userlist")
       } catch {
