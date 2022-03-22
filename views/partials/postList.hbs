@@ -1,6 +1,9 @@
 <ul class="list-group" id="posts">
   {{#each posts}}
   <li>
+    <div>
+      <p id="postedBy">{{this.userObjectId.username}}</p>
+    </div>
     {{this.message}}
     <br>
     Posted at: <div id="createdAt">{{this.createdAt}}</div>
