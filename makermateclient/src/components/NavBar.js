@@ -1,8 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 
 const NavBar = ()=> {
+const navigate = useNavigate()
+  
   return(
 <nav>
 <div className="nav-wrapper blue">
@@ -13,6 +15,14 @@ const NavBar = ()=> {
     <li><Link to="/timeline">Timeline</Link></li>
     <li><Link to="/signin">Sign In</Link></li>
     <li><Link to="/signup">Sign Up</Link></li>
+    <button className="btn waves-effect waves-light #1976d2 blue darken-2"
+    onClick={()=> {
+      localStorage.clear()
+      navigate('/signin')
+    }
+    }>
+     Log Out 
+    </button>
   </ul>
 </div>
 </nav>
