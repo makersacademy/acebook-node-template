@@ -17,7 +17,7 @@ const PostsController = {
     const username = req.session.user.firstName + " " + req.session.user.lastName
     const post = new Post({message: req.body.message, user: username});
     post.save()
-    .then(res =>{
+    .then(element =>{
       console.log('post saved!')
       res.json({message: "post saved"})
     }).catch(err=>{
