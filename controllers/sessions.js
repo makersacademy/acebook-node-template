@@ -1,4 +1,7 @@
 const User = require("../models/user");
+//this has been imported and installed and required to have passwords encrypted.
+//it is called in the signup and sign in functions. It now stores the user with a hashed password in local storage
+const bcrypt = require('bcrypt');
 
 const SessionsController = {
   New: (req, res) => {
@@ -8,20 +11,27 @@ const SessionsController = {
     console.log("trying to log in");
     const email = req.body.email;
     const password = req.body.password;
-    console.log(email)
+    if(!email || !password){
+      res.status(422).json({error: 'please fill in all details'})
+    }
     User.findOne({ email: email })
-    .then(user => {
-      if (!user) {
-        console.log(user)
-        return res.json({message: "no user found"});
-      } else if (user.password != password) {
-        return res.json({message: "password incorrect"});
-      } else {
-        console.log({message:"signed in successfuly"})
-        req.session.user = user;
-        res.json({user:req.session.user});
+    .then(savedUser=>{
+      if(!savedUser){
+        return res.status(422).json({error: "invalid email or password"})
       }
-    });
+      bcrypt.compare(password, savedUser.password)
+      .then(passwordsMatch => {
+        if(passwordsMatch){
+          console.log({message:"signed in successfuly"})
+          req.session.user = savedUser;
+          res.json({user:req.session.user});
+        }else{
+          return res.status(422).json({error: "invalid email or password"})
+        }
+      }).catch(err=>{
+      console.log(err)
+      })
+    })
   },
 
   Destroy: (req, res) => {
