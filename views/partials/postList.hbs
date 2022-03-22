@@ -18,9 +18,8 @@
       <p id="numberOfComments">Comments: {{this.comments.length}}</p>
       <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
        Leave a comment: <input id="commentMessage" type="text" name="commentMessage" value="">
-      <input type="submit" id="submitComment" value="Post Comment">
+      <input type="submit" id="submitComment" value="Post Comment" onClick="window.location.reload();">
       </form>
-    </c>
   </li>
 
   {{/each}}
