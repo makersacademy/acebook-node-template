@@ -6,6 +6,22 @@ const bcrypt = require("bcrypt")
 const saltRounds = 10;
 
 const UsersController = {
+  Index: (req, res) => {
+    
+    if (!req.query.q){ 
+      res.status(200).send("Nothing to see here") 
+      return
+    }
+    
+    User.find({ "name": { "$regex": req.query.q, "$options": "i" } },
+      function(err, users) { 
+        if (err) {
+          throw err
+        }
+
+        res.render("users/index", { users: users})
+      })
+  },
 
   Show: (req, res) => {
     User.findOne({_id: req.params.id })
@@ -64,14 +80,6 @@ const UsersController = {
     });
   },
 
-  Search: (req, res) => {
-    User.find(
-      { "name": { "$regex": req.body.search_user_input, "$options": "i" } },
-      function(err,users) { 
-        console.log(users);
-      }
-    )}
-  
 };
 
 module.exports = UsersController;
