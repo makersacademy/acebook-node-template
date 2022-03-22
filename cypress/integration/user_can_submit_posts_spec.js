@@ -75,8 +75,8 @@ describe("Timeline", () => {
     cy.get("#comment").click();
     cy.url().should("include", "/comment/new");
 
-    cy.get("#comment-form").find('[type="text"]').type("This is a comment on a post");
-    cy.get("#add-comment").submit();
+    cy.get("#new-comment-form").find("textarea").type("This is a comment on a post");
+    cy.get("#new-comment-form").submit();
 
     cy.url().should("include", "/posts");
   })

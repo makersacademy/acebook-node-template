@@ -16,7 +16,6 @@ const PostsController = {
 
   Create: (req, res) => {
     const post = new Post({user: req.session.user._id, message: req.body.message});
-    console.log(req.user)
     post.save((err) => {
       if (err) {
         throw err;
@@ -26,11 +25,15 @@ const PostsController = {
     });
   },
   
-  // Like: (req, res) => {
-  //   const post = Post.findOneAndUpdate({_id: req.body.id}, function(like){
-  //     if
-  //   }) 
-  // }
+  Like: (req, res) => {
+    Post.findOne({_id: req.body.post_id}, function(err, post) {
+      console.log(post.message)
+      post.likes = post.likes + 1
+      post.save()
+      res.status(201).redirect("/posts");
+    })
+    
+  },
 
 };
 

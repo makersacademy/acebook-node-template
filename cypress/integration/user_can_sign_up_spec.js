@@ -1,5 +1,5 @@
 describe("Registration", () => {
-  it("A user signs up and is redirected to sign in", () => {
+  it("A user signs up and is redirected to posts", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("sign_in@example.com");
@@ -8,7 +8,7 @@ describe("Registration", () => {
     cy.get('#surName').type('surname');
     cy.get("#submit").click();
 
-    cy.url().should("include", "/sessions/new");
+    cy.url().should("include", "/posts");
   });
 
   it("should return a message if the email is already in use", () => {
