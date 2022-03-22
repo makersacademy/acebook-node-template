@@ -1,13 +1,12 @@
 const Comment = require("../models/comment");
-const Post = require("../models/post");
 
 const CommentController = {
   Index: (req, res) => {
-    Comment.find({}, 'comment createdAt', {sort: {'createdAt': -1}}, (err, comment) => {
+    Comment.find({post: req.query.id}, 'comment createdAt', {sort: {'createdAt': -1}}, (err, comment) => {
       if (err) {
         throw err;
       }
-      res.render("comment/index", { comment: comment });
+      res.render("comment/index", { comment: comment, post_id: req.query.id });
     }).populate('user');
   },
 
@@ -15,25 +14,16 @@ const CommentController = {
     res.render("comment/index", {} );
   },
 
-  Create: (req,res) => {
-    const comment = new Comment({user: req.session.user._id, post: req.body.message, comment: req.body.comment});
+  Create: (req, res) => {
+    const comment = new Comment({user: req.session.user._id, comment: req.body.comment, post: req.body.post_id});
     comment.save((err) => {
       if (err) {
         throw err;
       }
 
-      res.status(201).redirect("/comment");
+      res.status(201).redirect(`/comment/?id=${req.body.post_id}`);
     });
   },
-
-  LinkPost: (req, res) => {
-    Post.findOne({_id: req.body.post_id}, function(err, post) {
-      console.log(post.message);
-      post.ref = post._id;
-    });
-    
-    res.render("comment/index", {} );
-  }
 };
 
 module.exports = CommentController;
