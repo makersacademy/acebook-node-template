@@ -1,4 +1,5 @@
 const Comment = require("../models/comment");
+const Post = require("../models/post");
 
 const CommentController = {
   Index: (req, res) => {
@@ -24,6 +25,15 @@ const CommentController = {
       res.status(201).redirect("/comment");
     });
   },
+
+  LinkPost: (req, res) => {
+    Post.findOne({_id: req.body.post_id}, function(err, post) {
+      console.log(post.message);
+      post.ref = post._id;
+    });
+    
+    res.render("comment/index", {} );
+  }
 };
 
 module.exports = CommentController;
