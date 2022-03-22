@@ -22,7 +22,13 @@ describe("Post model", () => {
     expect(post.createdAt.setMilliseconds(0)).toEqual(currentTime.setMilliseconds(0));
   });
 
-  it("has a user asigned to the post", async () => {
+  it("has likes", async () => {
+    var post = new Post({ message: "message for testing" });
+    await post.save();
+    expect(post.likes).toEqual(0)
+  });
+
+  it("has a user assigned to the post", async () => {
    var user = new User({ firstName: "first name", 
    surName: "surname", 
    email: "email", 
