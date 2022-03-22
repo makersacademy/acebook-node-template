@@ -22,6 +22,7 @@ return(
     {data.map(item => {
       return (
       <>
+      <h5>{item.user}</h5>
       <h5>{item.message}</h5>
       <h5>{item.createdAt}</h5>
       <h5>{item.comments}</h5>
