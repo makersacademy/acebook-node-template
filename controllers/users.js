@@ -77,8 +77,6 @@ const UsersController = {
     const current = await User.findOne({"_id": req.session.user._id})
     const users = await User.where({"_id": {$in: current.friends}}).populate('user')
 
-    console.log( users)
-
       res.render("users/friendlist", { users: users,
           title: "Acebook Users",
           name: req.session.user.name,
@@ -107,8 +105,25 @@ const UsersController = {
       res.status(201).redirect("/users/userlist")
       } catch {
         console.log("error")
+    }
+  },
+
+  Deletefriend: async (req, res) => {
+    try{
+      const users = await User.findOne({'_id': req.session.user._id});
+      let e = users.friends.length;
+      console.log(e);
+      const index = users.friends.indexOf(req.body.friendDelId);
+
+      if (index > -1) {
+        users.friends.splice(index, 1);
       }
-    }  
+      users.save();
+      res.status(201).redirect("/users/friendlist")
+      } catch (err) {
+        console.log(err);
+    }
+  }  
 };
 
 module.exports = UsersController;

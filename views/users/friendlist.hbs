@@ -3,7 +3,10 @@
   {{#each users}}
   PICTURE
   {{this.name}}
-  DELETE FRIEND
+  <form action="/users/deletefriend/{{this._id}}" method="post">
+    <label for="button">Delete Friend</label>
+    <button type="submit" name="friendDelId" value="{{this._id}}">Delete</button>
+  </form>
   <br>
   {{/each}}
 <div>
