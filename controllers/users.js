@@ -72,6 +72,23 @@ const UsersController = {
     }
   },
 
+  FriendList: async (req, res) => {
+    try{
+    const current = await User.findOne({"_id": req.session.user._id})
+    const users = await User.where({"_id": {$in: current.friends}}).populate('user')
+
+    console.log( users)
+
+      res.render("users/friendlist", { users: users,
+          title: "Acebook Users",
+          name: req.session.user.name,
+          username: req.session.user.username
+      });
+    } catch {
+      console.log("error")
+    }
+  },
+
   Profile: (req, res) => {
     console.log(req.session.user._id);
     res.render("users/profile", { 

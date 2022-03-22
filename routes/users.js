@@ -8,6 +8,7 @@ router.post("/", UsersController.Create);
 router.get("/profile", UsersController.Profile);
 
 router.get("/userlist", UsersController.UserList);
+router.get("/friendlist", UsersController.FriendList);
 router.post("/addfriend/:id", UsersController.Addfriend);
 
 module.exports = router;
