@@ -17,3 +17,7 @@ a {
 #createdAt {
   color:green
 }
+
+#numberOfLikes {
+  display: inline-block;
+}
