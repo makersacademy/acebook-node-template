@@ -13,7 +13,6 @@ const usersRouter = require("./routes/users");
 
 const commentRouter = require("./routes/comment")
 const profileRouter = require("./routes/profile")
-const editProfileRouter = require("./routes/editProfile")
 
 const app = express();
 
@@ -72,8 +71,6 @@ app.use("/comment", commentRouter);
 
 app.use("/users",usersRouter);
 app.use("/profile", sessionChecker, profileRouter);
-
-app.use("/editProfile", editProfileRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
