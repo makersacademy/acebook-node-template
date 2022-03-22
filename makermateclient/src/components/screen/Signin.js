@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 //import M from 'materialize-css';
 
-//Signup is a component, inside is all the fuction we need during signup
+//Signup is a component, inside is all the function we need during signup
 const Signin = () => {
   const navigation = useNavigate() 
   //use state is a hook that checks for a change in an object and updates with the second element in the array
@@ -30,6 +30,7 @@ const Signin = () => {
     if(data.message == 'no user found'){
       console.log({error: "no user"})
     } else {
+      localStorage.setItem("user",JSON.stringify(data.user))
       console.log(data)
       console.log('Sign In successful')
       navigation('/timeline')

@@ -17,7 +17,7 @@ const SessionsController = {
       } else if (user.password != password) {
         return res.json({message: "password incorrect"});
       } else {
-        console.log({message:"signed in successfuly"})
+        console.log({message:"signed in successfully"})
         req.session.user = user;
         res.json({user:req.session.user});
       }
