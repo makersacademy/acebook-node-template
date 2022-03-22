@@ -1,28 +1,55 @@
+<div class="accordion accordion-flush" id="accordionFlushExample" style="width: 25rem;">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        <p id="numberOfComments">Comments {{this.comments.length}}</p>
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">    
+        <div class="comments">
+          {{#each comments}}
+          <div id="comments">
+            <strong>Name of commenter</strong> {{this.message}}
+          </div>
+          {{/each}}
+        </div>
+          <br>
+        <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
+          <input id="commentMessage" type="text" name="commentMessage" value="" placeholder="Write a comment...">
+          <input type="submit" id="submitComment" value="Post" onClick="window.location.reload();">
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 
+
 <ul class="list-group" id="posts">
   {{#each posts}}
   <li>
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 25rem;">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">Name of poster here</h5>
         <p class="card-text">{{this.message}}</p>
         {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-    <br>
     Posted at: <div id="createdAt">{{this.createdAt}}</div>
     <form id="likeForm" action="/posts/{{this.id}}?like=true" method="post">
-      <input type="submit" id="submitLike" value="Like">
+        <input type="submit" id="submitLike" value="Like">
+        <id="numberOfLikes">{{this.likes.length}} 
+        <id="numberOfComments">Comments {{this.comments.length}}
     </form>
-    <p id="numberOfLikes">Likes {{this.likes.length}} Comments {{this.comments.length}}</p>
-    {{!-- <p id="numberOfComments">Comments: {{this.comments.length}}</p> --}}
-    <ul class="comments">
+    {{!-- <p id="numberOfComments">Comments: {{this.comments.length}}> --}}
+    <div class="comments">
       {{#each comments}}
-      <li id="comments">
-        {{this.message}}
-      </li>
+      <div id="comments">
+         <strong>Name of commenter</strong> {{this.message}}
+      </div>
       {{/each}}
-    </ul>
+    </div>
+    <br>
       <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
-       Leave a comment: <input id="commentMessage" type="text" name="commentMessage" value="">
-      <input type="submit" id="submitComment" value="Post Comment" onClick="window.location.reload();">
+        <input id="commentMessage" type="text" name="commentMessage" value="" placeholder="Write a comment...">
+        <input type="submit" id="submitComment" value="Post" onClick="window.location.reload();">
       </form>
       </div>
     </div>
