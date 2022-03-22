@@ -36,20 +36,20 @@ const PostsController = {
       throw err;
     }
   },
-  Test: (req, res) => {
-    res.send("Here")
-  },
-  Like: (req, res) => {
-    Post
-    .findOneAndUpdate(
-      {_id: req.body.postId}, {$inc:{likes: 1}}, {new: true},
-      (err) => {
-      if (err) {
-        throw err;
+  Like: async (req, res) => {
+    try{
+      const post = await Post.findOne({"_id": req.body.postId});
+      console.log(post.likes);
+      post.likes += 1;
+      await post.save();
+      if(req.body.prevRoute === "posts"){
+        res.status(201).redirect("/posts");
+      } else {
+        res.status(201).redirect("/profile");
       }
-      //console.log(update);
-      res.status(201).redirect("/posts")
-    });
+    } catch (err) {
+      console.log(err)
+    }
 
   },
   Comment: (req, res) => {
