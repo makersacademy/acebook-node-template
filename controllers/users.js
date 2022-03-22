@@ -64,6 +64,14 @@ const UsersController = {
     });
   },
 
+  Search: (req, res) => {
+    User.find(
+      { "name": { "$regex": req.body.search_user_input, "$options": "i" } },
+      function(err,users) { 
+        console.log(users);
+      }
+    )}
+  
 };
 
 module.exports = UsersController;

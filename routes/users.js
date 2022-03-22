@@ -16,6 +16,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
+router.get("/search", UsersController.Search);
 router.get("/new", UsersController.New);
 router.get("/:id", UsersController.Show);
 router.post("/", UsersController.Create);
