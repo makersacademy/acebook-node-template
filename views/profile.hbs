@@ -1,6 +1,17 @@
 <h1>All About {{name}} </h1>
 
-
+<div class="friends">
+  <h2>My friends</h2>
+  <ul>
+  {{#each friends}}
+    <li>
+      PICTURE
+      {{this.name}}
+    </li>
+  {{/each}}
+  </ul>
+  
+</div>
 <div class="posts" >
   {{#each posts}}
   <div><br>

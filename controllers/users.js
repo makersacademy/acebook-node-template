@@ -61,7 +61,6 @@ const UsersController = {
     try{
     const current = await User.findOne({"_id": req.session.user._id})
     const users = await User.where({"_id": {$ne: req.session.user._id}}).where({"_id": {$nin: current.friends}})
-    console.log(users);
 
       res.render("users/userlist", { users: users,
           title: "Acebook Users",
@@ -84,9 +83,8 @@ const UsersController = {
 
   Addfriend: async (req, res) => {
     try{
-      console.log("FRIEND TO ADD", req.body.friendReqId)
       const users = await User.findOne({'_id': req.session.user._id});
-      users.friends.push(req.body.friendReqId);
+      users.friends.unshift(req.body.friendReqId);
       users.friends = users.friends.filter((value,index) => users.friends.indexOf(value) === index);
       users.save();
       res.status(201).redirect("/users/userlist")
