@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   firstName: String,
   surName: String,
+  bio: {type: String, default: "This is a default bio"},
 });
 
 const User = mongoose.model("User", UserSchema);
