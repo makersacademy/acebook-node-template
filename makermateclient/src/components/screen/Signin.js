@@ -27,10 +27,10 @@ const Signin = () => {
    }).then(res => res.json())
    //we get back data inside the .then() and printing to the console what it looks like
   .then(data=>{
-    if(data.message == 'no user found'){
+    if(data.message === 'no user found'){
       console.log({error: "no user"})
     } else {
-      console.log(data)
+      localStorage.setItem("user",JSON.stringify(data.user))
       console.log('Sign In successful')
       navigation('/timeline')
     }

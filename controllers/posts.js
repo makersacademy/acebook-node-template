@@ -18,12 +18,16 @@ const PostsController = {
     const post = new Post({message: req.body.message, user: username});
     post.save((err) => {
       if (err) {
-        throw err;
+        console.log('we are getting an error')
+        res.json({error: 'error'})
       }
       console.log(req.body)
-      res.status(201).redirect("/posts");
+      console.log('saved post')
+      res.status(201).res.json({message: 'We saved the post!'});
     });
   },
+
+
   Comment: async (req, res) =>  {
     Post.find({_id: req.params._id}, function(err, posts) {
       if (err) {
