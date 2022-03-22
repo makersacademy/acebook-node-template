@@ -8,15 +8,18 @@ const SessionsController = {
     console.log("trying to log in");
     const email = req.body.email;
     const password = req.body.password;
-
-    User.findOne({ email: email }).then((user) => {
+    console.log(email)
+    User.findOne({ email: email })
+    .then(user => {
       if (!user) {
-        res.redirect("/sessions/new");
+        console.log(user)
+        return res.json({message: "no user found"});
       } else if (user.password != password) {
-        res.redirect("/sessions/new");
+        return res.json({message: "password incorrect"});
       } else {
+        console.log({message:"signed in successfuly"})
         req.session.user = user;
-        res.redirect("/posts");
+        res.json({user:req.session.user});
       }
     });
   },

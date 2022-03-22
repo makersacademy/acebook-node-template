@@ -8,7 +8,6 @@ const UsersController = {
   Create: (req, res) => {
     const user = new User(req.body);
     user.save()
-
     //this is what we need to write to send the response as json to be read by react
     .then(user=> {
       res.json({message:"saved succesfully"})
