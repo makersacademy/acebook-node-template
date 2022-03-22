@@ -1,0 +1,21 @@
+<nav>
+  <a href="/">Home</a>
+
+  {{#if loggedIn}}
+      <form action='/sessions?_method=DELETE' method='POST'>
+        <input type="hidden" value="Logout">
+        <button type="submit" class="list-group-item list-group-item-action">Logout</button>
+      </form>
+  {{else}}
+      <form id="new-session-form" action="/sessions" method="post">
+        <label for="email">Email: </label>
+        <input id="email" type="email" name="email" required value="">
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password" required value="">
+        <input id="submit" type="submit" value="Submit">
+      </form>
+  {{/if}}
+  
+  
+
+</nav>

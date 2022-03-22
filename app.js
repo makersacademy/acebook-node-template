@@ -12,6 +12,7 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const profileRouter = require("./routes/profile.js");
+const imagesRouter = require("./routes/images");
 
 const app = express();
 const flash = require('connect-flash');
@@ -67,6 +68,7 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/profile", sessionChecker, profileRouter);
+app.use("/images", sessionChecker, imagesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
