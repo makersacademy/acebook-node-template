@@ -6,8 +6,8 @@
     <title>Acebook</title>
   </head>
   <body>
-    <div class="row">
-      <div class="column">
+    <div class="row justify-content-start">
+      <div class="col-4">
         <h1>{{session.user.firstName}}'s Profile</h1>
         
           <p>Full name:</p>
@@ -20,24 +20,22 @@
           <p>Bio:</p>
           <p class="text-dark">{{session.user.bio}}</p>
         
-        
           <p>Location:</p>
           <p class="text-dark">{{session.user.location}}</p>
         
-
         <input
           class="btn btn-primary"
           id="updateProfile"
           type="submit"
-          value="updateProfile"
+          value="Edit Profile"
         />
       </div>
-      <div class="column">
+      <div class="col-4">
         <img
           width="300"
           height="300"
-          src="/images/profilepic.png"
-          class="img-thumbnail"
+          src="/images/profilepic.webp"
+          class="img-thumbnail border border-2 border-dark"
           alt="Your Profile Picture"
         />
       </div>
