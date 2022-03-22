@@ -16,17 +16,15 @@ const PostsController = {
   Create: (req, res) => {
     const username = req.session.user.firstName + " " + req.session.user.lastName
     const post = new Post({message: req.body.message, user: username});
-    post.save((err) => {
-      if (err) {
-        console.log('we are getting an error')
-        res.json({error: 'error'})
-      }
-      console.log(req.body)
-      console.log('saved post')
-      res.status(201).res.json({message: 'We saved the post!'});
-    });
+    post.save()
+    .then(res =>{
+      console.log('post saved!')
+      res.json({message: "post saved"})
+    }).catch(err=>{
+      console.log(err)
+      res.json({error: 'error'})
+    })
   },
-
 
   Comment: async (req, res) =>  {
     Post.find({_id: req.params._id}, function(err, posts) {
@@ -37,6 +35,7 @@ const PostsController = {
         posts: posts});
     });
   },
+
 
   CreateComment: (req, res) => {
 
