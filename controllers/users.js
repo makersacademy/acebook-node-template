@@ -61,12 +61,15 @@ const UsersController = {
   UserList: async (req, res) => {
     try{
     const current = await User.findOne({"_id": req.session.user._id})
-    const users = await User.where({"_id": {$ne: req.session.user._id}}).where({"_id": {$nin: current.friends}})
+    const users = await User.where({"_id": {$ne: req.session.user._id}})
+                            .where({"_id": {$nin: current.friends}})
+                            .where({"_id": {$nin: current.sent_requests}})
 
-      res.render("users/userlist", { users: users,
-          title: "Acebook Users",
-          name: req.session.user.name,
-          username: req.session.user.username
+      res.render("users/userlist", { 
+        users: users,
+        title: "Acebook Users",
+        name: req.session.user.name,
+        username: req.session.user.username
       });
     } catch {
       console.log("error")
@@ -76,21 +79,22 @@ const UsersController = {
   FriendList: async (req, res) => {
     try{
     const current = await User.findOne({"_id": req.session.user._id})
-    const users = await User.where({"_id": {$in: current.friends}}).populate('user')
-    const pending_users = await User.where({"_id": {$in: current.pending_friends}}).populate('user')
+    const friends = await User.where({"_id": {$in: current.friends}}).populate('user')
+    const pending_friends = await User.where({"_id": {$in: current.pending_friends}}).populate('user')
 
-      res.render("users/friendlist", { users: users, pending_users: pending_users,
+      res.render("users/friendlist", { 
+          friends: friends,
+          pending_friends: pending_friends,
           title: "Acebook Users",
           name: req.session.user.name,
           username: req.session.user.username
       });
-    } catch {
-      console.log("error")
+    } catch (err) {
+      console.log(err.messages);
     }
   },
 
   Profile: (req, res) => {
-    // console.log(req.session.user._id);
     res.render("users/profile", { 
       title: "Acebook",
       name: req.session.user.name,
@@ -100,10 +104,14 @@ const UsersController = {
 
   Addfriend: async (req, res) => {
     try{
-      const users = await User.findOne({'_id': req.session.user._id});
-      users.pending_friends.unshift(req.body.friendReqId);
-      users.pending_friends = users.pending_friends.filter((value,index) => users.pending_friends.indexOf(value) === index);
-      users.save();
+      const requestingUser = await User.findOne({'_id': req.session.user._id});
+      const receivingUser = await User.findOne({'_id': req.body.friendReqId});
+      requestingUser.sent_requests.unshift(req.body.friendReqId)
+      receivingUser.pending_friends.unshift(req.session.user._id);
+      requestingUser.sent_requests = requestingUser.sent_requests.filter((value,index) => requestingUser.sent_requests.indexOf(value) === index);
+      receivingUser.pending_friends = receivingUser.pending_friends.filter((value,index) => receivingUser.pending_friends.indexOf(value) === index);
+      await requestingUser.save();
+      await receivingUser.save();
       res.status(201).redirect("/users/userlist")
       } catch {
         console.log("error")
@@ -119,7 +127,7 @@ const UsersController = {
       }
       users.friends.unshift(req.body.friendAccId);
       users.friends = users.friends.filter((value,index) => users.friends.indexOf(value) === index);
-      users.save();
+      await users.save();
       res.status(201).redirect("/users/friendlist")
       } catch {
         console.log("error")
@@ -132,14 +140,11 @@ const UsersController = {
   Deletefriend: async (req, res) => {
     try{
       const users = await User.findOne({'_id': req.session.user._id});
-      let e = users.friends.length;
-      console.log(e);
       const index = users.friends.indexOf(req.body.friendDelId);
-
       if (index > -1) {
         users.friends.splice(index, 1);
       }
-      users.save();
+      await users.save();
       res.status(201).redirect("/users/friendlist")
       } catch (err) {
         console.log(err);

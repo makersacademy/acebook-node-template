@@ -1,9 +1,7 @@
 <h1>All friends</h1>
 <h2>Pending friends of {{ name }} </h2>
 <div id="selected_user">
-  {{#each pending_users}}
-  {{log pending_users}}
-  {{log users}}
+  {{#each pending_friends}}
   PICTURE
   {{this.name}}
   <form action="/users/acceptfriend/{{this._id}}" method="post">
@@ -20,7 +18,7 @@
 <div>
 <h2>Confirmed friends of {{ name }} </h2>
 <div id="selected_user">
-  {{#each users}}
+  {{#each friends}}
   PICTURE
   {{this.name}}
   <form action="/users/deletefriend/{{this._id}}" method="post">
