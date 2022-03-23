@@ -127,15 +127,9 @@ const UsersController = {
       const receivingUser = await User.findOne({'_id': req.session.user._id});
       const requestingUser = await User.findOne({'_id': req.body.friendAccId});
 
-      let index = requestingUser.sent_requests.indexOf(req.session.user._id);
-      if (index > -1) {
-        
-        requestingUser.sent_requests.splice(index, 1)
-      }
-      index = receivingUser.pending_friends.indexOf(req.body.friendAccId);
-      if (index > -1) {
-        receivingUser.pending_friends.splice(index, 1)
-      }
+      this.RemoveIDFromArray(requestingUser.sent_requests, req.session.user._id);
+      this.RemoveIDFromArray(receivingUser.pending_friends, req.body.friendAccId);
+      
       receivingUser.friends.unshift(req.body.friendAccId);
       requestingUser.friends.unshift(req.session.user._id);
 
@@ -152,14 +146,9 @@ const UsersController = {
     try{
       const user = await User.findOne({"_id": req.session.user._id});
       const rejectedFriend = await User.findOne({"_id": req.body.friendRejId})
-      let index = user.pending_friends.indexOf(req.body.friendRejId);
-      if (index > -1) {
-        user.pending_friends.splice(index, 1);
-      }
-      index = rejectedFriend.sent_requests.indexOf(req.session.user._id);
-      if (index > -1) {
-        rejectedFriend.sent_requests.splice(index, 1);
-      }
+
+      this.RemoveIDFromArray(user.pending_friends, req.body.friendRejId);
+      this.RemoveIDFromArray(rejectedFriend.sent_requests, req.session.user._id);
 
       await user.save();
       await rejectedFriend.save();
@@ -175,14 +164,9 @@ const UsersController = {
     try{
       const user = await User.findOne({'_id': req.session.user._id});
       const deletedFriend = await User.findOne({'_id': req.body.friendDelId});
-      let index = user.friends.indexOf(req.body.friendDelId);
-      if (index > -1) {
-        user.friends.splice(index, 1);
-      }
-      index = deletedFriend.friends.indexOf(req.session.user._id);
-      if (index > -1) {
-        deletedFriend.friends.splice(index, 1);
-      }
+      
+      this.RemoveIDFromArray(user.friends, req.body.friendDelId)
+      this.RemoveIDFromArray(deletedFriend.friends, req.session.user._id)
 
       await user.save();
       await deletedFriend.save();
@@ -191,7 +175,14 @@ const UsersController = {
       } catch (err) {
         console.log(err.messages);
     }
-  }  
+  },
+  
+  RemoveIDFromArray: (arr, remove_id) => {
+    let index = arr.indexOf(remove_id);
+      if (index > -1) {
+        arr.splice(index, 1);
+      }
+  }
 };
 
 module.exports = UsersController;
