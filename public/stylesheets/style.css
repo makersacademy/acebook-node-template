@@ -39,7 +39,12 @@ a {
   margin-top: -3%;
 }
 
-#login-button {
+#submit {
+  background-color: #045049;
+  color: azure;
+}
+
+#signup-button:hover {
   background-color: #045049;
   color: azure;
 }
