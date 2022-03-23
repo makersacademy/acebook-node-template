@@ -1,6 +1,11 @@
 <ul class="list-group" id="posts">
   {{#each posts}}
   <li>
+    <div>
+      <p class="h6" id="postedBy"> 
+        <a id="postedByLink" class="link-dark" href="/users/{{this.userObjectId.id}}">{{this.userObjectId.name}}</a>
+      </p>
+    </div>
     {{this.message}}
     <br>
     Posted at: <div id="createdAt">{{this.createdAt}}</div>
