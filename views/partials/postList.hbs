@@ -13,18 +13,25 @@
       <input type="submit" id="submitLike" value="Like">
     </form>
     <p id="numberOfLikes">{{this.likes.length}}</p>
+
     <ul class="comments">
       {{#each comments}}
       <li id="comments">
+        <p class="h6" id="commentedBy"> 
+          <a id="commenter" class="link-dark" href="/users/{{this.commenterId.id}}">{{this.commenterId.name}}</a>
+        </p>
         {{this.message}}
       </li>
       {{/each}}
     </ul>
-      <p id="numberOfComments">Comments: {{this.comments.length}}</p>
-      <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
-       Leave a comment: <input id="commentMessage" type="text" name="commentMessage" value="">
+
+    <p id="numberOfComments">Comments: {{this.comments.length}}</p>
+
+    <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
+      Leave a comment: <input id="commentMessage" type="text" name="commentMessage" value="">
       <input type="submit" id="submitComment" value="Post Comment" onClick="window.location.reload();">
-      </form>
+    </form>
+
   </li>
 
   {{/each}}
