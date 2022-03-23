@@ -8,9 +8,10 @@ const PostsController = {
       find().
       populate('userObjectId').
       populate('comments.commenterId').
+      sort({createdAt:-1}).
       exec(function (err, posts) {
         if (err) throw err;
-        res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user, comments: posts.comments });
+        res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user });
       })
   },
 
