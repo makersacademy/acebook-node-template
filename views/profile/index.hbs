@@ -12,22 +12,32 @@
           
           
           <p id="email" class="text-dark">{{user.email}}</p>
-          <br>
-          <p>Title:</p>
+          
+          <div class="mb-4">
+          <p class="fw-bold">Title:</p>
           <p id="title" class="text-dark">{{user.title}}</p>
+          </div>
 
-          <p>Full name:</p>
+          <div class="mb-4">
+          <p class="fw-bold">Full name:</p>
           <p id="fullName" class="text-dark">{{user.firstName}}
             {{user.surName}}</p>
+          </div>
 
-          <p>Pronouns:</p>
+          <div class="mb-4">
+          <p class="fw-bold">Pronouns:</p>
           <p id="pronouns" class="text-dark">{{user.pronouns}}</p>
+          </div>
 
-          <p>Bio:</p>
+          <div class="mb-4">
+          <p class="fw-bold">Bio:</p>
           <p id="bio" class="text-dark">{{user.bio}}</p>
+          </div>
         
-          <p>Location:</p>
+          <div class="mb-4">
+          <p class="fw-bold">Location:</p>
           <p id="location" class="text-dark">{{user.location}}</p>
+          </div>
         
           <form action='/profile/editProfile' method='get'>
               <input class="btn btn-primary" type="submit" value="Edit Profile">
