@@ -98,7 +98,7 @@
               <span class="name">{{this.user.firstName}}</span>
               <small>{{this.comment}}</small>
               <div class="d-flex flex-row align-items-center status">
-                <small><a href="#" > Like </a></small>&nbsp<small> <i class="fa-regular fa-clock"> </i> {{this.timeFormat}} </small>
+              <small> <i class="fa-regular fa-clock"> </i> {{this.timeFormat}} </small>
 
       {{#contains this.commentLikesArray ../../session.user._id }}
       <form id="comment-like-form" method="post" action="comment/unlike">
