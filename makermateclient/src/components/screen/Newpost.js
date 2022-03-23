@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 const NewPost = () => {
     const navigation = useNavigate()
     const [message, setMessage] = useState('')
+    const user = localStorage.getItem("user")
 
     const postdata = () => {
         fetch("/posts", {
@@ -12,7 +13,8 @@ const NewPost = () => {
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                message: message
+                message: message,
+                userImage: user.userImage
             })
     }).then(res => res.json())
     .then(data =>{

@@ -26,6 +26,7 @@ const SessionsController = {
           console.log({message:"signed in successfuly"})
           req.session.user = savedUser;
           res.json({user:req.session.user});
+          console.log(req.session.user)
         }else{
           return res.status(422).json({error: "invalid email or password"})
         }

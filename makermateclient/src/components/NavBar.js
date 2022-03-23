@@ -15,6 +15,7 @@ const navigate = useNavigate()
     <li><Link to="/timeline">Timeline</Link></li>
     <li><Link to="/signin">Sign In</Link></li>
     <li><Link to="/signup">Sign Up</Link></li>
+    <li><Link to="/photos">Photos</Link></li>
     <button className="btn waves-effect waves-light #1976d2 blue darken-2"
     onClick={()=> {
       localStorage.clear()

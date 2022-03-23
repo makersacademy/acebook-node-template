@@ -10,7 +10,7 @@ const Timeline = () => {
       }
     }).then(res=>res.json())
       .then(result=>{
-        console.log(result)
+        console.log(result.posts)
       setData(result.posts)
     })
   }, [])
@@ -19,16 +19,30 @@ const Timeline = () => {
 
 return(
   <div>
-    {data.map(item => {
-      return (
-      <>
-      <h5>{item.user}</h5>
-      <h5>{item.message}</h5>
-      <h5>{item.createdAt}</h5>
-      <h5>{item.comments}</h5>
-      </>
-      )
-      })}
+    {
+      data.map(post=>{
+        return(
+          <div key={post._id}>
+              <h5>{post.message}</h5>
+              <img src={post.userImage} alt="photo"/>
+              <h4>{post.createdAt}</h4>
+              <h3>{post.user}</h3>
+              <div>
+              {
+              post.comments.map(comment=>{
+                return(
+                  <div key={comment._id}>
+                  <h6>{comment.note}</h6>
+                  </div>
+                )
+              })
+              }
+              </div>
+           
+          </div>
+        )
+      })
+    }
   </div>
 )}
 

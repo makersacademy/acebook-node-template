@@ -7,6 +7,7 @@ import Timeline from './components/screen/Timeline'
 import Signin from './components/screen/Signin'
 import Signup from './components/screen/Signup'
 import NewPost from './components/screen/Newpost'
+import Photo from './components/screen/Photo'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/newpost" element={<NewPost />} />
+        <Route path="/photos" element={<Photo />} />
       </Routes>
 </BrowserRouter>
   );

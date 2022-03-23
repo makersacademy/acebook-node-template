@@ -20,6 +20,7 @@ const PostsController = {
 
     const userName = req.session.user.firstName + " " + req.session.user.lastName
     const userImage = req.session.user.image.imgPath;
+    console.log(userImage)
     const post = new Post({message: req.body.message, user: userName, userImage: userImage });
     post.save((err) => {
       if (err) {
