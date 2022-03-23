@@ -4,15 +4,6 @@ const NewPost = () => {
     const [message, setMessage] = useState('')
     const user = localStorage.getItem("user")
 
-
-    const loggedIn = () => {
-        if(user){
-            return true
-        } else {
-            return false
-        }
-    }
-
     const postdata = () => {
         fetch("/posts", {
             method: 'post',
@@ -29,7 +20,7 @@ const NewPost = () => {
     })
 }
 
-if(loggedIn() === true){
+if(user){
     return (
       <div>
         <div className="container" 
