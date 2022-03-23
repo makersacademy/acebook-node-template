@@ -66,8 +66,6 @@ const UsersController = {
       userViewing = true 
     }
 
-    console.log("User Viewing", userViewing)
-
     User.findOne({_id: req.params.id })
       .then((user) => { 
         if (!user) { return res.status(404).send("Not Found") } 

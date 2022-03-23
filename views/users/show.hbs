@@ -10,7 +10,6 @@
 {{#unless userIsFriends}}
     {{#unless userViewing }}
         <form id="add-friend-form" class="form-group" action="/users/{{user.id}}" method="POST">
-            {{!-- <input type="hidden" id="user" value="{{user.id}}"> --}}
             <input id="add-friend" type="submit" class="btn btn-primary" value="Add Friend">
         </form>
     {{/unless}}

@@ -7,11 +7,7 @@ describe("Add Friend", () => {
       cy.get("#new-post-form").submit();
   
       // Sign another user up
-      cy.get("#signup").click();
-      cy.get("#email").type("someone@example.com");
-      cy.get("#password").type("password");
-      cy.get("#username").type("someone123");
-      cy.get("#submit").click();
+      cy.signUpSecondUser()
 
       cy.get("#postedByLink").first().click();
 
@@ -19,11 +15,10 @@ describe("Add Friend", () => {
   
   })
 
-  it('user can not add themselves as a friend', () => {
+  it('user can not add themself as a friend', () => {
     cy.signUp();
     cy.get("#view-profile").click();
     cy.get('#add-friend').should('not.exist');
-
   })
 
   it('user can not add a friend if friends already', () => {
@@ -34,15 +29,11 @@ describe("Add Friend", () => {
     cy.get("#new-post-form").submit();
 
     // Sign another user up
-    cy.get("#signup").click();
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#username").type("someone123");
-    cy.get("#submit").click();
+    cy.signUpSecondUser()
 
     cy.get("#postedByLink").first().click();
     cy.get("#add-friend-form").submit();
-    cy.get('#add-friend').should('not.exist');
+    cy.get('#add-friend-form').should('not.exist');
 
 })
 
