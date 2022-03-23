@@ -8,17 +8,23 @@ const saltRounds = 10;
 const UsersController = {
 
   Update:(req, res) => {
-    console.log("In Update Controller for User")
-    //req.session.user._id
-    console.log("passed userid", req.params.id)
 
-    User.findOne({_id: req.params.id })
+    User.findOne({_id: req.session.user._id })
     .then((user) => { 
       if (!user) { return res.status(404).send("Not Found") } 
 
       user.friends.push(req.params.id)
       user.save()
+
+      User.findOne({_id: req.params.id })
+      .then((other_user) => { 
+      if (!other_user) { return res.status(404).send("Not Found") } 
+
+      other_user.friends.push(req.session.user._id)
+      other_user.save()
+      })
       
+      res.status(201).redirect(`/users/${req.params.id}`);
     })
     .catch((err) => {
       res.status(404).send(`Error - ${err}`)
