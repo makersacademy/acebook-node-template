@@ -6,6 +6,13 @@
         <h5 class="card-title">Name of poster here</h5>
         <p class="card-text">{{this.message}}</p>
         {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+    <div>
+      <p class="h6" id="postedBy"> 
+        <a id="postedByLink" class="link-dark" href="/users/{{this.userObjectId.id}}">{{this.userObjectId.name}}</a>
+      </p>
+    </div>
+    {{this.message}}
+    <br>
     Posted at: <div id="createdAt">{{this.createdAt}}</div>
           <svg class="bi" width="32" height="32" fill="danger">
                 <use xlink:href="bootstrap-icons.svg#heart-fill"/>

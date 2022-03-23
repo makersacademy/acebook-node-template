@@ -3,13 +3,15 @@ const User = require('../models/user')
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
-      if (err) {
-        throw err
-      }
 
-      res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user, comments: posts.comments });
-    });
+    Post.
+      find().
+      populate('userObjectId').
+      populate('comments.commenterId').
+      exec(function (err, posts) {
+        if (err) throw err;
+        res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user, comments: posts.comments });
+      })
   },
 
   New: (req, res) => {
@@ -19,7 +21,6 @@ const PostsController = {
   Update: (req, res) => {
 
     Post.findOne({ _id: req.params.id }).then((post) => {
-      // const comments = post.comments
       if (req.query.like == "true"){
         if (post.likes.includes(req.session.user._id) != true){
           post.likes.push(req.session.user._id)
