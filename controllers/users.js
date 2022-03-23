@@ -6,6 +6,26 @@ const bcrypt = require("bcrypt")
 const saltRounds = 10;
 
 const UsersController = {
+
+  Update:(req, res) => {
+    console.log("In Update Controller for User")
+    //req.session.user._id
+    console.log("passed userid", req.params.id)
+
+    User.findOne({_id: req.params.id })
+    .then((user) => { 
+      if (!user) { return res.status(404).send("Not Found") } 
+
+      user.friends.push(req.params.id)
+      user.save()
+      
+    })
+    .catch((err) => {
+      res.status(404).send(`Error - ${err}`)
+    })
+
+  },
+
   Index: (req, res) => {
     
     if (!req.query.q){ 

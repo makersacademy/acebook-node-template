@@ -65,8 +65,7 @@ I want to log out
 ~~~~
 As a user of Acebook
 In order to show my friendship
-user as a friendI would like to add a I wo
-
+user as a friendI would like to add a I would like to 
 ~~~~
 As a user of Acebook
 In order to see the friends of one of my friends

@@ -8,7 +8,11 @@
     <input type="submit" class="btn btn-primary" value="Upload Photo">
 </form>
 
-<input id="add-friend" type="button" class="btn btn-primary" value="Add Friend">
+<form class="form-group" action="/users/{{user.id}}" method="POST">
+    {{!-- <input type="hidden" id="user" value="{{user.id}}"> --}}
+    <input id="add-friend" type="submit" class="btn btn-primary" value="Add Friend">
+</form>
+
 
 <h1>Timeline</h1>
 {{> postList }}
