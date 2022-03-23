@@ -13,6 +13,10 @@ const usersRouter = require("./routes/users");
 
 const commentRouter = require("./routes/comment")
 const profileRouter = require("./routes/profile")
+const hbshelpers = require('handlebars-helpers')();
+const hbs = require("hbs");
+
+hbs.registerHelper(hbshelpers)
 
 const app = express();
 
@@ -67,7 +71,7 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 
 app.use("/users", usersRouter);
-app.use("/comment", commentRouter); 
+app.use("/comment", sessionChecker, commentRouter); 
 
 app.use("/users",usersRouter);
 app.use("/profile", sessionChecker, profileRouter);

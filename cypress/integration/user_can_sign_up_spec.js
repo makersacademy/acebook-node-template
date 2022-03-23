@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // describe("Registration", () => {
 //   it("A user signs up and is redirected to sign in", () => {
 //     // sign up
@@ -10,6 +11,20 @@
 
 //     cy.url().should("include", "/sessions/new");
 //   });
+=======
+describe("Registration", () => {
+  it("A user signs up and is redirected to posts", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#email").type("sign_in@example.com");
+    cy.get("#password").type("password");
+    cy.get('#firstName').type("first name");
+    cy.get('#surName').type('surname');
+    cy.get("#submit").click();
+
+    cy.url().should("include", "/posts");
+  });
+>>>>>>> master
 
 //   it("should return a message if the email is already in use", () => {
 //     cy.visit("/users/new");
