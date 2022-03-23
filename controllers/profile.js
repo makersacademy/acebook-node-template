@@ -2,12 +2,17 @@ const User = require("../models/user");
 
 const ProfileController = {
     Index: (req, res) => {
+        User.findOne({_id: req.session.user._id}).exec().then((user) => {
+            res.render("profile/index", {user: user});
+        });
         
-        res.render("profile/index", {});
     },
 
     Edit: (req, res) => {
-        res.render("editProfile/index");
+        User.findOne({_id: req.session.user._id}).exec().then((user) => {
+            res.render("editProfile/index", {user: user});
+
+        });
       },
 
     Update: (req, res) => {
