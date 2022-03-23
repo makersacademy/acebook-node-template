@@ -9,11 +9,14 @@ const UserSchema = new mongoose.Schema({
   password: String,
   bio: String,
   image: String,
-  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   defaultImage: {
     type: String,
     default: 'download.png'
   }
+  sent_requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  pending_friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+
 });
 
 

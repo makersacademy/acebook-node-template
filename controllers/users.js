@@ -74,13 +74,18 @@ const UsersController = {
 
   UserList: async (req, res) => {
     try{
-    const current = await User.findOne({"_id": req.session.user._id})
-    const users = await User.where({"_id": {$ne: req.session.user._id}}).where({"_id": {$nin: current.friends}})
+      const current = await User.findOne({"_id": req.session.user._id}).populate('sent_requests')
+      const users = await User.where({"_id": {$ne: req.session.user._id}})
+                            .and({"_id": {$nin: current.sent_requests}})
+                            .and({"_id": {$nin: current.friends}})
+                            .and({"_id": {$nin: current.pending_friends}})
 
-      res.render("users/userlist", { users: users,
-          title: "Acebook Users",
-          name: req.session.user.name,
-          username: req.session.user.username
+      res.render("users/userlist", { 
+        users: users,
+        awaiting_approval: current.sent_requests,
+        title: "Acebook Users",
+        name: req.session.user.name,
+        username: req.session.user.username
       });
     } catch {
       console.log("error")
@@ -90,20 +95,24 @@ const UsersController = {
   FriendList: async (req, res) => {
     try{
     const current = await User.findOne({"_id": req.session.user._id})
-    const users = await User.where({"_id": {$in: current.friends}}).populate('user')
+    const friends = await User.where({"_id": {$in: current.friends}}).populate('user')
+    const awaiting_response = await User.where({"_id": {$in: current.sent_requests}}).populate('user')
+    const pending_friends = await User.where({"_id": {$in: current.pending_friends}}).populate('user')
 
-      res.render("users/friendlist", { users: users,
+      res.render("users/friendlist", { 
+          friends: friends,
+          pending_friends: pending_friends,
+          awaiting_response: awaiting_response,
           title: "Acebook Users",
           name: req.session.user.name,
           username: req.session.user.username
       });
-    } catch {
-      console.log("error")
+    } catch (err) {
+      console.log(err.messages);
     }
   },
 
   Profile: (req, res) => {
-    // console.log(req.session.user._id);
     res.render("users/profile", { 
       title: "Acebook",
       name: req.session.user.name,
@@ -113,32 +122,81 @@ const UsersController = {
 
   Addfriend: async (req, res) => {
     try{
-      const users = await User.findOne({'_id': req.session.user._id});
-      users.friends.unshift(req.body.friendReqId);
-      users.friends = users.friends.filter((value,index) => users.friends.indexOf(value) === index);
-      users.save();
+      const requestingUser = await User.findOne({'_id': req.session.user._id});
+      const receivingUser = await User.findOne({'_id': req.body.friendReqId});
+      requestingUser.sent_requests.unshift(req.body.friendReqId)
+      receivingUser.pending_friends.unshift(req.session.user._id);
+      requestingUser.sent_requests = requestingUser.sent_requests.filter((value,index) => requestingUser.sent_requests.indexOf(value) === index);
+      receivingUser.pending_friends = receivingUser.pending_friends.filter((value,index) => receivingUser.pending_friends.indexOf(value) === index);
+      await requestingUser.save();
+      await receivingUser.save();
       res.status(201).redirect("/users/userlist")
       } catch {
         console.log("error")
     }
   },
 
-  Deletefriend: async (req, res) => {
+  Acceptfriend: async (req, res) => {
     try{
-      const users = await User.findOne({'_id': req.session.user._id});
-      let e = users.friends.length;
-      console.log(e);
-      const index = users.friends.indexOf(req.body.friendDelId);
+      const receivingUser = await User.findOne({'_id': req.session.user._id});
+      const requestingUser = await User.findOne({'_id': req.body.friendAccId});
 
-      if (index > -1) {
-        users.friends.splice(index, 1);
-      }
-      users.save();
+      this.RemoveIDFromArray(requestingUser.sent_requests, req.session.user._id);
+      this.RemoveIDFromArray(receivingUser.pending_friends, req.body.friendAccId);
+      
+      receivingUser.friends.unshift(req.body.friendAccId);
+      requestingUser.friends.unshift(req.session.user._id);
+
+      await receivingUser.save();
+      await requestingUser.save();
+
       res.status(201).redirect("/users/friendlist")
       } catch (err) {
-        console.log(err);
+        console.log(err.messages)
     }
-  }  
+  },
+
+  Rejectfriend: async (req, res) => {
+    try{
+      const user = await User.findOne({"_id": req.session.user._id});
+      const rejectedFriend = await User.findOne({"_id": req.body.friendRejId})
+
+      this.RemoveIDFromArray(user.pending_friends, req.body.friendRejId);
+      this.RemoveIDFromArray(rejectedFriend.sent_requests, req.session.user._id);
+
+      await user.save();
+      await rejectedFriend.save();
+
+      res.status(201).redirect("/users/friendlist")
+      
+    } catch (err) {
+      console.log(err.messages)
+    }
+  },
+
+  Deletefriend: async (req, res) => {
+    try{
+      const user = await User.findOne({'_id': req.session.user._id});
+      const deletedFriend = await User.findOne({'_id': req.body.friendDelId});
+      
+      this.RemoveIDFromArray(user.friends, req.body.friendDelId)
+      this.RemoveIDFromArray(deletedFriend.friends, req.session.user._id)
+
+      await user.save();
+      await deletedFriend.save();
+
+      res.status(201).redirect("/users/friendlist")
+      } catch (err) {
+        console.log(err.messages);
+    }
+  },
+  
+  RemoveIDFromArray: (arr, remove_id) => {
+    let index = arr.indexOf(remove_id);
+      if (index > -1) {
+        arr.splice(index, 1);
+      }
+  }
 };
 
 module.exports = UsersController;
