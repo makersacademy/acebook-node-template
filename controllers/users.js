@@ -18,8 +18,7 @@ const UsersController = {
       if (!user) { return res.status(404).send("Not Found") } 
 
       if (user.friends.includes(req.params.id)){
-        // Already friends
-        return res.status(201).redirect(`/users/${req.params.id}`)
+        return res.status(201).redirect(`/users/${req.params.id}`) // Already friends
       }
 
       user.friends.push(req.params.id)
@@ -61,27 +60,27 @@ const UsersController = {
   Show: (req, res) => {
     var userViewing = false
     var userIsFriends = false
-
+    
     if (req.session.user._id == req.params.id) {
       userViewing = true 
     }
 
-    User.findOne({_id: req.params.id })
-      .then((user) => { 
+    User.
+      findOne({_id: req.params.id }).
+      populate('friends').
+      exec (function (err, user){
+        if (err) throw err;
         if (!user) { return res.status(404).send("Not Found") } 
-
         if (user.friends.includes(req.session.user._id)){
           userIsFriends = true
         }
 
         Post.find().where('_id').in(user.posts).exec((err, posts) => {
-          res.render("users/show", { user: user, posts: posts, userViewing : userViewing, userIsFriends: userIsFriends });
+          if (err) throw err;
+          res.render("users/show", { user: user, posts: posts, users: user.friends , userViewing : userViewing, userIsFriends: userIsFriends });
         });
-        
       })
-      .catch((err) => {
-        res.status(404).send(`Error - ${err}`)
-      })
+
   },
 
   Upload: (req, res) => {

@@ -1,18 +1,29 @@
 <h1 id="profile" class="profile">Profile of {{user.name}}</h1>
 
-<img id="profile-pic" src="data:image/{{user.profilePic.contentType}};base64,{{base64 user.profilePic.data}}" class="shrinkToFit" width="360" height="360">
-
-<h4>Upload Image</h4>
-<form class="form-group" action="/users/upload/" enctype="multipart/form-data" method="POST">
-    <input type="file" class="form-control-file" name="image" accept="image/*">
-    <input type="submit" class="btn btn-primary" value="Upload Photo">
-</form>
+<table>
+  <tr>
+    <td>
+    <div>
+      <img id="profile-pic" src="data:image/{{user.profilePic.contentType}};base64,{{base64 user.profilePic.data}}" class="shrinkToFit" width="360" height="360">
+      <h4>Upload Image</h4>
+      <form class="form-group" action="/users/upload/" enctype="multipart/form-data" method="POST">
+          <input type="file" class="form-control-file" name="image" accept="image/*">
+          <input type="submit" class="btn btn-primary" value="Upload Photo">
+      </form>
+    </div>
+    </td>
+    <td valign="top">
+      <h4>Friends</h4>
+      {{> userList }}
+    </td>
+  </tr>
+</table>
 {{#unless userIsFriends}}
-    {{#unless userViewing }}
-        <form id="add-friend-form" class="form-group" action="/users/{{user.id}}" method="POST">
-            <input id="add-friend" type="submit" class="btn btn-primary" value="Add Friend">
-        </form>
-    {{/unless}}
+  {{#unless userViewing }}
+    <form id="add-friend-form" class="form-group" action="/users/{{user.id}}" method="POST">
+        <input id="add-friend" type="submit" class="btn btn-primary" value="Add Friend">
+    </form>
+  {{/unless}}
 {{/unless}}
 <h1>Timeline</h1>
 {{> postList }}
