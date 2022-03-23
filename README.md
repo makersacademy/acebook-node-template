@@ -4,6 +4,18 @@
 
 ~~~~
 As a user of Acebook
+So I can see who commented
+I want to be able to see who commented on a post
+~~~~
+
+~~~~
+As a user of Acebook
+So I can know who is the owner of a post
+I want to be able to see who posted the post
+~~~~
+
+~~~~
+As a user of Acebook
 So I can know how users are feeling
 I want to be able to view their posts
 ~~~~
@@ -93,7 +105,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/b/sOMiZuH4/makerverse
 
 ## Quickstart
 
