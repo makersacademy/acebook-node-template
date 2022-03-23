@@ -1,5 +1,5 @@
 <h2>Register A Profile</h2>
-<form id="new-user-form" action="/users" method="post">
+<form id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
   <label for="name">Name: </label>
   <input id="name" type="text" name="name" "required=required" value="">
   <label for="username">Username: </label>
@@ -8,6 +8,8 @@
   <input id="email" type="email" name="email" required value="">
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" required value="">
+  <label for="file">Profile-Image </label>
+  <input id="file" type="file" name="file" >
   <input id="submit" type="submit" value="Submit">
 </form>
 
