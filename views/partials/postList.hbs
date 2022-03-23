@@ -14,13 +14,10 @@
     {{this.message}}
     <br>
     Posted at: <div id="createdAt">{{this.createdAt}}</div>
-          <svg class="bi" width="32" height="32" fill="danger">
-                <use xlink:href="bootstrap-icons.svg#heart-fill"/>
             <form id="likeForm" action="/posts/{{this.id}}?like=true" method="post">
                 <input type="submit" id="submitLike" value="Like">
-                <p id="numberOfLikes">{{this.likes.length}} </p>
+                <p id="numberOfLikes">{{this.likes.length}}</p>
             </form>
-          </svg>
 
     <div class="accordion accordion-flush" id="accordionFlushExample{{this.id}}" style="width: 20rem; display: inline-block;">
       <div class="accordion-item" id="accordian-item{{this.id}}">
