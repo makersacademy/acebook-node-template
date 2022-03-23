@@ -61,24 +61,24 @@ const UsersController = {
     var userViewing = false
     var userIsFriends = false
     
-    if (req.session.user._id == req.params.id) {
+    const sessionUserId = typeof(req.session.user) == "undefined"  ? 0 : req.session.user._id
+
+    if (sessionUserId == req.params.id) {
       userViewing = true 
     }
 
     User.
       findOne({_id: req.params.id }).
       populate('friends').
+      populate('posts').
       exec (function (err, user){
         if (err) throw err;
         if (!user) { return res.status(404).send("Not Found") } 
-        if (user.friends.includes(req.session.user._id)){
+        if (user.friends.includes(sessionUserId)){
           userIsFriends = true
         }
-
-        Post.find().where('_id').in(user.posts).exec((err, posts) => {
-          if (err) throw err;
-          res.render("users/show", { user: user, posts: posts, users: user.friends , userViewing : userViewing, userIsFriends: userIsFriends });
-        });
+        console.log("Posts", user.posts)
+        res.render("users/show", { user: user, posts: user.posts, users: user.friends , userViewing : userViewing, userIsFriends: userIsFriends });
       })
 
   },
