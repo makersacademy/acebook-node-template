@@ -16,7 +16,13 @@ describe("Profile page", () => {
 
     // profile page
     cy.visit("/profile");
-    cy.get("#fullName").should("contain", "Some One");
+    cy.get("#fullName").should("contain", "Some");
+    cy.get("#fullName").should("contain", "One");
+
+    cy.get("#email").should("contain", "someone@example.com");
+    cy.get("#bio").should("contain", "Please update your bio");
+    cy.get("#location").should("contain", "Please update your location");
+
   });
 });
 

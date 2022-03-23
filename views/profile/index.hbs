@@ -11,17 +11,17 @@
         <h1>{{session.user.firstName}}'s Profile</h1>
         
           <p>Full name:</p>
-          <p id="fullName"class="text-dark">{{session.user.firstName}}
+          <p id="fullName" class="text-dark">{{session.user.firstName}}
             {{session.user.surName}}</p>
         
           <p>Email:</p>
-          <p class="text-dark">{{session.user.email}}</p>
+          <p id="email" class="text-dark">{{session.user.email}}</p>
         
           <p>Bio:</p>
-          <p class="text-dark">{{session.user.bio}}</p>
+          <p id="bio" class="text-dark">{{session.user.bio}}</p>
         
           <p>Location:</p>
-          <p class="text-dark">{{session.user.location}}</p>
+          <p id="location" class="text-dark">{{session.user.location}}</p>
         
           <form action='/profile/editProfile' method='get'>
               <input class="btn btn-primary" type="submit" value="Edit Profile">
