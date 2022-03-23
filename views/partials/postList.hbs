@@ -19,8 +19,9 @@
       <li id="comments">
         <p class="h6" id="commentedBy"> 
           <a id="commenter" class="link-dark" href="/users/{{this.commenterId.id}}">{{this.commenterId.name}}</a>
+           {{this.message}}
         </p>
-        {{this.message}}
+       
       </li>
       {{/each}}
     </ul>
