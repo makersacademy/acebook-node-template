@@ -8,25 +8,26 @@
   <body>
     <div class="row justify-content-start">
       <div class="col-4">
-        <h1>{{session.user.firstName}}'s Profile</h1>
-
-          <p id="email" class="text-dark">{{session.user.email}}</p>
+        <h1>{{user.firstName}}'s Profile</h1>
+          
+          
+          <p id="email" class="text-dark">{{user.email}}</p>
           <br>
           <p>Title:</p>
-          <p id="title" class="text-dark">{{session.user.title}}</p>
+          <p id="title" class="text-dark">{{user.title}}</p>
 
           <p>Full name:</p>
-          <p id="fullName" class="text-dark">{{session.user.firstName}}
-            {{session.user.surName}}</p>
+          <p id="fullName" class="text-dark">{{user.firstName}}
+            {{user.surName}}</p>
 
           <p>Pronouns:</p>
-          <p id="pronouns" class="text-dark">{{session.user.pronouns}}</p>
+          <p id="pronouns" class="text-dark">{{user.pronouns}}</p>
 
           <p>Bio:</p>
-          <p id="bio" class="text-dark">{{session.user.bio}}</p>
+          <p id="bio" class="text-dark">{{user.bio}}</p>
         
           <p>Location:</p>
-          <p id="location" class="text-dark">{{session.user.location}}</p>
+          <p id="location" class="text-dark">{{user.location}}</p>
         
           <form action='/profile/editProfile' method='get'>
               <input class="btn btn-primary" type="submit" value="Edit Profile">
