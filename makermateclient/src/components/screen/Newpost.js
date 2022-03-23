@@ -6,6 +6,15 @@ const NewPost = () => {
     const [message, setMessage] = useState('')
     const user = localStorage.getItem("user")
 
+
+    const loggedIn = () => {
+        if(user){
+            return true
+        } else {
+            return false
+        }
+    }
+
     const postdata = () => {
         fetch("/posts", {
             method: 'post',
@@ -24,10 +33,17 @@ const NewPost = () => {
     })
 }
 
+if(loggedIn() === true){
     return (
-      
       <div>
-      <h1>NewPostPage</h1>
+        <div className="container" 
+            style={{
+                margin: "30px auto",
+                maxWidth: "500px",
+                padding: "20px",
+                textAlign: "center"
+            }}>
+      <h4>New Post</h4>
         <div className="row">
          <form className="col s12">
             <div className="row">
@@ -47,16 +63,11 @@ const NewPost = () => {
         >
         Post Your Post
     </button>
+    </div>
   </div>
     </div>
-    
-    )
+            )
+        }
   }
   
   export default NewPost
-
-
-
-
-  // value={firstName}
-                // onChange={(e)=>setFirstName(e.target.value)}

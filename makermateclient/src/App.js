@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './components/NavBar'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/screen/Home'
 import Profile from './components/screen/Profile'
 import Timeline from './components/screen/Timeline'
@@ -19,8 +19,12 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/timeline" element={<Timeline />} />
-        <Route path="/newpost" element={<NewPost />} />
+        <Route path="/timeline" element={
+        <div>
+            <NewPost />
+            <Timeline />
+        </div>}
+        />
         <Route path="/photos" element={<Photo />} />
       </Routes>
 </BrowserRouter>
@@ -28,3 +32,4 @@ function App() {
 }
 
 export default App;
+

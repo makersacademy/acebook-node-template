@@ -39,6 +39,13 @@ const Signup = () => {
 
   return (
     <div>
+      <div className="container" 
+            style={{
+                margin: "30px auto",
+                maxWidth: "500px",
+                padding: "20px",
+                textAlign: "center"
+            }}>
      <div className="mycard">
        <div className="card auth-card input-field">
        <h2>Maker Mate</h2>
@@ -75,6 +82,7 @@ const Signup = () => {
           <Link to="/signin">Already have an account?</Link>
         </h5>
        </div>
+      </div>
       </div>
    </div>
   )
