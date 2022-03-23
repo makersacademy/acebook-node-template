@@ -1,7 +1,7 @@
 body {
   padding: 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: azure;
+  background-color: #04504817;
 }
 
 a {
@@ -23,14 +23,18 @@ a {
   display: inline-block;
 }
 
-.title {
+#title {
   color:#045049;
   font-size: 100px;
   /* font-family: 'Fantasy', 'copperplate'; */
   /* font-family: 'cursive'; */
   font-family: 'monospace', 'monaco';
   /* margin-left: 110%; */
-  margin-top: 30%;
+  margin-top: 15%;
+}
+
+#login-button {
+  background-color: #045049;
 }
 
 #navBar {
