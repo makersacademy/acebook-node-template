@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 
 const NewPost = () => {
-    const navigation = useNavigate()
     const [message, setMessage] = useState('')
     const user = localStorage.getItem("user")
 
@@ -27,9 +25,7 @@ const NewPost = () => {
             })
     }).then(res => res.json())
     .then(data =>{
-        console.log(data)
         console.log('Posted Sucessfully')
-        navigation('/timeline')
     })
 }
 
