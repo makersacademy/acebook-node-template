@@ -18,13 +18,11 @@
     </td>
   </tr>
 </table>
-{{#unless userIsFriends}}
-  {{#unless userViewing }}
-    <form id="add-friend-form" class="form-group" action="/users/{{user.id}}" method="POST">
-        <input id="add-friend" type="submit" class="btn btn-primary" value="Add Friend">
-    </form>
-  {{/unless}}
-{{/unless}}
+{{#if showAddFriend}}
+  <form id="add-friend-form" class="form-group" action="/users/{{user.id}}" method="POST">
+      <input id="add-friend" type="submit" class="btn btn-primary" value="Add Friend">
+  </form>
+{{/if}}
 <h1>Timeline</h1>
 {{> postList }}
 

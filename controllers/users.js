@@ -58,13 +58,14 @@ const UsersController = {
   },
 
   Show: (req, res) => {
-    var userViewing = false
-    var userIsFriends = false
-    
-    const sessionUserId = typeof(req.session.user) == "undefined"  ? 0 : req.session.user._id
+    var showAddFriend = true
 
-    if (sessionUserId == req.params.id) {
-      userViewing = true 
+    // this allows viewing of a profile when not logged in
+    const sessionUserId = typeof(req.session.user) == "undefined"  ? 0 : req.session.user._id
+    console.log("Session User ID", sessionUserId)
+    console.log("User Id to Friend", req.params.id)
+    if (sessionUserId == req.params.id || sessionUserId == 0) {
+      showAddFriend = false
     }
 
     User.
@@ -74,11 +75,13 @@ const UsersController = {
       exec (function (err, user){
         if (err) throw err;
         if (!user) { return res.status(404).send("Not Found") } 
-        if (user.friends.includes(sessionUserId)){
-          userIsFriends = true
-        }
-        console.log("Posts", user.posts)
-        res.render("users/show", { user: user, posts: user.posts, users: user.friends , userViewing : userViewing, userIsFriends: userIsFriends });
+
+        user.friends.forEach((friend) => {
+          if (friend.id == sessionUserId){showAddFriend = false}
+        })
+ 
+        console.log(showAddFriend)
+        res.render("users/show", { user: user, posts: user.posts, users: user.friends , showAddFriend : showAddFriend });
       })
 
   },

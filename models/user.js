@@ -6,8 +6,8 @@ const UserSchema = new mongoose.Schema({
   username: String,
   name: String,
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
-  //posts: Array,
   friends: Array,
+  //friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   profilePic:{data:Buffer,contentType: String},
 })
 
