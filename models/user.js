@@ -8,16 +8,11 @@ const UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   bio: String,
-<<<<<<< HEAD
   image: String,
   defaultImage: {
     type: String,
     default: 'download.png'
   }
-=======
-
-  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
->>>>>>> master
 });
 
 UserSchema.virtual('imagePath').get(function() {
