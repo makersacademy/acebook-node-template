@@ -1,3 +1,5 @@
+
+
 // ***********************************************************
 // This example support/index.js is processed and
 // loaded automatically before your test files.
@@ -21,6 +23,7 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands')
+require('./signUp.js')
 
 beforeEach(() => {
   // This runs prior to every test and clears all the data
@@ -31,3 +34,4 @@ beforeEach(() => {
 after(() => {
   cy.task('closeDbConnection')
 })
+

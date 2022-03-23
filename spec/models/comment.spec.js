@@ -4,6 +4,7 @@ require("../mongodb_helper");
 const Post = require("../../models/post");
 const User = require("../../models/user");
 const Comment = require("../../models/comment");
+const async = require("hbs/lib/async");
 
 describe("Comment model", () => {
   beforeEach( async () => {
