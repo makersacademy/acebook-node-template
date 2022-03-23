@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const hb = require('hbs');
+const moment = require('moment');
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -52,6 +54,12 @@ const sessionChecker = (req, res, next) => {
     next();
   }
 };
+
+// timeformat
+hb.registerHelper('dateFormat', function (date) {
+  const formatToUse = (arguments[1] && arguments[1].hash && arguments[1].hash.format) || "DD/MM/YYYY, H:MM"
+  return moment(date).format(formatToUse);
+});
 
 // route setup
 app.use("/", homeRouter);

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+
 
 /**
  * Module dependencies.
@@ -13,14 +13,14 @@ var mongoose = require("mongoose");
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || "3000");
+var port = normalizePort(process.env.PORT || "6000");
 app.set("port", port);
 
 /**
  * Connect to MongoDB
  **/
 
-var mongoDbUrl = process.env.MONGODB_URL || "mongodb://localhost/acebook";
+var mongoDbUrl = process.env.MONGODB_URL || "mongodb://127.0.0.1/acebook";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
