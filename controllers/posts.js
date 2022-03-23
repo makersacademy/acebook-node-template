@@ -1,5 +1,6 @@
 const Post = require("../models/post");
-
+const fs = require("fs");
+const path = require('path')
 const PostsController = {
   Index: (req, res) => {
 
@@ -50,6 +51,23 @@ const PostsController = {
       res.status(201).redirect("/posts");
     })
   },
+
+ Images: (req, res) => {
+  let pictures = [] 
+  const dirname = path.join(__dirname, '../public/postImages')
+  fs.readdir(dirname, function(err, images) {
+    if (err) {
+      throw err;
+    }
+    images.forEach(file => {
+      pictures.push(`/postImages/${file}`)
+    });
+    res.render("posts/images", {pictures: pictures})
+  });
+}
+ 
+
+
 };
 
 module.exports = PostsController;
