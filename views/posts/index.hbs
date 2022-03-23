@@ -101,7 +101,7 @@
               <small> <i class="fa-regular fa-clock"> </i> {{this.timeFormat}} </small>
 
       {{#contains this.commentLikesArray ../../session.user._id }}
-      <form id="comment-like-form" method="post" action="comment/unlike">
+      <form id="comment-like-form" method="post" action="/comment/unlike">
         <input type="hidden" name="post_id" value={{this._id}}>
         <button style="text-decoration:none;"  id="like-submit" class="card-link btn btn-link" type="submit" data-bs-toggle="tooltip"
           data-bs-html="true" title="{{#each this.userLikes}}<p>{{this.firstName}} {{this.surName}}</p>{{/each}}">
@@ -115,7 +115,7 @@
 
       {{else}}
 
-      <form id="comment-like-form" method="post" action="comment/like">
+      <form id="comment-like-form" method="post" action="/comment/like">
 
         <button style="text-decoration:none;" id="like-submit" class="btn btn-link" type="submit" data-bs-toggle="tooltip"
           data-bs-html="true" title="{{#each this.likes}}<p>{{this.firstName}} {{this.surName}}</p>{{/each}}">
