@@ -1,10 +1,11 @@
 body {
   padding: 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: azure;
 }
 
 a {
-  color: #00B7FF;
+  color: azure;
 }
 
 .accordion-item {
@@ -20,4 +21,34 @@ a {
 
 #numberOfLikes {
   display: inline-block;
+}
+
+.title {
+  color:#045049;
+  font-size: 100px;
+  /* font-family: 'Fantasy', 'copperplate'; */
+  /* font-family: 'cursive'; */
+  font-family: 'monospace', 'monaco';
+  /* margin-left: 110%; */
+  margin-top: 30%;
+}
+
+#navBar {
+  background-color: #045049;
+}
+
+#home {
+  color: azure;
+}
+#signup {
+  color:azure;
+}
+#login {
+  color: azure;
+}
+#logout {
+  color: azure;
+}
+#view-profile {
+  color: azure;
 }
