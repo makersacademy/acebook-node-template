@@ -9,11 +9,13 @@ const UserSchema = new mongoose.Schema({
   password: String,
   bio: String,
   image: String,
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   defaultImage: {
     type: String,
     default: 'download.png'
   }
 });
+
 
 UserSchema.virtual('imagePath').get(function() {
   if (this.image != null) {
