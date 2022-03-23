@@ -9,7 +9,7 @@ const PostsController = {
         }
         console.log(posts[0])
         res.render("posts/index", { posts: posts });
-        }).populate('user').populate('userLikes');
+        }).populate('user').populate('userLikes').populate({path: "comments", populate: {path: 'user'}});
         
       },
 
