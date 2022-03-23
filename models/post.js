@@ -3,7 +3,6 @@ const moment = require('moment');
 
 const PostSchema = new mongoose.Schema({
   message: String,
-  likes: { type: Number, default: 0 },
   comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
   userLikes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   user: 
@@ -13,9 +12,8 @@ const PostSchema = new mongoose.Schema({
 
 PostSchema.virtual('timeFormat').get(function () {
   const today = new Date()
-  console.log(today)
-  console.log(moment(this.createdAt).isAfter(today))
-  if (moment(this.createdAt).isAfter(today)) {
+  
+  if (moment(this.createdAt).format('DD MMMM') === moment(today).format("DD MMMM")) {
     return moment(this.createdAt).fromNow()
   }
   else{

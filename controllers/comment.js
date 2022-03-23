@@ -8,7 +8,7 @@ const CommentController = {
         throw err;
       }
       res.render("comment/index", { comment: comment, post_id: req.query.id });
-    }).populate('user');
+    }).populate('user').populate('likes');
   },
 
   New: (req, res) => {
@@ -29,6 +29,26 @@ const CommentController = {
 
       res.status(201).redirect(`/posts/`);
     });
+  },
+
+  Like: (req, res) => {
+    Comment.findOne({_id: req.body.post_id}).exec().then((comment) => {
+      comment.likes.push(req.session.user._id)
+      comment.save()
+    }).then(() => {
+      res.status(201).redirect("/posts");
+    })
+
+  },
+
+  Unlike: (req, res) => {
+
+    Comment.findOne({_id: req.body.post_id}).exec().then((comment) => {
+      comment.likes.pull(req.session.user._id)
+      comment.save()
+    }).then(() => {
+      res.status(201).redirect("/posts");
+    })
   },
 };
 
