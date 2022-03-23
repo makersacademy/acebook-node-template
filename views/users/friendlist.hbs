@@ -1,4 +1,24 @@
-<h1>Friends of {{ name }} </h1>
+<h1>All friends</h1>
+<h2>Pending friends of {{ name }} </h2>
+<div id="selected_user">
+  {{#each pending_users}}
+  {{log pending_users}}
+  {{log users}}
+  PICTURE
+  {{this.name}}
+  <form action="/users/acceptfriend/{{this._id}}" method="post">
+    <label for="button">Accept Friend</label>
+    <button type="submit" name="friendAccId" value="{{this._id}}">Accept</button>
+  </form>
+  <br>
+  <form action="/users/rejectfriend/{{this._id}}" method="post">
+    <label for="button">Reject Friend</label>
+    <button type="submit" name="friendRejId" value="{{this._id}}">Reject</button>
+  </form>
+  <br>
+  {{/each}}
+<div>
+<h2>Confirmed friends of {{ name }} </h2>
 <div id="selected_user">
   {{#each users}}
   PICTURE

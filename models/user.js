@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   bio: String,
 
+  pending_friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 

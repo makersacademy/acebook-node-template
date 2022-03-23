@@ -77,8 +77,9 @@ const UsersController = {
     try{
     const current = await User.findOne({"_id": req.session.user._id})
     const users = await User.where({"_id": {$in: current.friends}}).populate('user')
+    const pending_users = await User.where({"_id": {$in: current.pending_friends}}).populate('user')
 
-      res.render("users/friendlist", { users: users,
+      res.render("users/friendlist", { users: users, pending_users: pending_users,
           title: "Acebook Users",
           name: req.session.user.name,
           username: req.session.user.username
@@ -100,13 +101,32 @@ const UsersController = {
   Addfriend: async (req, res) => {
     try{
       const users = await User.findOne({'_id': req.session.user._id});
-      users.friends.unshift(req.body.friendReqId);
-      users.friends = users.friends.filter((value,index) => users.friends.indexOf(value) === index);
+      users.pending_friends.unshift(req.body.friendReqId);
+      users.pending_friends = users.pending_friends.filter((value,index) => users.pending_friends.indexOf(value) === index);
       users.save();
       res.status(201).redirect("/users/userlist")
       } catch {
         console.log("error")
     }
+  },
+
+  Acceptfriend: async (req, res) => {
+    try{
+      const users = await User.findOne({'_id': req.session.user._id});
+      const index = users.pending_friends.indexOf(req.body.friendAccId);
+      if (index > -1) {
+        users.pending_friends.splice(index, 1)
+      }
+      users.friends.unshift(req.body.friendAccId);
+      users.friends = users.friends.filter((value,index) => users.friends.indexOf(value) === index);
+      users.save();
+      res.status(201).redirect("/users/friendlist")
+      } catch {
+        console.log("error")
+    }
+  },
+
+  Rejectfriend: async (req, res) => {
   },
 
   Deletefriend: async (req, res) => {
