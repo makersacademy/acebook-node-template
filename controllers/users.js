@@ -54,12 +54,19 @@ const UsersController = {
   },
 
   Show: (req, res) => {
+    var userViewing = false
+    if (req.session.user._id == req.params.id) {
+      userViewing = true 
+    }
+
+    console.log("User Viewing", userViewing)
+    
     User.findOne({_id: req.params.id })
       .then((user) => { 
         if (!user) { return res.status(404).send("Not Found") } 
 
         Post.find().where('_id').in(user.posts).exec((err, posts) => {
-          res.render("users/show", { user: user, posts: posts });
+          res.render("users/show", { user: user, posts: posts, userViewing : userViewing });
         });
         
       })
