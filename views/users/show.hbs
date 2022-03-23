@@ -2,7 +2,6 @@
 
 <img id="profile-pic" src="data:image/{{user.profilePic.contentType}};base64,{{base64 user.profilePic.data}}" class="shrinkToFit" width="360" height="360">
 
-
 <h4>Upload Image</h4>
 <form class="form-group" action="/users/upload/" enctype="multipart/form-data" method="POST">
     <input type="file" class="form-control-file" name="image" accept="image/*">
