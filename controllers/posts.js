@@ -10,7 +10,7 @@ const PostsController = {
       populate('comments.commenterId').
       exec(function (err, posts) {
         if (err) throw err;
-        res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user, comments: posts.comments });
+        res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user });
       })
   },
 
