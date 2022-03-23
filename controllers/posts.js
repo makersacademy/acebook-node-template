@@ -22,7 +22,7 @@ const PostsController = {
       .exec(function(err, posts) {
         if(err) throw err;
         posts.forEach((post) => {
-          console.log(post.user.name);
+          // console.log(post.user.name);
         })
       })
   },
@@ -59,7 +59,7 @@ const PostsController = {
 
   },
   Comment: (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     Post
     .findOneAndUpdate(
       {_id: req.body.postId},

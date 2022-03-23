@@ -35,7 +35,7 @@ const ImagesController = {
       posted_by: req.session.user.email,
       likes: req.body.likes      
     })
-    console.log(image)
+    // console.log(image)
     try {
       const newImage = await image.save()
       res.redirect("/posts")

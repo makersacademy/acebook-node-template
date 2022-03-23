@@ -8,9 +8,9 @@ const ProfileController = {
     .sort({ createdAt: -1})
     posts.forEach((post) => {
           post.postedAt = post.createdAt.toLocaleString();
-          console.log(post.postedAt);
+          // console.log(post.postedAt);
     })
-    console.log(posts);
+    // console.log(posts);
     res.render("profile", {
       posts: posts,
       title: "Acebook",
