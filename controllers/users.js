@@ -149,6 +149,26 @@ const UsersController = {
   },
 
   Rejectfriend: async (req, res) => {
+    try{
+      const user = await User.findOne({"_id": req.session.user._id});
+      const rejectedFriend = await User.findOne({"_id": req.body.friendRejId})
+      let index = user.pending_friends.indexOf(req.body.friendRejId);
+      if (index > -1) {
+        user.pending_friends.splice(index, 1);
+      }
+      index = rejectedFriend.sent_requests.indexOf(req.session.user._id);
+      if (index > -1) {
+        rejectedFriend.sent_requests.splice(index, 1);
+      }
+
+      await user.save();
+      await rejectedFriend.save();
+
+      res.status(201).redirect("/users/friendlist")
+      
+    } catch (err) {
+      console.log(err.messages)
+    }
   },
 
   Deletefriend: async (req, res) => {
