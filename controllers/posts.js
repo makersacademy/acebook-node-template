@@ -58,9 +58,8 @@ const PostsController = {
         })
       })
 
-      
       res.status(201).redirect("/posts");
-      
+   
     });
   },
 };

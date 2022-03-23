@@ -59,11 +59,9 @@ const UsersController = {
 
   Show: (req, res) => {
     var showAddFriend = true
-
     // this allows viewing of a profile when not logged in
     const sessionUserId = typeof(req.session.user) == "undefined"  ? 0 : req.session.user._id
-    console.log("Session User ID", sessionUserId)
-    console.log("User Id to Friend", req.params.id)
+
     if (sessionUserId == req.params.id || sessionUserId == 0) {
       showAddFriend = false
     }
@@ -79,8 +77,7 @@ const UsersController = {
         user.friends.forEach((friend) => {
           if (friend.id == sessionUserId){showAddFriend = false}
         })
- 
-        console.log(showAddFriend)
+
         res.render("users/show", { user: user, posts: user.posts, users: user.friends , showAddFriend : showAddFriend });
       })
 
