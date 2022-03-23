@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container d-flex justify-content-center">
+    <div class="row">
+    <div class="mb-3"><h1>Edit User Profile!</h1></div>
+      <form id="edit-profile-form" action="/profile/updateProfile" method="post">
+
+    <div class="mb-4">
+      <label class="form-label" for="title"><strong>Title:</strong> </label>
+      <input class="form-control" id="title" type="text" name="title" value="{{user.title}}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="firstName"><strong> First Name:</strong></label>
+      <input class="form-control" id="firstName" type="text" name="firstName" value="{{user.firstName}}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="surName"> <strong>Surname:</strong></label>
+      <input class="form-control" id="surName" type="text" name="surName" value="{{user.surName}}">
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label" for="pronouns"><strong>Pronouns:</strong> </label>
+      <input class="form-control" id="pronouns" type="text" name="pronouns" value="{{user.pronouns}}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="bio"><strong>Bio:</strong> </label>
+      <input class="form-control" id="bio" type="text" name="bio" value="{{user.bio}}">
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label" for="location"><strong>Location:</strong> </label>
+      <input class="form-control" id="location" type="text" name="location" value="{{user.location}}">
+    </div>
+
+    <input class="btn btn-primary" id="submit" type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+</body>
+</html>

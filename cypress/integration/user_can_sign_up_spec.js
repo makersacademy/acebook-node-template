@@ -11,18 +11,17 @@ describe("Registration", () => {
     cy.url().should("include", "/posts");
   });
 
-  it("should return a message if the email is already in use", () => {
-    cy.visit("/users/new");
-    cy.get("#email").type("someoneelse@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+//   it("should return a message if the email is already in use", () => {
+//     cy.visit("/users/new");
+//     cy.get("#email").type("someoneelse@example.com");
+//     cy.get("#password").type("password");
+//     cy.get("#submit").click();
 
-    cy.visit("/users/new");
-    cy.get("#email").type("someoneelse@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+//     cy.visit("/users/new");
+//     cy.get("#email").type("someoneelse@example.com");
+//     cy.get("#password").type("password");
+//     cy.get("#submit").click();
 
-    cy.get("#error").should("have.text", "This email is already in use, please try again")
-  });
+//     cy.get("#error").should("have.text", "This email is already in use, please try again")
+//   });
 });
-

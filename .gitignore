@@ -65,3 +65,4 @@ cypress/screenshots
 cypress/videos
 
 .DS_Store
+public/.DS_Store
