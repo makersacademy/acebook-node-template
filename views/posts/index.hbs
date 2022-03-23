@@ -1,3 +1,4 @@
+<a class="temporaryuserlist" href="/users/userlist">ALL USERS</a>
 <h1>Timeline for {{ name }} </h1>
  <h4 class="name">{{user.name}}</h4>
 
@@ -16,6 +17,7 @@
    {{/if}}
   <div id="createdAt">{{this.postedAt}}</div> <br> 
   <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
+    <input type="hidden" name="prevRoute" value="posts">
     <button id="like" name="postId" value="{{this._id}}">Like</button>
   </form> 
   <div id="likecount">{{this.likes}}</div> 

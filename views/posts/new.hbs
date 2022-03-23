@@ -1,12 +1,71 @@
-<h2>Write on your Acebook</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <h2>Write on your Acebook</h2>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <style>
+      div.preview-images > img {
+        width: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div>
+          <form action="/images"
+            method="post"
+            enctype="multipart/form-data">
+            <div class="form-group">
+               <label for="message">Message: </label>
+               <input id="message" type="text" name="message" value=""><br>
+                <input
+                  type="file"
+                  name="image"
+                  id="input-files"
+                  class="form-control-file border"/>
+            </div>
+            <input type="submit" value="Submit">
+          </form>
+          <form action="/posts" method="get">
+            <input type="submit" value="Cancel">
+          </form> 
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div>
+          <div class="preview-images"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+          if (input.files) {
+            let filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+              let reader = new FileReader();
+              reader.onload = function(event) {
+                $($.parseHTML("<img>"))
+                  .attr("src", event.target.result)
+                  .appendTo(placeToInsertImagePreview);
+              };
+              reader.readAsDataURL(input.files[i]);
+            }
+          }
+        };
+        $("#input-files").on("change", function() {
+          imagesPreview(this, "div.preview-images");
+        });
+      });
+    </script>
+  </body>
+</html>
 
-<br> <form action="/images" method="post" enctype="multipart/form-data">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value=""><br>
-  <label>Image</label>
-  <input type="file" name="image"><br>
-  <input type="submit" value="Submit"><br>
-</form> 
-</br>
+
+
 
 

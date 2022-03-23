@@ -1,0 +1,14 @@
+<h1>Friends of {{ name }} </h1>
+<div id="selected_user">
+  {{#each users}}
+  PICTURE
+  {{this.name}}
+  <form action="/users/deletefriend/{{this._id}}" method="post">
+    <label for="button">Delete Friend</label>
+    <button type="submit" name="friendDelId" value="{{this._id}}">Delete</button>
+  </form>
+  <br>
+  {{/each}}
+<div>
+
+<a class="view-profile-link" href="/profile">Profile</a>

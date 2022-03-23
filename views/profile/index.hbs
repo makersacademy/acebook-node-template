@@ -1,0 +1,32 @@
+<h1>All About {{name}} </h1>
+
+<div class="friends">
+  <h2>My friends</h2>
+  <ul>
+  {{#each friends}}
+    <li>
+      PICTURE
+      {{this.name}}
+    </li>
+  {{/each}}
+  </ul>
+  <a href="/users/friendlist">View all friends</a>
+</div>
+<div class="posts" >
+  {{#each posts}}
+  <div><br>
+  {{this.message}}  <br>   
+   {{#if this.imagePath}}
+  <img height="200" src="{{this.imagePath}}"> <br> 
+   {{/if}}
+  <div id="createdAt">{{this.postedAt}}</div> <br> 
+  <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
+    <input type="hidden" name="prevRoute" value="profile">
+    <button id="like" name="postId" value="{{this._id}}">Like</button>
+  </form> 
+  <div id="likecount">{{this.likes}}</div> 
+  </div>
+  <br>
+  {{> comments}}
+  {{/each}}
+<div>
