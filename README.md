@@ -58,8 +58,19 @@ I want to securely log in
 
 ~~~~
 As a user of Acebook
-so I can exit mmy account
+so I can exit my account
 I want to log out
+~~~~
+
+~~~~
+As a user of Acebook
+In order to show my friendship
+user as a friendI would like to add a I wo
+
+~~~~
+As a user of Acebook
+In order to see the friends of one of my friends
+I would like to be able to see the list of friends of one of my friends
 ~~~~
 
 -----------------------
