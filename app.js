@@ -1,4 +1,5 @@
 const createError = require("http-errors");
+const multer = require("multer");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -12,6 +13,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const photosRouter = require("./routes/photos");
 
 const app = express();
 
@@ -19,12 +21,15 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+
+
 
 app.use(
   session({
@@ -54,7 +59,11 @@ const sessionChecker = (req, res, next) => {
     next();
   }
 };
-
+//handlebars helper functions
+//comparator for javascript
+hb.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
+});
 // timeformat
 hb.registerHelper('dateFormat', function (date) {
   const formatToUse = (arguments[1] && arguments[1].hash && arguments[1].hash.format) || "DD/MM/YYYY, H:MM"
@@ -66,6 +75,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/photos", sessionChecker, photosRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

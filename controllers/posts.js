@@ -1,5 +1,8 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const ImageModel = require("../models/image");
+const { response } = require("../app");
+
 
 const PostsController = {
   Index: (req, res) => {
@@ -14,16 +17,18 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const username = req.session.user.firstName + " " + req.session.user.lastName
-    const post = new Post({message: req.body.message, user: username});
-    post.save()
-    .then(element =>{
-      console.log('post saved!')
-      res.json({message: "post saved"})
-    }).catch(err=>{
-      console.log(err)
-      res.json({error: 'error'})
-    })
+
+    const userName = req.session.user.firstName + " " + req.session.user.lastName
+    const userImage = req.session.user.image.imgPath;
+    const post = new Post({message: req.body.message, user: userName, userImage: userImage });
+    post.save((err) => {
+      if (err) {
+        throw err;
+      }
+      console.log(req.body)
+      res.status(201).redirect("/posts");
+    });
+
   },
 
   Comment: async (req, res) =>  {
@@ -67,6 +72,8 @@ const PostsController = {
     res.status(201).redirect('/posts');
     });
   },
+  //image uploads
+
 
   // delete post functionality
   Delete: (req, res) => {
@@ -80,3 +87,10 @@ const PostsController = {
   };
 
 module.exports = PostsController;
+// ImageModel.find((err, photos) => {
+//   if (err) {
+//     throw err;
+//   }
+
+//   res.render("posts/photos", { photos: photos });
+// });
