@@ -2,14 +2,17 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find({}, 'message createdAt likes', {sort: {'createdAt': -1}},(err, posts) => {
-      if (err) {
-        throw err;
-      }
-      console.log(posts[0])
-      res.render("posts/index", { posts: posts });
-    }).populate('user').populate({path: "comments", populate: {path: 'user'}});
-  },
+
+    Post.find({}, 'message createdAt likes liked likesList', {sort: {'createdAt': -1}},(err, posts) => {
+        if (err) {
+          throw err;
+        }
+        console.log(posts[0])
+        res.render("posts/index", { posts: posts });
+        }).populate('user').populate('userLikes').populate({path: "comments", populate: {path: 'user'}});
+        
+      },
+
 
   New: (req, res) => {
     res.render("posts/new", {});
@@ -25,13 +28,28 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  
-  // Like: (req, res) => {
-  //   const post = Post.findOneAndUpdate({_id: req.body.id}, function(like){
-  //     if
-  //   }) 
-  // }
 
+  Like: (req, res) => {
+    Post.findOne({_id: req.body.post_id}).exec().then((post) => {
+      post.userLikes.push(req.session.user._id)
+      post.liked = true
+      post.save()
+    }).then(() => {
+      res.status(201).redirect("/posts");
+    })
+
+  },
+
+  Unlike: (req, res) => {
+
+    Post.findOne({_id: req.body.post_id}).exec().then((post) => {
+      post.userLikes.pull(req.session.user._id)
+      post.liked = false
+      post.save()
+    }).then(() => {
+      res.status(201).redirect("/posts");
+    })
+  },
 };
 
 module.exports = PostsController;

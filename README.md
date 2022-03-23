@@ -22,8 +22,8 @@ It uses:
 - Log in: validation
 - Log out: end the session
 - Show posts in reverse chronological order
-- I want to be able to create a profile
-- I want to be able to visit my profile
+- I want to see a users name/photo next to each post
+- I want to be able to comment on a post
 
 ## MVP User stories
 ```
@@ -44,23 +44,19 @@ So that I keep up to date with my friend's latest posts
 They should be displayed in reverse chronological order
 
 As a User
-So that people can know more about me
-I want to be able to create a profile
+So I can clarify who I'm talking to
+I want to see a user's name and photo with their posts
 
 As a User
-So that I can see my past posts and profile
-I want to be able to visit my profile
+So that I socialise with my friends
+I want to comment on posts 
 ```
 
 ## Additional user stories
 ```
 As a User
-So that I socialise with my friends
-I want to comment on posts 
-
-As a User
-So I can clarify who I'm talking to
-I want to see a user's name and photo with their posts
+So that people can know more about me
+I want to be able to create a profile
 
 As a User
 So that I visually share my life with my followers
@@ -73,6 +69,10 @@ I want to see a nav bar at the top of every page
 As a User
 So that I can show my appreciation on a post
 I want to be able to like a post and see all the likes
+
+As a User
+So that I can see my past posts and profile
+I want to be able to visit my profile
 
 As a User
 So that I can use the website

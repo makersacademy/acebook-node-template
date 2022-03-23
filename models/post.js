@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema({
   message: String,
   likes: { type: Number, default: 0 },
   comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
+  userLikes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   user: 
     { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 },
@@ -25,6 +26,18 @@ PostSchema.virtual('timeFormat').get(function () {
 
 })
 
+
+PostSchema.virtual('likesArray').get(function () {
+  const likesArray = []
+  this.userLikes.forEach((likes) => {
+    likesArray.push(String(likes._id))
+  })
+  return likesArray
+});
+
+PostSchema.virtual('count').get(function () {
+  return String(this.userLikes.length)
+})
 
 
 const Post = mongoose.model("Post", PostSchema);

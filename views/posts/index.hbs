@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <div class="text-muted h7 mb-2"> <small>{{this.timeFormat}}</small></div>
+      <div class="text-muted h7 mb-2"> <small>{{this.createdAt}}</small></div>
     </div>
     <div class="card-body">
 
@@ -23,82 +23,37 @@
       </p>
     </div>
     <div class="card-footer">
-<div class="row">
-  <div class="col-3">
-{{#contains this.likesArray ../session.user._id }}
-      <form id="like-form" method="post" action="posts/unlike">
-        <input type="hidden" name="post_id" value={{this._id}}>
-        <button id="like-submit" class="card-link btn btn-link" type="submit" data-bs-toggle="tooltip"
-          data-bs-html="true" title="{{#each this.userLikes}}<p>{{this.firstName}} {{this.surName}}</p>{{/each}}">
-          <img src="/images/upsidedown.png" height="20" width="35">
-          {{#is this.count "0" }}
-          {{else}}
-          ({{length this.userLikes}})
-          {{/is}}
-        </button>
-      </form>
+
+      {{#contains this.likesArray ../session.user._id }}
+        <form id="like-form" method="post" action="posts/unlike">
+          <input type="hidden" name="post_id" value={{this._id}}>
+            <button id="like-submit" class="card-link btn btn-link" type="submit" data-bs-toggle="tooltip"
+              data-bs-html="true" title="{{#each this.userLikes}}<p>{{this.firstName}} {{this.surName}}</p>{{/each}}">
+            <img src="/images/upsidedown.png" height="20" width="35">
+        {{#is this.count "0" }}
+        {{else}}
+        ({{length this.userLikes}})
+        {{/is}}
+          </button>
+        </form>
 
       {{else}}
 
-      <form id="like-form" method="post" action="posts/like">
-
-        <button id="like-submit" class="btn btn-link" type="submit" data-bs-toggle="tooltip"
-          data-bs-html="true" title="{{#each this.userLikes}}<p>{{this.firstName}} {{this.surName}}</p>{{/each}}">
-          <img src="/images/youtube-like-transparent-png-pictures-icons-and-png-30.png" height="20" width="35">
-          {{#is this.count "0" }}
-          {{else}}
-          ({{length this.userLikes}})
-          {{/is}}</button>
+        <form id="like-form" method="post" action="posts/like">
           <input type="hidden" name="post_id" value={{this._id}}>
-      </form>
+            <button id="like-submit" class="card-link btn btn-link" type="submit" data-bs-toggle="tooltip"
+              data-bs-html="true" title="{{#each this.userLikes}}<p>{{this.firstName}} {{this.surName}}</p>{{/each}}">
+            <img src="/images/youtube-like-transparent-png-pictures-icons-and-png-30.png" height="20" width="35">
+        {{#is this.count "0" }}
+        {{else}}
+        ({{length this.userLikes}})
+        {{/is}}</button>
+        </form>
 
       {{/contains}}
 
-  </div>
-
-  <div class="col-2">
-      <a href="#commentForm{{@index}}" id="comment" class="toggle btn btn-link">Comment</a>
-  </div>
-
-</div>
-      
-      <div id="commentForm{{@index}}" class="toggle-content">
-      <form id="new-comment-form" action="/comment/create" method="post">
-      
-        <div class="mb-3">
-          <textarea class="form-control" id="comment" name="comment" placeholder="Add Comment" rows="2" cols="50"
-            type="text"></textarea>
-        </div>
-        <input type="hidden" name="post_id" value="{{this._id}}">
-        <input class="btn btn-primary" type="submit" value="Submit">
-      </form>
-      </div>
-
-
-
-      {{#if this.comments}}
-      <div class="card m-1 p-1">
-        {{#each this.comments}}
-        <div class="comments m-1 p-1">
-
-          <div class="d-flex flex-row me-2">
-            <img class="rounded-circle" width="40" height="40" src="https://picsum.photos/50/50" alt="" />
-            <div class="d-flex flex-column ms-2">
-              <span class="name">{{this.user.firstName}}</span>
-              <small>{{this.comment}}</small>
-              <div class="d-flex flex-row align-items-center status">
-                <small><a href="#" > Like </a></small>&nbsp<small> {{this.timeFormat}} </small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{/each}}
-      </div>
-      {{/if}}
-
-
-
+      <a href="/comment/new/?" id="comment" class="card-link">Comment</a>
+      <a href="#" class="card-link">Share</a>
     </div>
   </div>
   <br />
