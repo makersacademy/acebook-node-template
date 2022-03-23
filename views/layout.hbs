@@ -22,10 +22,10 @@
         <li class="nav-item" id="nav-buttons">
           <a class="btn nav-link" aria-current="page" id="home" href="/posts">Home</a>
         </li>
+        {{#unless user._id }}
         <li class="nav-item">
           <a class="btn nav-link" id="signup" href="/users/new">Sign Up</a>
         </li>
-        {{#unless user._id }}
         <li class="nav-item">
           <a class="btn nav-link" id="login" href="/">Log In</a>
         </li>
