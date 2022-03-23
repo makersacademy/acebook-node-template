@@ -9,6 +9,6 @@ describe("comment on a post", () => {
         cy.get("#submitComment").click();
         cy.get("#numberOfComments").should("contain", "1");
         cy.get("#commenter").should("contain", "test name");
-        cy.get(".comments").should("contain", "This is a comment on a post.");
+        cy.get("#comments").should("contain", "This is a comment on a post.");
     })
 })

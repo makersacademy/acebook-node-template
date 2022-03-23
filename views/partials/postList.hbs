@@ -14,8 +14,8 @@
     </form>
     <p id="numberOfLikes">{{this.likes.length}}</p>
 
-    <ul class="comments">
-      {{#each comments}}
+    <ul id="comments">
+      {{#each this.comments}}
       <li id="comments">
         <p class="h6" id="commentedBy"> 
           <a id="commenter" class="link-dark" href="/users/{{this.commenterId.id}}">{{this.commenterId.name}}</a>
