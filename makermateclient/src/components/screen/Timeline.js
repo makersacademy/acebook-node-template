@@ -8,6 +8,7 @@ import React, {useState, useEffect} from 'react';
 
 const Timeline = () => { 
   const [data, setData] = useState([])
+  
   useEffect(()=>{
     fetch("/posts",{
       headers:{
@@ -19,11 +20,11 @@ const Timeline = () => {
       setData(result.posts)
   })}, [])
   
-  const likePost = (id) => {
+  function likePost(id) {
     // const [likes, setLiked] = useState(null);
 
-    fetch("/posts/like",{
-      method: 'put',
+    fetch(`/posts/like/${id}`,{
+      method: 'post',
       headers:{
         'Content-Type': 'application/json'
       },
@@ -48,8 +49,11 @@ return(
       <h5 key="two">{item.message}</h5>
       <h5 key="three">{item.createdAt}</h5>
       <h5 key="four">{item.comments}</h5>
+      <h6>
+        likes: {item.likes}
+      </h6>
       <i key="five" className="like-button" 
-      onClick={()=>{likePost()}}>
+      onClick={()=>{likePost(item._id)}}>
         like
       </i>
       </>

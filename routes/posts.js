@@ -13,7 +13,7 @@ router.post('/:_id/comment', PostsController.CreateComment)
 // untested new code 
 
 router.post('/delete/:_id', PostsController.Delete)
-router.put('/like/:_id', PostsController.LikeComment)
+router.post('/like/:_id', PostsController.LikeComment)
 
 // end
 
