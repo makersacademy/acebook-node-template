@@ -4,9 +4,40 @@
     
   <main class="px-3">
     <h1 id="title">{{title}}</h1>
-    <p class="lead">Connecting you to your friends</p>
-    <p class="lead">
-      <a href="/sessions/new" class="btn btn-lg btn-secondary fw-bold border-white" id="login-button">Log in</a>
-    </p>
+    <p class="lead" id="welcome-message">Connecting you to your friends</p>
   </main>
+
+<body>
+<div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-5 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <h2 class="fw-bold mb-0">Log in</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-5 pt-0">
+        <form class="">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <a class="w-100 mb-2 btn btn-lg rounded-4"  href="/sessions/new" id="login-button">Log in</a>
+          <hr class="my-4">
+          <h2 class="fs-5 fw-bold mb-3">Don't have an account?</h2>
+          <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit">
+            <svg class="bi me-1" width="16" height="16"><use xlink:href="#twitter"></use></svg>
+            Sign up here
+          </button>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+</body>

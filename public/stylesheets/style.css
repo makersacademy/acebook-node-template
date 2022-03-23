@@ -26,15 +26,22 @@ a {
 #title {
   color:#045049;
   font-size: 100px;
-  /* font-family: 'Fantasy', 'copperplate'; */
-  /* font-family: 'cursive'; */
   font-family: 'monospace', 'monaco';
-  /* margin-left: 110%; */
-  margin-top: 15%;
+  margin-top: 4%;
+  text-align: center;
+}
+
+#welcome-message {
+  text-align: center;
+}
+
+#modalSignin {
+  margin-top: -3%;
 }
 
 #login-button {
   background-color: #045049;
+  color: azure;
 }
 
 #navBar {
