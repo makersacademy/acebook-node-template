@@ -10,14 +10,14 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts, user: req.session.user });
-    }).sort({'createdAt': - 1});
+      res.json({posts: posts, user: req.session.user})
+    })
   },
   New: (req, res) => {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
+
     const userName = req.session.user.firstName + " " + req.session.user.lastName
     const userImage = req.session.user.image.imgPath;
     const post = new Post({message: req.body.message, user: userName, userImage: userImage });
@@ -28,7 +28,9 @@ const PostsController = {
       console.log(req.body)
       res.status(201).redirect("/posts");
     });
+
   },
+
   Comment: async (req, res) =>  {
     Post.find({_id: req.params._id}, function(err, posts) {
       if (err) {
@@ -39,8 +41,11 @@ const PostsController = {
     });
   },
 
+
   CreateComment: (req, res) => {
+
     const username = req.session.user.firstName + " " + req.session.user.lastName
+
     var comment = new Comment({ note: `${req.body.comments}`, user: username})
   console.log(req.session.user)
     Post.findOneAndUpdate({
@@ -80,7 +85,6 @@ const PostsController = {
       });
     },
   };
-
 
 module.exports = PostsController;
 // ImageModel.find((err, photos) => {

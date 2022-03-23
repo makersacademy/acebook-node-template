@@ -7,7 +7,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const hb = require('hbs');
-const moment = require('moment')
+const moment = require('moment');
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
-    res.redirect("/sessions/new");
+    res.json({error: "You are not signed in"});
   } else {
     next();
   }
@@ -65,7 +65,7 @@ hb.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
 });
 // timeformat
-hb.registerHelper('dateFormat', function (date, options) {
+hb.registerHelper('dateFormat', function (date) {
   const formatToUse = (arguments[1] && arguments[1].hash && arguments[1].hash.format) || "DD/MM/YYYY, H:MM"
   return moment(date).format(formatToUse);
 });
