@@ -15,15 +15,18 @@
 <div class="posts" >
   {{#each posts}}
   <div><br>
-  {{this.message}}     -      <div id="createdAt">{{this.postedAt}}</div> <br> 
+  {{this.message}}  <br>   
+   {{#if this.imagePath}}
+  <img height="200" src="{{this.imagePath}}"> <br> 
+   {{/if}}
+  <div id="createdAt">{{this.postedAt}}</div> <br> 
   <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
     <input type="hidden" name="prevRoute" value="profile">
     <button id="like" name="postId" value="{{this._id}}">Like</button>
-  </form> - <div id="likecount">{{this.likes}}</div> 
+  </form> 
+  <div id="likecount">{{this.likes}}</div> 
   </div>
   <br>
   {{> comments}}
   {{/each}}
 <div>
-<a class="new-post-link" href="/posts/new">New post</a>
-<a class="timeline-link" href="/posts">Timeline</a>

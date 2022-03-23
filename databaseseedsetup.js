@@ -2,7 +2,7 @@ const MongoClient = require("mongodb").MongoClient;
 
 async function seedDB() {
     // Connection URL
-    const uri = "mongodb://localhost/acebook";
+    const uri = process.env.MONGODB_URL || "mongodb://localhost/acebook";
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
         // useUnifiedTopology: true,

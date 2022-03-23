@@ -53,7 +53,7 @@ const PostsController = {
 
   },
   Comment: (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     Post
     .findOneAndUpdate(
       {_id: req.body.postId},

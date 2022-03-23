@@ -53,6 +53,7 @@ const UsersController = {
       if (err) {
         throw err;
       }
+      req.session.user = user;
       res.status(201).redirect("/posts");
     });
   },
@@ -88,7 +89,7 @@ const UsersController = {
   },
 
   Profile: (req, res) => {
-    console.log(req.session.user._id);
+    // console.log(req.session.user._id);
     res.render("users/profile", { 
       title: "Acebook",
       name: req.session.user.name,

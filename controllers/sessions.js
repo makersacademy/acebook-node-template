@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt")
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", {messages: req.flash('err')});
   },
 
   Create: (req, res) => {
@@ -13,8 +13,10 @@ const SessionsController = {
 
     User.findOne({ email: email }).then((user) => {
       if (!user) {
+        req.flash('err', 'Email address is not recognised')
         res.redirect("/sessions/new");
       } else if (bcrypt.compareSync(password, user.password) == false) {
+        req.flash('err', 'Incorrect password')
         res.redirect("/sessions/new");
       } else {
         req.session.user = user;
