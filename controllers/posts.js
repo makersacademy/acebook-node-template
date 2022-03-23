@@ -16,7 +16,8 @@ const PostsController = {
       res.render("posts/index", { posts: posts,
           title: "Acebook",
           name: req.session.user.name,
-          username: req.session.user.username
+          username: req.session.user.username,
+          image: req.session.user.image
       });
     }).populate('user')
       .sort({createdAt: -1 }) 
