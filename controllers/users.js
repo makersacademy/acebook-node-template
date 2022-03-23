@@ -1,13 +1,14 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
+
 const UsersController = {
 
   New: (req, res) => {
     res.render("users/new", {messages: req.flash('err')});
   },
 
-  Create: async (req, res) => {
+  Create:  async (req, res) => {
     
 // Check email address is valid - taken from https://stackoverflow.com/questions/46155/whats-the-best-way-to-validate-an-email-address-in-javascript
     const emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -16,6 +17,10 @@ const UsersController = {
     const email = req.body.email;
     const password = req.body.password;
     const username = req.body.username;
+
+    const filename = req.file != null ? req.file.filename : null;
+   
+   
 
 //  Use connect-flash for error messages - https://stackoverflow.com/questions/37706141/how-can-i-delete-flash-messages-once-a-page-has-loaded-using-express
 
@@ -47,7 +52,16 @@ const UsersController = {
   
     const hash = bcrypt.hashSync(password, 12);
     req.body.password = hash
-    const user = new User(req.body);
+    const user = new User ({
+      
+        name: req.body.name,
+        username: req.body.username,
+        image: filename,
+        password: req.body.password,
+        email: req.body.email
+            
+      })
+    
     
     user.save((err) => {
       if (err) {
@@ -91,9 +105,16 @@ const UsersController = {
   Profile: (req, res) => {
     // console.log(req.session.user._id);
     res.render("users/profile", { 
+<<<<<<< HEAD
+          title: "Acebook",
+          name: req.session.user.name,
+          // username: req.session.user.username,
+          // image: req.session.user.image
+=======
       title: "Acebook",
       name: req.session.user.name,
       username: req.session.user.username,
+>>>>>>> master
     });
   },
 

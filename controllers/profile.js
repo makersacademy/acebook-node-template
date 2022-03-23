@@ -1,5 +1,9 @@
 const Post = require("../models/post");
+<<<<<<< HEAD
+const Image = require('../models/user');
+=======
 const User = require("../models/user");
+>>>>>>> master
 
 const ProfileController = {
  Profile: async (req, res) => {
@@ -11,15 +15,22 @@ const ProfileController = {
       post.postedAt = post.createdAt.toLocaleString();
       console.log(post.postedAt);
     })
+<<<<<<< HEAD
+   
+    res.render("profile", {
+=======
     const user = await User.findOne({"_id": req.session.user._id});
     const someFriends  = user.friends.slice(0, 2); //2 friends for now
     const friends = await User.where({"_id": {$in: someFriends}})
     res.render("profile/index", {
+>>>>>>> master
       posts: posts,
       friends: friends,
       title: "Acebook",
       name: req.session.user.name,
       username: req.session.user.username,
+      image: req.session.user.image,
+      defaultImage: req.session.user.defaultImage
     });
 
   } catch (err) {

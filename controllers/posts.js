@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const Image = require('../models/user');
 
 const PostsController = {
   Index: async (req, res) => {
@@ -9,12 +10,21 @@ const PostsController = {
       posts.forEach((post) => {
         post.postedAt = post.createdAt.toLocaleString();
       })
+<<<<<<< HEAD
+
+      res.render("posts/index", { posts: posts,
+          title: "Acebook",
+          name: req.session.user.name,
+          username: req.session.user.username,
+          image: req.session.user.image
+=======
       
       res.render("posts/index", { 
         posts: posts,
         title: "Acebook",
         name: req.session.user.name,
         username: req.session.user.username
+>>>>>>> master
       });
     } catch {
       console.log("error")
