@@ -2,7 +2,7 @@ const User = require("../models/user");
 const Post = require("../models/post");
 const fs = require("fs");
 const path = require("path");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const UsersController = {
@@ -17,6 +17,11 @@ const UsersController = {
     .then((user) => { 
       if (!user) { return res.status(404).send("Not Found") } 
 
+      if (user.friends.includes(req.params.id)){
+        // Already friends
+        return res.status(201).redirect(`/users/${req.params.id}`)
+      }
+
       user.friends.push(req.params.id)
       user.save()
 
@@ -27,7 +32,7 @@ const UsersController = {
       other_user.friends.push(req.session.user._id)
       other_user.save()
       })
-      
+
       res.status(201).redirect(`/users/${req.params.id}`);
     })
     .catch((err) => {
@@ -55,18 +60,24 @@ const UsersController = {
 
   Show: (req, res) => {
     var userViewing = false
+    var userIsFriends = false
+
     if (req.session.user._id == req.params.id) {
       userViewing = true 
     }
 
     console.log("User Viewing", userViewing)
-    
+
     User.findOne({_id: req.params.id })
       .then((user) => { 
         if (!user) { return res.status(404).send("Not Found") } 
 
+        if (user.friends.includes(req.session.user._id)){
+          userIsFriends = true
+        }
+
         Post.find().where('_id').in(user.posts).exec((err, posts) => {
-          res.render("users/show", { user: user, posts: posts, userViewing : userViewing });
+          res.render("users/show", { user: user, posts: posts, userViewing : userViewing, userIsFriends: userIsFriends });
         });
         
       })
