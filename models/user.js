@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
   password: String,
   bio: String,
   image: String,
+  defaultImage: {
+    type: String,
+    default: 'download.png'
+  }
 });
 
 UserSchema.virtual('imagePath').get(function() {

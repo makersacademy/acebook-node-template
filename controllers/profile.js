@@ -17,7 +17,8 @@ const ProfileController = {
       title: "Acebook",
       name: req.session.user.name,
       username: req.session.user.username,
-      image: req.session.user.image
+      image: req.session.user.image,
+      defaultImage: req.session.user.defaultImage
     });
 
   } catch {
