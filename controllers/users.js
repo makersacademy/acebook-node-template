@@ -58,15 +58,73 @@ const UsersController = {
     });
   },
 
+  UserList: async (req, res) => {
+    try{
+    const current = await User.findOne({"_id": req.session.user._id})
+    const users = await User.where({"_id": {$ne: req.session.user._id}}).where({"_id": {$nin: current.friends}})
+
+      res.render("users/userlist", { users: users,
+          title: "Acebook Users",
+          name: req.session.user.name,
+          username: req.session.user.username
+      });
+    } catch {
+      console.log("error")
+    }
+  },
+
+  FriendList: async (req, res) => {
+    try{
+    const current = await User.findOne({"_id": req.session.user._id})
+    const users = await User.where({"_id": {$in: current.friends}}).populate('user')
+
+      res.render("users/friendlist", { users: users,
+          title: "Acebook Users",
+          name: req.session.user.name,
+          username: req.session.user.username
+      });
+    } catch {
+      console.log("error")
+    }
+  },
+
   Profile: (req, res) => {
     // console.log(req.session.user._id);
     res.render("users/profile", { 
-          title: "Acebook",
-          name: req.session.user.name,
-          username: req.session.user.username,
+      title: "Acebook",
+      name: req.session.user.name,
+      username: req.session.user.username,
     });
   },
-  
+
+  Addfriend: async (req, res) => {
+    try{
+      const users = await User.findOne({'_id': req.session.user._id});
+      users.friends.unshift(req.body.friendReqId);
+      users.friends = users.friends.filter((value,index) => users.friends.indexOf(value) === index);
+      users.save();
+      res.status(201).redirect("/users/userlist")
+      } catch {
+        console.log("error")
+    }
+  },
+
+  Deletefriend: async (req, res) => {
+    try{
+      const users = await User.findOne({'_id': req.session.user._id});
+      let e = users.friends.length;
+      console.log(e);
+      const index = users.friends.indexOf(req.body.friendDelId);
+
+      if (index > -1) {
+        users.friends.splice(index, 1);
+      }
+      users.save();
+      res.status(201).redirect("/users/friendlist")
+      } catch (err) {
+        console.log(err);
+    }
+  }  
 };
 
 module.exports = UsersController;

@@ -1,0 +1,16 @@
+<h1>Current User {{ name }} </h1>
+<div id="selected_user">
+  {{#each users}}
+  {{log this._id}}
+  <form action="/users/addfriend/{{this._id}}" method="post">
+    <label for="button">Friend Request</label>
+    <button type="submit" class="list-user-item list-user-item-action" name="friendReqId" value="{{this._id}}">{{this.name}}</button>
+  </form>
+
+  </div> 
+  <br>
+  {{/each}}
+<div>
+
+
+<a class="view-profile-link" href="/profile">Profile</a>
