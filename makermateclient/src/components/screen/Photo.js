@@ -21,15 +21,15 @@ return(
 
   <div>
       <div>
-        <form action="/photos" enctype="multipart/form-data" method="post">
-            <label for="myImage">Add some holiday snaps</label>
-            <input class="choose-file-btn" type="file" name="myImage" />
-            <input class="upload-btn" type="submit" value="Upload Photo" />
+        <form action="/photos" encType="multipart/form-data" method="post">
+            <label htmlFor="myImage">Add some holiday snaps</label>
+            <input className="choose-file-btn" type="file" name="myImage" />
+            <input className="upload-btn" type="submit" value="Upload Photo" />
         </form>
-        <form action="/photos/profilepic" enctype="multipart/form-data" method="post">
-            <label for="myImage">Add profile pic</label>
-            <input class="choose-file-btn" type="file" name="myImage" />
-            <input class="upload-btn" type="submit" value="Upload Photo" />
+        <form action="/photos/profilepic" encType="multipart/form-data" method="post">
+            <label htmlFor="myImage">Add profile pic</label>
+            <input className="choose-file-btn" type="file" name="myImage" />
+            <input className="upload-btn" type="submit" value="Upload Photo" />
         </form>
         
       </div>
@@ -39,7 +39,6 @@ return(
       data.map(post=>{
         return(
           <div key={post._id}>
-              <h1>{post.imgName}</h1>
               <img src={post.imgPath} alt="photo"/>
           </div>
         )
