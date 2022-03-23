@@ -6,8 +6,9 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      console.log(posts[0])
       res.render("posts/index", { posts: posts });
-    }).populate('user');
+    }).populate('user').populate({path: "comments", populate: {path: 'user'}});
   },
 
   New: (req, res) => {
@@ -16,7 +17,6 @@ const PostsController = {
 
   Create: (req, res) => {
     const post = new Post({user: req.session.user._id, message: req.body.message});
-    console.log(req.user)
     post.save((err) => {
       if (err) {
         throw err;

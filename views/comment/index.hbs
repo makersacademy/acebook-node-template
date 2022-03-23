@@ -24,10 +24,10 @@
             <div class="card">
               <div class="card-header">
                   <div class="d-flex justify-content-between align-items-center">
-                    <div class="mr-2">
+                    <div class="me-2">
                       <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
                     </div>
-                    <div class="ml-2">
+                    <div class="ms-2">
                       <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
                     </div>
                   </div>
@@ -42,7 +42,7 @@
               <div class="card-footer">
                 <form method="get">
                   <input type="hidden" name="post_id" value={{this._id}}>
-                  <button class="card-link btn btn-link" type="submit">Like {{#if this.likes}}({{this.likes}}){{/if}}</button>
+                  <button class="card-link btn btn-link" type="submit">Like</button>
                 </form>
               </div>
             </div>

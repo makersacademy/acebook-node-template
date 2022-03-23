@@ -1,4 +1,5 @@
 const Comment = require("../models/comment");
+const Post = require("../models/post");
 
 const CommentController = {
   Index: (req, res) => {
@@ -15,13 +16,18 @@ const CommentController = {
   },
 
   Create: (req, res) => {
+
     const comment = new Comment({user: req.session.user._id, comment: req.body.comment, post: req.body.post_id});
     comment.save((err) => {
       if (err) {
         throw err;
       }
+      Post.findOne({_id: req.body.post_id}).exec().then((post) => {
+        post.comments.push(comment)
+        post.save()
+      })
 
-      res.status(201).redirect(`/comment/?id=${req.body.post_id}`);
+      res.status(201).redirect(`/posts/`);
     });
   },
 };
