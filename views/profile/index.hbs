@@ -9,14 +9,19 @@
     <div class="row justify-content-start">
       <div class="col-4">
         <h1>{{session.user.firstName}}'s Profile</h1>
-        
+
+          <p id="email" class="text-dark">{{session.user.email}}</p>
+          <br>
+          <p>Title:</p>
+          <p id="title" class="text-dark">{{session.user.title}}</p>
+
           <p>Full name:</p>
           <p id="fullName" class="text-dark">{{session.user.firstName}}
             {{session.user.surName}}</p>
-        
-          <p>Email:</p>
-          <p id="email" class="text-dark">{{session.user.email}}</p>
-        
+
+          <p>Pronouns:</p>
+          <p id="pronouns" class="text-dark">{{session.user.pronouns}}</p>
+
           <p>Bio:</p>
           <p id="bio" class="text-dark">{{session.user.bio}}</p>
         

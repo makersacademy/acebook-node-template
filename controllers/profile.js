@@ -14,6 +14,8 @@ const ProfileController = {
         User.findOne({_id: req.session.user._id}).exec().then((user) => {
             user.firstName = req.body.firstName
             user.surName = req.body.surName
+            user.title = req.body.title
+            user.pronouns = req.body.pronouns
             user.bio = req.body.bio
             user.location = req.body.location
             user.save()

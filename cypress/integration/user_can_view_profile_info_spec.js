@@ -20,8 +20,10 @@ describe("Profile page", () => {
     cy.get("#fullName").should("contain", "One");
 
     cy.get("#email").should("contain", "someone@example.com");
-    cy.get("#bio").should("contain", "Please update your bio");
-    cy.get("#location").should("contain", "Please update your location");
+    cy.get("#bio").should("contain", "Please add your bio");
+    cy.get("#location").should("contain", "Please add your location");
+    cy.get("#title").should("contain", "Please add your title e.g. Mr, Ms etc.");
+    cy.get("#pronouns").should("contain", "Please add your pronouns");
 
   });
 });
