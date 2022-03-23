@@ -120,17 +120,23 @@ const UsersController = {
 
   Acceptfriend: async (req, res) => {
     try{
-      const users = await User.findOne({'_id': req.session.user._id});
-      const index = users.pending_friends.indexOf(req.body.friendAccId);
+      const receivingUser = await User.findOne({'_id': req.session.user._id});
+      const requestingUser = await User.findOne({'_id': req.body.friendAccId});
+      let index = requestingUser.pending_friends.indexOf(req.session.user._id);
       if (index > -1) {
-        users.pending_friends.splice(index, 1)
+        requestingUser.sent_requests.splice(index, 1)
       }
-      users.friends.unshift(req.body.friendAccId);
-      users.friends = users.friends.filter((value,index) => users.friends.indexOf(value) === index);
-      await users.save();
+      index = receivingUser.pending_friends.indexOf(req.body.friendAccId);
+      if (index > -1) {
+        receivingUser.pending_friends.splice(index, 1)
+      }
+      receivingUser.friends.unshift(req.body.friendAccId);
+      requestingUser.friends.unshift(req.session.user._id);
+      await receivingUser.save();
+      await requestingUser.save();
       res.status(201).redirect("/users/friendlist")
-      } catch {
-        console.log("error")
+      } catch (err) {
+        console.log(err.messages)
     }
   },
 
