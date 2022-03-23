@@ -2,38 +2,62 @@
 
 <ul class="posts">
   {{#each posts}}
-    <div class="card">
-      <div class="card-header">
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-between align-items-center">
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="mr-2">
-              <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
-            </div>
-            <div class="ml-2">
-              <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
-            </div>
+          <div class="mr-2">
+            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
+          </div>
+          <div class="ml-2">
+            <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
           </div>
         </div>
-        <div class="text-muted h7 mb-2"> <small>{{this.createdAt}}</small></div>
       </div>
-      <div class="card-body">
-
-        <p class="card-text">
-          {{this.message}}
-        </p>
-      </div>
-      <div class="card-footer">
-        <form id="like-form" method="post" action="posts/like">
-        <input type="hidden" name="post_id" value={{this._id}}> 
-        <button id="like-submit" class="card-link btn btn-link" type="submit"><img src="youtube-like-transparent-png-pictures-icons-and-png-30.png" height="20" width="35">{{#if this.likes}}({{this.likes}}){{/if}}</button>
-         </form>
-        <a href="/comment/new/?" id="comment" class="card-link">Comment</a>
-        <a href="#" class="card-link">Share</a>
-      </div>
+      <div class="text-muted h7 mb-2"> <small>{{this.createdAt}}</small></div>
     </div>
-    <br />
+    <div class="card-body">
+
+      <p class="card-text">
+        {{this.message}}
+      </p>
+    </div>
+    <div class="card-footer">
+
+      {{#contains this.likesArray ../session.user._id }}
+        <form id="like-form" method="post" action="posts/unlike">
+          <input type="hidden" name="post_id" value={{this._id}}>
+            <button id="like-submit" class="card-link btn btn-link" type="submit" data-bs-toggle="tooltip"
+              data-bs-html="true" title="{{#each this.userLikes}}<p>{{this.firstName}} {{this.surName}}</p>{{/each}}">
+            <img src="/images/upsidedown.png" height="20" width="35">
+        {{#is this.count "0" }}
+        {{else}}
+        ({{length this.userLikes}})
+        {{/is}}
+          </button>
+        </form>
+
+      {{else}}
+
+        <form id="like-form" method="post" action="posts/like">
+          <input type="hidden" name="post_id" value={{this._id}}>
+            <button id="like-submit" class="card-link btn btn-link" type="submit" data-bs-toggle="tooltip"
+              data-bs-html="true" title="{{#each this.userLikes}}<p>{{this.firstName}} {{this.surName}}</p>{{/each}}">
+            <img src="/images/youtube-like-transparent-png-pictures-icons-and-png-30.png" height="20" width="35">
+        {{#is this.count "0" }}
+        {{else}}
+        ({{length this.userLikes}})
+        {{/is}}</button>
+        </form>
+
+      {{/contains}}
+
+      <a href="/comment/new/?" id="comment" class="card-link">Comment</a>
+      <a href="#" class="card-link">Share</a>
+    </div>
+  </div>
+  <br />
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
-
