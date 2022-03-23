@@ -9,6 +9,10 @@ const UsersController = {
 
   Update:(req, res) => {
 
+    if (req.session.user._id == req.params.id) { 
+      return res.status(201).redirect(`/users/${req.params.id}`)
+    };
+
     User.findOne({_id: req.session.user._id })
     .then((user) => { 
       if (!user) { return res.status(404).send("Not Found") } 

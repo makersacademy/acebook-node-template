@@ -11,4 +11,12 @@ describe("Add Friend", () => {
       cy.get("#add-friend").should("have.attr", 'value',  "Add Friend");
   
   })
+
+  it('user can not add themselves as a friend', () => {
+    cy.signUp();
+    cy.get("#view-profile").click();
+    cy.get('#add-friend').should('not.be.visible');
+
+  })
+
 })
