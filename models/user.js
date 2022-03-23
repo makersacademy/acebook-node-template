@@ -5,8 +5,11 @@ const UserSchema = new mongoose.Schema({
   username: String,
   email: String,
   password: String,
-  bio: String,
-
+  bio: {
+    type: String,
+    default: "I have not written a bio yet",
+    required: false
+  },
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 

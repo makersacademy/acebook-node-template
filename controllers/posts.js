@@ -13,8 +13,10 @@ const PostsController = {
       res.render("posts/index", { 
         posts: posts,
         title: "Acebook",
+        id: req.session.user._id,
         name: req.session.user.name,
-        username: req.session.user.username
+        username: req.session.user.username,
+        bio: req.session.user.bio,
       });
     } catch {
       console.log("error")

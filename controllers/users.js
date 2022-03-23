@@ -66,7 +66,8 @@ const UsersController = {
       res.render("users/userlist", { users: users,
           title: "Acebook Users",
           name: req.session.user.name,
-          username: req.session.user.username
+          username: req.session.user.username,
+          bio: req.session.user.bio,
       });
     } catch {
       console.log("error")
@@ -81,7 +82,8 @@ const UsersController = {
       res.render("users/friendlist", { users: users,
           title: "Acebook Users",
           name: req.session.user.name,
-          username: req.session.user.username
+          username: req.session.user.username,
+          bio: req.session.user.bio,
       });
     } catch {
       console.log("error")
@@ -94,6 +96,7 @@ const UsersController = {
       title: "Acebook",
       name: req.session.user.name,
       username: req.session.user.username,
+      bio: req.session.user.bio,
     });
   },
 
@@ -124,7 +127,27 @@ const UsersController = {
       } catch (err) {
         console.log(err);
     }
-  }  
+  },
+
+  UpdateProfile: async (req,res) => {
+    console.log("into here");
+
+    if (!req.session.user_id){
+      res.redirect('/sessions/new')
+    }
+    try{
+    console.log("into here")
+    console.log(req.body)
+    // const user = await User.findByIdAndUpdate(req.session.user_id, {bio: req.body.message, profilePicture: req.body.profilePic});
+    const user = await User.findOneAndUpdate({'_id': req.session.user._id, bio: req.body.bio, name: req.body.name});
+    console.log(user)
+    users.save();
+      res.status(201).redirect("/users/profile")
+      } catch (err) {
+        console.log(err);
+    }
+    // res.status(201).redirect('/');
+  },
 };
 
 module.exports = UsersController;
