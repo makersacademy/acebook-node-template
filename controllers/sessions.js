@@ -18,6 +18,7 @@ const SessionsController = {
     .then(savedUser=>{
       if(!savedUser){
         return res.status(422).json({error: "invalid email or password"})
+        
       }
       bcrypt.compare(password, savedUser.password)
       .then(passwordsMatch => {

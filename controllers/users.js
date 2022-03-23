@@ -7,6 +7,7 @@ const UsersController = {
   },
 
   Create: (req, res) => {
+
     const {firstName, lastName, email, password}= req.body
     if(!email || !password|| !firstName || !lastName){
       return res.status(422).json({error: "please add all the fields"})
@@ -16,6 +17,7 @@ const UsersController = {
       if(savedUser){
       return res.status(422).json({error: "user already exists with that email"})
       }
+
     })
      bcrypt.hash(password, 12)
     .then(hashedpassword=> {
