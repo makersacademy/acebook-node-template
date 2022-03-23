@@ -1,6 +1,5 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-
 const UsersController = {
 
   New: (req, res) => {
@@ -48,7 +47,7 @@ const UsersController = {
     const hash = bcrypt.hashSync(password, 12);
     req.body.password = hash
     const user = new User(req.body);
-    
+    console.log("HERE SAVE @@@@@@@@@@@")
     user.save((err) => {
       if (err) {
         throw err;
@@ -130,23 +129,18 @@ const UsersController = {
   },
 
   UpdateProfile: async (req,res) => {
-    console.log("into here");
-
-    if (!req.session.user_id){
-      res.redirect('/sessions/new')
-    }
     try{
-    console.log("into here")
-    console.log(req.body)
-    // const user = await User.findByIdAndUpdate(req.session.user_id, {bio: req.body.message, profilePicture: req.body.profilePic});
-    const user = await User.findOneAndUpdate({'_id': req.session.user._id, bio: req.body.bio, name: req.body.name});
-    console.log(user)
-    users.save();
-      res.status(201).redirect("/users/profile")
+   const user = await User.findOne({'_id': req.session.user._id});
+    user.bio = req.body.bio
+    user.name = req.body.name
+    user.save();
+    req.session.user.bio = req.body.bio
+    req.session.user.name = req.body.name
+   // req.flash('err', 'User profile has been updated')
+    res.status(201).redirect("/profile")
       } catch (err) {
         console.log(err);
     }
-    // res.status(201).redirect('/');
   },
 };
 

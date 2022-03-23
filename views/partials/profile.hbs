@@ -1,9 +1,9 @@
 <div class = "updateProfile">
-   <form action="/users/profile/update" method="post"></form>
+   <form action="users/updateprofile" method="post">
     <label for="name">Name: </label>
       <input id="name" type="text" name="name" "required=required" value="{{name}}">
       <label for="bio">Bio: </label>
       <input id="bio" type="text" name="bio" "required=required" value="{{bio}}">
-      <button id="profile-btn" name="userId" value="{{id}}">Update</button>
+       <button id="profile-btn" name="userId" value="{{this._id}}">Update</button>
     </form>
 </div>
