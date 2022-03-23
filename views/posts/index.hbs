@@ -5,6 +5,7 @@
   {{#each posts}}
   <div>
     <a href="/profile/viewperson/{{this.user._id}}">{{this.user.name}}</a>
+    <img src=/uploads/images/{{this.user.image}} style="height:60px; width:60px;">
    {{this.message}}  <br>
    {{#if this.imagePath}}
   <img height="200" src="{{this.imagePath}}"> <br> 

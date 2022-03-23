@@ -17,6 +17,7 @@ const PostsController = {
         name: req.session.user.name,
         username: req.session.user.username,
         bio: req.session.user.bio,
+        image: req.session.user.image,
       });
     } catch {
       console.log("error")
