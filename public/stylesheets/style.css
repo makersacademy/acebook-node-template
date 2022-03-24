@@ -1,12 +1,74 @@
 body {
   padding: 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #04504817;
 }
 
 a {
-  color: #00B7FF;
+  color: azure;
 }
 
-li#comments {
+.accordion-item {
+  align-items: flex-end;
+}
+
+#comments {
   color:red
+}
+#createdAt {
+  color:green
+}
+
+#numberOfLikes {
+  display: inline-block;
+}
+
+#navbar-title:hover {
+  color: #aef0de;
+}
+
+#title {
+  color:#045049;
+  font-size: 100px;
+  font-family: 'monospace', 'monaco';
+  margin-top: 4%;
+  text-align: center;
+}
+
+#welcome-message {
+  text-align: center;
+}
+
+#modalSignin {
+  margin-top: -3%;
+}
+
+#submit {
+  background-color: #045049;
+  color: azure;
+}
+
+#signup-button:hover {
+  background-color: #045049;
+  color: azure;
+}
+
+#navBar {
+  background-color: #045049;
+}
+
+#home {
+  color: azure;
+}
+#signup {
+  color:azure;
+}
+#login {
+  color: azure;
+}
+#logout {
+  color: azure;
+}
+#view-profile {
+  color: azure;
 }

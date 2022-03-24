@@ -1,6 +1,11 @@
 <ul class="list-group" id="posts">
   {{#each posts}}
   <li>
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+        <h5 class="card-title">Name of poster here</h5>
+        <p class="card-text">{{this.message}}</p>
+        {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
     <div>
       <p class="h6" id="postedBy"> 
         <a id="postedByLink" class="link-dark" href="/users/{{this.userObjectId.id}}">{{this.userObjectId.name}}</a>
@@ -9,32 +14,44 @@
     {{this.message}}
     <br>
     Posted at: <div id="createdAt">{{this.createdAt}}</div>
-    <form id="likeForm" action="/posts/{{this.id}}?like=true" method="post">
-      <input type="submit" id="submitLike" value="Like">
-    </form>
-    <p id="numberOfLikes">{{this.likes.length}}</p>
+            <form id="likeForm" action="/posts/{{this.id}}?like=true" method="post">
+                <input type="submit" id="submitLike" value="Like">
+                <p id="numberOfLikes">{{this.likes.length}}</p>
+            </form>
 
-    <ul id="comments">
-      {{#each this.comments}}
-      <li id="comments">
-        <p class="h6" id="commentedBy"> 
-          <a id="commenter" class="link-dark" href="/users/{{this.commenterId.id}}">{{this.commenterId.name}}</a>
-           {{this.message}}
-        </p>
-       
-      </li>
-      {{/each}}
-    </ul>
-
-    <p id="numberOfComments">Comments: {{this.comments.length}}</p>
-
-    <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
-      Leave a comment: <input id="commentMessage" type="text" name="commentMessage" value="">
-      <input type="submit" id="submitComment" value="Post Comment" onClick="window.location.reload();">
-    </form>
-
+    <div class="accordion accordion-flush" id="accordionFlushExample{{this.id}}" style="width: 20rem; display: inline-block;">
+      <div class="accordion-item" id="accordian-item{{this.id}}">
+        <h2 class="accordion-header" id="heading{{this.id}}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{this.id}}" aria-expanded="false" aria-controls="flush-collapseOne{{this.id}}">
+                <id="numberOfComments">Comments {{this.comments.length}}
+          </button>
+        </h2>
+        <div id="flush-collapseOne{{this.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample{{this.id}}">
+          <div class="accordion-body">    
+            <div class="comments">
+              {{#each comments}}
+              <div id="comments">
+                <strong>Name of commenter</strong> {{this.message}}
+              </div>
+              {{/each}}
+            </div>
+              <br>
+            <form id="new-comment-form" action="/posts/{{this.id}}" method="post">
+              <input id="commentMessage" type="text" name="commentMessage" value="" placeholder="Write a comment...">
+              <input type="submit" id="submitComment" value="Post" onClick="window.location.reload();">
+            </form>
+          </div>
+        </div>
+      </div>
+</div> 
+      </div>
+    </div>
   </li>
 
   {{/each}}
 </ul>
 
+
+
+
+{{!-- for likes <svg class="bi me-1" width="16" height="16"><use xlink:href="#thumbs-up"></use></svg> --}}

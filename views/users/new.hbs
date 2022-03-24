@@ -1,22 +1,40 @@
-<head>
-    <title>{{title}}</title>
-    {{!-- <link rel='stylesheet' href='/stylesheets/style.css' /> --}}
-</head>
-<h2>Sign up</h2>
-<form class="form-group" id="new-user-form" action="/users" method="post">
-<div class="input-group mb-3"></div>
-  <label for="email">Email: </label>
-  <input class="form-control" id="email" type="email" name="email" value="" placeholder="Enter email">
+  <main class="px-3">
+    <h1 id="title">Acebook</h1>
+    <p class="lead" id="welcome-message">Connecting people everywhere</p>
+  </main>
 
-  <label for="password">Password: </label>
-  <input class="form-control" id="password" type="password" name="password" value="" placeholder="password">
+<body>
+<div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-5 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <h2 class="fw-bold mb-0">Sign up</h2>
+      </div>
 
-  <label for="name">Name: </label>
-  <input class="form-control" id="name" type="text" name="name" value="">
-
-  <label  for="username">Username: </label>
-  <input class="form-control" id="username" type="username" name="username" value="">
-  <div><br>
-  <input class="btn btn-primary" id="submit" type="submit" value="Submit">
+      <div class="modal-body p-5 pt-0">
+          <form id="new-user-form" action="/users" method="post">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-4" id="email" name="email" value="" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-4" id="password" value="" name="password" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-4" id="name" value="" name="name" placeholder="Full Name">
+            <label for="floatingInput">Full Name</label>
+          </div>
+          <input class="w-100 mb-2 btn btn-lg rounded-4"  type="submit" value="Sign up" id="submit"></input>
+        </form>
+          <hr class="my-4">
+          <h2 class="fs-5 fw-bold mb-3">Already have an account?</h2>
+          <a class="w-100 mb-2 btn btn-outline-dark rounded-4" href="/" id="signup-button" type="submit">
+            Log in here
+          </a>
+      </div>
+    </div>
   </div>
-</form>
+</div>
+</body>

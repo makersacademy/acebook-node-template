@@ -1,2 +1,36 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+  <main class="px-3">
+    <h1 id="title">{{title}}</h1>
+    <p class="lead" id="welcome-message">Connecting people everywhere</p>
+  </main>
+
+<body>
+<div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-5 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <h2 class="fw-bold mb-0">Log in</h2>
+      </div>
+
+      <div class="modal-body p-5 pt-0">
+          <form id="new-session-form" action="/sessions" method="post" class="">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-4" id="email" name="email" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-4" id="password" name="password" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <input class="w-100 mb-2 btn btn-lg rounded-4"  type="submit" value="Log in" id="submit"></input>
+        </form>
+          <hr class="my-4">
+          <h2 class="fs-5 fw-bold mb-3">Don't have an account?</h2>
+          <a class="w-100 mb-2 btn btn-outline-dark rounded-4" href="/users/new" id="signup-button" type="submit">
+            Sign up here
+          </a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

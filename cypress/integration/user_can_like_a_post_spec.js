@@ -1,5 +1,5 @@
   describe("liking a post", () => {
-    it('user likes a post', () => { 
+    xit('user likes a post', () => { 
     
     cy.signUp()
     cy.contains("New post").click();
