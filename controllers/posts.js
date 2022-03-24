@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const Image = require('../models/user');
 
 const PostsController = {
   Index: async (req, res) => {

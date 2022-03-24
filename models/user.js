@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const imagePath = 'uploads/profileimage'
 // const imagePath = 'uploads/images'
 const path = require('path')
-
 const UserSchema = new mongoose.Schema({
   name: String,
   username: String,
@@ -13,11 +12,13 @@ const UserSchema = new mongoose.Schema({
     default: "I have not written a bio yet",
     required: false
   },
-  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   image: {
     type: String,
     default: 'download.png'
   }
+  sent_requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  pending_friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
 UserSchema.virtual('imagePath').get(function() {
@@ -27,7 +28,5 @@ UserSchema.virtual('imagePath').get(function() {
 })
 
 const User = mongoose.model("User", UserSchema);
-
 module.exports = User;
-
 module.exports.imagePath = imagePath;

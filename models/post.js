@@ -24,6 +24,4 @@ PostSchema.virtual('imagePath').get(function() {
 const Post = mongoose.model("Post", PostSchema);
 
 module.exports = Post;
-// module.exports = mongoose.model('Image', imageSchema);
 module.exports.imagePath = imagePath;
-
