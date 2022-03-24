@@ -1,7 +1,5 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-
-
 const UsersController = {
 
   New: (req, res) => {
@@ -52,6 +50,7 @@ const UsersController = {
   
     const hash = bcrypt.hashSync(password, 12);
     req.body.password = hash
+
     const user = new User ({
       
         name: req.body.name,
@@ -61,7 +60,6 @@ const UsersController = {
         email: req.body.email
             
       })
-    
     
     user.save((err) => {
       if (err) {
@@ -84,8 +82,11 @@ const UsersController = {
         users: users,
         awaiting_approval: current.sent_requests,
         title: "Acebook Users",
+        id: req.session.user._id,
         name: req.session.user.name,
-        username: req.session.user.username
+        username: req.session.user.username,
+        bio: req.session.user.bio,
+        image: req.session.user.image,
       });
     } catch {
       console.log("error")
@@ -104,8 +105,11 @@ const UsersController = {
           pending_friends: pending_friends,
           awaiting_response: awaiting_response,
           title: "Acebook Users",
+          id: req.session.user._id,
           name: req.session.user.name,
-          username: req.session.user.username
+          username: req.session.user.username,
+          bio: req.session.user.bio,
+          image: req.session.user.image,
       });
     } catch (err) {
       console.log(err.messages);
@@ -115,8 +119,11 @@ const UsersController = {
   Profile: (req, res) => {
     res.render("users/profile", { 
       title: "Acebook",
+      id: req.session.user._id,
       name: req.session.user.name,
       username: req.session.user.username,
+      bio: req.session.user.bio,
+      image: req.session.user.image,
     });
   },
 
@@ -188,6 +195,28 @@ const UsersController = {
       res.status(201).redirect("/users/friendlist")
       } catch (err) {
         console.log(err.messages);
+    }
+  },
+
+  UpdateProfile: async (req,res) => {
+    try{
+   const user = await User.findOne({'_id': req.session.user._id});
+    user.bio = req.body.bio
+    user.name = req.body.name
+    if (req.body.image != "") {
+      user.image = req.body.image
+      req.session.user.image = req.body.image
+    } 
+    // user.image = req.body.image
+    const updatedProfile = await user.save()
+    // user.save();
+    req.session.user.bio = req.body.bio
+    req.session.user.name = req.body.name
+    // req.session.user.image = req.body.image
+    // req.flash('err', 'User profile has been updated')
+    res.status(201).redirect("/profile")
+      } catch (err) {
+        console.log(err);
     }
   },
   

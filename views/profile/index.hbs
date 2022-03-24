@@ -1,11 +1,14 @@
 <h1>All About {{name}} </h1>
+<img src=/uploads/images/{{this.image}} style="height:60px; width:60px;">
+
+ {{> profile}}
 
 <div class="friends">
   <h2>My friends</h2>
   <ul>
   {{#each friends}}
     <li>
-      PICTURE
+      <img src=/uploads/images/{{this.image}} style="height:60px; width:60px;">
       {{this.name}}
     </li>
   {{/each}}
