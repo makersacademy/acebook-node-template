@@ -70,6 +70,17 @@ const PostsController = {
   },
   //image uploads
 
+  DislikeComment: (req, res) => {
+    Post.findOneAndUpdate({
+      _id: req.params._id},
+    {$inc: {likes: -1}},
+    function(err) {
+      if (err) {
+        throw err;
+      }
+    res.status(201).redirect('/posts');
+    });
+  },
 
   // delete post functionality
   Delete: (req, res) => {

@@ -12,6 +12,8 @@ const Timeline = () => {
   const [input, setInput] = useState('')
   const user = localStorage.getItem("user")
   
+
+
   useEffect(()=>{
     fetch("/posts",{
       headers:{
@@ -33,7 +35,7 @@ const Timeline = () => {
       },
       body:JSON.stringify({
         _id: id
-      })
+      })  
     }).then(res=>res.json())
     .then(result=>{
       console.log(result)
@@ -42,6 +44,27 @@ const Timeline = () => {
 
       // setLiked(result.posts)
     })}
+
+    function dislikePost(id) {
+      // const [likes, setLiked] = useState(null);
+  
+      fetch(`/posts/dislike/${id}`,{
+        method: 'post',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+          _id: id
+        })  
+      }).then(res=>res.json())
+      .then(result=>{
+        console.log(result)
+        }).catch(err=>{
+          console.log(err)
+  
+        // setLiked(result.posts)
+      })}
+    
   
   const postData = () => {
         fetch("/posts", {
@@ -56,7 +79,7 @@ const Timeline = () => {
     }).then(response => response.json())
     .then(result =>{
         setPosts([result,...posts])
-        console.log('Posted Sucessfully')
+        console.log('Posted Successfully')
     })
 }
  
@@ -106,10 +129,14 @@ const Timeline = () => {
               <p>{post.createdAt}</p>
               <p>{post.user}</p>
               <img src={post.userImage} alt="it goes here"/>
-              <h6>likes: {item.likes} </h6>
+              <h6>likes: {post.likes} </h6>
               <i key="five" className="like-button" 
-                  onClick={()=>{likePost(item._id)}}>
+                  onClick={()=>{likePost(post._id)}}>
                   like
+              </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <i key="six" className="dislike-button" 
+                  onClick={()=>{dislikePost(post._id)}}>
+                  dislike
               </i>
                 <div>
                   {post.comments.map(comment=>{
