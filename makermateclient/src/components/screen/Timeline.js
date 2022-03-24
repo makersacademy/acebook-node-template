@@ -7,7 +7,6 @@ const Timeline = () => {
 
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState('')
-  const [comment, setComment] = useState("")
   const user = localStorage.getItem("user")
   
 
@@ -133,11 +132,7 @@ const makeComment = (note,postId) => {
                   type="text"
                   placeholder="text here"
                   value={input}
-                  onChange={(e)=>{ 
-                    if (input !== ""){
-                      setInput(e.target.value)
-                    }
-                    }}>
+                  onChange={(e)=>setInput(e.target.value)}>
                 </textarea>
               </div>
             </div>
@@ -180,7 +175,7 @@ const makeComment = (note,postId) => {
                onClick={()=>deleteData(post._id)}>
               Delete Your Post
               </button>
-              <h6>likes: {post.likes} </h6>
+              <h6>likes: {post.likes.length} </h6>
               <i className="material-icons"
                   onClick={()=>{likePost(post._id)}}
               >thumb_up</i>

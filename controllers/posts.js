@@ -57,9 +57,10 @@ const PostsController = {
   },
 
   LikeComment: (req, res) => {
+    const userId = req.session.user._id
     Post.findOneAndUpdate({
       _id: req.params._id},
-    {$inc: {likes: 1}},
+    {$push: {likes: userId}},
     function(err) {
       if (err) {
         throw err;
@@ -70,9 +71,10 @@ const PostsController = {
   //image uploads
 
   DislikeComment: (req, res) => {
+    const userId = req.session.user._id
     Post.findOneAndUpdate({
       _id: req.params._id},
-    {$inc: {likes: -1}},
+    {$pull: {likes: userId}},
     function(err) {
       if (err) {
         throw err;
