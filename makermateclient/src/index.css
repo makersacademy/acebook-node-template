@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.profile-pic-and-name{
+  display:inline-block;
+}
+.profile-pic{
+  border-radius: 50%;
+}
+.comment-text-area{
+  width: 30%;
+  
+}
+
+.individual-photo{
+padding:3%;
+}
+
+.photo-album-div{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

@@ -164,10 +164,8 @@ const makeComment = (note,postId) => {
         return(
           <div key={post._id}>
               <h3>{post.message}</h3>
-
-              
               <div style={{maxWidth :'500px', display:'inline-flex', justifyContent: 'space-evenly'}} className="profile-pic-and-name">
-                <img id='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
+                <img className='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
                 <p>{post.user}</p>
                 <Moment key={post.createdAt} format="YYYY/MM/DD"><p>{post.createdAt}</p></Moment>
                 <h6>likes: {post.likes} </h6>
@@ -175,9 +173,8 @@ const makeComment = (note,postId) => {
                   onClick={()=>{likePost(post._id)}}>
                   like
               </i>
-              
-              </div>
-                <form onSubmit={(e)=>{
+              </div >
+                <form className='comment-text-area' onSubmit={(e)=>{
                       e.preventDefault()
                       makeComment(e.target[0].value, post._id)
                     }}>
@@ -190,7 +187,7 @@ const makeComment = (note,postId) => {
               Delete Your Post
               </button>
               <br></br>
-              <img src={post.userImage} alt="it goes here"/>
+              <img className='profile-pic' style={{maxWidth:'8%'}} src={post.userImage} alt="it goes here"/>
               <h6>likes: {post.likes} </h6>
               <i className="material-icons"
                   onClick={()=>{likePost(post._id)}}

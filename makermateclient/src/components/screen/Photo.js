@@ -38,8 +38,8 @@ return(
     {
       data.map(post=>{
         return(
-          <div key={post._id}>
-              <img src={post.imgPath} alt="photo"/>
+          <div className='photo-album-div' key={post._id}>
+              <img className='individual-photo' src={post.imgPath} alt="photo"/>
           </div>
         )
       })
