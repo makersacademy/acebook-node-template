@@ -5,19 +5,19 @@
 <form id="new-user-form" action="/users" method="post">
 <div class="mb-3 mt-3">
   <label class="form-label" for="email">Email: </label>
-  <input class="form-control" id="email" type="email" name="email" value="">
+  <input class="form-control" id="email" type="email" name="email" required>
 </div>
 <div class="mb-3">
   <label class="form-label" for="firstName"> First Name</label>
-  <input class="form-control" id="firstName" type="text" name="firstName" value="">
+  <input class="form-control" id="firstName" type="text" name="firstName" required>
 </div>
 <div class="mb-3">
   <label class="form-label" for="surName"> Surname</label>
-  <input class="form-control" id="surName" type="text" name="surName" value="">
+  <input class="form-control" id="surName" type="text" name="surName" required>
 </div>
 <div class="mb-3">
   <label class="form-label" for="password">Password: </label>
-  <input class="form-control" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" type="password" name="password" value="">
+  <input class="form-control" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" type="password" name="password" required>
   <div class="hidden" id="validation-message">
     <h6>Password must contain the following:</h6>
     <span id="letter" class="invalid">A <b>lowercase</b> letter</span>
