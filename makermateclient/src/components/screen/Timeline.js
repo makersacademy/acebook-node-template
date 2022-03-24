@@ -86,7 +86,7 @@ const makeComment = (note,postId) => {
     })
   }).then(res=>res.json())
     .then(result=>{
-    setPosts([result])
+    setPosts([result,...posts])
     console.log({message: 'successful comment'})
     }).catch(err=>{
       console.log(err)
@@ -165,7 +165,8 @@ const makeComment = (note,postId) => {
               </div >
               <form className='comment-text-area' onSubmit={(e)=>{
                       e.preventDefault();
-                      makeComment(e.target[0].value, post._id)
+                      makeComment(e.target[0].value, post._id);
+                      e.target[0].value = ""
                     }}>
                 <input type="text" placeholder="add a comment"/>
               </form>
