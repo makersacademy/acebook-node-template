@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 
 const NewPost = () => {
-    const navigation = useNavigate()
     const [message, setMessage] = useState('')
+    const user = localStorage.getItem("user")
 
     const postdata = () => {
         fetch("/posts", {
@@ -12,20 +11,26 @@ const NewPost = () => {
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                message: message
+                message: message,
+                userImage: user.userImage
             })
     }).then(res => res.json())
     .then(data =>{
-        console.log(data)
         console.log('Posted Sucessfully')
-        navigation('/timeline')
     })
 }
 
+if(user){
     return (
-      
       <div>
-      <h1>NewPostPage</h1>
+        <div className="container" 
+            style={{
+                margin: "30px auto",
+                maxWidth: "500px",
+                padding: "20px",
+                textAlign: "center"
+            }}>
+      <h4>New Post</h4>
         <div className="row">
          <form className="col s12">
             <div className="row">
@@ -45,16 +50,11 @@ const NewPost = () => {
         >
         Post Your Post
     </button>
+    </div>
   </div>
     </div>
-    
-    )
+            )
+        }
   }
   
   export default NewPost
-
-
-
-
-  // value={firstName}
-                // onChange={(e)=>setFirstName(e.target.value)}

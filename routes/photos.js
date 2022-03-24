@@ -73,7 +73,7 @@ router.get("/",  (req, res) => {
    if(err) {
      throw err;
    }
-   res.render("photos", { photos: photos, user: req.session.user });
+   res.json({ photos: photos, user: req.session.user });
  })
 },);
 
