@@ -10,12 +10,15 @@ const PostsController = {
       posts.forEach((post) => {
         post.postedAt = post.createdAt.toLocaleString();
       })
-
-      res.render("posts/index", { posts: posts,
-          title: "Acebook",
-          name: req.session.user.name,
-          username: req.session.user.username,
-          image: req.session.user.image
+      
+      res.render("posts/index", { 
+        posts: posts,
+        title: "Acebook",
+        id: req.session.user._id,
+        name: req.session.user.name,
+        username: req.session.user.username,
+        bio: req.session.user.bio,
+        image: req.session.user.image,
       });
     } catch {
       console.log("error")

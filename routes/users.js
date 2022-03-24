@@ -2,7 +2,11 @@ const express = require("express");
 const router = express.Router();
 const path = require('path')
 const multer = require('multer')
-const ProfileImage = require('../models/user')
+// const ProfileImage = require('../models/user')
+const User = require('../models/user')
+const uploadTo = path.join('public', User.imagePath)
+const imageMimeTypes = ['image/jpeg', 'image/png'];
+const UsersController = require("../controllers/users");
 
 const storage = multer.diskStorage({
   destination:function(req, file, callback) {
@@ -18,20 +22,20 @@ const upload = multer({
   storage:storage,
   limits:{
     fieldSize: 1024 * 1024 * 3,
+  },
+  dest: uploadTo,
+  fileFilter: (req, file, callback) => {
+    callback(null, imageMimeTypes.includes(file.mimetype))
   }
-});
-
-const UsersController = require("../controllers/users");
+})
 
 router.get("/new", UsersController.New);
 router.post("/", upload.single('file'), UsersController.Create);
 router.get("/profile", UsersController.Profile);
-
-router.get("/userlist", UsersController.UserList);
-router.get("/friendlist", UsersController.FriendList);
+router.post("/updateprofile", UsersController.UpdateProfile);
 router.post("/addfriend/:id", UsersController.Addfriend);
-router.post("/deletefriend/:id", UsersController.Deletefriend);
 router.post("/acceptfriend/:id", UsersController.Acceptfriend);
 router.post("/rejectfriend/:id", UsersController.Rejectfriend);
+router.post("/deletefriend/:id", UsersController.Deletefriend);
 
 module.exports = router;

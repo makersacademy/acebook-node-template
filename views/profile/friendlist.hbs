@@ -21,7 +21,7 @@ IF GREATER THAN 0
 <h2>Confirmed friends of {{ name }} </h2>
 <div id="selected_user">
   {{#each friends}}
-  PICTURE
+  <img src=/uploads/images/{{this.image}} style="height:60px; width:60px;">
   {{this.name}}
   <form action="/users/deletefriend/{{this._id}}" method="post">
     <label for="button">Delete Friend</label>
@@ -30,5 +30,4 @@ IF GREATER THAN 0
   <br>
   {{/each}}
 <div>
-
 <a class="view-profile-link" href="/profile">Profile</a>

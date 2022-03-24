@@ -50,6 +50,7 @@ const UsersController = {
   
     const hash = bcrypt.hashSync(password, 12);
     req.body.password = hash
+
     const user = new User ({
       
         name: req.body.name,
@@ -60,7 +61,6 @@ const UsersController = {
             
       })
     
-    
     user.save((err) => {
       if (err) {
         throw err;
@@ -70,51 +70,14 @@ const UsersController = {
     });
   },
 
-  UserList: async (req, res) => {
-    try{
-      const current = await User.findOne({"_id": req.session.user._id}).populate('sent_requests')
-      const users = await User.where({"_id": {$ne: req.session.user._id}})
-                            .and({"_id": {$nin: current.sent_requests}})
-                            .and({"_id": {$nin: current.friends}})
-                            .and({"_id": {$nin: current.pending_friends}})
-
-      res.render("users/userlist", { 
-        users: users,
-        awaiting_approval: current.sent_requests,
-        title: "Acebook Users",
-        name: req.session.user.name,
-        username: req.session.user.username
-      });
-    } catch {
-      console.log("error")
-    }
-  },
-
-  FriendList: async (req, res) => {
-    try{
-    const current = await User.findOne({"_id": req.session.user._id})
-    const friends = await User.where({"_id": {$in: current.friends}}).populate('user')
-    const awaiting_response = await User.where({"_id": {$in: current.sent_requests}}).populate('user')
-    const pending_friends = await User.where({"_id": {$in: current.pending_friends}}).populate('user')
-
-      res.render("users/friendlist", { 
-          friends: friends,
-          pending_friends: pending_friends,
-          awaiting_response: awaiting_response,
-          title: "Acebook Users",
-          name: req.session.user.name,
-          username: req.session.user.username
-      });
-    } catch (err) {
-      console.log(err.messages);
-    }
-  },
-
   Profile: (req, res) => {
     res.render("users/profile", { 
       title: "Acebook",
+      id: req.session.user._id,
       name: req.session.user.name,
       username: req.session.user.username,
+      bio: req.session.user.bio,
+      image: req.session.user.image,
     });
   },
 
@@ -128,7 +91,7 @@ const UsersController = {
       receivingUser.pending_friends = receivingUser.pending_friends.filter((value,index) => receivingUser.pending_friends.indexOf(value) === index);
       await requestingUser.save();
       await receivingUser.save();
-      res.status(201).redirect("/users/userlist")
+      res.status(201).redirect("/profile/userlist")
       } catch {
         console.log("error")
     }
@@ -140,20 +103,20 @@ const UsersController = {
       const requestingUser = await User.findOne({'_id': req.body.friendAccId});
 
       requestingUser.sent_requests = Helpers.RemoveIDFromArray(requestingUser.sent_requests, req.session.user._id);
-      receivingUser.pending_friends = Helpers.RemoveIDFromArray(receivingUser.pending_friends, req.body.friendAccId);
+      receivingUser.pending_friends = Helpers.RemoveIDFromArray(receivingUser.pending_friends, req.body.friendAccId);    
       
       receivingUser.friends.unshift(req.body.friendAccId);
       requestingUser.friends.unshift(req.session.user._id);
-
+  
       await receivingUser.save();
       await requestingUser.save();
-
-      res.status(201).redirect("/users/friendlist")
+  
+      res.status(201).redirect("/profile/friendlist")
       } catch (err) {
         console.log(err)
     }
   },
-
+  
   Rejectfriend: async (req, res) => {
     try{
       const user = await User.findOne({"_id": req.session.user._id});
@@ -164,8 +127,8 @@ const UsersController = {
 
       await user.save();
       await rejectedFriend.save();
-
-      res.status(201).redirect("/users/friendlist")
+  
+      res.status(201).redirect("/profile/friendlist")
       
     } catch (err) {
       console.log(err)
@@ -183,13 +146,33 @@ const UsersController = {
       await user.save();
       await deletedFriend.save();
 
-      res.status(201).redirect("/users/friendlist")
+      res.status(201).redirect("/profile/friendlist")
       } catch (err) {
         console.log(err.messages);
     }
   },
+
+  UpdateProfile: async (req,res) => {
+   try{
+   const user = await User.findOne({'_id': req.session.user._id});
+    user.bio = req.body.bio
+    user.name = req.body.name
+    if (req.body.image != "") {
+      user.image = req.body.image
+      req.session.user.image = req.body.image
+    } 
+    // user.image = req.body.image
+    const updatedProfile = await user.save()
+    // user.save();
+    req.session.user.bio = req.body.bio
+    req.session.user.name = req.body.name
+    // req.session.user.image = req.body.image
+    // req.flash('err', 'User profile has been updated')
+    res.status(201).redirect("/profile")
+      } catch (err) {
+        console.log(err);
+    }
+  },
 };
-
-
 
 module.exports = UsersController;

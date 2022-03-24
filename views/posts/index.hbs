@@ -1,16 +1,11 @@
-<a class="temporaryuserlist" href="/users/userlist">ALL USERS</a>
 <h1>Timeline for {{ name }} </h1>
  <h4 class="name">{{user.name}}</h4>
 
 <div class="posts" >
   {{#each posts}}
-  <div>{{this.user.name}} <br>
-  {{#if user.image}}
-  <img src=/uploads/profileimage/{{user.image}} style="height:60px; width:60px;">
-  {{else}}
-  <img src=/default/{{user.defaultImage}} style="height:60px; width:60px;">
-  {{/if}}
-
+  <div>
+    <img src=/uploads/images/{{this.user.image}} style="height:60px; width:60px;">
+    <a href="/profile/viewperson/{{this.user._id}}">{{this.user.name}}</a> <br>
    {{this.message}}  <br>
    {{#if this.imagePath}}
   <img height="200" src="{{this.imagePath}}"> <br> 
@@ -26,8 +21,3 @@
   {{> comments}}
   {{/each}}
 <div>
-
-
-
-
-
