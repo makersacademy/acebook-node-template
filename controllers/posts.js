@@ -4,10 +4,8 @@ const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
-      if (err) {
-        throw err;
-      }
+    Post.find().sort({createdAt: -1})
+      .exec((err, posts) => {
       res.json({posts: posts, user: req.session.user})
     })
   },

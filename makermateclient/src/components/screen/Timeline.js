@@ -13,7 +13,6 @@ const Timeline = () => {
       }
     }).then(response => response.json())
       .then(result => {
-      console.log(result.posts)
       setPosts(result.posts)
     })
   }, [])
@@ -30,7 +29,7 @@ const Timeline = () => {
             })
     }).then(response => response.json())
     .then(result =>{
-        setPosts([...posts, result])
+        setPosts([result,...posts])
         console.log('Posted Sucessfully')
     })
 }
@@ -74,7 +73,7 @@ const Timeline = () => {
             padding: "20px",
             textAlign: "center"
             }}>
-      {posts.slice(0).reverse().map(post=>{
+      {posts.map(post=>{
         return(
           <div key={post._id}>
               <h3>{post.message}</h3>
