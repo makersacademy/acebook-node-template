@@ -11,6 +11,34 @@ describe("User model", () => {
     });
   });
 
+  it("has an empty array of friends", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "test name",
+    })
+    expect(user.friends.length).toEqual(0);
+  })
+
+  it("can add one friend to a user", () => {
+    const user1 = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "test name",
+    })
+
+    const user2 = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "test name",
+    })
+
+    user1.friends.push(user2.id)
+
+    expect(user1.friends.length).toEqual(1);
+    expect(user1.friends[0]).toEqual(user2.id);
+  })
+
   it("has an empty array of posts", () => {
     const user = new User({
       email: "someone@example.com",

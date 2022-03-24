@@ -70,8 +70,21 @@ I want to securely log in
 
 ~~~~
 As a user of Acebook
-so I can exit mmy account
+so I can exit my account
 I want to log out
+~~~~
+
+~~~~
+As a user of Acebook
+In order to show my friendship 
+I would like be friends with another user
+~~~~
+
+~~~~
+
+As a user of Acebook
+In order to see the friends of one of my friends
+I would like to be able to see their list of friends 
 ~~~~
 
 -----------------------

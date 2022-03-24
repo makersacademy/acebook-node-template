@@ -23,7 +23,6 @@ describe("Search for users", () => {
     cy.get("#search-form").submit();
 
     cy.url().should("include", "/users");
-    //cy.get('#user').should('have.length', 2)
 
     cy.get("#users").first().should("contain", "test name");
     cy.get("#users").last().should("contain", "another tester");
