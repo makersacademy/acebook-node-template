@@ -69,3 +69,6 @@ public/uploads
 
 #Commit the following default image
 !public/uploads/images/download.png
+
+#saved images
+public/uploads/images
