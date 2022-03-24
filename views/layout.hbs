@@ -18,27 +18,32 @@
     <ul class="navbar-nav">
       {{#if loggedIn}}
         <li class="nav-item">
+        <form action='/profile' method='GET'>
+          <input type="hidden" value="Profile">
+          <button type="submit" class="list-group-item list-group-item-action">Profile</button>
+        </form>
+        </li>
+        <li class="nav-item">
+        <form action='/posts' method='GET'>
+          <input type="hidden" value="Timeline">
+          <button type="submit" class="list-group-item list-group-item-action">Timeline</button>
+        </form>
+        </li>
+        <li class="nav-item">
         <form action='/posts/new' method='GET'>
           <input type="hidden" value="Upload">
           <button type="submit" class="list-group-item list-group-item-action">Create Post</button>
         </form>
         </li>
         <li class="nav-item">
-        <form action='/posts' method='GET'>
-          <input type="hidden" value="Timeline">
-          <button type="submit" class="list-group-item list-group-item-action">Your Timeline</button>
-        </form>
-        </li>
-        <li class="nav-item">
-        <form action='/users/friendlist' method='GET'>
+        <form action='/profile/friendlist' method='GET'>
           <input type="hidden" value="Friends">
-          <button type="submit" class="list-group-item list-group-item-action">View All Friends</button>
+          <button type="submit" class="list-group-item list-group-item-action">My Friends</button>
         </form>
         </li>
-        <li class="nav-item">
-        <form action='/profile' method='GET'>
-          <input type="hidden" value="Profile">
-          <button type="submit" class="list-group-item list-group-item-action">Update Profile</button>
+        <form action='/profile/userlist' method='GET'>
+          <input type="hidden" value="Friends">
+          <button type="submit" class="list-group-item list-group-item-action">All People</button>
         </form>
         </li>
         <li class="nav-item">
@@ -64,8 +69,7 @@
     </ul>
   </div>
   </div>
-    </nav>
+  </nav>
     {{{body}}}
   </body>
 </html>
-
