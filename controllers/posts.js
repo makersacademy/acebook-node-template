@@ -16,7 +16,7 @@ const PostsController = {
 
   Create: (req, res) => {
     const userName = req.session.user.firstName + " " + req.session.user.lastName
-    const userImage = req.session.user.image.imgPath;
+    const userImage = req.session.user.image;
     console.log(userImage)
     const post = new Post({message: req.body.message, user: userName, userImage: userImage });
     post.save()

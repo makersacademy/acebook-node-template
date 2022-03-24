@@ -42,7 +42,7 @@ router.post("/" , upload.single("myImage"), (req, res) =>  {
 
 //load a photo to profile
 router.post("/profilepic" , upload.single("myImage"), async (req, res) =>  {
-  const userid = req.params._id
+  const userid = req.session.user._id
   const obj = {
       img: {
           data: fs.readFileSync(path.join("public/images/" + req.file.filename)),
@@ -55,8 +55,8 @@ router.post("/profilepic" , upload.single("myImage"), async (req, res) =>  {
       imgName:  `${req.file.filename}`
   });
   await User.findOneAndUpdate({
-    id: userid},
-  {image: newImage},
+    _id: userid},
+  {image: newImage.imgPath}, {new:true},
   function(err) {
     if (err) {
       throw err;

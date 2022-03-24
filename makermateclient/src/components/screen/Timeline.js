@@ -1,9 +1,6 @@
-//import req from 'express/lib/request';
-import React, {useState, useEffect} from 'react';
-// import cn from "classnames";
-// import { ReactComponent as Hand } from "./hand.svg";
 
-// import "./styles.scss";
+import React, {useState, useEffect} from 'react';
+import Moment from 'react-moment';
 
 
 const Timeline = () => { 
@@ -24,8 +21,6 @@ const Timeline = () => {
   }, [])
   
   function likePost(id) {
-    // const [likes, setLiked] = useState(null);
-
     fetch(`/posts/like/${id}`,{
       method: 'post',
       headers:{
@@ -36,7 +31,7 @@ const Timeline = () => {
       })
     }).then(res=>res.json())
     .then(result=>{
-      console.log(result)
+      setPosts(result.posts)
       }).catch(err=>{
         console.log(err)
 
@@ -44,6 +39,7 @@ const Timeline = () => {
     })}
   
   const postData = () => {
+    
         fetch("/posts", {
             method: 'post',
             headers:{
@@ -51,7 +47,7 @@ const Timeline = () => {
             },
             body:JSON.stringify({
                 message: input,
-                userImage: user.userImage
+                userImage: user.image
             })
     }).then(response => response.json())
     .then(result =>{
@@ -103,12 +99,17 @@ const Timeline = () => {
         return(
           <div key={post._id}>
               <h3>{post.message}</h3>
+              <Moment key={post.createdAt} format="YYYY/MM/DD">
               <p>{post.createdAt}</p>
+              </Moment>
+              <div className="profile-pic-and-name">
               <p>{post.user}</p>
-              <img src={post.userImage} alt="it goes here"/>
-              <h6>likes: {item.likes} </h6>
+              <img id='profile-pic' style={{maxWidth:'20px'}} src={post.userImage}  alt="it goes here"/>
+              </div>
+              
+              <h6>likes: {post.likes} </h6>
               <i key="five" className="like-button" 
-                  onClick={()=>{likePost(item._id)}}>
+                  onClick={()=>{likePost(post._id)}}>
                   like
               </i>
                 <div>
