@@ -19,7 +19,8 @@ app.set("port", port);
 /**
  * Connect to MongoDB
  **/
-
+// set up mongodb atlas or mongodb hosted by heroku
+// make sure this url is present in the environment
 var mongoDbUrl = process.env.MONGODB_URL || "mongodb://127.0.0.1/acebook";
 console.log(mongoDbUrl)
 mongoose.connect(mongoDbUrl, {
