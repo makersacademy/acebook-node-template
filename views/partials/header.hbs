@@ -14,31 +14,35 @@
     </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      {{#if loggedIn}}
+       {{#if loggedIn}}
         <li class="nav-item">
-          <button id="profile" class="btn btn-secondary" type="button">
-            <a href="/profile">Profile</a>
-          </button>
+        <form action='/profile' method='GET'>
+          <input type="hidden" value="Profile">
+          <button type="submit" class="list-group-item list-group-item-action">Profile</button>
+        </form>
         </li>
         <li class="nav-item">
-          <button id="timeline" class="btn btn-secondary" type="button">
-            <a href="/posts">Timeline</a>
-          </button>
+        <form action='/posts' method='GET'>
+          <input type="hidden" value="Timeline">
+          <button type="submit" class="list-group-item list-group-item-action">Timeline</button>
+        </form>
         </li>
         <li class="nav-item">
-          <button id="upload" class="btn btn-secondary" type="button">
-            <a href="/posts/new">Create Post</a>
-          </button>
+        <form action='/posts/new' method='GET'>
+          <input type="hidden" value="Upload">
+          <button type="submit" class="list-group-item list-group-item-action">Create Post</button>
+        </form>
         </li>
         <li class="nav-item">
-          <button id="friends" class="btn btn-secondary" type="button">
-            <a href="/profile/friendlist">My Friends</a>
-          </button>
+        <form action='/profile/friendlist' method='GET'>
+          <input type="hidden" value="Friends">
+          <button type="submit" class="list-group-item list-group-item-action">My Friends</button>
+        </form>
         </li>
-        <li class="nav-item">
-          <button id="people" class="btn btn-secondary" type="button">
-            <a href="/profile/userlist">All People</a>
-          </button>
+        <form action='/profile/userlist' method='GET'>
+          <input type="hidden" value="Friends">
+          <button type="submit" class="list-group-item list-group-item-action">All People</button>
+        </form>
         </li>
         <li class="nav-item">
         <form action='/sessions?_method=DELETE' method='POST'>
@@ -48,14 +52,16 @@
         </li>
         {{else}}
         <li class="nav-item">
-          <button id="register" class="btn btn-secondary" type="button">
-            <a href="/users/new">Register</a>
-          </button>
+        <form action='/users/new' method='GET'>
+          <input type="hidden" value="Register">
+          <button type="submit" class="list-group-item list-group-item-action">Register</button>
+        </form>
         </li>
         <li class="nav-item">
-          <button id="login" class="btn btn-secondary" type="button">
-            <a href="/sessions/new">Login</a>
-          </button>
+        <form  action='/sessions/new' method='GET'>
+          <input type="hidden" value="Login">
+          <button type="submit" class="list-group-item list-group-item-action">Login</button>
+        </form>
         </li>
       {{/if}}
     </ul>
@@ -81,7 +87,7 @@
     visibility: visible;
   }
   body {
-      background-image: url("http://7-themes.com/data_images/out/38/6899263-pretty-lake-wallpaper.jpg");
+      background-image: url("https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80");
       background-repeat no-repeat;
   }
   a {

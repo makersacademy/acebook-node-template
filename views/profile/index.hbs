@@ -1,8 +1,13 @@
+  <div id="post-box" class="container"></div>
+  <div class="card" style="width: 60rem;">
+      <div class="card-body">
 <h1>All About {{name}} </h1>
 <img src=/uploads/images/{{this.image}} style="height:60px; width:60px;">
 
  {{> profile}}
 
+<div class="card" style="width: 60rem;">
+      <div class="card-body">
 <div class="friends">
   <h2>My friends</h2>
   <ul>
@@ -13,11 +18,14 @@
     </li>
   {{/each}}
   </ul>
+   </div>
+    </div>
   <a href="/profile/friendlist">View all friends</a>
 </div>
 <div class="posts" >
   {{#each posts}}
-  <div><br>
+  <div class="card" style="width: 60rem;">
+      <div class="card-body">
   {{this.message}}  <br>   
    {{#if this.imagePath}}
   <img height="200" src="{{this.imagePath}}"> <br> 
@@ -28,8 +36,12 @@
     <button id="like" name="postId" value="{{this._id}}">Like</button>
   </form> 
   <div id="likecount">{{this.likes}}</div> 
-  </div>
   <br>
   {{> comments}}
+   </div>
+  </div>
   {{/each}}
-<div>
+</div>
+</div>
+</div>
+</div> 
