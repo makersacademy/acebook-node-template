@@ -11,7 +11,6 @@
         <a id="postedByLink" class="link-dark" href="/users/{{this.userObjectId.id}}">{{this.userObjectId.name}}</a>
       </p>
     </div>
-    {{this.message}}
     <br>
     Posted at: <div id="createdAt">{{this.createdAt}}</div>
             <form id="likeForm" action="/posts/{{this.id}}?like=true" method="post">
