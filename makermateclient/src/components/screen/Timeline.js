@@ -7,6 +7,7 @@ const Timeline = () => {
 
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState('')
+  const [comment, setComment] = useState("")
   const user = localStorage.getItem("user")
   
   useEffect(()=>{
@@ -39,22 +40,39 @@ const Timeline = () => {
     })}
   
   const postData = () => {
-    
-        fetch("/posts", {
-            method: 'post',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                message: input,
-                userImage: user.image
-            })
-    }).then(response => response.json())
-    .then(result =>{
-        setPosts([result,...posts])
-        console.log('Posted Sucessfully')
-    })
+      fetch("/posts", {
+          method: 'post',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+              message: input,
+              userImage: user.image
+          })
+  }).then(response => response.json())
+  .then(result =>{
+      setPosts([result,...posts])
+      console.log('Posted Sucessfully')
+  })
 }
+const makeComment = (note,postId) => {
+  fetch(`/posts/${postId}/comment`, {
+    method:'post',
+    headers:{
+      'Content-Type': "application/json"
+    },
+    body:JSON.stringify({
+      note,
+      postId: `${postId}`
+    })
+  }).then(res=>res.json())
+    .then(result=>{
+    setPosts(result.posts)
+    console.log({message: 'successful comment'})
+    }).catch(err=>{
+      console.log(err)
+  })}
+
  
  
   return (
@@ -99,19 +117,24 @@ const Timeline = () => {
         return(
           <div key={post._id}>
               <h3>{post.message}</h3>
-              <Moment key={post.createdAt} format="YYYY/MM/DD">
-              <p>{post.createdAt}</p>
-              </Moment>
-              <div className="profile-pic-and-name">
-              <p>{post.user}</p>
-              <img id='profile-pic' style={{maxWidth:'20px'}} src={post.userImage}  alt="it goes here"/>
-              </div>
               
-              <h6>likes: {post.likes} </h6>
+              <div style={{maxWidth :'500px', display:'inline-flex', justifyContent: 'space-evenly'}} className="profile-pic-and-name">
+                <img id='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
+                <p>{post.user}</p>
+                <Moment key={post.createdAt} format="YYYY/MM/DD"><p>{post.createdAt}</p></Moment>
+                <h6>likes: {post.likes} </h6>
               <i key="five" className="like-button" 
                   onClick={()=>{likePost(post._id)}}>
                   like
               </i>
+              
+              </div>
+                <form onSubmit={(e)=>{
+                      e.preventDefault()
+                      makeComment(e.target[0].value, post._id)
+                    }}>
+                <input type="text" placeholder="add a comment"/>
+              </form>
                 <div>
                   {post.comments.map(comment=>{
                     return(

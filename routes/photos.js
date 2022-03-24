@@ -62,7 +62,7 @@ router.post("/profilepic" , upload.single("myImage"), async (req, res) =>  {
       throw err;
     }
     console.log('Success')
-  res.status(201).redirect('/photos');
+  res.json()
   });
 });
 
