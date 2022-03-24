@@ -1,7 +1,13 @@
 //import req from 'express/lib/request';
 import React, {useState, useEffect} from 'react';
+// import cn from "classnames";
+// import { ReactComponent as Hand } from "./hand.svg";
+
+// import "./styles.scss";
+
 
 const Timeline = () => { 
+
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState('')
   const user = localStorage.getItem("user")
@@ -11,12 +17,32 @@ const Timeline = () => {
       headers:{
         'Content-Type':'application/json'
       }
-    }).then(response => response.json())
+       }).then(response => response.json())
       .then(result => {
       setPosts(result.posts)
     })
   }, [])
+  
+  function likePost(id) {
+    // const [likes, setLiked] = useState(null);
 
+    fetch(`/posts/like/${id}`,{
+      method: 'post',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({
+        _id: id
+      })
+    }).then(res=>res.json())
+    .then(result=>{
+      console.log(result)
+      }).catch(err=>{
+        console.log(err)
+
+      // setLiked(result.posts)
+    })}
+  
   const postData = () => {
         fetch("/posts", {
             method: 'post',
@@ -80,14 +106,19 @@ const Timeline = () => {
               <p>{post.createdAt}</p>
               <p>{post.user}</p>
               <img src={post.userImage} alt="it goes here"/>
-          <div>
-          {post.comments.map(comment=>{
-                return(
-                  <div key={comment._id}>
-                  <h6>{comment.note}</h6>
-                  </div>)
-              })}
-              </div>
+              <h6>likes: {item.likes} </h6>
+              <i key="five" className="like-button" 
+                  onClick={()=>{likePost(item._id)}}>
+                  like
+              </i>
+                <div>
+                  {post.comments.map(comment=>{
+                    return(
+                      <div key={comment._id}>
+                      <h6>{comment.note}</h6>
+                      </div>)
+                    })}
+                </div>
           </div>
         )
       })
@@ -99,4 +130,6 @@ const Timeline = () => {
 )}
 
 
-export default Timeline
+  
+
+export default Timeline;
