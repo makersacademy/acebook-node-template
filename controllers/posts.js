@@ -8,8 +8,6 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        console.log("look here!!!")
-        console.log(posts)
         res.render("posts/index", { posts: posts });
         }).populate('user').populate('userLikes').populate({path: "comments", populate: {path: 'user likes'}});
         
@@ -32,7 +30,7 @@ const PostsController = {
   },
 
   CreateImage: (req, res) => {
-    const post = new Post({user: req.session.user._id, image: req.body.img_name});
+    const post = new Post({user: req.session.user._id, image: req.body.img_name, message: req.body.message});
     post.save((err) => {
       if (err) {
         throw err;
