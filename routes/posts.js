@@ -14,6 +14,7 @@ router.post('/:_id/comment', PostsController.CreateComment)
 
 router.post('/delete/:_id', PostsController.Delete)
 router.post('/like/:_id', PostsController.LikeComment)
+router.post('/dislike/:_id', PostsController.DislikeComment)
 
 // end
 

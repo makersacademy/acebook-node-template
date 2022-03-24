@@ -10,6 +10,8 @@ const Timeline = () => {
   const [comment, setComment] = useState("")
   const user = localStorage.getItem("user")
   
+
+
   useEffect(()=>{
     fetch("/posts",{
       headers:{
@@ -30,16 +32,37 @@ const Timeline = () => {
       body:JSON.stringify({
         _id: id
       })
+
     }).then(res=>res.json())
     .then(result=>{
       setPosts(result.posts)
       }).catch(err=>{
         console.log(err)
-
-      // setLiked(result.posts)
     })}
+
+    function dislikePost(id) {
+      // const [likes, setLiked] = useState(null);
+  
+      fetch(`/posts/dislike/${id}`,{
+        method: 'post',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+          _id: id
+        })  
+      }).then(res=>res.json())
+      .then(result=>{
+        console.log(result)
+        }).catch(err=>{
+          console.log(err)
+  
+        // setLiked(result.posts)
+      })}
+    
   
   const postData = () => {
+
       fetch("/posts", {
           method: 'post',
           headers:{
@@ -55,6 +78,7 @@ const Timeline = () => {
       console.log('Posted Sucessfully')
   })
 }
+  
 const makeComment = (note,postId) => {
   fetch(`/posts/${postId}/comment`, {
     method:'post',
@@ -72,6 +96,29 @@ const makeComment = (note,postId) => {
     }).catch(err=>{
       console.log(err)
   })}
+
+
+
+  function deleteData(id) {
+    fetch(`/posts/delete/${id}`, {
+      method: 'post',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({
+        _id: id
+      })
+    }).then(response => response.json())
+    .then(result => {
+      console.log(result)
+      const updatedPosts = posts.filter(item =>{
+        return item._id !== result._id
+      })
+      setPosts(updatedPosts)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
 
  
  
@@ -117,6 +164,7 @@ const makeComment = (note,postId) => {
         return(
           <div key={post._id}>
               <h3>{post.message}</h3>
+
               
               <div style={{maxWidth :'500px', display:'inline-flex', justifyContent: 'space-evenly'}} className="profile-pic-and-name">
                 <img id='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
@@ -135,7 +183,23 @@ const makeComment = (note,postId) => {
                     }}>
                 <input type="text" placeholder="add a comment"/>
               </form>
+
+       
+              <button className="btn waves-effect waves-light #1976d2 blue darken-2"
+               onClick={()=>deleteData(post._id)}>
+              Delete Your Post
+              </button>
+              <br></br>
+              <img src={post.userImage} alt="it goes here"/>
+              <h6>likes: {post.likes} </h6>
+              <i className="material-icons"
+                  onClick={()=>{likePost(post._id)}}
+              >thumb_up</i>
                 <div>
+                 <i key="six" className="dislike-button" 
+                  onClick={()=>{dislikePost(post._id)}}>
+                  dislike
+                </i>
                   {post.comments.map(comment=>{
                     return(
                       <div key={comment._id}>

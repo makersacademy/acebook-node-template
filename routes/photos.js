@@ -19,9 +19,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-const PhotosController = require("../controllers/photos");
 
-//load a photot to snaps
+//load a photo to snaps
 const ImageModel = require("../models/image");
 router.post("/" , upload.single("myImage"), (req, res) =>  {
   const obj = {
