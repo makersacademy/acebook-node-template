@@ -31,7 +31,6 @@ const PostsController = {
   Create: async (req, res) => {
     req.body.user = req.session.user._id;
     req.body.posted_by = req.session.user.email;
-    req.body.likes = 0;
     try{
       const post = new Post(req.body);
       await post.save()
@@ -43,7 +42,6 @@ const PostsController = {
   Like: async (req, res) => {
     try{
       const post = await Post.findOne({"_id": req.body.postId});
-      console.log(post.likes);
       post.likes += 1;
       await post.save();
       if(req.body.prevRoute === "posts"){

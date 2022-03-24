@@ -92,7 +92,7 @@ const UsersController = {
       await requestingUser.save();
       await receivingUser.save();
       res.status(201).redirect("/profile/userlist")
-      } catch {
+    } catch {
         console.log("error")
     }
   },
@@ -154,7 +154,7 @@ const UsersController = {
 
   UpdateProfile: async (req,res) => {
    try{
-   const user = await User.findOne({'_id': req.session.user._id});
+    const user = await User.findOne({'_id': req.session.user._id});
     user.bio = req.body.bio
     user.name = req.body.name
     if (req.body.image != "") {
