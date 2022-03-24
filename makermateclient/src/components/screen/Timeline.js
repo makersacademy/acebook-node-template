@@ -106,9 +106,9 @@ const Timeline = () => {
               <p>{post.createdAt}</p>
               <p>{post.user}</p>
               <img src={post.userImage} alt="it goes here"/>
-              <h6>likes: {item.likes} </h6>
+              <h6>likes: {post.likes} </h6>
               <i key="five" className="like-button" 
-                  onClick={()=>{likePost(item._id)}}>
+                  onClick={()=>{likePost(post._id)}}>
                   like
               </i>
                 <div>
