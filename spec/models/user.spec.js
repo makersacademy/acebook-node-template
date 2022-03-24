@@ -107,15 +107,6 @@ describe("User model", () => {
     expect(user.password).toEqual("password");
   });
 
-  it("has a username", () => {
-    const user = new User({
-      email: "someone@example.com",
-      password: "password",
-      username: "someone123"
-    });
-    expect(user.username).toEqual("someone123")
-  });
-
   it("can list all users", (done) => {
     User.find((err, users) => {
       expect(err).toBeNull();
@@ -127,8 +118,7 @@ describe("User model", () => {
   it("can save a user", (done) => {
     const user = new User({
       email: "someone@example.com",
-      password: "password",
-      username: "someone123"
+      password: "password"
     });
 
     user.save((err) => {
@@ -139,8 +129,7 @@ describe("User model", () => {
 
         expect(users[0]).toMatchObject({
           email: "someone@example.com",
-          password: "password",
-          username: "someone123"
+          password: "password"
         });
         done();
       });

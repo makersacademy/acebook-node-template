@@ -37,7 +37,6 @@ Cypress.Commands.add("signUp", () => {
   cy.get("#signup").click();
   cy.get("#email").type("anothersomeone@example.com");
   cy.get("#password").type("password");
-  cy.get("#username").type("anothersomeone123");
   cy.get("#name").type("another name")
   cy.get("#submit").click();
  })
