@@ -51,8 +51,9 @@ const UsersController = {
     const hash = bcrypt.hashSync(password, 12);
     req.body.password = hash
     console.log("REGISTRTION PROFILE" + filename)
-    const user = new User ({
-      
+     
+    if (filename != null){
+        const user = new User ({
         name: req.body.name,
         username: req.body.username,
         image: filename,
@@ -60,14 +61,46 @@ const UsersController = {
         email: req.body.email
             
       })
+        user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        req.session.user = user;
+        res.status(201).redirect("/posts");
+      });
+    }else{
+       const user = new User ({
+        name: req.body.name,
+        username: req.body.username, 
+        password: req.body.password,
+        email: req.body.email
+      })   
+        user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        req.session.user = user;
+        res.status(201).redirect("/posts");
+      });
+
+    }
+
+    // const user = new User ({
+      
+    //     name: req.body.name,
+    //     username: req.body.username,
+    //     image: filename,
+    //     password: req.body.password,
+    //     email: req.body.email
+    //   })
     
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      req.session.user = user;
-      res.status(201).redirect("/posts");
-    });
+    // user.save((err) => {
+    //   if (err) {
+    //     throw err;
+    //   }
+    //   req.session.user = user;
+    //   res.status(201).redirect("/posts");
+    // });
   },
 
   Profile: (req, res) => {
@@ -159,16 +192,21 @@ const UsersController = {
     const user = await User.findOne({'_id': req.session.user._id});
     user.bio = req.body.bio
     user.name = req.body.name
+   if (filename != null){
+    user.image = filename
+    req.session.user.image = filename 
+  }
+
     // if (req.body.image != "") {
     //   user.image = req.body.image
     //   req.session.user.image = req.body.image
     // } 
-     user.image = filename
+   // user.image = filename
     const updatedProfile = await user.save()
     // user.save();
     req.session.user.bio = req.body.bio
     req.session.user.name = req.body.name
-    req.session.user.image = filename
+   // req.session.user.image = filename
     // req.session.user.image = req.body.image
     // req.flash('err', 'User profile has been updated')
     res.status(201).redirect("/profile")
