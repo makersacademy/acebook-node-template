@@ -41,8 +41,6 @@ const Timeline = () => {
     })}
 
     function dislikePost(id) {
-      // const [likes, setLiked] = useState(null);
-  
       fetch(`/posts/dislike/${id}`,{
         method: 'post',
         headers:{
@@ -56,13 +54,10 @@ const Timeline = () => {
         console.log(result)
         }).catch(err=>{
           console.log(err)
-  
-        // setLiked(result.posts)
       })}
     
   
   const postData = () => {
-
       fetch("/posts", {
           method: 'post',
           headers:{
@@ -91,13 +86,11 @@ const makeComment = (note,postId) => {
     })
   }).then(res=>res.json())
     .then(result=>{
-    setPosts(result.posts)
+    setPosts([result])
     console.log({message: 'successful comment'})
     }).catch(err=>{
       console.log(err)
   })}
-
-
 
   function deleteData(id) {
     fetch(`/posts/delete/${id}`, {
@@ -168,14 +161,10 @@ const makeComment = (note,postId) => {
                 <img className='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
                 <p>{post.user}</p>
                 <Moment key={post.createdAt} format="YYYY/MM/DD"><p>{post.createdAt}</p></Moment>
-                <h6>likes: {post.likes} </h6>
-              <i key="five" className="like-button" 
-                  onClick={()=>{likePost(post._id)}}>
-                  like
-              </i>
+              
               </div >
-                <form className='comment-text-area' onSubmit={(e)=>{
-                      e.preventDefault()
+              <form className='comment-text-area' onSubmit={(e)=>{
+                      e.preventDefault();
                       makeComment(e.target[0].value, post._id)
                     }}>
                 <input type="text" placeholder="add a comment"/>
@@ -193,13 +182,13 @@ const makeComment = (note,postId) => {
                   onClick={()=>{likePost(post._id)}}
               >thumb_up</i>
                 <div>
-                 <i key="six" className="dislike-button" 
+                 <i  className="dislike-button" 
                   onClick={()=>{dislikePost(post._id)}}>
                   dislike
                 </i>
                   {post.comments.map(comment=>{
                     return(
-                      <div key={comment._id}>
+                      <div key={post._id}>
                       <h6>{comment.note}</h6>
                       </div>)
                     })}

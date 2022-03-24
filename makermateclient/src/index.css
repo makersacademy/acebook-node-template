@@ -19,8 +19,7 @@ code {
   border-radius: 50%;
 }
 .comment-text-area{
-  width: 30%;
-  
+  max-width: 400px;
 }
 
 .individual-photo{

@@ -41,21 +41,21 @@ const PostsController = {
   CreateComment: (req, res) => {
   const username = req.session.user.firstName + " " + req.session.user.lastName
   const note = req.body.note
-  var comment = new Comment({ note:`${note}`, user: username})
+  const userImage = req.session.user.image
+  var comment = new Comment({ note:`${note}`, user: username, userImage})
   console.log(req.session.user)
     Post.findOneAndUpdate({
       _id: req.body.postId},
     {$push: {comments: comment}},
-    function(err) {
+    function(err, result) {
       if (err) {
         throw err;
       }
-      res.status(201).redirect('/posts')
-    });
+    }).then(comment => {
+      res.json(comment)
+    })
   },
 
-  // untested code for controller
-  // like functionality
   LikeComment: (req, res) => {
     Post.findOneAndUpdate({_id: req.params._id}, {$inc: {likes: 1}})
     .then( newLike => {
