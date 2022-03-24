@@ -29,7 +29,7 @@ const UsersController = {
       })
       user.save()
       //this is what we need to write to send the response as json to be read by react
-      .then(user=> {
+      .then(res => {
         res.json({message:"saved succesfully"})
         //this catches any errors and posts them to console. This would show up in the temrinal. If we console
         //log in react it will show up in the dev tools console.

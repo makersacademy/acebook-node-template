@@ -7,18 +7,21 @@ import React, {useState, useEffect} from 'react';
 
 
 const Timeline = () => { 
-  const [data, setData] = useState([])
+
+  const [posts, setPosts] = useState([])
+  const [input, setInput] = useState('')
+  const user = localStorage.getItem("user")
   
   useEffect(()=>{
     fetch("/posts",{
       headers:{
         'Content-Type':'application/json'
       }
-    }).then(res=>res.json())
-      .then(result=>{
-        console.log(result)
-      setData(result.posts)
-  })}, [])
+       }).then(response => response.json())
+      .then(result => {
+      setPosts(result.posts)
+    })
+  }, [])
   
   function likePost(id) {
     // const [likes, setLiked] = useState(null);
@@ -39,29 +42,93 @@ const Timeline = () => {
 
       // setLiked(result.posts)
     })}
-
-return(
-  <div>
-    {data.map(item => {
-      return (
-        <>
-      <h5 key="one">{item.user}</h5>
-      <h5 key="two">{item.message}</h5>
-      <h5 key="three">{item.createdAt}</h5>
-      <h5 key="four">{item.comments}</h5>
-      <h6>
-        likes: {item.likes}
-      </h6>
-      <i key="five" className="like-button" 
-      onClick={()=>{likePost(item._id)}}>
-        like
-      </i>
-      </>
-      )
-      })}
-  </div>
-) 
+  
+  const postData = () => {
+        fetch("/posts", {
+            method: 'post',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                message: input,
+                userImage: user.userImage
+            })
+    }).then(response => response.json())
+    .then(result =>{
+        setPosts([result,...posts])
+        console.log('Posted Sucessfully')
+    })
+}
+ 
+ 
+  return (
+    <div>
+      <div className="container" 
+          style={{
+            margin: "30px auto",
+            maxWidth: "500px",
+            padding: "20px",
+            textAlign: "center"
+            }}>
+          <h4>New Post</h4>
+         <div className="row">
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <textarea
+                  className="materialize-textarea"
+                  type="text"
+                  placeholder="text here"
+                  value={input}
+                  onChange={(e)=>setInput(e.target.value)}>
+                </textarea>
+              </div>
+            </div>
+          </form>
+          <button className="btn waves-effect waves-light #1976d2 blue darken-2"
+            onClick={()=>postData()} >
+            Post Your Post
+          </button>
+      </div>
+      </div>
+    <div>
+    <div className="container" 
+          style={{
+            margin: "10px auto",
+            maxWidth: "1000px",
+            padding: "20px",
+            textAlign: "center"
+            }}>
+      {posts.map(post=>{
+        return(
+          <div key={post._id}>
+              <h3>{post.message}</h3>
+              <p>{post.createdAt}</p>
+              <p>{post.user}</p>
+              <img src={post.userImage} alt="it goes here"/>
+              <h6>likes: {item.likes} </h6>
+              <i key="five" className="like-button" 
+                  onClick={()=>{likePost(item._id)}}>
+                  like
+              </i>
+                <div>
+                  {post.comments.map(comment=>{
+                    return(
+                      <div key={comment._id}>
+                      <h6>{comment.note}</h6>
+                      </div>)
+                    })}
+                </div>
+          </div>
+        )
+      })
     }
+  </div>
+  </div>
+  </div>
+
+)}
+
 
   
 
