@@ -4,7 +4,8 @@
 
 <div class="posts" >
   {{#each posts}}
-  <div>
+  <div class="card" style="width: 60rem;">
+      <div class="card-body">
     <img src=/uploads/images/{{this.user.image}} style="height:60px; width:60px;">
     <a href="/profile/viewperson/{{this.user._id}}">{{this.user.name}}</a> <br>
    {{this.message}}  <br>
@@ -17,9 +18,11 @@
     <button id="like" name="postId" value="{{this._id}}">Like</button>
   </form> 
   <div id="likecount">{{this.likes}}</div> 
-  </div>
   <br>
   {{> comments}}
+  <br>
+    </div>
+    </div>
   {{/each}}
 </div>
 </div>
