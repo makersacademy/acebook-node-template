@@ -57,12 +57,12 @@
   </div>
 
   <div class="col-3">
-      <a style="text-decoration:none;" href="#commentForm{{@index}}" id="comment" class="toggle btn btn-link"><img align="left" src="/images/commentbllue.png" height="20" width="20" class="mt-1"></a>
+      <a style="text-decoration:none;" href="#" trigger="#commentForm{{@index}}" id="comment" class="toggle btn btn-link"><img trigger="#commentForm{{@index}}" align="left" src="/images/commentbllue.png" height="20" width="20" class="mt-1 toggle"></a>
   </div>
 
 
   <div class="col-3">
-      <a style="text-decoration:none;" href="#comments-toggle{{@index}}" class="toggle btn btn-link"><img align="left" src="/images/view.png" height="20" width="20" class="mt-1">{{#if this.comments}}({{length this.comments}}){{/if}}</a>
+      <a style="text-decoration:none;" href="#" trigger="#comments-toggle{{@index}}" class="toggle btn btn-link"><img trigger="#comments-toggle{{@index}}" align="left" src="/images/view.png" height="20" width="20" class="mt-1">{{#if this.comments}}({{length this.comments}}){{/if}}</a>
   </div>
 
   <div class="col-3">
