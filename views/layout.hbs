@@ -1,75 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </head>
   <body>
-    {{!-- {{> header}} --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-    <a class="navbar-brand" href="/">Acebook</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      {{#if loggedIn}}
-        <li class="nav-item">
-        <form action='/profile' method='GET'>
-          <input type="hidden" value="Profile">
-          <button type="submit" class="list-group-item list-group-item-action">Profile</button>
-        </form>
-        </li>
-        <li class="nav-item">
-        <form action='/posts' method='GET'>
-          <input type="hidden" value="Timeline">
-          <button type="submit" class="list-group-item list-group-item-action">Timeline</button>
-        </form>
-        </li>
-        <li class="nav-item">
-        <form action='/posts/new' method='GET'>
-          <input type="hidden" value="Upload">
-          <button type="submit" class="list-group-item list-group-item-action">Create Post</button>
-        </form>
-        </li>
-        <li class="nav-item">
-        <form action='/profile/friendlist' method='GET'>
-          <input type="hidden" value="Friends">
-          <button type="submit" class="list-group-item list-group-item-action">My Friends</button>
-        </form>
-        </li>
-        <form action='/profile/userlist' method='GET'>
-          <input type="hidden" value="Friends">
-          <button type="submit" class="list-group-item list-group-item-action">All People</button>
-        </form>
-        </li>
-        <li class="nav-item">
-        <form action='/sessions?_method=DELETE' method='POST'>
-          <input type="hidden" value="Logout">
-          <button type="submit" class="list-group-item list-group-item-action">Logout</button>
-        </form>
-        </li>
-        {{else}}
-        <li class="nav-item">
-        <form action='/users/new' method='GET'>
-          <input type="hidden" value="Register">
-          <button type="submit" class="list-group-item list-group-item-action">Register</button>
-        </form>
-        </li>
-        <li class="nav-item">
-        <form  action='/sessions/new' method='GET'>
-          <input type="hidden" value="Login">
-          <button type="submit" class="list-group-item list-group-item-action">Login</button>
-        </form>
-        </li>
-      {{/if}}
-    </ul>
-  </div>
-  </div>
-  </nav>
+    {{>header}}
+    <nav>
+    </nav>
     {{{body}}}
   </body>
 </html>

@@ -22,6 +22,7 @@ const ProfileController = {
       username: req.session.user.username,
       bio: req.session.user.bio,
       image: req.session.user.image,
+      messages: req.flash('success'),
     });
 
   } catch (err) {

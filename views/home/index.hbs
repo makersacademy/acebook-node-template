@@ -1,2 +1,94 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<html>
+<head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+         <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title> Acebook - Sign Up </title>
+</head>
+<body>
+    <div id="main">
+      <div class="container" id="sections">
+        <div class="row g-2">
+            <div class="col-6">
+                
+                <div class="p-3" id="welcome">
+                    <h1 id="acebook-title" class="display-4">Welcome to Acebook</h1>
+                    <h3 class="lead"> Connect with friends, meet new people, share your thoughts! </h3>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="p-3">
+                    <div class="d-grid gap-2" id="buttons">
+                        <button id="signup" class="btn btn-secondary" type="button">
+                          <a href="/users/new"> Register </a>
+                        </button>
+                        <button class="btn btn-secondary visible" type="button">
+                          <a href="/sessions/new">Log In</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+</body>
+<style>
+  #acebook-title {
+    font-family: 'Bebas Neue', sans-serif;
+    padding-top: 180px;
+  }
+  #welcome {
+      width: 70%;
+      padding-left: 50px;
+  }
+  #buttons {
+      padding-top: 230px;
+      width: 70%;
+      float: right;
+      padding-right: 50px;
+  }
+  .visible {
+    visibility: visible;
+  }
+  body {
+      background-image: url("https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80");
+      background-repeat no-repeat;
+  }
+  a {
+      text-decoration: none;
+      color: white;
+  }
+  h1 {
+    font-size: 50px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 15px;
+  }
+  body {
+    font-size: 15px;
+  }
+  #sections {
+      height: 300px;
+      padding: 50px;
+  }
+  footer {
+    bottom: 0;
+    padding: 25px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+  }    
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

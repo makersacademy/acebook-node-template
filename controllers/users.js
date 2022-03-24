@@ -167,7 +167,7 @@ const UsersController = {
     req.session.user.bio = req.body.bio
     req.session.user.name = req.body.name
     // req.session.user.image = req.body.image
-    // req.flash('err', 'User profile has been updated')
+    req.flash('success', 'User profile has been updated')
     res.status(201).redirect("/profile")
       } catch (err) {
         console.log(err);
