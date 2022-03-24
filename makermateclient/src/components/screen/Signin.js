@@ -31,7 +31,6 @@ const Signin = () => {
       console.log({error: "no user"})
     } else {
       localStorage.setItem("user",JSON.stringify(data.user))
-
       console.log('Sign In successful')
       navigation('/timeline')
     }
