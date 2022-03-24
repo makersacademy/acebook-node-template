@@ -6,12 +6,12 @@ IF GREATER THAN 0
   {{#each pending_friends}}
   PICTURE
   {{this.name}}
-  <form action="/users/acceptfriend/{{this._id}}" method="post">
+  <form action="/profile/acceptfriend/{{this._id}}" method="post">
     <label for="button">Accept Friend</label>
     <button type="submit" name="friendAccId" value="{{this._id}}">Accept</button>
   </form>
   <br>
-  <form action="/users/rejectfriend/{{this._id}}" method="post">
+  <form action="/profile/rejectfriend/{{this._id}}" method="post">
     <label for="button">Reject Friend</label>
     <button type="submit" name="friendRejId" value="{{this._id}}">Reject</button>
   </form>

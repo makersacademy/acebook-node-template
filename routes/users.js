@@ -35,7 +35,5 @@ router.get("/profile", UsersController.Profile);
 router.post("/updateprofile", UsersController.UpdateProfile);
 router.post("/addfriend/:id", UsersController.Addfriend);
 router.post("/deletefriend/:id", UsersController.Deletefriend);
-router.post("/acceptfriend/:id", UsersController.Acceptfriend);
-router.post("/rejectfriend/:id", UsersController.Rejectfriend);
 
 module.exports = router;

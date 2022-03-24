@@ -75,6 +75,49 @@ FriendList: async (req, res) => {
   }
 },
 
+Acceptfriend: async (req, res) => {
+  try{
+    console.log("here when accepting friend request");
+    const receivingUser = await User.findOne({'_id': req.session.user._id});
+    console.log(req.session.user._id);
+    const requestingUser = await User.findOne({'_id': req.body.friendAccId});
+    console.log(req.body.friendAccId);
+
+    this.RemoveIDFromArray(requestingUser.sent_requests, req.session.user._id);
+    console.log("removed from first array");
+    this.RemoveIDFromArray(receivingUser.pending_friends, req.body.friendAccId);
+    console.log("removed from second array");
+    
+    receivingUser.friends.unshift(req.body.friendAccId);
+    requestingUser.friends.unshift(req.session.user._id);
+
+    await receivingUser.save();
+    await requestingUser.save();
+
+    res.status(201).redirect("/profile/friendlist")
+    } catch (err) {
+      console.log(err.messages)
+  }
+},
+
+Rejectfriend: async (req, res) => {
+  try{
+    const user = await User.findOne({"_id": req.session.user._id});
+    const rejectedFriend = await User.findOne({"_id": req.body.friendRejId})
+
+    this.RemoveIDFromArray(user.pending_friends, req.body.friendRejId);
+    this.RemoveIDFromArray(rejectedFriend.sent_requests, req.session.user._id);
+
+    await user.save();
+    await rejectedFriend.save();
+
+    res.status(201).redirect("/profile/friendlist")
+    
+  } catch (err) {
+    console.log(err.messages)
+  }
+},
+
  ViewPerson: async (req,res) => {
    
  }
