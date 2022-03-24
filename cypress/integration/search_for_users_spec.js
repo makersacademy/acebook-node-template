@@ -14,7 +14,6 @@ describe("Search for users", () => {
     cy.get("#signup").click();
     cy.get("#email").type("another@example.com");
     cy.get("#password").type("password");
-    cy.get("#username").type("someone123");
     cy.get("#name").type("another tester")
     cy.get("#submit").click();
 
