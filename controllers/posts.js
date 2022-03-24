@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const fs = require("fs");
-const path = require('path')
+const path = require('path');
+
 const PostsController = {
   Index: (req, res) => {
 

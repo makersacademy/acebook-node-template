@@ -54,8 +54,8 @@
         alt="Your Profile Picture" />
     </div>
     <div class="col">
-      <h1>Timeline</h1>
-
+      <h1>Feed</h1>
+      console.log('Look here: {{this.user._id}}')
 <ul class="posts">
   {{#each posts}}
     <div class="card">
@@ -81,6 +81,8 @@
       </div>
       <div class="card-footer">
         <form method="get">
+          console.log('Look here 2: {{this.user}}')
+          <input type="hidden" name="user_id" value={{this.user._id}}>
           <input type="hidden" name="post_id" value={{this._id}}> <button class="card-link btn btn-link" type="submit">Like {{#if this.likes}}({{this.likes}}){{/if}}</button>
         </form>
         <a href="/comment/?id={{this._id}}" id="comment" class="card-link">Comment</a>

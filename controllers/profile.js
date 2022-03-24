@@ -30,12 +30,12 @@ const ProfileController = {
       },
 
     Feed: (req, res) => {
-      Post.find({_id: req.session.user._id}, 'message createdAt', {sort: {'createdAt': -1}},(err, posts) => {
+      Post.find({post: req.query.user}, 'comment createdAt', {sort: {'createdAt': -1}}, (err, post) => {
         if (err) {
           throw err;
         }
-        res.render("/profile", { posts: posts, user: user });
-        }).populate('user');
+        res.render("/profile", { post: post, user_id: req.query.user });
+      }).populate('user');
     }
 };
 
