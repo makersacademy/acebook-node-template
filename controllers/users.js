@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const { body, validationResult } = require('express-validator');
 
 const UsersController = {
   New: (req, res) => {
@@ -6,6 +7,8 @@ const UsersController = {
   },
 
   Create: (req, res) => {
+    // console.log(body('email').isEmail());
+
     const user = new User({email: req.body.email, password: req.body.password, firstName: req.body.firstName, surName: req.body.surName});
     User.findOne({ email: user.email }, function(err, person) {
       if(err) {

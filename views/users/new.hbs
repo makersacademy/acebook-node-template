@@ -17,8 +17,16 @@
 </div>
 <div class="mb-3">
   <label class="form-label" for="password">Password: </label>
-  <input class="form-control" id="password" type="password" name="password" value="">
+  <input class="form-control" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" type="password" name="password" value="">
+  <div class="hidden" id="validation-message">
+    <h6>Password must contain the following:</h6>
+    <span id="letter" class="invalid">A <b>lowercase</b> letter</span>
+    <span id="capital" class="invalid">A <b>capital (uppercase)</b> letter</span>
+    <span id="number" class="invalid">A <b>number</b></span>
+    <span id="length" class="invalid">Minimum <b>8 characters</b></span>
+  </div>
 </div>
+
 
   <input class="btn btn-primary" id="submit" type="submit" value="Submit">
   <p id="error">{{message}}</p>

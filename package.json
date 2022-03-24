@@ -21,6 +21,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-session": "^1.17.2",
+    "express-validator": "^6.14.0",
     "handlebars-helpers": "^0.9.8",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
