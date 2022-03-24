@@ -1,15 +1,13 @@
-//import req from 'express/lib/request';
-import React, {useState, useEffect} from 'react';
-// import cn from "classnames";
-// import { ReactComponent as Hand } from "./hand.svg";
 
-// import "./styles.scss";
+import React, {useState, useEffect} from 'react';
+import Moment from 'react-moment';
 
 
 const Timeline = () => { 
 
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState('')
+  const [comment, setComment] = useState("")
   const user = localStorage.getItem("user")
   
 
@@ -26,7 +24,6 @@ const Timeline = () => {
   }, [])
   
   function likePost(id) {
-
     fetch(`/posts/like/${id}`,{
       method: 'post',
       headers:{
@@ -35,19 +32,11 @@ const Timeline = () => {
       body:JSON.stringify({
         _id: id
       })
-    }).then(response => response.json())
-    .then(result => {
-      const updateLikes = posts.map(item => {
-        if(item._id === result._id){
-          return result
-        }else{
-          return item
-        }
-      })
-      setPosts(updateLikes)
-      })
-    .catch(err => {
 
+    }).then(res=>res.json())
+    .then(result=>{
+      setPosts(result.posts)
+      }).catch(err=>{
         console.log(err)
     })}
 
@@ -73,21 +62,42 @@ const Timeline = () => {
     
   
   const postData = () => {
-        fetch("/posts", {
-            method: 'post',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                message: input,
-                userImage: user.userImage
-            })
-    }).then(response => response.json())
-    .then(result =>{
-        setPosts([result,...posts])
-        console.log('Posted Successfully')
+
+      fetch("/posts", {
+          method: 'post',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+              message: input,
+              userImage: user.image
+          })
+  }).then(response => response.json())
+  .then(result =>{
+      setPosts([result,...posts])
+      console.log('Posted Sucessfully')
+  })
+}
+  
+const makeComment = (note,postId) => {
+  fetch(`/posts/${postId}/comment`, {
+    method:'post',
+    headers:{
+      'Content-Type': "application/json"
+    },
+    body:JSON.stringify({
+      note,
+      postId: `${postId}`
     })
-  }
+  }).then(res=>res.json())
+    .then(result=>{
+    setPosts(result.posts)
+    console.log({message: 'successful comment'})
+    }).catch(err=>{
+      console.log(err)
+  })}
+
+
 
   function deleteData(id) {
     fetch(`/posts/delete/${id}`, {
@@ -109,6 +119,7 @@ const Timeline = () => {
       console.log(err)
     })
   }
+
  
  
   return (
@@ -153,8 +164,27 @@ const Timeline = () => {
         return(
           <div key={post._id}>
               <h3>{post.message}</h3>
-              <p>{post.createdAt}</p>
-              <p>{post.user}</p>
+
+              
+              <div style={{maxWidth :'500px', display:'inline-flex', justifyContent: 'space-evenly'}} className="profile-pic-and-name">
+                <img id='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
+                <p>{post.user}</p>
+                <Moment key={post.createdAt} format="YYYY/MM/DD"><p>{post.createdAt}</p></Moment>
+                <h6>likes: {post.likes} </h6>
+              <i key="five" className="like-button" 
+                  onClick={()=>{likePost(post._id)}}>
+                  like
+              </i>
+              
+              </div>
+                <form onSubmit={(e)=>{
+                      e.preventDefault()
+                      makeComment(e.target[0].value, post._id)
+                    }}>
+                <input type="text" placeholder="add a comment"/>
+              </form>
+
+       
               <button className="btn waves-effect waves-light #1976d2 blue darken-2"
                onClick={()=>deleteData(post._id)}>
               Delete Your Post
@@ -162,11 +192,9 @@ const Timeline = () => {
               <br></br>
               <img src={post.userImage} alt="it goes here"/>
               <h6>likes: {post.likes} </h6>
-
               <i className="material-icons"
                   onClick={()=>{likePost(post._id)}}
               >thumb_up</i>
-
                 <div>
                  <i key="six" className="dislike-button" 
                   onClick={()=>{dislikePost(post._id)}}>

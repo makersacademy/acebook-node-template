@@ -16,7 +16,7 @@ const PostsController = {
 
   Create: (req, res) => {
     const userName = req.session.user.firstName + " " + req.session.user.lastName
-    const userImage = req.session.user.image.imgPath;
+    const userImage = req.session.user.image;
     console.log(userImage)
     const post = new Post({message: req.body.message, user: userName, userImage: userImage });
     post.save()
@@ -39,19 +39,18 @@ const PostsController = {
 
 
   CreateComment: (req, res) => {
-
-    const username = req.session.user.firstName + " " + req.session.user.lastName
-
-    var comment = new Comment({ note: `${req.body.comments}`, user: username})
+  const username = req.session.user.firstName + " " + req.session.user.lastName
+  const note = req.body.note
+  var comment = new Comment({ note:`${note}`, user: username})
   console.log(req.session.user)
     Post.findOneAndUpdate({
-      _id: req.params._id},
+      _id: req.body.postId},
     {$push: {comments: comment}},
     function(err) {
       if (err) {
         throw err;
       }
-    res.status(201).redirect('/posts');
+      res.status(201).redirect('/posts')
     });
   },
 
