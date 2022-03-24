@@ -61,7 +61,7 @@ const UsersController = {
         email: req.body.email
             
       })
-        user.save((err) => {
+      await user.save((err) => {
         if (err) {
           throw err;
         }
@@ -75,7 +75,7 @@ const UsersController = {
         password: req.body.password,
         email: req.body.email
       })   
-        user.save((err) => {
+      await user.save((err) => {
         if (err) {
           throw err;
         }
@@ -188,7 +188,6 @@ const UsersController = {
   UpdateProfile: async (req,res) => {
    try{
     const filename = req.file != null ? req.file.filename : null;
-    console.log("UPDATEPROFILE " + filename)
     const user = await User.findOne({'_id': req.session.user._id});
     user.bio = req.body.bio
     user.name = req.body.name
@@ -197,18 +196,10 @@ const UsersController = {
     req.session.user.image = filename 
   }
 
-    // if (req.body.image != "") {
-    //   user.image = req.body.image
-    //   req.session.user.image = req.body.image
-    // } 
-   // user.image = filename
     const updatedProfile = await user.save()
-    // user.save();
     req.session.user.bio = req.body.bio
     req.session.user.name = req.body.name
-   // req.session.user.image = filename
-    // req.session.user.image = req.body.image
-    // req.flash('err', 'User profile has been updated')
+
     res.status(201).redirect("/profile")
       } catch (err) {
         console.log(err);
