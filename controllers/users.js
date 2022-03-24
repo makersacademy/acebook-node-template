@@ -78,6 +78,10 @@ const UsersController = {
           if (friend.id == sessionUserId){showAddFriend = false}
         })
 
+        user.posts.forEach((post) => {
+          post.createdOnPretty = post.formatDate(post.createdAt)
+        })
+
         res.render("users/show", { user: user, posts: user.posts, users: user.friends , showAddFriend : showAddFriend });
       })
 

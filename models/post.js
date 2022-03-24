@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const TimeAgo = require('javascript-time-ago')
+const en = require('javascript-time-ago/locale/en.json')
+TimeAgo.addDefaultLocale(en)
 
 const PostSchema = new mongoose.Schema(
   {
@@ -17,6 +20,12 @@ const PostSchema = new mongoose.Schema(
   },
   { timestamps: true }
 )
+
+PostSchema.methods.formatDate = function(dateProperty) {
+  const timeAgo = new TimeAgo('en-US')
+  const prettyDate =  timeAgo.format(Date.parse(dateProperty), 'twitter')
+  return prettyDate;
+}
 
 const Post = mongoose.model('Post', PostSchema)
 
