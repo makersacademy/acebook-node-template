@@ -32,7 +32,6 @@ const Timeline = () => {
       body:JSON.stringify({
         _id: id
       })
-
     }).then(res=>res.json())
     .then(result=>{
       setPosts(result.posts)
@@ -51,7 +50,7 @@ const Timeline = () => {
         })  
       }).then(res=>res.json())
       .then(result=>{
-        console.log(result)
+        setPosts(result.posts)
         }).catch(err=>{
           console.log(err)
       })}
@@ -134,7 +133,11 @@ const makeComment = (note,postId) => {
                   type="text"
                   placeholder="text here"
                   value={input}
-                  onChange={(e)=>setInput(e.target.value)}>
+                  onChange={(e)=>{ 
+                    if (input !== ""){
+                      setInput(e.target.value)
+                    }
+                    }}>
                 </textarea>
               </div>
             </div>
@@ -161,12 +164,13 @@ const makeComment = (note,postId) => {
                 <img className='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
                 <p>{post.user}</p>
                 <Moment key={post.createdAt} format="YYYY/MM/DD"><p>{post.createdAt}</p></Moment>
-              
               </div >
               <form className='comment-text-area' onSubmit={(e)=>{
                       e.preventDefault();
-                      makeComment(e.target[0].value, post._id);
-                      e.target[0].value = ""
+                      if(e.target[0].value !== ""){
+                        makeComment(e.target[0].value, post._id);
+                        e.target[0].value = ""
+                      }
                     }}>
                 <input type="text" placeholder="add a comment"/>
               </form>
@@ -176,21 +180,21 @@ const makeComment = (note,postId) => {
                onClick={()=>deleteData(post._id)}>
               Delete Your Post
               </button>
-              <br></br>
-              <img className='profile-pic' style={{maxWidth:'8%'}} src={post.userImage} alt="it goes here"/>
               <h6>likes: {post.likes} </h6>
               <i className="material-icons"
                   onClick={()=>{likePost(post._id)}}
               >thumb_up</i>
                 <div>
-                 <i  className="dislike-button" 
+                 <i  className="material-icons" 
                   onClick={()=>{dislikePost(post._id)}}>
-                  dislike
+                  thumb_down
                 </i>
                   {post.comments.map(comment=>{
                     return(
                       <div key={post._id}>
                       <h6>{comment.note}</h6>
+                      <h6>{comment.user}</h6>
+                      <img className='profile-pic' style={{maxWidth:'3%'}} src= {comment.userImage} alt="it goes here"/>
                       </div>)
                     })}
                 </div>
