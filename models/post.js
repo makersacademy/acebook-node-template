@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-// const User = require("../models/user")
 
 const PostSchema = new mongoose.Schema(
   {
@@ -13,7 +12,8 @@ const PostSchema = new mongoose.Schema(
       commenterId: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
       }
-    }] 
+    }],
+    createdOnPretty: String
   },
   { timestamps: true }
 )

@@ -12,7 +12,7 @@
       </p>
     </div>
     <br>
-    Posted at: <div id="createdAt">{{this.createdAt}}</div>
+    Posted at: <div id="createdAt">{{this.createdOnPretty}}</div>
             <form id="likeForm" action="/posts/{{this.id}}?like=true" method="post">
                 <input type="submit" id="submitLike" value="Like">
                 <p id="numberOfLikes">{{this.likes.length}}</p>
