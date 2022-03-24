@@ -29,6 +29,19 @@ const PostsController = {
     });
   },
 
+  CreateImage: (req, res) => {
+    console.log("look here!!!")
+    console.log(req.body)
+    const post = new Post({user: req.session.user._id, image: req.body.img_name});
+    post.save((err) => {
+      if (err) {
+        throw err;
+      }
+
+      res.status(201).redirect("/posts");
+    });
+  },
+
   Like: (req, res) => {
     Post.findOne({_id: req.body.post_id}).exec().then((post) => {
       post.userLikes.push(req.session.user._id)
@@ -63,8 +76,7 @@ const PostsController = {
   });
 }
 };
-/* click on upload image
-   select one to be the post 
+/* 
    like said image
    then add a comment to the image */
 module.exports = PostsController;

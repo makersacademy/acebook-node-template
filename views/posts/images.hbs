@@ -1,6 +1,9 @@
 <h1> Upload images here</h1>
-<form action="/posts" method="get" >
+<form action="/posts/upload" method="post" >
   {{#each pictures}}
-  <input type="image" alt="Submit" src="{{this}}" height="200" width="200" /> 
+    
+    <img src="{{this}}" height="200" width="200" /> 
+    <input type="radio"  name="img_name" value="{{this}}">
   {{/each}} 
+  <input type="submit" value="Select Picture"/>
 </form>
