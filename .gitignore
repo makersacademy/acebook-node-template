@@ -68,4 +68,4 @@ cypress/videos
 public/uploads
 
 #Commit the following default image
-!public/uploads/download.png
+!public/uploads/images/download.png
