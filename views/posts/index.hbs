@@ -8,20 +8,18 @@
   <img class="card-img-top" src="{{this.imagePath}}" style="width: 300px">
   {{/if}}
   <div class="card-body">
-    <img src=/uploads/images/{{this.user.image}} style="height:60px; width:60px;">
-    <h5 class="card-title"><a href="/profile/viewperson/{{this.user._id}}">{{this.user.name}}</a></h5>
-   <p class="card-text">{{this.message}}
-     <div id="createdAt">{{this.postedAt}}</div>
-   </p>
-    <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
+    <img src="/uploads/images/{{this.user.image}}" style="height:60px; width:60px;">
+    <h5 class="card-title"><a href="/profile/viewperson/{{this.user._id}}">{{this.user.name}}</a><small class="text-muted" id="createdAt">, on {{this.postedAt}}</small></h5>
+   <p class="lead card-text">{{this.message}}</p>
+  <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
     <input type="hidden" name="prevRoute" value="posts">
-    <button id="like" name="postId" value="{{this._id}}" class="btn btn-primary btn-sm">Like {{this.likes}} </button>
+    <button id="like" name="postId" value="{{this._id}}" class="btn btn-primary btn-sm">Like {{this.likes}}</button>
   </form>  
-<blockquote class="blockquote mb-0">
+  </div>
   {{> comments}}
      
-    </blockquote>
-  </div>
+
+  
   </div>
   
   {{/each}}
