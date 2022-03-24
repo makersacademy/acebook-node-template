@@ -1,35 +1,45 @@
-<h1>All About {{name}} </h1>
+<h1>All About {{name}}</h1>
 <img src=/uploads/images/{{this.image}} style="height:60px; width:60px;">
 
  {{> profile}}
 
 <div class="friends">
-  <h2>My friends</h2>
-  <ul>
+  <h2 class="pt-3">My friends</h2>
   {{#each friends}}
-    <li>
-      <img src=/uploads/images/{{this.image}} style="height:60px; width:60px;">
-      {{this.name}}
-    </li>
-  {{/each}}
-  </ul>
-  <a href="/profile/friendlist">View all friends</a>
-</div>
-<div class="posts" >
-  {{#each posts}}
-  <div><br>
-  {{this.message}}  <br>   
-   {{#if this.imagePath}}
-  <img height="200" src="{{this.imagePath}}"> <br> 
-   {{/if}}
-  <div id="createdAt">{{this.postedAt}}</div> <br> 
-  <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
-    <input type="hidden" name="prevRoute" value="profile">
-    <button id="like" name="postId" value="{{this._id}}">Like</button>
-  </form> 
-  <div id="likecount">{{this.likes}}</div> 
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <img src="/uploads/images/{{this.image}}" style="height:60px; width:60px;">
+    <h5 class="card-title">{{this.name}}</h5>
+    <p class="card-text">A good friend.</p>
+    <a href="#" class="btn btn-primary">Visit profile</a>
+    <a href="/profile/friendlist" class="btn btn-primary">View all friends</a>
   </div>
-  <br>
-  {{> comments}}
+</div>
   {{/each}}
-<div>
+  
+</div>
+<div class="posts pt-3" >
+  <h2 class="pt-3">My posts</h2>
+  {{#each posts}}
+  <div class="card w-50">
+    {{#if this.imagePath}}
+  <img class="card-img-top" src="{{this.imagePath}}" style="width: 300px">
+  {{/if}}
+  <div class="card-body">
+    <img src="/uploads/images/{{this.user.image}}" style="height:60px; width:60px;">
+    <h5 class="card-title"><a href="/profile/viewperson/{{this.user._id}}">{{this.user.name}}</a><small class="text-muted" id="createdAt">, on {{this.postedAt}}</small></h5>
+   <p class="lead card-text">{{this.message}}</p>
+  <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
+    <input type="hidden" name="prevRoute" value="posts">
+    <button id="like" name="postId" value="{{this._id}}" class="btn btn-primary btn-sm">Like {{this.likes}}</button>
+  </form>  
+  </div>
+  {{> comments}}
+     
+
+  
+  </div>
+  
+  {{/each}}
+</div>
+</main>
