@@ -9,7 +9,8 @@ const Timeline = () => {
   const [input, setInput] = useState('')
   const [comment, setComment] = useState("")
   const user = localStorage.getItem("user")
-  
+  let keyUser = JSON.parse(user)
+  let keyUserName = `${keyUser.firstName} ${keyUser.lastName}` 
 
 
   useEffect(()=>{
@@ -120,6 +121,14 @@ const makeComment = (note,postId) => {
     })
   }
 
+  function authorAuth(post) {
+    if(keyUserName ===  post.user){
+      return true
+    }else{
+      return false
+    }
+  }
+
  
  
   return (
@@ -184,11 +193,12 @@ const makeComment = (note,postId) => {
                 <input type="text" placeholder="add a comment"/>
               </form>
 
-       
+            {authorAuth(post) &&
               <button className="btn waves-effect waves-light #1976d2 blue darken-2"
                onClick={()=>deleteData(post._id)}>
               Delete Your Post
               </button>
+            }
               <br></br>
               <img src={post.userImage} alt="it goes here"/>
               <h6>likes: {post.likes} </h6>
