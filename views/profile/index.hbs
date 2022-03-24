@@ -1,7 +1,12 @@
 <h1>All About {{name}} </h1>
-<img src=/uploads/images/{{this.image}} style="height:60px; width:60px;">
+<img src=/uploads/images/{{image}} style="height:60px; width:60px;">
 
- {{> profile}}
+{{#if self}}
+  {{> profile}}
+{{else}}
+  {{name}}
+  {{bio}}
+{{/if}}
 
 <div class="friends">
   {{#if self}}
