@@ -63,5 +63,8 @@ const PostsController = {
   });
 }
 };
-
+/* click on upload image
+   select one to be the post 
+   like said image
+   then add a comment to the image */
 module.exports = PostsController;
