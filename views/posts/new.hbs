@@ -1,5 +1,23 @@
-<form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
-  <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="../public/stylesheets/style.css" rel="stylesheet" type="text/css">
+  </head>
+    <body> 
+      <nav class="nav"> 
+        <a class="a" href="/">Home</a>
+        <a class="a" href="/posts">Posts</a>
+        <a class="a" href="/posts/new">New posts</a>
+        <a class="a" href="/">Log Out</a>
+      </nav>
+
+      <br>
+      <br>
+      <form id="new-post-form" action="/posts" method="post">
+        <label for="message">Message: </label>
+        <input id="message" type="text" name="message" value="">
+        <input type="submit" value="Submit">
+      </form>
+    </body>
+</html>
+
