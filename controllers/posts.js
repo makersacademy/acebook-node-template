@@ -58,15 +58,12 @@ const PostsController = {
   // untested code for controller
   // like functionality
   LikeComment: (req, res) => {
-    Post.findOneAndUpdate({
-      _id: req.params._id},
-    {$inc: {likes: 1}},
-    function(err) {
-      if (err) {
-        throw err;
-      }
-    res.status(201).redirect('/posts');
-    });
+    Post.findOneAndUpdate({_id: req.params._id}, {$inc: {likes: 1}})
+    .then( newLike => {
+      res.json( newLike )
+    }).catch( err => {
+      console.log(err)
+    })
   },
   //image uploads
 
@@ -83,21 +80,15 @@ const PostsController = {
   },
 
   // delete post functionality
-  Delete: (req, res) => {
-    Post.findByIdAndRemove({_id: req.params._id}, function(err) {
-      if (err) {
-        throw err;
-        }
-        res.status(201).redirect('/posts');
-      });
+  Delete: (request, response) => {
+    Post.findByIdAndRemove({_id: request.params._id})
+    .then( deletedPost => {
+      response.json(deletedPost)
+    }).catch ( error => {
+      console.log(error)
+    })
     },
+
   };
 
 module.exports = PostsController;
-// ImageModel.find((err, photos) => {
-//   if (err) {
-//     throw err;
-//   }
-
-//   res.render("posts/photos", { photos: photos });
-// });

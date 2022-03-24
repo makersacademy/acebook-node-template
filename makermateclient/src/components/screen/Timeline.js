@@ -26,7 +26,6 @@ const Timeline = () => {
   }, [])
   
   function likePost(id) {
-    // const [likes, setLiked] = useState(null);
 
     fetch(`/posts/like/${id}`,{
       method: 'post',
@@ -35,14 +34,21 @@ const Timeline = () => {
       },
       body:JSON.stringify({
         _id: id
-      })  
-    }).then(res=>res.json())
-    .then(result=>{
-      console.log(result)
-      }).catch(err=>{
-        console.log(err)
+      })
+    }).then(response => response.json())
+    .then(result => {
+      const updateLikes = posts.map(item => {
+        if(item._id === result._id){
+          return result
+        }else{
+          return item
+        }
+      })
+      setPosts(updateLikes)
+      })
+    .catch(err => {
 
-      // setLiked(result.posts)
+        console.log(err)
     })}
 
     function dislikePost(id) {
@@ -81,7 +87,28 @@ const Timeline = () => {
         setPosts([result,...posts])
         console.log('Posted Successfully')
     })
-}
+  }
+
+  function deleteData(id) {
+    fetch(`/posts/delete/${id}`, {
+      method: 'post',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({
+        _id: id
+      })
+    }).then(response => response.json())
+    .then(result => {
+      console.log(result)
+      const updatedPosts = posts.filter(item =>{
+        return item._id !== result._id
+      })
+      setPosts(updatedPosts)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
  
  
   return (
@@ -128,17 +155,23 @@ const Timeline = () => {
               <h3>{post.message}</h3>
               <p>{post.createdAt}</p>
               <p>{post.user}</p>
+              <button className="btn waves-effect waves-light #1976d2 blue darken-2"
+               onClick={()=>deleteData(post._id)}>
+              Delete Your Post
+              </button>
+              <br></br>
               <img src={post.userImage} alt="it goes here"/>
               <h6>likes: {post.likes} </h6>
-              <i key="five" className="like-button" 
-                  onClick={()=>{likePost(post._id)}}>
-                  like
-              </i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <i key="six" className="dislike-button" 
+
+              <i className="material-icons"
+                  onClick={()=>{likePost(post._id)}}
+              >thumb_up</i>
+
+                <div>
+                 <i key="six" className="dislike-button" 
                   onClick={()=>{dislikePost(post._id)}}>
                   dislike
-              </i>
-                <div>
+                </i>
                   {post.comments.map(comment=>{
                     return(
                       <div key={comment._id}>
