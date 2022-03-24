@@ -13,8 +13,8 @@ document.addEventListener('click', function (event) {
 	event.preventDefault();
 
 	// Get the content
-	var content = document.querySelector(event.target.hash);
-
+	var content = document.querySelector(event.target.getAttribute("trigger"));
+	console.log(content)
 	if (!content) return;
 
 	// Toggle the content
