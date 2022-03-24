@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const imagePath = 'uploads/profileimage'
-// const imagePath = 'uploads/images'
+//const imagePath = 'uploads/profileimage'
+const imagePath = 'uploads/images'
 const path = require('path')
 const UserSchema = new mongoose.Schema({
   name: String,

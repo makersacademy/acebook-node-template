@@ -50,7 +50,7 @@ const UsersController = {
   
     const hash = bcrypt.hashSync(password, 12);
     req.body.password = hash
-
+    console.log("REGISTRTION PROFILE" + filename)
     const user = new User ({
       
         name: req.body.name,
@@ -154,18 +154,21 @@ const UsersController = {
 
   UpdateProfile: async (req,res) => {
    try{
-   const user = await User.findOne({'_id': req.session.user._id});
+    const filename = req.file != null ? req.file.filename : null;
+    console.log("UPDATEPROFILE " + filename)
+    const user = await User.findOne({'_id': req.session.user._id});
     user.bio = req.body.bio
     user.name = req.body.name
-    if (req.body.image != "") {
-      user.image = req.body.image
-      req.session.user.image = req.body.image
-    } 
-    // user.image = req.body.image
+    // if (req.body.image != "") {
+    //   user.image = req.body.image
+    //   req.session.user.image = req.body.image
+    // } 
+     user.image = filename
     const updatedProfile = await user.save()
     // user.save();
     req.session.user.bio = req.body.bio
     req.session.user.name = req.body.name
+    req.session.user.image = filename
     // req.session.user.image = req.body.image
     // req.flash('err', 'User profile has been updated')
     res.status(201).redirect("/profile")
