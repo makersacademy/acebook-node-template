@@ -1,6 +1,6 @@
 const User = require("../models/user");
+const Helpers = require("../helpers/helpers");
 const bcrypt = require("bcrypt");
-
 
 const UsersController = {
 
@@ -20,8 +20,6 @@ const UsersController = {
 
     const filename = req.file != null ? req.file.filename : null;
    
-   
-
 //  Use connect-flash for error messages - https://stackoverflow.com/questions/37706141/how-can-i-delete-flash-messages-once-a-page-has-loaded-using-express
 
     if ((emailValidator).test(email) === false) {
@@ -141,8 +139,8 @@ const UsersController = {
       const receivingUser = await User.findOne({'_id': req.session.user._id});
       const requestingUser = await User.findOne({'_id': req.body.friendAccId});
 
-      this.RemoveIDFromArray(requestingUser.sent_requests, req.session.user._id);
-      this.RemoveIDFromArray(receivingUser.pending_friends, req.body.friendAccId);
+      requestingUser.sent_requests = Helpers.RemoveIDFromArray(requestingUser.sent_requests, req.session.user._id);
+      receivingUser.pending_friends = Helpers.RemoveIDFromArray(receivingUser.pending_friends, req.body.friendAccId);
       
       receivingUser.friends.unshift(req.body.friendAccId);
       requestingUser.friends.unshift(req.session.user._id);
@@ -152,7 +150,7 @@ const UsersController = {
 
       res.status(201).redirect("/users/friendlist")
       } catch (err) {
-        console.log(err.messages)
+        console.log(err)
     }
   },
 
@@ -161,8 +159,8 @@ const UsersController = {
       const user = await User.findOne({"_id": req.session.user._id});
       const rejectedFriend = await User.findOne({"_id": req.body.friendRejId})
 
-      this.RemoveIDFromArray(user.pending_friends, req.body.friendRejId);
-      this.RemoveIDFromArray(rejectedFriend.sent_requests, req.session.user._id);
+      user.pending_friends = Helpers.RemoveIDFromArray(user.pending_friends, req.body.friendRejId);
+      rejectedFriend.sent_requests = Helpers.RemoveIDFromArray(rejectedFriend.sent_requests, req.session.user._id);
 
       await user.save();
       await rejectedFriend.save();
@@ -170,7 +168,7 @@ const UsersController = {
       res.status(201).redirect("/users/friendlist")
       
     } catch (err) {
-      console.log(err.messages)
+      console.log(err)
     }
   },
 
@@ -179,8 +177,8 @@ const UsersController = {
       const user = await User.findOne({'_id': req.session.user._id});
       const deletedFriend = await User.findOne({'_id': req.body.friendDelId});
       
-      this.RemoveIDFromArray(user.friends, req.body.friendDelId)
-      this.RemoveIDFromArray(deletedFriend.friends, req.session.user._id)
+      user.friends = Helpers.RemoveIDFromArray(user.friends, req.body.friendDelId)
+      deletedFriend.friends = Helpers.RemoveIDFromArray(deletedFriend.friends, req.session.user._id)
 
       await user.save();
       await deletedFriend.save();
@@ -190,13 +188,8 @@ const UsersController = {
         console.log(err.messages);
     }
   },
-  
-  RemoveIDFromArray: (arr, remove_id) => {
-    let index = arr.indexOf(remove_id);
-      if (index > -1) {
-        arr.splice(index, 1);
-      }
-  }
 };
+
+
 
 module.exports = UsersController;
