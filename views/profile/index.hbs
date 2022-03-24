@@ -16,7 +16,7 @@
       <p id="email" class="text-dark">{{user.email}}</p>
 
       <div class="mb-4">
-        <p class="fw-bold">Title:</p>
+        <p class="fw-bold lh-sm">Title:</p>
         <p id="title" class="text-dark">{{user.title}}</p>
       </div>
 
@@ -54,8 +54,8 @@
         alt="Your Profile Picture" />
     </div>
     <div class="col">
-      <h1>Feed</h1>
-      console.log('Look here: {{this.user._id}}')
+      <h1 class="ms-4">Feed</h1>
+      
 <ul class="posts">
   {{#each posts}}
     <div class="card">
@@ -70,7 +70,7 @@
             </div>
           </div>
         </div>
-        <div class="text-muted h7 mb-2"> <small>{{this.createdAt}}</small></div>
+        <div class="text-muted h7 mb-2"> <small>{{this.timeFormat}}</small></div>
       </div>
       <div class="card-body">
 
@@ -78,15 +78,6 @@
           {{this.message}}
           
         </p>
-      </div>
-      <div class="card-footer">
-        <form method="get">
-          console.log('Look here 2: {{this.user}}')
-          <input type="hidden" name="user_id" value={{this.user._id}}>
-          <input type="hidden" name="post_id" value={{this._id}}> <button class="card-link btn btn-link" type="submit">Like {{#if this.likes}}({{this.likes}}){{/if}}</button>
-        </form>
-        <a href="/comment/?id={{this._id}}" id="comment" class="card-link">Comment</a>
-        <a href="#" class="card-link">Share</a>
       </div>
     </div>
     <br />
