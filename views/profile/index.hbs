@@ -46,37 +46,50 @@
       </form>
 
     </div>
+
+  
+
     <div class="col">
       <img width="300" height="300" src="/images/profilepic.webp" class="img-thumbnail border border-2 border-dark"
         alt="Your Profile Picture" />
     </div>
     <div class="col">
-      <ul class="posts">
-        {{#each posts}}
-        <div class="card">
-          <div class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="mr-2">
-                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
-              </div>
-              <div class="ml-2">
-                <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
-              </div>
-            </div>
-            <div class="text-muted h7 mb-2"> <small><i class="fa-regular fa-clock"> </i> {{this.timeFormat}}</small>
-            </div>
-          </div>
-          <div class="card-body px-4">
+      <h1>Timeline</h1>
 
-            <p class="card-text">
-              {{this.message}}
-            </p>
+<ul class="posts">
+  {{#each posts}}
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="mr-2">
+              <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
+            </div>
+            <div class="ml-2">
+              <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
+            </div>
           </div>
         </div>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
-</body>
+        <div class="text-muted h7 mb-2"> <small>{{this.createdAt}}</small></div>
+      </div>
+      <div class="card-body">
 
+        <p class="card-text">
+          {{this.message}}
+          
+        </p>
+      </div>
+      <div class="card-footer">
+        <form method="get">
+          <input type="hidden" name="post_id" value={{this._id}}> <button class="card-link btn btn-link" type="submit">Like {{#if this.likes}}({{this.likes}}){{/if}}</button>
+        </form>
+        <a href="/comment/?id={{this._id}}" id="comment" class="card-link">Comment</a>
+        <a href="#" class="card-link">Share</a>
+      </div>
+    </div>
+    <br />
+  {{/each}}
+</ul>
+</div>
+</body>
 </html>

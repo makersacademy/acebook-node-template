@@ -30,11 +30,11 @@ const ProfileController = {
       },
 
     Feed: (req, res) => {
-      Post.find({}, 'message createdAt likesList', {sort: {'createdAt': -1}},(err, posts) => {
+      Post.find({_id: req.session.user._id}, 'message createdAt', {sort: {'createdAt': -1}},(err, posts) => {
         if (err) {
           throw err;
         }
-        res.render("/profile", { posts: posts });
+        res.render("/profile", { posts: posts, user: user });
         }).populate('user');
     }
 };
