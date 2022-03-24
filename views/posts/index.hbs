@@ -19,7 +19,13 @@
     <div class="card-body px-4">
 
       <p class="card-text">
+        {{#if this.message}}
         {{this.message}}
+        {{/if}}
+
+        {{#if this.image}}
+        <img src="{{this.image}}">
+        {{/if}}
       </p>
     </div>
     <div class="card-footer">

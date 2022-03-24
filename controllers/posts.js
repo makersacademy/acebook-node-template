@@ -4,10 +4,12 @@ const path = require('path')
 const PostsController = {
   Index: (req, res) => {
 
-    Post.find({}, 'message createdAt likesList', {sort: {'createdAt': -1}},(err, posts) => {
+    Post.find({}, 'message image createdAt likesList', {sort: {'createdAt': -1}},(err, posts) => {
         if (err) {
           throw err;
         }
+        console.log("look here!!!")
+        console.log(posts)
         res.render("posts/index", { posts: posts });
         }).populate('user').populate('userLikes').populate({path: "comments", populate: {path: 'user likes'}});
         
@@ -30,8 +32,6 @@ const PostsController = {
   },
 
   CreateImage: (req, res) => {
-    console.log("look here!!!")
-    console.log(req.body)
     const post = new Post({user: req.session.user._id, image: req.body.img_name});
     post.save((err) => {
       if (err) {
