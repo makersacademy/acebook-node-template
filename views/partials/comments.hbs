@@ -1,8 +1,10 @@
-<div class = "comments">
+
     {{#each this.comments}}
-      <div>{{this.user}} says {{this.comment}}</div>
+      
+    <p>{{this.comment}}</p>
+    <footer class="blockquote-footer">{{this.user}}</footer>
     {{/each}}
-</div>
+
 <div class="addComment">
   <form action="/posts/comment/new" method="post">
     <input type="text" name="comment" id="input-comment">
