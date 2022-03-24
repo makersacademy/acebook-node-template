@@ -1,5 +1,9 @@
 const Post = require('../models/post')
 const User = require('../models/user')
+const TimeAgo = require('javascript-time-ago')
+const en = require('javascript-time-ago/locale/en.json')
+TimeAgo.addDefaultLocale(en)
+
 
 const PostsController = {
   Index: (req, res) => {
@@ -11,8 +15,19 @@ const PostsController = {
       sort({createdAt:-1}).
       exec(function (err, posts) {
         if (err) throw err;
+
+        const timeAgo = new TimeAgo('en-US')
+        posts.forEach((post) => {
+          const formattedDate =  timeAgo.format(Date.parse(post.createdAt), 'twitter')
+          post.createdOnPretty = formattedDate
+        })
+
+
         res.render("posts/index", { posts: posts, userid: req.session.user._id, user: req.session.user });
       })
+
+
+      
   },
 
   New: (req, res) => {
