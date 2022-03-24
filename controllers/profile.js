@@ -1,17 +1,16 @@
 const User = require("../models/user");
+const Post = require("../models/post");
 
 const ProfileController = {
     Index: (req, res) => {
         User.findOne({_id: req.session.user._id}).exec().then((user) => {
             res.render("profile/index", {user: user});
-        });
-        
+        });    
     },
 
     Edit: (req, res) => {
         User.findOne({_id: req.session.user._id}).exec().then((user) => {
             res.render("editProfile/index", {user: user});
-
         });
       },
 
@@ -29,6 +28,15 @@ const ProfileController = {
 
         })
       },
+
+    Feed: (req, res) => {
+      Post.find({}, 'message createdAt likesList', {sort: {'createdAt': -1}},(err, posts) => {
+        if (err) {
+          throw err;
+        }
+        res.render("/profile", { posts: posts });
+        }).populate('user');
+    }
 };
 
 module.exports = ProfileController;

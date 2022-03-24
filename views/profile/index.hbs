@@ -1,58 +1,82 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Acebook</title>
-  </head>
-  <body>
-    <div class="row justify-content-start">
-      <div class="col-4">
-        <h1>{{user.firstName}}'s Profile</h1>
-          
-          
-          <p id="email" class="text-dark">{{user.email}}</p>
-          
-          <div class="mb-4">
-          <p class="fw-bold">Title:</p>
-          <p id="title" class="text-dark">{{user.title}}</p>
-          </div>
 
-          <div class="mb-4">
-          <p class="fw-bold">Full name:</p>
-          <p id="fullName" class="text-dark">{{user.firstName}}
-            {{user.surName}}</p>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acebook</title>
+</head>
 
-          <div class="mb-4">
-          <p class="fw-bold">Pronouns:</p>
-          <p id="pronouns" class="text-dark">{{user.pronouns}}</p>
-          </div>
+<body>
+  <div class="row justify-content-start">
+    <div class="col">
+      <h1>{{user.firstName}}'s Profile</h1>
 
-          <div class="mb-4">
-          <p class="fw-bold">Bio:</p>
-          <p id="bio" class="text-dark">{{user.bio}}</p>
-          </div>
-        
-          <div class="mb-4">
-          <p class="fw-bold">Location:</p>
-          <p id="location" class="text-dark">{{user.location}}</p>
-          </div>
-        
-          <form action='/profile/editProfile' method='get'>
-              <input class="btn btn-primary" type="submit" value="Edit Profile">
-          </form>
 
+      <p id="email" class="text-dark">{{user.email}}</p>
+
+      <div class="mb-4">
+        <p class="fw-bold">Title:</p>
+        <p id="title" class="text-dark">{{user.title}}</p>
       </div>
-      <div class="col-4">
-        <img
-          width="300"
-          height="300"
-          src="/images/profilepic.webp"
-          class="img-thumbnail border border-2 border-dark"
-          alt="Your Profile Picture"
-        />
+
+      <div class="mb-4">
+        <p class="fw-bold">Full name:</p>
+        <p id="fullName" class="text-dark">{{user.firstName}}
+          {{user.surName}}</p>
       </div>
+
+      <div class="mb-4">
+        <p class="fw-bold">Pronouns:</p>
+        <p id="pronouns" class="text-dark">{{user.pronouns}}</p>
+      </div>
+
+      <div class="mb-4">
+        <p class="fw-bold">Bio:</p>
+        <p id="bio" class="text-dark">{{user.bio}}</p>
+      </div>
+
+      <div class="mb-4">
+        <p class="fw-bold">Location:</p>
+        <p id="location" class="text-dark">{{user.location}}</p>
+      </div>
+
+      <form action='/profile/editProfile' method='get'>
+        <input class="btn btn-primary" type="submit" value="Edit Profile">
+      </form>
+
     </div>
-  </body>
+    <div class="col">
+      <img width="300" height="300" src="/images/profilepic.webp" class="img-thumbnail border border-2 border-dark"
+        alt="Your Profile Picture" />
+    </div>
+    <div class="col">
+      <ul class="posts">
+        {{#each posts}}
+        <div class="card">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="mr-2">
+                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
+              </div>
+              <div class="ml-2">
+                <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
+              </div>
+            </div>
+            <div class="text-muted h7 mb-2"> <small><i class="fa-regular fa-clock"> </i> {{this.timeFormat}}</small>
+            </div>
+          </div>
+          <div class="card-body px-4">
+
+            <p class="card-text">
+              {{this.message}}
+            </p>
+          </div>
+        </div>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</body>
+
 </html>
