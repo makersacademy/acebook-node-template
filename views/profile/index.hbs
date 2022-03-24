@@ -8,36 +8,37 @@
 </head>
 
 <body>
-  <div class="row justify-content-start">
+  <div class="row">
     <div class="col">
       <h1>{{user.firstName}}'s Profile</h1>
-
-
       <p id="email" class="text-dark">{{user.email}}</p>
+      <img width="150" height="300" src="/images/profilepic2.png" class="img-thumbnail border border-dark"
+        alt="Your Profile Picture" />
+      <p></p>
 
       <div class="mb-4">
-        <p class="fw-bold lh-sm">Title:</p>
+        <label class="fw-bold lh-sm">Title:</label>
         <p id="title" class="text-dark">{{user.title}}</p>
       </div>
 
       <div class="mb-4">
-        <p class="fw-bold">Full name:</p>
+        <label class="fw-bold">Full name:</label>
         <p id="fullName" class="text-dark">{{user.firstName}}
           {{user.surName}}</p>
       </div>
 
       <div class="mb-4">
-        <p class="fw-bold">Pronouns:</p>
+        <label class="fw-bold">Pronouns:</label>
         <p id="pronouns" class="text-dark">{{user.pronouns}}</p>
       </div>
 
       <div class="mb-4">
-        <p class="fw-bold">Bio:</p>
+        <label class="fw-bold">Bio:</label>
         <p id="bio" class="text-dark">{{user.bio}}</p>
       </div>
 
       <div class="mb-4">
-        <p class="fw-bold">Location:</p>
+        <label class="fw-bold">Location:</label>
         <p id="location" class="text-dark">{{user.location}}</p>
       </div>
 
@@ -46,43 +47,33 @@
       </form>
 
     </div>
-
-  
-
     <div class="col">
-      <img width="300" height="300" src="/images/profilepic.webp" class="img-thumbnail border border-2 border-dark"
-        alt="Your Profile Picture" />
-    </div>
-    <div class="col">
-      <h1 class="ms-4">Feed</h1>
-      
-<ul class="posts">
-  {{#each posts}}
-    <div class="card">
-      <div class="card-header">
-        <div class="d-flex justify-content-between align-items-center">
+      <h1>Feed</h1>
+      <p></p>
+      {{#each posts}}
+      <div class="card">
+        <div class="card-header">
           <div class="d-flex justify-content-between align-items-center">
-            <div class="mr-2">
-              <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
-            </div>
-            <div class="ml-2">
-              <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="mr-2">
+                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="" />
+              </div>
+              <div class="ml-2">
+                <div class="h7 text-muted">&nbsp{{this.user.firstName}}</div>
+              </div>
             </div>
           </div>
+          <div class="text-muted h7 mb-2"> <small>{{this.timeFormat}}</small></div>
         </div>
-        <div class="text-muted h7 mb-2"> <small>{{this.timeFormat}}</small></div>
-      </div>
-      <div class="card-body">
+        <div class="card-body">
 
-        <p class="card-text">
-          {{this.message}}
-          
-        </p>
+          <p class="card-text">
+            {{this.message}}
+          </p>
+        </div>
       </div>
+      {{/each}}
     </div>
-    <br />
-  {{/each}}
-</ul>
-</div>
 </body>
+
 </html>

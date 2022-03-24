@@ -29,15 +29,6 @@ const ProfileController = {
 
         })
       },
-
-    Feed: (req, res) => {
-      Post.find({post: req.query.user}, 'comment createdAt', {sort: {'createdAt': -1}}, (err, post) => {
-        if (err) {
-          throw err;
-        }
-        res.render("/profile", { post: post, user_id: req.query.user });
-      }).populate('user');
-    }
 };
 
 module.exports = ProfileController;
