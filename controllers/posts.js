@@ -74,7 +74,5 @@ const PostsController = {
   });
 }
 };
-/* 
-   like said image
-   then add a comment to the image */
+
 module.exports = PostsController;
