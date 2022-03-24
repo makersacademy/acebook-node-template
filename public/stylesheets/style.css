@@ -23,6 +23,10 @@ a {
   display: inline-block;
 }
 
+#navbar-title:hover {
+  color: #aef0de;
+}
+
 #title {
   color:#045049;
   font-size: 100px;
