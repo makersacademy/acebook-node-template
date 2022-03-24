@@ -63,9 +63,11 @@ const UsersController = {
 
       res.render("users/userlist", { users: users,
           title: "Acebook Users",
+          id: req.session.user._id,
           name: req.session.user.name,
           username: req.session.user.username,
           bio: req.session.user.bio,
+          image: req.session.user.image,
       });
     } catch {
       console.log("error")
@@ -79,9 +81,11 @@ const UsersController = {
 
       res.render("users/friendlist", { users: users,
           title: "Acebook Users",
+          id: req.session.user._id,
           name: req.session.user.name,
           username: req.session.user.username,
           bio: req.session.user.bio,
+          image: req.session.user.image,
       });
     } catch {
       console.log("error")
@@ -131,16 +135,20 @@ const UsersController = {
 
   UpdateProfile: async (req,res) => {
     try{
-    const filename = req.file != null ? req.file.filename : null;
-    console.log(req.body)
    const user = await User.findOne({'_id': req.session.user._id});
     user.bio = req.body.bio
     user.name = req.body.name
-    // user.image = req.user.image
+    if (req.body.image != "") {
+      console.log("I'm in here as image is not null")
+      user.image = req.body.image
+      req.session.user.image = req.body.image
+    } 
+    // user.image = req.body.image
     const updatedProfile = await user.save()
     // user.save();
     req.session.user.bio = req.body.bio
     req.session.user.name = req.body.name
+    // req.session.user.image = req.body.image
    // req.flash('err', 'User profile has been updated')
     res.status(201).redirect("/profile")
       } catch (err) {

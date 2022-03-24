@@ -9,25 +9,26 @@
     </style>
   </head>
   <body>
-
-<div class = "updateProfile">
-   <form action="users/updateprofile" method="post">
-    <label for="name">Name: </label>
-      <input id="name" type="text" name="name" "required=required" value="{{name}}">
-      <label for="bio">Bio: </label>
-      <input id="bio" type="text" name="bio" "required=required" value="{{bio}}">
-      <input id="image" type="file" name="image" value="{{image}}">
-       <button id="profile-btn">Update</button>
-    </form>
-</div>
-
- <hr />
-      <div class="row">
+  <div class="updateProfile">
+    <div class="row">
+      <div>
+        <form action="users/updateprofile" method="post">
+          <label for="name">Name: </label>
+          <input id="name" type="text" name="name" "required=required" value="{{name}}"><br>
+          <label for="bio">Bio: </label>
+          <input id="bio" type="text" name="bio" "required=required" value="{{bio}}"><br>
+          <input type="file" name="image" id="input-files" class="form-control-file border"/>
+          <button id="profile-btn">Update</button>
+        </form>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
         <div>
           <div class="preview-images"></div>
         </div>
-      </div>
     </div>
+  </div>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
