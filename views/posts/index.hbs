@@ -5,7 +5,9 @@
   {{#each posts}}
   <div>
     <img src=/uploads/images/{{this.user.image}} style="height:60px; width:60px;">
-    <a href="/profile/viewperson/{{this.user._id}}">{{this.user.name}}</a> <br>
+    <form action="/profile/viewperson/{{this.user._id}}" method="post">
+      <button class="btn btn-link" name="userId" value="{{this.user._id}}">{{this.user.name}}</button>
+    </form><br>
    {{this.message}}  <br>
    {{#if this.imagePath}}
   <img height="200" src="{{this.imagePath}}"> <br> 

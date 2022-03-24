@@ -4,7 +4,11 @@
  {{> profile}}
 
 <div class="friends">
+  {{#if self}}
   <h2>My friends</h2>
+  {{else}}
+  <h2>{{name}}'s friends</h2>
+  {{/if}}
   <ul>
   {{#each friends}}
     <li>
@@ -32,4 +36,4 @@
   <br>
   {{> comments}}
   {{/each}}
-<div>
+</div>
