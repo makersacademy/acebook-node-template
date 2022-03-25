@@ -162,12 +162,12 @@ const makeComment = (note,postId) => {
             }}>
       {posts.map(post=>{
         return(
-          <div key={post._id}>
+          <div key={post.createdAt}>
               <h3>{post.message}</h3>
               <div style={{maxWidth :'500px', display:'inline-flex', justifyContent: 'space-evenly'}} className="profile-pic-and-name">
                 <img className='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
                 <p>{post.user}</p>
-                <Moment key={post.createdAt} format="YYYY/MM/DD"><p>{post.createdAt}</p></Moment>
+                <Moment format="YYYY/MM/DD"><p>{post.createdAt}</p></Moment>
               </div >
               <form className='comment-text-area' onSubmit={(e)=>{
                       e.preventDefault();
@@ -181,15 +181,12 @@ const makeComment = (note,postId) => {
 
             {authorAuth(post) &&
                   <i className="material-icons" onClick={()=>deleteData(post._id)}>delete</i>}
-              <br></br>
-              <img src={post.userImage} alt="it goes here"/>
-              <h6>likes: {post.likes} </h6>
               <h6>likes: {post.likes.length} </h6>
               {
               post.likes.includes(JSON.parse(user)._id)
               ?
               <i className="material-icons" 
-              onClick={()=>{dislikePost(post._id)} >thumb_down</i>
+              onClick={()=>{dislikePost(post._id)}}>thumb_down</i>
                 :
               <i className="material-icons"
                   onClick={()=>{likePost(post._id)}}
@@ -198,7 +195,7 @@ const makeComment = (note,postId) => {
                 <div>
                   {post.comments.map(comment=>{
                     return(
-                      <div key={post._id}>
+                      <div key={comment.createdAt}>
                         <h6>{comment.note}</h6>
                         <h6>{comment.user}</h6>
                         <img className='profile-pic' style={{maxWidth:'3%'}} src= {comment.userImage} alt="it goes here"/>

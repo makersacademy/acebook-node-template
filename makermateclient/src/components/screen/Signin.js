@@ -31,28 +31,13 @@ const Signin = () => {
        if(data.error){
       M.toast({html: data.error, classes:"#c62828 red darken -3"})
     } else {
+      console.log(data.user)
       localStorage.setItem("user",JSON.stringify(data.user))
-      M.toast({html: data.message, classes:"#43a047 green darken-1"})
       navigation('/timeline')
 
     }
   })
   }
-
-
- 
-
-
-    // console.log('the data is below here')
-    //   console.log(data)
-    // if(data.error){
-    //   M.toast({html: data.error, classes: "#c62828 red darken -3"})
-    // }
-    // else{
-    //   M.toast({html: data.message, classes: "#43a047 green darken-1"})
-    //   localStorage.setItem("user",JSON.stringify(data.user))
-    //   navigation('/timeline')
-    // }
 
   return (
     <div>

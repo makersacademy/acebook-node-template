@@ -14,24 +14,17 @@ const SessionsController = {
     if(!email || !password){
       return res.status(422).json({error: 'please fill in all details'})
     }
-
-
     User.findOne({ email: email })
     .then((savedUser)=>{
-      console.log(savedUser)
       if(!savedUser){
         return res.status(422).json({error: "invalid email or password"})
-      
       }
-    
      bcrypt.compare(password, savedUser.password)
       .then(passwordsMatch => {
         if(passwordsMatch){
-          console.log('helloworld')
-          console.log({message:"signed in successfully"})
           req.session.user = savedUser;
           res.json({user:req.session.user});
-          console.log(req.session.user)
+          return res.status(200).json({message: "you're in bruv"})
         }else{
           return res.status(422).json({error: "invalid email or password"})
         }
