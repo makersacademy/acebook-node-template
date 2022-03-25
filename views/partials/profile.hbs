@@ -12,12 +12,12 @@
   <div class="updateProfile">
     <div class="row">
       <div>
-        <form action="users/updateprofile" method="post">
+        <form action="users/updateprofile" method="post" enctype="multipart/form-data">
           <label for="name">Name: </label>
           <input id="name" type="text" name="name" "required=required" value="{{name}}"><br>
           <label for="bio">Bio: </label>
           <input id="bio" type="text" name="bio" "required=required" value="{{bio}}"><br>
-          <input type="file" name="image" id="input-files" class="form-control-file border"/>
+          <input type="file" name="file" id="input-files" class="form-control-file border"/>
           <button id="profile-btn">Update</button>
         </form>
       </div>

@@ -3,25 +3,39 @@ const User = require("../models/user");
 
 const ProfileController = {
  Profile: async (req, res) => {
+  let id;
+  let self;
+  if(req.session.prevRoute === req.session.user._id){
+    id = req.session.user._id;
+    self = true;
+  } else if(req.session.prevRoute){
+    id = req.session.prevRoute;
+    req.session.prevRoute = null;
+    self = false;
+  } else {
+    id = req.session.user._id;
+    self = true;
+  }
   try{
-    const posts = await Post.find({user: req.session.user._id})
+    const posts = await Post.find({user: id})
     .populate('user') 
     .sort({ createdAt: -1})
     posts.forEach((post) => {
       post.postedAt = post.createdAt.toLocaleString();
       console.log(post.postedAt);
     })
-    const user = await User.findOne({"_id": req.session.user._id});
+    const user = await User.findOne({"_id": id});
     const someFriends  = user.friends.slice(0, 2); //2 friends for now
     const friends = await User.where({"_id": {$in: someFriends}})
     res.render("profile/index", {
       posts: posts,
       friends: friends,
       title: "Acebook",
-      name: req.session.user.name,
-      username: req.session.user.username,
-      bio: req.session.user.bio,
-      image: req.session.user.image,
+      name: user.name,
+      username: user.username,
+      bio: user.bio,
+      image: user.image,
+      self: self,
     });
 
   } catch (err) {
@@ -76,7 +90,8 @@ FriendList: async (req, res) => {
 },
 
  ViewPerson: async (req,res) => {
-   
+  req.session.prevRoute = req.body.userId;
+  res.status(201).redirect("/profile");
  }
 
 };

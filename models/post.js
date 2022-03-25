@@ -5,7 +5,10 @@ const path = require('path')
 const PostSchema = new mongoose.Schema({
   message: String,
   image: String,
-  likes: Number,
+  likes: {
+    type: Number,
+    default: 0
+  },
   posted_by: String,
   comments: Array,
 
