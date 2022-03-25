@@ -36,6 +36,7 @@ const ProfileController = {
       bio: user.bio,
       image: user.image,
       self: self,
+      messages: req.flash('success'),
     });
 
   } catch (err) {

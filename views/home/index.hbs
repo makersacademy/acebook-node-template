@@ -1,2 +1,78 @@
-<h1 class="pt-5" class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+    <div id="main">
+      <div class="container" id="sections">
+        <div class="row g-2">
+            <div class="col-6">
+                
+                <div class="p-3" id="welcome">
+                    <h1 id="acebook-title" class="display-4">Welcome to Acebook</h1>
+                    <h3 class="lead"> Connect with friends, meet new people, share your thoughts! </h3>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="p-3">
+                    <div class="d-grid gap-2" id="buttons">
+                        <button id="signup" class="btn btn-secondary" type="button">
+                          <a href="/users/new"> Register </a>
+                        </button>
+                        <button class="btn btn-secondary visible" type="button">
+                          <a href="/sessions/new">Log In</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+<style>
+  #acebook-title {
+    font-family: 'Bebas Neue', sans-serif;
+    padding-top: 180px;
+  }
+  #welcome {
+      width: 70%;
+      padding-left: 50px;
+  }
+  #buttons {
+      padding-top: 230px;
+      width: 70%;
+      float: right;
+      padding-right: 50px;
+  }
+  .visible {
+    visibility: visible;
+  }
+  body {
+      background-image: url("https://images.unsplash.com/photo-1619409436657-56cafd59ef96?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80");
+      background-repeat no-repeat;
+  }
+  a {
+      text-decoration: none;
+      color: white;
+  }
+  h1 {
+    font-size: 50px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 15px;
+  }
+  body {
+    font-size: 15px;
+  }
+  #sections {
+      height: 300px;
+      padding: 50px;
+  }
+  footer {
+    bottom: 0;
+    padding: 25px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+  }    
+</style>

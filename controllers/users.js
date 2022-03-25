@@ -199,6 +199,7 @@ const UsersController = {
     const updatedProfile = await user.save()
     req.session.user.bio = req.body.bio
     req.session.user.name = req.body.name
+    req.flash('success', 'User profile has been updated')
 
     res.status(201).redirect("/profile")
       } catch (err) {

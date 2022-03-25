@@ -4,7 +4,7 @@ IF GREATER THAN 0
 <h2>Pending friends of {{ name }} </h2>
 <div id="selected_user">
   {{#each pending_friends}}
-  PICTURE
+  <img src=/uploads/images/{{this.image}} style="height:60px; width:60px;">
   {{this.name}}
   <form action="/users/acceptfriend/{{this._id}}" method="post">
     <label for="button">Accept Friend</label>
@@ -30,4 +30,3 @@ IF GREATER THAN 0
   <br>
   {{/each}}
 <div>
-<a class="view-profile-link" href="/profile">Profile</a>
