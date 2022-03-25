@@ -21,17 +21,22 @@ return(
 
   <div>
       <div>
+      <h5><blockquote>
+      Upload some pictures to share with your friends!
+    </blockquote></h5>
+    <div></div>
+    <h5 class="center-align">
         <form action="/photos" encType="multipart/form-data" method="post">
-            <label htmlFor="myImage">Add some holiday snaps</label>
+            <label htmlFor="myImage">Add some holiday snaps!</label>
             <input className="choose-file-btn" type="file" name="myImage" />
             <input className="upload-btn" type="submit" value="Upload Photo" />
         </form>
         <form action="/photos/profilepic" encType="multipart/form-data" method="post">
-            <label htmlFor="myImage">Add profile pic</label>
+            <label htmlFor="myImage">Add profile pic!</label>
             <input className="choose-file-btn" type="file" name="myImage" />
             <input className="upload-btn" type="submit" value="Upload Photo" />
         </form>
-        
+      </h5>
       </div>
 
 
@@ -39,13 +44,14 @@ return(
       data.map(post=>{
         return(
           <div className='photo-album-div' key={post._id}>
-              <img className='individual-photo' src={post.imgPath} alt="photo"/>
+              <img className='individual-photo' src={post.imgPath} alt="p"/>
           </div>
         )
       })
     }
   </div>
 )}
+
 
 
 export default Photo

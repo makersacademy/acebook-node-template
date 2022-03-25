@@ -148,7 +148,7 @@ const makeComment = (note,postId) => {
           </form>
           <button className="btn waves-effect waves-light #1976d2 blue darken-2"
             onClick={()=>postData()} >
-            Post Your Post
+            Make a Post!
           </button>
       </div>
       </div>
