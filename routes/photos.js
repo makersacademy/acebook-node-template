@@ -19,9 +19,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-const PhotosController = require("../controllers/photos");
 
-//load a photot to snaps
+//load a photo to snaps
 const ImageModel = require("../models/image");
 router.post("/" , upload.single("myImage"), (req, res) =>  {
   const obj = {
@@ -42,7 +41,7 @@ router.post("/" , upload.single("myImage"), (req, res) =>  {
 
 //load a photo to profile
 router.post("/profilepic" , upload.single("myImage"), async (req, res) =>  {
-  const userid = req.params._id
+  const userid = req.session.user._id
   const obj = {
       img: {
           data: fs.readFileSync(path.join("public/images/" + req.file.filename)),
@@ -55,14 +54,14 @@ router.post("/profilepic" , upload.single("myImage"), async (req, res) =>  {
       imgName:  `${req.file.filename}`
   });
   await User.findOneAndUpdate({
-    id: userid},
-  {image: newImage},
+    _id: userid},
+  {image: newImage.imgPath}, {new:true},
   function(err) {
     if (err) {
       throw err;
     }
     console.log('Success')
-  res.status(201).redirect('/photos');
+  res.json()
   });
 });
 

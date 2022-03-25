@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
 
@@ -8,7 +9,10 @@ const PostSchema = new mongoose.Schema({
     default: Date.now()
   },
   comments: [],
-  likes: 0,
+  likes: [{
+    type: ObjectId,
+    ref: "User"
+  }],
   user: String,
   userImage:  String,
 });

@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 const NewPost = () => {
     const [message, setMessage] = useState('')
     const user = localStorage.getItem("user")
+    console.log(user.image.imgPath)
 
     const postdata = () => {
         fetch("/posts", {
@@ -12,7 +13,7 @@ const NewPost = () => {
             },
             body:JSON.stringify({
                 message: message,
-                userImage: user.userImage
+                userImage: `../${user.image.imgPath}`
             })
     }).then(res => res.json())
     .then(data =>{

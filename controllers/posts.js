@@ -16,7 +16,7 @@ const PostsController = {
 
   Create: (req, res) => {
     const userName = req.session.user.firstName + " " + req.session.user.lastName
-    const userImage = req.session.user.image.imgPath;
+    const userImage = req.session.user.image;
     console.log(userImage)
     const post = new Post({message: req.body.message, user: userName, userImage: userImage });
     post.save()
@@ -39,28 +39,28 @@ const PostsController = {
 
 
   CreateComment: (req, res) => {
-
-    const username = req.session.user.firstName + " " + req.session.user.lastName
-
-    var comment = new Comment({ note: `${req.body.comments}`, user: username})
+  const username = req.session.user.firstName + " " + req.session.user.lastName
+  const note = req.body.note
+  const userImage = req.session.user.image
+  var comment = new Comment({ note:`${note}`, user: username, userImage})
   console.log(req.session.user)
     Post.findOneAndUpdate({
-      _id: req.params._id},
+      _id: req.body.postId},
     {$push: {comments: comment}},
-    function(err) {
+    function(err, result) {
       if (err) {
         throw err;
       }
-    res.status(201).redirect('/posts');
-    });
+    }).then(comment => {
+      res.json(comment)
+    })
   },
 
-  // untested code for controller
-  // like functionality
   LikeComment: (req, res) => {
+    const userId = req.session.user._id
     Post.findOneAndUpdate({
       _id: req.params._id},
-    {$inc: {likes: 1}},
+    {$push: {likes: userId}},
     function(err) {
       if (err) {
         throw err;
@@ -70,23 +70,29 @@ const PostsController = {
   },
   //image uploads
 
-
-  // delete post functionality
-  Delete: (req, res) => {
-    Post.findByIdAndRemove({_id: req.params._id}, function(err) {
+  DislikeComment: (req, res) => {
+    const userId = req.session.user._id
+    Post.findOneAndUpdate({
+      _id: req.params._id},
+    {$pull: {likes: userId}},
+    function(err) {
       if (err) {
         throw err;
-        }
-        res.status(201).redirect('/posts');
-      });
+      }
+    res.status(201).redirect('/posts');
+    });
+  },
+
+  // delete post functionality
+  Delete: (request, response) => {
+    Post.findByIdAndRemove({_id: request.params._id})
+    .then( deletedPost => {
+      response.json(deletedPost)
+    }).catch ( error => {
+      console.log(error)
+    })
     },
+
   };
 
 module.exports = PostsController;
-// ImageModel.find((err, photos) => {
-//   if (err) {
-//     throw err;
-//   }
-
-//   res.render("posts/photos", { photos: photos });
-// });
