@@ -41,35 +41,40 @@ const PostsController = {
   CreateComment: (req, res) => {
   const username = req.session.user.firstName + " " + req.session.user.lastName
   const note = req.body.note
-  var comment = new Comment({ note:`${note}`, user: username})
+  const userImage = req.session.user.image
+  var comment = new Comment({ note:`${note}`, user: username, userImage})
   console.log(req.session.user)
     Post.findOneAndUpdate({
       _id: req.body.postId},
     {$push: {comments: comment}},
+    function(err, result) {
+      if (err) {
+        throw err;
+      }
+    }).then(comment => {
+      res.json(comment)
+    })
+  },
+
+  LikeComment: (req, res) => {
+    const userId = req.session.user._id
+    Post.findOneAndUpdate({
+      _id: req.params._id},
+    {$push: {likes: userId}},
     function(err) {
       if (err) {
         throw err;
       }
-      res.status(201).redirect('/posts')
+    res.status(201).redirect('/posts');
     });
-  },
-
-  // untested code for controller
-  // like functionality
-  LikeComment: (req, res) => {
-    Post.findOneAndUpdate({_id: req.params._id}, {$inc: {likes: 1}})
-    .then( newLike => {
-      res.json( newLike )
-    }).catch( err => {
-      console.log(err)
-    })
   },
   //image uploads
 
   DislikeComment: (req, res) => {
+    const userId = req.session.user._id
     Post.findOneAndUpdate({
       _id: req.params._id},
-    {$inc: {likes: -1}},
+    {$pull: {likes: userId}},
     function(err) {
       if (err) {
         throw err;

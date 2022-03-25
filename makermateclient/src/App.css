@@ -4,3 +4,6 @@
 .profile-pic-and-name{
   display:inline-block;
 }
+.profile-pic{
+  border-radius: 50%;
+}

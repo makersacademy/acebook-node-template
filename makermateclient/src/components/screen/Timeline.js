@@ -7,11 +7,10 @@ const Timeline = () => {
 
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState('')
-  const [comment, setComment] = useState("")
   const user = localStorage.getItem("user")
+
   let keyUser = JSON.parse(user)
   let keyUserName = `${keyUser.firstName} ${keyUser.lastName}` 
-
 
   useEffect(()=>{
     fetch("/posts",{
@@ -33,7 +32,6 @@ const Timeline = () => {
       body:JSON.stringify({
         _id: id
       })
-
     }).then(res=>res.json())
     .then(result=>{
       setPosts(result.posts)
@@ -42,8 +40,6 @@ const Timeline = () => {
     })}
 
     function dislikePost(id) {
-      // const [likes, setLiked] = useState(null);
-  
       fetch(`/posts/dislike/${id}`,{
         method: 'post',
         headers:{
@@ -54,16 +50,13 @@ const Timeline = () => {
         })  
       }).then(res=>res.json())
       .then(result=>{
-        console.log(result)
+        setPosts(result.posts)
         }).catch(err=>{
           console.log(err)
-  
-        // setLiked(result.posts)
       })}
     
   
   const postData = () => {
-
       fetch("/posts", {
           method: 'post',
           headers:{
@@ -92,13 +85,11 @@ const makeComment = (note,postId) => {
     })
   }).then(res=>res.json())
     .then(result=>{
-    setPosts(result.posts)
+    setPosts([result,...posts])
     console.log({message: 'successful comment'})
     }).catch(err=>{
       console.log(err)
   })}
-
-
 
   function deleteData(id) {
     fetch(`/posts/delete/${id}`, {
@@ -173,47 +164,44 @@ const makeComment = (note,postId) => {
         return(
           <div key={post._id}>
               <h3>{post.message}</h3>
-
-              
               <div style={{maxWidth :'500px', display:'inline-flex', justifyContent: 'space-evenly'}} className="profile-pic-and-name">
-                <img id='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
+                <img className='profile-pic' style={{maxWidth:'8%'}} src={post.userImage}  alt="it goes here"/>
                 <p>{post.user}</p>
                 <Moment key={post.createdAt} format="YYYY/MM/DD"><p>{post.createdAt}</p></Moment>
-                <h6>likes: {post.likes} </h6>
-              <i key="five" className="like-button" 
-                  onClick={()=>{likePost(post._id)}}>
-                  like
-              </i>
-              
-              </div>
-                <form onSubmit={(e)=>{
-                      e.preventDefault()
-                      makeComment(e.target[0].value, post._id)
+              </div >
+              <form className='comment-text-area' onSubmit={(e)=>{
+                      e.preventDefault();
+                      if(e.target[0].value !== ""){
+                        makeComment(e.target[0].value, post._id);
+                        e.target[0].value = ""
+                      }
                     }}>
                 <input type="text" placeholder="add a comment"/>
               </form>
 
             {authorAuth(post) &&
-              <button className="btn waves-effect waves-light #1976d2 blue darken-2"
-               onClick={()=>deleteData(post._id)}>
-              Delete Your Post
-              </button>
-            }
+                  <i className="material-icons" onClick={()=>deleteData(post._id)}>delete</i>}
               <br></br>
               <img src={post.userImage} alt="it goes here"/>
               <h6>likes: {post.likes} </h6>
+              <h6>likes: {post.likes.length} </h6>
+              {
+              post.likes.includes(JSON.parse(user)._id)
+              ?
+              <i className="material-icons" 
+              onClick={()=>{dislikePost(post._id)} >thumb_down</i>
+                :
               <i className="material-icons"
                   onClick={()=>{likePost(post._id)}}
               >thumb_up</i>
+              }
                 <div>
-                 <i key="six" className="dislike-button" 
-                  onClick={()=>{dislikePost(post._id)}}>
-                  dislike
-                </i>
                   {post.comments.map(comment=>{
                     return(
-                      <div key={comment._id}>
-                      <h6>{comment.note}</h6>
+                      <div key={post._id}>
+                        <h6>{comment.note}</h6>
+                        <h6>{comment.user}</h6>
+                        <img className='profile-pic' style={{maxWidth:'3%'}} src= {comment.userImage} alt="it goes here"/>
                       </div>)
                     })}
                 </div>
