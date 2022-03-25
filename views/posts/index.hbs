@@ -16,8 +16,6 @@
     <small class="text-muted" id="createdAt">, on {{this.postedAt}}</small></h5>
    <p class="lead card-text">{{this.message}}</p>
 
-  <div>
-
   <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
     <input type="hidden" name="prevRoute" value="posts">
     <button id="like" name="postId" value="{{this._id}}" class="btn btn-primary btn-sm">Like {{this.likes}}</button>
