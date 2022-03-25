@@ -1,9 +1,19 @@
 <h1 class="pt-5">All About {{name}}</h1>
 
- {{> profile}}
+{{#if self}}
+  {{> profile}}
+{{else}}
+  {{name}}
+  {{bio}}
+{{/if}}
 
 <div class="friends">
+  {{#if self}}
   <h2 class="pt-3">My friends</h2>
+  {{else}}
+  <h2 class="pt-3">{{name}}'s friends</h2>
+  {{/if}}
+  <ul>
   {{#each friends}}
   <div class="card" style="width: 18rem;">
   <div class="card-body">

@@ -10,7 +10,7 @@ const UsersController = require("../controllers/users");
 
 const storage = multer.diskStorage({
   destination:function(req, file, callback) {
-    callback(null, './public/uploads/profileimage');
+    callback(null, './public/uploads/images');
   },
 
   filename:function (req, file, callback) {
@@ -32,7 +32,7 @@ const upload = multer({
 router.get("/new", UsersController.New);
 router.post("/", upload.single('file'), UsersController.Create);
 router.get("/profile", UsersController.Profile);
-router.post("/updateprofile", UsersController.UpdateProfile);
+router.post("/updateprofile", upload.single('file'), UsersController.UpdateProfile);
 router.post("/addfriend/:id", UsersController.Addfriend);
 router.post("/acceptfriend/:id", UsersController.Acceptfriend);
 router.post("/rejectfriend/:id", UsersController.Rejectfriend);

@@ -2,7 +2,7 @@
   <div class="updateProfile">
     <div class="row">
       <div>
-        <form action="users/updateprofile" method="post">
+        <form action="users/updateprofile" method="post" enctype="multipart/form-data">
           <div class="input-group mb-3">
           <label for="name" class="input-group-text" id="basic-addon1">Name: </label>
           <input id="name" class="form-control" aria-describedby="basic-addon1" type="text" name="name" "required=required" value="{{name}}">
@@ -12,7 +12,7 @@
           <input id="bio" class="form-control" aria-describedby="basic-addon1" type="text" name="bio" "required=required" value="{{bio}}"><br>
           </div>
           <div class="input-group mb-3">
-          <input class="form-control" type="file" name="image" id="input-files" class="form-control-file border"/>
+          <input class="form-control" type="file" name="file" id="input-files" class="form-control-file border"/>
           </div>
           <div class="input-group mb-3">
           <button id="profile-btn" class="btn btn-primary">Update</button>
