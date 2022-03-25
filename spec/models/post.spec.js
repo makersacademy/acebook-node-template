@@ -13,6 +13,37 @@ describe("Post model", () => {
   await  mongoose.connection.collections.posts.remove({})
   });
 
+  it("has a virtual time format", () => {
+    const post = new Post({createdAt: "Mon Mar 20 2022 00:00:00 GMT+0000"})
+    expect(post.timeFormat).toEqual("20 March at 00:00")
+  })
+
+  it("has a virtual likes array", async () => {
+    var user = new User({ firstName: "first name", 
+    surName: "surname", 
+    email: "email@email.com", 
+    password: "Password!123"})
+    await user.save() 
+
+    var post = new Post({ message: "message for testing" });
+    post.userLikes.push(user)
+    await post.save();
+    expect(post.likesArray.includes(String(user._id))).toEqual(true)
+  })
+
+  it("has a virtual likes count", async () => {
+    var user = new User({ firstName: "first name", 
+    surName: "surname", 
+    email: "email@email.com", 
+    password: "Password!123"})
+    await user.save() 
+
+    var post = new Post({ message: "message for testing" });
+    post.userLikes.push(user)
+    await post.save();
+    expect(post.count).toEqual("1")
+  })
+
   it("has a message", () => {
     var post = new Post({ message: "hello" });
     expect(post.message).toEqual("hello");

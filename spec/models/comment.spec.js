@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 
 require("../mongodb_helper");
-const Post = require("../../models/post");
 const User = require("../../models/user");
 const Comment = require("../../models/comment");
-const async = require("hbs/lib/async");
 
 describe("Comment model", () => {
   beforeEach( async () => {
@@ -19,12 +17,44 @@ describe("Comment model", () => {
     
   });
 
+  it("can have a like", async () => {
+    const user = new User({ firstName: "first name", 
+    surName: "surname", 
+    email: "email", 
+    password: "password"})
+    await user.save() 
+
+    const remark = new Comment()
+    remark.likes.push(user)
+    await remark.save()
+    expect(remark.likes[0]._id).toEqual(user._id)
+    expect(remark.likes.length).toEqual(1)
+  })
+
+  it("can have a virtual commentlikesArray", async () => {
+    const user = new User({ firstName: "first name", 
+    surName: "surname", 
+    email: "email", 
+    password: "password"})
+    await user.save() 
+
+    const remark = new Comment()
+    remark.likes.push(user)
+    await remark.save()
+    expect(remark.commentLikesArray.includes(String(user._id))).toEqual(true)
+  })
+
   it("has a timestamp", async () => {
     const remark = new Comment({ comment: "Testing timestamp on comment" });
     await remark.save();
     const currentTime = new Date();
     expect(remark.createdAt.setMilliseconds(0)).toEqual(currentTime.setMilliseconds(0));
   });
+
+  it("has a virtual time format", () => {
+    const remark = new Comment({createdAt: "Mon Mar 20 2022 00:00:00 GMT+0000"})
+    expect(remark.timeFormat).toEqual("20 March at 00:00")
+  })
 
   it("has a user assigned to the comment", async () => {
     const user = new User({ firstName: "first name", 

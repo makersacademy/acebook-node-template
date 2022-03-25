@@ -20,7 +20,7 @@ CommentSchema.virtual('timeFormat').get(function () {
   }
   else{
     const formatedDate = moment(this.createdAt).format('DD MMMM')
-    const formatedTime = moment(this.createdAt).format('HH:MM')
+    const formatedTime = moment(this.createdAt).format('HH:mm')
     return `${formatedDate} at ${formatedTime}`
   }
 })
