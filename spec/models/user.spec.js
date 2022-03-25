@@ -64,7 +64,6 @@ describe("User model", () => {
           password: "password",
           firstName: "first name",
           surName: "surname",
-
         });
         done();
       });

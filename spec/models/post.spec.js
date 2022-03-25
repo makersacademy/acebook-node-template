@@ -4,6 +4,9 @@ var mongoose = require("mongoose");
 require("../mongodb_helper");
 var Post = require("../../models/post");
 const User = require("../../models/user");
+const Comment = require("../../models/comment");
+
+
 describe("Post model", () => {
   beforeEach( async () => {
     
@@ -15,6 +18,11 @@ describe("Post model", () => {
     expect(post.message).toEqual("hello");
   });
 
+  it("has an image", () => {
+    var post =  new Post({image: "image"});
+    expect(post.image).toEqual("image")
+  })
+
   it("has a timestamp", async () => {
     var post = new Post({ message: "message for testing" });
     await post.save();
@@ -22,17 +30,33 @@ describe("Post model", () => {
     expect(post.createdAt.setMilliseconds(0)).toEqual(currentTime.setMilliseconds(0));
   });
 
-  it("has likes", async () => {
-    var post = new Post({ message: "message for testing" });
+  it("has a comment", async () => {
+    var comment = new Comment({message: "this is a comment"})
+    var post = new Post();
+    post.comments.push(comment)
     await post.save();
-    expect(post.likes).toEqual(0)
+    expect(post.comments.length).toEqual(1)
+    expect(post.comments[0]._id).toEqual(comment._id)
+  })
+
+  it("has likes", async () => {
+    var user = new User({ firstName: "first name", 
+    surName: "surname", 
+    email: "email@email.com", 
+    password: "Password!123"})
+    await user.save() 
+
+    var post = new Post({ message: "message for testing" });
+    post.userLikes.push(user)
+    await post.save();
+    expect(post.userLikes.length).toEqual(1)
   });
 
   it("has a user assigned to the post", async () => {
    var user = new User({ firstName: "first name", 
    surName: "surname", 
-   email: "email", 
-   password: "password"})
+   email: "email@email.com", 
+   password: "Password!123"})
    await user.save() 
    
    var post = new Post({
