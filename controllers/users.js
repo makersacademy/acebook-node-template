@@ -125,7 +125,7 @@ const UsersController = {
       await requestingUser.save();
       await receivingUser.save();
       res.status(201).redirect("/profile/userlist")
-      } catch {
+    } catch {
         console.log("error")
     }
   },
