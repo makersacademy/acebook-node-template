@@ -10,13 +10,13 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
+  <nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark" aria-label="First navbar example">
     <div class="container-fluid">
      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
- <a class="navbar-brand" href="/">Acebook</a>
+ <a class="navbar-brand" href="/"><img class="navbar-brand" width="50" src="/images/acebook-logo.png">Acebook</a>
       <div class="collapse navbar-collapse" id="navbarsExample01">
         <ul class="navbar-nav me-auto mb-2">
           <li class="nav-item">
@@ -30,13 +30,13 @@
           </li>
         </ul>
             {{# if session.user }}
-            <p class="text-light">{{session.user.email}}</p>
+            <p class="text-light m-3">{{session.user.email}}</p>
             <form action='/sessions?_method=DELETE' method='POST'>
-              <input class="btn btn-danger" type="submit" value="Log Out">
+              <input class="btn btn-danger m-3" type="submit" value="Log Out">
             </form>
             {{else}}
-            <a href="/sessions/new" class="btn btn-success">Log In</a>
-            <a href="/users/new" class="btn btn-success">Sign Up</a>
+            <a href="/sessions/new" class="btn btn-success m-3">Log In</a>
+            <a href="/users/new" class="btn btn-success m-3">Sign Up</a>
             {{/if}}
       </div>
     </div>

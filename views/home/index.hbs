@@ -1,11 +1,18 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
-{{# if session.user }}
-<p>{{session.user.email}}</p>
-<form action='/sessions?_method=DELETE' method='POST'>
+<div class="container">
+  <div align="center">
+  <h1 class="title display-1">{{title}}</h1>
+  <img width="600" src="/images/acebook-logo.png">
+  <br>
+  <br>
+  <h2 class="text-muted">Welcome to {{title}}</h2>
+  {{# if session.user }}
+  <p>{{session.user.email}}</p>
+  <form action='/sessions?_method=DELETE' method='POST'>
     <input class="btn btn-danger" type="submit" value="Log Out">
-</form>
-{{else}}
-<a href="/sessions/new" class="btn btn-success">Log In</a>
-<a href="/users/new" class="btn btn-success">Sign Up</a>
-{{/if}}
+  </form>
+  {{else}}
+  <a href="/sessions/new" class="m-3 btn btn-success">Log In</a>
+  <a href="/users/new" class="m-3 btn btn-success">Sign Up</a>
+  {{/if}}
+  </div>
+</div>

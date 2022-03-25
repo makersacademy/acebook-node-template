@@ -1,12 +1,14 @@
-<h2> Post Type</h2>
-<p> Either add a message using the text below</p><br>
+<div align="center"></div>
+<h1>New Post</h1>
 <form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
-  <input type="submit" value="Submit">
-</form><br>
+  <textarea class="form-control" id="message" name="message" placeholder="Have your say" rows="4" cols="50" type="text"></textarea>
+  <br>
+  <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+<br>
 <p> Or upload an image using the button below</p>
 <form id="new-image-form" action="/posts/images" method="get">
-  <input type="submit" value="Upload Image">
+  <input class="btn btn-primary" type="submit" value="Upload Image">
 </form>
+</div>
 
