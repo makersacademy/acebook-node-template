@@ -3,23 +3,32 @@
 
 <div class="posts" >
   {{#each posts}}
-  <div>
-    <img src=/uploads/images/{{this.user.image}} style="height:60px; width:60px;">
-    <form action="/profile/viewperson/{{this.user._id}}" method="post">
+  <div class="card w-50">
+    {{#if this.imagePath}}
+  <img class="card-img-top" src="{{this.imagePath}}" style="width: 300px">
+  {{/if}}
+  <div class="card-body">
+    <img src="/uploads/images/{{this.user.image}}" style="height:60px; width:60px;">
+    <h5 class="card-title">
+     <form action="/profile/viewperson/{{this.user._id}}" method="post">
       <button class="btn btn-link" name="userId" value="{{this.user._id}}">{{this.user.name}}</button>
-    </form><br>
-   {{this.message}}  <br>
-   {{#if this.imagePath}}
-  <img height="200" src="{{this.imagePath}}"> <br> 
-   {{/if}}
-  <div id="createdAt">{{this.postedAt}}</div> <br> 
+    </form>
+    <small class="text-muted" id="createdAt">, on {{this.postedAt}}</small></h5>
+   <p class="lead card-text">{{this.message}}</p>
+
+  <div>
+
   <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
     <input type="hidden" name="prevRoute" value="posts">
-    <button id="like" name="postId" value="{{this._id}}">Like</button>
-  </form> 
-  <div id="likecount">{{this.likes}}</div> 
+    <button id="like" name="postId" value="{{this._id}}" class="btn btn-primary btn-sm">Like {{this.likes}}</button>
+  </form>  
   </div>
-  <br>
   {{> comments}}
+    
+  </div>
+  
   {{/each}}
 <div>
+
+
+
