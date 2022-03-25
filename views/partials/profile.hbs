@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <style>
-      div.preview-images > img {
-        width: 30%;
-      }
-    </style>
-  </head>
-  <body>
+<img src="/uploads/images/{{this.image}}" class="img-thumbnail rounded float-start">
   <div class="updateProfile">
     <div class="row">
       <div>
         <form action="users/updateprofile" method="post" enctype="multipart/form-data">
-          <label for="name">Name: </label>
-          <input id="name" type="text" name="name" "required=required" value="{{name}}"><br>
-          <label for="bio">Bio: </label>
-          <input id="bio" type="text" name="bio" "required=required" value="{{bio}}"><br>
-          <input type="file" name="file" id="input-files" class="form-control-file border"/>
-          <button id="profile-btn">Update</button>
+          <div class="input-group mb-3">
+          <label for="name" class="input-group-text" id="basic-addon1">Name: </label>
+          <input id="name" class="form-control" aria-describedby="basic-addon1" type="text" name="name" "required=required" value="{{name}}">
+          </div>
+          <div class="input-group mb-3">
+          <label for="bio" class="input-group-text" id="basic-addon1">Bio: </label>
+          <input id="bio" class="form-control" aria-describedby="basic-addon1" type="text" name="bio" "required=required" value="{{bio}}"><br>
+          </div>
+          <div class="input-group mb-3">
+          <input class="form-control" type="file" name="file" id="input-files" class="form-control-file border"/>
+          </div>
+          <div class="input-group mb-3">
+          <button id="profile-btn" class="btn btn-primary">Update</button>
+          </div>
         </form>
       </div>
     </div>
+
     <hr />
     <div class="row">
         <div>
@@ -29,7 +28,6 @@
         </div>
     </div>
   </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
       $(document).ready(function() {
@@ -52,6 +50,3 @@
         });
       });
     </script>
-  </body>
-</html>
-
