@@ -4,7 +4,7 @@ const path = require('path')
 const PostsController = {
   Index: (req, res) => {
 
-    Post.find({}, 'message createdAt likesList', {sort: {'createdAt': -1}},(err, posts) => {
+    Post.find({}, 'message image createdAt likesList', {sort: {'createdAt': -1}},(err, posts) => {
         if (err) {
           throw err;
         }
@@ -20,6 +20,17 @@ const PostsController = {
 
   Create: (req, res) => {
     const post = new Post({user: req.session.user._id, message: req.body.message});
+    post.save((err) => {
+      if (err) {
+        throw err;
+      }
+
+      res.status(201).redirect("/posts");
+    });
+  },
+
+  CreateImage: (req, res) => {
+    const post = new Post({user: req.session.user._id, image: req.body.img_name, message: req.body.message});
     post.save((err) => {
       if (err) {
         throw err;

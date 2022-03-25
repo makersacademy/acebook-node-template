@@ -9,5 +9,5 @@ router.get("/new", PostsController.New);
 router.post("/like",PostsController.Like);
 router.post("/unlike",PostsController.Unlike);
 router.get("/images", PostsController.Images);
-
+router.post("/upload", PostsController.CreateImage);
 module.exports = router;

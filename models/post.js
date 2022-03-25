@@ -3,6 +3,7 @@ const moment = require('moment');
 
 const PostSchema = new mongoose.Schema({
   message: String,
+  image: String, 
   comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
   userLikes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   user: 

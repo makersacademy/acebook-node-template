@@ -50,4 +50,13 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
     cy.get(".posts").eq(0).should("contain", "Hello Universe!")
   });
+
+  it('allows text and an image to be displayed on a post', () => {
+    cy.acebook.signUp();
+    cy.visit("/posts");
+    cy.contains("New post").click();
+    cy.get('#new-image-form').submit();
+    cy.get('div[class="image"]').find('img').should('be.visible')
+  
+  })
 });

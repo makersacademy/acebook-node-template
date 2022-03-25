@@ -15,4 +15,5 @@ it('allows a user to comment on a post', () => {
   cy.get("#new-comment-form").submit();
 
   cy.url().should("include", "/comment");
-})
+});
+
