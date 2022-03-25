@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.profile-pic-and-name{
+  display:inline-block;
+}
+.profile-pic{
+  border-radius: 50%;
+}
+.comment-text-area{
+  max-width: 400px;
+}
+
+.individual-photo{
+padding:3%;
+}
+
+.photo-album-div{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
