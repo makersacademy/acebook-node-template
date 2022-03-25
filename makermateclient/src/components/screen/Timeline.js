@@ -8,9 +8,6 @@ const Timeline = () => {
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState('')
   const user = localStorage.getItem("user")
-  
-
-
   useEffect(()=>{
     fetch("/posts",{
       headers:{
@@ -176,20 +173,24 @@ const makeComment = (note,postId) => {
               Delete Your Post
               </button>
               <h6>likes: {post.likes.length} </h6>
+              {
+              post.likes.includes(JSON.parse(user)._id)
+              ?
+              <i className="material-icons" 
+              onClick={()=>{dislikePost(post._id)}}
+            >thumb_down</i>
+            :
               <i className="material-icons"
                   onClick={()=>{likePost(post._id)}}
               >thumb_up</i>
+              }
                 <div>
-                 <i  className="material-icons" 
-                  onClick={()=>{dislikePost(post._id)}}>
-                  thumb_down
-                </i>
                   {post.comments.map(comment=>{
                     return(
                       <div key={post._id}>
-                      <h6>{comment.note}</h6>
-                      <h6>{comment.user}</h6>
-                      <img className='profile-pic' style={{maxWidth:'3%'}} src= {comment.userImage} alt="it goes here"/>
+                        <h6>{comment.note}</h6>
+                        <h6>{comment.user}</h6>
+                        <img className='profile-pic' style={{maxWidth:'3%'}} src= {comment.userImage} alt="it goes here"/>
                       </div>)
                     })}
                 </div>
