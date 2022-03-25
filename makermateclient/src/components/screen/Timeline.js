@@ -8,6 +8,10 @@ const Timeline = () => {
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState('')
   const user = localStorage.getItem("user")
+
+  let keyUser = JSON.parse(user)
+  let keyUserName = `${keyUser.firstName} ${keyUser.lastName}` 
+
   useEffect(()=>{
     fetch("/posts",{
       headers:{
@@ -108,6 +112,14 @@ const makeComment = (note,postId) => {
     })
   }
 
+  function authorAuth(post) {
+    if(keyUserName ===  post.user){
+      return true
+    }else{
+      return false
+    }
+  }
+
  
  
   return (
@@ -167,19 +179,18 @@ const makeComment = (note,postId) => {
                 <input type="text" placeholder="add a comment"/>
               </form>
 
-       
-              <button className="btn waves-effect waves-light #1976d2 blue darken-2"
-               onClick={()=>deleteData(post._id)}>
-              Delete Your Post
-              </button>
+            {authorAuth(post) &&
+                  <i className="material-icons" onClick={()=>deleteData(post._id)}>delete</i>}
+              <br></br>
+              <img src={post.userImage} alt="it goes here"/>
+              <h6>likes: {post.likes} </h6>
               <h6>likes: {post.likes.length} </h6>
               {
               post.likes.includes(JSON.parse(user)._id)
               ?
               <i className="material-icons" 
-              onClick={()=>{dislikePost(post._id)}}
-            >thumb_down</i>
-            :
+              onClick={()=>{dislikePost(post._id)} >thumb_down</i>
+                :
               <i className="material-icons"
                   onClick={()=>{likePost(post._id)}}
               >thumb_up</i>
