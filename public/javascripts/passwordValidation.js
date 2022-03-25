@@ -9,7 +9,7 @@ const surName = document.getElementById("surName")
 
 
 passwordInput.onfocus = function() {
-  document.getElementById("validation-message").classList.remove("hidden");
+  document.getElementById("validation-message").classList.remove("hidden")
 }
 
  // invalid box warning
