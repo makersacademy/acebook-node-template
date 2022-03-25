@@ -1,59 +1,12 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+} 
 
-a {
+/* a {
   color: #00B7FF;
-}
+} */
 
-#acebook-title {
-  font-family: 'Bebas Neue', sans-serif;
-  padding-top: 180px;
+div.preview-images > img {
+  width: 30%;
 }
-#welcome {
-    width: 70%;
-    padding-left: 50px;
-}
-#buttons {
-    padding-top: 230px;
-    width: 70%;
-    float: right;
-    padding-right: 50px;
-}
-.visible {
-  visibility: visible;
-}
-body {
-    background-image: url('https://www.pexels.com/photo/green-tree-beside-seashore-near-green-mountain-719609/');
-}
-a {
-    text-decoration: none;
-    color: white;
-}
-h1 {
-  font-size: 50px;
-  padding-top: 30px;
-  padding-bottom: 20px;
-}
-
-h3 {
-  font-size: 20px;
-}
-h4 {
-  font-size: 15px;
-}
-body {
-  font-size: 15px;
-}
-#sections {
-    height: 300px;
-    padding: 50px;
-}
-footer {
-  bottom: 0;
-  padding: 25px;
-  width: 100%;
-  position: absolute;
-  text-align: center;
-}    

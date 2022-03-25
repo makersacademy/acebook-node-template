@@ -1,11 +1,22 @@
-<div class = "comments">
+    
     {{#each this.comments}}
-      <div>{{this.user}} says {{this.comment}}</div>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+    <blockquote class="blockquote mb-0">
+    <p class="card-text">{{this.comment}}</p>
+    <footer class="blockquote-footer">{{this.user}}</footer>
+    </blockquote>
+    </li>
+    </ul>
     {{/each}}
-</div>
-<div class="addComment">
-  <form action="/posts/comment/new" method="post">
-    <input type="text" name="comment" id="input-comment">
-    <button id="comment-btn" name="postId" value="{{this._id}}">Comment</button>
+
+<div class="addComment card-body">
+  <form class="row g-2" action="/posts/comment/new" method="post">
+  <div class="col-md-6">
+    <input type="text" name="comment" id="input-comment" class="form-control">
+  </div>
+  <div class="col-auto">
+    <button id="comment-btn" name="postId" class="btn btn-primary" value="{{this._id}}">Add a Comment</button>
+  </div>
   </form>
 </div>

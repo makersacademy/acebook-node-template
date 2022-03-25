@@ -1,28 +1,29 @@
-<div id="post-box" class="container">
-<h1>Timeline for {{ name }} </h1>
+<h1 class="pt-5">Timeline for {{ name }} </h1>
  <h4 class="name">{{user.name}}</h4>
 
 <div class="posts" >
   {{#each posts}}
-  <div class="card" style="width: 60rem;">
-      <div class="card-body">
-    <img src=/uploads/images/{{this.user.image}} style="height:60px; width:60px;">
-    <a href="/profile/viewperson/{{this.user._id}}">{{this.user.name}}</a> <br>
-   {{this.message}}  <br>
-   {{#if this.imagePath}}
-  <img height="200" src="{{this.imagePath}}"> <br> 
-   {{/if}}
-  <div id="createdAt">{{this.postedAt}}</div> <br> 
+  <div class="card w-50">
+    {{#if this.imagePath}}
+  <img class="card-img-top" src="{{this.imagePath}}" style="width: 300px">
+  {{/if}}
+  <div class="card-body">
+    <img src="/uploads/images/{{this.user.image}}" style="height:60px; width:60px;">
+    <h5 class="card-title">
+     <form action="/profile/viewperson/{{this.user._id}}" method="post">
+      <button class="btn btn-link" name="userId" value="{{this.user._id}}">{{this.user.name}}</button>
+    </form>
+    <small class="text-muted" id="createdAt">, on {{this.postedAt}}</small></h5>
+   <p class="lead card-text">{{this.message}}</p>
+
   <form action="/posts/like/{{this._id}}" method="post" id = "like_{{this._id}}">
     <input type="hidden" name="prevRoute" value="posts">
-    <button id="like" name="postId" value="{{this._id}}">Like</button>
-  </form> 
-  <div id="likecount">{{this.likes}}</div> 
-  <br>
+    <button id="like" name="postId" value="{{this._id}}" class="btn btn-primary btn-sm">Like {{this.likes}}</button>
+  </form>  
+  </div>
   {{> comments}}
-  <br>
-    </div>
-    </div>
+    
+  </div>
+  
   {{/each}}
-</div>
-</div>
+<div>

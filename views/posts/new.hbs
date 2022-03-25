@@ -1,37 +1,35 @@
-  <head>
-        <div id="post-box" class="container"></div>
-    <h2>Write on your Acebook</h2>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <style>
-      div.preview-images > img {
-        width: 30%;
-      }
-    </style>
-  </head>
-  <body>
-     <div class="card" style="width: 60rem;">
-      <div class="card-body">
-      <div class="row">
-        <div>
-          <form action="/images"
+<h1 class="pt-5">Write on Acebook</h1>
+      <form action="/images"
             method="post"
-            enctype="multipart/form-data">
-            <div class="form-group">
-               <label for="message">Message: </label>
-               <input id="message" type="text" name="message" value=""><br>
+            enctype="multipart/form-data"
+            class="row g-2">
+          <div class="row g-3">
+              <div class="col-7">
+               <label for="message" ></label>Message</label>
+               <input id="message" type="text" name="message" value="" class="form-control">
+            </div>
+            
+            <div class="col-7">
+              <label for="file" class="col-sm-2 col-form-label">Add a Photo</label>
                 <input
                   type="file"
                   name="image"
                   id="input-files"
-                  class="form-control-file border"/>
+                  class="form-control"/>
             </div>
-            <input type="submit" value="Submit"> <br>
+            <div class="col-7">
+            <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+            </div>
           </form>
-          <form action="/posts" method="get">
-            <input type="submit" value="Cancel">
+
+          <form action="/posts" method="get" class="row g-2">
+            <div class="row g-3">
+            <div class="col-auto">
+            <input type="submit" value="Cancel" class="btn btn-secondary">
+          </div>
+          </div>
           </form> 
-        </div>
-      </div>
       <hr />
       <div class="row">
         <div>
@@ -40,7 +38,7 @@
       </div>
       </div>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
       $(document).ready(function() {
@@ -63,10 +61,3 @@
         });
       });
     </script>
-  </body>
-
-
-
-
-
-
