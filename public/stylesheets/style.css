@@ -6,3 +6,32 @@
 	display: block;
 }
 
+/* #validation-message {
+	display: none;
+} */
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -2px;
+  /* content: ":-)"; */
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -2px;
+  /* content: "X"; */
+}
+
+.hidden {
+	display: none !important;
+}
