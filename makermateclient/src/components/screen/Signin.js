@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-//import M from 'materialize-css';
+import M from 'materialize-css';
 
 //Signup is a component, inside is all the function we need during signup
 const Signin = () => {
@@ -26,16 +26,33 @@ const Signin = () => {
       //below is what we get back, we are converting the response from the fetch request into json
    }).then(res => res.json())
    //we get back data inside the .then() and printing to the console what it looks like
-  .then(data=>{
-    if(data.message === 'no user found'){
-      console.log({error: "no user"})
+    .then(data=>{
+      console.log(data)
+       if(data.error){
+      M.toast({html: data.error, classes:"#c62828 red darken -3"})
     } else {
       localStorage.setItem("user",JSON.stringify(data.user))
-      console.log('Sign In successful')
+      M.toast({html: data.message, classes:"#43a047 green darken-1"})
       navigation('/timeline')
+
     }
   })
   }
+
+
+ 
+
+
+    // console.log('the data is below here')
+    //   console.log(data)
+    // if(data.error){
+    //   M.toast({html: data.error, classes: "#c62828 red darken -3"})
+    // }
+    // else{
+    //   M.toast({html: data.message, classes: "#43a047 green darken-1"})
+    //   localStorage.setItem("user",JSON.stringify(data.user))
+    //   navigation('/timeline')
+    // }
 
   return (
     <div>

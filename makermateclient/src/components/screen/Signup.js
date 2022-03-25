@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-//import M from 'materialize-css';
+import M from 'materialize-css';
 
 //Signup is a component, inside is all the fuction we need during signup
 const Signup = () => {
@@ -31,11 +31,29 @@ const Signup = () => {
    }).then(res => res.json())
    //we get back data inside the .then() and printing to the console what it looks like
   .then(data=>{
-    console.log(data)
-    console.log('Sign Up successful')
-    navigation('/signin')
-  })
+    if(data.error){
+      M.toast({html: data.error, classes:"#c62828 red darken -3"})
+    
+    }
+    else{
+     console.log(data)
+      M.toast({html: data.message, classes:"#43a047 green darken-1"})
+      navigation('/signin')
+      // console.log(data)
+      console.log('Sign Up successful')
+      
+    }
+    })
   }
+    
+
+    
+    //   console.log(data)
+    //   console.log('Sign Up successful')
+    //   navigation('/signin')
+    // }
+    
+
 
   return (
     <div>

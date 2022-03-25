@@ -26,6 +26,7 @@
     "express-session": "^1.17.2",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
+    "materialize-css": "^1.0.0-rc.2",
     "method-override": "^3.0.0",
     "moment": "^2.29.1",
     "mongodb": "^3.4.1",
