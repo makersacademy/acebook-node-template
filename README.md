@@ -1,5 +1,83 @@
 # Acebook
 
+## User Stories 
+
+### MVP
+
+#### Login
+
+```
+As a user, 
+so that I can use Acebook,
+I want to be able to sign up
+```
+```
+As a user, 
+so that I can use Acebook,
+I want to be able to log in
+```
+```
+As a user, 
+so that the experience is seamless,
+I want to be logged in automatically once I have signed up
+```
+#### Posts
+
+```
+As a user, 
+so that so that I can express myself,
+I would like to be able to publish a post
+```
+```
+As a user, 
+so that I can be informed,
+I would like to be able to see a list of posts from others
+```
+```
+As a user, 
+so that I know who is posting,
+I would like to see a username attached to each post
+```
+```
+As a user, 
+so that I know the context in which a post was made,
+I would like to be able to see the time it was posted
+```
+```
+As a user,
+so that I can go back on what I posted,
+I would like to be able to delete my posts
+```
+
+#### Interactions
+
+```
+As a user, so that I can express how I feel,
+I would like to be able to like posts
+```
+```
+As a user, 
+so that I can go back on what I liked,
+I would like to be able to unlike
+```
+### Further User Stories
+
+#### Login
+```
+None yet
+```
+
+#### Posts
+```
+None yet
+```
+
+#### Interations
+```
+None yet
+```
+## Makers Instructions
+
 This is a Node.js template for the Acebook engineering project.
 
 It uses:
