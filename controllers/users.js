@@ -5,14 +5,23 @@ const UsersController = {
     res.render("users/new", {});
   },
 
-  Create: (req, res) => {
+  Create: async (req, res) => {
     const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
+
+    const userExists = await User.exists({email: user.email})
+
+    if (userExists == false) {
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    } else {
+      // should flash an error message back to the user
+      res.redirect("/users/new");
+      console.log('Error goes here')
+    }
   },
 };
 
