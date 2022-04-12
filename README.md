@@ -21,6 +21,11 @@ As a user, 
 so that the experience is seamless,
 I want to be logged in automatically once I have signed up
 ```
+```
+As a user,
+so I can choose how other users identify me,
+I would like to be able to choose a username to display
+```
 #### Posts
 
 ```
