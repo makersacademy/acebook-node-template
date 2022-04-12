@@ -1,4 +1,8 @@
 describe("Registration", () => {
+  beforeEach(() => {
+    cy.task('clearusers')
+  })
+  
   it("A user signs up and is redirected to sign in", () => {
     // sign up
     cy.visit("/users/new");
