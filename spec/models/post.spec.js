@@ -43,11 +43,6 @@ describe("Post model", () => {
 
     post1.save((err) => {
       expect(err).toBeNull();
-
-      Post.find((err, posts) => {
-        expect(err).toBeNull();
-        console.log('here');
-      });
     });
 
     var post2 = new Post({ message: "some different message" });
