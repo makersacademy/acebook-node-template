@@ -1,6 +1,6 @@
 const HomeController = {
   Index: (req, res) => {
-    res.render("home/index", { title: "fAcebook" });
+    res.render("home/index", { title: "Quackbook" });
   },
 };
 
