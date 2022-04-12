@@ -140,7 +140,7 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    ```
    npm start
    ```
-2. Browse to [http://localhost:3000](http://localhost:3000)
+2. Browse to [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
 ### Test
 
@@ -173,6 +173,6 @@ Some people occasionally experience MongoDB connection errors when running the t
 
 - Check that MongoDB is installed using `mongo --version`
 - Check that it's running using `brew services list`
-- Try swapping `localhost`, everywhere that it appears in your codebase, with `127.0.0.1`. It might be surprising but this does sometimes make a difference.
+- Try swapping `127.0.0.1`, everywhere that it appears in your codebase, with `127.0.0.1:`. It might be surprising but this does sometimes make a difference.
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
