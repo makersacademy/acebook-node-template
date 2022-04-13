@@ -5,10 +5,7 @@ describe("Registration", () => {
 
   it("A user signs up and is redirected to sign in", () => {
     // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#createAccount").click();
+    cy.signUp();
 
     cy.url().should("include", "/sessions/new");
   });
@@ -40,16 +37,10 @@ describe("Registration", () => {
   // user should get an error if user already exists
   it("A should not be able to sign up if already signed up", () => {
     // first sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#createAccount").click();
+    cy.signUp();
 
     // second sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#createAccount").click();
+    cy.signUp();
 
     cy.url().should("include", "/users/new");
     // expect error to pop up on screen
