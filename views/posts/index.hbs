@@ -1,9 +1,20 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li class="post">{{this.message}}<br>
-    {{this.date}}</li>
+  <div class="post">
+  <li class="post_container" >
+    {{this.message}}<br>
+    {{this.date}}<br><br>
+
+  <form id="add-comment-form" action="/posts/comment" method="POST">
+    <input type="hidden" name="post_id" value={{this.id}}>
+    <input id="comment-field" type="text" name="comment" value="" required>
+    <input id="comment-button" type="submit" value="comment">
+  </form>
+  </li><br><br><br>
+  </div>
   {{/each}}
 </ul>
+
 
 
