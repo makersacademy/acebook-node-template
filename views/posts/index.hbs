@@ -6,10 +6,6 @@
     <button class="like-button">Like</button>0
   </div>
   {{/each}}
+<script type="text/javascript" src="/javascripts/likesEvent.js"></script>
 </ul>
 <a class="new-post-link" href="/posts/new">New post</a>
-<script>
-      let likeButtonElArr = document.querySelectorAll('.like-button');
-      likeButtonElArr.forEach(buttonEl => buttonEl.addEventListener('click',() => {
-      console.log('you clicked on like btn!');}))
-</script>
