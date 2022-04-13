@@ -15,13 +15,14 @@ const UsersController = {
         if (err) {
           throw err;
         }
-        res.status(201).redirect("/posts");
       });
+      res.redirect("/sessions/new");
     } else {
-      // should flash an error message back to the user
-      res.redirect("/users/new");
-      console.log('Error goes here')
+      // ideally have an else statement that triggers an error to pop up letting the user know 
+      // the email is in use and to use another email in an else branch 
+      res.redirect("/users/new")
     }
+
   },
 };
 
