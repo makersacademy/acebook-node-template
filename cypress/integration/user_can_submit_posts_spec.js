@@ -42,7 +42,7 @@ describe("Timeline", () => {
      cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
      cy.get("#new-post-form").submit();
 
-     cy.get("#like-form").find('[type="submit"]').click();
+     cy.get("#like-button").click();
 
 
   }); 
