@@ -23,7 +23,8 @@ const PostsController = {
     });
   },
   Delete: ("/posts/:id", function(req, res) {
-    db.collection('posts').remove({_id: mongodb.ObjectID( req.params.id)}, (err, result) => {
+
+    Post.remove({_id: req.params.id}, (err, result) => {
       if (err) return console.log(err)
       console.log(req.body)
       res.redirect('/')
@@ -32,3 +33,45 @@ const PostsController = {
 };
 
 module.exports = PostsController;
+
+
+
+// Delete: ("/posts/:id", function(req, res, next) {
+  
+  //   // Post.findByIdAndDelete(req.params.id)
+
+  //   Post.deleteOne({message: 'hi'})
+
+  //   console.log("Helloooo!")
+  //   .then(() => {
+
+  //     res.redirect('/posts');
+  //     })
+  //  .catch(err => {
+  //     const error = new Error(err);
+  //     error.httpStatusCode = 500;
+  //     return next(error);
+  // })
+  // console.log(req.params.id);
+  // })
+
+
+  // Delete: (req, res) => {
+   
+  //   // let query = {message: 'hi'};
+
+  //   // Post.deleteOne(query);
+  //   const post = Post.findOne({message: "hi"});
+
+  //   Post.remove(post);
+  //   console.log('Hello');
+
+  //   // Post.remove(query, function(err){
+ 
+  //   //   if(err){
+  //   //     console.log(err);
+  //   //   }
+  //   //   console.log("Helloooo!")
+  //   //   res.send('Success');
+  //   //   });
+  //   }
