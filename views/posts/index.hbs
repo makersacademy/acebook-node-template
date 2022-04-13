@@ -4,6 +4,10 @@
   <div class="post-div" postId={{this._id}}>
     <li>{{this.message}}</li>
     <button class="like-button">Like</button>0
+        <form action="/posts/{{this._id}}" method="post">
+        <input type='hidden' name='_method' value='DELETE'/>
+        <input type="submit" value="Delete post" />
+      </form>
   </div>
   {{/each}}
 </ul>
