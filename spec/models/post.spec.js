@@ -49,7 +49,6 @@ describe("Post model", () => {
 
     post2.save((err) => {
       expect(err).toBeNull();
-      console.log('here2');
 
       Post.find({}).sort({date: -1}).exec((err, posts) => {
         expect(err).toBeNull();
