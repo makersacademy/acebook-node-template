@@ -22,20 +22,12 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  Delete: ("/posts/:id", function(req, res, next) {
-  
-    // Post.findByIdAndDelete(req.params.id)
-    Post.deleteOne({message: 'hi'})
-    console.log("Helloooo!")
-    .then(() => {
-      res.redirect('/posts');
-      })
-   .catch(err => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-  })
-  console.log(req.params.id);
+  Delete: ("/posts/:id", function(req, res) {
+    db.collection('posts').remove({_id: mongodb.ObjectID( req.params.id)}, (err, result) => {
+      if (err) return console.log(err)
+      console.log(req.body)
+      res.redirect('/')
+    })
   })
 };
 
