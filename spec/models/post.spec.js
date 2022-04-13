@@ -39,14 +39,14 @@ describe("Post model", () => {
   });
 
   it("displays posts by most recent", (done) => {
-    var post1 = new Post({ message: "some message" });
+    var post1 = new Post({ message: "some message", date: "2022-04-13T12:23:44.104Z"});
 
     post1.save((err) => {
       expect(err).toBeNull();
     });
 
-    var post2 = new Post({ message: "some different message" });
-
+    var post2 = new Post({ message: "some different message", date: "2022-04-13T13:23:44.104Z"});
+    
     post2.save((err) => {
       expect(err).toBeNull();
 
