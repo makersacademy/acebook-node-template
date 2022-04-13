@@ -6,11 +6,17 @@
     {{this.message}}<br>
     {{this.date}}<br><br>
 
-  <form id="add-comment-form" action="/posts/comment" method="POST">
-    <input type="hidden" name="post_id" value={{this.id}}>
-    <input id="comment-field" type="text" name="comment" value="" required>
-    <input id="comment-button" type="submit" value="comment">
-  </form>
+    <div>
+      {{#each this.comments}}
+        <div class="comment">{{this}}</div>
+      {{/each}}
+    </div>
+
+    <form id="add-comment-form" action="/posts/comment" method="POST">
+      <input type="hidden" name="post_id" value={{this.id}}>
+      <input id="comment-field" type="text" name="comment" value="" required>
+      <input id="comment-button" type="submit" value="comment">
+    </form>
   </li><br><br><br>
   </div>
   {{/each}}
