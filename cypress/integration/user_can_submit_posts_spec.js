@@ -20,5 +20,13 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+
+    // submit another post and see the most recent post first
+    cy.visit("/posts");
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, again!");
+    cy.get("#new-post-form").submit();
+    cy.get(".post").first().should("contain", "Hello, again!");
   });
 });

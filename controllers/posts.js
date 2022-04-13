@@ -2,16 +2,16 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find({}).sort({date: -1}).exec((err, posts) => {
       if (err) {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts, session: req.session });
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", {session: req.session});
   },
   Create: (req, res) => {
     const post = new Post(req.body);

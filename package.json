@@ -5,6 +5,7 @@
   "license": "CC BY-NC-SA",
   "private": true,
   "scripts": {
+    "cy:run": "cypress run",
     "lint": "eslint .",
     "start": "nodemon ./bin/www",
     "start:test": "PORT=3030 MONGODB_URL='mongodb://127.0.0.1/acebook_test' npm start",

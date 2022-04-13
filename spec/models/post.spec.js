@@ -11,8 +11,8 @@ describe("Post model", () => {
   });
 
   it("has a message", () => {
-    var post = new Post({ message: "some message" });
-    expect(post.message).toEqual("some message");
+    var post = new Post({ message: "random message" });
+    expect(post.message).toEqual("random message");
   });
 
   it("can list all posts", (done) => {
@@ -33,6 +33,27 @@ describe("Post model", () => {
         expect(err).toBeNull();
 
         expect(posts[0]).toMatchObject({ message: "some message" });
+        done();
+      });
+    });
+  });
+
+  it("displays posts by most recent", (done) => {
+    var post1 = new Post({ message: "some message" });
+
+    post1.save((err) => {
+      expect(err).toBeNull();
+    });
+
+    var post2 = new Post({ message: "some different message" });
+
+    post2.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find({}).sort({date: -1}).exec((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0].message).toEqual("some different message");
         done();
       });
     });
