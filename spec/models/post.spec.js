@@ -56,6 +56,13 @@ describe("Post model", () => {
         expect(posts[0].message).toEqual("some different message");
         done();
       });
-    });
+    });    
   });
+
+  it("can store comments", () => {
+    var post = new Post({ comments: "random comment" });
+    expect(post.comments[0]).toEqual("random comment");
+  });
+
+
 });
