@@ -1,7 +1,15 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <div class="post-div" postId={{this._id}}>
+    <li>{{this.message}}</li>
+    <button class="like-button">Like</button>0
+  </div>
   {{/each}}
 </ul>
 <a class="new-post-link" href="/posts/new">New post</a>
+<script>
+      let likeButtonElArr = document.querySelectorAll('.like-button');
+      likeButtonElArr.forEach(buttonEl => buttonEl.addEventListener('click',() => {
+      console.log('you clicked on like btn!');}))
+</script>
