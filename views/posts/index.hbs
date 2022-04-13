@@ -3,14 +3,13 @@
   {{#each posts}}
   <div class="post-div" postId={{this._id}}>
     <li>{{this.message}}</li>
-    <button class="like-button">Like</button>
-    <p innerText="0"></p>
+    <button class="like-button">Like</button>0
   </div>
   {{/each}}
 </ul>
 <a class="new-post-link" href="/posts/new">New post</a>
- <script>
+<script>
       let likeButtonElArr = document.querySelectorAll('.like-button');
       likeButtonElArr.forEach(buttonEl => buttonEl.addEventListener('click',() => {
-      console.log('you clicked on edit btn!');}))
+      console.log('you clicked on like btn!');}))
 </script>
