@@ -28,11 +28,19 @@ db.on('open', function() {
 
 module.exports = async (on) => {
   const users = db.collection('users')
+  const posts = db.collection('posts')
 
   on('task', {
     async clearusers() {
-      console.log('clear users')
+      console.log('clearing users')
       await users.remove({})
+
+      return null
+    },
+
+    async clearposts() {
+      console.log('clearing posts')
+      await posts.remove({})
 
       return null
     },

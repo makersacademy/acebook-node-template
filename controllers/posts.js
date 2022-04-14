@@ -18,7 +18,7 @@ const PostsController = {
       profPic: req.session.user.url,
       userName: req.session.user.name
     }
-    console.log(data)
+
 
     const post = new Post(data);
     post.save((err) => {
@@ -29,8 +29,24 @@ const PostsController = {
     });
   },
 
-  Update: (req, res) => {
-    Post.findByIdAndUpdate( req.body.id, {$inc:{likes:1}} ).exec((err, post) => {
+  UpdateComment: (req) => {
+    const comment = req.body.comment;
+    const post_id = req.body.id;
+
+    Post.updateOne(
+      {'_id': post_id}, // filter - how to find post
+      { $push: { comments: comment}}, // update - what to update
+      (err, doc) => { // last but not least a callback because nothing works without a callback
+        if (err) {
+          throw err;
+        }
+        console.log(doc)
+      });
+  },
+  UpdateLikes: (req) => {
+    Post.findByIdAndUpdate( req.body.id, {$inc:{likes:1}} ).exec((err) => {
+
+
       if (err) {
         throw err;
       }
