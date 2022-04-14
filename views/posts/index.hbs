@@ -3,25 +3,11 @@
   {{#each posts}}
   <div class="post-div" postId={{this._id}}>
     <li>{{this.message}}</li>
-    <input type="button" value="Like" class="likeUnlike" onclick="likeUnlike();">
+    <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} >
   </div>
   {{/each}}
-<script type="text/javascript" src="/javascripts/likesEvent.js"></script>
 </ul>
 <a class="new-post-link" href="/posts/new">New post</a>
 
 
-<script type="text/javascript">
-</script>
 
-<script>
-const likeUnlike = () => {
-document.querySelectorAll(".likeUnlike").forEach(button => {
-  if(button.value === "Like") {
-    button.value = "Unlike" 
-  } else {
-        button.value = "Like"
-      }
-  });
-};
-</script>
