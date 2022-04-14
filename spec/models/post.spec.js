@@ -58,4 +58,35 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can post an image", (done) => {
+    var post = new Post({ message: "some message", imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ol3aSc2Uo1l7DSvc533s0OmRModeOFnTwA&usqp=CAU"  });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "some message", imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ol3aSc2Uo1l7DSvc533s0OmRModeOFnTwA&usqp=CAU" });
+        done();
+      });
+    });
+  });
+
+  it("can display the number of likes", (done) => {
+    var post = new Post({ message: "some message", likes: 3 });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "some message", likes: 3 });
+        done();
+      });
+    });
+  });
+
 });
