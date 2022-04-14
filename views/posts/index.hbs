@@ -1,12 +1,20 @@
 <h1>Timeline</h1>
+<div id="post">
 <ul class="posts">
   {{#each posts}}
   <div class="post-div" postId={{this._id}}>
     <li>{{this.message}}</li>
     <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} >
   </div>
+  <div class="delete-post">
+    <form action="/posts/{{this._id}}" method="post">
+      <input type='hidden' name='_method' value='DELETE'/>
+      <input type="submit" value="Delete post" />
+    </form>
+  </div>
   {{/each}}
 </ul>
+</div>
 <a class="new-post-link" href="/posts/new">New post</a>
 
 
