@@ -56,8 +56,14 @@ describe("Post model", () => {
         expect(posts[0].message).toEqual("some different message");
         done();
       });
-    });
+    });    
   });
+
+  it("can store comments", () => {
+    var post = new Post({ comments: "random comment" });
+    expect(post.comments[0]).toEqual("random comment");
+  });
+
 
   it("can post an image", (done) => {
     var post = new Post({ message: "some message", imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ol3aSc2Uo1l7DSvc533s0OmRModeOFnTwA&usqp=CAU"  });
@@ -88,5 +94,6 @@ describe("Post model", () => {
       });
     });
   });
+
 
 });
