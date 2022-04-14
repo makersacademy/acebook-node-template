@@ -13,7 +13,13 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+    let post = new Post();
+    post.message = req.body.message;
+    post.username = req.session.user.username
+    post.dateAndTime = Date()
+    post.likes = []
+console.log(post)
+
     post.save((err) => {
       if (err) {
         throw err;
