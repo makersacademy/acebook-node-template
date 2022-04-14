@@ -19,6 +19,7 @@ const PostsController = {
       userName: req.session.user.name
     }
 
+
     const post = new Post(data);
     post.save((err) => {
       if (err) {
@@ -44,6 +45,8 @@ const PostsController = {
   },
   UpdateLikes: (req) => {
     Post.findByIdAndUpdate( req.body.id, {$inc:{likes:1}} ).exec((err) => {
+
+
       if (err) {
         throw err;
       }
