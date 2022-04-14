@@ -3,16 +3,14 @@
   {{#each posts}}
   <li class="post">{{this.message}}<br>
     {{this.date}}
-    <button id="likes" type="submit" onclick="addLike('{{this.id}}')">Like</button>
+    <button id="likes" type="submit" onclick="addLike('{{this.id}}');document.location.reload(true);">Like</button>
     <div id="like_count">{{this.likes}}</div>
 
   </li>
   {{/each}}
 </ul>
 
-{{!-- when the button is clicked add + 1 to likes inside posts --}}
-{{!-- Button clicked, value of likes of post (inside collection) + 1, trigger a refresh page to see number of likes
-change --}}
+{{!-- added 2 functions to onclick. 1st function described in the script, 2nd function is inline code to reload page --}}
 
 <script>
 function addLike(id)  {

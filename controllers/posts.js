@@ -29,12 +29,8 @@ const PostsController = {
         throw err;
       }
 
-      console.log(post)
-    })
-
-
-    // find post via id 
-    // update value of likes from req.body.likes
+      //redirect back to the previous page 
+    });
   }
 };
 
