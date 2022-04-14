@@ -1,5 +1,5 @@
-describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+describe('likes', () => {
+  it('can like a post', () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -19,6 +19,12 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
-  });
+    // Like post
+    cy.get('.likeUnlike:nth(0)').click();
+    cy.get('.likeUnlike:nth(0)').should('have.value', 'Unlike')
+
+    // Unlike a post
+    cy.get('.likeUnlike:nth(0)').click();
+    cy.get('.likeUnlike:nth(0)').should('have.value', 'Like')
+ }); 
 });
