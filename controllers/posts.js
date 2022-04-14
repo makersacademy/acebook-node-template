@@ -16,9 +16,11 @@ const PostsController = {
       message: req.body.message,
       email: req.session.user.email,
       profPic: req.session.user.url,
-      userName: req.session.user.name
+      userName: req.session.user.name,
+      imageUrl: req.body.imageUrl
     }
 
+    console.log(`Checking for image URL: ${data}`)
 
     const post = new Post(data);
     post.save((err) => {

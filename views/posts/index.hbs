@@ -1,4 +1,6 @@
 
+    {{!-- <img src="./images/picture.jpeg"/> --}}
+
 
 <h1>Timeline</h1>
 <ul class="posts">
@@ -6,6 +8,7 @@
   <div class="post" id="A{{this.id}}">
     <li class="post_container" >
         {{this.message}}<br>
+        <img src="{{this.imageUrl}}"/>
         <div id="like_count">{{this.likes}}</div>
         <button id="likes" type="submit" onclick="addLike('{{this.id}}');document.location.reload(true);">Like</button>
         {{this.date}}<br><br>
@@ -24,7 +27,6 @@
       </div>
     </li><br><br><br>
   </div>
-
   {{/each}}
 </ul>
 
@@ -32,7 +34,6 @@
 {{!-- added 2 functions to onclick. 1st function described in the script, 2nd function is inline code to reload page --}}
 
   {{!-- <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1uyftFRjePID-k80xmoFdTX8p6tKkIn3t" alt="logo" width="216" height="233"></a> --}}
-
 
 
 <script>
