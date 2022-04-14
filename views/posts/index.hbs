@@ -1,26 +1,44 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <div class="post">
-  <li class="post_container" >
-    {{this.message}}<br>
-    {{this.date}}<br><br>
+  <div class="post" id="A{{this.id}}">
+    <li class="post_container" >
+        {{this.message}}<br>
+        {{this.date}}<br><br>
 
-    <div>
-      {{#each this.comments}}
-        <div class="comment">{{this}}</div>
-      {{/each}}
-    </div>
+      <div>
+        {{#each this.comments}}
+          <div class="comment">{{this}}</div>
+        {{/each}}
+      </div>
 
-    <form id="add-comment-form" action="/posts/comment" method="POST">
-      <input type="hidden" name="post_id" value={{this.id}}>
-      <input id="comment-field" type="text" name="comment" value="" required>
-      <input id="comment-button" type="submit" value="comment">
-    </form>
-  </li><br><br><br>
+      <div id="add-comment-form">
+        <input id="comment-field" type="text" name="comment" value="" required>
+        <button id="add-comment-button" type="submit" onclick="addComment('{{this.id}}')" >Comment</button>
+      </div>
+    </li><br><br><br>
   </div>
   {{/each}}
 </ul>
+
+<script>
+function addComment(id)  {
+    const post_id = {
+      id: id,
+      comment: document.querySelector("#A"+id).querySelector('#comment-field').value,
+      update: "comments",
+    }
+
+    fetch("/posts/update", { body: JSON.stringify(post_id), method:"PUT", headers: { 'Content-Type': 'application/json' } })
+
+    reloadPage(50)
+  }
+
+  function reloadPage(timeDelay) {
+    console.log('I did it')
+    setTimeout(() => {document.location.reload(true);}, timeDelay)
+  }
+</script>
 
 
 

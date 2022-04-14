@@ -24,9 +24,10 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  Comment: (req, res) => {
+
+  UpdateComment: (req) => {
     const comment = req.body.comment;
-    const post_id = req.body.post_id;
+    const post_id = req.body.id;
 
     Post.updateOne(
       {'_id': post_id}, // filter - how to find post
@@ -37,7 +38,6 @@ const PostsController = {
         }
         console.log(doc)
       });
-    setTimeout(() => {res.redirect("/posts")}, 100);
   },
 };
 

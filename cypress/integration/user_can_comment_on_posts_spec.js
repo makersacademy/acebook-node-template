@@ -20,7 +20,7 @@ describe("Commenting on posts", () => {
     //this post should have a comment button
     cy.get(".post").should("contain", "Hello, world!");
 
-    cy.get(".post").contains("#comment-button", "comment")
+    cy.get(".post").contains("#add-comment-button", "Comment")
   });
 
   it("Submitting a comment should add the comment to the post", () => {
@@ -38,8 +38,8 @@ describe("Commenting on posts", () => {
     cy.get("#new-post-form").submit();
 
     // submit a comment
-    cy.get("#add-comment-form").find('[type="text"]').type("Goodbye, world!");
-    cy.get("#add-comment-form").submit();
+    cy.get("#comment-field").type("Goodbye, world!");
+    cy.get("#add-comment-button").click();
 
     cy.get(".post").get(".comment").contains("Goodbye, world!")
   });
