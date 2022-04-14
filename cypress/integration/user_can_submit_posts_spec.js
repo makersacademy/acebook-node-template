@@ -10,7 +10,7 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
@@ -19,7 +19,7 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, again!");
+    cy.get("#new-post-form").find("#message").type("Hello, again!");
     cy.get("#new-post-form").submit();
     cy.get(".post").first().should("contain", "Hello, again!");
   });

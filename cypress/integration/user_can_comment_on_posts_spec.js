@@ -14,7 +14,7 @@ describe("Commenting on posts", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     //this post should have a comment button
@@ -34,7 +34,7 @@ describe("Commenting on posts", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find("#message").type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     // submit a comment
