@@ -43,7 +43,10 @@ const PostsController = {
         console.log(doc)
       });
   },
-  UpdateLikes: (req) => {
+  UpdateLikes: (req, res) => {
+    console.log('I made it here')
+    
+    console.log(req)
     Post.findByIdAndUpdate( req.body.id, {$inc:{likes:1}} ).exec((err) => {
 
 
