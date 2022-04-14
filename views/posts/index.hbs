@@ -2,8 +2,24 @@
 <ul class="posts">
   {{#each posts}}
   <li class="post">{{this.message}}<br>
-    {{this.date}}</li>
+    {{this.date}}
+    <button id="likes" type="submit" onclick="addLike('{{this.id}}')">Like</button>
+    <div id="like_count">{{this.likes}}</div>
+
+  </li>
   {{/each}}
 </ul>
 
+{{!-- when the button is clicked add + 1 to likes inside posts --}}
+{{!-- Button clicked, value of likes of post (inside collection) + 1, trigger a refresh page to see number of likes
+change --}}
 
+<script>
+function addLike(id)  {
+    const b = {
+      id: id
+    }
+    console.log(id)
+    fetch("/posts/update", { body: JSON.stringify(b), method: "PUT", headers: { 'Content-Type': 'application/json' } });
+  }
+</script>
