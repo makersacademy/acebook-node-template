@@ -28,6 +28,20 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  
+
+  Update: (req, res) => {
+    Post.findByIdAndUpdate( req.body.id, {$inc:{likes:1}} ).exec((err, post) => {
+      if (err) {
+        throw err;
+      }
+
+      console.log(post)
+    })
+
+
+    // find post via id 
+    // update value of likes from req.body.likes
+  }
+
 };
 module.exports = PostsController;
