@@ -17,6 +17,7 @@ const SessionsController = {
         res.redirect("/sessions/new");
       } else {
         req.session.user = user;
+        console.log(user.username)
         res.redirect("/posts");
       }
     });

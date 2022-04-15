@@ -1,8 +1,10 @@
 <h1>Timeline</h1>
 <div id="post">
 <ul class="posts">
-  {{#each posts}}
+ {{#each posts}}
   <div class="post-div" postId={{this._id}}>
+    <div class="username" innerText="{{this.username}}"></div>
+    <div class="dateAndTime" innerText="{{this.dateAndTime}}"></div>
     <li>{{this.message}}</li>
     <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} >
   </div>
