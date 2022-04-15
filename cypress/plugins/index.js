@@ -15,20 +15,3 @@ module.exports = function() {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 }
-
-
-// const { connect } = require('../../models/posts.js')
-
-// module.exports = async (on, config) => {
-//   const db = await connect()
-//   const posts = db.collection('posts')
-
-//   on('task', {
-//     async clearPosts() {
-//       console.log('clear posts')
-//       await posts.remove({})
-
-//       return null
-//     },
-//   })
-// }

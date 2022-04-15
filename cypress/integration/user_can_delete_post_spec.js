@@ -1,27 +1,13 @@
+const webHelper = require('../support/web_helpers.js');
+
 describe("Timeline", () => {
   it("can delete post", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#username").type("username");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
-    // submit a post
-    cy.visit("/posts");
-    cy.contains("New post").click();
-
-    cy.get("#new-post-form").find('[type="text"]').type("Hey!");
-    cy.get("#new-post-form").submit();
+    webHelper.signUp();
+    webHelper.signIn();
+    webHelper.submitPost();
 
     cy.get("#delete-post").submit();
 
-    cy.get(".posts").should('not.contain', 'Hey!')
+    cy.get(".posts").should("not.contain", "Hello, world!")
   });
 });
