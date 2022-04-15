@@ -8,5 +8,6 @@ describe("Timeline", () => {
     webHelper.submitPost();
 
     cy.get(".posts:first").should("contain", "username");
+    cy.get(".posts:first").should("contain", "2022");
   });
 })
