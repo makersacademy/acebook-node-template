@@ -1,3 +1,9 @@
+beforeEach(() => {
+  cy.log("Before cy.exec");
+  cy.exec("mongo acebook_test --eval 'db.users.remove({})'");
+  cy.exec("mongo acebook_test --eval 'db.posts.remove({})'");
+});
+
 // ***********************************************************
 // This example support/index.js is processed and
 // loaded automatically before your test files.

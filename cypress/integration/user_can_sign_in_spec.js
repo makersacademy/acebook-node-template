@@ -1,10 +1,8 @@
+const webHelper = require('../support/web_helpers.js');
+
 describe("Authentication", () => {
   it("A user signs in and is redirected to /posts", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+    webHelper.signUp();
 
     // sign in
     cy.visit("/sessions/new");

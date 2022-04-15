@@ -9,7 +9,7 @@
     <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} >
   </div>
   <div class="delete-post">
-    <form action="/posts/{{this._id}}" method="post">
+    <form action="/posts/{{this._id}}" method="post" id="delete-post">
       <input type='hidden' name='_method' value='DELETE'/>
       <input type="submit" value="Delete post" />
     </form>
