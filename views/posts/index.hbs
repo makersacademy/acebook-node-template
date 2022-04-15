@@ -3,9 +3,10 @@
 <ul class="posts">
  {{#each posts}}
   <div class="post-div" postId={{this._id}}>
-    <div class="username" innerText="{{this.username}}"></div>
-    <div class="dateAndTime" innerText="{{this.dateAndTime}}"></div>
-    <li>{{this.message}}</li>
+    <div class="username">Username: {{this.username}}</div>
+    <div class="message">{{this.message}}</div>
+    <div class="dateAndTime">{{this.dateAndTime}}</div>
+    <br>
     <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} >
   </div>
   <div class="delete-post">
@@ -13,6 +14,7 @@
       <input type='hidden' name='_method' value='DELETE'/>
       <input type="submit" value="Delete post" />
     </form>
+    <br>
   </div>
   {{/each}}
 </ul>
