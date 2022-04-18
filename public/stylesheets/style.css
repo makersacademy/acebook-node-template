@@ -1,8 +1,45 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  background-color: whitesmoke;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#signin {
+  height: 100%;
+  display: flex;
+  margin: auto;
+  padding-top: 20px;
+  flex-wrap: nowrap;
+  max-width: 400px;
+  justify-content: center;
+}
+#new-session-form {
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  margin: auto;
+  background-color: #00b7ff;
+  opacity: 0.5;
+  border: none;
+  border-radius: 20px;
+}
+
+#submit,
+#email,
+#password {
+  width: 100%;
+  background-color: white;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  align-items: center;
 }
