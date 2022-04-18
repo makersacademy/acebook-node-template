@@ -5,7 +5,21 @@
   <div class="post-div" postId={{this._id}}>
     <div class="username">Username: {{this.username}}</div>
     <div class="message">{{this.message}}</div>
-    <div class="dateAndTime">{{this.dateAndTime}}</div>
+
+    {{!-- <div class="timeSince">{{this.dateAndTime}}</div> --}}
+
+    <p>Posted <time class="timeago" datetime="2022-03-27T09:24:17Z"></time></p> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/jquery.timeago.js"></script>
+
+    <script type="text/javascript">
+       jQuery(document).ready(function() {
+         $("time.timeago").timeago();
+       });
+    </script>
+    
+
     <br>
     <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} >
   </div>
