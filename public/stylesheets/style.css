@@ -2,23 +2,24 @@ body {
   padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   height: 100%;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 a {
   color: #00b7ff;
 }
 
-#signin {
+#signin,
+#signup {
   height: 100%;
   display: flex;
   margin: auto;
   padding-top: 20px;
-  flex-wrap: nowrap;
   max-width: 400px;
   justify-content: center;
 }
-#new-session-form {
+#new-session-form,
+#new-user-form {
   height: 100%;
   width: 100%;
   padding: 30px;
@@ -29,17 +30,20 @@ a {
   border-radius: 20px;
 }
 
+#username,
 #submit,
 #email,
-#password {
+#password,
+#signup-redirect {
   width: 100%;
   background-color: white;
   color: black;
-  padding: 14px 20px;
+  padding: 15px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   box-sizing: border-box;
   align-items: center;
+  font-size: 15px;
 }
