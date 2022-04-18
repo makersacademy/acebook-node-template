@@ -14,9 +14,10 @@
           data-button-id={{this._id}}
         />
       </div>
-      <div class="delete-post">
+      <div class="delete-post" postId={{this._id}} username="{{this.username}}">
         <form action="/posts/{{this._id}}" method="post" id="delete-post">
           <input type="hidden" name="_method" value="DELETE" />
+
           <input type="submit" value="Delete post" />
         </form>
         <br />

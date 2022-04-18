@@ -15,10 +15,10 @@ const PostsController = {
   Create: (req, res) => {
     let post = new Post();
     post.message = req.body.message;
-    post.username = req.session.user.username
-    post.dateAndTime = Date()
-    post.likes = []
-console.log(post)
+    post.username = req.session.user.username;
+    post.dateAndTime = Date();
+    post.likes = [];
+    console.log(post);
 
     post.save((err) => {
       if (err) {
@@ -28,14 +28,18 @@ console.log(post)
       res.status(201).redirect("/posts");
     });
   },
-  Delete: ("/posts/:id", function(req, res) {
+  Delete:
+    ("/posts/:id",
+    (req, res) => {
+      let query = { _id: req.params.id, username: req.session.user.username };
 
-    Post.remove({_id: req.params.id}, (err) => {
-      if (err) return console.log(err)
-      console.log(req.body)
-      res.redirect('/posts')
-    })
-  })
+      Post.remove(query, (err) => {
+        if (err) {
+          console.log(err);
+        }
+        res.redirect("/posts");
+      });
+    }),
 };
 
 module.exports = PostsController;
