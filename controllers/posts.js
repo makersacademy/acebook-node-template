@@ -29,8 +29,9 @@ console.log(post)
     });
   },
   Delete: ("/posts/:id", function(req, res) {
+    const query = { _id: req.params.id, username: req.session.user.username }
 
-    Post.remove({_id: req.params.id}, (err) => {
+    Post.remove(query, (err) => {
       if (err) return console.log(err)
       console.log(req.body)
       res.redirect('/posts')
