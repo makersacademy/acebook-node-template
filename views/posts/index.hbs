@@ -1,13 +1,18 @@
-<h1>Timeline</h1>
+<h1>Timeline {{userId}}</h1>
 <div id="post">
 <ul class="posts">
- {{#each posts}}
+{{#each posts}}
   <div class="post-div" postId={{this._id}}>
     <div class="username">Username: {{this.username}}</div>
     <div class="message">{{this.message}}</div>
     <div class="dateAndTime">{{this.dateAndTime}}</div>
     <br>
-    <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} >
+
+    <div>
+    <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} postId={{this._id}} userId={{userId}} >
+    </div>
+    <div>Likes: {{this.likes.length}}</div>
+
   </div>
   <div class="delete-post">
     <form action="/posts/{{this._id}}" method="post" id="delete-post">
@@ -20,6 +25,6 @@
 </ul>
 </div>
 <a class="new-post-link" href="/posts/new">New post</a>
-
+<script src="../../public/javascripts/likeOnOff.js"></script>
 
 
