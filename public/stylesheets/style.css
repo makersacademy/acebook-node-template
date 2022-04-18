@@ -1,8 +1,19 @@
 body {
-  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   height: 100%;
+  background-color: whitesmoke;
+}
+
+#nav-bar {
+  object-fit: contain;
+  padding: 8px;
+  display: flex;
+  justify-content: right;
   background-color: white;
+  border-radius: 10px;
+}
+
+#logout {
 }
 
 a {
@@ -11,7 +22,6 @@ a {
 
 #signin,
 #signup {
-  height: 100%;
   display: flex;
   margin: auto;
   padding-top: 20px;

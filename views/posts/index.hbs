@@ -1,4 +1,20 @@
+<div id="nav-bar">
+  <div class="logo-image">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1200px-2021_Facebook_icon.svg.png"
+      width="40"
+      height="40"
+    />
+  </div>
+  <div id="logout">
+    <form action="/sessions?_method=DELETE" method="POST">
+      <input type="submit" value="Log Out" />
+    </form>
+  </div>
+</div>
+
 <h1>Timeline</h1>
+
 <div id="post">
   <ul class="posts">
     {{#each posts}}
