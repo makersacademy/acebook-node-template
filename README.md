@@ -14,7 +14,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://github.com/lucypoulton/issues
 
 ## Quickstart
 
@@ -93,3 +93,9 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Try swapping `localhost`, everywhere that it appears in your codebase, with `127.0.0.1`. It might be surprising but this does sometimes make a difference.
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+
+## Working practices
+- Start at 10am followed by standup
+- Take 1 hour lunch whenever
+- Finish at 4 for daily retro
+- Work until 5:30 independently
