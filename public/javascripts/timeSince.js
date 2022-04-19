@@ -1,3 +1,7 @@
-// var moment = require('moment'); 
-// const hey = moment().format(); 
-// console.log(hey); 
+document.querySelectorAll(".timeAgo").forEach(date => {
+  date.innerText = moment(date.innerText).fromNow();
+  console.log(moment(date.innerText).fromNow());
+})
+
+
+

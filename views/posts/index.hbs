@@ -6,33 +6,7 @@
     <div class="username">Username: {{this.username}}</div>
     <div class="message">{{this.message}}</div>
 
-    <div class="dateAndTime">{{this.dateAndTime}}</div>
-
-   <div class="timeAgo"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
-
-
-    <script>
-      console.log("HERE");
-      const mydate = document.querySelector('.dateAndTime').innerText
-      console.log(mydate);
-
-      console.log("Here2");
-   
-      const timeAgo = moment(`${mydate}`).fromNow();
-
-      console.log(moment(`${mydate}`).fromNow());
-      console.log("We printed the right date");
-      
-      document.querySelector('.timeAgo').innerText = timeAgo;
-
-    </script>
-
-
- 
-
-
+    <div class="timeAgo">{{this.dateAndTime}}</div>
 
     <br>
     <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} >
