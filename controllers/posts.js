@@ -9,9 +9,7 @@ const PostsController = {
       res.render("posts/index", { posts: posts });
     });
   },
-  New: (req, res) => {
-    res.render("posts/new", {});
-  },
+
   Create: (req, res) => {
     let post = new Post();
     post.message = req.body.message;
