@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<div id="side-bar"</div>
+<div id="side-bar"></div>
 
 <div id="main-container">
   <h2>Your Quackbook Timeline</h2>
@@ -24,7 +24,8 @@
         <div class="post-div" postId={{this._id}}>
           <div class="username">Username: {{this.username}}</div>
           <div class="message">{{this.message}}</div>
-          <div class="dateAndTime">{{this.dateAndTime}}</div>
+
+          <div class="timeAgo">{{this.dateAndTime}}</div>
           <br />
           <input
             type="button"
