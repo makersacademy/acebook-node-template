@@ -9,7 +9,7 @@
     <li class="post_container" >
         {{this.message}}<br>
         <img src="{{this.imageUrl}}"/>
-        <div id="like_count">{{this.likes}}</div>
+        <div id="like_count">{{this.likes.total}}</div>
         <button id="likes" type="submit" onclick="addLike('{{this.id}}');document.location.reload(true);">Like</button>
         {{this.date}}<br><br>
         {{this.userName}}

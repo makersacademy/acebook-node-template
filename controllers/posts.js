@@ -46,16 +46,30 @@ const PostsController = {
       });
   },
   UpdateLikes: (req) => {    
-    console.log(req)
-    Post.findByIdAndUpdate( req.body.id, {$inc:{likes:1}} ).exec((err) => {
-
-
+    const email = req.session.user.email
+    // if statement that only lets new people like the post, so check if the email has already liked the post
+    Post.findById(req.body.id, (err, post) => {
       if (err) {
         throw err;
       }
 
-      //redirect back to the previous page 
-    });
+      if (!post.likes.who.includes(email)) {
+        Post.findByIdAndUpdate( req.body.id, {
+          $inc:{"likes.total":1}, $push:{"likes.who": email}
+        } ).exec((err) => {
+    
+    
+          if (err) {
+            throw err;
+          }
+    
+          //redirect back to the previous page 
+        });
+      } else {
+        console.log("sorry you have already liked this post")
+      }
+    })
+    // when we add 1 to the likes we also also want to add the email of the person who like it
   }
 
 };
