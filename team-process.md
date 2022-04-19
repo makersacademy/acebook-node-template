@@ -11,6 +11,7 @@ TEAM SETUP
 - How often will we take breaks?
   15mins @ 1100 (flexible with pairs)
   1 hour for lunch 1230
+  Return to team work at 1400
   15mins @ 1615 (flexible with pairs)
 
 - Cycle of stand ups and retros
