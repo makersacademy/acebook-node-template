@@ -13,6 +13,10 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
+// const likes = require("./controllers/likes.js")
+
+// const likeButton = new CounterView();
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");

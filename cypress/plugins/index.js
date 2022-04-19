@@ -11,7 +11,30 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-module.exports = function() {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+var mongoose = require('mongoose');
+
+
+mongoose.connect('mongodb://127.0.0.1/acebook_test', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('open', function() {
+  
+});
+
+
+module.exports = async (on) => {
+  const users = db.collection('users')
+
+  on('task', {
+    async clearusers() {
+      console.log('clear users')
+      await users.remove({})
+
+      return null
+    },
+  })
 }
