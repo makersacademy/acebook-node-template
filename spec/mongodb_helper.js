@@ -1,20 +1,11 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-beforeAll(function(done) {
-  mongoose.connect('mongodb://localhost/acebook_test', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+beforeAll(() =>
+    mongoose.connect('mongodb://127.0.01/acebook_test', {
+          useNewUrlParser: true,
+          useUnifiedTopology: true
+        }
+    ).catch((err) => console.error(`MongoDB connection error: ${err}`))
+);
 
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-  db.on('open', function() {
-    done();
-  });
-});
-
-afterAll(function(done) {
-  mongoose.connection.close(true, function() {
-    done();
-  });
-});
+afterAll( () => mongoose.connection.close(true));
