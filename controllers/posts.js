@@ -11,8 +11,8 @@ const PostsController = {
       // '62554beb033329901acdb9d0'
       // '62554beb033329901acdb9d0'
       // console.log(req.session.user.username)
-      const user_id = req.session.user._id
-      res.render("posts/index", { posts: posts, userId: user_id });
+     const user = req.session.user
+      res.render("posts/index", { posts: posts, user: user });
     });
   },
   New: (req, res) => {
@@ -43,6 +43,8 @@ const PostsController = {
     })
   }),
   Like: ("/posts/like", function(req, res) {
+  console.log("got the request")
+    console.log(req)
   
   })
 };

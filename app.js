@@ -23,8 +23,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+ 
+const Post = require("./models/post");
+const User = require("./models/user");
 
+app.post('/test', (req, res) => {
+  console.log(req.body.postId)
+  console.log(req.body.username)
 
+  Post.updateOne({_id: ObjectId("625e8e79dbbf11af82f5b79f")}, 
+    { $push: { likes: "kenny" }})
+    
+    // db.posts.updateOne({"_id": ObjectId("625e8e79dbbf11af82f5b79f")},
+    //  {$push: {"likes": "kenny"}})
+const foundPost = Post.find({_id: req.body.postId})
+console.log(foundPost)
+})
 
 app.use(
   session({

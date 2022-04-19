@@ -1,4 +1,4 @@
-<h1>Timeline {{userId}}</h1>
+<h1>Timeline {{user}} {{user.username}}</h1>
 <div id="post">
 <ul class="posts">
 {{#each posts}}
@@ -9,7 +9,7 @@
     <br>
 
     <div>
-    <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} postId={{this._id}} userId={{userId}} >
+    <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} postId={{this._id}} username={{../user.username}}>
     </div>
     <div>Likes: {{this.likes.length}}</div>
 
