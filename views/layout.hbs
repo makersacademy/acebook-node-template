@@ -5,9 +5,13 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <a href="http://localhost:3000/"><h1>Acebook</h1></a>
+    {{#if session}}
     <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
     </form>
+    <a class='new-post-link' href='/posts/new'>New post</a>
+    {{/if}}
     {{{body}}}
   </body>
 </html>
