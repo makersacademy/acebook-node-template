@@ -16,7 +16,13 @@
 <div id="side-bar"></div>
 
 <div id="main-container">
-  <h2>Your Quackbook Timeline</h2>
+  <h2>Quackbook</h2>
+
+<form id="new-post-form" action="/posts" method="post">
+  <label for="message">Message: </label>
+  <input id="message" type="text" name="message" value="" required>
+  <input type="submit" value="Submit">
+</form>
 
   <div id="post">
     <ul class="posts">
@@ -49,5 +55,4 @@
       {{/each}}
     </ul>
   </div>
-  <a class="new-post-link" href="/posts/new">New post</a>
 </div>
