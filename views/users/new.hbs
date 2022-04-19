@@ -1,3 +1,15 @@
+<style>
+  .blink {
+    animation: blinker 3s linear infinite;
+  }
+
+  @keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+</style>
+
 <h2>Sign Up</h2>
 <form id="new-user-form" action="/users" method="post">
   <label for="name">name: </label>
@@ -10,3 +22,10 @@
   <input id="url" type="text" name="url" value="">
   <input id="createAccount" type="submit" value="Sign Up">
 </form>
+
+<form action='/sessions/new' method='GET'>
+      <input type="submit" value="Log In">
+    </form>
+
+<p class="blink" id="keyframes">{{message}}</p>
+
