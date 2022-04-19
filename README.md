@@ -18,36 +18,13 @@ https://github.com/lucypoulton/acebook/projects/1
 
 ## Quickstart
 
-### Install Node.js
-
-1. Install Node Version Manager (NVM)
-   ```
-   brew install nvm
-   ```
-   Then follow the instructions to update your `~/.bash_profile`.
-2. Open a new terminal
-3. Install the latest long term support (LTS) version of [Node.js](https://nodejs.org/en/), currently `16.14.0`.
-   ```
-   nvm install 16
-   ```
-
-### Set up your project
-
-1. Fork this repository
-2. Rename your fork to `acebook-<team name>`
-3. Clone your fork to your local machine
-4. Install Node.js dependencies
-   ```
-   npm install
-   ```
-5. Install an ESLint plugin for your editor. For example: [linter-eslint](https://github.com/AtomLinter/linter-eslint) for Atom.
-6. Install MongoDB
+1. Clone this repository
+2. Install Node.js dependencies `npm install`
+3. Install an ESLint plugin for your editor. 
+4. Install and start MongoDB
    ```
    brew tap mongodb/brew
    brew install mongodb-community@4.4
-   ```
-7. Start MongoDB
-   ```
    brew services start mongodb-community@4.4
    ```
 
@@ -61,16 +38,15 @@ https://github.com/lucypoulton/acebook/projects/1
 
 ### Test
 
-- Run all tests
-  ```
-  npm test
-  ```
-- Run a check
-  ```bash
-  npm run lint              # linter only
-  npm run test:unit         # unit tests only
-  npm run test:integration  # integration tests only
-  ```
+- Start the server `npm start:test`
+- Either:
+  - Run all tests `npm test`
+  - Run a check
+    ```bash
+    npm run lint              # linter only
+    npm run test:unit         # unit tests only
+    npm run test:integration  # integration tests only
+    ```
 
 #### Start test server
 
@@ -90,7 +66,6 @@ Some people occasionally experience MongoDB connection errors when running the t
 
 - Check that MongoDB is installed using `mongo --version`
 - Check that it's running using `brew services list`
-- Try swapping `localhost`, everywhere that it appears in your codebase, with `127.0.0.1`. It might be surprising but this does sometimes make a difference.
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
 
