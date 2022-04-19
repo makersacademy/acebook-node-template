@@ -1,8 +1,65 @@
+
+    {{!-- <img src="./images/picture.jpeg"/> --}}
+
+
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <div class="post" id="A{{this.id}}">
+    <li class="post_container" >
+        {{this.message}}<br>
+        <img src="{{this.imageUrl}}"/>
+        <div id="like_count">{{this.likes.total}}</div>
+        <button id="likes" type="submit" onclick="addLike('{{this.id}}');document.location.reload(true);">Like</button>
+        {{this.date}}<br><br>
+        {{this.userName}}
+        <img src= {{this.profPic}} width="40" height="50"> <br><br>
+
+      <div>
+        {{#each this.comments}}
+          <div class="comment">{{this}}</div>
+        {{/each}}
+      </div>
+
+      <div id="add-comment-form">
+        <input id="comment-field" type="text" name="comment" value="" required>
+        <button id="add-comment-button" type="submit" onclick="addComment('{{this.id}}');document.location.reload(true);" >Comment</button>
+      </div>
+    </li><br><br><br>
+  </div>
   {{/each}}
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+
+{{!-- added 2 functions to onclick. 1st function described in the script, 2nd function is inline code to reload page --}}
+
+  {{!-- <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1uyftFRjePID-k80xmoFdTX8p6tKkIn3t" alt="logo" width="216" height="233"></a> --}}
+
+
+<script>
+function addLike(id)  {
+    const b = {
+      id: id
+    }
+    console.log(id)
+    fetch("/posts/update/like", { body: JSON.stringify(b), method: "PUT", headers: { 'Content-Type': 'application/json' } });
+  }
+
+async function addComment(id)  {
+    const post_id = {
+      id: id,
+      comment: document.querySelector("#A"+id).querySelector('#comment-field').value,
+      update: "comments",
+    }
+    await fetch('posts/update/comment', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(post_id)
+    })
+    }
+</script>
+
+
+
+
+
