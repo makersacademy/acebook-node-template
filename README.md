@@ -14,7 +14,7 @@ It uses:
 
 ## Card wall
 
-https://github.com/lucypoulton/issues
+https://github.com/lucypoulton/acebook/projects/1
 
 ## Quickstart
 
