@@ -13,36 +13,40 @@
   </div>
 </div>
 
-<h1>Timeline</h1>
+<div id="side-bar"</div>
 
-<div id="post">
-  <ul class="posts">
-    {{#each posts}}
-      <div class="post-div" postId={{this._id}}>
-        <div class="username">Username: {{this.username}}</div>
-        <div class="message">{{this.message}}</div>
-        <div class="dateAndTime">{{this.dateAndTime}}</div>
-        <br />
-        <input
-          type="button"
-          value="Like"
-          class="likeUnlike"
-          data-button-id={{this._id}}
-        />
-      </div>
-      <div class="delete-post">
-        <form action="/posts/{{this._id}}" method="post" id="delete-post">
-          <input type="hidden" name="_method" value="DELETE" />
+<div id="main-container">
+  <h2>Your Quackbook Timeline</h2>
+
+  <div id="post">
+    <ul class="posts">
+      {{#each posts}}
+        <div class="post-div" postId={{this._id}}>
+          <div class="username">Username: {{this.username}}</div>
+          <div class="message">{{this.message}}</div>
+          <div class="dateAndTime">{{this.dateAndTime}}</div>
+          <br />
           <input
-            type="image"
-            src="https://www.pngall.com/wp-content/uploads/5/Delete-Bin-Trash-PNG-Free-Download.png"
-            width="30"
-            height="30"
+            type="button"
+            value="Like"
+            class="likeUnlike"
+            data-button-id={{this._id}}
           />
-        </form>
-        <br />
-      </div>
-    {{/each}}
-  </ul>
+        </div>
+        <div class="delete-post">
+          <form action="/posts/{{this._id}}" method="post" id="delete-post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input
+              type="image"
+              src="https://www.pngall.com/wp-content/uploads/5/Delete-Bin-Trash-PNG-Free-Download.png"
+              width="30"
+              height="30"
+            />
+          </form>
+          <br />
+        </div>
+      {{/each}}
+    </ul>
+  </div>
+  <a class="new-post-link" href="/posts/new">New post</a>
 </div>
-<a class="new-post-link" href="/posts/new">New post</a>
