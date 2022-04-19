@@ -1,9 +1,6 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
-
 var app = require("../app");
 var debug = require("debug")("acebook:server");
 var http = require("http");
@@ -20,11 +17,12 @@ app.set("port", port);
  * Connect to MongoDB
  **/
 
-var mongoDbUrl = process.env.MONGODB_URL || "mongodb://localhost/acebook";
+var mongoDbUrl = process.env.MONGODB_URL || "mongodb://127.0.0.1/acebook";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+}).then(()=>console.log('connected'))
+.catch(e=>console.log(e));
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
