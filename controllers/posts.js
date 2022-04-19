@@ -9,7 +9,7 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {session: req.session});
+    res.render("posts/new", {session: req.session, layout: false});
   },
   Create: (req, res) => {
     const data = {
