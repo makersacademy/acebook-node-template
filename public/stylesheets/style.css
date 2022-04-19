@@ -1,8 +1,59 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+#nav-bar {
+  object-fit: contain;
+  padding: 8px;
+  display: flex;
+  justify-content: right;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#logout {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#signin,
+#signup {
+  display: flex;
+  margin: auto;
+  padding-top: 20px;
+  max-width: 400px;
+  justify-content: center;
+}
+#new-session-form,
+#new-user-form {
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  margin: auto;
+  background-color: #00b7ff;
+  opacity: 0.5;
+  border: none;
+  border-radius: 20px;
+}
+
+#username,
+#submit,
+#email,
+#password,
+#signup-redirect {
+  width: 100%;
+  background-color: white;
+  color: black;
+  padding: 15px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  align-items: center;
+  font-size: 15px;
 }
