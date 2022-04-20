@@ -23,10 +23,13 @@
 </div>
 
 <div id="main-container" class="column right">
-  <form id="new-post-form" action="/posts" method="post">
-    <input id="message" type="text" name="message" placeholder="Post your quack" value="" required />
-    <input type="submit" value="Quack!"/>
-  </form>
+  <div class="message-box">
+    <form id="new-post-form" action="/posts" method="post">
+      <input id="message" class="input-message" type="text" name="message" placeholder="Post your quack" value="" required />
+      <input type="submit" value="Quack!"/>
+      <button type="submit"><img src="public/images/cam-img.png" alt="Post photo"></button>
+    </form>
+  </div>
   <br><br>
 
   <div id="post">
