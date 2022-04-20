@@ -1,8 +1,16 @@
 <h1>Timeline</h1>
 <ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
+    {{#each posts}}
+        <li class="post">
+            <div>{{this.message}}</div>
+            <form action="/posts/like" method="post">
+                <input type="hidden" name="post" value="{{this._id}}">
+                <input type="submit" class="button-like"
+                       value="{{#contains @root.user._id this.likes}}Unlike{{else}}Like{{/contains}}">
+            </form>
+            {{this.likes.length}}
+        </li>
+    {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
