@@ -6,8 +6,7 @@
             <form action="/posts/like" method="post">
                 <input type="hidden" name="post" value="{{this._id}}">
                 <input type="submit" class="button-like"
-                       {{!-- FIXME: this condition does not function --}}
-                       value="{{#contains user._id this.likes}}Dislike{{else}}Like{{/contains}}">
+                       value="{{#contains @root.user._id this.likes}}Unlike{{else}}Like{{/contains}}">
             </form>
             {{this.likes.length}}
         </li>
