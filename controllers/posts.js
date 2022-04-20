@@ -6,11 +6,11 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      const user = req.session.user;
       posts = posts.reverse();
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts, user: user });
     });
   },
-
   Create: (req, res) => {
     let post = new Post();
     post.message = req.body.message;

@@ -13,6 +13,14 @@ body {
   border-radius: 10px;
 }
 
+.profile-img {
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 10px;
+}
+
 #logout {
 }
 

@@ -5,6 +5,7 @@
       width="40"
       height="40"
     />
+    <h2>Quackbook</h2>
   </div>
   <div id="logout">
     <form action="/sessions?_method=DELETE" method="POST">
@@ -13,11 +14,14 @@
   </div>
 </div>
 
-<div id="side-bar"></div>
+<div id="side-bar">
+  <div class="user-profile">
+    <img class="profile-img" src={{user.profilePic}}>
+  </div>
+<p>Hello, {{user.username}}!!</p>
+</div>
 
 <div id="main-container">
-  <h2>Quackbook</h2>
-
   <form id="new-post-form" action="/posts" method="post">
     <label for="message">Message: </label>
     <input id="message" type="text" name="message" value="" required />
