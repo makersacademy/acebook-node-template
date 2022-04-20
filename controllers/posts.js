@@ -2,10 +2,11 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+   Post.find((err, posts) => {
       if (err) {
         throw err;
       }
+      posts = posts.reverse();
       res.render("posts/index", { posts: posts });
     });
   },
@@ -16,7 +17,7 @@ const PostsController = {
     post.username = req.session.user.username
     post.dateAndTime = Date()
     post.likes = []
-console.log(post)
+
 
     post.save((err) => {
       if (err) {
