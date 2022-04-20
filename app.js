@@ -24,8 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
-
-
 app.use(
   session({
     key: "user_sid",
@@ -37,6 +35,13 @@ app.use(
     },
   })
 );
+
+// flash message middleware
+app.use((req, res, next)=>{
+  res.locals.message = req.session.message
+  delete req.session.message
+  next()
+})
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {
