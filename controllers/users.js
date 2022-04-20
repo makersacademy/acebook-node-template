@@ -39,7 +39,7 @@ const UsersController = {
             throw err;
           }
           req.session.user = user;
-          res.status(201).redirect("/post");
+          res.status(201).redirect("/posts");
         });
       }
   },
