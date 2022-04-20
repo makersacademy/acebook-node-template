@@ -5,6 +5,12 @@ const PostSchema = new mongoose.Schema({
   username: String,
   dateAndTime: Date,
   likes: [String],
+  comments: [
+    {
+      type: mongoose.Schema.Types.Object,
+      ref: "Comment",
+    },
+  ],
 });
 
 const Post = mongoose.model("Post", PostSchema);

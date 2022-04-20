@@ -1,8 +1,96 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  background-color: whitesmoke;
+  background-image: url(https://images.pexels.com/photos/7105019/pexels-photo-7105019.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+}
+
+.welcome-page, .sign-up-welcome {
+  text-align: center;
+  padding-top: 20px;
+} 
+
+#nav-bar {
+  object-fit: contain;
+  padding: 8px;
+  display: flex;
+  justify-content: right;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  float: left;
+  padding: 10px;
+  flex: 30%
+}
+
+.right {
+  float: left;
+  padding: 10px;
+  flex: 70%
+}
+
+.profile-img {
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+#logout {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#signin,
+#signup {
+  display: flex;
+  margin: auto;
+  padding-top: 20px;
+  max-width: 400px;
+  justify-content: center;
+}
+
+#new-session-form,
+#new-user-form {
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  margin: auto;
+  background-color: #00b7ff;
+  opacity: 0.5;
+  border: none;
+  border-radius: 20px;
+}
+
+#username,
+#submit,
+#email,
+#password,
+#signup-redirect {
+  width: 100%;
+  background-color: white;
+  color: black;
+  padding: 15px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  align-items: center;
+  font-size: 15px;
+}
+
+.posts {
+  background-color: white;
+  border-radius: 10px;
 }

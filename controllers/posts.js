@@ -7,24 +7,18 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log(req.session)
-      // '62554beb033329901acdb9d0'
-      // '62554beb033329901acdb9d0'
-      // console.log(req.session.user.username)
-     const user = req.session.user
+      const user = req.session.user;
+      posts = posts.reverse();
       res.render("posts/index", { posts: posts, user: user });
     });
-  },
-  New: (req, res) => {
-    res.render("posts/new", {});
   },
   Create: (req, res) => {
     let post = new Post();
     post.message = req.body.message;
-    post.username = req.session.user.username
-    post.dateAndTime = Date()
-    post.likes = []
-    console.log(post)
+    post.username = req.session.user.username;
+    post.dateAndTime = Date();
+    post.likes = [];
+    post.comments;
 
     post.save((err) => {
       if (err) {

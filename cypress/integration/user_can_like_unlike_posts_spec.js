@@ -3,7 +3,6 @@ const webHelper = require('../support/web_helpers.js');
 describe('likes', () => {
   it('can like a post', () => {
     webHelper.signUp();
-    webHelper.signIn();
     webHelper.submitPost();
 
     // Like post

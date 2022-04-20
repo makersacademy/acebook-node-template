@@ -71,6 +71,13 @@ app.use(
   })
 );
 
+// flash message middleware
+app.use((req, res, next)=>{
+  res.locals.message = req.session.message
+  delete req.session.message
+  next()
+})
+
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
