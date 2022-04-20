@@ -25,19 +25,38 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
  
 const Post = require("./models/post");
-const User = require("./models/user");
+const req = require("express/lib/request");
+const run = require("nodemon/lib/monitor/run");
 
-app.post('/test', (req, res) => {
-  console.log(req.body.postId)
-  console.log(req.body.username)
+app.post('/unlike', async (req, res) => {
+  //method for unliking the post in the database
+  Post.findOneAndUpdate(
+    { _id: req.body.postId },
+    { $pull: { likes: req.body.username }},
+    { new: true })
 
-  Post.updateOne({_id: ObjectId("625e8e79dbbf11af82f5b79f")}, 
-    { $push: { likes: "kenny" }})
+    //'executes' the query in the database
+    .exec()
     
-    // db.posts.updateOne({"_id": ObjectId("625e8e79dbbf11af82f5b79f")},
-    //  {$push: {"likes": "kenny"}})
-const foundPost = Post.find({_id: req.body.postId})
-console.log(foundPost)
+    .then(function(likes) {
+      console.log("TEST: "+ JSON.stringify(likes));
+  })
+
+})
+
+app.post('/like', async (req, res) => {
+  //method for liking the post in the database
+  Post.findOneAndUpdate(
+    { _id: req.body.postId },
+    { $push: { likes: [ req.body.username ]}},
+    { new: true })
+
+    //'executes' the query in the database
+    .exec()
+
+    .then(function(likes) {
+      console.log("TEST: "+ JSON.stringify(likes));
+  })
 })
 
 app.use(
