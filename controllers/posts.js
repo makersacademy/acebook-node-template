@@ -2,7 +2,7 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-   Post.find((err, posts) => {
+    Post.find((err, posts) => {
       if (err) {
         throw err;
       }
@@ -14,10 +14,10 @@ const PostsController = {
   Create: (req, res) => {
     let post = new Post();
     post.message = req.body.message;
-    post.username = req.session.user.username
-    post.dateAndTime = Date()
-    post.likes = []
-
+    post.username = req.session.user.username;
+    post.dateAndTime = Date();
+    post.likes = [];
+    post.comments;
 
     post.save((err) => {
       if (err) {
@@ -27,14 +27,15 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  Delete: ("/posts/:id", function(req, res) {
-
-    Post.remove({_id: req.params.id}, (err) => {
-      if (err) return console.log(err)
-      console.log(req.body)
-      res.redirect('/posts')
-    })
-  })
+  Delete:
+    ("/posts/:id",
+    function (req, res) {
+      Post.remove({ _id: req.params.id }, (err) => {
+        if (err) return console.log(err);
+        console.log(req.body);
+        res.redirect("/posts");
+      });
+    }),
 };
 
 module.exports = PostsController;
