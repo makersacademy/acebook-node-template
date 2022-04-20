@@ -27,8 +27,8 @@ const PostsController = {
       const user = req.session.user._id
       /**
        * - finds a post by id
-       * - if the user's id is in the likes array, add it
-       * - otherwise, remove it
+       * - if the user's id is in the likes array, remove it
+       * - otherwise, add it
        */
       await Post.findOneAndUpdate({_id: req.body.post}, [{
         $set: {
