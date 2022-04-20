@@ -1,4 +1,14 @@
 document.querySelectorAll(".likeUnlike").forEach(button => {
+  console.log(button)
+  console.log(button.getAttribute("username"))
+  console.log(button.getAttribute("likes"))
+
+
+  if(button.getAttribute("likes").includes(button.getAttribute("username"))){
+    button.value = 'Unlike';
+  } else {
+    button.value = "Like"
+  }
   button.addEventListener('click', event => { 
   console.log(button)
   console.log(event.target)
@@ -22,7 +32,7 @@ document.querySelectorAll(".likeUnlike").forEach(button => {
           
           //makes the fetch request to the specified path with the options object
           fetch('/like', options);
-
+          window.location.reload();
   } else {
  
     //delete like in database
@@ -46,7 +56,7 @@ document.querySelectorAll(".likeUnlike").forEach(button => {
                    }
   //makes the fetch request to the specified path with the options object
   fetch('/unlike', options);
- 
+  window.location.reload();
   }
   })
 })
