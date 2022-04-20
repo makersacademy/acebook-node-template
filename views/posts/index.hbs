@@ -18,11 +18,11 @@
 <div id="main-container">
   <h2>Quackbook</h2>
 
-<form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="" required>
-  <input type="submit" value="Submit">
-</form>
+  <form id="new-post-form" action="/posts" method="post">
+    <label for="message">Message: </label>
+    <input id="message" type="text" name="message" value="" required />
+    <input type="submit" value="Submit" />
+  </form>
 
   <div id="post">
     <ul class="posts">
@@ -50,6 +50,22 @@
               height="30"
             />
           </form>
+          </div>
+            <div id="comment">
+              <div class="new-comment">
+                <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
+                  <label for="message"></label>
+                  <input id="message" type="text" name="message" value="" required>
+                  <input type="submit" value="Submit">
+                </form>
+              </div>
+            <div>
+            {{#each this.comments}}
+              <div>Username: {{this.username}}</div>
+              <div>{{this.message}}</div>
+              <div class="timeAgo">{{this.dateAndTime}}</div>
+              <br /> 
+            {{/each}}
           <br />
         </div>
       {{/each}}
