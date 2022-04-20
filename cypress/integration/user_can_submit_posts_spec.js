@@ -72,11 +72,10 @@ describe("Timeline", () => {
     cy.contains("New post").click();
     cy.get("#new-post-form").find('[type="text"]').type("Have a great day");
     cy.get("#new-post-form").submit();
-    cy.log(cy.get(".posts"))
 
-    cy.get(".posts").eq(0).should("contain.text", "Have a great day")
-    cy.get(".posts").eq(1).should("contain.text", "Good Morning!")
-    cy.get(".posts").eq(2).should("contain.text", "Hello, world!")
+    cy.get(".posts").children().eq(0).should("contain.text", "Have a great day")
+    cy.get(".posts").children().eq(1).should("contain.text", "Good Morning!")
+    cy.get(".posts").children().eq(2).should("contain.text", "Hello, world!")
 
   });
 });
