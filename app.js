@@ -28,12 +28,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
-const flash = require('connect-flash');
-app.use(flash());
-app.get('/gfg', (req, res) => {
-  res.send(req.flash('message'));
-});
-
 app.use(
   session({
     key: "user_sid",
