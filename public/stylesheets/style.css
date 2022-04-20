@@ -2,7 +2,13 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   height: 100%;
   background-color: whitesmoke;
+  background-image: url(https://images.pexels.com/photos/7105019/pexels-photo-7105019.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
 }
+
+.welcome-page, .sign-up-welcome {
+  text-align: center;
+  padding-top: 20px;
+} 
 
 #nav-bar {
   object-fit: contain;
@@ -11,6 +17,23 @@ body {
   justify-content: right;
   background-color: white;
   border-radius: 10px;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  float: left;
+  padding: 10px;
+  flex: 30%
+}
+
+.right {
+  float: left;
+  padding: 10px;
+  flex: 70%
 }
 
 .profile-img {
@@ -36,6 +59,7 @@ a {
   max-width: 400px;
   justify-content: center;
 }
+
 #new-session-form,
 #new-user-form {
   height: 100%;
@@ -64,4 +88,9 @@ a {
   box-sizing: border-box;
   align-items: center;
   font-size: 15px;
+}
+
+.posts {
+  background-color: white;
+  border-radius: 10px;
 }

@@ -14,19 +14,21 @@
   </div>
 </div>
 
-<div id="side-bar">
+<div class="post-body">
+<div id="side-bar" class="column left">
   <div class="user-profile">
     <img class="profile-img" src={{user.profilePic}}>
   </div>
 <p>Hello, {{user.username}}!!</p>
 </div>
 
-<div id="main-container">
+<div id="main-container" class="column right">
   <form id="new-post-form" action="/posts" method="post">
     <label for="message">Message: </label>
     <input id="message" type="text" name="message" value="" required />
     <input type="submit" value="Submit" />
   </form>
+  <br><br>
 
   <div id="post">
     <ul class="posts">
@@ -75,4 +77,5 @@
       {{/each}}
     </ul>
   </div>
+</div>
 </div>
