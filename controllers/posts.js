@@ -6,6 +6,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      posts = posts.reverse();
       res.render("posts/index", { posts: posts });
     });
   },
@@ -13,10 +14,10 @@ const PostsController = {
   Create: (req, res) => {
     let post = new Post();
     post.message = req.body.message;
-    post.username = req.session.user.username
-    post.dateAndTime = Date()
-    post.likes = []
-console.log(post)
+    post.username = req.session.user.username;
+    post.dateAndTime = Date();
+    post.likes = [];
+    post.comments;
 
     post.save((err) => {
       if (err) {
@@ -26,14 +27,15 @@ console.log(post)
       res.status(201).redirect("/posts");
     });
   },
-  Delete: ("/posts/:id", function(req, res) {
-
-    Post.remove({_id: req.params.id}, (err) => {
-      if (err) return console.log(err)
-      console.log(req.body)
-      res.redirect('/posts')
-    })
-  })
+  Delete:
+    ("/posts/:id",
+    function (req, res) {
+      Post.remove({ _id: req.params.id }, (err) => {
+        if (err) return console.log(err);
+        console.log(req.body);
+        res.redirect("/posts");
+      });
+    }),
 };
 
 module.exports = PostsController;
