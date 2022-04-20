@@ -1,8 +1,99 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: whitesmoke;
 }
 
 a {
   color: #00B7FF;
+}
+
+.header {
+  padding: 1%;
+  text-align: center;
+  color: white;
+  background-color: #4267B2;
+  font-size: 30px;
+  margin-top: -60px;
+  margin-left: -60px;
+  margin-right: -20px;
+  margin-bottom: 10px;
+  position:fixed;
+  width: 100%;
+  height: 20%;
+}
+
+.under_header {
+  width: 100%;
+  height: 50%;
+  padding: 50px;
+}
+
+.login_form {
+  margin: auto;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.page-header {
+  margin: auto;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.nav-bar {
+  margin: auto;
+  width: 10%;
+  padding: 20px;
+  text-align: center;
+}
+
+.signup_link {
+  margin-top: 10px;
+  margin: auto;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+}
+
+input[type=submit] {
+  background-color: #4267B2;
+  color: white;
+  border: none;
+  text-align: center;
+  padding: 5px 28px;
+  font-size: 14px;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+  background-color: whitesmoke;
+}
+
+.posts {
+  background-color: white;
+  margin: auto;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+}
+
+.post {
+  padding: 15px;
+}
+
+.new_post_button {
+  font-size: 18px;
+  background-color: #4267B2;
+  color: white;
+  border: none;
+  text-align: center;
+  padding: 10px 48px;
+  display: inline-block;
+  border-radius: 4px;
 }
