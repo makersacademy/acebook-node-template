@@ -17,9 +17,19 @@ const UsersController = {
       });
 
       if (doesEmailExist) {
+        req.session.message = {
+          type: 'danger',
+          intro: 'EMAIL EXISTS, PUNKASS ',
+          message: 'You are one stupid duck'
+        }
         res.redirect("/users/new");
 
       } else if (doesUsernameExist) {
+        req.session.message = {
+          type: 'danger',
+          intro: 'THIS USERNAME EXISTS, YOU CLOWN',
+          message: 'Bad duck'
+        }
         res.redirect("/users/new");
 
       } else {
@@ -36,3 +46,4 @@ const UsersController = {
 };
 
 module.exports = UsersController;
+
