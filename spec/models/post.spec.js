@@ -81,7 +81,7 @@ describe("Post model", () => {
   });
 
   it("can display the number of likes", (done) => {
-    var post = new Post({ message: "some message", likes: 3 });
+    var post = new Post({ message: "some message", "likes.total": 3 });
 
     post.save((err) => {
       expect(err).toBeNull();
@@ -89,11 +89,32 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: "some message", likes: 3 });
+        console.log(posts[0])
+
+        expect(posts[0].likes.total).toEqual(3);
         done();
       });
     });
   });
+
+  // checks that the post has an array and also number of likes
+  // xit('has an array to store who liked the posts', (done) => {
+  //   var post = new Post({ message: "Hello im here", likes: {total: 1, who: ["somone@somone.com"]}});
+  //   post.save((err) => {
+  //     expect(err).toBeNull();
+      
+  //     const result = Post.find((err, posts) => {
+  //       expect(err).toBeNull();
+  //       console.log(posts)
+  //       console.log(posts[0])
+  //     }).lean();
+
+  //     console.log(result)
+  //   });
+    
+
+
+  // })
 
 
 });
