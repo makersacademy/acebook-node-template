@@ -15,4 +15,17 @@ describe("Authentication", () => {
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
   });
+
+  it('A user can click a link to the singup page if they are not a member', () => {
+
+    cy.visit('/sessions/new');
+    cy.get('#signup-link').click();
+
+    cy.url().should("include", "/users/new");
+  });
+
+  it('includes the page title', () => {
+    cy.visit('/sessions/new');
+    cy.get(".page-header").should("contain", "Login");
+  })
 });

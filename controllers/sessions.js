@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", { pageHeader: "Login" });
   },
 
   Create: (req, res) => {

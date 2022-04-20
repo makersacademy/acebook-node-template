@@ -42,4 +42,17 @@ describe("Registration", () => {
     cy.url().should("include", "/users/new");
   
   });
+
+  it('A user can click a link to the login page if they are already a member', () => {
+
+    cy.visit('/users/new');
+    cy.get('#login-link').click();
+
+    cy.url().should("include", "/sessions/new");
+  });
+
+  it('includes the page title', () => {
+    cy.visit('/users/new');
+    cy.get(".page-header").should("contain", "Sign Up");
+  })
 });
