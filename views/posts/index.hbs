@@ -1,8 +1,10 @@
-<h1>Timeline</h1>
-<ul class="posts">
+<h1 class="page-header">Timeline</h1>
+<div class="posts">
+  <form action="/posts/new" method="get">
+    <button class="new_post_button">New post</button>
+</form>
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <div class="post">{{this.message}}</div>
   {{/each}}
-</ul>
+</div>
 
-<a class="new-post-link" href="/posts/new">New post</a>
