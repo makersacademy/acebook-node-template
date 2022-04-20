@@ -60,6 +60,7 @@ describe("Registration", () => {
 
     cy.url().should("include", "/users/new");
   });
+
   it("A user cannot register with an empty surname", () => {
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -69,6 +70,19 @@ describe("Registration", () => {
 
     cy.url().should("include", "/users/new");
   });
+
+  it('A user can register with a profile picture', () => {
+    const fixtureFile = 'photo.png'
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#first-name").type("Aga");
+    cy.get("#surname").type("surname");
+    cy.get("#profile-pic").attachFile(fixtureFile);
+    cy.get("#submit").click();
+
+    cy.url().should("include", "/sessions/new");
+  })
 
   it('A user can click a link to the login page if they are already a member', () => {
 
