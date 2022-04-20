@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 hbs.registerHelper("contains", function (value, array, options) {
   // fallback...
   array = (array instanceof Array) ? array : [array];
-  return options[array.indexOf(value) > -1 ? "fn" : "inverse"](this);
+  return options[array.includes(value) ? "fn" : "inverse"](this);
 });
 
 
