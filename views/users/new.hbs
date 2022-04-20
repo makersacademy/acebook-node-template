@@ -1,7 +1,16 @@
-<form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="" required pattern=".*\S+.*">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="" required pattern=".*\S+.*">
-  <input id="submit" type="submit" value="Register">
-</form>
+<head>
+
+</head>
+<body>
+  <h1 class="page-header">{{pageHeader}}</h1>
+  <form id="new-user-form" action="/users" method="post">
+    <label for="email">Email: </label>
+    <input id="email" type="email" name="email" value="" required pattern=".*\S+.*">
+    <label for="password">Password: </label>
+    <input id="password" type="password" name="password" value="" required pattern=".*\S+.*">
+    <input id="submit" type="submit" value="Sign Up">
+  </form>
+  <div>
+    <a href="/sessions/new" id="login-link">Already a Member? Log In Here</a>
+  </div>
+</body>
