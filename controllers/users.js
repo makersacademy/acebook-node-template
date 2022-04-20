@@ -5,15 +5,32 @@ const UsersController = {
     res.render("users/new", {});
   },
 
-  Create: (req, res) => {
+  Create: async (req, res) => {
     const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        throw err;
+
+      const doesUsernameExist = await User.findOne({
+        username: req.body.username,
+      });
+
+      const doesEmailExist = await User.findOne({
+        email: req.body.email,
+      });
+
+      if (doesEmailExist) {
+        res.redirect("/users/new");
+
+      } else if (doesUsernameExist) {
+        res.redirect("/users/new");
+
+      } else {
+        
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+          res.status(201).redirect("/post");
+        });
       }
-      req.session.user = user;
-      res.status(201).redirect("/posts");
-    });
   },
 };
 
