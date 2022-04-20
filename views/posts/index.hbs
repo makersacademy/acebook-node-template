@@ -39,12 +39,10 @@
 
           <div class="timeAgo">{{this.dateAndTime}}</div>
           <br />
-          <input
-            type="button"
-            value="Like"
-            class="likeUnlike"
-            data-button-id={{this._id}}
-          />
+          <div> 
+          <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} postId={{this._id}} username={{../user.username}} likes={{this.likes}}>
+          </div>
+          <div>Likes: {{this.likes.length}}</div>
         </div>
         <div class="delete-post">
           <form action="/posts/{{this._id}}" method="post" id="delete-post">
