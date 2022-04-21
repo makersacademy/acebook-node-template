@@ -23,11 +23,13 @@
 </div>
 
 <div id="main-container" class="column right">
-  <form id="new-post-form" action="/posts" method="post">
-    <label for="message">Message: </label>
-    <input id="message" type="text" name="message" value="" required />
-    <input type="submit" value="Submit" />
-  </form>
+  <div class="message-box">
+    <form id="new-post-form" action="/posts" method="post">
+      <input id="message" class="input-message" type="text" name="message" placeholder="Post your quack" value="" required />
+      <input id="photo" class="input-photo" type="text" name="postImage" placeholder="Add photo" value="" />
+      <input type="submit" value="Quack!"/>
+    </form>
+  </div>
   <br><br>
 
   <div id="post">
@@ -36,6 +38,10 @@
         <div class="post-div" postId={{this._id}}>
           <div class="username">Username: {{this.username}}</div>
           <div class="message">{{this.message}}</div>
+
+        {{#if this.postImage}}
+          <img class="post-photo" src={{this.postImage}} alt={{this.postImage}}>
+        {{/if}}
 
           <div class="timeAgo">{{this.dateAndTime}}</div>
           <br />
