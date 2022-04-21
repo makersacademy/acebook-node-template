@@ -38,4 +38,10 @@ describe("Post model", () => {
       });
     });
   });
+
+  it('has a time stamp by default', () => {
+    var post = new Post({ message: "some message" });
+    console.log(post.createdAt[0, 10]);
+    expect(post.createdAt[0, 10]).toEqual(Date.now()[0, 10])
+  })
 });

@@ -4,6 +4,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
+const hbs = require("hbs");
+const moment = require("moment");
 const methodOverride = require("method-override");
 
 const homeRouter = require("./routes/home");
@@ -57,6 +59,11 @@ const sessionChecker = (req, res, next) => {
     next();
   }
 };
+
+hbs.registerHelper('dateFormat', function (date) {
+  const formatToUse = "DD/MM/YYYY, H:MM"
+  return moment(date).format(formatToUse);
+});
 
 // route setup
 app.use("/", homeRouter);
