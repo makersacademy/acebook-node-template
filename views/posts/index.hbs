@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}} 
-  <li>{{this.message}} Likes {{this.likes}}</li>
+  <li>{{this.message}} Likes {{this.likes}} <a href="/posts/like"><button id="like-button" >like</button></a> </li>
   {{/each}}
 </ul>
 
