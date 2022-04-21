@@ -21,6 +21,7 @@ const PostsController = {
     if (photo) {
       let newName = util.generateName() + "." + util.getExtension(photo.name)
       photo.mv("./public/upload/" + newName);
+      req.body.photo = newName;
     }
     const post = new Post(req.body);
     post.save((err) => {
