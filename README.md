@@ -14,7 +14,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/invite/b/5SBZ8Dm4/707c21b6aeb614d32195d750c0ff1f7a/acebook-wildcats
 
 ## Quickstart
 

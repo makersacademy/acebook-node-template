@@ -9,7 +9,6 @@ describe("Post model", () => {
       done();
     });
   });
-
   it("has a message", () => {
     var post = new Post({ message: "some message" });
     expect(post.message).toEqual("some message");
@@ -25,13 +24,10 @@ describe("Post model", () => {
 
   it("can save a post", (done) => {
     var post = new Post({ message: "some message" });
-
     post.save((err) => {
       expect(err).toBeNull();
-
       Post.find((err, posts) => {
         expect(err).toBeNull();
-
         expect(posts[0]).toMatchObject({ message: "some message" });
         done();
       });
