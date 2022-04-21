@@ -1,6 +1,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Feed loaded')
+
+  const userId = document.getElementsByName("user_id")[0].content
+  console.log(userId)
   
   const likeButtons = document.querySelectorAll('.like_button')
   
