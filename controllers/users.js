@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const {ObjectID} = require("mongodb");
 
 const UsersController = {
   New: (req, res) => {
@@ -18,6 +19,28 @@ const UsersController = {
   Profile: (req, res) => {
     res.render("users/profile", {});
   },
+
+  /**
+   * Finds a user's profile photo.
+   */
+  async ProfilePhoto(req, res) {
+    // if the id is not valid, return 404 Not Found
+    if (!ObjectID.isValid(req.params.id)) return res.status(404).send()
+
+    // find the user
+    const user = await User.findById(req.params.id)
+    // if they don't exist, return 404 Not Found
+    if (!user) res.status(404).send()
+
+    if (user.img.contentType) {
+      // if the user has an image, return it
+      res.set("content-type", user.img.contentType)
+      res.send(user.img.data)
+    } else {
+      // if the user doesn't have an image, send 204 No Content
+      res.status(204).send()
+    }
+  }
 };
 
 module.exports = UsersController;
