@@ -10,6 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const hbs = require("hbs");
 
 const app = express();
 
@@ -18,21 +19,21 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
 app.use(
-  session({
-    key: "user_sid",
-    secret: "super_secret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 600000,
-    },
-  })
+    session({
+      key: "user_sid",
+      secret: "super_secret",
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        expires: 600000,
+      },
+    })
 );
 
 app.use((req, res, next) => {
@@ -48,6 +49,14 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// handlebars helper to check for object presence in array
+hbs.registerHelper("contains", function (value, array, options) {
+  // fallback...
+  array = (array instanceof Array) ? array : [array];
+  return options[array.includes(value) ? "fn" : "inverse"](this);
+});
+
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {

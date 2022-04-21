@@ -14,11 +14,9 @@ nav {
   display: flex;
   padding: 2% 6%;
   justify-content: space-between;
-  align-items: right;
 }
 
 .nav-bar {
-  flex: 1;
   text-align: right;
 }
 
@@ -37,7 +35,7 @@ nav {
 
 .nav-bar ul li::after {
   content: '';
-  width: 0%;
+  width: 0;
   height: 2px;
   background: #00B7FF;
   display: block;
@@ -58,4 +56,19 @@ border-style: none;
 .profile-pic {
   height: 150px;
   width: auto; 
+}
+
+.posts > .post {
+  padding: 1em;
+  border: 1px solid gray;
+  display: inline-block;
+}
+
+.post form {
+  display: inline-block;
+  margin-top: 1em;
+}
+
+.post > .button-like {
+  display: inline-block;
 }
