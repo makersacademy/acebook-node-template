@@ -41,6 +41,11 @@ const UsersController = {
       // if the user doesn't have an image, send 204 No Content
       res.status(204).send()
     }
+  },
+
+  async AllUsers(req, res) {
+    const users = await User.find();
+    res.render("users/all", {users})
   }
 };
 
