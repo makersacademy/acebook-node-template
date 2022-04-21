@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+.navbar {
+  overflow: hidden;
+  background-color: rgb(56, 149, 215);
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  border-radius: 10px;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}

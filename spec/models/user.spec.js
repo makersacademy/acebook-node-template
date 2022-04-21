@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+// requires mongoose - MongoDB ORM library
 require("../mongodb_helper");
 const User = require("../../models/user");
 
@@ -9,7 +9,10 @@ describe("User model", () => {
       done();
     });
   });
-
+// before each test it drops all information in the db (so no spill/over between tests)
+// (done) - Jest waits until the callback is called before finishing the test and moving on (line 13)
+// Jest is asynchronous so it can be help to use done before it runs another test.
+// if err is thrown out before then it won't finish test - to see why you need an expect keyword.
   it("has an email address", () => {
     const user = new User({
       email: "someone@example.com",
@@ -42,7 +45,6 @@ describe("User model", () => {
 
     user.save((err) => {
       expect(err).toBeNull();
-
       User.find((err, users) => {
         expect(err).toBeNull();
 
