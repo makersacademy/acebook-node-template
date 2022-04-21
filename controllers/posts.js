@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const util = require("../util/photoHandling")
 
 const PostsController = {
   Index: (req, res) => {
@@ -18,7 +19,8 @@ const PostsController = {
     console.log (req.files)
     let photo = req.files.photo;
     if (photo) {
-      photo.mv("./public/upload/" + photo.name);
+      let newName = util.generateName() + "." + util.getExtension(photo.name)
+      photo.mv("./public/upload/" + newName);
     }
     const post = new Post(req.body);
     post.save((err) => {
