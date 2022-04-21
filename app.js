@@ -58,6 +58,14 @@ hbs.registerHelper("contains", function (value, array, options) {
   return options[array.includes(value) ? "fn" : "inverse"](this);
 });
 
+// handlebars helper to check for posted image
+hbs.registerHelper("tob64", function (value) {
+  return value.toString("base64");
+});
+
+
+
+
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);

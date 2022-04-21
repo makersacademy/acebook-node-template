@@ -1,5 +1,7 @@
-<form id="new-post-form" action="/posts" method="post">
+<form id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
   <label for="message">Message: </label>
   <input id="message" type="text" name="message" value="">
-  <input type="submit" value="Submit">
+  <label for="img">Select image:</label>
+  <input type="file" id="img" name="img" accept="image/*">
+  <input type="submit">
 </form>
