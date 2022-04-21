@@ -72,3 +72,17 @@ border-style: none;
 .post > .button-like {
   display: inline-block;
 }
+
+.sign-up-form-fields {
+  align-content: center;
+  width: 100%;
+  background-color: palegreen;
+}
+
+.sign-up-form-labels {
+  display: flex;
+  width: 20%;
+  flex-direction: column;
+  background-color: paleturquoise;
+  align-content: left;
+}
