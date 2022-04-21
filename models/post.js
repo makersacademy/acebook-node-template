@@ -11,6 +11,9 @@ const PostSchema = new mongoose.Schema({
       ref: "Comment",
     },
   ],
+  postImage: {
+    type: String,
+  },
 });
 
 const Post = mongoose.model("Post", PostSchema);

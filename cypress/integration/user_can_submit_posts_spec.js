@@ -7,7 +7,7 @@ describe("Timeline", () => {
 
     // submit a post
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get(".input-message").type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");

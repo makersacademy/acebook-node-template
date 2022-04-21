@@ -7,10 +7,13 @@ describe('likes', () => {
 
     // Like post
     cy.get('.likeUnlike:nth(0)').click();
+    cy.visit("/posts");
     cy.get('.likeUnlike:nth(0)').should('have.value', 'Unlike')
 
     // Unlike a post
+
     cy.get('.likeUnlike:nth(0)').click();
+    cy.visit("/posts");
     cy.get('.likeUnlike:nth(0)').should('have.value', 'Like')
  }); 
 });
