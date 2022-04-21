@@ -7,7 +7,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.render("posts/index", { posts: posts });
     }).sort({_id: -1});
   },
@@ -16,12 +15,16 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
+    const message = req.body;
+    message["author"] = req.session.user.name;
+
     if (req.files) {
     let photo = req.files.photo;
       let newName = util.generateName() + "." + util.getExtension(photo.name);
       photo.mv("./public/upload/" + newName);
       req.body.photo = newName;
     }
+
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
