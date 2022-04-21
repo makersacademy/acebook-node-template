@@ -1,10 +1,16 @@
 const Post = require("../models/post");
+const moment = require("moment");
+
 const PostsController = {
   Index: (req, res) => {
     Post.find({}).sort({date: -1}).exec((err, posts) => {
       if (err) {
         throw err;
       }
+        console.log(posts)
+      posts.forEach(post => post.date = moment(post.date).format('LLLL'));
+        console.log(posts)
+
       res.render("posts/index", { posts: posts, session: req.session });
     });
   },
