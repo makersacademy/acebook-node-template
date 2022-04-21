@@ -1,28 +1,34 @@
 <div class="welcome-page">
   <h1 class="title">Welcome to Quackbook</h1><br /><br />
-  
-  <h2>Log in to Quackbook</h2>
+
 </div>
 
 <div id="signin">
   <form id="new-session-form" action="/sessions" method="post">
-    <label for="email"></label>
-    <input id="email" type="email" name="email" placeholder="Email" /><br />
-    <label for="password"></label>
-    <input
-      id="password"
-      type="password"
-      name="password"
-      placeholder="Password"
-    /><br />
-    
-    <input id="log-in" type="submit" value="Log In" /><br /><br /><br />
+    <div>
+      <label for="email"></label>
+      <input id="email" type="email" name="email" placeholder="Email" />
+    </div>
+
+    <div>
+      <label for="password"></label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
+    </div>
+
+    <div>
+      <input id="log-in" type="submit" value="Log In" />
+    </div>
   </form>
 
-  
+  <div>
     <form action="/users/new">
       <input id="sign-up" type="submit" value="Sign Up" />
     </form>
-
+  </div>
 
 </div>

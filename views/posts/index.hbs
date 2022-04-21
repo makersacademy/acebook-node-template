@@ -77,11 +77,11 @@
                 </div>
                 <div class="delete-comment-feature">
                   <div class="comment-btn">
-                    <input 
+                    <input
                     type="image"
                     src="/images/comment-icon.png"
                     height="40"
-                    width="40" id="comment-btn"/>
+                    width="40" id="comment-btn" postId={{this._id}} />
                   </div>
 
                   <div class="delete-post">
@@ -101,18 +101,18 @@
             </div>
           </div>
 
-          <div id="comment" style="display: none">
+          <div id="comment-{{this._id}}" class="comment" style="display: none">
             <div class="new-comment">
               <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
                 <label for="message"></label>
                 <input id="message" type="text" name="message" value="" required>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" class="new-comment-submit">
               </form>
             </div>
-            <div>
+            <div class="comments">
               {{#each this.comments}}
-              <div>Username: {{this.username}}</div>
-              <div>{{this.message}}</div>
+              <div class="username">@{{this.username}}</div>
+              <div class="message">{{this.message}}</div>
               <div class="timeAgo">{{this.dateAndTime}}</div>
               <br /> 
               {{/each}}
