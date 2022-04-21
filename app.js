@@ -1,5 +1,6 @@
 const createError = require("http-errors");
 const express = require("express");
+const fileUploader = require("express-fileuploader");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+app.use(fileUploader({createParentPath:true}));
 
 app.use(
   session({
