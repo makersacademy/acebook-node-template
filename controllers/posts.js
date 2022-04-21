@@ -6,14 +6,11 @@ const PostsController = {
       if (err) {
         throw err;
       }
-console.log(posts);
       res.render("posts/index", {posts: posts});
     });
   }, New: (req, res) => {
     res.render("posts/new", {});
   }, Create: (req, res) => {
-
-console.log(req.file);
 
     const post = new Post({...req.body,
 

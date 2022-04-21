@@ -60,7 +60,6 @@ hbs.registerHelper("contains", function (value, array, options) {
 
 // handlebars helper to check for posted image
 hbs.registerHelper("tob64", function (value) {
-  console.log(value);
   return value.toString("base64");
 });
 
