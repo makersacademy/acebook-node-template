@@ -56,7 +56,7 @@ body {
 
 #side-bar {
   height: 100%;
-  width: 300px;
+  width: 350px;
   position: fixed;
   z-index: 1;
   background-color: whitesmoke;
@@ -68,12 +68,13 @@ body {
 }
 
 #main-container {
-  margin-left: 350px;
-  margin-right: 20px;
-  margin-top: 20px;
+  margin-left: 530px;
+  margin-right: 250px;
+  margin-top: 140px;
   background-color: whitesmoke;
   padding: 10px 10px;
   border-radius: 10px;
+  align-content: center;
 }
 
 .profile-img {
@@ -81,7 +82,7 @@ body {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  padding: 10px 65px;
+  padding: 10px 85px;
 }
 
 #signin,
@@ -131,22 +132,84 @@ body {
 #each-post {
   background-color: #76b6c2;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   margin-right: 40px;
 }
 
+#each-post .username {
+  font-size: 14px;
+  color: #752813;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+#each-post .message {
+  font-size: 20px;
+  color: black;
+  padding: 0px 10px;
+}
+
+#each-post .timeAgo {
+  font-size: 12px;
+  color: black;
+  padding: 5px 10px;
+}
+
+#each-post .post-features {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+#each-post .post-features .post-like-info {
+  display: flex;
+  padding-left: 5px;
+  align-items: center;
+}
+
+#each-post .post-features .post-like-info .likeUnlike {
+  margin-right: 10px;
+}
+
+#each-post .post-features .delete-comment-feature {
+  display: flex;
+  padding-left: 5px;
+  align-items: center;
+}
+#each-post .post-features .delete-comment-feature .comment-btn {
+  padding-right: 8px;
+  align-items: center;
+}
+
+#each-post .post-features .delete-comment-feature .delete-btn {
+  align-items: center;
+}
+
+/* #each-post .timeAgo {
+  font-size: 14px;
+  color: black;
+  padding: 5px 10px;
+} */
+
 #side-bar h4 {
   padding: 25px;
-  margin-left: 40px;
+  margin-left: 60px;
 }
 #new-post-form {
   display: flex;
-  margin-left: 350px;
+  margin-left: 420px;
   margin-right: 20px;
-  margin-top: 20px;
-  background-color: white;
+  margin-top: 28px;
+  background-color: whitesmoke;
   padding: 10px 10px;
   border-radius: 10px;
+  position: fixed;
+  width: 60%;
+
+  top: 60px;
 }
 
 #new-post-form input[type="text"] {
@@ -161,4 +224,27 @@ body {
 
 .post-div {
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+}
+
+.post-photo {
+  object-fit: cover;
+  width: 500px;
+  height: 400px;
+  border-radius: 5%;
+  padding: 10px;
+  align-content: center;
+}
+
+.return {
+  width: 18px;
+  font-size: 14pt;
+  margin-top: 1px;
+  margin-right: 2px;
+  position: absolute;
+  top: 20;
+  right: 150;
+  border-radius: 10%;
 }

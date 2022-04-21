@@ -18,6 +18,7 @@ const PostsController = {
     post.dateAndTime = Date();
     post.likes = [];
     post.comments;
+    post.postImage = req.body.postImage;
 
     post.save((err) => {
       if (err) {
