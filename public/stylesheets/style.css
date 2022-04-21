@@ -101,7 +101,7 @@ body {
   padding: 30px;
   margin: auto;
   background-color: #76b6c2;
-  opacity: 0.8;
+  opacity: 0.9;
   border: none;
   border-radius: 20px;
 }
@@ -171,7 +171,7 @@ body {
 }
 
 #each-post .post-features .post-like-info .likeUnlike {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 #each-post .post-features .delete-comment-feature {
@@ -208,7 +208,6 @@ body {
   border-radius: 10px;
   position: fixed;
   width: 60%;
-
   top: 60px;
 }
 
@@ -238,13 +237,16 @@ body {
   align-content: center;
 }
 
-.return {
-  width: 18px;
-  font-size: 14pt;
-  margin-top: 1px;
-  margin-right: 2px;
+.return-btn {
+  width: 100px;
+  height: 35px;
+  font-size: 12pt;
+  border: none;
   position: absolute;
   top: 20;
-  right: 150;
-  border-radius: 10%;
+  right: 50;
+  border-radius: 10px;
+  background-color: #76b6c2;
+  color: white;
+  opacity: 0.9;
 }

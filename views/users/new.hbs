@@ -1,7 +1,4 @@
-<div class="sign-up-welcome">
-  <h1>Please enter your registration details</h1>
-</div>
-<br><br>
+</br></br></br>
 
 <div id="signup">
   <form id="new-user-form" action="/users" method="post">
@@ -13,8 +10,10 @@
       placeholder="Username"
       required
     />
+
     <label for="email"></label>
     <input id="email" type="email" name="email" placeholder="Email" required />
+
     <label for="password"></label>
     <input
       id="password"
@@ -23,12 +22,18 @@
       placeholder="Password"
       required
     />
+
     <input id="submit" type="submit" value="Submit" />
   </form>
 
   <div class="return">
     <form>
-      <input type="button" value="Go back!" onclick="history.back()">
+      <input
+        class="return-btn"
+        type="button"
+        value="Go back!"
+        onclick="history.back()"
+      />
     </form>
   </div>
 </div>
