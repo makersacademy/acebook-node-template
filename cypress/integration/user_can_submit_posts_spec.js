@@ -21,4 +21,24 @@ describe("Timeline", () => {
 
     cy.get(".posts").should("contain", "Hello, world!");
   });
+  
+  it("A user tries to submit an empty post", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+ 
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    //empty post
+    cy.contains("New post").click();
+    cy.get("#new-post-form").click();
+
+    cy.url().should("include", "/posts/new");
+  });
 });
