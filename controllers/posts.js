@@ -15,9 +15,6 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const message = req.body;
-    message["author"] = req.session.user.name;
-
     if (req.files) {
       let photo = req.files.photo;
       let newName = util.generateName() + "." + util.getExtension(photo.name);
@@ -25,6 +22,7 @@ const PostsController = {
       req.body.photo = newName;
     }
 
+    req.body.author = req.session.user.email;
     const post = new Post(req.body);
     let error = post.validateSync();
     if (error) {
