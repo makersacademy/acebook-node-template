@@ -1,8 +1,58 @@
-body {
-  padding: 50px;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
+a{
   color: #00B7FF;
+}
+
+nav{
+  background: #ccc;
+  height: 2.5rem;
+  display: grid;
+  align-items: center;
+}
+
+.nav-center{
+  width: 95vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links{
+  display: flex;
+  align-items: right;
+}
+
+ul{
+  list-style-type: none;
+}
+
+.nav-links li a{
+  border: 1px solid #000;
+  border-radius: 15px;
+  padding: 3px 12px;
+  margin: 3px;
+}
+
+#appTitle a{
+  color: #000;
+  text-decoration: none;
+}
+
+form #logOut{
+  background: none;
+  border: 1px solid #000;
+  border-radius: 15px;
+  padding: 3px 12px;
+  margin: 3px;
+  cursor: pointer;
 }
