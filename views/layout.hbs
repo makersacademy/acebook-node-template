@@ -2,24 +2,38 @@
   <head>
     <title>flash messages</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
     <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    ></script>
     <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"
+    ></script>
     <h3>{{title}}</h3>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     {{#if message}}
-    <div style="text-align: center" class="alert alert-{{message.type}}">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>{{message.intro}}</strong> {{message.message}}
-    </div>
+      <div style="text-align: center" class="alert alert-{{message.type}}">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+        >&times;</button>
+        <strong>{{message.intro}}</strong>
+        {{message.message}}
+      </div>
     {{/if}}
     {{{body}}}
     <script src="/javascripts/likeOnOff.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script> 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"
+    ></script>
     <script src="/javascripts/timeAgo.js"></script>
   </body>
 </html>

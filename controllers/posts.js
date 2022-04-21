@@ -1,5 +1,4 @@
 const Post = require("../models/post");
-const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -28,19 +27,22 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  Delete: ("/posts/:id", function(req, res) {
-
-    Post.remove({_id: req.params.id}, (err) => {
-      if (err) return console.log(err)
-      console.log(req.body)
-      res.redirect('/posts')
-    })
-  }),
-  Like: ("/posts/like", function(req, res) {
-  console.log("got the request")
-    console.log(req)
-  
-  })
+  Delete:
+    ("/posts/:id",
+    function (req, res) {
+      Post.remove({ _id: req.params.id }, (err) => {
+        if (err) return console.log(err);
+        console.log(req.body);
+        res.redirect("/posts");
+      });
+    }),
+  Like:
+    ("/posts/like",
+    function (req, res) {
+      console.log("got the request");
+      console.log(req);
+      res.redirect("/posts");
+    }),
 };
 
 module.exports = PostsController;

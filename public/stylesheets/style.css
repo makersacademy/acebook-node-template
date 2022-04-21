@@ -2,38 +2,78 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   height: 100%;
   background-color: whitesmoke;
-  background-image: url(https://images.pexels.com/photos/7105019/pexels-photo-7105019.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+  background-image: url(/images/background4.png);
 }
 
-.welcome-page, .sign-up-welcome {
+.welcome-page,
+.sign-up-welcome {
   text-align: center;
   padding-top: 20px;
-} 
+}
 
 #nav-bar {
+  overflow: hidden;
   object-fit: contain;
-  padding: 8px;
   display: flex;
-  justify-content: right;
-  background-color: white;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  height: 70px;
+}
+.logo-image {
+  padding: 10px;
+  border-radius: 50%;
+}
+
+#nav-bar h3 {
+  height: 50%;
+  color: black;
+}
+
+#logout {
+  height: 50%;
+  padding: 0 20px;
+}
+
+.logout-btn {
+  border-radius: 15px;
+  color: white;
+  background-color: blue;
+  border: none;
+  padding: 8px;
+  margin: auto;
+  cursor: pointer;
+}
+.post-body {
+  padding: 16px;
+  margin-top: 50px;
+}
+
+#side-bar {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  background-color: whitesmoke;
+  padding: 20px 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 10px;
 }
 
-.column {
-  float: left;
-  padding: 10px;
-}
-
-.left {
-  float: left;
-  padding: 10px;
-  flex: 30%
-}
-
-.right {
-  float: left;
-  padding: 10px;
-  flex: 70%
+#main-container {
+  margin-left: 350px;
+  margin-right: 20px;
+  margin-top: 20px;
+  background-color: whitesmoke;
+  padding: 10px 10px;
+  border-radius: 10px;
 }
 
 .profile-img {
@@ -41,14 +81,7 @@ body {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  padding: 10px;
-}
-
-#logout {
-}
-
-a {
-  color: #00b7ff;
+  padding: 10px 65px;
 }
 
 #signin,
@@ -66,8 +99,8 @@ a {
   width: 100%;
   padding: 30px;
   margin: auto;
-  background-color: #00b7ff;
-  opacity: 0.5;
+  background-color: #76b6c2;
+  opacity: 0.8;
   border: none;
   border-radius: 20px;
 }
@@ -90,7 +123,42 @@ a {
   font-size: 15px;
 }
 
-.posts {
+/* .posts {
   background-color: white;
   border-radius: 10px;
+} */
+
+#each-post {
+  background-color: #76b6c2;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 40px;
+}
+
+#side-bar h4 {
+  padding: 25px;
+  margin-left: 40px;
+}
+#new-post-form {
+  display: flex;
+  margin-left: 350px;
+  margin-right: 20px;
+  margin-top: 20px;
+  background-color: white;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+#new-post-form input[type="text"] {
+  width: 90%;
+  margin: 10px 10px;
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border-color: #76b6c2;
+}
+
+.post-div {
+  display: flex;
 }
