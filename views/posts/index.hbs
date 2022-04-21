@@ -44,8 +44,8 @@
           </div>
           <div>Likes: {{this.likes.length}}</div>
         </div>
-        <div class="delete-post">
-          <form action="/posts/{{this._id}}" method="post" id="delete-post">
+        <div class="delete-post" >
+          <form action="/posts/{{this._id}}" method="post" id="delete-post" postUsername={{this.username}} username={{../user.username}}>
             <input type="hidden" name="_method" value="DELETE" />
             <input
               type="image"
