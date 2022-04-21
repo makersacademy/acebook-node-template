@@ -95,8 +95,9 @@ border-style: none;
   position: relative;
   /* top: 30px; */
   left: 30px;
-  height:150px;
+  height: 150px;
   width: auto;
+}
 
 .all-users {
   display: flex;
