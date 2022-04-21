@@ -12,12 +12,12 @@ const PostsController = {
     res.render("posts/new", {});
   }, Create: (req, res) => {
 
-    const post = new Post({...req.body,
-
-      author:req.session.user._id,
+    const post = new Post({
+      ...req.body,
+      author: req.session.user._id,
       img: {
-        contentType: req.file.type,
-        data: req.file.buffer
+        contentType: req.file?.type,
+        data: req.file?.buffer
       }
     });
 
