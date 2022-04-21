@@ -94,3 +94,14 @@ a {
   background-color: white;
   border-radius: 10px;
 }
+
+.return {
+  width: 18px;
+  font-size: 14pt;
+  margin-top: 1px;
+  margin-right: 2px;
+  position: absolute;
+  top: 20;
+  right: 150;
+  border-radius: 10%;
+}
