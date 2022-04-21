@@ -8,7 +8,7 @@ const PostsController = {
         throw err;
       }
       res.render("posts/index", { posts: posts });
-    }).sort({_id: -1});
+    }).sort({ _id: -1 });
   },
 
   New: (req, res) => {
@@ -19,19 +19,19 @@ const PostsController = {
     message["author"] = req.session.user.name;
 
     if (req.files) {
-    let photo = req.files.photo;
+      let photo = req.files.photo;
       let newName = util.generateName() + "." + util.getExtension(photo.name);
       photo.mv("./public/upload/" + newName);
       req.body.photo = newName;
     }
 
     const post = new Post(req.body);
-    let error = post.validateSync()
-      if (error.errors) {
-        res.redirect("/posts/new");
-        return
-      }
-  
+    let error = post.validateSync();
+    if (error) {
+      res.redirect("/posts/new");
+      return;
+    }
+
     post.save((err) => {
       if (err) {
         throw err;

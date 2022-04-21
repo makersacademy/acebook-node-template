@@ -13,11 +13,14 @@ const SessionsController = {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         res.redirect("/sessions/new");
+        console.log("no such user");
       } else if (user.password != password) {
         res.redirect("/sessions/new");
+        console.log("incorrect password");
       } else {
         req.session.user = user;
         res.redirect("/posts");
+        console.log("all good");
       }
     });
   },
