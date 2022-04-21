@@ -16,6 +16,10 @@ const UsersController = {
     });
   },
 
+  Profile: (req, res) => {
+    res.render("users/profile", {});
+  },
+
   /**
    * Finds a user's profile photo.
    */

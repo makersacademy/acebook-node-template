@@ -53,6 +53,11 @@ border-style: none;
 
 }
 
+.profile-pic {
+  height: 150px;
+  width: auto; 
+}
+
 .posts > .post {
   padding: 1em;
   border: 1px solid gray;
