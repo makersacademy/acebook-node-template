@@ -2,7 +2,7 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find().populate("author").exec((err, posts) => {
       if (err) {
         throw err;
       }
@@ -12,7 +12,8 @@ const PostsController = {
   }, New: (req, res) => {
     res.render("posts/new", {});
   }, Create: (req, res) => {
-    const post = new Post(req.body);
+    const post = new Post({...req.body,
+      author:req.session.user._id});
     post.save((err) => {
       if (err) {
         throw err;
