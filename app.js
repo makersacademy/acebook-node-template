@@ -23,6 +23,41 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+ 
+const Post = require("./models/post");
+const req = require("express/lib/request");
+const run = require("nodemon/lib/monitor/run");
+
+app.post('/unlike', async (req, res) => {
+  //method for unliking the post in the database
+  Post.findOneAndUpdate(
+    { _id: req.body.postId },
+    { $pull: { likes: req.body.username }},
+    { new: true })
+
+    //'executes' the query in the database
+    .exec()
+    
+    .then(function(likes) {
+      console.log("TEST: "+ JSON.stringify(likes));
+  })
+
+})
+
+app.post('/like', async (req, res) => {
+  //method for liking the post in the database
+  Post.findOneAndUpdate(
+    { _id: req.body.postId },
+    { $push: { likes: [ req.body.username ]}},
+    { new: true })
+
+    //'executes' the query in the database
+    .exec()
+
+    .then(function(likes) {
+      console.log("TEST: "+ JSON.stringify(likes));
+  })
+})
 
 app.use(
   session({
@@ -35,6 +70,13 @@ app.use(
     },
   })
 );
+
+// flash message middleware
+app.use((req, res, next)=>{
+  res.locals.message = req.session.message
+  delete req.session.message
+  next()
+})
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {

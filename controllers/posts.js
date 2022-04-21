@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -6,11 +7,10 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts });
+      const user = req.session.user;
+      posts = posts.reverse();
+      res.render("posts/index", { posts: posts, user: user });
     });
-  },
-  New: (req, res) => {
-    res.render("posts/new", {});
   },
   Create: (req, res) => {
     let post = new Post();
@@ -18,7 +18,7 @@ const PostsController = {
     post.username = req.session.user.username;
     post.dateAndTime = Date();
     post.likes = [];
-    console.log(post);
+    post.comments;
 
     post.save((err) => {
       if (err) {
@@ -40,6 +40,17 @@ const PostsController = {
         res.redirect("/posts");
       });
     }),
+  Like:
+    ("/posts/like",
+    function (req, res) {
+      console.log("got the request");
+      console.log(req);
+    }),
 };
 
 module.exports = PostsController;
+
+// Make a request to the server that has the User ID and a way of getting the post
+// Make a call to the database that updates the likes array by adding/removing the userid
+// Reload the page dynamically ideally or with valentina's fast redirect
+// Show the number of likes on each post when the page loads
