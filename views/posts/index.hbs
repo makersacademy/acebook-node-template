@@ -1,10 +1,29 @@
-<h1 class="page-header">Timeline</h1>
-<div class="posts">
-  <form action="/posts/new" method="get">
-    <button class="new_post_button">New post</button>
-</form>
-  {{#each posts}}
-  <div class="post">{{this.message}}</div>
-  {{/each}}
-</div>
+<head>
+  <script src="/javascripts/like_button.js"></script>
+</head>
+<body>
+  <h1 class="page-header">Timeline</h1>
+  <h2>{{user.firstName}} {{user.surname}}</h2>
+  <div class="posts">
+    <form action="/posts/new" method="get">
+      <button class="new_post_button">New post</button>
+  </form>
+    {{#each posts}}
+    <div class="post">
+      <div class="post_author">
+        {{this.authorFirstName}} {{this.authorSurname}}
+      </div>
+      <div class="post_content">
+        {{this.message}}
+      </div>
+      <div class="post_date">
+        {{this.created_at}}
+      </div>
+      <div class="post_likes">
+        <span id="post_id" hidden>{{this.id}}</span>{{this.likes.length}} <button class="like_button">Like</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</body>
 

@@ -1,5 +1,7 @@
 <form id="new-post-form" action="/posts" method="post">
   <label for="message">Message: </label>
+  <input type="hidden" name="authorFirstName" value="{{user.firstName}}">
+  <input type="hidden" name="authorSurname" value="{{user.surname}}">
   <input id="message" type="text" name="message" value="" required pattern=".*\S+.*">
   <input type="submit" value="Submit">
 </form>

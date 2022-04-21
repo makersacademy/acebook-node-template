@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   message: String,
+  authorFirstName: String,
+  authorSurname: String,
+  likes: Array,
+  created_at: { type: Date, default: Date.now },
 });
 
 
