@@ -1,17 +1,21 @@
 <h1>Timeline</h1>
 <ul class="posts">
     {{#each posts}}
-        <li class="post">
-               <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
-            <div>{{this.message}}</div>
-            <form action="/posts/like" method="post">
-                <input type="hidden" name="post" value="{{this._id}}">
-                <input type="hidden" name="post" value="{{this._id}}">
-                <input type="submit" class="button-like"
-                       value="{{#contains @root.user._id this.likes}}Unlike{{else}}Like{{/contains}}">
-            </form>
-            {{this.likes.length}}
-        </li>
+    <li class="post">
+        <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
+        <div>{{this.message}}</div>
+        {{#if this.img.data}}
+        <img src="data:{{this.img.contentType}};base64,{{tob64 this.img.data}}" height="300">
+        {{/if}}
+        <form action="/posts/like" method="post">
+            <input type="hidden" name="post" value="{{this._id}}">
+            <input type="hidden" name="post" value="{{this._id}}">
+            <input type="submit" class="button-like"
+                value="{{#contains @root.user._id
+                this.likes}}Unlike{{else}}Like{{/contains}}">
+        </form>
+        {{this.likes.length}}
+    </li>
     {{/each}}
 </ul>
 

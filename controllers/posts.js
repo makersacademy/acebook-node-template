@@ -6,15 +6,27 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
+console.log(posts);
       res.render("posts/index", {posts: posts});
     });
   }, New: (req, res) => {
     res.render("posts/new", {});
   }, Create: (req, res) => {
+
+console.log(req.file);
+
     const post = new Post({...req.body,
-      author:req.session.user._id});
+
+      author:req.session.user._id,
+      img: {
+        contentType: req.file.type,
+        data: req.file.buffer
+      }
+    });
+
     post.save((err) => {
+
+
       if (err) {
         throw err;
       }
