@@ -29,19 +29,24 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  Delete: ("/posts/:id", function(req, res) {
+  Delete:
+    ("/posts/:id",
+    (req, res) => {
+      let query = { _id: req.params.id, username: req.session.user.username };
 
-    Post.remove({_id: req.params.id}, (err) => {
-      if (err) return console.log(err)
-      console.log(req.body)
-      res.redirect('/posts')
-    })
-  }),
-  Like: ("/posts/like", function(req, res) {
-  console.log("got the request")
-    console.log(req)
-  
-  })
+      Post.remove(query, (err) => {
+        if (err) {
+          console.log(err);
+        }
+        res.redirect("/posts");
+      });
+    }),
+  Like:
+    ("/posts/like",
+    function (req, res) {
+      console.log("got the request");
+      console.log(req);
+    }),
 };
 
 module.exports = PostsController;
