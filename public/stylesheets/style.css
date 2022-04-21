@@ -97,4 +97,34 @@ border-style: none;
   left: 30px;
   height:150px;
   width: auto;
+
+.all-users {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.all-users > div {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex: 18em 0 0;
+}
+
+.all-users > div > div {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.all-users > div img {
+  width: 5em;
+  height: 5em;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.all-users > div span {
+  display: block;
+  padding: 0 .5em;
+  font-weight: bold;
 }

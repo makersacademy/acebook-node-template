@@ -1,0 +1,12 @@
+<h1>all users</h1>
+<div class="all-users">
+    {{#each users}}
+        <div>
+            <img src="/users/photo/{{this._id}}" alt="photo"/>
+            <div>
+                <span>{{this.firstName}} {{this.lastName}}</span>
+                <button>Add Friend</button>
+            </div>
+        </div>
+    {{/each}}
+</div>
