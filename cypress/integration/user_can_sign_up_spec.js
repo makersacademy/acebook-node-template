@@ -71,7 +71,7 @@ describe("Registration", () => {
     cy.url().should("include", "/users/new");
   });
 
-  it('A user can register with a profile picture', () => {
+  /* it('A user can register with a profile picture', () => {
     const fixtureFile = 'photo.png'
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -82,7 +82,7 @@ describe("Registration", () => {
     cy.get("#submit").click();
 
     cy.url().should("include", "/sessions/new");
-  })
+  }) */
 
   it('A user can click a link to the login page if they are already a member', () => {
 
