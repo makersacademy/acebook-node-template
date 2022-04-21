@@ -67,3 +67,6 @@ cypress/videos
 # intellij
 .idea/
 *.iml
+
+# other
+.DS_Store

@@ -54,3 +54,8 @@ background-color: transparent;
 border-style: none;
 
 }
+
+.profile-pic {
+  height: 150px;
+  width: auto; 
+}
