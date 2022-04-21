@@ -2,14 +2,22 @@ const Post = require("../models/post");
 const User = require("../models/user");
 
 const PostsController = {
+  // findUsers: User.find((err, allUsers) => {
+  //   if (err) {
+  //     throw err;
+  //   }
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find( async (err, posts) => {
       if (err) {
         throw err;
       }
+      const allUsers = await User.find()
+      console.log('all users');
+      console.log(allUsers)
+      console.log(posts);
       const user = req.session.user;
       posts = posts.reverse();
-      res.render("posts/index", { posts: posts, user: user });
+      res.render("posts/index", { posts: posts, user: user, allUsers: allUsers });
     });
   },
   Create: (req, res) => {

@@ -20,6 +20,22 @@
     <img class="profile-img" src={{user.profilePic}}>
   </div>
 <p>Hello, {{user.username}}!!</p>
+  <div 
+    id="friendRequests" sessionUsername={{user.username}} friendRequests={{user.receivedRequests}}>Friend Requests
+  </div>
+  <div>
+    All Users
+    {{#each allUsers}}
+
+      <div>
+        username: {{this.username}}
+      </div>
+      <div>
+        <button class="friendRequestButton" sessionUsername={{../user.username}} username={{this.username}}>Send friend request!</button>
+      </div>
+
+    {{/each}}
+  </div>
 </div>
 
 <div id="main-container" class="column right">
