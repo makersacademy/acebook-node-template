@@ -6,7 +6,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.render("posts/index", { posts: posts });
     });
   },
@@ -14,6 +13,8 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
+    const message = req.body;
+    message["author"] = req.session.user.name;
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
