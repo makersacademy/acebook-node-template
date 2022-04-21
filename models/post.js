@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { required } = require("nodemon/lib/config");
 
 const PostSchema = new mongoose.Schema({
+  _id: String,
 
   message: {
     type: String,

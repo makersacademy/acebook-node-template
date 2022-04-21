@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const hbsHelpers = require("./handlebars_helpers");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -25,6 +26,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 app.use(fileUpload({createParentPath:true}));
+
+hbsHelpers();
 
 app.use(
   session({
