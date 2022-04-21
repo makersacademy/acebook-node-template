@@ -16,7 +16,8 @@ const UsersController = {
   },
 
   Profile: (req, res) => {
-    res.render("users/profile", {});
+   const user = req.session.user
+    res.render("users/profile", {user});
   },
 };
 
