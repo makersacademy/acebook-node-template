@@ -15,7 +15,6 @@ const PostSchema = new mongoose.Schema({
 
   photo: {
     type: String,
-    required: () => {return this.photo != ""},
   },
 });
 

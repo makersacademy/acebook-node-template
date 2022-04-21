@@ -7,12 +7,13 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-    let error = user.validateSync() 
-    if (error.errors) {
+    console.log(user.validateSync());
+    let error = user.validateSync();
+    if (error) {
       res.redirect("/users/new");
       return
     }
-      
+
     user.save((err) => {
       if (err) {
         throw err;
