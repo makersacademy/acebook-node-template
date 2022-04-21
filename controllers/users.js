@@ -14,6 +14,11 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
+  Profile: (req, res) => {
+    res.render("users/profile", { pageHeader: "Profile", user: req.session.user });
+  }
 };
+
+
 
 module.exports = UsersController;
