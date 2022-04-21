@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Feed loaded')
 
+  var likesAdded = []
+
   const userId = document.getElementsByName("user_id")[0].content
   console.log(userId)
   
@@ -12,7 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     likeButtons[i].addEventListener('click', (event) => {
       console.log("LIKE")
       const parent = event.target.parentElement
-      console.log(parent.children[0].textContent)
+      const postId = parent.children[0].textContent
+      const likesCount = parent.children[1]
+      console.log(likesCount.textContent)
+      console.log(postId)
+      likesAdded.push(postId)
+      console.log(likesAdded)
     });
   }
 
