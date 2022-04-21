@@ -2,6 +2,7 @@
 - [Discord Text Channel](https://discordapp.com/channels/945635608347435018/965928095016173648)
 - [Discord Voice Channel](https://discordapp.com/channels/945635608347435018/965929625060507658)
 - [Trello board](https://trello.com/b/qzSH3ro3/winging-it-teams-acebook-project)
+- [Miro board] (https://miro.com/app/board/uXjVO7CykBc=/)
 
 ## Timetable
 | From | To | Desc |
