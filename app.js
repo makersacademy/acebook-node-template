@@ -11,6 +11,7 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const hbs = require("hbs");
+const sessionChecker = require("./util/sessionchecker");
 
 const app = express();
 
@@ -56,16 +57,6 @@ hbs.registerHelper("contains", function (value, array, options) {
   array = (array instanceof Array) ? array : [array];
   return options[array.includes(value) ? "fn" : "inverse"](this);
 });
-
-
-// middleware function to check for logged-in users
-const sessionChecker = (req, res, next) => {
-  if (!req.session.user && !req.cookies.user_sid) {
-    res.redirect("/sessions/new");
-  } else {
-    next();
-  }
-};
 
 // route setup
 app.use("/", homeRouter);

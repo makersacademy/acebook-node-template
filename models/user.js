@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema({
     data: Buffer, 
     contentType: String 
   },
+  bio: String,
 });
 
 const User = mongoose.model("User", UserSchema);
