@@ -15,6 +15,12 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    let error = post.validateSync()
+      if (error.errors) {
+        res.redirect("/posts/new");
+        return
+      }
+  
     post.save((err) => {
       if (err) {
         throw err;

@@ -18,12 +18,37 @@ describe("User model", () => {
     expect(user.email).toEqual("someone@example.com");
   });
 
+  it("has an empty email address field", () => {
+    const user = new User({
+      email: "",
+      password: "password",
+    });
+    expect(user.email).toEqual("");
+  });
+
   it("has a password", () => {
     const user = new User({
       email: "someone@example.com",
       password: "password",
     });
     expect(user.password).toEqual("password");
+  });
+
+  it("has an empty password field", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "",
+    });
+    expect(user.password).toEqual("");
+  });
+
+  it("has an empty email address & password field", () => {
+    const user = new User({
+      email: "",
+      password: "",
+    });
+    expect(user.email).toEqual("");
+    expect(user.password).toEqual("");
   });
 
   it("can list all users", (done) => {
