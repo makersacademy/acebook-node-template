@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul reversed class="posts">
   {{#each posts}}
-  <li>{{this.message}} {{dateFormat this.createdAt}} {{log this.createdAt}} Likes {{this.likes}}
+  <li>{{this.message}} {{dateFormat this.created_at}} Likes {{this.likes}}
     <form id="like-button" action="/posts/like" method="post">
       <input type="hidden" id="message" name="message" value="{{this.message}}">
       <input type="hidden" id="likes" name="likes" value="{{this.likes}}">
