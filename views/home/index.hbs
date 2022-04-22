@@ -1,9 +1,19 @@
 <head>
-
+  <script src="https://cdn.socket.io/3.0.5/socket.io.min.js"></script>
 </head>
 <body>
   <h1 class="title">{{title}}</h1>
   <p>Welcome to {{title}}</p>
   <a href="/sessions/new" id="login-link">Already a Member? Log In Here</a>
   <a href="/users/new" id="signup-link">Not a Member? Sign Up Here</a>
+  <script>
+    const socket = io()
+    socket.on('hello', (msg) => {
+      console.log(msg)
+    })
+    socket.on('handshake', (msg) => {
+      console.log(msg)
+      socket.emit('answer', 'hi server!')
+    })
+  </script>
 </body>
