@@ -61,7 +61,7 @@ const sessionChecker = (req, res, next) => {
 };
 
 hbs.registerHelper('dateFormat', function (date) {
-  const formatToUse = "DD/MM/YYYY, H:MM"
+  const formatToUse = "DD/MM/YYYY, H:mm"
   return moment(date).format(formatToUse);
 });
 
