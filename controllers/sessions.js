@@ -30,7 +30,7 @@ const SessionsController = {
             req.session.message = {
               type: 'danger',
               intro: 'EMAIL AND PASSWORD DO NOT MATCH',
-              message: 'You better remember next time, Duck brain'
+              message: 'You better remember next time, Duck brain!'
             }
             console.log(err);
             res.redirect('/');
