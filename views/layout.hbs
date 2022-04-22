@@ -4,31 +4,35 @@
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
+
   <body>
 
+
     {{!-- NAV BAR --}}
-    <section>
+    <section class="header">
       <nav>
-        <div class="nav-bar">
+
+        <a href="/posts"><img src="/images/acebook-logo.png"</a>
+        <div class="nav-bar" id="navLinks">
           <ul>
-            <li><a href="/posts">TIMELINE</a></li>
-            <li><a href="/UNDEFINED">PROFILE</a></li>
-            <li><a href="/users/all">FIND A PROFILE</a></li>
-            <li>
-              {{#if user}}
-              <form action='/sessions?_method=DELETE' method='POST'>
-                <input class="button" type="submit" value="LOG OUT">
-              </form>
-              {{else}}
-              <a href="/sessions/new">LOGIN</a>
-              {{/if}}
-            </li>
+          {{#if user}}
+             <li><a href="/posts">TIMELINE</a></li>
+              <li><a href="/users/all">FIND A PROFILE</a></li>
+                <li><form action='/sessions?_method=DELETE' method='POST'>
+                  <input class="button" type="submit" value="LOG OUT">
+                </form></li>
+                <a href="/users/profile"><img class="nav-profile-pic" src="/users/photo/{{user._id}}"  alt="profile picture"></a>
+                {{else}}
+                  <li><a href="/sessions/new">LOGIN</a></li>
+                  <li><a href="/users/new">SIGN UP</a></li>
+                {{/if}}
+              </li>
+            </ul>
           </ul>
         </div>
       </nav>
-    </section>
-
-    {{!-- PAGE BODY HBS --}}
-    {{{body}}}
-  </body>
-</html>
+      </section>
+      {{!-- PAGE BODY HBS --}}
+      {{{body}}}
+    </body>
+  </html>
