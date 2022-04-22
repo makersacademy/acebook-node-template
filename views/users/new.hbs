@@ -2,6 +2,7 @@
 <form id="new-user-form" action="/users" method="post">
   <div class="sign-up-form-fields">
     <h2>Sign up below:</h2><br/>
+    <div id="error_box"></div>
     <label for="firstName">First Name: </label>
     <input class="sign-up-in-inputs" id="firstName" type="text" name="firstName" value="">
     <label for="lastName">Last Name: </label>
@@ -17,4 +18,20 @@
     <input class="submit-button" id="submit" type="submit" value="Submit">
 
   </div>
-</form> 
+</form>
+
+<script>
+  const form = document.getElementById('new-user-form');
+  form.addEventListener('submit',function (e){
+    if(form.email.value !== form.confirm_email.value ){
+      e.preventDefault()
+      document.getElementById('error_box').innerText = "Emails don't match, please correct it"
+  }
+    if(form.password.value !== form.confirm_password.value ){
+      e.preventDefault()
+      document.getElementById('error_box').innerText = "Passwords don't match, please correct it"
+  }})
+</script>
+
+
+
