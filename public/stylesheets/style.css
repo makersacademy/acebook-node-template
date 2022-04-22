@@ -164,3 +164,12 @@ width: 30px;
   overflow-wrap: anywhere;
   max-width: 30em;
 }
+
+.user-header > * {
+  display: inline-block;
+}
+
+.user-header img {
+  width: 1.5em;
+  height: 1.5em;
+}
