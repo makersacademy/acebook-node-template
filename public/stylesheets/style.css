@@ -79,7 +79,7 @@ width: 30px;
 }
 
 .post form {
-  display: inline-block;
+  display: block;
   margin-top: 1em;
 }
 
@@ -142,4 +142,25 @@ width: 30px;
   display: block;
   padding: 0 .5em;
   font-weight: bold;
+}
+
+.comments > div {
+  margin-top: .5em;
+  display: flex;
+  gap: .5em;
+}
+
+.comments > div > div {
+  margin-top: .5em;
+  display: inline-block;
+}
+.comments > div img {
+  height: 2em;
+  width: 2em;
+  margin-top: .75em;
+}
+
+.comments p {
+  overflow-wrap: anywhere;
+  max-width: 30em;
 }
