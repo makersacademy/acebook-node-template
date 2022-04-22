@@ -21,6 +21,11 @@ const UserSchema = new mongoose.Schema({
       return this.password != "";
     },
   },
+
+  profilePicture: {
+    type: String,
+    default: 'default.png',
+  },
 });
 
 const User = mongoose.model("User", UserSchema);
