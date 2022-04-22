@@ -34,11 +34,14 @@ const UsersController = {
   ProfilePicture: (req, res) => {
     const username = req.params.username;
     const user = User.findOne({ username: username }, function (err, user) {
+      // if requesting the user returned an error or didn't return a user at all...
       if (err || !user) {
+        // ...send back default pf
         res
           .status(200)
           .sendFile(path.join(__dirname, "../public/upload", "default.png"));
       } else {
+        // otherwise, send back the user's pf
         res
           .status(200)
           .sendFile(
