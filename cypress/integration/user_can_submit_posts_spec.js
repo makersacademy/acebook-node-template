@@ -76,9 +76,7 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("This is a first message");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
-
-    
+    const currentTime = `${new Date().toLocaleString('en-US', {month: 'short'})}`
+    cy.get('.posts').last().should("contain", currentTime);
   });
-
 })
