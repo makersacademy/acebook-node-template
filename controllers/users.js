@@ -16,6 +16,17 @@ const UsersController = {
       req.body.profilePicture = newName;
     }
 
+    // easter eggs
+    if (req.body.username == "69") {
+      req.body.username = "noice👍♋";
+    }
+    if (req.body.username == "rick") {
+      res.status(418).redirect(
+        "https://www.youtube.com/watch?v=xvFZjo5PgG0&ab_channel=Duran"
+      );
+      return;
+    }
+
     const user = new User(req.body);
     let error = user.validateSync();
     if (error) {
