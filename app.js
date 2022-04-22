@@ -32,35 +32,39 @@ const run = require("nodemon/lib/monitor/run");
 app.post('/acceptFriendRequest', async (req, res) => {
   //accept a friend request that's been sent to you
   
-  //delete the friend request from their sent requests array
+  //delete the friend request from the sender's sentRequests: array
   console.log('you accepted a friend request start');
   console.log(req.body.sessionUsername)
   console.log(req.body.username)
   console.log('end')
-  User.findOneAndUpdate(
+   User.findOneAndUpdate(
   { username: req.body.request},
   { $pull: {sentRequests: req.body.sessionUsername}},
   { new: true })
   .exec()
-//add your name to the request senders friends list
-  User.findOneAndUpdate(
+
+  //delete the friend request from their receivedRequests: array
+   User.findOneAndUpdate(
+    { username: req.body.request},
+    { $pull: {receivedRequests: req.body.request}},
+    { new: true })
+    .exec()
+  
+  
+//add your name to the request senders friendsList:
+   User.findOneAndUpdate(
     { username: req.body.request},
     { $push: {friendsList: [req.body.sessionUsername]}},
     { new: true })
     .exec()
 
-  //delete the friend request from their received requests array
-  User.findOneAndUpdate(
-  { username: req.body.request},
-  { $pull: {receivedRequests: req.body.request}},
-  { new: true })
-  .exec()
-//add the name of the person who sent a friend request to your friends
+    //add the name of the person who sent a friend request to your friendsList:
   User.findOneAndUpdate(
     { username: req.body.sessionUsername},
     { $push: {friendsList: [req.body.request]}},
     { new: true })
     .exec()
+
 
 });
 app.post('/sendFriendRequest', async (req, res) => {

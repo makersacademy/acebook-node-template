@@ -10,7 +10,10 @@ if(requests == "") {
     const acceptButtonEl = document.createElement('button');
     acceptButtonEl.className = "acceptFriendButton";
     acceptButtonEl.innerText = "Accept " + request; 
-    acceptButtonEl.addEventListener('click', event => {
+    const brEl = document.createElement('br')
+    divEl.append(brEl);
+    divEl.append(acceptButtonEl);
+     acceptButtonEl.addEventListener('click', event => {
       console.log('click');
       const sessionUsername = divEl.getAttribute("sessionUsername");
       const data = {request, sessionUsername}
@@ -21,12 +24,11 @@ if(requests == "") {
                    },
                     body: JSON.stringify(data)
                    }
-  
+                   
       fetch('/acceptFriendRequest', options);
+      acceptButtonEl.remove()
 
     })
-    const brEl = document.createElement('br')
-    divEl.append(brEl);
-    divEl.append(acceptButtonEl);
+    
   })
 }
