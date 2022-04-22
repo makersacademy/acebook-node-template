@@ -24,20 +24,42 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  Likes: (req, res) => {
-    console.log("does this work")
-    const post = Post.find({message: req.body.message })
-    console.log(post)
-    post.likes += 1
-    res.status(201).redirect("/posts");
-    // post.overwrite({"likes": post.likes +1})
-    // post.save((err) => {
+  //this function increases the value of the likes in the database by one
+  Like: (req, res) => {
+    Post.findOne({message: req.body.message }, (err, doc) => {
+
+      if (err) {
+        throw err;
+      }
+      //doc is a row in the database
+      doc.likes += 1;
+      doc.save((err) => {
     
-    //   if (err) {
-    //     throw err;
-    //   }
-    //   res.status(201).redirect("/posts");
-    // });
-  }};
+        if (err) {
+          throw err;
+        }
+  
+        res.status(201).redirect("/posts");
+      });
+    });
+  },  
+  Unlike: (req, res) => {
+  Post.findOne({message: req.body.message }, (err, doc) => {
+
+    if (err) {
+      throw err;
+    }
+    //doc is a row in the database
+    doc.likes -= 1;
+    doc.save((err) => {
+  
+      if (err) {
+        throw err;
+      }
+
+      res.status(201).redirect("/posts");
+  });
+});
+}};
 
 module.exports = PostsController;
