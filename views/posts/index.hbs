@@ -1,8 +1,10 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <img src="/users/{{ this.author }}/profilepicture" alt="">
-  <li>{{ this.message }} @ {{ idtotime this._id }} by {{ this.author }}</li>
+    <img src="/users/{{ this.author }}/profilepicture" alt="">
+    <li><h3>{{this.message}}</h3>
+    <li><h4>by {{ this.author }}</h4>
+    <p> {{idtotime this._id}}</p></li>
   {{/each}}
 </ul>
 
