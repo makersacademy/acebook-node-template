@@ -144,6 +144,11 @@ width: 30px;
   font-weight: bold;
 }
 
+#error_box {
+  padding: 5px;
+  margin:  5px; color: red;
+}
+
 .comments > div {
   margin-top: .5em;
   display: flex;
