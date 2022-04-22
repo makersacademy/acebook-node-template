@@ -1,8 +1,16 @@
-<form id="new-user-form" action="/users" method="post">
+<form id="new-user-form" enctype="multipart/form-data" action="/users" method="post">
+  <label for="username">Username: </label>
+  <input id="username" type="text" name="username" value="">
+
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
+
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
+
+  <label for="profilePicture">Profile Picture: </label>
+  <input type="file" name="profilePicture" accept="image/*" />
+
+  <input id="submit" type="submit" value="Log In">
 </form>
 <a href="/sessions/new">Already have an account? Log in</a>

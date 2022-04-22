@@ -3,7 +3,8 @@
 <a class="new-post-link" href="/posts/new">New post</a>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}} @ {{idtotime this._id}}</li>
-  <img class="image" src="/upload/{{this.photo}}" style="width:300px;height: 300px;border: 2px solid rgb(78, 145, 233);"/>
+    <!-- <img src="/users/{{ this.author }}/profilepicture" alt=""> -->
+    <li>{{this.message}} @ {{idtotime this._id}} by {{ this.author }}</li>
+    <img class="image" src="/upload/{{this.photo}}" style="width:300px;height: 300px;border: 2px solid rgb(78, 145, 233);"/>
   {{/each}}
 </ul>
