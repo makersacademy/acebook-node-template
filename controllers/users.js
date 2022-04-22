@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const path = require("path");
 const util = require("../util/photoHandling");
 
 const UsersController = {
@@ -8,7 +9,7 @@ const UsersController = {
 
   Create: (req, res) => {
     if (req.files) {
-      console.log('has been called');
+      console.log("has been called");
       let photo = req.files.profilePicture;
       let newName = util.generateName() + "." + util.getExtension(photo.name);
       photo.mv("./public/upload/" + newName);
@@ -19,7 +20,7 @@ const UsersController = {
     let error = user.validateSync();
     if (error) {
       res.redirect("/users/new");
-      return
+      return;
     }
 
     user.save((err) => {
@@ -27,6 +28,23 @@ const UsersController = {
         throw err;
       }
       res.status(201).redirect("/posts");
+    });
+  },
+
+  ProfilePicture: (req, res) => {
+    const username = req.params.username;
+    const user = User.findOne({ username: username }, function (err, user) {
+      if (err || !user) {
+        res
+          .status(200)
+          .sendFile(path.join(__dirname, "../public/upload", "default.png"));
+      } else {
+        res
+          .status(200)
+          .sendFile(
+            path.join(__dirname, "../public/upload", user.profilePicture)
+          );
+      }
     });
   },
 };
