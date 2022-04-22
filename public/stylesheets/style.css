@@ -74,8 +74,8 @@ body {
 }
 
 #main-container {
-  margin-left: 480px;
-  margin-right: 210px;
+  margin-left: 550px;
+  margin-right: 250px;
   margin-top: 140px;
   background-color: whitesmoke;
   padding: 10px 10px;
@@ -252,7 +252,7 @@ body {
   padding: 10px 10px;
   border-radius: 10px;
   position: fixed;
-  width: 60%;
+  width: 70%;
   top: 60px;
 }
 
@@ -296,5 +296,3 @@ body {
   color: white;
   opacity: 0.9;
 }
-
-/* a */

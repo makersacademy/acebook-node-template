@@ -5,6 +5,6 @@ describe("Timeline", () => {
     webHelper.signUp();
     webHelper.submitPost();
 
-    cy.get(".posts:first").should("contain", "username");
+    cy.get(".posts:first").should("contain", "@username");
   });
 });
