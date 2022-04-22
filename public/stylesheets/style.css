@@ -91,6 +91,13 @@ input[type=text], input[type=password], input[type=email] {
   border-radius: 12px;
 }
 
+.new_post_form {
+  width: 65%;
+  margin: auto;
+  text-align: center;
+  padding: 2%;
+}
+
 .new_post_button {
   font-size: 18px;
   background-color: #4267B2;

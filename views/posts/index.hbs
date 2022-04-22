@@ -6,6 +6,7 @@
       console.log('Feed loaded')
       const socket = io()
       const userId = document.getElementsByName("user_id")[0].content
+      const postsFeed = document.querySelector('.posts')
       const likeButtons = document.querySelectorAll('.like_button')
 
       for (i = 0; i < likeButtons.length; i++ ) {
@@ -37,6 +38,14 @@
         console.log(currentLikes)
       })
 
+      const newPostButton = document.querySelector('.new_post_button')
+      newPostButton.addEventListener('click', (event) => {
+      console.log('NEW POST')
+      const newChild = document.createElement('div')
+      newChild.setAttribute('class', 'post')
+      newChild.innerText = "New Post Here"
+      postsFeed.insertBefore(newChild, postsFeed.firstChild)
+      })
 
     })
 
@@ -47,10 +56,11 @@
 <body>
   <h1 class="page-header">Timeline</h1>
   <h2>{{user.firstName}} {{user.surname}}</h2>
+  <div class="new_post_form">
+  <button class="new_post_button">New post</button>
+  </div>
   <div class="posts">
-    <form action="/posts/new" method="get">
-      <button class="new_post_button">New post</button>
-  </form>
+
     {{#each posts}}
     <div class="post" id="{{this.id}}">
       <div class="post_author">
