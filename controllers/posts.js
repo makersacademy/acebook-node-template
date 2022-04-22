@@ -23,6 +23,21 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-};
+  Delete: async (req, res) => {
+    try {
+      const deletePost = Post.findById(req.params.id);
+      //console.log(`userdid: ${userId}`)
+      //console.log(Object.values(deletePost));
+      if (deletePost.userId === req.session._id) {
+        await deletePost.deleteOne();
+        res.status(200).redirect("/posts");
+      } else {
+        res.status(403).json("You cannot delete this post");
+      }
+    } catch (err) {
+    res.status(500).json(err);
+    }
+  } 
+}
 
 module.exports = PostsController;
