@@ -44,7 +44,7 @@ const UsersController = {
 
   ProfilePicture: (req, res) => {
     const username = req.params.username;
-    const user = User.findOne({ username: username }, function (err, user) {
+    User.findOne({ username: username }, function (err, user) {
       // if requesting the user returned an error or didn't return a user at all...
       if (err || !user) {
         // ...send back default pf
