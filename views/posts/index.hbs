@@ -19,14 +19,24 @@
         })
       }
 
-      socket.on('likes updated', (postId) => {
-        console.log('need to update ' + postId)
+      socket.on('add like', (postId) => {
+        console.log('adding 1 like to ' + postId)
         const post = document.getElementById(postId)
         const likes = post.querySelector('.post_likes').querySelector('#likes_count')
         currentLikes = parseInt(likes.textContent)
         likes.innerText = currentLikes + 1
         console.log(currentLikes)
       })
+
+      socket.on('remove like', (postId) => {
+        console.log('removing 1 like from ' + postId)
+        const post = document.getElementById(postId)
+        const likes = post.querySelector('.post_likes').querySelector('#likes_count')
+        currentLikes = parseInt(likes.textContent)
+        likes.innerText = currentLikes - 1
+        console.log(currentLikes)
+      })
+
 
     })
 

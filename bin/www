@@ -115,15 +115,36 @@ io.on('connection', (socket) => {
   })
 
   socket.on('newLike', (params) => {
-    console.log(`user ${params.userId}`)
-    console.log(`liked post ${params.postId}`)
-    Post.updateOne(
-      { _id: params.postId },
-      { $push: { likes: params.userId} }
-    ).then((res) => {
-      console.log(res)
-      socket.emit('likes updated', params.postId)
+    
+    Post.findOne(
+       { _id: params.postId }
+      ).then((entry) => {
+        if (entry.likes.includes(params.userId)) {
+
+          console.log(`user ${params.userId}`)
+          console.log(`unliked post ${params.postId}`)
+
+          Post.updateOne(
+            { _id: params.postId },
+            { $pull: { likes: params.userId} }
+          ).then((res) => {
+            console.log(res)
+            socket.emit('remove like', params.postId)
+          })
+
+        } else {
+
+          console.log(`user ${params.userId}`)
+          console.log(`liked post ${params.postId}`)
+
+          Post.updateOne(
+            { _id: params.postId },
+            { $push: { likes: params.userId} }
+          ).then((res) => {
+            console.log(res)
+            socket.emit('add like', params.postId)
+          })
+        }
     })
   })
-
 })
