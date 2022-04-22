@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {{#each posts}}
+  <h1>{{this.message}}</h1>
+    {{#each this.comments}}
+    <li>{{this.note}}</li>
+    {{/each}}
+<form id="comment-post-form" action="/posts/{{this._id}}/comment" method="post">
+  <label for="comments">Whats up?: </label>
+  <input id="comments" type="text" name="comments" value="">
+  <input type="submit" value="Submit">
+</form>
+{{/each}}
+<form id="return-to-posts-button" action="/posts" method="GET">
+  <input type="submit" value="Back to posts">
+</form>
+</body>
+</html>
