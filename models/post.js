@@ -8,7 +8,6 @@ const PostSchema = new mongoose.Schema({
 
   author: {
     type: String,
-    required: () => {return this.author != ""},
   },
 
   photo: {

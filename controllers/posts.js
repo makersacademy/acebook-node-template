@@ -26,6 +26,7 @@ const PostsController = {
     const post = new Post(req.body);
     let error = post.validateSync();
     if (error) {
+      console.log(error);
       res.redirect("/posts/new");
       return;
     }
