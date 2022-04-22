@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 var app = require("../app");
+const Post = require('../models/post.js')
 var debug = require("debug")("acebook:server");
 var http = require("http");
 var mongoose = require("mongoose");
@@ -101,6 +102,8 @@ function onListening() {
   debug("Listening on " + bind);
 }
 
+// Websocket Events
+
 const io = require('socket.io')(server, { cors: { origin: "*" }})
 
 io.on('connection', (socket) => {
@@ -109,6 +112,18 @@ io.on('connection', (socket) => {
 
   socket.on('answer', (msg) => {
     console.log(msg)
+  })
+
+  socket.on('newLike', (params) => {
+    console.log(`user ${params.userId}`)
+    console.log(`liked post ${params.postId}`)
+    Post.updateOne(
+      { _id: params.postId },
+      { $push: { likes: params.userId} }
+    ).then((res) => {
+      console.log(res)
+      socket.emit('likes updated', params.postId)
+    })
   })
 
 })

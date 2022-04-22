@@ -1,6 +1,38 @@
 <head>
-  <script src="/javascripts/like_button.js"></script>
+  <script src="https://cdn.socket.io/3.0.5/socket.io.min.js"></script>
+  <script name="like_button">
+
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Feed loaded')
+      const socket = io()
+      const userId = document.getElementsByName("user_id")[0].content
+      const likeButtons = document.querySelectorAll('.like_button')
+
+      for (i = 0; i < likeButtons.length; i++ ) {
+        console.log('found like button')
+        likeButtons[i].addEventListener('click', (event) => {
+          console.log('LIKE')
+          const parent = event.target.parentElement
+          const postId = parent.children[0].textContent
+          socket.emit('newLike', {postId: postId, userId: userId} )
+
+        })
+      }
+
+      socket.on('likes updated', (postId) => {
+        console.log('need to update ' + postId)
+        const post = document.getElementById(postId)
+        const likes = post.querySelector('.post_likes').querySelector('#likes_count')
+        currentLikes = parseInt(likes.textContent)
+        likes.innerText = currentLikes + 1
+        console.log(currentLikes)
+      })
+
+    })
+
+  </script>
   <meta name="user_id" content="{{user._id}}">
+  
 </head>
 <body>
   <h1 class="page-header">Timeline</h1>
@@ -10,7 +42,7 @@
       <button class="new_post_button">New post</button>
   </form>
     {{#each posts}}
-    <div class="post">
+    <div class="post" id="{{this.id}}">
       <div class="post_author">
         {{this.authorFirstName}} {{this.authorSurname}}
       </div>
