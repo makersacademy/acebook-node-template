@@ -1,10 +1,18 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: () => {
+      return this.username != "";
+    },
+  },
 
   email: {
     type: String,
-    required: () => {return this.email != ""},
+    required: () => {
+      return this.email != "";
+    },
   },
 
   password: {
@@ -12,13 +20,9 @@ const UserSchema = new mongoose.Schema({
     required: () => {return this.password != ""},
   },
 
-  name: {
+  profilePicture: {
     type: String,
-    required: () => {return this.name != ""},
-  },
-
-  profilePic: {
-    type: String,
+    default: 'default.png',
   },
 });
 
