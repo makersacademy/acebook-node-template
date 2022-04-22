@@ -12,3 +12,4 @@ document.querySelectorAll("#comment-btn").forEach((button) => {
     }
   });
 });
+console.log("hello");

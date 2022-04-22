@@ -16,7 +16,7 @@ const signIn = () => {
 
 const submitPost = () => {
   cy.visit("/posts");
-  cy.get("message").type("Hello, world!");
+  cy.get("#message").type("Hello, world!");
   cy.get("#new-post-form").submit();
 };
 
