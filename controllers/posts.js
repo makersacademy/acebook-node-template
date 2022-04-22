@@ -18,7 +18,8 @@ const PostsController = {
       img: {
         contentType: req.file?.type,
         data: req.file?.buffer
-      }
+      },
+      comments: []
     });
 
     post.save((err) => {
@@ -50,7 +51,15 @@ const PostsController = {
     }
 
     res.redirect('/posts')
+  },
+
+  async Comment (req, res) {
+    await Post.findByIdAndUpdate(req.body.post,
+      {$push: {comments: {comment: req.body.comment, author: req.session.user._id}}}
+    );
+    res.redirect('/posts');
   }
+
 };
 
 module.exports = PostsController;
