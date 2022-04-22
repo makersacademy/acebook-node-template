@@ -8,6 +8,9 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
+      if (req.body.email !== req.body.confirm_email || req.body.password !== req.body.confirm_password) { 
+        return res.redirect("users/new");    
+      }
     user.save((err) => {
       if (err) {
         throw err;
