@@ -2,11 +2,16 @@
 <ul class="posts">
     {{#each posts}}
         <li class="post">
-            <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
-            {{id-to-timestamp this._id}}
+            <div class="user-header">
+                <img src="{{dataImage this.author.img}}">
+                <div>
+                    <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
+                    <h6>{{id-to-timestamp this._id}}</h6>
+                </div>
+            </div>
             <div>{{this.message}}</div>
             {{#if this.img.data}}
-                <img src="data:{{this.img.contentType}};base64,{{tob64 this.img.data}}" height="300">
+                <img src="{{dataImage this.img}}" height="300">
             {{/if}}
 
             <form action="/posts/like" method="post">
@@ -19,7 +24,7 @@
             <div class="comments">
                 {{#each this.comments}}
                     <div>
-                        <img src="/users/photo/{{this.author._id}}/" alt="profile picture">
+                        <img src="{{dataImage this.author.img}}" alt="profile picture">
                         <div>
                             <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
                             <p>{{this.comment}}</p>
