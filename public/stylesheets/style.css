@@ -298,3 +298,41 @@ body {
   color: white;
   opacity: 0.9;
 }
+
+.friends-container {
+  margin-top: 30px;
+  padding: 20px 20px 20px 30px;
+  border-radius: 10px;
+  background-color: white;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+#friendRequests {
+  font-size: 18px;
+}
+
+.friends {
+  font-size: 16px;
+  padding: 8px 10px;
+  color: #752813;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.friendRequestButton {
+  font-size: 11pt;
+  border: none;
+  top: 20;
+  right: 50;
+  border-radius: 10px;
+  background-color: #76b6c2;
+  color: white;
+  opacity: 0.9;
+  padding: 5px;
+  margin: 10px;
+}
