@@ -8,6 +8,10 @@ const PostSchema = new mongoose.Schema({
     data: Buffer, 
     contentType: String 
   },
+  comments: [{
+    author: mongoose.Schema.Types.ObjectId,
+    comment: String
+  }],
 });
 
 
