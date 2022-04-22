@@ -10,21 +10,35 @@ a {
   color: #00B7FF;
 }
 
-nav {
-  display: flex;
-  padding: 2% 6%;
-  justify-content: space-between;
+.header {
+  width: 100%;
 }
 
-.nav-bar {
-  text-align: right;
+nav {
+  display: flex;
+  padding: 1% 2%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav img {
+  width: 70px;
+  height: 80px;
+}
+.nav-profile-pic {
+height: 30px;
+width: 30px;
+
+}
+.nav-bar ul {
+  margin: 0;
+  padding: 0;
 }
 
 .nav-bar ul li {
   list-style: none;
-  display: inline-block;
   padding: 8px 12px;
-  position: relative;
+  display: inline-block;
 }
 
 .nav-bar ul li a {
@@ -48,28 +62,28 @@ nav {
 }
 
 .button {
-background-color: transparent;
-border-style: none;
+  background-color: transparent;
+  border-style: none;
 
 }
 
 .profile-pic {
   height: 150px;
-  width: auto; 
+  width: auto;
 }
 
-.posts > .post {
+.posts>.post {
   padding: 1em;
   border: 1px solid gray;
   display: inline-block;
 }
 
 .post form {
-  display: inline-block;
+  display: block;
   margin-top: 1em;
 }
 
-.post > .button-like {
+.post>.button-like {
   display: inline-block;
 }
 
@@ -105,26 +119,26 @@ border-style: none;
   gap: 1em;
 }
 
-.all-users > div {
+.all-users>div {
   border: 1px solid black;
   display: flex;
   align-items: center;
   flex: 18em 0 0;
 }
 
-.all-users > div > div {
+.all-users>div>div {
   text-align: center;
   flex-grow: 1;
 }
 
-.all-users > div img {
+.all-users>div img {
   width: 5em;
   height: 5em;
   display: inline-block;
   flex-shrink: 0;
 }
 
-.all-users > div span {
+.all-users>div span {
   display: block;
   padding: 0 .5em;
   font-weight: bold;
@@ -133,4 +147,34 @@ border-style: none;
 #error_box {
   padding: 5px;
   margin:  5px; color: red;
+}
+
+.comments > div {
+  margin-top: .5em;
+  display: flex;
+  gap: .5em;
+}
+
+.comments > div > div {
+  margin-top: .5em;
+  display: inline-block;
+}
+.comments > div img {
+  height: 2em;
+  width: 2em;
+  margin-top: .75em;
+}
+
+.comments p {
+  overflow-wrap: anywhere;
+  max-width: 30em;
+}
+
+.user-header > * {
+  display: inline-block;
+}
+
+.user-header img {
+  width: 1.5em;
+  height: 1.5em;
 }

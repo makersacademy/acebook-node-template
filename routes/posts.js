@@ -8,5 +8,6 @@ router.get("/", PostsController.Index);
 router.post("/", multer.single("img"), PostsController.Create);
 router.get("/new", PostsController.New);
 router.post("/like", PostsController.Like);
+router.post("/comment", PostsController.Comment);
 
 module.exports = router;

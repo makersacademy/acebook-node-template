@@ -2,7 +2,7 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find().populate("author").exec((err, posts) => {
+    Post.find().populate(["author", "comments.author"]).exec((err, posts) => {
       if (err) {
         throw err;
       }
@@ -18,7 +18,8 @@ const PostsController = {
       img: {
         contentType: req.file?.type,
         data: req.file?.buffer
-      }
+      },
+      comments: []
     });
 
     post.save((err) => {
@@ -50,7 +51,15 @@ const PostsController = {
     }
 
     res.redirect('/posts')
+  },
+
+  async Comment (req, res) {
+    await Post.findByIdAndUpdate(req.body.post,
+      {$push: {comments: {comment: req.body.comment, author: req.session.user._id}}}
+    );
+    res.redirect('/posts');
   }
+
 };
 
 module.exports = PostsController;
