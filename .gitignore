@@ -1,6 +1,7 @@
 **.sh
 **/upload/**
 .vscode/**
+**.DS_Store
 
 # Logs
 logs
