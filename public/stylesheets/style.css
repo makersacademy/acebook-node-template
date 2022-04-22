@@ -6,6 +6,11 @@
 
 /* NAV BAR POSITION AND STYLING */
 
+body {
+background-color: #FD3DEDC;
+}
+
+
 a {
   color: #00B7FF;
 }
@@ -25,11 +30,13 @@ nav img {
   width: 70px;
   height: 80px;
 }
+
 .nav-profile-pic {
-height: 30px;
-width: 30px;
+  height: 30px;
+  width: 30px;
 
 }
+
 .nav-bar ul {
   margin: 0;
   padding: 0;
@@ -74,8 +81,9 @@ width: 30px;
 
 .posts>.post {
   padding: 1em;
-  border: 1px solid gray;
+  border: 3px solid #7C99AC;
   display: inline-block;
+  border-radius: 15px;
 }
 
 .post form {
@@ -144,17 +152,18 @@ width: 30px;
   font-weight: bold;
 }
 
-.comments > div {
+.comments>div {
   margin-top: .5em;
   display: flex;
   gap: .5em;
 }
 
-.comments > div > div {
+.comments>div>div {
   margin-top: .5em;
   display: inline-block;
 }
-.comments > div img {
+
+.comments>div img {
   height: 2em;
   width: 2em;
   margin-top: .75em;
@@ -172,4 +181,21 @@ width: 30px;
 .user-header img {
   width: 1.5em;
   height: 1.5em;
+}
+/* TIMELINE LAYOUT */
+
+h1 {
+  text-align: center;
+}
+
+.timeline {
+text-align: center;
+}
+
+.timeline ul {
+ display: inline-grid;
+}
+
+.timeline li {
+  margin: 10px;
 }
