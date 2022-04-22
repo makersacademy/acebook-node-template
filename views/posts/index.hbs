@@ -1,7 +1,13 @@
 <h1>Timeline</h1>
+<<<<<<< HEAD
 <ul class="posts">
   {{#each posts}} 
   <li>{{this.message}} Likes {{this.likes}} <a href="/posts/like"><button id="like-button" >like</button></a> </li>
+=======
+<ul reversed class="posts">
+  {{#each posts}}
+  <li>{{this.message}} {{dateFormat this.createdAt}} {{log this.createdAt}}</li>
+>>>>>>> main
   {{/each}}
 </ul>
 

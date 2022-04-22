@@ -5,14 +5,31 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{#if user}}
-      <form action='/sessions?_method=DELETE' method='POST'>
-        <input type="submit" value="Log Out">
-      </form>
-    {{else}}
-      <a href="/users/new">Sign Up</a> |
-      <a href="/sessions/new">Log in</a>
-    {{/if}}
+    <nav>
+      <div class="nav-center">
+        <h3 id="appTitle">
+          {{#if user}}
+            <a href="/posts">Acebook</a>
+          {{else}}
+            <a href="/">Acebook</a>
+          {{/if}}
+        </h3>
+
+        <ul class="nav-links">
+          <li id="registration">
+            {{#if user}}
+              <form action='/sessions?_method=DELETE' method='POST'>
+                <input type="submit" id="logOut" value="Log Out">
+              </form>
+            {{else}}
+              <a href="/users/new">Sign Up</a>
+              <a href="/sessions/new">Log in</a>
+            {{/if}}
+          </li>
+        </ul>
+      </div>
+      
+    </nav>
     {{{body}}}
   </body>
 </html>
