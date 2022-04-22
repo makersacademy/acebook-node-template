@@ -16,8 +16,8 @@
       <input
         type="image"
         src="https://www.clipartmax.com/png/small/292-2924736_logout-icon-png-blue.png"
-        height="40"
-        width="40"
+        height="50"
+        width="50"
       />
     </form>
   </div>
@@ -30,14 +30,14 @@
     </div>
 
     <div>  
-    <h4>Hello, {{user.username}}!!</h4>
+    <h4>Hello, {{user.username}}!</h4>
     </div>
   </div>
 
   <div>
     <form id="new-post-form" action="/posts" method="post">
       <label for="message"></label>
-      <input id="message" type="text" name="message" placeholder="Quack quack quack..." value="" required />
+      <input id="message" class="input-message" type="text" name="message" placeholder="Quack quack quack..." value="" required />
       <input id="photo" class="input-photo" type="text" name="postImage" placeholder="Add photo" value="" />
         <input class="post-submit-btn"
       type="image"

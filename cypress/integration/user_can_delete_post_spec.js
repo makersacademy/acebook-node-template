@@ -1,4 +1,4 @@
-const webHelper = require('../support/web_helpers.js');
+const webHelper = require("../support/web_helpers.js");
 
 describe("Timeline", () => {
   it("can delete post", () => {
@@ -7,6 +7,6 @@ describe("Timeline", () => {
 
     cy.get("#delete-post").submit();
 
-    cy.get(".posts").should("not.contain", "Hello, world!")
+    cy.get(".posts").should("not.contain", "Hello, world!");
   });
 });

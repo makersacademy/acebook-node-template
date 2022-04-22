@@ -1,4 +1,4 @@
-const webHelper = require('../support/web_helpers.js');
+const webHelper = require("../support/web_helpers.js");
 
 describe("Authentication", () => {
   it("A user signs in and is redirected to /posts", () => {

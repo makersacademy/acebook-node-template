@@ -13,7 +13,7 @@ body {
 }
 
 .welcome-page h1 {
-  color: white;
+  color: whitesmoke;
 }
 
 #nav-bar {
@@ -41,8 +41,9 @@ body {
 }
 
 #logout {
-  height: 50%;
-  padding: 0 40px;
+  /* height: 50%; */
+  padding: 20px 40px;
+  margin-top: 10px;
 }
 
 .logout-btn {

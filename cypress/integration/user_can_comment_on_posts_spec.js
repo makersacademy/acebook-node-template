@@ -1,4 +1,4 @@
-const webHelper = require("../support/web_helpers.js");
+// const webHelper = require("../support/web_helpers.js");
 
 describe("Timeline", () => {
   it("can submit comments on posts and view them", () => {
