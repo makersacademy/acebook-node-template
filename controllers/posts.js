@@ -22,10 +22,11 @@ const PostsController = {
       req.body.photo = newName;
     }
 
-    req.body.author = req.session.user.email;
+    req.body.author = req.session.user.username;
     const post = new Post(req.body);
     let error = post.validateSync();
     if (error) {
+      console.log(error);
       res.redirect("/posts/new");
       return;
     }

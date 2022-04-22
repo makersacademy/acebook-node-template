@@ -12,6 +12,7 @@ describe("User model", () => {
 
   it("has an email address", () => {
     const user = new User({
+      username: "jack",
       email: "someone@example.com",
       password: "password",
     });
@@ -20,6 +21,7 @@ describe("User model", () => {
 
   it("has an empty email address field", () => {
     const user = new User({
+      username: "jack",
       email: "",
       password: "password",
     });
@@ -28,6 +30,7 @@ describe("User model", () => {
 
   it("has a password", () => {
     const user = new User({
+      username: "jack",
       email: "someone@example.com",
       password: "password",
     });
@@ -36,6 +39,7 @@ describe("User model", () => {
 
   it("has an empty password field", () => {
     const user = new User({
+      username: "jack",
       email: "someone@example.com",
       password: "",
     });
@@ -44,6 +48,7 @@ describe("User model", () => {
 
   it("has an empty email address & password field", () => {
     const user = new User({
+      username: "jack",
       email: "",
       password: "",
     });
@@ -61,6 +66,7 @@ describe("User model", () => {
 
   it("can save a user", (done) => {
     const user = new User({
+      username: "jack",
       email: "someone@example.com",
       password: "password",
     });
@@ -72,6 +78,7 @@ describe("User model", () => {
         expect(err).toBeNull();
 
         expect(users[0]).toMatchObject({
+          username: "jack",
           email: "someone@example.com",
           password: "password",
         });
