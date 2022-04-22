@@ -45,7 +45,7 @@ app.post('/acceptFriendRequest', async (req, res) => {
 
   //delete the friend request from their receivedRequests: array
    User.findOneAndUpdate(
-    { username: req.body.request},
+    { username: req.body.sessionUsername},
     { $pull: {receivedRequests: req.body.request}},
     { new: true })
     .exec()
