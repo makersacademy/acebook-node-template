@@ -9,6 +9,7 @@ describe("Post model", () => {
       done();
     });
   });
+  
   it("has a message", () => {
     var post = new Post({ message: "some message" });
     expect(post.message).toEqual("some message");
@@ -29,6 +30,23 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
         expect(posts[0]).toMatchObject({ message: "some message" });
+        done();
+      });
+    });
+  });
+
+  it("has a comment", () => {
+    var post = new Post({ message: "some message", comment: "test comment"});
+    expect(post.comment).toEqual("test comment");
+  });
+
+  it("can save a comment", (done) => {
+    var post = new Post({ message: "some message", comment: "test comment" });
+    post.save((err) => {
+      expect(err).toBeNull(); 
+      Post.find((err, posts) => {
+        expect(err).toBeNull(); 
+        expect(posts[0]).toMatchObject({ message: "some message", comment: "test comment"})
         done();
       });
     });
