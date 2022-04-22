@@ -88,7 +88,8 @@ body {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  padding: 10px 85px;
+  margin-left: 85px;
+  margin-top: 10px;
 }
 
 #signin,
@@ -240,8 +241,8 @@ body {
   padding: 5px 5px;
 }
 #side-bar h4 {
-  padding: 25px;
-  margin-left: 60px;
+  padding: 15px;
+  margin-left: 80px;
 }
 #new-post-form {
   display: flex;
@@ -264,6 +265,7 @@ body {
   border-radius: 10px;
   box-sizing: border-box;
   border-color: #76b6c2;
+  padding-left: 10px;
 }
 
 .post-div {
