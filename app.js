@@ -25,8 +25,83 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
  
 const Post = require("./models/post");
+const User = require("./models/user");
 const req = require("express/lib/request");
 const run = require("nodemon/lib/monitor/run");
+
+app.post('/acceptFriendRequest', async (req, res) => {
+  //accept a friend request that's been sent to you
+  
+  //delete the friend request from the sender's sentRequests: array
+  console.log('you accepted a friend request start');
+  console.log(req.body.sessionUsername)
+  console.log(req.body.username)
+  console.log('end')
+   User.findOneAndUpdate(
+  { username: req.body.request},
+  { $pull: {sentRequests: req.body.sessionUsername}},
+  { new: true })
+  .exec()
+
+  //delete the friend request from their receivedRequests: array
+   User.findOneAndUpdate(
+    { username: req.body.sessionUsername},
+    { $pull: {receivedRequests: req.body.request}},
+    { new: true })
+    .exec()
+  
+  
+//add your name to the request senders friendsList:
+   User.findOneAndUpdate(
+    { username: req.body.request},
+    { $push: {friendsList: [req.body.sessionUsername]}},
+    { new: true })
+    .exec()
+
+    //add the name of the person who sent a friend request to your friendsList:
+  User.findOneAndUpdate(
+    { username: req.body.sessionUsername},
+    { $push: {friendsList: [req.body.request]}},
+    { new: true })
+    .exec()
+
+
+});
+app.post('/sendFriendRequest', async (req, res) => {
+  //add username of the friend to your friend requests sent
+  console.log('you added a friend');
+  console.log(req.body.sessionUsername)
+  console.log(req.body.username)
+  User.findOneAndUpdate(
+  { username: req.body.sessionUsername},
+  { $push: {sentRequests: [req.body.username]}},
+  { new: true })
+  .exec()
+
+  User.findOneAndUpdate(
+    { username: req.body.username},
+    { $push: {receivedRequests: [req.body.sessionUsername]}},
+    { new: true })
+    .exec()
+
+
+
+//   .then(function(friend) {
+//     console.log("sent test: "+ JSON.stringify(friend));
+// })
+//add username to the receivers received friend requests array
+// User.findOneAndUpdate(
+//   {  username: req.body.username},
+//   {$push: {receivedRequests: [ req.body.username]}},
+//   { new: true })
+//   .exec()
+//   .then(function(friend) {
+//     console.log("received test: "+ JSON.stringify(friend));
+// })
+
+});
+  
+
 
 app.post('/unlike', async (req, res) => {
   //method for unliking the post in the database
@@ -34,6 +109,7 @@ app.post('/unlike', async (req, res) => {
     { _id: req.body.postId },
     { $pull: { likes: req.body.username }},
     { new: true })
+
 
     //'executes' the query in the database
     .exec()
@@ -44,6 +120,7 @@ app.post('/unlike', async (req, res) => {
 
 })
 
+
 app.post('/like', async (req, res) => {
   //method for liking the post in the database
   Post.findOneAndUpdate(
@@ -53,6 +130,8 @@ app.post('/like', async (req, res) => {
 
     //'executes' the query in the database
     .exec()
+
+
 
     .then(function(likes) {
       console.log("TEST: "+ JSON.stringify(likes));
@@ -68,6 +147,7 @@ app.use(
     cookie: {
       expires: 1000000,
     },
+    sameSite: false
   })
 );
 

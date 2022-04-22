@@ -1,7 +1,5 @@
 document.querySelectorAll(".likeUnlike").forEach(button => {
-  console.log(button)
-  console.log(button.getAttribute("username"))
-  console.log(button.getAttribute("likes"))
+
 
 
   if(button.getAttribute("likes").includes(button.getAttribute("username"))){
@@ -10,8 +8,6 @@ document.querySelectorAll(".likeUnlike").forEach(button => {
     button.value = "Like"
   }
   button.addEventListener('click', event => { 
-  console.log(button)
-  console.log(event.target)
     if(button.value === "Like") {
       
     //makes the Button display unlike to show the post is liked
