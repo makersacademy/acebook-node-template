@@ -1,18 +1,17 @@
-document.querySelectorAll(".likeUnlike").forEach((button) => {
-  console.log(button);
-  console.log(button.getAttribute("username"));
-  console.log(button.getAttribute("likes"));
+document.querySelectorAll(".likeUnlike").forEach(button => {
+
 
   if (button.getAttribute("likes").includes(button.getAttribute("username"))) {
     button.value = "Unlike";
   } else {
     button.value = "Like";
   }
-  button.addEventListener("click", (event) => {
-    console.log(button);
-    console.log(event.target);
-    if (button.value === "Like") {
-      //makes the Button display unlike to show the post is liked
+  button.addEventListener('click', event => { 
+    if(button.value === "Like") {
+      
+    //makes the Button display unlike to show the post is liked
+    
+    button.value = "Unlike" 
 
       button.value = "Unlike";
 

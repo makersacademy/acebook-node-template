@@ -1,14 +1,22 @@
 const Post = require("../models/post");
 
 const PostsController = {
+  // findUsers: User.find((err, allUsers) => {
+  //   if (err) {
+  //     throw err;
+  //   }
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find( async (err, posts) => {
       if (err) {
         throw err;
       }
+      const allUsers = await User.find()
+      console.log('all users');
+      console.log(allUsers)
+      console.log(posts);
       const user = req.session.user;
       posts = posts.reverse();
-      res.render("posts/index", { posts: posts, user: user });
+      res.render("posts/index", { posts: posts, user: user, allUsers: allUsers });
     });
   },
   Create: (req, res) => {
@@ -30,10 +38,13 @@ const PostsController = {
   },
   Delete:
     ("/posts/:id",
-    function (req, res) {
-      Post.remove({ _id: req.params.id }, (err) => {
-        if (err) return console.log(err);
-        console.log(req.body);
+    (req, res) => {
+      let query = { _id: req.params.id, username: req.session.user.username };
+
+      Post.remove(query, (err) => {
+        if (err) {
+          console.log(err);
+        }
         res.redirect("/posts");
       });
     }),
