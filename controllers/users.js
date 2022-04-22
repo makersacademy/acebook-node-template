@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const bcrypt = require('bcrypt');
 
 const UsersController = {
   New: (req, res) => {
@@ -7,6 +8,9 @@ const UsersController = {
 
   Create: async (req, res) => {
     const user = new User(req.body);
+
+    const salt = await bcrypt.genSalt(12);
+    user.password = await bcrypt.hash(user.password, salt);
 
       const doesUsernameExist = await User.findOne({
         username: req.body.username,
