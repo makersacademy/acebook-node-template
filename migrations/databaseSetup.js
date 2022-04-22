@@ -12,3 +12,10 @@
 // db.posts.find().pretty();
 
 // Repeat above steps for your acebook database
+
+
+// ADDING LIKE_COUNT and LIKERS to Posts collection
+// use acebook
+// db.posts.updateMany({}, {$set: {"like_count":0}})
+// db.posts.updateMany({}, {$set: {"likers": []}})
+// Repeat with test database
