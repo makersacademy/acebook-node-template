@@ -2,7 +2,7 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find().populate("author").exec((err, posts) => {
+    Post.find().populate(["author", "comments.author"]).exec((err, posts) => {
       if (err) {
         throw err;
       }
