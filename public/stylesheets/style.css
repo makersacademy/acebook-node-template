@@ -129,3 +129,8 @@ border-style: none;
   padding: 0 .5em;
   font-weight: bold;
 }
+
+#error_box {
+  padding: 5px;
+  margin:  5px; color: red;
+}
