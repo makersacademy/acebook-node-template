@@ -6,11 +6,13 @@ describe("Timeline", () => {
     webHelper.submitPost();
 
     // submit a comment
+    cy.get(".comment-btn").click();
+
 
     cy.get("#new-comment-form").find('[type="text"]').type("Awesome Cat!");
     cy.get("#new-comment-form").submit();
 
-    cy.get("#comment").should("contain", "Awesome Cat!");
-    cy.get("#comment").should("contain", "a few seconds ago");
+    cy.get(".comment").should("contain", "Awesome Cat!");
+    cy.get(".comment").should("contain", "a few seconds ago");
   });
 });

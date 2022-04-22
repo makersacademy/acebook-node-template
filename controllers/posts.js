@@ -1,5 +1,4 @@
 const Post = require("../models/post");
-const User = require("../models/user");
 
 const PostsController = {
   // findUsers: User.find((err, allUsers) => {
@@ -54,6 +53,7 @@ const PostsController = {
     function (req, res) {
       console.log("got the request");
       console.log(req);
+      res.redirect("/posts");
     }),
 };
 

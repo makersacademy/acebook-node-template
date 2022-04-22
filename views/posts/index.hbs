@@ -1,15 +1,24 @@
 <div id="nav-bar">
   <div class="logo-image">
     <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1200px-2021_Facebook_icon.svg.png"
-      width="40"
-      height="40"
-    />
-    <h2>Quackbook</h2>
+      src="/images/logo.png"
+      width="130"
+      height="70"
+      />
   </div>
+
+  <div>
+    <h3>Your Quack Timeline</h3>
+  </div>
+  
   <div id="logout">
     <form action="/sessions?_method=DELETE" method="POST">
-      <input type="submit" value="Log Out" />
+      <input
+        type="image"
+        src="/images/logout-button.png"
+        height="50"
+        width="50"
+      />
     </form>
   </div>
 </div>
@@ -40,64 +49,98 @@
   </div>
 </div>
 
-<div id="main-container" class="column right">
-  <div class="message-box">
+    <div>  
+    <h4>Hello, {{user.username}}!</h4>
+    </div>
+  </div>
+
+  <div>
     <form id="new-post-form" action="/posts" method="post">
-      <input id="message" class="input-message" type="text" name="message" placeholder="Post your quack" value="" required />
+      <label for="message"></label>
+      <input id="message" class="input-message" type="text" name="message" placeholder="Quack quack quack..." value="" required />
       <input id="photo" class="input-photo" type="text" name="postImage" placeholder="Add photo" value="" />
-      <input type="submit" value="Quack!"/>
+        <input class="post-submit-btn"
+      type="image"
+      src="/images/post-quack.png"
+      height="80"
+      width="109"
+    />
+
     </form>
   </div>
-  <br><br>
 
-  <div id="post">
-    <ul class="posts">
-      {{#each posts}}
-        <div class="post-div" postId={{this._id}}>
-          <div class="username">Username: {{this.username}}</div>
-          <div class="message">{{this.message}}</div>
+  <div id="main-container" class="column right"> 
+    <br><br>
 
-        {{#if this.postImage}}
-          <img class="post-photo" src={{this.postImage}} alt={{this.postImage}}>
-        {{/if}}
-
-          <div class="timeAgo">{{this.dateAndTime}}</div>
-          <br />
-          <div> 
-          <input type="button" value="Like" class="likeUnlike" data-button-id={{this._id}} postId={{this._id}} username={{../user.username}} likes={{this.likes}}>
-          </div>
-          <div>Likes: {{this.likes.length}}</div>
-        </div>
-        <div class="delete-post" >
-          <form action="/posts/{{this._id}}" method="post" id="delete-post" postUsername={{this.username}} username={{../user.username}}>
-            <input type="hidden" name="_method" value="DELETE" />
-            <input
-              type="image"
-              src="https://www.pngall.com/wp-content/uploads/5/Delete-Bin-Trash-PNG-Free-Download.png"
-              width="30"
-              height="30"
-            />
-          </form>
-          </div>
-            <div id="comment">
-              <div class="new-comment">
-                <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
-                  <label for="message"></label>
-                  <input id="message" type="text" name="message" value="" required>
-                  <input type="submit" value="Submit">
-                </form>
+    <div id="post">
+      <ul class="posts">
+        {{#each posts}}
+          <div id="each-post">
+            <div class="post-div" postId={{this._id}}>
+              <div class="username">@{{this.username}}</div>
+              <div class="message">{{this.message}}</div>
+              <div>
+              {{#if this.postImage}}
+                <img class="post-photo" src={{this.postImage}} alt={{this.postImage}}>
+              {{/if}}
               </div>
-            <div>
-            {{#each this.comments}}
-              <div>Username: {{this.username}}</div>
-              <div>{{this.message}}</div>
+              <div class="timeAgo">{{this.dateAndTime}}</div>
+
+              <div class="post-features">
+                <div class="post-like-info">
+                  <div> 
+                    <input type="image" src="/images/like-honk.png"
+                    height="45"
+                    width="45" value="Like" class="likeUnlike" data-button-id={{this._id}} postId={{this._id}} username={{../user.username}} likes={{this.likes}}>
+                  </div>
+                  <div><h5>{{this.likes.length}}</h5></div>
+                </div>
+                <div class="delete-comment-feature">
+                  <div class="comment-btn">
+                    <input
+                    type="image"
+                    src="/images/comment-icon.png"
+                    height="40"
+                    width="40" id="comment-btn" postId={{this._id}} />
+                  </div>
+
+                  <div class="delete-post">
+                    <form action="/posts/{{this._id}}" method="post" id="delete-post">
+                      <input type="hidden" name="_method" value="DELETE" />
+                      <input class="delete-btn"
+                      type="image"
+                      src="/images/delete-bin.png"
+                      width="40"
+                      height="40"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div id="comment-{{this._id}}" class="comment" style="display: none">
+            <div class="new-comment">
+              <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
+                <label for="message"></label>
+                <input id="message" type="text" name="message" value="" required>
+                <input type="submit" value="Submit" class="new-comment-submit">
+              </form>
+            </div>
+            <div class="comments">
+              {{#each this.comments}}
+              <div class="username">@{{this.username}}</div>
+              <div class="message">{{this.message}}</div>
               <div class="timeAgo">{{this.dateAndTime}}</div>
               <br /> 
-            {{/each}}
-          <br />
-        </div>
-      {{/each}}
-    </ul>
+              {{/each}}
+              <br />
+            </div>
+          </div>
+       {{/each}}
+      </ul>
+    </div>
   </div>
-</div>
 </div>
