@@ -3,6 +3,7 @@
     {{#each posts}}
         <li class="post">
             <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
+            {{id-to-timestamp this._id}}
             <div>{{this.message}}</div>
             {{#if this.img.data}}
                 <img src="data:{{this.img.contentType}};base64,{{tob64 this.img.data}}" height="300">

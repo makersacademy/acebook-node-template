@@ -10,8 +10,8 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-const hbs = require("hbs");
 const sessionChecker = require("./util/sessionchecker");
+require("./util/handlebarshelpers");
 
 const app = express();
 
@@ -50,20 +50,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-// handlebars helper to check for object presence in array
-hbs.registerHelper("contains", function (value, array, options) {
-  // fallback...
-  array = (array instanceof Array) ? array : [array];
-  return options[array.includes(value) ? "fn" : "inverse"](this);
-});
-
-// handlebars helper to check for posted image
-hbs.registerHelper("tob64", function (value) {
-  return value.toString("base64");
-});
-
-
 
 
 // route setup
