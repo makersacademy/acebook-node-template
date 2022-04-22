@@ -1,8 +1,9 @@
 <h1>Timeline</h1>
+</br>
+<a class="new-post-link" href="/posts/new">New post</a>
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}} @ {{idtotime this._id}}</li>
+  <img class="image" src="/upload/{{this.photo}}" style="width:300px;height: 300px;border: 2px solid rgb(78, 145, 233);"/>
   {{/each}}
 </ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>
