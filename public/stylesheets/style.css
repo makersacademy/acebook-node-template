@@ -6,3 +6,31 @@ body {
 a {
   color: #00B7FF;
 }
+
+.likeBtn {
+  background-color: #008ad3;
+  color: white;
+  border: 1px solid #008ad3;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 5%;
+  padding: 5px 0;
+}
+
+.unlikeBtn {
+  background-color: white;
+  color: #008ad3;
+  border: 1px solid #bababa;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 5%;
+  padding: 5px 0;
+}
+
+.likeBtn:hover {
+box-shadow: 5px 5px 5px #bababa;
+}
+
+.unlikeBtn:hover {
+box-shadow: 5px 5px 5px #bababa;
+}

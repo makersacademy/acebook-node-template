@@ -2,11 +2,20 @@
 <ul class="posts">
   {{#each posts}}
   <li><h3>{{this.message}}</h3>
-  <p> {{idtotime this._id}}</p>
-  <form action="/posts/like" method="post">
-    <input type="submit" value="Like">
-  </form>
-  <p id="like-count"></p> <!-- will be used later on to display number of likes -->
+    <p> {{idtotime this._id}}</p>
+
+    <form action="/posts/liked" method="post">
+      <input id="id" type="hidden" name="id" value="{{this._id}}">
+      <input type="submit" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}Unlike{{else}}Like{{/contains}}">
+    </form>
+
+    {{#if (eq this.like_count 0)}}
+      <p id="like-count">Be the first to like this post!</p>
+    {{else if  (gt this.like_count 1)}}
+     <p id="like-count">Liked by {{this.like_count}} people</p>
+    {{else if (eq this.like_count 1)}}
+     <p id="like-count">Liked by {{this.like_count}} person</p>
+    {{/if}}
   </li>
   {{/each}}
 </ul>
