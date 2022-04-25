@@ -13,23 +13,16 @@ const PostsController = {
   }, Create: (req, res) => {
 
     const post = new Post({
-      ...req.body,
-      author: req.session.user._id,
-      img: {
-        contentType: req.file?.type,
-        data: req.file?.buffer
-      },
-      comments: []
+      ...req.body, author: req.session.user._id, img: {
+        contentType: req.file?.type, data: req.file?.buffer
+      }, comments: []
     });
 
     post.save((err) => {
-
-
       if (err) {
         throw err;
       }
-
-      res.status(201).redirect("/posts");
+      res.status(201).redirect(`/posts/#${post._id}`);
     });
   },
 
@@ -53,11 +46,16 @@ const PostsController = {
     res.redirect('/posts')
   },
 
-  async Comment (req, res) {
-    await Post.findByIdAndUpdate(req.body.post,
-      {$push: {comments: {comment: req.body.comment, author: req.session.user._id}}}
-    );
-    res.redirect('/posts');
+  async Comment(req, res) {
+    await Post.findByIdAndUpdate(req.body.post, {
+      $push: {
+        comments: {
+          comment: req.body.comment,
+          author: req.session.user._id
+        }
+      }
+    });
+    res.redirect(`/posts/#${req.body.post}`);
   }
 
 };
