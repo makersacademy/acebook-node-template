@@ -10,7 +10,7 @@ const CommentsController = {
       postId: id,
       content: comment
     })
-      res.status(201).redirect("/posts");
+      res.status(201).redirect(`/posts//${id}`);
   }
 };
 
