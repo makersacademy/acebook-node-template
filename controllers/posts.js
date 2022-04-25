@@ -54,7 +54,15 @@ const PostsController = {
       post.save() 
       res.redirect("/posts")
     })
-  }
+  },
+
+  Destroy: (req, res) => {
+    Post.deleteOne({_id:req.params.id},(err) => {
+      if (err) 
+        throw err;
+    })
+    res.redirect("/posts");
+  },
 };
 
 module.exports = PostsController;
