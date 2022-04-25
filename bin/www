@@ -33,7 +33,12 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
+  (err) => {
+    if(err) console.log(err) 
+    else console.log("mongdb is connected");
+   }
 );
+
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
