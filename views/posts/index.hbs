@@ -1,7 +1,7 @@
 <head>
   <script src="https://cdn.socket.io/3.0.5/socket.io.min.js"></script>
-  <script src="javascripts/likeButton.js"></script>
-  <script src="javascripts/newPost.js"></script>
+  <script src="javascripts/realtimeUpdate.js"></script>
+  <!-- <script src="javascripts/newPost.js"></script> -->
   <meta name="user_id" content="{{user._id}}">
 </head>
 <body>
@@ -29,7 +29,7 @@
         {{this.created_at}}
       </div>
       <div class="post_likes">
-        <span id="post_id" hidden>{{this.id}}</span><span id="likes_count">{{this.likes.length}}</span> <button class="like_button">Like</button>
+        <span id="post_id" hidden>{{this.id}}</span><span id="likes_count">{{this.likes.length}}</span><button class="like_button">Like</button>
       </div>
     </div>
     {{/each}}

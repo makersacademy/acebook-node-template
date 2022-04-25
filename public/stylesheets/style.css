@@ -154,3 +154,7 @@ input[type=text], input[type=password], input[type=email] {
   font-size: 12px;
   color: darkgrey;
 }
+
+.like_button {
+  margin-left: 1%;
+}
