@@ -36,7 +36,7 @@ const UsersController = {
     // if they don't exist, return 404 Not Found
     if (!user) res.status(404).send()
 
-    if (user.img.contentType) {
+    if (user.img.data) {
       // if the user has an image, return it
       res.set("content-type", user.img.contentType)
       res.send(user.img.data)

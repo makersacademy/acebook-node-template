@@ -19,4 +19,4 @@ hbs.registerHelper("id-to-timestamp", function (value) {
   return moment(timeStamp).fromNow()
 });
 
-hbs.registerHelper("dataImage", (img) => `data:${img?.contentType};base64,${img?.data?.toString('base64')}`);
+hbs.registerHelper("dataImage", (img) => `data:${img?.contentType ?? ''};base64,${img?.data?.toString('base64')}`);
