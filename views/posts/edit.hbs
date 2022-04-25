@@ -2,7 +2,7 @@
 <h2>{{user.firstName}} {{user.surname}}</h2>
 <div class="edit_post_form">
 <form action="/posts/edit/{{id}}" method="post">
-<textarea id="edit_post_text"></textarea>
+<textarea id="message" type="text" name="message" value="" rows="5" required pattern=".*\S+.*"></textarea>
 <input type="submit">
 </form>
 </div>

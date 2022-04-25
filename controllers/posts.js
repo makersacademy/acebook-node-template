@@ -47,7 +47,8 @@ const PostsController = {
     try {
       const post = await Post.findById(req.params.id);
       if (post.userId === req.session.user._id) {
-         Post.updateOne({_id: req.params.id}, {message: req.body.edit_post_text}).then(() => {
+         Post.updateOne({_id: req.params.id}, {message: req.body.message}).then(() => {
+           console.log(req.params.message)
           res.status(200).redirect("/posts");
          }) 
       } else {
