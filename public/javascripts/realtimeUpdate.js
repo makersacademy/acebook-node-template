@@ -77,10 +77,27 @@ document.addEventListener('DOMContentLoaded', () => {
     likesRow.appendChild(likesCount)
     likesRow.appendChild(likeButton)
 
+    const deleteRow = document.createElement('div')
+    deleteRow.setAttribute('class', 'delete_button_container')
+    const deleteForm = document.createElement('form')
+    deleteForm.setAttribute('action', `/posts/delete/${newPostId}`)
+    deleteForm.setAttribute('method', 'post')
+    const hiddenFormInput = document.createElement('input')
+    hiddenFormInput.setAttribute('type', 'hidden')
+    hiddenFormInput.setAttribute('name', 'userId')
+    hiddenFormInput.setAttribute('value', userId)
+    const deleteButton = document.createElement('button')
+    deleteButton.setAttribute('id', 'delete_post')
+    deleteButton.innerText = "Delete post"
+    deleteForm.appendChild(hiddenFormInput)
+    deleteForm.appendChild(deleteButton)
+    deleteRow.appendChild(deleteForm)
+
     newChild.appendChild(authorName)
     newChild.appendChild(postMessage)
     newChild.appendChild(postDate)
     newChild.appendChild(likesRow)
+    newChild.appendChild(deleteRow)
     postsFeed.insertBefore(newChild, postsFeed.firstChild)
   })
 
