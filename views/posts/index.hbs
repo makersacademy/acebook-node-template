@@ -8,11 +8,14 @@
     <p>{{ this.author }}</p>
     <p>{{idtotime this._id}}</p>
 
-<form action="/posts/edit/{{this._id}}" method="post">
+{{#eq this.author @root.username}}
+    <form action="/posts/edit/{{this._id}}" method="post">
       <input type="submit" value="Edit">
+    </form>
     <form action="/posts/delete/{{this._id}}" method="post">
       <input type="submit" value="Delete">
     </form>
+{{/eq}}
 
 <p>{{this.message}}</p>
     {{#if this.photo}} <!-- display a photo is upload/none if not -->
