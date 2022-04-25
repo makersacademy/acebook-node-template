@@ -1,8 +1,9 @@
 html,
 body {
-  font-family: 'Roboto', sans-serif;
-  color: #404040;
-  background-color: #eee;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: lightgrey;
+  color: black;
 }
 
 .container {
@@ -41,12 +42,17 @@ body {
 }
 
 .navbar {
+  background-color: rgb(186, 80, 186);
+  color: black;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
   overflow: hidden;
-  background-color: rgb(56, 149, 215);
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
   border-radius: 10px;
+  padding: 10px;
 }
 
 .navbar a {
@@ -56,4 +62,33 @@ body {
   text-align: center;
   padding: 14px 20px;
   text-decoration: none;
+}
+
+header {
+  background-color: rgb(186, 80, 186);
+  color: black;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: auto;
+  height: 300px;
+  padding: 50px, 50px;
+  position: absolute;
+  left: -50px;
+  top: 0px;
+}
+
+h1 {
+  color: white;
+  font-family: fantasy;
 }
