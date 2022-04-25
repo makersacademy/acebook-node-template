@@ -3,17 +3,18 @@
 <a class="new-post-link" href="/posts/new">New post</a>
 <ul class="posts">
   {{#each posts}}
-
-  <li><h3>{{this.message}}</h3>
-  <p> {{idtotime this._id}}</p>
-  </li>
-
-  <!-- <img src="/users/{{ this.author }}/profilepicture" alt=""> -->
-    <li>{{this.message}} @ {{idtotime this._id}} by {{ this.author }}</li>
-    <img class="image" src="/upload/{{this.photo}}" style="width:300px;height: 300px;border: 2px solid rgb(78, 145, 233);"/>
+  <li>
+    {{!-- <img src="/users/{{ this.author }}/profilepicture" alt=""> --}}
+    <p>{{ this.author }}</p>
+    <p>{{idtotime this._id}}</p>
+    <p>{{this.message}}</p>
+    {{#if this.photo}} <!-- display a photo is upload/none if not -->
+      <img class="image" src="/upload/{{this.photo}}" />
+    {{/if}}
     <form action="/posts/like" method="post">
       <input type="submit" value="Like">
     </form>
-  <p id="like-count"></p> <!-- will be used later on to display number of likes -->
+    <p id="like-count"></p> <!-- will be used later on to display number of likes -->
+  </li>
 {{/each}}
 </ul>
