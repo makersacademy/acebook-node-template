@@ -18,3 +18,6 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands')
+/* eslint node/no-unpublished-require: "off" */
+const mongo = require('cypress-mongodb');
+mongo.addCommands();
