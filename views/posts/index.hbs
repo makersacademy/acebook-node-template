@@ -2,10 +2,10 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}<br>
-  <form id="comment" action="/posts/comments" method="get">
-  <br><input type="submit" value="comment"><br>
-  <br>{{/each}}</li>
+  <form id="comment" action="/posts/{{this.id}}" method="get">
+  <input value="comment" type="submit">
   </form>
+  {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>

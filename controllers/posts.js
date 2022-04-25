@@ -1,3 +1,4 @@
+const Comments = require("../models/comment");
 const Post = require("../models/post");
 
 const PostsController = {
@@ -18,23 +19,19 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log(req.params)
-      
       res.status(201).redirect("/posts");
     });
   },
-  Comments: (req, res) => {
-    Post.find((err, posts) => {
-      if(err) {
-        throw err;
-      }
-      res.render("posts/comments", {comments: posts });
-    })
-  }
-  // they get to the posts/comments route (above)
-  // then they would go to the post route (after they click submit) which redirects them to the Index page. 
-  // Posts route would save the comments to the req.body (or however you do it)
-
-};
+  Comments: async (req, res) => {
+    const id = req.params.id;
+    const post = await Post.findById(id)
+    const arr = await Comments.find({postId: id}, {content: 1})
+    const newArray = [];
+      arr.forEach( element => 
+        newArray.push(element.content)
+      )
+      res.render("posts/comments", {post: post, id: id, comments: newArray.reverse()});
+    }
+}
 
 module.exports = PostsController;
