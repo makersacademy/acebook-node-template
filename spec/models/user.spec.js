@@ -29,6 +29,16 @@ describe("User model", () => {
     expect(user.password).toEqual("password");
   });
 
+  it("has a profilePic", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      username: "someone",
+      profilePic: "http://profile.pic"
+    });
+    expect(user.profilePic).toEqual("http://profile.pic");
+  });
+
   it("can list all users", (done) => {
     User.find((err, users) => {
       expect(err).toBeNull();
