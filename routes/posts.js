@@ -9,6 +9,5 @@ router.post("/", PostsController.Create);
 router.get("/new", PostsController.New);
 router.get("/:id", PostsController.Comments);
 router.post("/:id", CommentsController.New);
-// Post route after comment is submitted: so this is when the comment is added to the db.
 
 module.exports = router;
