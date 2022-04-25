@@ -1,3 +1,4 @@
+const { response } = require("express");
 const Post = require("../models/post");
 const util = require("../util/photoHandling");
 
@@ -38,6 +39,21 @@ const PostsController = {
 
       res.status(201).redirect("/posts");
     });
+  },
+
+  Edit: (req, res) => {
+    Post.findById(req.params.id,(err,post) => {
+      console.log(post)
+      res.render("posts/edit", {post:post})  
+    })
+  },
+
+  SaveEdit: (req, res) => {
+    Post.findById(req.params.id,(err,post) => {
+      post.message = req.body.message
+      post.save() 
+      res.redirect("/posts")
+    })
   },
 
   Destroy: (req, res) => {
