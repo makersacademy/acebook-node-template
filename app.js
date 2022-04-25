@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const { flash } = require('express-flash-message');
+const { flash } = require("express-flash-message");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");

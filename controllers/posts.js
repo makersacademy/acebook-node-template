@@ -1,3 +1,4 @@
+const { json } = require("express/lib/response");
 const Post = require("../models/post");
 
 const PostsController = {
@@ -41,7 +42,26 @@ const PostsController = {
     } catch (err) {
     res.status(500).json(err);
     }
-  } 
+  },
+  Edit: async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+      if (post.userId === req.session.user._id) {
+         Post.updateOne({_id: req.params.id}, {message: req.body.edit_post_text}).then(() => {
+          res.status(200).redirect("/posts");
+         }) 
+      } else {
+        await req.flash('wrongUser', "You don't have an authorization for this action")
+        res.redirect('/posts');
+      }
+    } catch (err) {
+    res.status(500).json(err);
+    }
+  }, 
+  InputEdit: (req, res) => {
+    console.log(req.params.id)
+    res.render("posts/edit", { user: req.session.user, id: req.params.id})
+  },
 }
 
 module.exports = PostsController;
