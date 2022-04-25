@@ -24,6 +24,11 @@ const UsersController = {
     res.render("users/profile", {user});
   },
 
+  Edit: (req, res) => {
+    const user = req.session.user
+     res.render("users/edit_profile", {user});
+   },
+
   /**
    * Finds a user's profile photo.
    */
