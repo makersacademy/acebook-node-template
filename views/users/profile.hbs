@@ -1,6 +1,5 @@
-<h1 class="title">{{user.firstName}} {{user.lastName}}</h1>
+<h1 id="title" class="title">{{user.firstName}} {{user.lastName}}</h1>
 <img class="profile-pic" src="/users/photo/{{user._id}}"  alt="profile picture"/>
-
 
 <h6>Change profile picture</h6>
 <form id="profile-pic-form" action="/users/profile" method="post" enctype="multipart/form-data">
@@ -9,7 +8,6 @@
     <input type="submit" value="Change">
 </form>
 
-
-<p>
+<p id="bio">
    {{user.bio}}
 </p>
