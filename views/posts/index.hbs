@@ -7,6 +7,9 @@
     {{!-- <img src="/users/{{ this.author }}/profilepicture" alt=""> --}}
     <p>{{ this.author }}</p>
     <p>{{idtotime this._id}}</p>
+    <form action="/posts/edit/{{this._id}}" method="post">
+      <input type="submit" value="Edit">
+    </form>
     <p>{{this.message}}</p>
     {{#if this.photo}} <!-- display a photo is upload/none if not -->
       <img class="image" src="/upload/{{this.photo}}" />
@@ -15,7 +18,6 @@
       <input type="submit" value="Like">
     </form>
     <p id="like-count"></p> <!-- will be used later on to display number of likes -->
-    <a href="/posts/edit/{{this._id}}">Edit</a>
   </li>
 {{/each}}
 </ul>
