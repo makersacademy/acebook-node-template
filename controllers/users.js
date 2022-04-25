@@ -46,6 +46,17 @@ const UsersController = {
     }
   },
 
+  async ProfilePhotoUpload(req, res) {
+    await User.findByIdAndUpdate(req.session.user._id, {
+      img: {
+        contentType: req.file?.type,
+        data: req.file?.buffer
+      },
+    });
+    res.status(201).redirect('/users/profile');
+  },
+
+
   async AllUsers(req, res) {
     const users = await User.find();
     res.render("users/all", {users})
