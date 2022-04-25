@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
     <title>{{title}}</title>
   </head>
 
@@ -18,10 +19,14 @@
       <a href="/posts"> Timeline </a>
       <a href="/users/new"> Sign-up </a>
       <a href="/sessions/new"> Log-in </a>
+      <a href="#" class="pull-right">
+        <form action='/sessions?_method=DELETE' method='POST'></br>
+          <input type="submit" value="Log Out">
+        </form>
+      </a>
+      
     </div>
-    <form action='/sessions?_method=DELETE' method='POST'></br>
-      <input type="submit" value="Log Out">
-    </form>
+    
     {{{body}}}
   </body>
 </html>
