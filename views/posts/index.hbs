@@ -1,10 +1,8 @@
 <h1>Timeline</h1>
 <ul class="posts">
-  {{#each user}}
-  {{this.email}}
-  {{/each}}
   {{#each posts}}
-  <img src={{this.profilePic}} />
+  <img src={{this.profilePic}}/>
+  {{this.username}}
   <li>{{this.message}}</li>
   <img class="post-image" src="{{this.image_url}}" />
   {{/each}}
