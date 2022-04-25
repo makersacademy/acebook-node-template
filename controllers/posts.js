@@ -29,6 +29,8 @@ const PostsController = {
   Delete: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
+      console.log(post.userId)
+      console.log(req.session.user._id)
       if (post.userId === req.session.user._id) {
         await post.deleteOne();
         res.status(200).redirect("/posts");

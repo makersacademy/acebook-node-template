@@ -19,7 +19,6 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "express-flash-message": "^2.1.0",
     "express-session": "^1.17.2",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
@@ -36,7 +35,9 @@
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
-    "jest": "^27.5.1"
+    "express-flash-message": "^2.1.0",
+    "jest": "^27.5.1",
+    "socket.io": "^4.5.0"
   },
   "nodemonConfig": {
     "ext": "js,hbs"

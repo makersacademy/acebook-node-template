@@ -162,6 +162,7 @@ io.on('connection', (socket) => {
           message: params.message,
           authorFirstName: authFName,
           authorSurname: authSName,
+          userId: params.author,
         }
       ).save(
 
