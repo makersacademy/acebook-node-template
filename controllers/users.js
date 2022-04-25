@@ -1,11 +1,11 @@
 const User = require("../models/user");
 
+
 const UsersController = {
   New: (req, res) => {
     res.render("users/new", {});
   },
 
-  
   Create: (req, res) => {
     const user = new User(req.body);
     user.save((err) => {
@@ -15,6 +15,16 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
+//   AddFriend: (req, res) => {
+
+// // add friend to the user table
+//   },
+  // NewFriend: (req, res) => { 
+
+  // },
 };
 
 module.exports = UsersController;
+
+
+//
