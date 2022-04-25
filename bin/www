@@ -3,6 +3,7 @@
  */
 var app = require("../app");
 const Post = require('../models/post.js')
+const User = require('../models/user.js')
 var debug = require("debug")("acebook:server");
 var http = require("http");
 var mongoose = require("mongoose");
@@ -117,34 +118,56 @@ io.on('connection', (socket) => {
   socket.on('newLike', (params) => {
     
     Post.findOne(
-       { _id: params.postId }
-      ).then((entry) => {
-        if (entry.likes.includes(params.userId)) {
+      { _id: params.postId }
+    ).then((entry) => {
+      if (entry.likes.includes(params.userId)) {
 
-          console.log(`user ${params.userId}`)
-          console.log(`unliked post ${params.postId}`)
+        console.log(`user ${params.userId}`)
+        console.log(`unliked post ${params.postId}`)
 
-          Post.updateOne(
-            { _id: params.postId },
-            { $pull: { likes: params.userId} }
-          ).then((res) => {
-            console.log(res)
-            socket.emit('remove like', params.postId)
-          })
+        Post.updateOne(
+          { _id: params.postId },
+          { $pull: { likes: params.userId} }
+        ).then(() => {
+          socket.emit('remove like', params.postId)
+        })
 
-        } else {
+      } else {
 
-          console.log(`user ${params.userId}`)
-          console.log(`liked post ${params.postId}`)
+        console.log(`user ${params.userId}`)
+        console.log(`liked post ${params.postId}`)
 
-          Post.updateOne(
-            { _id: params.postId },
-            { $push: { likes: params.userId} }
-          ).then((res) => {
-            console.log(res)
-            socket.emit('add like', params.postId)
-          })
+        Post.updateOne(
+          { _id: params.postId },
+          { $push: { likes: params.userId} }
+        ).then(() => {
+          socket.emit('add like', params.postId)
+        })
+      }
+    })
+  })
+
+  socket.on('newPostAdded', (params) => {
+    console.log(`user ${params.author}`)
+    console.log(`posted ${params.message}`)
+
+    User.findOne(
+      {_id: params.author}
+    ).then((res) => {
+      const authFName = res.firstName
+      const authSName = res.surname
+      console.log(`found user ${authFName} ${authSName}`)
+      const post = new Post(
+        {
+          message: params.message,
+          authorFirstName: authFName,
+          authorSurname: authSName,
         }
+      ).save(
+
+      ).then((res) => {
+        socket.emit('addNewPost', {post: res})
+      })
     })
   })
 })
