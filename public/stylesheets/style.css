@@ -5,7 +5,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #0096d1;
 }
 
 .all-posts {
@@ -22,6 +22,22 @@ a {
   background: rgb(248, 248, 248);
   margin-bottom: 12px;
   padding: 15px;
+}
+
+.column1-author-details {
+  width: 300px;
+  float: left;
+}
+
+.coloumn2-user-buttons {
+  width: 100px;
+  float: right;
+}
+
+.post-header:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 #profile-picture {
@@ -45,6 +61,17 @@ a {
   margin-top: 5px;
 }
 
+#edit-post-button {
+  font-size: 10px;
+  float: right;
+}
+
+#delete-post-button {
+  font-size: 10px;
+  float: right;
+  margin-left: 4px;
+}
+
 .image {
   max-width:400px;
   /* max-height: 400px; */
@@ -53,8 +80,8 @@ a {
   border-radius: 4px;
 }
 
-#post-body {
-  margin-top: 0px;
+#message-content {
+  margin-top: 5px;
 }
 
 #like-button {
@@ -66,3 +93,8 @@ a {
   float: right;
   margin-right: 80px;
 }
+
+#interaction-buttons {
+  margin-bottom: 10px;
+}
+

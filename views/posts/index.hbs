@@ -3,30 +3,45 @@
 <a class="new-post-link" href="/posts/new">New post</a>
 <br/><br/>
 <div class="all-posts">
-    {{#each posts}}
-    <li id="single-post">
-      <div id="post-header">
-        <img id="profile-picture" src="/users/{{ this.author }}/profilepicture" alt="">
-        <div id="post-details">
-          <p id="post-author">{{ this.author }}</p>
-          <p id="post-timestamp">{{idtotime this._id}}</p>
-        </div>
+  {{#each posts}}
+  <li id="single-post">
+
+  <div class="post-header">
+    <div class="column1-author-details">
+      <img id="profile-picture" src="/users/{{ this.author }}/profilepicture" alt="">
+      <div id="post-details">
+        <p id="post-author">{{ this.author }}</p>
+        <p id="post-timestamp">{{idtotime this._id}}</p>
       </div>
-      <div id="post-body">
-        <p id="message-content">{{this.message}}</p>
-          {{#if this.photo}} <!-- display a photo is upload/none if not -->
-            <img class="image" src="/upload/{{this.photo}}" />
-          {{/if}}
+    </div>
+      <div class="coloumn2-user-buttons">
+        <form action="/posts/delete" method="post">  {{!-- route needs to be set correctly--}}
+          <input id="delete-post-button" type="submit" value="Delete">
+        </form>
+        <form action="/posts/edit" method="post">  {{!-- route needs to be set correctly--}}
+          <input id="edit-post-button" type="submit" value="Edit">
+        </form>
       </div>
-      <p id="like-count"></p> <!-- will be used later on to display number of likes -->
-      <hr>
+    </div>
+
+    <div class="post-body">
+      <p id="message-content">{{this.message}}</p>
+        {{#if this.photo}} <!-- display a photo is upload/none if not -->
+          <img class="image" src="/upload/{{this.photo}}" />
+        {{/if}}
+    </div>
+    <p id="like-count"></p> <!-- will be used later on to display number of likes -->
+    <hr>
+    <div id="interaction-buttons">
       <form action="/posts/like" method="post">
         <input id="like-button" type="submit" value="Like">
       </form>
       <form action="/posts/comment" method="post">
         <input id="comment-button" type="submit" value="Comment">
       </form>
-      <br/><hr>
-    </li>
+    </div>
+    <br/><hr>
+
+  </li>
   {{/each}}
 </div>
