@@ -51,11 +51,10 @@ describe("Deleting posts", () => {
     cy.get("#submit").click();
 
     // try to delete other user's post
-    cy.visit("/posts")
-    cy.get("#delete_post").first().click()
+    cy.visit("/posts");
+    cy.get("#delete_post").first().click();
 
-    cy.server().should((server) => {
-      expect(server.status).to.eq(403)
-    })
+    cy.url().should("include", "/posts");
+    cy.get(".posts").children().eq(0).should("contain.text", "Hello, world!");
   })
 })

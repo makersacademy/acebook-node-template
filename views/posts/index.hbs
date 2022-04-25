@@ -5,10 +5,11 @@
 <body>
   <h1 class="page-header">Timeline</h1>
   <h2>{{user.firstName}} {{user.surname}}</h2>
-  <div class="posts">
     <form action="/posts/new" method="get">
       <button class="new_post_button">New post</button>
   </form>
+  <h3>{{ flashMessage }}</h3>
+    <div class="posts">
     {{#each posts}}
     <div class="post">
       <div class="post_author">

@@ -1,13 +1,13 @@
 const Post = require("../models/post");
 
 const PostsController = {
-  Index: (req, res) => {
+  Index: async (req, res) => {
+    const flashMessage = await req.consumeFlash('wrongUser');
     Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts.reverse(), user: req.session.user });
+      res.render("posts/index", { posts: posts.reverse(), user: req.session.user, flashMessage });
     });
   },
 
@@ -33,7 +33,8 @@ const PostsController = {
         await post.deleteOne();
         res.status(200).redirect("/posts");
       } else {
-        res.status(403).json("You cannot delete this post");
+        await req.flash('wrongUser', "You don't have an authorization for this action")
+        res.redirect('/posts');
       }
     } catch (err) {
     res.status(500).json(err);

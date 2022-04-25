@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const { flash } = require('express-flash-message');
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -35,6 +36,10 @@ app.use(
     },
   })
 );
+
+//flash
+app.use(flash({ sessionKeyName: 'flashMessage' }));
+
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {
