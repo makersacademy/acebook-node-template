@@ -10,9 +10,11 @@ const PostsController = {
       res.render("posts/index", { posts: posts.reverse(), user: req.session.user });
     });
   },
+
   New: (req, res) => {
     res.render("posts/new", { user: req.session.user });
   },
+
   Create: (req, res) => {
     const post = new Post(req.body);
     post.save((err) => {
@@ -23,11 +25,10 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  
   Delete: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      console.log(post.userId)
-      console.log(req.session.user._id)
       if (post.userId === req.session.user._id) {
         await post.deleteOne();
         res.status(200).redirect("/posts");
