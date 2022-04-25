@@ -158,3 +158,8 @@ input[type=text], input[type=password], input[type=email] {
 .like_button {
   margin-left: 1%;
 }
+
+#message {
+  width: 300px;
+  height: 150px;
+}
