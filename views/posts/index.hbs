@@ -15,10 +15,10 @@
       </div>
     </div>
       <div class="coloumn2-user-buttons">
-        <form action="/posts/delete" method="post">  {{!-- route needs to be set correctly--}}
+        <form action="/posts/delete/{{this._id}}" method="post">  
           <input id="delete-post-button" type="submit" value="Delete">
         </form>
-        <form action="/posts/edit" method="post">  {{!-- route needs to be set correctly--}}
+        <form action="/posts/edit/{{this._id}}" method="post"> 
           <input id="edit-post-button" type="submit" value="Edit">
         </form>
       </div>
