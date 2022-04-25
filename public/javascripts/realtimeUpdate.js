@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const newPostButton = document.querySelector('.new_post_button')
   const newPostTextArea = document.querySelector("#new_post_text")
-  newPostButton.addEventListener('click', (event) => {
+  newPostButton.addEventListener('click', () => {
     console.log('NEW POST')
     const text = newPostTextArea.value
     socket.emit('newPostAdded', {message: text, author: userId})
-    
+    newPostTextArea.value = ""
   })
 
   socket.on('addNewPost', (post) => {
@@ -67,34 +67,53 @@ document.addEventListener('DOMContentLoaded', () => {
     likeButton.setAttribute('class', 'like_button')
     likeButton.innerText = "Like"
     likeButton.addEventListener('click', (event) => {
-      console.log('LIKE')
-      const parent = event.target.parentElement.parentElement
-      const postId = parent.getAttribute('id')
-      socket.emit('newLike', {postId: postId, userId: userId})
+      likeikeEvent(socket, event, userId)
     })
 
-    likesRow.appendChild(likesId)
-    likesRow.appendChild(likesCount)
-    likesRow.appendChild(likeButton)
+    nestItems(likesRow, [likesId, likesCount, likeButton])
 
-    newChild.appendChild(authorName)
-    newChild.appendChild(postMessage)
-    newChild.appendChild(postDate)
-    newChild.appendChild(likesRow)
+    const deleteRow = document.createElement('div')
+    deleteRow.setAttribute('class', 'delete_button_container')
+    const deleteForm = document.createElement('form')
+    deleteForm.setAttribute('action', `/posts/delete/${newPostId}`)
+    deleteForm.setAttribute('method', 'post')
+    const hiddenFormInput = document.createElement('input')
+    hiddenFormInput.setAttribute('type', 'hidden')
+    hiddenFormInput.setAttribute('name', 'userId')
+    hiddenFormInput.setAttribute('value', userId)
+    const deleteButton = document.createElement('button')
+    deleteButton.setAttribute('id', 'delete_post')
+    deleteButton.innerText = "Delete post"
+    deleteForm.appendChild(hiddenFormInput)
+    deleteForm.appendChild(deleteButton)
+    deleteRow.appendChild(deleteForm)
+
+    nestItems(newChild, [authorName, postMessage, postDate, likesRow, deleteRow])
+
     postsFeed.insertBefore(newChild, postsFeed.firstChild)
   })
 
 })
 
-function addLikeButtons(socket, userId, postsFeed) {
+const addLikeButtons = (socket, userId, postsFeed) => {
   const likeButtons = document.querySelectorAll('.like_button')
   for (i = 0; i < likeButtons.length; i++ ) {
     console.log('found like button')
     likeButtons[i].addEventListener('click', (event) => {
-      console.log('LIKE')
-      const parent = event.target.parentElement.parentElement
-      const postId = parent.getAttribute('id')
-      socket.emit('newLike', {postId: postId, userId: userId})
+      likeikeEvent(socket, event, userId)
     })
+  }
+}
+
+const likeikeEvent = (socket, event, userId) => {
+  console.log('LIKE')
+  const parent = event.target.parentElement.parentElement
+  const postId = parent.getAttribute('id')
+  socket.emit('newLike', {postId: postId, userId: userId})
+}
+
+const nestItems = (parent, childArray) => {
+  for (i = 0; i < childArray.length; i++) {
+    parent.appendChild(childArray[i])
   }
 }
