@@ -34,13 +34,16 @@
                         <div>
                             <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
                             <p>{{this.comment}}</p>
+                            <img id="comment-img" src="{{dataImage this.img}}" alt="commented picture">
                         </div>
                     </div>
                 {{/each}}
             </div>
-            <form action="/posts/comment" method="post">
+            <form action="/posts/comment" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="post" value="{{this._id}}">
                 <input type="text" name="comment" placeholder="Enter comment...">
+                <label for="img">Add a picture?</label>
+                <input type="file" id="img" name="img" accept="image/*">
                 <input class="button-style" type="submit" value="Submit comment">
             </form>
         </li>
