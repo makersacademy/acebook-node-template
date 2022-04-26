@@ -3,12 +3,17 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const path = window.location.pathname
+        if (['/sessions/new', '/users/new'].includes(path)) document.querySelector('#log_out_form').remove()
+      })
+    </script>
   </head>
   <body>
     <div class="header">
       <h1>Acebook</h1>
     </div>
-    
     <div class="under_header"></div>
     {{#if user}}
     <form action='/sessions?_method=DELETE' method='POST'>
