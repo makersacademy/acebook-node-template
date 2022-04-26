@@ -80,11 +80,16 @@ const UsersController = {
     requester.save();
 
     res.status(201)
-       .redirect('/posts/');
+       .redirect('/users/profile/' + req.query.return_to);
   },
 
   Profile: (req, res) => {
-    res.render("users/profile");
+    User.findOne({ "username":req.params.username }, (err, user) => {
+      res.render("users/profile", {
+        user: user,
+        me: req.session.user._id,
+      });
+    })
   },
 };
 

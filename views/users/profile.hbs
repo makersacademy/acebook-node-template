@@ -8,10 +8,12 @@
     <h3>User Name</h3>
   </div>
   <div>
-    <p>20 friends</p> 
+    <p>20 friends</p>
   </div>
   <div>
-    <button type="button">Add me</button>
+    <form action="/users/befriend/{{ user.username }}?return_to={{ user.username }}" method="post">
+      <input type="submit" class="{{#contains me user.friends }}unfriendBtn{{else}}friendBtn{{/contains}}" value="{{#contains me user.friends }}Unfriend :({{else}}Add Bestie :){{/contains}}"></input>
+    </form>
   </div>
 </div>
 <br>
@@ -57,5 +59,4 @@
     <h3>Posts</h3>
   </div>
 </div>
- 
- 
+
