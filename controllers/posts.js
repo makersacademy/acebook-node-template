@@ -43,8 +43,8 @@ const PostsController = {
             }]).exec()
         }
 
-        res.redirect('/posts')
-    },
+    res.redirect(`/posts/#${req.body.post}`);
+  },
 
     async Comment(req, res) {
         await Post.findByIdAndUpdate(req.body.post, {
