@@ -66,8 +66,7 @@ const PostsController = {
           console.log(err);
         });
       }
-    }
-  };
+    },
 
   Edit: (req, res) => {
     Post.findById(req.params.id,(err,post) => {
