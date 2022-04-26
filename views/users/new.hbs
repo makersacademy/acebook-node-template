@@ -1,8 +1,12 @@
 <form id="new-user-form" action="/users" method="post">
   <h1> Sign up for an Acebook account </h1>
-  <br><label for="email">Email: </label>
-  <input id="email" type="email" name="email" value=""><br>
-  <br><label for="password">Password: </label>
-  <input id="password" type="password" name="password" value=""><br>
-  <br><input id="submit" type="submit" value="Submit">
+  <label for="username">Username: </label>
+  <input id="username" type="text" name="username" value="" /><br />
+  <label for="email">Email: </label>
+  <input id="email" type="email" name="email" value="" /><br />
+  <label for="password">Password: </label>
+  <input id="password" type="password" name="password" value="" /><br />
+  <label for="profilePic">Profile Pic URL: </label>
+  <input id="image" type="file" name="profilePic" placeholder="Photo" capture>
+  <input id="submit" type="submit" value="Submit" />
 </form>
