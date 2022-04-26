@@ -1,5 +1,6 @@
 const { response } = require("express");
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 const util = require("../util/photoHandling");
 
 const PostsController = {
@@ -90,6 +91,44 @@ const PostsController = {
     })
     res.redirect("/posts");
   },
-};
+
+  SinglePost: (req, res) => {
+    console.log(req.body)
+    Post.findById(req.query.id, (err, post) => {
+      if (err) {
+        throw err;
+      }
+      console.log(post);
+      res.render("posts/comment", { post: post });
+    })
+  },
+
+  Comment: (req, res) => {
+    if (req.files) {
+      let photo = req.files.photo;
+      let newName = util.generateName() + "." + util.getExtension(photo.name);
+      photo.mv("./public/upload/" + newName);
+      req.body.photo = newName;
+    }
+
+    req.body.author = req.session.user.username;
+    const comment = new Comment(req.body);
+    let error = comment.validateSync();
+    if (error) {
+      console.log(error);
+      res.redirect("/posts/comment");
+      return;
+    }
+
+    comment.save((err) => {
+      if (err) {
+        throw err;
+      }
+
+      res.status(201).redirect("/posts/comment");
+    })
+
+  }
+}
 
 module.exports = PostsController;

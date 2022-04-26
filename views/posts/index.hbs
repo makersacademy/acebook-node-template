@@ -48,7 +48,8 @@
       
       
       
-      <form action="/posts/comment" method="post">
+      <form action="/posts/comment" method="get">
+        <input id="id" type="hidden" name="id" value="{{this._id}}">
         <input id="comment-button" type="submit" value="Comment">
       </form>
     </div>

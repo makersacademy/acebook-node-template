@@ -10,5 +10,8 @@ router.post("/liked", PostsController.Like);
 router.get("/edit/:id", PostsController.Edit);
 router.post("/edit/:id", PostsController.SaveEdit);
 router.post("/delete/:id", PostsController.Destroy);
+router.get("/comment", PostsController.SinglePost);
+router.post("/comment/:id", PostsController.Comment);
+
 
 module.exports = router;
