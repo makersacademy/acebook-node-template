@@ -52,7 +52,7 @@ const PostsController = {
         await Post.updateOne(
           { _id: post_id }, { $push: { likers: user._id }, $inc: {like_count: 1 }})
         .then(() => {
-          res.redirect("/posts");
+          res.redirect("/posts/#" + post_id);
         })
         .catch((err) => {
           console.log(err);
@@ -61,7 +61,7 @@ const PostsController = {
         await Post.updateOne(
           { _id: post_id }, { $pull: { likers: user._id }, $inc: {like_count: -1 }})
         .then(() => {
-          res.redirect("/posts");
+          res.redirect("/posts/#" + post_id);
         })
         .catch((err) => {
           console.log(err);
