@@ -13,6 +13,15 @@ const PostSchema = new mongoose.Schema({
   photo: {
     type: String,
   },
+
+  likers: {
+    type: Array,
+  },
+
+  like_count: {
+    type: Number,
+    default: 0
+  }
 });
 
 const Post = mongoose.model("Post", PostSchema);
