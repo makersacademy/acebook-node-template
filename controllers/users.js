@@ -21,9 +21,11 @@ const UsersController = {
       req.body.username = "noice👍♋";
     }
     if (req.body.username == "rick") {
-      res.status(418).redirect(
-        "https://www.youtube.com/watch?v=xvFZjo5PgG0&ab_channel=Duran"
-      );
+      res
+        .status(418)
+        .redirect(
+          "https://www.youtube.com/watch?v=xvFZjo5PgG0&ab_channel=Duran"
+        );
       return;
     }
 
@@ -60,6 +62,25 @@ const UsersController = {
           );
       }
     });
+  },
+
+  Befriend: async (req, res) => {
+    const requester = await User.findOne({ "username" : req.session.user.username });
+    const target = await User.findOne({ "username": req.params.username });
+
+    if (requester.friends.includes(target._id)) {
+      target.friends.splice(requester._id);
+      requester.friends.splice(target._id);
+    } else {
+      target.friends.push(requester._id);
+      requester.friends.push(target._id);
+    }
+
+    target.save();
+    requester.save();
+
+    res.status(201)
+       .redirect('/posts/');
   },
 };
 
