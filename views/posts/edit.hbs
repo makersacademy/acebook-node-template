@@ -1,0 +1,7 @@
+<h1>Editing Post</h1>
+
+<form action="/posts/edit/{{post._id}}" method="post">
+    <label>Message</label>
+    <input name="message" type="textarea" value="{{post.message}}">
+    <input type="submit" value="Save"> 
+</form>
