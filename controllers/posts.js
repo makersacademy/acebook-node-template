@@ -58,6 +58,14 @@ const PostsController = {
       {$push: {comments: {comment: req.body.comment, author: req.session.user._id}}}
     );
     res.redirect('/posts');
+  },
+
+  async Delete (req, res) {
+    await Post.findOneAndDelete({
+      _id: req.params.id, 
+      author: req.session.user._id
+    })
+    res.redirect('/posts')
   }
 
 };
