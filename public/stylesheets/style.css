@@ -176,6 +176,11 @@ nav img {
   max-width: 30em;
 }
 
+.comments #comment-img{
+  height: 150px;
+  width: auto;
+}
+
 .user-header>* {
   display: inline-block;
 }
