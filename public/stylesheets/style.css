@@ -125,3 +125,15 @@ box-shadow: 5px 5px 5px #bababa;
 .unlikeBtn:hover {
 box-shadow: 5px 5px 5px #bababa;
 }
+
+/* profile layout test */
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  float: left;
+  margin-right: 16px;
+  border-radius: 50px;
+  }
+
+

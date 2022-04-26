@@ -19,14 +19,13 @@
         <form action="/posts/delete/{{this._id}}" method="post">
           <input id="delete-post-button" type="submit" value="Delete">
         </form>
-        <form action="/posts/edit/{{this._id}}" method="post">
+        <form action="/posts/edit/{{this._id}}" method="get">
           <input id="edit-post-button" type="submit" value="Edit">
         </form>
       {{/if}}
       </div>
     </div>
-
-    <div class="post-body">
+    <div class="post-body" id="{{this._id}}">
       <p id="message-content">{{this.message}}</p>
         {{#if this.photo}} <!-- display a photo is upload/none if not -->
           <img class="image" src="/upload/{{this.photo}}" />
