@@ -30,7 +30,6 @@ describe("User model", () => {
     expect(user.last_name).toEqual("Smith");
   });
 
-
   it("has an email address", () => {
     const user = new User({
       first_name: "Jane",
