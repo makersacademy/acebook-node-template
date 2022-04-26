@@ -28,13 +28,18 @@ const UsersController = {
      res.render("users/edit_profile");
    },
 
-   async EditProfile(req, res) {
-     req.session.user = await User.findByIdAndUpdate(req.session.user._id, {
-       firstName: req.body.firstName,
-       lastName: req.body.lastName,
-       img: req.body.img,
-       bio: req.body.bio,
-     },
+   async EditProfile(req, res) { console.log(req.body)
+     const data = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      bio: req.body.bio,
+    }
+    if (req.file) data.img = {
+      contentType: req.file?.type,
+      data: req.file?.buffer
+    },
+    req.session.user = await User.findByIdAndUpdate(req.session.user._id,
+      data,
      { returnDocument: "after" }
     )
      res.redirect("/users/profile");

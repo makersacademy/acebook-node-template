@@ -1,5 +1,9 @@
-<form id="update-bio-form" action="/users/profile" method="post" enctype="multipart/form-data">
+<form id="update-profile-form" action="/users/profile" method="post" enctype="multipart/form-data">
   <label for="bio">Bio:</label>
-  <input id="bio" type="text" name="bio" value="">
+  <input id="bio" type="text" name="bio">
+  <input type="text" name="firstName">
+  <h6>Change profile picture</h6>
+  <input type="file" id="img" name="img" accept="image/*">
+  <br>
   <input type="submit" value="Update">
 </form>
