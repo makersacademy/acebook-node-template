@@ -2,7 +2,10 @@
 <a class="new-post-link" href="/posts/new">New post</a>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}<br>
+  <li>
+  {{this.username}}
+  <br>
+  {{this.message}}
   <form id="comment" action="/posts/{{this.id}}" method="get">
   <input value="comment" type="submit">
   </form>
