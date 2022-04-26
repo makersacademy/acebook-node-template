@@ -118,6 +118,11 @@ nav img {
   width: auto;
 }
 
+.index-logo {
+  height: 250px;
+  width: auto;
+}
+
 .all-users {
   display: flex;
   justify-content: center;
