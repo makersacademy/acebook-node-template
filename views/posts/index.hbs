@@ -24,9 +24,8 @@
         </form>
       {{/if}}
       </div>
-    </div>
-
-    <div class="post-body">
+    </div>    
+    <div class="post-body" id="{{this._id}}">
       <p id="message-content">{{this.message}}</p>
         {{#if this.photo}} <!-- display a photo is upload/none if not -->
           <img class="image" src="/upload/{{this.photo}}" />
