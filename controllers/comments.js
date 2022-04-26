@@ -1,4 +1,3 @@
-const Post = require("../models/post");
 const Comments = require("../models/comment");
 
 const CommentsController = {
@@ -10,6 +9,7 @@ const CommentsController = {
       postId: id,
       content: comment
     })
+    console.log("this route works")
       res.status(201).redirect(`/posts/${id}`);
   }
 };

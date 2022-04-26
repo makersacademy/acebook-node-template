@@ -9,6 +9,10 @@
   <form id="comment" action="/posts/{{this.id}}" method="get">
   <input value="comment" type="submit">
   </form>
+  <form action="/posts/likes/{{this.id}}" method="post"> 
+    <input type="submit" value="likes">
+  </form>
+  {{this.likes.length}}
   {{/each}}
 </ul>
 
