@@ -6,6 +6,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const { flash } = require("express-flash-message");
+const hbs = require("hbs")
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -79,5 +80,18 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+///hbs helper
+
+hbs.registerHelper('show_edit_post_button', (userId, postUserId) => { 
+  if (userId === postUserId) {
+    return `<span id="edit_post"><button>Edit post</button></span>` }
+});
+
+hbs.registerHelper('show_delete_post_button', (userId, postUserId) => { 
+  if (userId === postUserId) {
+    return ` <span id="delete_post"><button>Delete post</button></span>` }
+});
+
 
 module.exports = app;
