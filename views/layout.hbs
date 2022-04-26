@@ -3,11 +3,46 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const path = window.location.pathname
+        if (['/sessions/new', '/users/new'].includes(path)) document.querySelector('#log_out_form').remove()
+      })
+    </script>
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
+    <div class="header">
+      <h1>Acebook</h1>
+    </div>
+    <div class="under_header"></div>
+    {{#if user}}
+    <div class="hamburger-menu">
+    <input id="menu_toggle" type="checkbox" />
+    <label class="menu_btn" for="menu_toggle">
+      <span></span>
+    </label>
+      <ul class="menu_box">
+      <li class="menu_item"><p>Welcome, {{user.firstName}} {{user.surname}}</p></li>
+      <li><hr></li>
+      <li><a class="menu_item" href="/">Home</a></li>
+      <li><a class="menu_item" href="/posts">Posts</a></li>
+      <li><a class="menu_item" href="/users/profile" id="profile-link">Profile</a></li>
+      <li><hr></li>
+      <li class="menu_item">
+      <form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out" class="menu_item_button">
+      </form>
+      </li>
+      </ul>
+    </div>
+    {{/if}}
     {{{body}}}
   </body>
+  <!-- <div class="nav-bar">
+      <p>Navigation</p>
+      <a href="/">Home</a>
+      <a href="/posts">Posts</a>
+      <a href="/sessions/new">Login</a>
+      <a href="/users/profile" id="profile-link">Profile</a>
+    </div> -->
 </html>
