@@ -84,7 +84,7 @@ const UsersController = {
   },
 
   Profile: (req, res) => {
-    User.findOne({ "username":req.params.username }, (err, user) => {
+    User.findOne({ "username": req.params.username }, (err, user) => {
       res.render("users/profile", {
         user: user,
         me: req.session.user._id,

@@ -44,10 +44,8 @@
         <input id="id" type="hidden" name="id" value="{{this._id}}">
         <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}Unlike{{else}}Like{{/contains}}">
       </form>
-
-
-
-      <form action="/posts/comment" method="post">
+      <form action="/posts/comment" method="get">
+        <input id="id" type="hidden" name="id" value="{{this._id}}">
         <input id="comment-button" type="submit" value="Comment">
       </form>
     </div>
