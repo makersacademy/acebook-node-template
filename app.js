@@ -4,14 +4,14 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
-const hbs = require("hbs");
-const moment = require("moment");
 const methodOverride = require("method-override");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const rhysRouter = require("./routes/rhys")
+require("./util/handlebarshelpers")
 
 const app = express();
 
@@ -60,16 +60,13 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
-hbs.registerHelper('dateFormat', function (date) {
-  const formatToUse = "DD/MM/YYYY, H:mm"
-  return moment(date).format(formatToUse);
-});
 
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/rhys", rhysRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
