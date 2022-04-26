@@ -8,7 +8,9 @@ router.get("/new", UsersController.New);
 router.post("/", UsersController.Create);
 router.get("/profile", sessionChecker, UsersController.Profile);
 router.post('/profile', multer.single('img'), UsersController.ProfilePhotoUpload)
+router.post("/profile", sessionChecker, UsersController.EditProfile);
 router.get("/photo/:id", UsersController.ProfilePhoto);
 router.get("/all", UsersController.AllUsers);
-router.get("/profile/edit", sessionChecker, UsersController.Edit);
+router.get("/profile/edit", sessionChecker, UsersController.EditPage);
 module.exports = router;
+

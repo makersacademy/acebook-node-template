@@ -24,10 +24,21 @@ const UsersController = {
     res.render("users/profile", {user});
   },
 
-  Edit: (req, res) => {
-    const user = req.session.user
-     res.render("users/edit_profile", {user});
+  EditPage: (req, res) => {
+     res.render("users/edit_profile");
    },
+
+   async EditProfile(req, res) {
+     req.session.user = await User.findByIdAndUpdate(req.session.user._id, {
+       firstName: req.body.firstName,
+       lastName: req.body.lastName,
+       img: req.body.img,
+       bio: req.body.bio,
+     },
+     { returnDocument: "after" }
+    )
+     res.redirect("/users/profile");
+    },
 
   /**
    * Finds a user's profile photo.
