@@ -36,7 +36,7 @@ const UsersController = {
     // if they don't exist, return 404 Not Found
     if (!user) res.status(404).send()
 
-    if (user.img.contentType) {
+    if (user.img.data) {
       // if the user has an image, return it
       res.set("content-type", user.img.contentType)
       res.send(user.img.data)
@@ -45,6 +45,17 @@ const UsersController = {
       res.status(204).send()
     }
   },
+
+  async ProfilePhotoUpload(req, res) {
+    await User.findByIdAndUpdate(req.session.user._id, {
+      img: {
+        contentType: req.file?.type,
+        data: req.file?.buffer
+      },
+    });
+    res.status(201).redirect('/users/profile');
+  },
+
 
   async AllUsers(req, res) {
     const users = await User.find();
