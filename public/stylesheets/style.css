@@ -98,6 +98,13 @@ a {
   margin-bottom: 20px;
 }
 
+#comment-box{
+  display:block;
+  resize: none;
+  width: 100%;
+  margin: 10px 0 ;
+}
+
 .likeBtn {
   background-color: #008ad3;
   color: white;

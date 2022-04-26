@@ -1,0 +1,36 @@
+<h1>Comments</h1>
+<br/><br/>
+<div class="all-posts">
+    {{!-- {{#each posts}} --}}
+    <li id="single-post">
+        <div class="post-header">
+            <div class="column1-author-details">
+                <img id="profile-picture" src="/users/{{ post.author }}/profilepicture" alt="">
+                <div id="post-details">
+                    <p id="post-author">{{ post.author }}</p>
+                    <p id="post-timestamp">{{idtotime post._id}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="post-body">
+            <p id="message-content">{{post.message}}</p>
+            {{#if post.photo}} <!-- display a photo is upload/none if not -->
+                <img class="image" src="/upload/{{post.photo}}" />
+            {{/if}}
+        </div>
+        {{#if (gt post.like_count 1)}}
+            <p id="like-count">Liked by {{post.like_count}} people</p>
+        {{else if (eq post.like_count 1)}}
+            <p id="like-count">Liked by {{post.like_count}} person</p>
+        {{/if}}
+        <hr>
+        <form action="/posts/comment/{{post._id}}" method="post">
+            <textarea id="comment-box" name="comment-box" rows="4" placeholder="Write a comment..."></textarea>
+            <input id="submit-comment" type="submit" value="Submit">
+        </form>
+
+        <hr>
+        <!-- Loop of some sort -->
+        <br/>
+    </li>
+</div>
