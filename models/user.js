@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: 'default.png',
   },
+
+  friends: {
+    type: Array
+  }
 });
 
 const User = mongoose.model("User", UserSchema);

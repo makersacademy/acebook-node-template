@@ -64,9 +64,31 @@ const UsersController = {
     });
   },
 
+  Befriend: async (req, res) => {
+    const requester = await User.findOne({ "username" : req.session.user.username });
+    const target = await User.findOne({ "username": req.params.username });
+
+    if (requester.friends.includes(target._id)) {
+      target.friends.splice(requester._id);
+      requester.friends.splice(target._id);
+    } else {
+      target.friends.push(requester._id);
+      requester.friends.push(target._id);
+    }
+
+    target.save();
+    requester.save();
+
+    res.status(201)
+       .redirect('/users/profile/' + req.query.return_to);
+  },
+
   Profile: (req, res) => {
-    User.findOne({"username": req.params.username}, (err, user) => { 
-      res.render("users/profile", {"user": user});
+    User.findOne({ "username": req.params.username }, (err, user) => {
+      res.render("users/profile", {
+        user: user,
+        me: req.session.user._id,
+      });
     })
   },
 };

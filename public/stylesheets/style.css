@@ -73,7 +73,7 @@ a {
 }
 
 .image {
-  max-width:400px;
+  max-width: 400px;
   /* max-height: 400px; */
   object-fit: scale-down;
   border: thin, solid rgb(154, 154, 154);
@@ -128,11 +128,11 @@ a {
 }
 
 .likeBtn:hover {
-box-shadow: 5px 5px 5px #bababa;
+  box-shadow: 5px 5px 5px #bababa;
 }
 
 .unlikeBtn:hover {
-box-shadow: 5px 5px 5px #bababa;
+  box-shadow: 5px 5px 5px #bababa;
 }
 
 /* profile layout test */
@@ -143,6 +143,23 @@ box-shadow: 5px 5px 5px #bababa;
   float: left;
   margin-right: 16px;
   border-radius: 50px;
-  }
+}
 
+.dead-pixel {
+  position: absolute;
+  scroll-behavior: none;
+  left: 500px;
+  top: 356px;
+  width: 1px;
+  height: 1px;
+  background-color: purple;
+}
 
+/* temp */
+.unfriendBtn {
+  color: red;
+}
+
+.friendBtn {
+  color: green;
+}
