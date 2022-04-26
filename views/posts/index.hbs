@@ -34,8 +34,13 @@
       <div class="delete_button_container">
         <form action="/posts/delete/{{this.id}}" method="post">
         <input type="hidden" name="userId" value="{{user._id}}">
-        <span id="delete_post"><button>Delete post</button></span>
+          {{{ show_delete_post_button ../user._id this.userId }}}
         </form>
+       <form action="/posts/edit/{{this.id}}" method="get">
+        <input type="hidden" name="userId" value="{{user._id}}">
+        <input type="hidden" name="post_id" value="{{this.id}}">
+         {{{ show_edit_post_button ../user._id this.userId }}}
+        </form> 
       </div>
     </div>
     {{/each}}

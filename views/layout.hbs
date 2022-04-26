@@ -14,11 +14,12 @@
     <div class="header">
       <h1>Acebook</h1>
     </div>
-    
-    <div class="under_header">a</div>
-    <form id="log_out_form" action='/sessions?_method=DELETE' method='POST'>
+    <div class="under_header"></div>
+    {{#if user}}
+    <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
     </form>
+    {{/if}}
     {{{body}}}
   </body>
   <div class="nav-bar">
