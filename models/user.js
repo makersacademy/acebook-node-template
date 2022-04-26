@@ -9,5 +9,7 @@ const UserSchema = new mongoose.Schema({
     default: "/images/Giraffe.png"
   }
 });
+
+
 const User = mongoose.model("User", UserSchema);
 module.exports = User;

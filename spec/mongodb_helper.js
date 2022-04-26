@@ -5,7 +5,6 @@ beforeAll(function(done) {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }, () => { 
-    console.log("Connected to db")
   });
   
   var db = mongoose.connection;
