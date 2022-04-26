@@ -10,22 +10,22 @@
     <div class="column1-author-details">
       <img id="profile-picture" src="/users/{{ this.author }}/profilepicture" alt="">
       <div id="post-details">
-        <p id="post-author">{{ this.author }}</p>
+        <a href="users/profile/{{ this.author }}"><p id="post-author">{{ this.author }}</p></a>
         <p id="post-timestamp">{{idtotime this._id}}</p>
       </div>
     </div>
       <div class="coloumn2-user-buttons">
       {{#if (eq this.author @root.user.username)}}
-        <form action="/posts/delete/{{this._id}}" method="post">  
+        <form action="/posts/delete/{{this._id}}" method="post">
           <input id="delete-post-button" type="submit" value="Delete">
         </form>
-        <form action="/posts/edit/{{this._id}}" method="post"> 
+        <form action="/posts/edit/{{this._id}}" method="post">
           <input id="edit-post-button" type="submit" value="Edit">
         </form>
       {{/if}}
       </div>
     </div>
-    
+
     <div class="post-body">
       <p id="message-content">{{this.message}}</p>
         {{#if this.photo}} <!-- display a photo is upload/none if not -->
@@ -45,9 +45,9 @@
         <input id="id" type="hidden" name="id" value="{{this._id}}">
         <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}Unlike{{else}}Like{{/contains}}">
       </form>
-      
-      
-      
+
+
+
       <form action="/posts/comment" method="post">
         <input id="comment-button" type="submit" value="Comment">
       </form>
