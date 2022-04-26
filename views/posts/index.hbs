@@ -1,11 +1,23 @@
-<h1>Timeline</h1>
+<head>
+  <link href="https://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='/stylesheets/style.css'  rel="stylesheet">
+</head>
+
+<h2>Timeline</h2>
 <a class="new-post-link" href="/posts/new">New post</a>
 <ul class="posts">
   {{#each posts}}
+  <img  class="avatar" alt="avatar" src="{{this.profilePic}}" style="height:70px; border-radius: 50%; border: 10px " />
   <li>
   {{this.username}}
   <br>
-  {{this.message}}
+  {{this.message}}<br>
+  {{#if this.image_url}}
+  <img class="post-image" src="{{this.image_url}}"
+  width="150"
+  height="150"/><br>
+  {{/if}}
   <form id="comment" action="/posts/{{this.id}}" method="get">
   <input value="comment" type="submit">
   </form>
