@@ -1,5 +1,12 @@
 <h1></h1>
-<form id="comment-form" action="/posts/comments/new" method="get">
+<h1>Original Post: {{post.message}}</h1>
+<form id="comment-form" action="/posts/{{id}}" method="post">
 <input type="text" name="comments">
 <input type="submit" value="submit">
 </form>
+<h4>Comments:</h4>
+<ul>
+<h2>{{#each comments}}</h2>
+<li>{{this}}</li>
+{{/each}}
+</ul>
