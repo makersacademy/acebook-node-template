@@ -1,3 +1,4 @@
+const { response } = require("express");
 const Post = require("../models/post");
 const util = require("../util/photoHandling");
 
@@ -23,10 +24,11 @@ const PostsController = {
       req.body.photo = newName;
     }
 
-    req.body.author = req.session.user.email;
+    req.body.author = req.session.user.username;
     const post = new Post(req.body);
     let error = post.validateSync();
     if (error) {
+      console.log(error);
       res.redirect("/posts/new");
       return;
     }
@@ -66,5 +68,29 @@ const PostsController = {
       }
     }
   };
+
+  Edit: (req, res) => {
+    Post.findById(req.params.id,(err,post) => {
+      console.log(post)
+      res.render("posts/edit", {post:post})  
+    })
+  },
+
+  SaveEdit: (req, res) => {
+    Post.findById(req.params.id,(err,post) => {
+      post.message = req.body.message
+      post.save() 
+      res.redirect("/posts")
+    })
+  },
+
+  Destroy: (req, res) => {
+    Post.deleteOne({_id:req.params.id},(err) => {
+      if (err) 
+        throw err;
+    })
+    res.redirect("/posts");
+  },
+};
 
 module.exports = PostsController;
