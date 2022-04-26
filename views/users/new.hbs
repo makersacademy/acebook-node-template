@@ -1,6 +1,9 @@
 
 <form id="new-user-form" action="/users" method="post">
   <div class="sign-up-form-fields">
+      {{#unless user}}
+          <img class="index-logo" src="/images/acebook-logo.png" alt="logo">
+      {{/unless}}
     <h2>Sign up below:</h2><br/>
     <div id="error_box"></div>
     <label for="firstName">First Name: </label>

@@ -1,38 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
 
-  <body>
+<body>
 
 
-    {{!-- NAV BAR --}}
-    <section class="header">
-      <nav>
+{{!-- NAV BAR --}}
+<section class="header">
 
-        <a href="/posts"><img src="/images/acebook-logo.png"</a>
+
+    <nav>
+        {{#if user}}
+            <a href="/posts"><img src="/images/acebook-logo.png" alt="logo"</a>
+        {{/if}}
+
         <div class="nav-bar" id="navLinks">
-          <ul>
-          {{#if user}}
-             <li><a href="/posts">TIMELINE</a></li>
-              <li><a href="/users/all">FIND A PROFILE</a></li>
-                <li><form action='/sessions?_method=DELETE' method='POST'>
-                  <input class="button" type="submit" value="LOG OUT">
-                </form></li>
-                <a href="/users/profile"><img class="nav-profile-pic" src="/users/photo/{{user._id}}"  alt="profile picture"></a>
+            <ul>
+                {{#if user}}
+                    <li><a href="/posts">TIMELINE</a></li>
+                    <li><a href="/users/all">FIND A PROFILE</a></li>
+                    <li>
+                        <form action='/sessions?_method=DELETE' method='POST'>
+                            <input class="button" type="submit" value="LOG OUT">
+                        </form>
+                    </li>
+                    <a href="/users/profile"><img class="nav-profile-pic" src="/users/photo/{{user._id}}"
+                                                  alt="profile picture"></a>
                 {{else}}
-                  <li><a href="/sessions/new">LOGIN</a></li>
-                  <li><a href="/users/new">SIGN UP</a></li>
+                    <li><a href="/sessions/new">LOGIN</a></li>
+                    <li><a href="/users/new">SIGN UP</a></li>
                 {{/if}}
-              </li>
+
+
+                </li>
             </ul>
-          </ul>
+            </ul>
         </div>
-      </nav>
-      </section>
-      {{!-- PAGE BODY HBS --}}
-      {{{body}}}
-    </body>
-  </html>
+    </nav>
+
+</section>
+{{!-- PAGE BODY HBS --}}
+{{{body}}}
+</body>
+</html>
