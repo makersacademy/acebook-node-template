@@ -35,7 +35,9 @@
                         <div>
                             <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
                             <p>{{this.comment}}</p>
-                            <img id="comment-img" src="{{dataImage this.img}}" alt="commented picture">
+                            {{#if this.img.data}}
+                                <img id="comment-img" src="{{dataImage this.img}}" alt="commented picture">
+                            {{/if}}
                         </div>
                     </div>
                 {{/each}}
