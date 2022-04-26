@@ -36,7 +36,7 @@ const PostsController = {
         await post.deleteOne();
         res.status(200).redirect("/posts");
       } else {
-        await req.flash('wrongUser', "You don't have an authorization for this action")
+        await req.flash('wrongUser', "You don't have authorization for this action")
         res.redirect('/posts');
       }
     } catch (err) {
@@ -47,11 +47,10 @@ const PostsController = {
     try {
       const post = await Post.findById(req.params.id);
       if (post.userId === req.session.user._id) {
-          Post.updateOne({_id: req.params.id}, {message: req.body.message}).then(() => {
-          res.status(200).redirect("/posts");
-         }) 
+        await post.updateOne({message: req.body.message})
+        res.status(200).redirect("/posts");
       } else {
-        await req.flash('wrongUser', "You don't have an authorization for this action")
+        await req.flash('wrongUser', "You don't have authorization for this action")
         res.redirect('/posts');
       }
     } catch (err) {
