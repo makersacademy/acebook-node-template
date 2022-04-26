@@ -8,9 +8,9 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-      if (req.body.email !== req.body.confirm_email || req.body.password !== req.body.confirm_password) { 
-        return res.redirect("users/new");    
-      }
+    if (req.body.email !== req.body.confirm_email || req.body.password !== req.body.confirm_password) {
+      return res.redirect("users/new");
+    }
     user.save((err) => {
       if (err) {
         throw err;
@@ -20,8 +20,30 @@ const UsersController = {
   },
 
   Profile: (req, res) => {
-   const user = req.session.user
+    const user = req.session.user
     res.render("users/profile", {user});
+  },
+
+  EditPage: (req, res) => {
+    res.render("users/edit_profile");
+  },
+
+  async EditProfile(req, res) {
+    console.log(req.body)
+    const data = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      bio: req.body.bio,
+    }
+    if (req.file) data.img = {
+      contentType: req.file?.type,
+      data: req.file?.buffer
+    }
+    req.session.user = await User.findByIdAndUpdate(req.session.user._id,
+        data,
+        {new: true}
+    )
+    res.redirect('/users/profile')
   },
 
   /**
