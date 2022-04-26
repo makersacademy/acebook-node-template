@@ -31,7 +31,18 @@ const PostsController = {
         newArray.push(element.content)
       )
       res.render("posts/comments", {post: post, id: id, comments: newArray.reverse()});
-    }
-}
+    }, 
+  Likes: (req, res) => { 
+    const id = req.params.id
+    Post.updateOne({_id: id}, { $push: {likes: "1"}}, (err) => {
+      if(err) { 
+        throw err;
+      }
+      
+    res.status(201).redirect("/posts");
+  });
+  },
+};
+
 
 module.exports = PostsController;
