@@ -21,9 +21,11 @@ const UsersController = {
       req.body.username = "noice👍♋";
     }
     if (req.body.username == "rick") {
-      res.status(418).redirect(
-        "https://www.youtube.com/watch?v=xvFZjo5PgG0&ab_channel=Duran"
-      );
+      res
+        .status(418)
+        .redirect(
+          "https://www.youtube.com/watch?v=xvFZjo5PgG0&ab_channel=Duran"
+        );
       return;
     }
 
@@ -60,6 +62,10 @@ const UsersController = {
           );
       }
     });
+  },
+
+  Profile: (req, res) => {
+    res.render("users/profile");
   },
 };
 
