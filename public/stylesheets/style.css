@@ -1,4 +1,3 @@
-html,
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -91,4 +90,15 @@ header {
 h1 {
   color: white;
   font-family: fantasy;
+}
+
+.h1 {
+  color: white;
+  font-family: fantasy;
+}
+
+.navbar form {
+  justify-content: center;
+  text-align: center;
+  position: absolute;
 }

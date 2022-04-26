@@ -4,7 +4,7 @@
 <head>
   <link href="https://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-  <link href="style.css" rel="stylesheet">
+  <link href='/stylesheets/style.css'  rel="stylesheet">
 </head>
 
 <body>
@@ -15,17 +15,18 @@
       </div>
     </form>
     <div class="button-group pull-right">
-      <a href="#" class="btn btn-primary">Post</a>
-      <a href="#" class="btn btn-primary">Add a photo</a>
-    </div>
+      {{!-- <a href="#" class="btn btn-primary">Post</a>
+      <a href="#" class="btn btn-primary">Add a photo</a> --}}
+    </div> 
+  </div> 
     <form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text"name="message"><br>
-  <label for="image_url">Image URL: </label>
-  <input id="image_url" type="text" name="image_url" value="">
-  <input type="submit" value="Submit" class="form-submit" >
-</form>
-  </div>
+      <label for="message">Message: </label>
+      <input id="message" type="text"name="message"><br>
+      <label for="image_url">Image URL: </label>
+      <input id="image_url" type="text" name="image_url" value="">
+      <input type="submit" value="Submit" class="form-submit" >
+    </form>
+  
 
 </body>
 
