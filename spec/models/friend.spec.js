@@ -32,27 +32,27 @@ describe("Friend model", () => {
     var friend = new Friend({ 
       requester_id: "abcd123",
       receiver_id: "efgh456",
-      status: 0 //pending
+      status: "Pending"
     });
-    expect(friend.status).toEqual(0);
+    expect(friend.status).toEqual("Pending");
   });
 
   it("has an 'approved' status", () => {
     var friend = new Friend({ 
       requester_id: "abcd123",
       receiver_id: "efgh456",
-      status: 1 //approved
+      status: "Approved"
     });
-    expect(friend.status).toEqual(1);
+    expect(friend.status).toEqual("Approved");
   });
 
   it("has a 'declined' status", () => {
     var friend = new Friend({ 
       requester_id: "abcd123",
       receiver_id: "efgh456",
-      status: 2 //declined
+      status: "Declined"
     });
-    expect(friend.status).toEqual(2);
+    expect(friend.status).toEqual("Declined");
   });
   
 });
