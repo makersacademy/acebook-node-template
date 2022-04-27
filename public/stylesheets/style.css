@@ -13,7 +13,7 @@ a {
   margin: 50 auto;
 }
 
-#single-post {
+.single-post {
   list-style: none;
   margin: 50 auto;
   border-radius: 5px;
