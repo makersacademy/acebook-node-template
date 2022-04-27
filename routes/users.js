@@ -9,5 +9,7 @@ router.get("/:username/profilepicture", UsersController.ProfilePicture);
 router.get("/profilepicture", UsersController.ProfilePicture);
 router.post("/befriend/:username", UsersController.Befriend);
 router.get("/profile/:username", UsersController.Profile);
+router.get("/edit/:username", UsersController.Edit);
+router.post("/edit/:username", UsersController.SaveEdit);
 
 module.exports = router;
