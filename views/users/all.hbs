@@ -5,7 +5,14 @@
             <img src="/users/photo/{{this._id}}" alt="photo"/>
             <div>
                 <span>{{this.firstName}} {{this.lastName}}</span>
-                <button>Add Friend</button>
+                {{#if @root.user}}
+                    <form action="/users/follow" method="post">
+                        <input type="hidden" name="user" value="{{this._id}}">
+                        <input type="submit"
+                               value="{{#contains this._id @root.user.following}}
+                           Unfollow{{else}}Follow{{/contains}}">
+                    </form>
+                {{/if}}
             </div>
         </div>
     {{/each}}
