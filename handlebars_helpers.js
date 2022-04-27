@@ -17,6 +17,10 @@ module.exports = function setup() {
     return options[b.includes(a) ? "fn" : "inverse"](this);
   });
 
+  hbs.registerHelper("trueToNone", (a) => {
+    return a ? "none" : "block";
+  });
+
   hbs.registerHelper({
     eq: (v1, v2) => v1 === v2,
     gt: (v1, v2) => v1 > v2,

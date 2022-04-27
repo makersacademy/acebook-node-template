@@ -1,0 +1,18 @@
+
+<h1>Editing Email</h1>
+
+<form action="/users/edit/{{username}}" method="post">
+    <label>Update email address:</label>
+    <input name="email" placeholder="Enter new e-mail address">
+    {{!-- update value to show current email? --}}
+    <input type="submit" value="Save"> 
+</form>
+
+
+<h2>Editing Password</h2>
+
+<form action="/users/edit/{{username}}" method="post">
+    <label>Update password:</label>
+    <input type="password" name="password" placeholder="Enter new password">
+    <input type="submit" value="Save"> 
+</form>
