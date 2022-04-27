@@ -107,7 +107,7 @@ const PostsController = {
     res.render("posts/singlepost", { post: post, comment: comment, user: req.session.user });
   },
 
-  Comment: (req, res) => {
+  Comment: async (req, res) => {
     req.body.author = req.session.user.username;
     req.body.post_id = req.params.id;
     const comment = new Comment(req.body);
@@ -118,7 +118,12 @@ const PostsController = {
       }
       res.status(201).redirect("/posts/comment?id=" + req.params.id);
     })
+    
+    const post = await Post.findOne({ _id: req.body.post_id })
+    const commenters = await Post.updateOne( { _id: req.body.post_id }, { $push: { commenters: req.session.user._id }})
+    
+    res.redirect("/posts/#" + req.body.post_id, {post, commenters, user: req.session.user});
+    }
   }
-}
 
 module.exports = PostsController;

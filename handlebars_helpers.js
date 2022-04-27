@@ -26,6 +26,4 @@ module.exports = function setup() {
     neq: (v1, v2) => v1 != v2,
     gt: (v1, v2) => v1 > v2,
   });
-
-  hbs.registerPartial('comments', '{{comments}}');
 };

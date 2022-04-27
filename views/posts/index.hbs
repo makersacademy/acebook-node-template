@@ -48,7 +48,7 @@
       </form>
       <form action="/posts/comment" method="get">
         <input id="id" type="hidden" name="id" value="{{this._id}}">
-        <input id="comment-button" type="submit" value="Comment">
+        <input id="comment-button" type="submit" value="{{#if (eq commenters.length 1)}}{{ commenters.length }} Comment{{else}}{{ commenters.length }} Comments{{/if}}">
       </form>
     </div>
     <br/><hr>

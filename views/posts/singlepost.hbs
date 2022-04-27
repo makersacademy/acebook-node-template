@@ -21,6 +21,11 @@
         {{else if (eq post.likers.length 1)}}
             <p id="like-count">Liked by {{post.likers.length}} person</p>
         {{/if}}
+        {{#if (gt post.commenters.length 1)}}
+            <p id="comment-count">{{ post.commenters.length }} comments</p>
+        {{else if (eq post.commenters.length 1)}}
+            <p id="comment-count">{{ post.commenters.length }} comment</p>
+        {{/if}}
         <hr>
         <form action="/posts/comment/{{post._id}}/commented" method="post">
             <textarea id="comment-box" name="comment" rows="4" placeholder="Write a comment..."></textarea>
