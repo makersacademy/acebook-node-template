@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Post = require("../models/post");
 
 const PostsController = {
@@ -54,10 +55,19 @@ const PostsController = {
     res.status(200).send();
   },
 
+  async DeleteComment (req, res) {
+    await Post.findOneAndDelete({
+        comment: req.body.comment,
+        author: req.session.user._id
+    })
+    res.status(200).send();
+  },
+
     async Comment(req, res) {
         await Post.findByIdAndUpdate(req.body.post, {
             $push: {
                 comments: {
+                    _id: new mongoose.Types.ObjectId(),
                     comment: req.body.comment,
                     author: req.session.user._id,
                     img: {

@@ -54,6 +54,10 @@
 </ul>
 <script>
     async function deletePost(post){
+       await fetch('/posts/' + post, {method: 'DELETE' })
+       location.reload();
+    }
+        async function deleteComment(post){
         console.log(post)
        await fetch('/posts/' + post, {method: 'DELETE' })
        location.reload();
