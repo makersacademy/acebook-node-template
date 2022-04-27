@@ -26,7 +26,9 @@
       </div>
     </div>
     <div class="post-body">
+      {{#if this.message}} 
       <p id="message-content">{{this.message}}</p>
+        {{/if}}
         {{#if this.photo}} <!-- display a photo is upload/none if not -->
           <img class="image" src="/upload/{{this.photo}}" />
         {{/if}}
