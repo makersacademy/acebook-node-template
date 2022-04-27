@@ -102,7 +102,7 @@ const PostsController = {
 
   SinglePost: async (req, res) => {
     const post = await Post.findById(req.query.id)
-    const comment = await Comment.find({post_id: req.query.id})
+    const comment = await Comment.find({post_id: req.query.id}).sort({ _id: -1 })
 
     res.render("posts/singlepost", { post: post, comment: comment, user: req.session.user });
   },
