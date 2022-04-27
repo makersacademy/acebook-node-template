@@ -6,11 +6,17 @@ const UsersController = {
     res.render("users/new", {});
   },
 
-  Create: (req, res) => {
+  Create: async (req, res) => {
     const user = new User(req.body);
+    const email = req.body.email;
     if (req.body.email !== req.body.confirm_email || req.body.password !== req.body.confirm_password) {
       return res.redirect("users/new");
     }
+      if (await User.exists({ email: email })){
+        console.log("This account already exist")
+        return res.redirect("/users/new#repeatedemail");
+    }
+
     user.save((err) => {
       if (err) {
         throw err;
