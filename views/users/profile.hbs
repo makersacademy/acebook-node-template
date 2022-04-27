@@ -44,7 +44,9 @@
           <button type="button">Update profile pic</button>
         </div>
         <div class="editUserAccount">
-          <button type="button">Edit user account</button>
+          <form action="/users/edit/{{user.username}}" method="get">
+          <input type="submit" value="Update Account Details">
+          </form>
         </div>
       </div>
     </div>
