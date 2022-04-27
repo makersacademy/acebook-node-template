@@ -5,14 +5,13 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{!-- nav bar test --}}
-    <div class="topnav">
+    <div class="topnav" style="display: {{ trueToNone hideNavbar }};">
       <a  href="/">Home</a>
       <a href="/posts/">My Feed</a>
       <a href="/users/profile/{{ user.username }}">My Profile</a>
       <form action='/sessions?_method=DELETE' method='POST'>
         <input type="submit" value="Log Out">
-      </form> 
+      </form>
       <input type="text" placeholder="Search..">
     </div>
     <div class="dead-pixel"></div>
