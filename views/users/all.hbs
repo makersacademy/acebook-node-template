@@ -9,8 +9,7 @@
                     <form action="/users/follow" method="post">
                         <input type="hidden" name="user" value="{{this._id}}">
                         <input type="submit"
-                               value="{{#contains this._id @root.user.following}}
-                           Unfollow{{else}}Follow{{/contains}}">
+                               value="{{#containsId this._id @root.user.following}}Unfollow{{else}}Follow{{/containsId}}">
                     </form>
                 {{/if}}
             </div>

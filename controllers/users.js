@@ -87,7 +87,7 @@ const UsersController = {
     const user = await User.findById(req.body.user);
     if (!user) return res.status(404).send();
 
-    await User.findByIdAndUpdate(req.session.user._id, [{
+    req.session.user = await User.findByIdAndUpdate(req.session.user._id, [{
       $set: {
         following: {
           $cond: [
@@ -97,7 +97,7 @@ const UsersController = {
           ]
         }
       }
-    }])
+    }], {new: true})
     return res.redirect('/users/all')
   }
 };
