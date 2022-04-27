@@ -29,7 +29,6 @@ const UsersController = {
   },
 
   async EditProfile(req, res) {
-    console.log(req.body)
     const data = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -82,6 +81,24 @@ const UsersController = {
   async AllUsers(req, res) {
     const users = await User.find();
     res.render("users/all", {users})
+  },
+
+  async Follow(req, res) {
+    const user = await User.findById(req.body.user);
+    if (!user) return res.status(404).send();
+
+    req.session.user = await User.findByIdAndUpdate(req.session.user._id, [{
+      $set: {
+        following: {
+          $cond: [
+            {$in: [user._id, "$following"]},
+            {$setDifference: ["$following", [user._id]]},
+            {$concatArrays: ["$following", [user._id]]}
+          ]
+        }
+      }
+    }], {new: true})
+    return res.redirect('/users/all')
   }
 };
 

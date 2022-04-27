@@ -3,9 +3,11 @@ const moment = require("moment");
 const {ObjectId} = require("mongodb");
 // handlebars helper to check for object presence in array
 hbs.registerHelper("contains", function (value, array, options) {
-  // fallback...
-  array = (array instanceof Array) ? array : [array];
   return options[array.includes(value) ? "fn" : "inverse"](this);
+});
+
+hbs.registerHelper("containsId", function (value, array, options) {
+  return options[array.some(x => x.toString() === value.toString()) ? "fn" : "inverse"](this);
 });
 
 // handlebars helper to check for posted image
@@ -18,5 +20,7 @@ hbs.registerHelper("id-to-timestamp", function (value) {
   const timeStamp = new ObjectId(value).getTimestamp()
   return moment(timeStamp).fromNow()
 });
+
+hbs.registerHelper("toString", it => it.toString())
 
 hbs.registerHelper("dataImage", (img) => `data:${img?.contentType ?? ''};base64,${img?.data?.toString('base64')}`);
