@@ -7,6 +7,31 @@ const UsersController = {
     res.render("users/new", {});
   },
 
+  Edit: (req, res) => {
+    res.render("users/edit", {username: req.params.username});
+  },
+
+  SaveEdit: (req, res) => {
+    if (req.body.email){
+      User.findOne({username: req.params.username},(err,user) => {
+        user.email = req.body.email
+        user.save() 
+        res.redirect("/posts")
+      })
+
+    }
+
+    if (req.body.password){
+      User.findOne({username: req.params.username},(err,user) => {
+        user.password = req.body.password
+        user.save()
+        res.redirect("/posts")
+      })
+    
+    }
+    
+  },
+
   Create: (req, res) => {
     if (req.files) {
       console.log("has been called");
@@ -93,7 +118,7 @@ const UsersController = {
 
       res.render("users/profile", {
         user: user,
-        me: req.session.user._id,
+        me: req.session.user,
         friends: friends,
       });
     })

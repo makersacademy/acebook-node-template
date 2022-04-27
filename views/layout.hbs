@@ -5,20 +5,29 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{!-- nav bar test --}}
-    <div class="topnav">
+    <div class="topnav" style="display: {{ trueToNone hideNavbar }};">
       <a  href="/">Home</a>
       <a href="/posts/">My Feed</a>
       <a href="/users/profile/{{ user.username }}">My Profile</a>
-      <form action='/sessions?_method=DELETE' method='POST'>
-        <input type="submit" value="Log Out">
-      </form> 
+
+      <a style="float: right;" href="#" id="log-out">Log out</a>
+
       <input type="text" placeholder="Search..">
     </div>
+
     <div class="dead-pixel"></div>
-    {{!-- <form action='/sessions?_method=DELETE' method='POST'>
-    <input type="submit" value="Log Out">
-    </form>  --}}
+
+    <form style="display: none;" action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" id="actual-log-out" value="Log Out">
+    </form>
+
+    <script>
+      // I apologize for the horrendous code below.
+      document.getElementById('log-out').addEventListener('click', function(e) {
+        document.getElementById('actual-log-out').click();
+      });
+    </script>
+
     {{{body}}}
   </body>
 </html>
