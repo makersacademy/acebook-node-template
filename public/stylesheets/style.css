@@ -28,10 +28,12 @@ nav{
   padding: 0;
   overflow: auto;
 }
+
 .nav-links{
   flex: 1;
   text-align: right;
 }
+
 .nav-links ul{
   list-style-type: none;
   margin: 0;
@@ -55,6 +57,7 @@ nav{
   text-align: center;
   padding: 14px 16px;
 }
+
 .nav-links ul li input{
   text-decoration: none;
   font-size: 20px;
@@ -66,11 +69,15 @@ nav{
 }
 
 li a:hover:not(.active) {
+  cursor: pointer;
   background-color: rgb(10, 8, 35);
 }
-li input:hover:not(.active) {
+
+li .loggedInNav input:hover:not(.active) {
+  cursor: pointer;
   background-color: rgb(10, 8, 35);
 }
+
 .active {
   background-color: #dd7a45;  font-size: 20px;
   display: block;
@@ -86,6 +93,11 @@ li input:hover:not(.active) {
   display: block;
   text-align: center;
   padding: 14px 16px;
+}
+
+#appTitle a{
+  text-decoration: none;
+  color: #fff;
 }
 
 .text-box{
@@ -120,8 +132,16 @@ padding: 20px 5px;
   justify-content: center;
 }
 
-.formCon form{
-  margin: 0 10px;
+#timelineLike form {
+  margin: 0 5px;
+}
+
+#timelineLike form input{
+  padding: 1px 7.5px;
+}
+
+.formCon form #email, .formCon form #password{
+  margin: 0 0 10px 5px;
 }
 
 .dateCon{
@@ -155,4 +175,8 @@ padding: 20px 5px;
 #formContainer form input{
   font-size: 1.15em;
   padding: 1px 7.5px;
+}
+
+.loggedInNav{
+  display: flex;
 }
