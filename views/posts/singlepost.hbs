@@ -16,10 +16,10 @@
                 <img class="image" src="/upload/{{post.photo}}" />
             {{/if}}
         </div>
-        {{#if (gt post.like_count 1)}}
-            <p id="like-count">Liked by {{post.like_count}} people</p>
-        {{else if (eq post.like_count 1)}}
-            <p id="like-count">Liked by {{post.like_count}} person</p>
+        {{#if (gt post.likers.length 1)}}
+            <p id="like-count">Liked by {{post.likers.length}} people</p>
+        {{else if (eq post.likers.length 1)}}
+            <p id="like-count">Liked by {{post.likers.length}} person</p>
         {{/if}}
         <hr>
         <form action="/posts/comment/{{post._id}}/commented" method="post">
@@ -27,7 +27,11 @@
             <input id="submit-comment" type="submit" value="Submit">
         </form>
         <hr>
+        {{#if comment}}
         <h1>Comments</h1>
+        {{ else }}
+        <h4>Be the first to comment on this post!</h4>
+        {{/if}}
             <div class="comments">
             {{#each comment}}
                 <div class="single-comment">
