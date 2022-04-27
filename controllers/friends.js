@@ -1,5 +1,7 @@
 const Friend = require("../models/friend");
 const User = require("../models/user");
+const SessionsController = require("./sessions");
+const UsersController = require("./users");
 
 const FriendsController = {
   New: (req, res) => {
@@ -7,47 +9,47 @@ const FriendsController = {
       if (err) {
         throw err;
       }
-      res.render("friends/index", { users: users.reverse() });
+      
+      User.findOne({email: req.session.user.email}, (err, user) => {
+        if (err) {
+          throw err;
+        }
+
+        const friends_list = user.friends;
+
+      res.render("friends/index", { users: users.reverse(), friends_list: friends_list });
     });
+   });
   },
 
-  List: (req, res) => {
+  Add: (req, res) => {
+    
+    const friend = new Friend ({
+      requester_email: req.session.user.email,  //req.session = user currently logged in
+      receiver_email: req.body.receiver_email,  //req.body = "Friends Page" index.hbs form
+    });
 
-    User.find((err, users) => {
+    friend.save((err) => {
       if (err) {
         throw err;
       }
 
-      res.render("friends/result", { users: users.reverse() });
-    });
+      User.findOne({email: req.session.user.email}, (err, user) => {
+        if (err) {
+          throw err;
+        }
+
+        user.friends.push(req.body.receiver_email);
+        
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+          res.status(201).redirect("/friends");
+        });
+      });
+    }); 
   },
-
-  Add: (req, res) => {
-    console.log("------------------");
-    console.log("DOES THIS WORK?");
-    console.log("------------------");
-
-    console.log("------------------");
-    console.log(req.body);
-    console.log("------------------");
-
-    console.log("------------------");
-    console.log(req);
-    console.log("------------------");
-
-
-    res.status(201).redirect("/friends");
-  },
-
 }; 
-
-// User.findOne({
-//   first_name: req.body.first_name,
-//   last_name: req.body.last_name,
-// }, (err, docs) => {
-//   if (err) {
-//     throw err;
-//   }
-// })
 
 module.exports = FriendsController;

@@ -1,21 +1,18 @@
 <h1>Friends PAGE</h1>
-<p>Search for a friend:</p>
-<form id="friend-request" action="/friends/new" method="post">
-  <label for="first-name">First Name: </label>
-  <input id="first-name" type="text" name="first-name" value="" required>
-  <label for="last-name">Last Name: </label>
-  <input id="last-name" type="text" name="last-name" value="" required>
-  <input type="submit" value="Submit">
-</form>
 
 <p>Here are all the accounts:</p>
 <ul reversed class="friends">
   {{#each users}}
-  <li>First name: {{this.first_name}} Last name: {{this.last_name}} 
+  <li>Name: {{this.first_name}} {{this.last_name}} 
     <form id="add-friend" action="/friends/request" method="post">
-      <input type="hidden" id="email" name="email" value="{{this.email}}">
+      <input type="hidden" id="receiver_email" name="receiver_email" value="{{this.email}}">
       <input type="submit" value="Add Friend">
     </form>
   </li>
   {{/each}}
+  <br>
+  
+  <p>Here are your friends:</p>
+  <p>{{friends_list}}</p>
+  
 </ul>
