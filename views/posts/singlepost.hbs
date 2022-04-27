@@ -1,6 +1,6 @@
 <br/><br/>
 <div class="all-posts">
-    <li id="single-post">
+    <li class="single-post">
         <div class="post-header">
             <div class="column1-author-details">
                 <img id="profile-picture" src="/users/{{ post.author }}/profilepicture" alt="">
@@ -32,7 +32,9 @@
             {{#each comment}}
                 <div class="single-comment">
                 {{#if (eq post._id comment.post_id) }}
+                    <img id="comment-profile-picture" src="/users/{{ this.author }}/profilepicture" alt="">
                     <p id="comment-author">{{ this.author }}</p>
+                    <p id="comment-timestamp">{{idtotime this._id}}</p>
                     <p id ="comment-text">{{ this.comment }}</p>
                 {{/if}}
                 </div>
