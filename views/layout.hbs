@@ -9,7 +9,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 .topnav a {
   float: left;
   display: block;
@@ -79,6 +78,8 @@ body {
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
+    <section>
     <nav>
       <div class="nav-center">
         <h3 id="appTitle">
@@ -103,16 +104,14 @@ body {
                 <input type="submit" id="logOut" value="Log Out">
               </form>
             <a href="/friends">Friends</a>
-
             {{else}}
-              <a href="/users/new">Sign Up</a>
-              <a href="/sessions/new">Log in</a>
+              <li><a href="/users/new">Sign Up</a></li>
+              <li><a href="/sessions/new">Log In</a></li>
             {{/if}}
-          </li>
-        </ul>
-      </div>
-      
-    </nav>
+          </ul>
+        </div>
+      </nav>
+    </section>
     {{{body}}}
   </body>
 </html>
