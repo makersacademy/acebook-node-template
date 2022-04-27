@@ -19,8 +19,9 @@
                 {{#if this.img.data}}
                     <img src="{{dataImage this.img}}" height="300">
                 {{/if}}
-                <button class="button-style" onclick="deletePost('{{this._id}}')">Delete</button>
-
+                {{#strEq this.author._id @root.user._id}}
+                    <button class="button-style" onclick="deletePost('{{this._id}}')">Delete</button>
+                {{/strEq}}
                 <form action="/posts/like" method="post">
                     <input type="hidden" name="post" value="{{this._id}}">
                     <input class="button-style" type="submit"
