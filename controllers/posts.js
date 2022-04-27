@@ -14,7 +14,10 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post({...req.body,
+    const post = new Post({...req.body, 
+      creator_first_name: req.session.user.first_name, 
+      creator_last_name: req.session.user.last_name,
+      creator_profile_img: req.session.user.profile_img,
     img: {
       contentType: req.file?.type,
       data: req.file?.buffer

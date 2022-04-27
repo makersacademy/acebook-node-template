@@ -1,7 +1,7 @@
 <div class="text-box">
   <h1>Register with Acebook</h1>
   <br>
-  <form id="new-user-form" action="/users" method="post">
+  <form id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
     <label for="first_name">First Name: </label>
     <input required id="first_name" type="string" name="first_name" value="">
     <br>
@@ -14,6 +14,8 @@
     <label for="password">Password: </label>
     <input required id="password" type="password" name="password" value="">
     <br>
+    <label for="img">Select profile image: </label>
+    <input type="file" name="profile_img" id="img" accept="image/*">
     <input id="submit" type="submit" value="Submit">
   </form>
 </div>

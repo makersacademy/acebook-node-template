@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const {ObjectID} = require("mongodb");
 
 const UsersController = {
   New: (req, res) => {
@@ -14,7 +15,9 @@ const UsersController = {
         return;
       }  
 
-      user = new User(req.body);
+      user = new User({..req.body, profile_img: {     
+        contentType: req.file?.type,
+        data: req.file?.buffer}});
       user.save((err) => {
           if (err) {
             throw err;
