@@ -5,4 +5,12 @@
   {{this.profilePic}}
   {{this.email}}
 {{/each}}
+  <h1>List of Friends:</h1>
+{{#each user}}
+  {{#each this.friends}}
+  <li>
+  {{this}}
+  </li>
+  {{/each}}
+  {{/each}}
 </h1>

@@ -28,5 +28,16 @@
 
   {{/each}}
 </ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>
+<h1>List of Other Users:</h1>
+  {{#each name}}
+  {{!-- {{#if user === }} --}}
+  <li>{{this}}</li>
+  <form action="/users/friend/{{this}}" method="post">
+    <input type="submit" value="Friend" >
+  </form>
+  <form action="/users/friend/{{this}}" method="get">
+  <input type="submit" value="See Profile">
+  </form>
+  <br>
+</ul>
+{{/each}}
