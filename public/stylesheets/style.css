@@ -118,6 +118,11 @@ nav img {
   width: auto;
 }
 
+.index-logo {
+  height: 250px;
+  width: auto;
+}
+
 .all-users {
   display: flex;
   justify-content: center;
@@ -174,6 +179,11 @@ nav img {
 .comments p {
   overflow-wrap: anywhere;
   max-width: 30em;
+}
+
+.comments #comment-img{
+  height: 150px;
+  width: auto;
 }
 
 .user-header>* {

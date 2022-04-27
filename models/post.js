@@ -10,8 +10,13 @@ const PostSchema = new mongoose.Schema({
   },
   comments: [{
     author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    img: {
+      data: Buffer,
+      contentType: String
+    },
     comment: String
   }],
+
 });
 
 
