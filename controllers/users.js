@@ -20,11 +20,22 @@ const UsersController = {
     res.render("users/profile", {user: user})
   }, 
 
-  Friend: (req, res) => { 
-    // Find User through the email passed into the url
-    // Provide username, email address and profile picture for the view
-    console.log(req)
-    res.render("users/friendprofile")
+  Friend: async (req, res) => { 
+    const id = await User.find({username: req.params.name }, {content: 1})
+    const info = await User.findById(id)
+    res.render("users/friend", {name: info.username, email: info.email, pic: info.profilePic})
+  },
+  
+  AddFriend: async (req, res) => { 
+    const myId = await req.session.user._id
+    const username = await req.params.name
+    User.updateOne({_id: myId}, { $push: {friends: username}}, (err) => { 
+      if (err){ 
+        throw err;
+      }
+    
+      res.status(201).redirect("/posts");
+    })
   }
 };
 

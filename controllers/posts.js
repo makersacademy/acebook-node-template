@@ -17,7 +17,6 @@ const PostsController = {
       res.render("posts/index", { posts: posts.reverse(), username: posts.username, name: newArray });
     });
   },
-
   New: (req, res) => {
     res.render("posts/new");
   },

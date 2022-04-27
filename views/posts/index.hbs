@@ -32,10 +32,10 @@
   {{#each name}}
   {{!-- {{#if user === }} --}}
   <li>{{this}}</li>
-  <form action="/users/friend" method="post">
+  <form action="/users/friend/{{this}}" method="post">
     <input type="submit" value="Friend" >
   </form>
-  <form action="/users/friendprofile/{{this}}" method="get">
+  <form action="/users/friend/{{this}}" method="get">
   <input type="submit" value="See Profile">
   </form>
   <br>
