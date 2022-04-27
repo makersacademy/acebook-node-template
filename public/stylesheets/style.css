@@ -180,3 +180,33 @@ padding: 20px 5px;
 .loggedInNav{
   display: flex;
 }
+
+.newUserForm{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newUserForm form{
+  display: table;
+}
+
+.newUserForm p{
+  display: table-row;
+  margin: 5px 0;
+}
+
+.newUserForm label{
+  display: table-cell;
+}
+
+.newUserForm #first_name, .newUserForm #last_name, .newUserForm #email, .newUserForm #password{
+  display: table-cell;
+}
+
+#new-user-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
