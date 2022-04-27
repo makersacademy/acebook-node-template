@@ -36,7 +36,6 @@ describe("Post model", () => {
     });
   });
 
-
   it("can save a post", (done) => {
     var post = new Post({ 
       message: "some message",
