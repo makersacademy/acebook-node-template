@@ -15,13 +15,11 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
-//   AddFriend: (req, res) => {
 
-// // add friend to the user table
-//   },
-  // NewFriend: (req, res) => { 
-
-  // },
+  Profile: (req, res) => { 
+    const user = req.session
+    res.render("users/profile", {user: user})
+  }
 };
 
 module.exports = UsersController;

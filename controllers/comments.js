@@ -9,6 +9,7 @@ const CommentsController = {
       postId: id,
       content: comment
     })
+    console.log("this route works")
       res.status(201).redirect(`/posts/${id}`);
   }
 };

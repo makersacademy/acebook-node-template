@@ -1,8 +1,18 @@
+<head>
+  <link href="https://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='/stylesheets/style.css'  rel="stylesheet">
+</head>
+
 <form id="new-user-form" action="/users" method="post">
   <h1> Sign up for an Acebook account </h1>
-  <br><label for="email">Email: </label>
-  <input id="email" type="email" name="email" value=""><br>
-  <br><label for="password">Password: </label>
-  <input id="password" type="password" name="password" value=""><br>
-  <br><input id="submit" type="submit" value="Submit">
+  <label for="username">Username: </label>
+  <input id="username" type="text" name="username" value="" /><br />
+  <label for="email">Email: </label>
+  <input id="email" type="email" name="email" value="" /><br />
+  <label for="password">Password: </label>
+  <input id="password" type="password" name="password" value="" /><br />
+  <label for="profilePic">Profile Pic: </label>
+  <input id="image" type="file" name="profilePic" placeholder="Photo" capture>
+  <input id="submit" type="submit" value="Submit" />
 </form>

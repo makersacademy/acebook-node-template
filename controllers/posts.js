@@ -4,19 +4,18 @@ const User = require("../models/user");
 
 const PostsController = {
   Index: async (req, res) => {
-    const user  = await User.find()
     Post.find((err, posts)=> {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts.reverse(), user: user});
+      res.render("posts/index", { posts: posts.reverse(), username: posts.username});
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new");
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const post = new Post({message: req.body.message, username: req.session.user.username})
     post.save((err) => {
       if (err) {
         throw err;
@@ -33,7 +32,18 @@ const PostsController = {
         newArray.push(element.content)
       )
       res.render("posts/comments", {post: post, id: id, comments: newArray.reverse()});
-    }
-}
+    }, 
+  Likes: (req, res) => { 
+    const id = req.params.id
+    Post.updateOne({_id: id}, { $push: {likes: "1"}}, (err) => {
+      if(err) { 
+        throw err;
+      }
+      
+    res.status(201).redirect("/posts");
+  });
+  },
+};
+
 
 module.exports = PostsController;
