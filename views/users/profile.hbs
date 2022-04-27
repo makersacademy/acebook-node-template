@@ -8,7 +8,14 @@
     <h3> {{user.username}}</h3>
   </div>
   <div>
-    <p>20 friends</p>
+    <p>{{ friends.length }} {{#if (eq friends.length 1) }}friend{{else}}friends{{/if}}</p>
+      <div>
+        <ul>
+          {{#each friends}}
+            <a href="/users/profile/{{ this.username }}"><li>{{this.username}}</li></a>
+          {{/each}}
+        </ul>
+      </div>
   </div>
   <div>
     <form action="/users/befriend/{{ user.username }}?return_to={{ user.username }}" method="post">
