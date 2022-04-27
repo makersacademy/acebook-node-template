@@ -6,30 +6,30 @@ const UsersController = {
     res.render("users/new", {});
   },
 
-  Create: (req, res) => {
+  async Create(req, res) {
     const user = new User(req.body);
+    const email = req.body.email;
     if (req.body.email !== req.body.confirm_email || req.body.password !== req.body.confirm_password) {
       return res.redirect("users/new");
     }
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
+    if (await User.exists({email: email})) {
+      return res.redirect("/users/new#repeatedemail");
+    }
+
+    await user.save()
+    res.status(201).redirect("/posts");
   },
 
-  Profile: (req, res) => {
+  Profile(req, res) {
     const user = req.session.user
     res.render("users/profile", {user});
   },
 
-  EditPage: (req, res) => {
+  EditPage(req, res) {
     res.render("users/edit_profile");
   },
 
   async EditProfile(req, res) {
-    console.log(req.body)
     const data = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -82,6 +82,24 @@ const UsersController = {
   async AllUsers(req, res) {
     const users = await User.find();
     res.render("users/all", {users})
+  },
+
+  async Follow(req, res) {
+    const user = await User.findById(req.body.user);
+    if (!user) return res.status(404).send();
+
+    req.session.user = await User.findByIdAndUpdate(req.session.user._id, [{
+      $set: {
+        following: {
+          $cond: [
+            {$in: [user._id, "$following"]},
+            {$setDifference: ["$following", [user._id]]},
+            {$concatArrays: ["$following", [user._id]]}
+          ]
+        }
+      }
+    }], {new: true})
+    return res.redirect('/users/all')
   }
 };
 

@@ -11,5 +11,5 @@ router.post("/profile", sessionChecker, multer.single('img'), UsersController.Ed
 router.get("/profile/edit", sessionChecker, UsersController.EditPage);
 router.get("/photo/:id", UsersController.ProfilePhoto);
 router.get("/all", UsersController.AllUsers);
+router.post("/follow", sessionChecker, UsersController.Follow)
 module.exports = router;
-

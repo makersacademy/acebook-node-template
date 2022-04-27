@@ -5,11 +5,12 @@ const UserSchema = new mongoose.Schema({
   password: String,
   firstName: String,
   lastName: String,
-  img: { 
-    data: Buffer, 
-    contentType: String 
+  img: {
+    data: Buffer,
+    contentType: String
   },
   bio: String,
+  following: [mongoose.Schema.Types.ObjectId]
 });
 
 const User = mongoose.model("User", UserSchema);
