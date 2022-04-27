@@ -1,4 +1,3 @@
-const { response } = require("express");
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const util = require("../util/photoHandling");
