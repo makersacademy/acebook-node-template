@@ -24,6 +24,11 @@ const UsersController = {
     const user = req.session.user
     res.render("users/profile", {user});
   },
+  async ProfileOther(req, res) {
+    const targetUser = await User.findById(req.params.id);
+    if (!targetUser) return res.status(404);
+    res.render("users/profile", {targetUser});
+  },
 
   EditPage(req, res) {
     res.render("users/edit_profile");

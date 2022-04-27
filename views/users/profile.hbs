@@ -1,8 +1,16 @@
-<h1 id="title" class="title">{{user.firstName}} {{user.lastName}}</h1>
-<img class="profile-pic" src="/users/photo/{{user._id}}"  alt="profile picture"/>
-<a href="/users/profile/edit"> Edit Profile</a>
+<h1 id="title" class="title">{{targetUser.firstName}} {{targetUser.lastName}}</h1>
+<img class="profile-pic" src="/users/photo/{{targetUser._id}}" alt="profile picture"/>
+{{#strEq @root.user._id targetUser._id}}
+    <a href="/users/profile/edit"> Edit Profile</a>
+{{else}}
+    <form action="/users/follow" method="post">
+        <input type="hidden" name="user" value="{{targetUser._id}}">
+        <input type="submit"
+               value="{{#containsId user._id @root.user.following}}Unfollow{{else}}Follow{{/containsId}}">
+    </form>
+{{/strEq}}
 
 
 <p id="bio">
-   {{user.bio}}
+    {{targetUser.bio}}
 </p>

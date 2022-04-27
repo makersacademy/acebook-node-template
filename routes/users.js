@@ -7,6 +7,7 @@ const multer = require('multer')();
 router.get("/new", UsersController.New);
 router.post("/", UsersController.Create);
 router.get("/profile", sessionChecker, UsersController.Profile);
+router.get("/profile/:id", sessionChecker, UsersController.ProfileOther)
 router.post("/profile", sessionChecker, multer.single('img'), UsersController.EditProfile);
 router.get("/profile/edit", sessionChecker, UsersController.EditPage);
 router.get("/photo/:id", UsersController.ProfilePhoto);
