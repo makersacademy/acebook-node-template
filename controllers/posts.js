@@ -51,7 +51,7 @@ const PostsController = {
       _id: req.params.id, 
       author: req.session.user._id
     })
-    res.redirect('/posts')
+    res.status(200).send();
   },
 
     async Comment(req, res) {
