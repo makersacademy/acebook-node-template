@@ -101,6 +101,7 @@ nav img {
 
 .sign-up-in-inputs {
   margin-bottom: 10px;
+  resize: none;
 }
 
 .submit-button {
