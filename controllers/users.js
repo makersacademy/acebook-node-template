@@ -6,36 +6,30 @@ const UsersController = {
     res.render("users/new", {});
   },
 
-  Create: async (req, res) => {
+  async Create(req, res) {
     const user = new User(req.body);
     const email = req.body.email;
     if (req.body.email !== req.body.confirm_email || req.body.password !== req.body.confirm_password) {
       return res.redirect("users/new");
     }
-      if (await User.exists({ email: email })){
-        console.log("This account already exist")
-        return res.redirect("/users/new#repeatedemail");
+    if (await User.exists({email: email})) {
+      return res.redirect("/users/new#repeatedemail");
     }
 
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
+    await user.save()
+    res.status(201).redirect("/posts");
   },
 
-  Profile: (req, res) => {
+  Profile(req, res) {
     const user = req.session.user
     res.render("users/profile", {user});
   },
 
-  EditPage: (req, res) => {
+  EditPage(req, res) {
     res.render("users/edit_profile");
   },
 
   async EditProfile(req, res) {
-    console.log(req.body)
     const data = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
