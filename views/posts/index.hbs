@@ -29,11 +29,14 @@
   {{/each}}
 </ul>
 <h1>List of Other Users:</h1>
-  {{#each user}}
-  {{!-- {{#if user === }} This should not include the user's name in the friend's list --}}
-  <li>{{this.email}}</li>
+  {{#each name}}
+  {{!-- {{#if user === }} --}}
+  <li>{{this}}</li>
   <form action="/users/friend" method="post">
-    <input type="button" value="Friend" >
+    <input type="submit" value="Friend" >
+  </form>
+  <form action="/users/friendprofile" method="get">
+  <input type="submit" value="See Profile">
   </form>
   <br>
 </ul>

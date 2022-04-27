@@ -1,6 +1,5 @@
 const User = require("../models/user");
 
-
 const UsersController = {
   New: (req, res) => {
     res.render("users/new", {});
@@ -19,10 +18,12 @@ const UsersController = {
   Profile: (req, res) => { 
     const user = req.session
     res.render("users/profile", {user: user})
+  }, 
+
+  Friend: (req, res) => { 
+    // console.log(req)
+    res.render("users/friendprofile")
   }
 };
 
 module.exports = UsersController;
-
-
-//
