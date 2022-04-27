@@ -19,6 +19,7 @@ module.exports = function setup() {
 
   hbs.registerHelper({
     eq: (v1, v2) => v1 === v2,
+    neq: (v1, v2) => v1 != v2,
     gt: (v1, v2) => v1 > v2,
   });
 

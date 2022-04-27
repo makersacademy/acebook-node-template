@@ -18,9 +18,11 @@
       </div>
   </div>
   <div>
-    <form action="/users/befriend/{{ user.username }}?return_to={{ user.username }}" method="post">
-      <input type="submit" class="{{#contains me user.friends }}unfriendBtn{{else}}friendBtn{{/contains}}" value="{{#contains me user.friends }}Unfriend :({{else}}Add Bestie :){{/contains}}"></input>
-    </form>
+    {{#if (neq me.username user.username)}}
+      <form action="/users/befriend/{{ user.username }}?return_to={{ user.username }}" method="post">
+        <input type="submit" class="{{#contains me._id user.friends }}unfriendBtn{{else}}friendBtn{{/contains}}" value="{{#contains me._id user.friends }}Unfriend :({{else}}Add Bestie :){{/contains}}"></input>
+      </form>
+    {{/if}}
   </div>
 </div>
 <br>
