@@ -84,10 +84,17 @@ const UsersController = {
   },
 
   Profile: (req, res) => {
-    User.findOne({ "username": req.params.username }, (err, user) => {
+    User.findOne({ "username": req.params.username }, async (err, user) => {
+      let friends = [];
+      for (let i = 0; i < user.friends.length; i++) {
+        const id = user.friends[i];
+        friends.push(await User.findById(id));
+      }
+
       res.render("users/profile", {
         user: user,
         me: req.session.user._id,
+        friends: friends,
       });
     })
   },
