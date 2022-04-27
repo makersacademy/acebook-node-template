@@ -5,31 +5,25 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <nav>
-      <div class="nav-center">
-        <h3 id="appTitle">
-          {{#if user}}
-            <a href="/posts">Acebook</a>
-          {{else}}
-            <a href="/">Acebook</a>
-          {{/if}}
-        </h3>
-
-        <ul class="nav-links">
-          <li id="registration">
+    <section>
+      <nav>
+        <a id="appTitle" href="/">Acebook</a>
+        <div class ="nav-links">
+          <ul>
             {{#if user}}
-              <form action='/sessions?_method=DELETE' method='POST'>
-                <input type="submit" id="logOut" value="Log Out">
-              </form>
+              <li><a href="">Home</a></li> <!--- need to fill out these pages--->
+              <li><a href="">Friends</a></li>
+              <li><form action='/sessions?_method=DELETE' method='POST'>
+              <input type="submit" id="logOut" value="Log Out">
+              </form></li>
             {{else}}
-              <a href="/users/new">Sign Up</a>
-              <a href="/sessions/new">Log in</a>
+              <li><a href="/users/new">Sign Up</a></li>
+              <li><a href="/sessions/new">Log In</a></li>
             {{/if}}
-          </li>
-        </ul>
-      </div>
-      
-    </nav>
+          </ul>
+        </div>
+      </nav>
+    </section>
     {{{body}}}
   </body>
 </html>
