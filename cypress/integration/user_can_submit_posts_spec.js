@@ -19,7 +19,7 @@ describe("Timeline", () => {
   it("A user tries to submit an empty post", () => {
     // sign up
     cy.signUp();
- 
+
     // log in
     cy.logIn();
 
@@ -32,16 +32,10 @@ describe("Timeline", () => {
 
   it("posts appear in order with latest post first", () => {
     // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.signUp()
     
     // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.logIn()
     
     // submit a post
     cy.visit("/posts");

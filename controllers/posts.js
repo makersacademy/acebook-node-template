@@ -14,7 +14,11 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const post = new Post({...req.body,
+    img: {
+      contentType: req.file?.type,
+      data: req.file?.buffer
+    }});
     post.save((err) => {
     
       if (err) {
@@ -58,8 +62,8 @@ const PostsController = {
       }
 
       res.status(201).redirect("/posts");
+    });
   });
-});
 }};
 
 module.exports = PostsController;
