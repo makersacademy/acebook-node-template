@@ -118,7 +118,7 @@ const UsersController = {
 
       res.render("users/profile", {
         user: user,
-        me: req.session.user._id,
+        me: req.session.user,
         friends: friends,
       });
     })
