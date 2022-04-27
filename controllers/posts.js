@@ -25,6 +25,14 @@ const PostsController = {
       req.body.photo = newName;
     }
 
+    if (req.body.message == "") 
+      req.body.message = null
+
+    if (!req.body.message && !req.body["photo"]) {
+      res.status(400)
+      return
+    }
+
     req.body.author = req.session.user.username;
     const post = new Post(req.body);
     let error = post.validateSync();
