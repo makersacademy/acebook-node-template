@@ -6,13 +6,24 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
+    User.findOne({email: req.body.email }, function(err, user){
+      
+      if ( user ) {
+        console.log("User already exists!");
+        res.redirect("/");
+        return;
+      }  
+
+      user = new User(req.body);
+      user.save((err) => {
+          if (err) {
+            throw err;
+          }
+
+          res.status(201).redirect("/posts");
+        });
+      })
+    
   },
 };
 
