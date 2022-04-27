@@ -18,7 +18,6 @@ const PostsController = {
     });
   },
 
-
   New: (req, res) => {
     res.render("posts/new");
   },

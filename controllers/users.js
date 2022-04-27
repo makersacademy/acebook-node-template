@@ -21,7 +21,9 @@ const UsersController = {
   }, 
 
   Friend: (req, res) => { 
-    // console.log(req)
+    // Find User through the email passed into the url
+    // Provide username, email address and profile picture for the view
+    console.log(req)
     res.render("users/friendprofile")
   }
 };

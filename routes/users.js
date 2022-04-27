@@ -6,6 +6,6 @@ const UsersController = require("../controllers/users");
 router.get("/new", UsersController.New);
 router.post("/", UsersController.Create);
 router.get("/profile", UsersController.Profile);
-router.get("/friendprofile", UsersController.Friend);
+router.get("/friendprofile/:name", UsersController.Friend);
 
 module.exports = router;
