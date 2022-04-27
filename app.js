@@ -12,6 +12,8 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const sessionChecker = require("./util/sessionchecker");
 require("./util/handlebarshelpers");
+const MongoStore = require("connect-mongo");
+const mongoConnector = require("./util/mongoConnector");
 
 const app = express();
 
@@ -34,6 +36,9 @@ app.use(
       cookie: {
         expires: 600000,
       },
+      store: MongoStore.create({
+        clientPromise: mongoConnector.connection.then(m => m.connection.getClient())
+      })
     })
 );
 
