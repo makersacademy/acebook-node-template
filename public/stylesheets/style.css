@@ -22,6 +22,7 @@ a {
   background: rgb(248, 248, 248);
   margin-bottom: 12px;
   padding: 15px;
+background-color: #fffffc;
 }
 
 .column1-author-details {
@@ -101,7 +102,7 @@ a {
 #comment-box{
   display:block;
   resize: none;
-  width: 100%;
+  width: 98%;
   margin: 10px 0 ;
 }
 
@@ -162,4 +163,20 @@ a {
 
 .friendBtn {
   color: green;
+}
+
+.single-comment {
+  margin-bottom: 20px;
+  padding: 0px 15px;
+  border-bottom: 1px solid #ff8e80;
+}
+
+#comment-author {
+  font-weight: bolder;
+  margin-right: 20px;
+  margin-top: 0;
+}
+
+#comment-text {
+  margin-top: 0;
 }
