@@ -55,8 +55,8 @@
 <script>
     async function deletePost(post){
         console.log(post)
-       await fetch(`/posts/${post}`, {method: 'DELETE' })
-       //location.reload();
+       await fetch('/posts/' + post, {method: 'DELETE' })
+       location.reload();
     }
 </script>
 
