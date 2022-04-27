@@ -7,6 +7,7 @@ const app = require("../app");
 const debug = require("debug")("acebook:server");
 const http = require("http");
 const mongoose = require("mongoose");
+const mongoConnector = require("../util/mongoConnector");
 
 /**
  * Get port from environment and store in Express.
@@ -18,10 +19,7 @@ app.set("port", port);
  * Connect to MongoDB
  **/
 const mongoDbUrl = process.env.MONGODB_URL || "mongodb://127.0.0.1/acebook";
-mongoose.connect(mongoDbUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoConnector.init(mongoDbUrl);
 
 mongoose.connection.on("error", (err) => console.error("MongoDB connection error:" + err));
 
