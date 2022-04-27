@@ -79,7 +79,6 @@ const PostsController = {
 
   Edit: (req, res) => {
     Post.findById(req.params.id,(err,post) => {
-      console.log(post)
       res.render("posts/edit", {post:post})  
     })
   },
@@ -100,43 +99,12 @@ const PostsController = {
     res.redirect("/posts");
   },
 
-  SinglePost: (req, res) => {
-    console.log(req.body)
-    Post.findById(req.query.id, (err, post) => {
-      if (err) {
-        throw err;
-      }
-      console.log(post);
-      res.render("posts/comment", { post: post });
-    })
-  },
+  SinglePost: async (req, res) => {
+    const post = await Post.findById(req.query.id)
+    const comment = await Comment.find({post_id: req.query.id})
 
-  Comment: (req, res) => {
-    if (req.files) {
-      let photo = req.files.photo;
-      let newName = util.generateName() + "." + util.getExtension(photo.name);
-      photo.mv("./public/upload/" + newName);
-      req.body.photo = newName;
+      res.render("posts/singlepost", { post: post, comment: comment, user: req.session.user });
     }
-
-    req.body.author = req.session.user.username;
-    const comment = new Comment(req.body);
-    let error = comment.validateSync();
-    if (error) {
-      console.log(error);
-      res.redirect("/posts/comment");
-      return;
-    }
-
-    comment.save((err) => {
-      if (err) {
-        throw err;
-      }
-
-      res.status(201).redirect("/posts/comment");
-    })
-
   }
-}
 
 module.exports = PostsController;

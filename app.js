@@ -12,6 +12,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const commentsRouter = require("./routes/comments");
 
 const app = express();
 
@@ -60,7 +61,7 @@ const sessionChecker = (req, res, next) => {
 
 // route setup
 app.use("/", homeRouter);
-app.use("/posts", sessionChecker, postsRouter);
+app.use("/posts", sessionChecker, postsRouter, commentsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 
