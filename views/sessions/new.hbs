@@ -1,7 +1,7 @@
-
 <form id="new-session-form" action="/sessions" method="post">
   <div class="sign-up-form-fields">
-    <h2>Sign in below:</h2><br/>
+    <h2>Sign in below:</h2><br />
+    <div id="error_box"></div>
     <label for="email">Email: </label>
     <input class="sign-up-in-inputs" id="email" type="email" name="email" value="">
     <label for="password">Password: </label>
@@ -9,4 +9,11 @@
     <input class="submit-button" id="submit" type="submit" value="Submit">
 
   </div>
-</form> 
+</form>
+
+<script>
+  if (window.location.hash == "#bademail")
+    document.getElementById('error_box').innerText = "Account not found"
+  else if (window.location.hash == "#badpassword")
+    document.getElementById('error_box').innerText = "Incorrect password"
+</script>
