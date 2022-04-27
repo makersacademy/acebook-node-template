@@ -1,67 +1,70 @@
 <div class="header-and-button">
-<h1>Timeline</h1>
-<a class="new-post-button" href="/posts/new">New post</a>
+    <h1>Timeline</h1>
+    <a class="new-post-button" href="/posts/new">New post</a>
 </div>
 
 <section class="timeline">
-<ul class="posts">
-    {{#each posts}}
-        <li class="post">
-            <a id="{{this._id}}"></a>
-            <div class="user-header">
-                <img src="{{dataImage this.author.img}}">
-                <div>
-                    <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
-                    <h6>{{id-to-timestamp this._id}}</h6>
-                </div>
-            </div>
-            <div>{{this.message}}</div>
-            {{#if this.img.data}}
-                <img src="{{dataImage this.img}}" height="300">
-            {{/if}}
-            <button class="button-style" onclick="deletePost('{{this._id}}')"> Delete  </button> 
-
-            <form action="/posts/like" method="post">
-                <input type="hidden" name="post" value="{{this._id}}">
-                <input class="button-style" type="submit"
-                       value="{{#contains @root.user._id
-                                          this.likes}}Unlike{{else}}Like{{/contains}}">
-                {{this.likes.length}}
-            </form>
-            <div class="comments">
-                {{#each this.comments}}
+    <ul class="posts">
+        {{#each posts}}
+            <li class="post">
+                <a id="{{this._id}}"></a>
+                <div class="user-header">
+                    <img src="{{dataImage this.author.img}}">
                     <div>
-                        <img src="{{dataImage this.author.img}}" alt="profile picture">
-                        <div>
-                            <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
-                            <p>{{this.comment}}</p>
-                            {{#if this.img.data}}
-                                <img id="comment-img" src="{{dataImage this.img}}" alt="commented picture">
-                            {{/if}}
-                        </div>
+                        <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
+                        <h6>{{id-to-timestamp this._id}}</h6>
                     </div>
-                {{/each}}
-            </div>
-            <form action="/posts/comment" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="post" value="{{this._id}}">
-                <input type="text" name="comment" placeholder="Enter comment...">
-                <label for="img">Add a picture?</label>
-                <input type="file" id="img" name="img" accept="image/*">
-                <input class="button-style" type="submit" value="Submit comment">
-            </form>
-        </li>
-    {{/each}}
-</ul>
-<script>
-    async function deletePost(post){
-       await fetch('/posts/' + post, {method: 'DELETE' })
-       location.reload();
-    }
-        async function deleteComment(post){
-        console.log(post)
-       await fetch('/posts/' + post, {method: 'DELETE' })
-       location.reload();
-    }
-</script>
+                </div>
+                <div>{{this.message}}</div>
+                {{#if this.img.data}}
+                    <img src="{{dataImage this.img}}" height="300">
+                {{/if}}
+                <button class="button-style" onclick="deletePost('{{this._id}}')">Delete</button>
+
+                <form action="/posts/like" method="post">
+                    <input type="hidden" name="post" value="{{this._id}}">
+                    <input class="button-style" type="submit"
+                           value="{{#contains @root.user._id
+                                              this.likes}}Unlike{{else}}Like{{/contains}}">
+                    {{this.likes.length}}
+                </form>
+                <div class="comments">
+                    {{#each this.comments}}
+                        <div>
+                            <img src="{{dataImage this.author.img}}" alt="profile picture">
+                            <div>
+                                <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
+                                <p>{{this.comment}}</p>
+                                {{#if this.img.data}}
+                                    <img id="comment-img" src="{{dataImage this.img}}" alt="commented picture">
+                                {{/if}}
+                                {{#strEq this.author._id @root.user._id }}
+                                <button class="button-style" onclick="deleteComment('{{this._id}}')">Delete Comment</button>
+                                {{/strEq}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                <form action="/posts/comment" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="post" value="{{this._id}}">
+                    <input type="text" name="comment" placeholder="Enter comment...">
+                    <label for="img">Add a picture?</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                    <input class="button-style" type="submit" value="Submit comment">
+                </form>
+            </li>
+        {{/each}}
+    </ul>
+    <script>
+        async function deletePost(post) {
+            await fetch('/posts/' + post, {method: 'DELETE'})
+            location.reload();
+        }
+
+        async function deleteComment(post) {
+            await fetch('/posts/comment/' + post, {method: 'DELETE'})
+            location.reload();
+        }
+    </script>
 
 </section>

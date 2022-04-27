@@ -20,3 +20,10 @@ hbs.registerHelper("id-to-timestamp", function (value) {
 });
 
 hbs.registerHelper("dataImage", (img) => `data:${img?.contentType ?? ''};base64,${img?.data?.toString('base64')}`);
+
+hbs.registerHelper("strEq", function (one, two, options) {
+  console.log(one.toString())
+  console.log(two.toString())
+  options[one === two ? "fn" : "inverse"](this)
+
+});

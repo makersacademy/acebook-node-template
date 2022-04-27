@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const Post = require("../models/post");
 
 const PostsController = {
@@ -44,30 +43,35 @@ const PostsController = {
             }]).exec()
         }
 
-    res.redirect(`/posts/#${req.body.post}`);
-  },
+        res.redirect(`/posts/#${req.body.post}`);
+    },
 
-  async Delete (req, res) {
-    await Post.findOneAndDelete({
-      _id: req.params.id, 
-      author: req.session.user._id
-    })
-    res.status(200).send();
-  },
+    async Delete(req, res) {
+        await Post.findOneAndDelete({
+            _id: req.params.id,
+            author: req.session.user._id
+        })
+        res.status(200).send();
+    },
 
-  async DeleteComment (req, res) {
-    await Post.findOneAndDelete({
-        comment: req.body.comment,
-        author: req.session.user._id
-    })
-    res.status(200).send();
-  },
+    async DeleteComment(req, res) {
+        const post = await Post.findOne({
+            comments: {
+                $elemMatch: {
+                    _id: req.params.id,
+                    author: req.session.user._id
+                }
+            }
+        })
+        post.comments.id(req.params.id).remove()
+        await post.save()
+        res.status(200).send();
+    },
 
     async Comment(req, res) {
         await Post.findByIdAndUpdate(req.body.post, {
             $push: {
                 comments: {
-                    _id: new mongoose.Types.ObjectId(),
                     comment: req.body.comment,
                     author: req.session.user._id,
                     img: {
