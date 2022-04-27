@@ -8,7 +8,7 @@
     <h3> {{user.username}}</h3>
   </div>
   <div>
-    <p>{{ friends.length }} friends</p>
+    <p>{{ friends.length }} {{#if (eq friends.length 1) }}friend{{else}}friends{{/if}}</p>
       <div>
         <ul>
           {{#each friends}}
