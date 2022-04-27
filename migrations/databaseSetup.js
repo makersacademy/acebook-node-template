@@ -19,3 +19,7 @@
 // db.posts.updateMany({}, {$set: {"like_count":0}})
 // db.posts.updateMany({}, {$set: {"likers": []}})
 // Repeat with test database
+
+// CREATING Comments collection
+// use acebook
+// db.createCollection("comments")

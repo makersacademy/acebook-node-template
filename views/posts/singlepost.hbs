@@ -1,7 +1,5 @@
-<h1>Comments</h1>
 <br/><br/>
 <div class="all-posts">
-    {{!-- {{#each posts}} --}}
     <li id="single-post">
         <div class="post-header">
             <div class="column1-author-details">
@@ -24,13 +22,21 @@
             <p id="like-count">Liked by {{post.like_count}} person</p>
         {{/if}}
         <hr>
-        <form action="/posts/comment/{{post._id}}" method="post">
-            <textarea id="comment-box" name="comment-box" rows="4" placeholder="Write a comment..."></textarea>
+        <form action="/posts/comment/{{post._id}}/commented" method="post">
+            <textarea id="comment-box" name="comment" rows="4" placeholder="Write a comment..."></textarea>
             <input id="submit-comment" type="submit" value="Submit">
         </form>
-
         <hr>
-        <!-- Loop of some sort -->
-        <br/>
+        <h1>Comments</h1>
+            <div class="comments">
+            {{#each comment}}
+                <div class="single-comment">
+                {{#if (eq post._id comment.post_id) }}
+                    <p id="comment-author">{{ this.author }}</p>
+                    <p id ="comment-text">{{ this.comment }}</p>
+                {{/if}}
+                </div>
+        {{/each}}
+         </div>
     </li>
 </div>
