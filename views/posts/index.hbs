@@ -1,5 +1,6 @@
 <p id="my-feed">MY FEED</p>
 <center><a id="new-post-link" href="/posts/new">ADD NEW POST</a></center>
+
 <div class="all-posts">
   {{#each posts}}
   <li class="single-post" id="{{this._id}}">
@@ -12,6 +13,7 @@
         <p id="post-timestamp">{{idtotime this._id}}</p>
       </div>
     </div>
+
       <div class="coloumn2-user-buttons">
       {{#if (eq this.author @root.user.username)}}
 
@@ -60,19 +62,21 @@
       <p id="comment-count">Comment Count Here</p>
     </div>
 
-    <hr>
-    <div id="interaction-buttons">
-      <form action="/posts/liked" method="post">
-        <input id="id" type="hidden" name="id" value="{{this._id}}">
-        <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}UNLIKE{{else}}LIKE{{/contains}}">
-      </form>
-      <form action="/posts/comment" method="get">
-        <input id="id" type="hidden" name="id" value="{{this._id}}">
-        <input class="btn" id="comment-button" type="submit" value="{{#if (eq commenters.length 1)}}{{ commenters.length }} COMMENT{{else}}{{ commenters.length }} COMMENTS{{/if}}">
+  <hr>
 
-      </form>
-    </div>
-    <br/><hr>
+  <div id="interaction-buttons">
+    <form action="/posts/liked" method="post">
+      <input id="id" type="hidden" name="id" value="{{this._id}}">
+      <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}UNLIKE{{else}}LIKE{{/contains}}">
+    </form>
+    <form action="/posts/comment" method="get">
+      <input id="id" type="hidden" name="id" value="{{this._id}}">
+      <input class="btn" id="comment-button" type="submit" value="{{#if (eq commenters.length 1)}}{{ commenters.length }} COMMENT{{else}}{{ commenters.length }} COMMENTS{{/if}}">
+
+    </form>
+  </div>
+
+  <br/><hr>
   </li>
   {{/each}}
 </div>

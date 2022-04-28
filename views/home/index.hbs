@@ -1,3 +1,13 @@
+<div class="homepage-container">
 <h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
-<a href="/sessions/new">Login</a>
+<p id="welcome-line">Welcome to {{title}}</p>
+  <div class="log-in-box">
+    <form action="/sessions/new">
+      <button id="home-log-in">LOGIN</button>
+    </form>
+    <form action="/users/new">
+      <button id="home-sign-up">SIGNUP</button>
+    </form>
+  </div>
+</div>
+

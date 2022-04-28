@@ -22,16 +22,17 @@
 
 <div class="profile-middle">
   <h3 id="profile-bio-title">About Me</h3>
-  <p id="bio">bio: Learning how to clone FB</p>
+  <p id="bio">{{ user.bio }}</p>
 </div>
 
 
 <div class="profile-body">
-
   <div id="profile-body-left">
     <div id="profile-buttons">
       <div class="bioUpdate">
-        <button type="button">Update bio</button>
+        <form action="/users/edit_bio/{{user.username}}" method="get">
+          <input type="submit" value="Update bio">
+        </form>
       </div>
       <div class="profilePicUpdate">
         <button type="button">Update profile pic</button>
@@ -54,7 +55,7 @@
       </div>
     </div>
 
-    <div id="friends-list"
+    <div id="friends-list">
       <ul>
         {{#each friends}}
           <a href="/users/profile/{{ this.username }}"><li>{{this.username}}</li></a>
@@ -62,10 +63,71 @@
       </ul>
     </div>
   </div>
-   
+
   <div class="profile-body-right">
     <div class="posts">
       <h3>Posts</h3>
+
+      <div class="all-posts">
+        {{#each posts}}
+          <li class="single-post" id="{{this._id}}">
+
+            <div class="column1-author-details">
+              <img id="profile-picture" src="/users/{{ this.author }}/profilepicture" alt="">
+              <div id="post-details">
+                <a href="/users/profile/{{ this.author }}"><p id="post-author">{{ this.author }}</p></a>
+                <p id="post-timestamp">{{idtotime this._id}}</p>
+              </div>
+            </div>
+
+            {{#if (eq @root.user.username user.username)}}
+              <div class="coloumn2-user-buttons">
+                <form action="/posts/delete/{{this._id}}" method="post">
+                  <input class="button" type="submit" value="Delete">
+                </form>
+                <form action="/posts/edit/{{this._id}}" method="get">
+                  <input class="button" type="submit" value="Edit">
+                </form>
+              </div>
+            {{/if}}
+
+            <div class="post-body">
+              {{#if this.message}}
+              <p id="message-content">{{this.message}}</p>
+                {{/if}}
+                {{#if this.photo}} <!-- display a photo is upload/none if not -->
+                  <img class="image" src="/upload/{{this.photo}}" />
+                {{/if}}
+            </div>
+
+            <div>
+              {{#if (eq this.likers.length 0)}}
+                <p class="like-count">Be the first to like this post!</p>
+              {{else if  (gt this.likers.length 1)}}
+                <p class="like-count">Liked by {{this.likers.length}} people</p>
+              {{else if (eq this.likers.length 1)}}
+                <p class="like-count">Liked by {{this.likers.length}} person</p>
+              {{/if}}
+            </div>
+
+            <div>
+              <p id="comment-count">Comment Count Here</p>
+            </div>
+
+            <hr>
+            <div id="interaction-buttons">
+              <form action="/posts/liked" method="post">
+                <input id="id" type="hidden" name="id" value="{{this._id}}">
+                <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}UNLIKE{{else}}LIKE{{/contains}}">
+              </form>
+              <form action="/posts/comment" method="get">
+                <input id="id" type="hidden" name="id" value="{{this._id}}">
+                <input class="btn" id="comment-button" type="submit" value="{{#if (eq commenters.length 1)}}{{ commenters.length }} COMMENT{{else}}{{ commenters.length }} COMMENTS{{/if}}">
+              </form>
+            </div>
+            <br/><hr>
+          </li>
+        {{/each}}
     </div>
   </div>
 </div>
