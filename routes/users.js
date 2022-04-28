@@ -9,6 +9,7 @@ router.post("/", UsersController.Create);
 router.get("/profile", sessionChecker, UsersController.Profile);
 router.post("/profile", sessionChecker, multer.single('img'), UsersController.EditProfile);
 router.get("/profile/edit", sessionChecker, UsersController.EditPage);
+router.get("/profile/:id", sessionChecker, UsersController.ProfileOther);
 router.get("/photo/:id", UsersController.ProfilePhoto);
 router.get("/all", UsersController.AllUsers);
 router.post("/follow", sessionChecker, UsersController.Follow)
