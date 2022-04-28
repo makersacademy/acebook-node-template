@@ -21,8 +21,7 @@ const UsersController = {
   },
 
   Profile(req, res) {
-    const user = req.session.user
-    res.render("users/profile", {user});
+    res.render("users/profile", {targetUser: req.session.user});
   },
   async ProfileOther(req, res) {
     const targetUser = await User.findById(req.params.id);
