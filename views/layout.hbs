@@ -22,6 +22,7 @@
           <li id="registration">
             {{#if user}}
             <div class="loggedInNav">
+              <a href="/posts">Timeline</a>
               <a href="/friends">Friends</a>
               <form action='/sessions?_method=DELETE' method='POST'>
                 <input type="submit" id="logOut" value="Log Out">
