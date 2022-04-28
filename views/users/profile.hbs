@@ -1,60 +1,50 @@
 
 <div class="profile-header">
-  <div class="profile-picture">
-    <h3>Profile picture</h3>
-    <img id="profile-picture" src="/users/{{user.username}}/profilepicture" alt="">
-  </div>
-  <div class="profile-names">
-    <h3> {{user.username}}</h3>
-  </div>
-  <div>
-    <p>{{ friends.length }} {{#if (eq friends.length 1) }}friend{{else}}friends{{/if}}</p>
-      <div>
-        <ul>
-          {{#each friends}}
-            <a href="/users/profile/{{ this.username }}"><li>{{this.username}}</li></a>
-          {{/each}}
-        </ul>
-      </div>
-  </div>
-  <div>
-    {{#if (neq me.username user.username)}}
-      <form action="/users/befriend/{{ user.username }}?return_to={{ user.username }}" method="post">
-        <input type="submit" class="{{#contains me._id user.friends }}unfriendBtn{{else}}friendBtn{{/contains}}" value="{{#contains me._id user.friends }}Unfriend :({{else}}Add Bestie :){{/contains}}"></input>
-      </form>
-    {{/if}}
-  </div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-{{!-- body left side --}}
-<div class="profileBodyLeft">
-  <div class="intro">
-    <h3>Intro</h3>
-      <div class="content">
-        <div class="Bio">
-          <p class="bio">bio: Learning how to clone FB</p>
-        </div>
-        <div class="bioUpdate">
-          <button type="button">Update bio</button>
-        </div>
-        <div class="profilePicUpdate">
-          <button type="button">Update profile pic</button>
-        </div>
-        <div class="editUserAccount">
-          <form action="/users/edit/{{user.username}}" method="get">
-          <input type="submit" value="Update Account Details">
+  <img id="profile-page-pic" src="/users/{{user.username}}/profilepicture" alt="">
+
+  <div id="profile-page-intro">
+    <div class="profile-names">
+      <h3 id="profile-page-username"> {{user.username}}</h3>
+    </div>
+    <div id="friend-detail">
+      <p id="friends-number">{{ friends.length }} {{#if (eq friends.length 1) }}friend{{else}}friends{{/if}}</p>
+      <div id="friends-button">
+        {{#if (neq me.username user.username)}}
+          <form action="/users/befriend/{{ user.username }}?return_to={{ user.username }}" method="post">
+            <input type="submit" class="{{#contains me._id user.friends }}unfriendBtn{{else}}friendBtn{{/contains}}" value="{{#contains me._id user.friends }}Unfriend :({{else}}Add Bestie :){{/contains}}"></input>
           </form>
-        </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="profile-middle">
+  <h3 id="profile-bio-title">About Me</h3>
+  <p id="bio">bio: Learning how to clone FB</p>
+</div>
+
+
+<div class="profile-body">
+
+  <div id="profile-body-left">
+    <div id="profile-buttons">
+      <div class="bioUpdate">
+        <button type="button">Update bio</button>
+      </div>
+      <div class="profilePicUpdate">
+        <button type="button">Update profile pic</button>
+      </div>
+      <div class="editUserAccount">
+        <form action="/users/edit/{{user.username}}" method="get">
+        <input type="submit" value="Update Account Details">
+        </form>
       </div>
     </div>
 
-  <div class="photos">
-    <a href=""><h3>Photos Grid</h3></a>
+    <div class="photo-grid">
+      <a href=""><h3>Photos Grid</h3></a>
       <div class="content">
         <div class="row">
           <div class="col"><a href="#"><img src="" width="100%" /></a></div>
@@ -62,12 +52,24 @@
           <div class="col"><a href="#"><img src="" width="100%" /></a></div>
         </div>
       </div>
-  </div>
+    </div>
 
-{{!-- body right side --}}
-<div class="profileBodyLeft">
-  <div class="posts">
-    <h3>Posts</h3>
+    <div id="friends-list"
+      <ul>
+        {{#each friends}}
+          <a href="/users/profile/{{ this.username }}"><li>{{this.username}}</li></a>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+   
+  <div class="profile-body-right">
+    <div class="posts">
+      <h3>Posts</h3>
+    </div>
   </div>
 </div>
+
+
+
 

@@ -26,12 +26,16 @@
         {{else if (eq post.commenters.length 1)}}
             <p id="comment-count">{{ post.commenters.length }} comment</p>
         {{/if}}
+
         <hr>
-        <form action="/posts/comment/{{post._id}}/commented" method="post">
+
+        <form id="comment-form" action="/posts/comment/{{post._id}}/commented" method="post">
             <textarea id="comment-box" name="comment" rows="4" placeholder="Write a comment..."></textarea>
             <input id="submit-comment" type="submit" value="Submit">
         </form>
+
         <hr>
+
         {{#if comment}}
         <h1>Comments</h1>
         {{ else }}
