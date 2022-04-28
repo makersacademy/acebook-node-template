@@ -21,9 +21,9 @@ app.set("port", port);
 
 var mongoDbUrl = process.env.MONGODB_URL || "mongodb://127.0.0.1/acebook";
 mongoose.connect(mongoDbUrl, {
-   useNewUrlParser: true,
-   useUnifiedTopology: true,
- });
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 //heroku update added - https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas
 // mongoose.connect(

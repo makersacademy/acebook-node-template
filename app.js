@@ -14,6 +14,7 @@ const orlaneRouter = require("./routes/orlane");
 const friendsRouter = require("./routes/friends");
 const rhysRouter = require("./routes/rhys")
 const saiyuktaRouter = require("./routes/saiyukta");
+
 require("./util/handlebarshelpers")
 
 const app = express();
@@ -36,7 +37,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000,
+      expires: 2000000,
     },
   })
 );

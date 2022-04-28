@@ -53,4 +53,20 @@ describe("Timeline", () => {
     //checks order of posts
     cy.get(".posts").first().should("contain", "post 2");
   })
+  it("allows a user to upload an image", () =>{
+    cy.signUp()
+    
+    // sign in
+    cy.logIn()
+    
+    // submit a post
+    cy.visit("/posts");
+    cy.contains("New post").click();
+    
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find('[type="file"]').selectFile("./images/tick.png");
+    cy.get("#new-post-form").submit();
+
+    cy.get(".posts").should("contain", "tick.png");
+  })
 });
