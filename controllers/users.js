@@ -122,26 +122,30 @@ const UsersController = {
     }
 
     // gather posts
-    let posts = await Post.find({ "author" : user.username }).sort({ "_id": -1 });
+    const posts = await Post.find({ author: user.username }).sort({ _id: -1 });
+
+    // gather images
+    const photos = posts.filter((p) => p["photo"]).slice(0, 5);
 
     // render page
     res.render("users/profile", {
       user: user,
       me: req.session.user,
       friends: friends,
-      posts: posts
+      posts: posts,
+	  photos: photos
     });
   },
 
   EditBio: (req, res) => {
-    res.render("users/editbio", {user: req.session.user})
+    res.render("users/editbio", { user: req.session.user });
   },
 
   SaveEditBio: (req, res) => {
     User.findById(req.session.user._id,(err,user) => {
       user.bio = req.body.bio;
       user.save();
-	  req.session.user = user;
+	    req.session.user = user;
       res.redirect("/users/myprofile")
     })
   },
