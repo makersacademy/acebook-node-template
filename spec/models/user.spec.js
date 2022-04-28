@@ -49,6 +49,15 @@ describe("User model", () => {
     });
     expect(user.password).toEqual("password");
   });
+  it("has a profile pic", () => {
+    const user = new User({
+    first_name: "Jane",
+    last_name: "Smith",
+    email: "someone@example.com",
+    password: "password",
+  });
+  expect(user.profile_img).toEqual("default.png")
+  });
 
   it("can list all users", (done) => {
     User.find((err, users) => {

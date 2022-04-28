@@ -8,7 +8,7 @@
     <div class="post">
       <li>
         <div class="creator">
-          <img src="{{dataImage this.creator_profile_img}}" height="100"/><p>{{this.creator_first_name}} {{this.creator_last_name}}</p>
+          <img src="/users/{{ this.email }}/profilepic" height="100"/><p>{{this.creator_first_name}} {{this.creator_last_name}}</p>
         </div>
         <div class="dateCon">
           <small>{{dateFormat this.created_at}}</small>
