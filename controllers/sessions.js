@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", { hideNavbar: true });
+    res.render("sessions/new", { title: "Acebook", hideNavbar: true });
   },
 
   Create: (req, res) => {

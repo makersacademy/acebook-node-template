@@ -1,8 +1,17 @@
-<form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
-<a href="/users/new">Don't have an account? Sign up</a>
+<div class="login-page-content">
+  <div class="logo">
+    <h1 class="login-title">{{title}}</h1>
+    <p id="login-welcome-line">Share your world...</p>
+  </div>
+  <div id="new-session-form">
+    <form action="/sessions" method="post">
+      <label id="email-label" for="email">Email: </label>
+      <input id="email-input" type="email" name="email" value="">
+      <br/>
+      <label id="password-label" for="password">Password: </label>
+      <input id="password-input" type="password" name="password" value="">
+      <input id="login-page-button" type="submit" value="LOGIN">
+    </form>
+  </div>
+      <a id="sign-up-tag" href="/users/new">Don't have an account? Sign up</a>
+</div>
