@@ -1,7 +1,5 @@
 const Friend = require("../models/friend");
 const User = require("../models/user");
-const SessionsController = require("./sessions");
-const UsersController = require("./users");
 
 const FriendsController = {
   New: (req, res) => {
@@ -16,10 +14,23 @@ const FriendsController = {
         }
 
         const friends_list = user.friends;
+        let friends_name = [];
+        
+        for (let i = 0; i < friends_list.length ; i++) {
+          User.findOne({email: friends_list[i] }, (err, friend) => {
+            if (err) {
+              throw err;
+            }
 
-      res.render("friends/index", { users: users.reverse(), friends_list: friends_list });
+            let full_name = `${friend.first_name} ${friend.last_name}`;
+
+            friends_name.push(full_name);
+
+            res.render("friends/index", { users: users.reverse(), friends_name: friends_name.reverse() });
+          });
+        }
+      }); 
     });
-   });
   },
 
   Add: (req, res) => {
@@ -50,6 +61,6 @@ const FriendsController = {
       });
     }); 
   },
-}; 
+};
 
 module.exports = FriendsController;

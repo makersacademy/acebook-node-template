@@ -1,5 +1,5 @@
 <div class="text-box">
-  <h1>Friends PAGE</h1>
+  <h1>Friends</h1>
 
   <p>Here are all the accounts:</p>
   <ul reversed class="friends">
@@ -11,9 +11,15 @@
       </form>
     </li>
     {{/each}}
-    <br>
-    <p>Here are your friends:</p>
-    <p>{{friends_list}}</p>
-    
   </ul>
+
+  <br/>
+
+  <p>Here are your friends:</p>
+  <ul reversed class="friends-name">
+    {{#each friends_name}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
 </div>
