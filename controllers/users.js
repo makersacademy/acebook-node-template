@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Post = require("../models/post");
 const path = require("path");
 const util = require("../util/photoHandling");
 
@@ -8,28 +9,25 @@ const UsersController = {
   },
 
   Edit: (req, res) => {
-    res.render("users/edit", {username: req.params.username});
+    res.render("users/edit", { username: req.params.username });
   },
 
   SaveEdit: (req, res) => {
-    if (req.body.email){
-      User.findOne({username: req.params.username},(err,user) => {
-        user.email = req.body.email
-        user.save()
-        res.redirect("/posts")
-      })
-
+    if (req.body.email) {
+      User.findOne({ username: req.params.username }, (err, user) => {
+        user.email = req.body.email;
+        user.save();
+        res.redirect("/posts");
+      });
     }
 
-    if (req.body.password){
-      User.findOne({username: req.params.username},(err,user) => {
-        user.password = req.body.password
-        user.save()
-        res.redirect("/posts")
-      })
-
+    if (req.body.password) {
+      User.findOne({ username: req.params.username }, (err, user) => {
+        user.password = req.body.password;
+        user.save();
+        res.redirect("/posts");
+      });
     }
-
   },
 
   Create: (req, res) => {
@@ -90,8 +88,10 @@ const UsersController = {
   },
 
   Befriend: async (req, res) => {
-    const requester = await User.findOne({ "username" : req.session.user.username });
-    const target = await User.findOne({ "username": req.params.username });
+    const requester = await User.findOne({
+      username: req.session.user.username,
+    });
+    const target = await User.findOne({ username: req.params.username });
 
     if (requester.friends.includes(target._id)) {
       target.friends.splice(requester._id);
@@ -104,28 +104,33 @@ const UsersController = {
     target.save();
     requester.save();
 
-    res.status(201)
-       .redirect('/users/profile/' + req.query.return_to);
+    res.status(201).redirect("/users/profile/" + req.query.return_to);
   },
 
   MyProfile: (req, res) => {
     res.redirect("/users/profile/" + req.session.user.username);
   },
 
-  Profile: (req, res) => {
-    User.findOne({ "username": req.params.username }, async (err, user) => {
-      let friends = [];
-      for (let i = 0; i < user.friends.length; i++) {
-        const id = user.friends[i];
-        friends.push(await User.findById(id));
-      }
+  Profile: async (req, res) => {
+    const user = await User.findOne({ username: req.params.username });
 
-      res.render("users/profile", {
-        user: user,
-        me: req.session.user,
-        friends: friends,
-      });
-    })
+    // gather friends
+    let friends = [];
+    for (let i = 0; i < user.friends.length; i++) {
+      const id = user.friends[i];
+      friends.push(await User.findById(id));
+    }
+
+    // gather posts
+    let posts = await Post.find({ "author" : user.username }).sort({ "_id": -1 });
+
+    // render page
+    res.render("users/profile", {
+      user: user,
+      me: req.session.user,
+      friends: friends,
+      posts: posts
+    });
   },
 
   EditBio: (req, res) => {
