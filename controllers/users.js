@@ -108,6 +108,10 @@ const UsersController = {
        .redirect('/users/profile/' + req.query.return_to);
   },
 
+  MyProfile: (req, res) => {
+    res.redirect("/users/profile/" + req.session.user.username);
+  },
+
   Profile: (req, res) => {
     User.findOne({ "username": req.params.username }, async (err, user) => {
       let friends = [];
