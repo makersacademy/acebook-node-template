@@ -32,12 +32,12 @@
         {{/if}}
     </div>
     <div>
-      {{#if (eq this.like_count 0)}}
+      {{#if (eq this.likers.length 0)}}
         <p class="like-count">Be the first to like this post!</p>
-      {{else if  (gt this.like_count 1)}}
-        <p class="like-count">Liked by {{this.like_count}} people</p>
-      {{else if (eq this.like_count 1)}}
-        <p class="like-count">Liked by {{this.like_count}} person</p>
+      {{else if  (gt this.likers.length 1)}}
+        <p class="like-count">Liked by {{this.likers.length}} people</p>
+      {{else if (eq this.likers.length 1)}}
+        <p class="like-count">Liked by {{this.likers.length}} person</p>
       {{/if}}
     </div>
     <div>
