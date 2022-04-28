@@ -1,6 +1,6 @@
 <div class="header-and-button">
-<h1>Timeline</h1>
-<a class="new-post-button" href="/posts/new">New post</a>
+    <h1>Timeline</h1>
+    <a class="new-post-button" href="/posts/new"><i class="fa-solid fa-pen-to-square fa-2xl"></i></a>
 </div>
 
 <section class="timeline">
@@ -9,7 +9,7 @@
             <li class="post">
                 <a id="{{this._id}}"></a>
                 <div class="user-header">
-                    <img src="{{dataImage this.author.img}}">
+                    <img class="profile-pic" src="{{dataImage this.author.img}}">
                     <div>
                         <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
                         <h6>{{id-to-timestamp this._id}}</h6>
@@ -19,29 +19,39 @@
                 {{#if this.img.data}}
                     <img src="{{dataImage this.img}}" height="300">
                 {{/if}}
-                {{#strEq this.author._id @root.user._id}}
-                    <button class="button-style" onclick="deletePost('{{this._id}}')">Delete</button>
-                {{/strEq}}
-                <form action="/posts/like" method="post">
-                    <input type="hidden" name="post" value="{{this._id}}">
-                    <input class="button-style" type="submit"
-                           value="{{#contains @root.user._id
-                                              this.likes}}Unlike{{else}}Like{{/contains}}">
-                    {{this.likes.length}}
-                </form>
+                <div class="post-buttons">
+                    {{#strEq this.author._id @root.user._id}}
+                        <button class="button-style" onclick="deletePost('{{this._id}}')"><i
+                                class="fa-solid fa-trash-can"></i></button>
+                        {{this.likes.length}} likes
+                    {{else}}
+                        <form action="/posts/like" method="post">
+                            <input type="hidden" name="post" value="{{this._id}}">
+                            <button onclick="this.form.submit()">
+                                {{#contains @root.user._id this.likes}}<i class="fa-solid fa-thumbs-up"></i>{{else}}<i class="fa-regular fa-thumbs-up"></i>{{/contains}}
+                            </button>
+                            {{this.likes.length}}
+                        </form>
+                    {{/strEq}}
+                </div>
                 <div class="comments">
                     {{#each this.comments}}
                         <div>
-                            <img src="{{dataImage this.author.img}}" alt="profile picture">
+                            <a href="/users/profile/{{this.author._id}}">
+                            <img class="nav-profile-pic" src="{{dataImage this.author.img}}" alt="profile picture">
+                            </a>
                             <div>
                                 <h6>{{this.author.firstName}} {{this.author.lastName}}</h6>
-                                <p>{{this.comment}}</p>
+                                <p>{{this.comment}}
                                 {{#if this.img.data}}
                                     <img id="comment-img" src="{{dataImage this.img}}" alt="commented picture">
                                 {{/if}}
                                 {{#strEq this.author._id @root.user._id }}
-                                <button class="button-style" onclick="deleteComment('{{this._id}}')">Delete Comment</button>
+                                    <button class="button-style" onclick="deleteComment('{{this._id}}')"><i
+                                            class="fa-solid fa-trash-can"></i>
+                                    </button>
                                 {{/strEq}}
+                                </p>
                             </div>
                         </div>
                     {{/each}}
@@ -49,9 +59,12 @@
                 <form action="/posts/comment" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="post" value="{{this._id}}">
                     <input type="text" name="comment" placeholder="Enter comment...">
-                    <label for="img">Add a picture?</label>
-                    <input type="file" id="img" name="img" accept="image/*">
-                    <input class="button-style" type="submit" value="Submit comment">
+                    <div class="comment-box">
+                        <label><small>Add an image?
+                            <input type="file" id="img" name="img" accept="image/*">
+                        </small></label>
+                        <input class="button-style" type="submit" value="Submit comment">
+                    </div>
                 </form>
             </li>
         {{/each}}
