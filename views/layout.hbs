@@ -3,10 +3,18 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Roboto&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Lato&family=Montserrat:wght@300&family=Quicksand&family=Raleway:wght@800&display=swap" rel="stylesheet">
   </head>
+  
   <body>
     <div class="topnav" style="display: {{ trueToNone hideNavbar }};">
-      <a  href="/">Home</a>
+      <p>    </p> {{!-- allows for very top bar to remain --}}
       <a href="/posts/">My Feed</a>
       <a href="/users/profile/{{ user.username }}">My Profile</a>
 

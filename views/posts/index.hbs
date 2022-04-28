@@ -1,7 +1,5 @@
-<h1>My Feed</h1>
-</br>
-<a class="new-post-link" href="/posts/new">New post</a>
-<br/><br/>
+<p id="my-feed">MY FEED</p>
+<center><a id="new-post-link" href="/posts/new">ADD NEW POST</a></center>
 <div class="all-posts">
   {{#each posts}}
   <li class="single-post" id="{{this._id}}">
@@ -17,10 +15,10 @@
       <div class="coloumn2-user-buttons">
       {{#if (eq this.author @root.user.username)}}
         <form action="/posts/delete/{{this._id}}" method="post">
-          <input id="delete-post-button" type="submit" value="Delete">
+          <input class="button" type="submit" value="Delete">
         </form>
         <form action="/posts/edit/{{this._id}}" method="get">
-          <input id="edit-post-button" type="submit" value="Edit">
+          <input class="button" type="submit" value="Edit">
         </form>
       {{/if}}
       </div>
@@ -33,22 +31,27 @@
           <img class="image" src="/upload/{{this.photo}}" />
         {{/if}}
     </div>
-    {{#if (eq this.like_count 0)}}
-      <p id="like-count">Be the first to like this post!</p>
-    {{else if  (gt this.like_count 1)}}
-     <p id="like-count">Liked by {{this.like_count}} people</p>
-    {{else if (eq this.like_count 1)}}
-     <p id="like-count">Liked by {{this.like_count}} person</p>
-    {{/if}}
+    <div>
+      {{#if (eq this.like_count 0)}}
+        <p class="like-count">Be the first to like this post!</p>
+      {{else if  (gt this.like_count 1)}}
+        <p class="like-count">Liked by {{this.like_count}} people</p>
+      {{else if (eq this.like_count 1)}}
+        <p class="like-count">Liked by {{this.like_count}} person</p>
+      {{/if}}
+    </div>
+    <div>
+      <p id="comment-count">Comment Count Here</p>
+    </div>
     <hr>
     <div id="interaction-buttons">
       <form action="/posts/liked" method="post">
         <input id="id" type="hidden" name="id" value="{{this._id}}">
-        <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}Unlike{{else}}Like{{/contains}}">
+        <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}UNLIKE{{else}}LIKE{{/contains}}">
       </form>
       <form action="/posts/comment" method="get">
         <input id="id" type="hidden" name="id" value="{{this._id}}">
-        <input id="comment-button" type="submit" value="Comment">
+        <input class="btn" id="comment-button" type="submit" value="COMMENT">
       </form>
     </div>
     <br/><hr>
