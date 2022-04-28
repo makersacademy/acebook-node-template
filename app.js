@@ -13,6 +13,7 @@ const usersRouter = require("./routes/users");
 const orlaneRouter = require("./routes/orlane");
 const friendsRouter = require("./routes/friends");
 const rhysRouter = require("./routes/rhys")
+const saiyuktaRouter = require("./routes/saiyukta");
 require("./util/handlebarshelpers")
 
 const app = express();
@@ -69,7 +70,8 @@ app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/orlane", orlaneRouter);
 app.use("/friends", friendsRouter);
-app.use("/rhys", rhysRouter)
+app.use("/rhys", rhysRouter);
+app.use("/sigh", saiyuktaRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
