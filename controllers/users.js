@@ -134,13 +134,14 @@ const UsersController = {
   },
 
   EditBio: (req, res) => {
-    res.render("users/editbio", {user: req.session.user})  
+    res.render("users/editbio", {user: req.session.user})
   },
 
   SaveEditBio: (req, res) => {
     User.findById(req.session.user._id,(err,user) => {
-      user.bio = req.body.bio
-      user.save() 
+      user.bio = req.body.bio;
+      user.save();
+	  req.session.user = user;
       res.redirect("/users/myprofile")
     })
   },
