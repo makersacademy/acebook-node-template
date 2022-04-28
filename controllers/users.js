@@ -125,7 +125,7 @@ const UsersController = {
     const posts = await Post.find({ author: user.username }).sort({ _id: -1 });
 
     // gather images
-    const photos = posts.filter((p) => p["photo"]);
+    const photos = posts.filter((p) => p["photo"]).slice(0, 5);
 
     // render page
     res.render("users/profile", {
