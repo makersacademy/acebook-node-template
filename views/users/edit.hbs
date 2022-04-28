@@ -16,3 +16,10 @@
     <input type="password" name="password" placeholder="Enter new password">
     <input type="submit" value="Save"> 
 </form>
+
+<h2>Editing Profile Pic</h2>
+
+<form action="/users/edit/{{username}}" enctype="multipart/form-data" method="post">
+    <input type="file" name="profilePicture" accept="image/*">
+    <input type="submit" value="Save"> 
+</form>
