@@ -14,9 +14,25 @@
     </div>
       <div class="coloumn2-user-buttons">
       {{#if (eq this.author @root.user.username)}}
-        <form action="/posts/delete/{{this._id}}" method="post">
-          <input class="button" type="submit" value="Delete">
+
+        <form action="#" method="post">
+          <input onclick="showPopUp('Are you sure?', 'Do you really want to delete this post?', 'info', doPostRequest)" id="actual-delete" type="submit" class="button" value="Delete">
         </form>
+
+        <script>
+          function doPostRequest() {
+            fetch("/posts/delete/{{this._id}}", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
+              }).then(res => {
+                if (res.status == 200) {
+                  location.reload();
+                }
+              });
+          }
+        </script>
+
         <form action="/posts/edit/{{this._id}}" method="get">
           <input class="button" type="submit" value="Edit">
         </form>

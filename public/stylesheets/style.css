@@ -137,6 +137,36 @@ hr {
   margin-bottom: 20px;
 }
 
+#popup { 
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.popup-show {
+  display: block;
+}
+
+.popup-hide {
+  display: none;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.info {
+  color: blue;
+}
+
 /* like button */
 .likeBtn {
   background-color: #4a2480;
