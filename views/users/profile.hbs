@@ -28,7 +28,7 @@
 
 <div class="profile-body">
   <div id="profile-body-left">
-    {{#if (eq this.user @root.user.username)}}
+    {{#if (eq user.username me.username)}}
       <div id="profile-buttons">
         <div class="bioUpdate">
           <form action="/users/edit_bio/{{user.username}}" method="get">
