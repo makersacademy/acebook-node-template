@@ -17,7 +17,7 @@ a {
 }
 
 hr {
-  background-color: #051f39;
+  border: solid 1px #051f39;
 }
 
 /* HOME PAGE */
@@ -94,14 +94,23 @@ hr {
   font-family: "raleway", sans-serif;
   color: #4a2480;
   font-size: 150px;
-  margin: 0px;
+  margin: -5px;
   padding: 0px;
 }
 
 #new-post-link {
-  font-family: "Quicksand", sans-serif;
-  color:#c53a9d;
-  text-decoration: underline;
+  font-family: "Montserrat", sans-serif, 900, !important;
+  font-size: 15px;
+  border: 2px solid #ff8e80;
+  color: #ff8e80;
+  background: none;
+  padding: 10px 15px;
+  margin: -5px auto;
+}
+
+#new-post-link:hover {
+  background-color: #ff8e80;
+  color: #051f39;
 }
 
 .all-posts {
@@ -328,6 +337,14 @@ hr {
   background-color: #4a2480;
   transition: 0.5s;
   }
+
+#comments-title {
+  font-family: "raleway", sans-serif;
+  color: #4a2480;
+  font-size: 18px;
+  margin-top: 0px;
+  padding-left: 5px;
+}
 
 
 

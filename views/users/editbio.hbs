@@ -2,6 +2,6 @@
 <h1>Updating Bio</h1>
 
 <form action="/users/edit_bio/{{user.username}}" method="post">
-    <textarea name="bio" placeholder="Write your bio">{{user.bio}}</textarea>
+    <textarea name="bio" rows="4" placeholder="Write your bio">{{user.bio}}</textarea>
     <input type="submit" value="Save"> 
 </form>
