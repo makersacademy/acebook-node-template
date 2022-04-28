@@ -29,6 +29,7 @@
       <input type="submit" id="actual-log-out" value="Log Out">
     </form>
 
+
     <script>
       // I apologize for the horrendous code below.
       document.getElementById('log-out').addEventListener('click', function(e) {
@@ -36,6 +37,14 @@
       });
     </script>
 
+    <div id="popup" class="popup-hide">
+      <p id="popup-title"></p>
+      <p id="popup-message"></p>
+      <button onclick="hidePopUp()">close</button>
+      <button id="ok-btn" onclick="hidePopUp()">ok</button>
+    </div>
+
     {{{body}}}
+    <script src="/javascripts/pop.js"></script>
   </body>
 </html>
