@@ -25,7 +25,7 @@ mongoose.connect(mongoDbUrl, {
   useUnifiedTopology: true,
 });
 
-// //heroku update added - https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas
+//heroku update added - https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas
 // mongoose.connect(
 //   process.env.MONGODB_URI || 'mongodb://localhost:27017/obscure-cliffs-28323',
 //   {

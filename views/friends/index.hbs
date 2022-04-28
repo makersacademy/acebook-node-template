@@ -1,18 +1,25 @@
-<h1>Friends PAGE</h1>
+<div class="text-box">
+  <h1>Friends</h1>
 
-<p>Here are all the accounts:</p>
-<ul reversed class="friends">
-  {{#each users}}
-  <li>Name: {{this.first_name}} {{this.last_name}} 
-    <form id="add-friend" action="/friends/request" method="post">
-      <input type="hidden" id="receiver_email" name="receiver_email" value="{{this.email}}">
-      <input type="submit" value="Add Friend">
-    </form>
-  </li>
-  {{/each}}
-  <br>
-  
+  <p>Here are all the accounts:</p>
+  <ul reversed class="friends">
+    {{#each users}}
+    <li>Name: {{this.first_name}} {{this.last_name}} 
+      <form id="add-friend" action="/friends/request" method="post">
+        <input type="hidden" id="receiver_email" name="receiver_email" value="{{this.email}}">
+        <input type="submit" value="Add Friend">
+      </form>
+    </li>
+    {{/each}}
+  </ul>
+
+  <br/>
+
   <p>Here are your friends:</p>
-  <p>{{friends_list}}</p>
-  
-</ul>
+  <ul reversed class="friends-name">
+    {{#each friends_name}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+</div>

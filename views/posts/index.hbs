@@ -23,7 +23,7 @@
           {{this.message}} 
         </div>
 
-        <div class="formCon">
+        <div class="formCon" id="timelineLike">
           <form id="like-button" action="/posts/like" method="post">
             <input type="hidden" id="message" name="message" value="{{this.message}}">
             <input type="hidden" id="likes" name="likes" value="{{this.likes}}">
