@@ -20,6 +20,73 @@ hr {
   background-color: #051f39;
 }
 
+/* HOME PAGE */
+
+.homepage-container {
+  /* background-color: #fffffc; */
+  width: 600px;
+  margin: 20px auto;
+  padding-top: 200px;
+}
+
+.title {
+  font-size: 150px;
+  font-family: "anton";
+  text-align: center;
+  color: #c53a9d;
+  margin: 0px;
+}
+
+#welcome-line {
+  font-size: 40px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: #fffffc;
+  margin-top: -10px;
+  margin-bottom: 80px;
+}
+
+.log-in-box {
+  margin: auto;
+  width: 270px;
+  padding: 15px;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+}
+
+#home-log-in:hover {
+  background-color: #ff8e80;
+  color: #051f39;
+}
+
+#home-log-in {
+  font-family: "Montserrat", sans-serif, 900, !important;
+  font-size: 25px;
+  border: 2px solid #ff8e80;
+  float: left;
+  color: #ff8e80;
+  background: none;
+  padding: 10px 15px;
+  margin-right: 20px;
+}
+
+#home-sign-up:hover {
+  background-color: #ff8e80;
+  color: #051f39;
+}
+
+#home-sign-up {
+  font-family: "Montserrat", sans-serif, 900, !important;
+  font-size: 25px;
+  border: 2px solid #ff8e80;
+  float: left;
+  color: #ff8e80;
+  background: none;
+  padding: 10px 15px;
+  align-self: flex-end;
+}
+
 /* POSTS PAGE */
 
 #my-feed {
