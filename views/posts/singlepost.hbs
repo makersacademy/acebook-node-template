@@ -1,0 +1,57 @@
+<br/><br/>
+<div class="all-posts">
+    <li class="single-post">
+        <div class="post-header">
+            <div class="column1-author-details">
+                <img id="profile-picture" src="/users/{{ post.author }}/profilepicture" alt="">
+                <div id="post-details">
+                    <p id="post-author">{{ post.author }}</p>
+                    <p id="post-timestamp">{{idtotime post._id}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="post-body">
+            <p id="message-content">{{post.message}}</p>
+            {{#if post.photo}} <!-- display a photo is upload/none if not -->
+                <img class="image" src="/upload/{{post.photo}}" />
+            {{/if}}
+        </div>
+        {{#if (gt post.likers.length 1)}}
+            <p id="like-count">Liked by {{post.likers.length}} people</p>
+        {{else if (eq post.likers.length 1)}}
+            <p id="like-count">Liked by {{post.likers.length}} person</p>
+        {{/if}}
+        {{#if (gt post.commenters.length 1)}}
+            <p id="comment-count">{{ post.commenters.length }} comments</p>
+        {{else if (eq post.commenters.length 1)}}
+            <p id="comment-count">{{ post.commenters.length }} comment</p>
+        {{/if}}
+
+        <hr>
+
+        <form id="comment-form" action="/posts/comment/{{post._id}}/commented" method="post">
+            <textarea id="comment-box" name="comment" rows="4" placeholder="Write a comment..."></textarea>
+            <input id="submit-comment" type="submit" value="Submit">
+        </form>
+
+        <hr>
+
+        {{#if comment}}
+        <h1>Comments</h1>
+        {{ else }}
+        <h4>Be the first to comment on this post!</h4>
+        {{/if}}
+            <div class="comments">
+            {{#each comment}}
+                <div class="single-comment">
+                {{#if (eq post._id comment.post_id) }}
+                    <img id="comment-profile-picture" src="/users/{{ this.author }}/profilepicture" alt="">
+                    <p id="comment-author">{{ this.author }}</p>
+                    <p id="comment-timestamp">{{idtotime this._id}}</p>
+                    <p id ="comment-text">{{ this.comment }}</p>
+                {{/if}}
+                </div>
+        {{/each}}
+         </div>
+    </li>
+</div>

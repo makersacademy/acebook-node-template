@@ -1,8 +1,537 @@
+/* Colours: navy: #051f39, purple: #4a2480 (74, 36, 128), pink: #c53a9d, coral: #ff8e80, offwhite: fffffc */
+
 body {
+  background-color: #051f39;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Quicksand", san-serif, bolder;
+  margin-top: 0;
+  padding-top: 0;
+}
+p {
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
 }
+
+hr {
+  background-color: #051f39;
+}
+
+/* HOME PAGE */
+
+.homepage-container {
+  /* background-color: #fffffc; */
+  width: 600px;
+  margin: 20px auto;
+  padding-top: 200px;
+}
+
+.title {
+  font-size: 150px;
+  font-family: "anton";
+  text-align: center;
+  color: #c53a9d;
+  margin: 0px;
+}
+
+#welcome-line {
+  font-size: 40px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: #fffffc;
+  margin-top: -10px;
+  margin-bottom: 80px;
+}
+
+.log-in-box {
+  margin: auto;
+  width: 270px;
+  padding: 15px;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+}
+
+#home-log-in:hover {
+  background-color: #ff8e80;
+  color: #051f39;
+}
+
+#home-log-in {
+  font-family: "Montserrat", sans-serif, 900, !important;
+  font-size: 25px;
+  border: 2px solid #ff8e80;
+  float: left;
+  color: #ff8e80;
+  background: none;
+  padding: 10px 15px;
+  margin-right: 20px;
+}
+
+#home-sign-up:hover {
+  background-color: #ff8e80;
+  color: #051f39;
+}
+
+#home-sign-up {
+  font-family: "Montserrat", sans-serif, 900, !important;
+  font-size: 25px;
+  border: 2px solid #ff8e80;
+  float: left;
+  color: #ff8e80;
+  background: none;
+  padding: 10px 15px;
+  align-self: flex-end;
+}
+
+/* POSTS PAGE */
+
+#my-feed {
+  text-align: center;
+  font-family: "raleway", sans-serif;
+  color: #4a2480;
+  font-size: 150px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#new-post-link {
+  font-family: "Quicksand", sans-serif;
+  color:#c53a9d;
+  text-decoration: underline;
+}
+
+.all-posts {
+  width: 630px;
+  margin: auto; 
+  margin-top: 20px;   
+}
+
+/* single post page uses this class */
+.single-post {
+  list-style: none;
+  margin: 50 auto;
+  border-radius: 5px;
+  border: 1px #676767;
+  box-shadow: 5px #5d5d5d;
+  margin-bottom: 12px;
+  padding: 15px;
+  background-color: #fffffc;
+}
+
+.column1-author-details {
+  width: 360px;
+  float: left;
+}
+
+.coloumn2-user-buttons {
+  width: 140px;
+  float: right;
+}
+
+.post-header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#profile-picture {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-right: 16px;
+  border-radius: 50px;
+}
+
+#post-author {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 24px;
+  color: #c53a9d;
+  margin-top: 0px;
+  padding-top: 9px;
+  margin-bottom: 2px;
+}
+
+#post-timestamp {
+  font-size: 11px;
+  margin-top: 0px;
+}
+
+.button {
+  font-size: 11px;
+  float: right;
+  background-color:#c53a9d;
+  color: #fffffc;
+  font-family: "quicksand", sans-serif;
+  border: none;
+  padding: 3px, 5px;
+  border-radius: 2px;
+  margin: 2px;
+  }
+
+.button:hover {
+  background-color: #051f39;
+  transition: 0.5s;
+}
+
+.image {
+  max-width: 600px;
+  object-fit: scale-down;
+  border: thin, solid rgb(154, 154, 154);
+  border-radius: 4px;
+}
+
+.like-count {
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  float: left;
+  margin: 0px;
+  padding: 5px;
+}
+
+#comment-count {
+  text-align: right;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  margin: 0px;
+  padding: 5px;
+}
+
+#interaction-buttons {
+  margin-bottom: 20px;
+}
+
+#popup { 
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.popup-show {
+  display: block;
+}
+
+.popup-hide {
+  display: none;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.info {
+  color: blue;
+}
+
+/* like button */
+.likeBtn {
+  background-color: #4a2480;
+  color: #fffffc;
+  border: 1px solid #4a2480;
+  font-family: "quicksand", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 15%;
+  padding: 4px;
+  float: left;
+  margin-left: 100px;
+  transition: 0.3s;
+}
+
+.unlikeBtn {
+  background-color:#c53a9d;
+  color: #fffffc;
+  border: 1px solid #c53a9d;
+  font-family: "quicksand", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 15%;
+  padding: 4px;
+  float: left;
+  margin-left: 100px;
+  transition: 0.8s
+}
+
+.likeBtn:hover {
+  background-color: #c53a9d;
+  border: 1px solid #c53a9d;
+  color: #fffffc;
+}
+
+.unlikeBtn:hover {
+  background-color: #4a2480;
+  border: 1px solid #4a2480;
+  color: #fffffc;
+}
+
+#comment-button {
+  float: right;
+  margin-right: 100px;
+  background-color: #4a2480;
+  color: #fffffc;
+  border: 1px solid #4a2480;
+  font-family: "quicksand", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20%;
+  padding: 4px;
+  transition: 0.8s;
+}
+
+#comment-button:hover {
+  background-color: #c53a9d;
+  border: 1px solid #c53a9d;
+  color: #fffffc;
+}
+
+/* SINGLE POST PAGE */
+
+#comment-box{
+  display:block;
+  resize: none;
+  width: 99%;
+  margin: 10px 0px;
+}
+
+.single-comment {
+  margin-bottom: 20px;
+  padding: 0px 15px;
+  border-bottom: 1px solid #ff8e80;
+}
+
+#comment-author {
+  font-weight: bolder;
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 2px;
+}
+
+#comment-text {
+  margin-top: 0;
+}
+
+#comment-profile-picture {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-right: 10px;
+  border-radius: 50px;
+}
+
+#comment-timestamp {
+  font-size: 9px;
+  margin-top: 3px;
+}
+
+#comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+#submit-comment {
+    align-self: flex-end;
+    font-size: 16px;
+    background-color:#c53a9d;
+    color: #fffffc;
+    font-family: "quicksand", sans-serif;
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+    }
+  
+#submit-comment:hover {
+  background-color: #4a2480;
+  transition: 0.5s;
+  }
+
+
+
+
+/* PROFILE PAGE */
+
+.profile-header {
+  margin: 20px auto;
+  width: 800px;
+  background-color: #fffffc;
+  border-radius: 0 0 5px 5px;
+  padding-bottom: 35px;
+}
+
+#profile-page-pic {
+  width: 300px;
+  height: 300px;
+  background-color: fffffc;
+  margin: auto;
+  padding-top: 30px;
+  display: flex;
+  border-radius: 150px;
+}
+
+#profile-page-username {
+  text-align: center;
+  color: #c53a9d;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 80px;
+  margin-top: -60px;
+  margin-bottom: 0px;
+}
+
+#friend-detail {
+  margin: auto 30%;
+}
+
+#friends-number {
+  font-family: "Montserrat", sans-serif;
+  float: left;
+  margin-right: 20px;
+  margin-left: 75px;
+}
+
+#friends-button {
+}
+
+.unfriendBtn {
+  color: red;
+}
+
+.friendBtn {
+  color: green;
+}
+
+.profile-middle {
+  width: 800px;
+  background-color: #fffffc;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+#profile-bio-title {
+  text-align: center;
+  margin: 10px;
+  padding-top: 10px;
+  color: #4a2480;
+}
+
+#bio {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.profile-body {
+  margin: 20px auto;
+  width: 800px;
+}
+
+#profile-body-left {
+  width: 350px;
+  float: left;
+}
+
+#profile-buttons {
+ background-color: #fffffc;
+ padding: 10px;
+ margin-bottom: 10px;
+ border-radius: 5px;
+}
+
+.photo-grid {
+ background-color: #fffffc;
+ padding: 10px;
+ margin-bottom: 10px;
+ border-radius: 5px;
+}
+
+#friends-list {
+ background-color: #fffffc;
+ padding: 10px;
+ margin-bottom: 10px;
+ border-radius: 5px;
+}
+
+.profile-body-right {
+  width: 430px;
+  background-color: #fffffc;
+  border-radius: 5px;
+  float: right;
+}
+
+.profile-body:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/* NAV BAR */
+
+/* Add a black background color to the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #c53a9d;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #fffffc;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #051f39;
+  color: #fffffc;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+  background-color: #2196f3;
+  color: white;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type="text"] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  border-radius: 2px;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav a,
+  .topnav input[type="text"] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type="text"] {
+    border: 1px solid #ccc;
+  }
+
