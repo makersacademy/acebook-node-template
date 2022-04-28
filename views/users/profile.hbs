@@ -1,5 +1,10 @@
-<h1> Profile Page </h1>
-<h1>
+<head>
+  <link href="https://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='/stylesheets/style.css'  rel="stylesheet">
+</head>
+
+<h1> Your Profile </h1>
   {{#each user}}
   {{this.username}}
   {{this.profilePic}}
@@ -13,4 +18,3 @@
   </li>
   {{/each}}
   {{/each}}
-</h1>
