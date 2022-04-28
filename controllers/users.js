@@ -148,20 +148,3 @@ const UsersController = {
 };
 
 module.exports = UsersController;
-
-/*
-
-session = {
-	username : ""
-	bio : "this is my bio"
-	profile: ""
-}
-
-user = {
-	username : ""
-	bio : "this is new my bio"
-	profile: ""
-}
-
-*/
-
