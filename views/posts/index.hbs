@@ -5,6 +5,15 @@
 </head>
 
 <h2>Timeline</h2>
+
+  <form id="new-post-form" action="/posts" method="post">
+  <label for="message">Message: </label>
+  <input id="message" type="text"name="message"><br>
+  <label for="image_url">Image URL: </label>
+  <input id="image_url" type="text" name="image_url" value="">
+  <input type="submit" value="Submit" class="form-submit" >
+</form>
+
 <a class="new-post-link" href="/posts/new">New post</a>
 <ul class="posts">
   {{#each posts}}
