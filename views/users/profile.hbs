@@ -28,21 +28,23 @@
 
 <div class="profile-body">
   <div id="profile-body-left">
-    <div id="profile-buttons">
-      <div class="bioUpdate">
-        <form action="/users/edit_bio/{{user.username}}" method="get">
-          <input type="submit" value="Update bio">
-        </form>
+    {{#if (eq this.user @root.user.username)}}
+      <div id="profile-buttons">
+        <div class="bioUpdate">
+          <form action="/users/edit_bio/{{user.username}}" method="get">
+            <input type="submit" value="Update bio">
+          </form>
+        </div>
+        <div class="profilePicUpdate">
+          <button type="button">Update profile pic</button>
+        </div>
+        <div class="editUserAccount">
+          <form action="/users/edit/{{user.username}}" method="get">
+          <input type="submit" value="Update Account Details">
+          </form>
+        </div>
       </div>
-      <div class="profilePicUpdate">
-        <button type="button">Update profile pic</button>
-      </div>
-      <div class="editUserAccount">
-        <form action="/users/edit/{{user.username}}" method="get">
-        <input type="submit" value="Update Account Details">
-        </form>
-      </div>
-    </div>
+    {{/if}}
 
     <div class="photo-grid">
       <a href=""><h3>Photos Grid</h3></a>
