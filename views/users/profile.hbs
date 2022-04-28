@@ -78,14 +78,16 @@
               </div>
             </div>
 
-            <div class="coloumn2-user-buttons">
-              <form action="/posts/delete/{{this._id}}" method="post">
-                <input class="button" type="submit" value="Delete">
-              </form>
-              <form action="/posts/edit/{{this._id}}" method="get">
-                <input class="button" type="submit" value="Edit">
-              </form>
-            </div>
+            {{#if (eq @root.user.username user.username)}}
+              <div class="coloumn2-user-buttons">
+                <form action="/posts/delete/{{this._id}}" method="post">
+                  <input class="button" type="submit" value="Delete">
+                </form>
+                <form action="/posts/edit/{{this._id}}" method="get">
+                  <input class="button" type="submit" value="Edit">
+                </form>
+              </div>
+            {{/if}}
 
             <div class="post-body">
               {{#if this.message}}
