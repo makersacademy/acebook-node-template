@@ -22,7 +22,7 @@
 
 <div class="profile-middle">
   <h3 id="profile-bio-title">About Me</h3>
-  <p id="bio">bio: Learning how to clone FB</p>
+  <p id="bio">{{ user.bio }}</p>
 </div>
 
 
@@ -31,7 +31,9 @@
   <div id="profile-body-left">
     <div id="profile-buttons">
       <div class="bioUpdate">
-        <button type="button">Update bio</button>
+        <form action="/users/edit_bio/{{user.username}}" method="get">
+          <input type="submit" value="Update bio">
+        </form>
       </div>
       <div class="profilePicUpdate">
         <button type="button">Update profile pic</button>

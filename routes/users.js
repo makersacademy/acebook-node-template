@@ -11,6 +11,8 @@ router.post("/befriend/:username", UsersController.Befriend);
 router.get("/profile/:username", UsersController.Profile);
 router.get("/edit/:username", UsersController.Edit);
 router.post("/edit/:username", UsersController.SaveEdit);
+router.get("/edit_bio/:username", UsersController.EditBio);
+router.post("/edit_bio/:username", UsersController.SaveEditBio);
 router.get("/myprofile", UsersController.MyProfile);
 
 module.exports = router;
