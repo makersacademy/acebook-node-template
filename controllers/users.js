@@ -17,7 +17,7 @@ const UsersController = {
       User.findOne({ username: req.params.username }, (err, user) => {
         user.email = req.body.email;
         user.save();
-        res.redirect("/posts");
+        res.redirect("/users/myprofile");
       });
     }
 
@@ -25,7 +25,18 @@ const UsersController = {
       User.findOne({ username: req.params.username }, (err, user) => {
         user.password = req.body.password;
         user.save();
-        res.redirect("/posts");
+        res.redirect("/users/myprofile");
+      });
+    }
+
+    if(req.files) {
+      User.findOne({username: req.params.username}, (err,user) => {
+          let photo = req.files.profilePicture;
+          let newName = util.generateName() + "." + util.getExtension(photo.name);
+          photo.mv("./public/upload/" + newName);
+          user.profilePicture = newName
+          user.save()
+          res.redirect("/users/myprofile")
       });
     }
   },
