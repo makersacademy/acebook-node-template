@@ -11,7 +11,7 @@
       <div id="friends-button">
         {{#if (neq me.username user.username)}}
           <form action="/users/befriend/{{ user.username }}?return_to={{ user.username }}" method="post">
-            <input type="submit" class="{{#contains me._id user.friends }}unfriendBtn{{else}}friendBtn{{/contains}}" value="{{#contains me._id user.friends }}Unfriend :({{else}}Add Bestie :){{/contains}}"></input>
+            <input type="submit" class="{{#contains me._id user.friends }}unfriendBtn{{else}}friendBtn{{/contains}}" value="{{#contains me._id user.friends }}UNFRIEND :({{else}}ADD FRIEND :){{/contains}}"></input>
           </form>
         {{/if}}
       </div>
@@ -23,27 +23,29 @@
 <div class="profile-body">
   <div id="profile-body-left">
     <div id="profile-buttons">
-        <h3 id="profile-bio-title">About Me</h3>
+        <h3 id="profile-bio-title">ABOUT ME</h3>
         <p id="bio">{{ user.bio }}</p>
      {{#if (eq user.username me.username)}}
+     <div id="prof-update-buttons">
       <div class="bioUpdate">
         <form action="/users/edit_bio/{{user.username}}" method="get">
-          <input type="submit" value="Update bio">
+          <input id="bio-update-btn" type="submit" value="Update bio">
         </form>
       </div>
-      <div class="profilePicUpdate">
+      {{!-- <div class="profilePicUpdate">
         <button type="button">Update profile pic</button>
-      </div>
+      </div> --}}
       <div class="editUserAccount">
         <form action="/users/edit/{{user.username}}" method="get">
-        <input type="submit" value="Update Account Details">
+        <input id="account-update-btn" type="submit" value="Update Account Details">
         </form>
       </div>
+    </div>
      {{/if}}
     </div>
 
     <div class="photo-grid">
-      <a href=""><h3>Photos Grid</h3></a>
+      <center><a href=""><h3 id="photo-grid-title">MY PHOTOS</h3></a></center>
       <div class="content">
         <div class="row">
 			{{#each photos}}

@@ -1,9 +1,12 @@
-<form id="new-post-form" enctype="multipart/form-data" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
-
-  <label for="message">Optional Image: </label>
-  <input type = "file" name = "photo" accept = "image/*" />
-
-  <input type="submit" value="Submit">
+<p id="add-post-title">ADD NEW POST</p>
+<div class="new-post-page-content">
+  <form id="new-post-form" enctype="multipart/form-data" action="/posts" method="post">
+  <label id="post-message-label" for="message">Message: </label>
+  <textarea id="post-message-input" rows="6" placeholder="Add your post" name="message"></textarea></textarea>
+  <br/>
+  <label id="post-image-label" for="message">Optional Image: </label>
+  <input id="post-image-input" type="file" name="photo" accept="image/*" />
+  <br/>
+  <input id="submit-post" type="submit" value="ADD POST">
   </form>
+</div>

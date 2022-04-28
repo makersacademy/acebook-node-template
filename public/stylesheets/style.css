@@ -132,11 +132,9 @@ margin: auto;
 #new-session-form {
   background-color: #fffffc;
   width: 250px;
-  /* margin-left: 100px; */
   margin-top: 312px;
   padding: 15px;
   float: right;
-  /* align-self: flex-end; */
 }
 
 .login-page-content:after {
@@ -472,7 +470,64 @@ margin: auto;
   padding-left: 5px;
 }
 
+/* NEW POST PAGE */
 
+#add-post-title {
+  text-align: center;
+  color:#ff8e80;
+  font-family: "raleway", sans-serif;
+  font-size: 70px;
+  margin-top: 100px;
+}
+
+.new-post-page-content {
+  background-color: #fffffc;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 50px;
+  margin: 20px auto;
+  width: 500px;
+}
+
+#post-message-label {
+  font-size: 18px;
+  color: #4a2480;
+  font-family: "Roboto", san-serif;
+  margin-bottom: 10px;
+}
+
+#post-message-input {
+  width: 486px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#post-image-label {
+  font-size: 18px;
+  color: #4a2480;
+  font-family: "Roboto", san-serif;
+  margin-bottom: 5px;
+}
+
+#submit-post {
+  float: right;
+  font-size: 14px;
+  background-color:#c53a9d;
+  color: #fffffc;
+  font-family: "quicksand", sans-serif;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 3px;
+  margin-top: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+#submit-post:hover {
+  background-color: #4a2480;
+}
 
 
 /* PROFILE PAGE */
@@ -482,7 +537,7 @@ margin: auto;
   width: 800px;
   background-color: #fffffc;
   border-radius: 0 0 5px 5px;
-  padding-bottom: 35px;
+  padding-bottom: 20px;
 }
 
 #profile-page-pic {
@@ -505,43 +560,108 @@ margin: auto;
 }
 
 #friend-detail {
-  margin: auto 30%;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  margin: -5px auto;
 }
 
 #friends-number {
   font-family: "Montserrat", sans-serif;
   float: left;
   margin-right: 20px;
-  margin-left: 75px;
-}
-
-#friends-button {
 }
 
 .unfriendBtn {
-  color: red;
+  background-color: #4a2480;
+  color: #fffffc;
+  border: 1px solid #4a2480;
+  font-family: "quicksand", sans-serif;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 110%;
+  float: left;
+  padding: 7px;
+  transition: 0.3s;
+}
+
+.unfriendBtn:hover {
+  background-color: #c53a9d;
+  border: 1px solid #c53a9d;
+  color: #fffffc;
+}
+
+.friendBtn:hover {
+  background-color: #c53a9d;
+  border: 1px solid #c53a9d;
+  color: #fffffc;
 }
 
 .friendBtn {
-  color: green;
+  background-color: #4a2480;
+  color: #fffffc;
+  border: 1px solid #4a2480;
+  font-family: "quicksand", sans-serif;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 110%;
+  padding: 7px;
+  float: left;
+  transition: 0.3s;
 }
 
-.profile-middle {
-  width: 800px;
-  background-color: #fffffc;
-  border-radius: 5px;
-  margin: 0 auto;
-}
 #profile-bio-title {
   text-align: center;
+  font-family: "quicksand";
   margin: 10px;
-  padding-top: 10px;
   color: #4a2480;
 }
 
 #bio {
   text-align: center;
   padding-bottom: 15px;
+}
+
+#prof-update-buttons {
+  margin: auto;
+  display: flex;
+}
+
+#bio-update-btn {
+  background-color: #ff8e80;
+  border: none;
+  padding: 4px 8px;
+  color: #fffffc;
+  border-radius: 4px;
+  font-family: "Montserrat";
+  float: left;
+  margin-right: 12px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  transition: 0.8s;
+}
+
+#account-update-btn {
+  background-color: #ff8e80;
+  border: none;
+  padding: 4px 8px;
+  color: #fffffc;
+  border-radius: 4px;
+  font-family: "Montserrat";
+  margin-bottom: 10px;
+  transition: 0.8s;
+}
+
+#account-update-btn:hover {
+  background-color: #c53a9d;
+  color: #fffffc;
+}
+
+#bio-update-btn:hover {
+  background-color: #c53a9d;
+  color: #fffffc;
 }
 
 .profile-body {
@@ -568,6 +688,13 @@ margin: auto;
  border-radius: 5px;
 }
 
+#photo-grid-title {
+  font-family: "quicksand";
+  color: #4a2480;
+  margin: 10px;
+  padding-bottom: 5px;
+}
+
 #friends-list {
  background-color: #fffffc;
  padding: 10px;
@@ -579,22 +706,22 @@ margin: auto;
   width: 430px;
   border-radius: 5px;
   float: right;
+  background-color: #fffffc;
 }
 
 #prof-posts-title {
-  font-family: "Quicksand", sans-serif;
-  color:#ff8e80;
+  text-align: center;
   font-size: 30px;
-  padding-bottom: 10px;
-  margin: 0px;
-  text-align: right;
+  font-family: "quicksand";
+  color: #4a2480;
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
 
 .profile-all-posts {
-  width: 430px;
+  width: 428px;
   margin: auto; 
-  background-color: #fffffc;   
-  border-radius: 4px;
+  background-color: none;
 }
 
 .profile-col1-author-details {
