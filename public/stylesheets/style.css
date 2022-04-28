@@ -17,7 +17,7 @@ a {
 }
 
 hr {
-  background-color: #051f39;
+  border: solid 1px #051f39;
 }
 
 /* HOME PAGE */
@@ -198,14 +198,23 @@ margin: auto;
   font-family: "raleway", sans-serif;
   color: #4a2480;
   font-size: 150px;
-  margin: 0px;
+  margin: -5px;
   padding: 0px;
 }
 
 #new-post-link {
-  font-family: "Quicksand", sans-serif;
-  color:#c53a9d;
-  text-decoration: underline;
+  font-family: "Montserrat", sans-serif, 900, !important;
+  font-size: 15px;
+  border: 2px solid #ff8e80;
+  color: #ff8e80;
+  background: none;
+  padding: 10px 15px;
+  margin: -5px auto;
+}
+
+#new-post-link:hover {
+  background-color: #ff8e80;
+  color: #051f39;
 }
 
 .all-posts {
@@ -463,6 +472,14 @@ margin: auto;
   transition: 0.5s;
   }
 
+#comments-title {
+  font-family: "raleway", sans-serif;
+  color: #4a2480;
+  font-size: 18px;
+  margin-top: 0px;
+  padding-left: 5px;
+}
+
 
 
 
@@ -568,9 +585,108 @@ margin: auto;
 
 .profile-body-right {
   width: 430px;
-  background-color: #fffffc;
   border-radius: 5px;
   float: right;
+}
+
+#prof-posts-title {
+  font-family: "Quicksand", sans-serif;
+  color:#ff8e80;
+  font-size: 30px;
+  padding-bottom: 10px;
+  margin: 0px;
+  text-align: right;
+}
+
+.profile-all-posts {
+  width: 430px;
+  margin: auto; 
+  background-color: #fffffc;   
+  border-radius: 4px;
+}
+
+.profile-col1-author-details {
+  width: 250px;
+  float: left;
+}
+
+.profile-col2-user-buttons {
+  width: 180px;
+  float: right;
+}
+
+.prof-post-image {
+  max-width: 400px;
+  object-fit: scale-down;
+  border: thin, solid rgb(154, 154, 154);
+  border-radius: 4px;
+}
+
+#prof-interaction-buttons {
+  margin-bottom: 15px;
+}
+
+.prof-likeBtn {
+  background-color: #4a2480;
+  color: #fffffc;
+  border: 1px solid #4a2480;
+  font-family: "quicksand", sans-serif;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20%;
+  padding: 4px;
+  float: left;
+  margin-left: 100px;
+  transition: 0.3s;
+}
+
+.prof-unlikeBtn {
+  background-color:#c53a9d;
+  color: #fffffc;
+  border: 1px solid #c53a9d;
+  font-family: "quicksand", sans-serif;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20%;
+  padding: 4px;
+  float: left;
+  margin-left: 100px;
+  transition: 0.8s
+}
+
+.prof-likeBtn:hover {
+  background-color: #c53a9d;
+  border: 1px solid #c53a9d;
+  color: #fffffc;
+}
+
+.prof-unlikeBtn:hover {
+  background-color: #4a2480;
+  border: 1px solid #4a2480;
+  color: #fffffc;
+}
+
+#prof-comment-button {
+  float: right;
+  margin-right: 100px;
+  background-color: #4a2480;
+  color: #fffffc;
+  border: 1px solid #4a2480;
+  font-family: "quicksand", sans-serif;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 25%;
+  padding: 4px;
+  transition: 0.8s;
+}
+
+#prof-comment-button:hover {
+  background-color: #c53a9d;
+  border: 1px solid #c53a9d;
+  color: #fffffc;
 }
 
 .profile-body:after {

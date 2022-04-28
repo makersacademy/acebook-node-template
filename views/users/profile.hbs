@@ -20,31 +20,27 @@
 
 </div>
 
-<div class="profile-middle">
-  <h3 id="profile-bio-title">About Me</h3>
-  <p id="bio">{{ user.bio }}</p>
-</div>
-
-
 <div class="profile-body">
   <div id="profile-body-left">
-    {{#if (eq user.username me.username)}}
-      <div id="profile-buttons">
-        <div class="bioUpdate">
-          <form action="/users/edit_bio/{{user.username}}" method="get">
-            <input type="submit" value="Update bio">
-          </form>
-        </div>
-        <div class="profilePicUpdate">
-          <button type="button">Update profile pic</button>
-        </div>
-        <div class="editUserAccount">
-          <form action="/users/edit/{{user.username}}" method="get">
-          <input type="submit" value="Update Account Details">
-          </form>
-        </div>
+    <div id="profile-buttons">
+        <h3 id="profile-bio-title">About Me</h3>
+        <p id="bio">{{ user.bio }}</p>
+     {{#if (eq user.username me.username)}}
+      <div class="bioUpdate">
+        <form action="/users/edit_bio/{{user.username}}" method="get">
+          <input type="submit" value="Update bio">
+        </form>
       </div>
-    {{/if}}
+      <div class="profilePicUpdate">
+        <button type="button">Update profile pic</button>
+      </div>
+      <div class="editUserAccount">
+        <form action="/users/edit/{{user.username}}" method="get">
+        <input type="submit" value="Update Account Details">
+        </form>
+      </div>
+     {{/if}}
+    </div>
 
     <div class="photo-grid">
       <a href=""><h3>Photos Grid</h3></a>
@@ -68,13 +64,13 @@
 
   <div class="profile-body-right">
     <div class="posts">
-      <h3>Posts</h3>
+      <h3 id="prof-posts-title">POSTS</h3>
 
-      <div class="all-posts">
+      <div class="profile-all-posts">
         {{#each posts}}
           <li class="single-post" id="{{this._id}}">
 
-            <div class="column1-author-details">
+            <div class="-profile-col1-author-details">
               <img id="profile-picture" src="/users/{{ this.author }}/profilepicture" alt="">
               <div id="post-details">
                 <a href="/users/profile/{{ this.author }}"><p id="post-author">{{ this.author }}</p></a>
@@ -83,7 +79,7 @@
             </div>
 
             {{#if (eq @root.user.username user.username)}}
-              <div class="coloumn2-user-buttons">
+              <div class="profile-col2-user-buttons">
                 <form action="/posts/delete/{{this._id}}" method="post">
                   <input class="button" type="submit" value="Delete">
                 </form>
@@ -98,7 +94,7 @@
               <p id="message-content">{{this.message}}</p>
                 {{/if}}
                 {{#if this.photo}} <!-- display a photo is upload/none if not -->
-                  <img class="image" src="/upload/{{this.photo}}" />
+                  <img class="prof-post-image" src="/upload/{{this.photo}}" />
                 {{/if}}
             </div>
 
@@ -117,14 +113,14 @@
             </div>
 
             <hr>
-            <div id="interaction-buttons">
+            <div id="prof-interaction-buttons">
               <form action="/posts/liked" method="post">
                 <input id="id" type="hidden" name="id" value="{{this._id}}">
-                <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}unlikeBtn{{else}}likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}UNLIKE{{else}}LIKE{{/contains}}">
+                <input type="submit" id="like-button" name="likeBtn" class="submit {{#contains @root.user._id this.likers }}prof-unlikeBtn{{else}}prof-likeBtn{{/contains}}" value="{{#contains @root.user._id this.likers }}UNLIKE{{else}}LIKE{{/contains}}">
               </form>
               <form action="/posts/comment" method="get">
                 <input id="id" type="hidden" name="id" value="{{this._id}}">
-                <input class="btn" id="comment-button" type="submit" value="{{#if (eq commenters.length 1)}}{{ commenters.length }} COMMENT{{else}}{{ commenters.length }} COMMENTS{{/if}}">
+                <input class="btn" id="prof-comment-button" type="submit" value="{{#if (eq commenters.length 1)}}{{ commenters.length }} COMMENT{{else}}{{ commenters.length }} COMMENTS{{/if}}">
               </form>
             </div>
             <br/><hr>
