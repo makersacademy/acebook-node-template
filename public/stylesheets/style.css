@@ -1,40 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 * {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Quicksand', sans-serif;
   margin: 0;
   padding: 0;
+  --light: #F7FBFC;
+  --light-alt: #D6E6F2;
+  --accent: #B9D7EA;
+  --accent-dark: #769FCD;
+  --yellow: #ffea60;
 }
 
 /* NAV BAR POSITION AND STYLING */
 
 body {
-  background-color: #FFEFEF;
+  background-color: var(--light);
 }
 
-
 a {
-  color: #00B7FF;
+  color: var(--accent-dark);
 }
 
 .header {
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1
 }
 
 nav {
-  display: flex;
-  padding: 1% 2%;
-  justify-content: space-between;
+  padding: .5em 1em;
   align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  color: var(--light);
+  background-color: var(--accent-dark);
+  box-shadow: 0 0 5px var(--accent);
+  border-bottom: solid var(--accent) 3px;
 }
 
-nav img {
-  width: 70px;
-  height: 80px;
+.navbar-logo {
+  flex-grow: 1;
+}
+nav > * {
+  flex: 0 0 content;
+}
+
+nav img[alt=logo] {
+  float: left;
+  height: 6em;
+}
+
+nav form {
+  display: contents;
+}
+
+nav > * {
+  display: inline-block;
+}
+
+
+nav .hoverable:after {
+  content: "";
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: var(--yellow);
+  margin: auto;
+  transition: all 0.5s ease 0s;
+}
+
+nav .hoverable:hover:after {
+  width: 50%;
 }
 
 .nav-profile-pic {
   height: 30px;
   width: 30px;
+  border: solid white 1px;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: border-radius 0.5s, border 0.5s;
+}
 
+.nav-profile-pic:hover {
+  border-radius: 15%;
+  border: solid var(--yellow) 1px;
 }
 
 .nav-bar ul {
@@ -48,49 +100,36 @@ nav img {
   display: inline-block;
 }
 
-.nav-bar ul li a {
-  color: black;
+.nav-bar a {
+  color: var(--light);
   text-decoration: none;
   font-size: 13px;
-}
-
-.nav-bar ul li::after {
-  content: '';
-  width: 0;
-  height: 2px;
-  background: #7C99AC;
-  display: block;
-  margin: auto;
-  transition: 0.5s;
-}
-
-.nav-bar ul li:hover::after {
-  width: 50%;
 }
 
 .button {
   background-color: transparent;
   border-style: none;
-
 }
 
 .profile-pic {
-  height: 150px;
   width: auto;
+  aspect-ratio: 1/ 1;
+  object-fit: cover;
+  object-position: top;
 }
 
 .posts>.post {
   padding: 1em;
-  border: 3px solid #7C99AC;
+  border: 3px solid var(--accent);
   display: inline-block;
   border-radius: 15px;
+  background-color: var(--light-alt);
 }
 
 .post form {
   display: block;
   margin-top: 1em;
 }
-
 
 .sign-up-form-fields {
   align-items: center;
@@ -128,13 +167,15 @@ nav img {
   display: flex;
   justify-content: center;
   gap: 1em;
+
 }
 
 .all-users>div {
-  border: 1px solid black;
+  border: 3px solid var(--light-alt);
   display: flex;
   align-items: center;
   flex: 18em 0 0;
+  border-radius: 10px;
 }
 
 .all-users>div>div {
@@ -147,12 +188,21 @@ nav img {
   height: 5em;
   display: inline-block;
   flex-shrink: 0;
+  border-radius: 7px;
 }
 
 .all-users>div span {
   display: block;
   padding: 0 .5em;
   font-weight: bold;
+}
+
+.all-users a {
+  text-decoration: none;
+}
+
+.all-users a:hover {
+  color: var(--accent);
 }
 
 #error_box {
@@ -164,6 +214,7 @@ nav img {
   margin-top: .5em;
   display: flex;
   gap: .5em;
+  text-align: left;
 }
 
 .comments>div>div {
@@ -219,24 +270,24 @@ nav img {
   margin: 10px;
 }
 
-.button-style, .new-post-button {
-  background-color: #e1ecf4;
-  border-radius: 3px;
-  border: 2px solid #7aa7c7;
-  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+button, input[type=submit]:not(.button), ::file-selector-button{
+  background-color: var(--accent);
+  border-style: none;
+  border-radius: 10px;
   box-sizing: border-box;
-  color: #4c82a7;
   cursor: pointer;
   font-size: 13px;
   margin: 0;
-  padding: 4px;
   position: relative;
   text-decoration: none;
+  padding: 8px 10px;
+  transition: color .1s, background-color .1s;
+  color: #305580;
 }
 
-.button-style:hover, .new-post-button:hover {
-  background-color: #7C99AC;
-  color: #e1ecf4;
+button:hover, input[type=submit]:not(.button):hover {
+  background-color: var(--accent-dark);
+  color: var(--light);
 }
 
 .new-post-button {
@@ -244,8 +295,59 @@ nav img {
   padding: 8px;
 }
 
-#img{
-  aspect-ratio: 1/ 1;
 
+
+/*PROFILE PAGE*/
+
+.profile-container {
+  display: grid;
+  place-items: center;
+  grid-gap: 20px;
+}
+.profile-container > .profile-pic {
+  border: solid var(--accent) 3px;
+  border-radius: 15px;
 }
 
+
+.body {
+  margin-top: 7em;
+}
+
+.form > * {
+  display: block;
+  text-align: center;
+  margin: auto !important;
+  padding-top: 1em;
+}
+
+input[type=text], textarea {
+  padding: 0.25em 0.5em;
+  border: 2px solid var(--accent);
+  outline: none;
+  border-radius: 10px;
+  transition: border-color .1s;
+  resize: none;
+  text-align: left;
+}
+
+input[type=text]:focus {
+  border-color: var(--accent-dark);
+}
+
+input[type=file] {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+::file-selector-button {
+  display: none;
+}
+
+#new-post-form input[type=file] {
+  text-align: center;
+}
+
+textarea {
+  text-align: left !important;
+}

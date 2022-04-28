@@ -1,10 +1,10 @@
-<h1>all users</h1>
+<h1 style="text-align: center">All users</h1>
 <div class="all-users">
     {{#each users}}
         <div>
-            <img src="/users/photo/{{this._id}}" alt="photo"/>
+            <img class="profile-pic"  src="/users/photo/{{this._id}}" alt="photo"/>
             <div>
-                <span>{{this.firstName}} {{this.lastName}}</span>
+                <a href="/users/profile/{{this._id}}">{{this.firstName}} {{this.lastName}}</a>
                 {{#if @root.user}}
                     <form action="/users/follow" method="post">
                         <input type="hidden" name="user" value="{{this._id}}">

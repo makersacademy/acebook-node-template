@@ -3,48 +3,43 @@
 
 <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 
 <body>
 
 
-    {{!-- NAV BAR --}}
-    <section class="header">
+{{!-- NAV BAR --}}
+<section class="header">
+    <nav class="nav-bar" id="navLinks">
+        {{#if user}}
+            <a class="navbar-logo" title="Timeline" href="/posts"><img src="/images/acebook-logo.png" alt="logo"></a>
+        {{/if}}
 
+        {{#if user}}
+            <a class="hoverable" href="/posts/new"><i class="fa-regular fa-pen-to-square"></i></a>
+            <a class="hoverable" href="/posts">TIMELINE</a>
+            <a class="hoverable" href="/users/all">FIND A PROFILE</a>
+            <a class="hoverable"
+               onclick="fetch('/sessions', {method: 'DELETE', redirect: 'manual'}).then(() => location.reload(true))">
+                LOG OUT</a>
 
-        <nav>
-            {{#if user}}
-            <a title="Timeline" href="/posts"><img src="/images/acebook-logo.png" alt="logo" </a>
-                {{/if}}
+            <img class="profile-pic nav-profile-pic"
+                 src="/users/photo/{{user._id}}"
+                 alt="profile picture"
+                 onclick="window.location.href='/users/profile'">
+        {{else}}
+            <span class="navbar-logo"> </span>
+            <a class="hoverable" href="/sessions/new">LOGIN</a>
+            <a class="hoverable" href="/users/new">SIGN UP</a>
+        {{/if}}
+    </nav>
 
-                <div class="nav-bar" id="navLinks">
-                    <ul>
-                        {{#if user}}
-                        <li><a href="/posts">TIMELINE</a></li>
-                        <li><a href="/users/all">FIND A PROFILE</a></li>
-                        <li>
-                            <form action='/sessions?_method=DELETE' method='POST'>
-                                <input class="button" type="submit" value="LOG OUT">
-                            </form>
-                        </li>
-                        <a title="Your profile" href="/users/profile"><img class="nav-profile-pic"
-                                src="/users/photo/{{user._id}}" alt="profile picture"> </a>
-                        {{else}}
-                        <li><a href="/sessions/new">LOGIN</a></li>
-                        <li><a href="/users/new">SIGN UP</a></li>
-                        {{/if}}
-
-
-                        </li>
-                    </ul>
-                    </ul>
-                </div>
-        </nav>
-
-    </section>
-    {{!-- PAGE BODY HBS --}}
+</section>
+{{!-- PAGE BODY HBS --}}
+<section class="body">
     {{{body}}}
+</section>
 </body>
-
+<script src="https://kit.fontawesome.com/75c18a30ec.js" crossorigin="anonymous"></script>
 </html>
