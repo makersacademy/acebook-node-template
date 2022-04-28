@@ -87,6 +87,110 @@ hr {
   align-self: flex-end;
 }
 
+/* LOGIN PAGE */
+
+.login-page-content {
+width: 800px;
+margin: auto;
+}
+
+#sign-up-tag {
+  color: #ff8e80;
+  text-decoration: underline;
+  font-family: "lato", sans-serif;
+  font-size: 20px;
+  float: right;
+  margin-top: 10px;
+  margin-right: 12px;
+}
+
+.logo {
+  float: left;
+  /* display: flex;
+  flex-direction: column; */
+  width: 400px;
+  margin-top: 300px;
+}
+
+.login-title {
+  font-size: 100px;
+  font-family: "anton";
+  text-align: center;
+  color: #c53a9d;
+  margin: 0px;
+}
+
+#login-welcome-line {
+  font-size: 30px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: #fffffc;
+  margin-top: -10px;
+  margin-bottom: 80px;
+}
+
+#new-session-form {
+  background-color: #fffffc;
+  width: 250px;
+  /* margin-left: 100px; */
+  margin-top: 312px;
+  padding: 15px;
+  float: right;
+  /* align-self: flex-end; */
+}
+
+.login-page-content:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#email-label {
+  font-size: 18px;
+  color: #4a2480;
+  font-family: "Roboto", san-serif;
+}
+
+#email-input {
+  margin-bottom: 10px;
+  margin-left: 2px;
+  padding: 5px;
+  width: 180px;
+}
+
+#password-label {
+  font-size: 18px;
+  color: #4a2480;
+  font-family: "Roboto", san-serif;
+  margin-bottom: 20px;
+}
+
+#password-input {
+  margin-bottom: 10px;
+  margin-left: 2px;
+  padding: 5px;
+}
+
+#login-page-button {
+  float: right;
+  background-color: #c53a9d;
+  color: #fffffc;
+  border: 1px solid #c53a9d;
+  font-family: "quicksand", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 25%;
+  padding: 4px;
+  transition: 0.8s;
+}
+
+#login-page-button:hover {
+  background-color: #4a2480;
+  border: 1px solid #4a2480;
+  color: #fffffc;
+}
+
 /* POSTS PAGE */
 
 #my-feed {
@@ -211,6 +315,36 @@ hr {
 
 #interaction-buttons {
   margin-bottom: 20px;
+}
+
+#popup { 
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.popup-show {
+  display: block;
+}
+
+.popup-hide {
+  display: none;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.info {
+  color: blue;
 }
 
 /* like button */

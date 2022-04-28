@@ -25,6 +25,7 @@
     <div id="profile-buttons">
         <h3 id="profile-bio-title">About Me</h3>
         <p id="bio">{{ user.bio }}</p>
+     {{#if (eq user.username me.username)}}
       <div class="bioUpdate">
         <form action="/users/edit_bio/{{user.username}}" method="get">
           <input type="submit" value="Update bio">
@@ -38,15 +39,16 @@
         <input type="submit" value="Update Account Details">
         </form>
       </div>
+     {{/if}}
     </div>
 
     <div class="photo-grid">
       <a href=""><h3>Photos Grid</h3></a>
       <div class="content">
         <div class="row">
-          <div class="col"><a href="#"><img src="" width="100%" /></a></div>
-          <div class="col"><a href="#"><img src="" width="100%" /></a></div>
-          <div class="col"><a href="#"><img src="" width="100%" /></a></div>
+			{{#each photos}}
+				<div class="col"><a target="_blank" href="/posts/comment?id={{ this._id }}"><img src="/upload/{{ this.photo }}" width="100%" /></a></div>
+			{{/each}}
         </div>
       </div>
     </div>

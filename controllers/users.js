@@ -17,7 +17,7 @@ const UsersController = {
       User.findOne({ username: req.params.username }, (err, user) => {
         user.email = req.body.email;
         user.save();
-        res.redirect("/posts");
+        res.redirect("/users/myprofile");
       });
     }
 
@@ -25,7 +25,18 @@ const UsersController = {
       User.findOne({ username: req.params.username }, (err, user) => {
         user.password = req.body.password;
         user.save();
-        res.redirect("/posts");
+        res.redirect("/users/myprofile");
+      });
+    }
+
+    if(req.files) {
+      User.findOne({username: req.params.username}, (err,user) => {
+          let photo = req.files.profilePicture;
+          let newName = util.generateName() + "." + util.getExtension(photo.name);
+          photo.mv("./public/upload/" + newName);
+          user.profilePicture = newName
+          user.save()
+          res.redirect("/users/myprofile")
       });
     }
   },
@@ -122,25 +133,30 @@ const UsersController = {
     }
 
     // gather posts
-    let posts = await Post.find({ "author" : user.username }).sort({ "_id": -1 });
+    const posts = await Post.find({ author: user.username }).sort({ _id: -1 });
+
+    // gather images
+    const photos = posts.filter((p) => p["photo"]).slice(0, 5);
 
     // render page
     res.render("users/profile", {
       user: user,
       me: req.session.user,
       friends: friends,
-      posts: posts
+      posts: posts,
+	  photos: photos
     });
   },
 
   EditBio: (req, res) => {
-    res.render("users/editbio", {user: req.session.user})  
+    res.render("users/editbio", { user: req.session.user });
   },
 
   SaveEditBio: (req, res) => {
     User.findById(req.session.user._id,(err,user) => {
-      user.bio = req.body.bio
-      user.save() 
+      user.bio = req.body.bio;
+      user.save();
+	    req.session.user = user;
       res.redirect("/users/myprofile")
     })
   },
