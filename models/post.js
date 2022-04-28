@@ -17,9 +17,8 @@ const PostSchema = new mongoose.Schema({
     type: Array,
   },
 
-  like_count: {
-    type: Number,
-    default: 0
+  commenters:{
+    type: Array,
   }
 });
 

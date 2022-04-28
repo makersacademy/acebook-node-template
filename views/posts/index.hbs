@@ -43,6 +43,7 @@
     <div>
       <p id="comment-count">Comment Count Here</p>
     </div>
+
     <hr>
     <div id="interaction-buttons">
       <form action="/posts/liked" method="post">
@@ -51,7 +52,8 @@
       </form>
       <form action="/posts/comment" method="get">
         <input id="id" type="hidden" name="id" value="{{this._id}}">
-        <input class="btn" id="comment-button" type="submit" value="COMMENT">
+        <input class="btn" id="comment-button" type="submit" value="{{#if (eq commenters.length 1)}}{{ commenters.length }} COMMENT{{else}}{{ commenters.length }} COMMENTS{{/if}}">
+
       </form>
     </div>
     <br/><hr>

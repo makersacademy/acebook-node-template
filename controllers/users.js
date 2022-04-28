@@ -4,7 +4,7 @@ const util = require("../util/photoHandling");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {});
+    res.render("users/new", { hideNavbar: true });
   },
 
   Edit: (req, res) => {
@@ -15,7 +15,7 @@ const UsersController = {
     if (req.body.email){
       User.findOne({username: req.params.username},(err,user) => {
         user.email = req.body.email
-        user.save() 
+        user.save()
         res.redirect("/posts")
       })
 
@@ -27,9 +27,9 @@ const UsersController = {
         user.save()
         res.redirect("/posts")
       })
-    
+
     }
-    
+
   },
 
   Create: (req, res) => {
