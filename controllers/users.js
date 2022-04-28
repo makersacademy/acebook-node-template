@@ -142,11 +142,12 @@ const UsersController = {
   },
 
   SaveEditBio: (req, res) => {
-    User.findById(req.session.user._id, (err, user) => {
+    User.findById(req.session.user._id,(err,user) => {
       user.bio = req.body.bio;
       user.save();
-      res.redirect("/users/myprofile");
-    });
+	    req.session.user = user;
+      res.redirect("/users/myprofile")
+    })
   },
 };
 
