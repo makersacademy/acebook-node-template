@@ -5,7 +5,14 @@
 </head>
 
 <h2>Timeline</h2>
-<a class="new-post-link" href="/posts/new">New post</a>
+  <form id="new-post-form" action="/posts" method="post">
+  <label for="message"></label>
+  <input id="message" type="text"name="message" placeholder="Share your thoughts"><br>
+  <label for="image_url"></label>
+  <input id="image_url" type="text" name="image_url" value="" placeholder="Want to upload an image with your post? Paste URL here">
+  <input type="submit" value="Submit" class="form-submit" >
+</form>
+
 <ul class="posts">
   {{#each posts}}
   <img class="avatar" alt="avatar" src="{{this.profilePic}}" style="height:70px; border-radius: 50%; border: 10px" />
