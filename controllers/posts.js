@@ -31,11 +31,14 @@ const PostsController = {
   },
   Comments: async (req, res) => {
     const id = req.params.id;
+    // const user = await (req.session.user)
+    // const name = user.username
+    // console.log(name)
     const post = await Post.findById(id)
     const arr = await Comments.find({postId: id}, {content: 1})
     const newArray = [];
       arr.forEach( element => 
-        newArray.push(element.content)
+        newArray.push(element.content),
       )
       res.render("posts/comments", {post: post, id: id, comments: newArray.reverse()});
     }, 
