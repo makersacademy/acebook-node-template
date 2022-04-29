@@ -4,15 +4,13 @@
   <link href='/stylesheets/style.css'  rel="stylesheet">
 </head>
 
+<div style="text-align:center">
 <form id="new-user-form" action="/users" method="post">
-  <h1> Sign up for an Acebook account </h1>
-  <label for="username">Username: </label>
-  <input id="username" type="text" name="username" value="" /><br />
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="" /><br />
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="" /><br />
-  <label for="profilePic">Profile Pic: </label>
+  <h1 style="color: rgb(19, 168, 236); font-family: Verdana;"> Sign up for an Acebook account </h1>
+  <input id="username" type="text" name="username" placeholder="username" /><br />
+  <input id="email" type="email" name="email" placeholder="email"/><br />
+  <input id="password" type="password" name="password" placeholder="password" /><br />
   <input id="image" type="file" name="profilePic" placeholder="Photo" capture>
-  <input id="submit" type="submit" value="Submit" />
+  <input id="submit" type="submit" value="Submit"/>
 </form>
+</div>

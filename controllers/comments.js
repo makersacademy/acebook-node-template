@@ -5,8 +5,10 @@ const CommentsController = {
     console.log("In the post route")
     const id = req.params.id
     const comment = req.body.comments
+    // req.session.user.username
     await Comments.create({ 
       postId: id,
+      // username: user,
       content: comment
     })
     console.log("this route works")

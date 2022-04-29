@@ -3,12 +3,12 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href='/stylesheets/style.css'  rel="stylesheet">
 </head>
-
+<div style="text-align:center">
 <form id="new-session-form" action="/sessions" method="post">
-  <h1> Log-in </h1>
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
+  <h1 style="color: rgb(19, 168, 236); font-family: Verdana"> Log-in </h1>
+  <input id="email" type="email" name="email" placeholder="email"><br><br>
+  <input id="password" type="password" name="password" placeholder="password"><br>
+  <input id="submit" type="submit" value="Sign In">
+    <h4>Not registered? Create an Account<a href="/users/new" style="color:rgb(19, 168, 236);"> here</a>!</h4>
 </form>
+</div>

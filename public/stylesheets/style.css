@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px Helvetica, Arial, sans-serif;
   background-color: lightgrey;
   color: black;
 }
@@ -41,7 +41,7 @@ body {
 }
 
 .navbar {
-  background-color: rgb(186, 80, 186);
+  background-color: rgb(19, 168, 236);
   color: black;
   width: 100%;
   height: 40px;
@@ -64,8 +64,8 @@ body {
 }
 
 header {
-  background-color: rgb(186, 80, 186);
-  color: black;
+  background-color: rgb(19, 168, 236);
+  color: white;
   width: 100%;
   height: 150px;
   display: flex;
@@ -80,25 +80,40 @@ header {
 
 .logo {
   width: auto;
-  height: 300px;
-  padding: 50px, 50px;
-  position: absolute;
-  left: -50px;
+  height: 225px;
+  padding: 100px, 100px;
+  position: relative;
+  left: -450px;
   top: 0px;
 }
 
 h1 {
   color: white;
-  font-family: fantasy;
+  font-family: Helvetica;  
+}
+
+.header1 { 
+  position: relative;
+  left: -100px;
 }
 
 .h1 {
   color: white;
-  font-family: fantasy;
+  font-family: Helvetica;
 }
 
 .navbar form {
   justify-content: center;
   text-align: center;
   position: absolute;
+}
+
+.pull-left {
+  position: relative;
+  left: 1250px;
+}
+
+.log-in { 
+  position: relative;
+  left: 1190px;
 }

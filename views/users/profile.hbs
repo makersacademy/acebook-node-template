@@ -1,8 +1,24 @@
+
 <h1> Profile Page </h1>
 <h1>
   <img src="/images/Giraffe.png" alt="profile" width="140", height="140"><br>
+
+<head>
+  <link href="https://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='/stylesheets/style.css'  rel="stylesheet">
+</head>
+
+<h1> Your Profile </h1>
   {{#each user}}
   {{this.username}}<br>
   {{this.email}}
 {{/each}}
-</h1>
+  <h1>List of Friends:</h1>
+{{#each user}}
+  {{#each this.friends}}
+  <li>
+  {{this}}
+  </li>
+  {{/each}}
+  {{/each}}
