@@ -9,9 +9,8 @@
     "start": "nodemon ./bin/www",
     "start:test": "PORT=3030 MONGODB_URL='mongodb://127.0.0.1/acebook_test' npm start",
     "test": "npm run lint && npm run test:unit && npm run test:integration",
-    "test:all": "npx concurrently -s last \"npm run start:test\" \"cypress run\"",
-    "test:unit": "jest",
-    "test:integration": "cypress run"
+    "test:integration": "npx concurrently -s last \"npm run start:test\" \"nyc cypress run\"",
+    "test:unit": "jest"
   },
   "engines": {
     "node": ">=16.14.0"

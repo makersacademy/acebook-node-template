@@ -351,3 +351,11 @@ input[type=file] {
 textarea {
   text-align: left !important;
 }
+
+.error-viewer {
+  text-align: center;
+}
+
+.error-viewer > * {
+  margin: 1em;
+}
