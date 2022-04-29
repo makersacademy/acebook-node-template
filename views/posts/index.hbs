@@ -8,9 +8,8 @@
 <a class="new-post-link" href="/posts/new">New post</a>
 <ul class="posts">
   {{#each posts}}
-  <img  class="avatar" alt="avatar" src="{{this.profilePic}}" style="height:70px; border-radius: 50%; border: 10px " />
   <li>
-  {{this.username}}
+  <b>{{this.username}}</b><br>
   <br>
   {{this.message}}<br>
   {{#if this.image_url}}
@@ -24,9 +23,8 @@
   <form action="/posts/likes/{{this.id}}" method="post"> 
     <input type="submit" value="likes">
   </form>
-  {{this.likes.length}}
-
+  {{this.likes.length}}<br>
+  <img  class="avatar" alt="avatar" src="{{this.profilePic}}" style="height:70px; border-radius: 50%; border: 10px " />
   {{/each}}
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
