@@ -2,7 +2,7 @@
 
 This is a Node.js template for the Acebook engineering project.
 
-Trello Board: https://trello.com/b/a7x4iqar/acebook-zark-muckerberg
+Trello Board: https://trello.com/b/wlp4ENq8/acebook-zark-muckerberg
 
 It uses:
 
