@@ -2,6 +2,8 @@
 
 This is a Node.js template for the Acebook engineering project.
 
+Trello Board: https://trello.com/b/a7x4iqar/acebook-zark-muckerberg
+
 It uses:
 
 - [Express](https://expressjs.com/) web framework for Node.js.
@@ -46,7 +48,7 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    brew tap mongodb/brew
    brew install mongodb-community@4.4
    ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@4.4 first in your PATH, run:`, follow the instruction and run the following command.
+   *Note:* If you see a message that says `If you need to have mongodb-community@4.4 first in your PATH, run:`, follow the instruction and run the following command. Restart your terminal after this.
 7. Start MongoDB
    ```
    brew services start mongodb-community@4.4
@@ -91,6 +93,5 @@ Some people occasionally experience MongoDB connection errors when running the t
 
 - Check that MongoDB is installed using `mongo --version`
 - Check that it's running using `brew services list`
-- Try swapping `localhost`, everywhere that it appears in your codebase, with `127.0.0.1`. It might be surprising but this does sometimes make a difference.
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
