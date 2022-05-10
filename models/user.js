@@ -26,13 +26,13 @@ UserSchema.pre("save", function (next) {
       next();
     });
   });
-
-  UserSchema.methods.comparePassword = function (canditatePassword, cb) {
-    bcrypt.compare(canditatePassword, this.password, function (err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
-    });
-  };
 });
+
+UserSchema.methods.comparePassword = function (canditatePassword, cb) {
+  bcrypt.compare(canditatePassword, this.password, function (err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+  });
+};
 
 module.exports = mongoose.model("User", UserSchema);
