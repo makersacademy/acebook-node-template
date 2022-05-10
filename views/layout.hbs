@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <nav class="navigation-bar">
+    <img class="logo" src="/images/logo.png">
+    <a href="#">Home</a>
+    <a href="#">Projects</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Get in Touch</a>
+</nav>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
     {{{body}}}
   </body>
 </html>
+
+
