@@ -70,6 +70,26 @@ button:hover {
   clear: both;
   display: table;
 }
+navigation-bar {
+  width: 100%;  /* i'm assuming full width */
+  height: 80px; /* change it to desired width */
+  background-color: red; /* change to desired color */
+}
+.logo {
+  display: inline-block;
+  vertical-align: top;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  margin-top: 15px;    /* if you want it vertically middle of the navbar. */
+}
+.navigation-bar > a {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+  height: 80px;        /* if you want it to take the full height of the bar */
+  line-height: 80px;    /* if you want it vertically middle of the navbar */
+}
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
