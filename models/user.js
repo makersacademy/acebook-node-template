@@ -33,8 +33,6 @@ UserSchema.pre("save", function (next) {
       cb(null, isMatch);
     });
   };
-
-  const User = mongoose.model("User", UserSchema);
-
-  module.exports = User;
 });
+
+module.exports = mongoose.model("User", UserSchema);
