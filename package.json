@@ -16,6 +16,7 @@
     "node": ">=18.1.0"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -38,5 +39,16 @@
   },
   "nodemonConfig": {
     "ext": "js,hbs"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Conor-Developer/acebook-metaperverse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Conor-Developer/acebook-metaperverse/issues"
+  },
+  "homepage": "https://github.com/Conor-Developer/acebook-metaperverse#readme"
 }
