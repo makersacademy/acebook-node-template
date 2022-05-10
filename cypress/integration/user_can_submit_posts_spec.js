@@ -1,5 +1,5 @@
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+  it("can submit posts, when signed in, and view them with email attached", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -20,5 +20,8 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".posts").should("contain", "someone@example.com");
+
+    
   });
 });
