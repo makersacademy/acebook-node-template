@@ -43,12 +43,20 @@ describe("User model", () => {
     user.save((err) => {
       expect(err).toBeNull();
 
-      User.find((err, users) => {
+      User.findOne({ email: "someone@example.com" }, (err, users) => {
         expect(err).toBeNull();
 
-        expect(users[0]).toMatchObject({
-          email: "someone@example.com",
-          password: "password",
+        users.comparePassword("password", function (err, isMatch) {
+          if (err) throw err;
+          expect("password", isMatch).toBe(true);
+
+          users.comparePassword("password", (err, isMatch) => {
+            if (err) throw err;
+            expect("wrongpassword", isMatch).toBe(false);
+          });
+          // expect(users[0]).toMatchObject({
+          //   email: "someone@example.com",
+          //   password: "password",
         });
         done();
       });
