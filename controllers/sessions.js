@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", { message: req.flash("message") });
   },
 
   Create: (req, res) => {
@@ -19,7 +19,8 @@ const SessionsController = {
           req.session.user = user;
           res.redirect("/posts");
         } else {
-          res.redirect("/sessions/new");
+          req.flash("message", "Invalid Credentials");
+          res.redirect("sessions/new");
         }
       });
     });

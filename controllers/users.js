@@ -9,6 +9,7 @@ const UsersController = {
     const user = new User(req.body);
     user.email = req.body.email;
     user.password = req.body.password;
+    user.username = req.body.username;
 
     user.save((err) => {
       if (err) {
