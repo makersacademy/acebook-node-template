@@ -16,13 +16,6 @@ const PostsController = {
     const postInfo = req.body;
     postInfo.user = req.session.user._id;
     const post = new Post(postInfo);
-
-    console.log(req.body);
-    console.log(req.session.user);
-    console.log(req.session.user._id);
-    console.log(post);
-    console.log(postInfo);
-
     post.save((err) => {
       if (err) {
         throw err;
