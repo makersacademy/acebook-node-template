@@ -1,7 +1,11 @@
 <form id="new-session-form" action="/sessions" method="post">
   <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
+  <input id="email" type="email" name="email" value="" required>
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
+  <input id="password" type="password" name="password" value="" required>
+  <button id="submit" type="submit" value="Submit">Log in</button>
+</form>
+
+<form action = "/users/new">
+  <button type="submit" value = "Register"> Register</button>
 </form>
