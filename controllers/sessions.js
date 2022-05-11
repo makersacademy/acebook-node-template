@@ -1,5 +1,15 @@
 const User = require("../models/user");
 
+// Below used for decryption on passwords
+const CryptoJS = require('crypto-js');
+const decryptWithAES = (ciphertext) => {
+  const passphrase = '123';
+  const bytes = CryptoJS.AES.decrypt(ciphertext, passphrase);
+  const originalText = bytes.toString(CryptoJS.enc.Utf8);
+  return originalText;
+};
+// End of decryption
+
 const SessionsController = {
   New: (req, res) => {
     res.render("sessions/new", {});
@@ -13,7 +23,7 @@ const SessionsController = {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         res.redirect("/sessions/new");
-      } else if (user.password != password) {
+      } else if (decryptWithAES(user.password) != password) {
         res.redirect("/sessions/new");
       } else {
         req.session.user = user;
