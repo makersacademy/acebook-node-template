@@ -1,8 +1,9 @@
 name: jest-github-actions
-on:
+on:  
+  push:
   pull_request:
-  branches:
-    - main
+    branches:
+      - main
 
 jobs:
   build:
