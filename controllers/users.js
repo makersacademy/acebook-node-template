@@ -15,7 +15,6 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    console.log(encryptWithAES(req.body.password));
     const user = new User({email: req.body.email, password: encryptWithAES(req.body.password)});
     user.save((err) => {
       if (err) {
