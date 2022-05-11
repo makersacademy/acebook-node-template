@@ -42,14 +42,4 @@ describe("Post model", () => {
       });
     });
   });
-
-  it("sorts posts by newest first", () => {
-    document.body.innerHTML = fs.readFileSync("././views/posts/index.hbs");
-    new Post({ message: "hi" });
-    new Post({ message: "hi2" });
-    new Post({ message: "hi3" });
-
-    const posts = document.querySelectorAll("posts");
-    expect(posts[0].message).toEqual("hi3");
-  });
 });
