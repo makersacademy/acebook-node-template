@@ -20,5 +20,22 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+
+    // checks if posts are in order of newest first
+    cy.visit("/posts");
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world1!");
+    cy.get("#new-post-form").submit();
+    cy.contains("New post").click();
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world2!");
+    cy.get("#new-post-form").submit();
+    cy.contains("New post").click();
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world3!");
+    cy.get("#new-post-form").submit();
+
+    cy.get(".posts").should("contain", "Hello, world3!");
+    cy.get(".posts").should("contain", "Hello, world2!");
+    cy.get(".posts").should("contain", "Hello, world1!");
   });
 });

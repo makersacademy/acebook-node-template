@@ -1,11 +1,6 @@
-/**
- * @jest-environment jsdom
- */
-
 var mongoose = require("mongoose");
 
 require("../mongodb_helper");
-const fs = require("fs");
 var Post = require("../../models/post");
 
 describe("Post model", () => {
