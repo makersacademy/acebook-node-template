@@ -55,6 +55,11 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
+
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
