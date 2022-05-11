@@ -3,13 +3,13 @@ var mongoose = require("mongoose"),
   bcrypt = require("bcrypt"),
   SALT_WORK_FACTOR = 10;
 
-var UserSchema = new mongoose.Schema({
+let UserSchema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
 });
 
 UserSchema.pre("save", function (next) {
-  var user = this;
+  let user = this;
   // only hash the password if it has been modified (or is new)
   if (!user.isModified("password")) return next();
 
