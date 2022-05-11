@@ -1,6 +1,11 @@
+/**
+ * @jest-environment jsdom
+ */
+
 var mongoose = require("mongoose");
 
 require("../mongodb_helper");
+const fs = require("fs");
 var Post = require("../../models/post");
 
 describe("Post model", () => {
@@ -36,5 +41,15 @@ describe("Post model", () => {
         done();
       });
     });
+  });
+
+  it("sorts posts by newest first", () => {
+    document.body.innerHTML = fs.readFileSync("././views/posts/index.hbs");
+    new Post({ message: "hi" });
+    new Post({ message: "hi2" });
+    new Post({ message: "hi3" });
+
+    const posts = document.querySelectorAll("posts");
+    expect(posts[0].message).toEqual("hi3");
   });
 });
