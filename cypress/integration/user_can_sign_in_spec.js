@@ -8,8 +8,6 @@ describe("Authentication", () => {
     cy.get("#password").type("password1");
     cy.get("#submit").click();
 
-
-
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
   });
