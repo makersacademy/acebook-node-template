@@ -1,7 +1,10 @@
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
     // sign up
-    cy.visit("/users/new");
+    cy.visit("/");
+    cy.get("#Signup").click();
+    cy.url().should("include", "/users/new");
+    cy.get("#username").type("someone");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
