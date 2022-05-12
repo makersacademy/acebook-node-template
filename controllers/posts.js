@@ -27,6 +27,7 @@ const PostsController = {
   },
   UpdateLikes: (req, res) => {
     console.log("Update likes in controller");
+    console.log(req.params.id);
     // const action = req.body.action;
     // const counter = action === "Like" ? 1 : -1;
     Post.updateOne(
