@@ -101,6 +101,7 @@ navigation-bar {
 
 .post-user {
   background-color: darkgrey;
+  display: inline-block;
   border-radius: 2px;
   color: white;
   margin: 10px; 
@@ -110,11 +111,13 @@ navigation-bar {
 
 .post-date {
   background-color: darkgrey;
+  display: inline-block;
   border-radius: 2px;
   color: white;
   margin: 10px; 
   padding: 0.45rem;
   width: 20rem;
+  right: 50;
 }
 
 .post-message {
@@ -124,5 +127,5 @@ navigation-bar {
   font-size: 18px;
    margin: 10px; 
   padding: 0.45rem;
-  width: 50rem;
+  
 }
