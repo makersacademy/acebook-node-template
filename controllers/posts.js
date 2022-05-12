@@ -1,3 +1,4 @@
+const { post } = require("../app");
 const Post = require("../models/post");
 
 const PostsController = {
@@ -23,7 +24,13 @@ const PostsController = {
 
       res.status(201).redirect("/posts");
     });
-  },
-};
+  }, 
+  Delete: (req, res) => {
+    const dc = Post.findOne(post)
+    console.log(dc);
+    console.log('testing delete')
+  }
+}  
+       
 
 module.exports = PostsController;
