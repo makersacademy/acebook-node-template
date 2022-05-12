@@ -1,5 +1,5 @@
 describe("Logging out", () => {
-  it("A user can log out to sessions/new page", () => {
+  it("A user can log out to homepage", () => {
     // sign up
     cy.visit("/");
     cy.get("#Signup").click();
@@ -16,7 +16,6 @@ describe("Logging out", () => {
     // log out
     cy.visit("/posts");
     cy.get("#logout").click();
-    cy.url().should("include", "/sessions/new");
+    cy.url().should("include", "/");
   });
  });
- 
