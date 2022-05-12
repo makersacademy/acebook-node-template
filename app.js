@@ -5,6 +5,9 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+// const expressHbs =  require('express-handlebars');
+
+
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -74,5 +77,18 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
+// Template.registerHelper("prettifyDate", function(timestamp) {
+//   return new Date(timestamp).toString('yyyy-MM-dd')
+// });
+
+// var hbs = expressHbs.create({});
+
+//  hbs.handlebars.registerHelper("prettifyDate", function(timestamp) {
+//   return (new Date(timestamp)).format("yyyy-MM-dd");
+// });
+
+
 
 module.exports = app;
