@@ -65,20 +65,20 @@ li {
 }
 .navigation-bar {
   width: 100%;  /* i'm assuming full width */
-  height: 80px; /* change it to desired width */
+  height: 150px; /* change it to desired width */
   background-color: rgb(230, 45, 45); /* change to desired color */
 }
 .logo {
   display: inline-block;
   vertical-align: top;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   margin-right: 20px;
   margin-top: 15px;    /* if you want it vertically middle of the navbar. */
 }
 .navigation-bar > a {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: center;
   margin-right: 20px;
   height: 200px;        /* if you want it to take the full height of the bar */
   line-height: 80px;    /* if you want it vertically middle of the navbar */
