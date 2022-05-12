@@ -19,4 +19,20 @@ describe("Timeline", () => {
 
     
   });
+
+  it("when posts are submitted, new posts are shown at the top", () => {
+    cy.visit("/users/new");
+    cy.get("#email").type("someone4@example.com");
+    cy.get("#password").type("password3");
+    cy.get("#submit").click();
+
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").find('[type="text"]').type("This goes on top!");
+    cy.get("#new-post-form").submit();
+
+    // Unit tests already submitted a message which will be older than this one, 
+    cy.get(".posts").first("This goes on top!");
+    cy.get(".posts").last("some message");
+  })
 });
