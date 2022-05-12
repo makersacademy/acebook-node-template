@@ -3,8 +3,10 @@
   {{#each posts}}
 <li>{{this.message}}  <small style= "font-size:0.5em"">{{this.user.email}}</small>
 
-<form class="delete" action='/posts/{{this.id}}?_method=DELETE' method='POST'>
-  <button type="submit" value="Delete post">Delete Post</button>
+<form action='/posts/{{this.id}}?_method=DELETE' method='POST'>
+  <div class="btn-text-right">
+  <button class="btn"><i class="fa fa-trash"></i></button>
+  </div>
 </form></li>
 <br>
   

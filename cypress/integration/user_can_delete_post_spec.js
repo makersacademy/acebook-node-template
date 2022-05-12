@@ -13,7 +13,7 @@ describe("Delete button", () => {
     cy.get(".posts").should("contain", "Delete test");
     cy.get(".posts").should("contain", "someone4@example.com");
 
-    cy.get(".posts").contains('Delete test').find(".delete").click();
+    cy.get(".posts").contains('Delete test').find(".btn").click();
 
     cy.get(".posts").should("not.contain", "Delete test");
   });

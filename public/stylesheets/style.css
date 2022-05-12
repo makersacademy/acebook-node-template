@@ -33,6 +33,7 @@ button {
   opacity: 0.9;
 }
 
+
 button:hover {
   opacity:1;
 }
@@ -83,6 +84,30 @@ navigation-bar {
   margin-right: 20px;
   height: 80px;        /* if you want it to take the full height of the bar */
   line-height: 80px;    /* if you want it vertically middle of the navbar */
+}
+
+/* Style buttons */
+.btn {
+  background-color: rgb(69, 170, 119); /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 8px 15px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  width: 5%;
+  
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(225, 65, 65);
+}
+.btn-text-right{
+	text-align: right;	
+}
+
+.btn-text-left{
+	text-align: left;	
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
