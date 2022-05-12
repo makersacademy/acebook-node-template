@@ -38,7 +38,6 @@ button:hover {
 }
 
 li {
-  border-style: solid;
   list-style-type: none
 }
 /* Extra styles for the cancel button */
@@ -90,4 +89,43 @@ navigation-bar {
   .cancelbtn, .signupbtn {
      width: 100%;
   }
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: #d3d3d3;
+  padding: 20px;
+  margin-top: 20px;
+  width: 97%
+}
+
+.post-user {
+  background-color: darkgrey;
+  display: inline-block;
+  border-radius: 2px;
+  color: white;
+  margin: 10px; 
+  padding: 0.45rem;
+  width: 7.5rem;
+}
+
+.post-date {
+  background-color: darkgrey;
+  display: inline-block;
+  border-radius: 2px;
+  color: white;
+  margin: 10px; 
+  padding: 0.45rem;
+  width: 20rem;
+  right: 50;
+}
+
+.post-message {
+  background-color: white;
+  border-radius: 2px;
+  color: black;
+  font-size: 18px;
+   margin: 10px; 
+  padding: 0.45rem;
+  
 }

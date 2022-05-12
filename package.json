@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "nodemon ./bin/www",
-    "start:test": "PORT=3030 MONGODB_URL='mongodb://127.0.0.1/acebook_test' npm start",
+    "start:test": "PORT=3030 MONGODB_URI='mongodb://127.0.0.1/acebook_test' npm start",
     "test": "npm run lint && npm run test:unit && npm run test:integration",
     "test:unit": "jest",
     "test:integration": "cypress run"
@@ -24,6 +24,7 @@
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
+    "moment": "^2.29.3",
     "mongodb": "^3.4.1",
     "mongoose": "^6.0.0",
     "mongoose-unique-validator": "^3.0.0",
