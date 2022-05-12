@@ -1,10 +1,14 @@
+const PostsController = require("../controllers/posts");
+
 class PostsView {
   constructor() {
-    let likeButton = document.querySelectorAll("#like-button").forEach((btn) =>
-      btn.addEventListener("click", () => {
-        console.log("Hi");
-      })
-    );
+    document.querySelectorAll("button").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        console.dir(event.target.id);
+
+        PostsController.info(event.target.id);
+      });
+    });
   }
 }
 

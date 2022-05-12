@@ -25,6 +25,16 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+
+  //   db.Post.updateOne(
+  //     { item: "paper" },
+  //     {
+  //       $set: { "size.uom": "cm", status: "P" },
+  //       $currentDate: { lastModified: true }
+  //     }
+  //  )
+
+  //   }
 };
 
 module.exports = PostsController;
