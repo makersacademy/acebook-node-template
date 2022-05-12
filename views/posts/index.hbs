@@ -2,7 +2,7 @@
 <ul class="posts" >
   {{#each posts}}
 <li>{{this.message}}  <small style= "font-size:0.5em"">{{this.user.email}}</small>
-<form action='/posts?_method=DELETE' method='POST'>
+<form action='/posts/#{{this.id}}/delete' method='POST'>
   <button type="submit" value="Delete post">Delete Post</button>
 </form></li>
 <br>

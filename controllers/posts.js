@@ -25,8 +25,12 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   }, 
+  
   Delete: (req, res) => {
-    const dc = Post.findOne(post)
+    console.log(req.params)
+    posts.remove({id: req.params.id}) 
+      
+    res.status(201).redirect("/posts");
     console.log(dc);
     console.log('testing delete')
   }
