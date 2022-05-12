@@ -11,12 +11,17 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const PostsView = require("./models/postsView");
 
 const app = express();
+// const postsview = new PostsView
+// app.use(postsview)
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+
 
 app.use(logger("dev"));
 app.use(express.json());

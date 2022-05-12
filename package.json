@@ -13,7 +13,7 @@
     "test:integration": "cypress run"
   },
   "engines": {
-    "node": ">=18.1.0"
+    "node": "v18.1.0"
   },
   "dependencies": {
     "alert": "^5.0.10",

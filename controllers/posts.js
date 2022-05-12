@@ -26,15 +26,15 @@ const PostsController = {
     });
   },
 
-  //   db.Post.updateOne(
-  //     { item: "paper" },
-  //     {
-  //       $set: { "size.uom": "cm", status: "P" },
-  //       $currentDate: { lastModified: true }
-  //     }
-  //  )
+  UpdateLikes: (req) => {
+    Post.updateOne(
+      { _id: req.params.id },
+      {
+        $set: { likes: 5 }
+      })
 
-  //   }
+  }
+
 };
 
 module.exports = PostsController;

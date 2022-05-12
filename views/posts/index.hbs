@@ -1,3 +1,4 @@
+<HTML>
 <form action="/" method="GET">
   <input type="submit" value="Home" />
 </form>
@@ -9,8 +10,18 @@
     <li>{{this.message}}</li>
     <li>{{this.likes}}</li>
     <li>{{this.id}}</li>
-    <input id="like-button" type="submit" value="Like" />
+    <input id="like-button" class=`{{this.id}}` type="submit" value="Like" />
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+<script> 
+    document.querySelectorAll("#like-button").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        console.log('Hello')
+        PostsController.UpdateLikes(event.target.className);
+      });
+    }); 
+</script>
+</HTML>
