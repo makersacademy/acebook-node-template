@@ -1,16 +1,10 @@
 <h1>Timeline</h1>
 
-<script id="like">
-  let likeButton = document.querySelector("#like-button");
-  likeButton.addEventListener('click', () => { })
-</script>
-
 <ul class="posts">
   {{#each posts}}
-    createEleemnt("div") classList.add("post-container") createElement("p")
-    classList.add("post-message") div.post-container.append(message)
     <li>{{this.message}}</li>
     <li>{{this.likes}}</li>
+    <li>{{this.id}}</li>
     <input id="like-button" type="submit" value="Like" />
   {{/each}}
 </ul>
