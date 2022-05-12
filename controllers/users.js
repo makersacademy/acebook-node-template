@@ -19,9 +19,9 @@ const UsersController = {
     user.save((err) => {
       if (err) {
         if (err.name === "ValidationError") {
-          res.send("Email already in use"); // possible 400 status code
+          res.status(409).send("Email already in use");
         } else {
-          res.send("Oops, something went wrong!");
+          res.status(400).send("Oops, something went wrong!");
         }
       } else {
         req.session.user = user
