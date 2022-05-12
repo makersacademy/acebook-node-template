@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 
-const PostSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema(
+{
   message: String,
-  // dateTimeCreated
-});
+},
+  { timestamps: true }
+);
 
 const Post = mongoose.model("Post", PostSchema);
 
