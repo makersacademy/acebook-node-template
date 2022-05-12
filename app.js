@@ -6,6 +6,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
+const axios = require("axios");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -17,11 +18,9 @@ const app = express();
 // const postsview = new PostsView
 // app.use(postsview)
 
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
-
 
 app.use(logger("dev"));
 app.use(express.json());

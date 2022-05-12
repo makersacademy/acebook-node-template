@@ -25,16 +25,19 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-
-  UpdateLikes: (req) => {
+  UpdateLikes: (req, res) => {
+    console.log("Update likes in controller");
+    // const action = req.body.action;
+    // const counter = action === "Like" ? 1 : -1;
     Post.updateOne(
       { _id: req.params.id },
-      {
-        $set: { likes: 5 }
-      })
-
-  }
-
+      { $inc: { likes: 1 } },
+      {},
+      (err, number) => {
+        res.send("");
+      }
+    );
+  },
 };
 
 module.exports = PostsController;
