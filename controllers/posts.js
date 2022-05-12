@@ -1,6 +1,7 @@
 const { Schema } = require("mongoose");
 const { post } = require("../app");
 const Post = require("../models/post");
+const mongoose = require('mongoose');
 
 const PostsController = {
   Index: (req, res) => {
@@ -28,17 +29,11 @@ const PostsController = {
   }, 
   
   Delete: (req, res) => {
-    const Post = mongoose.model("Post", PostSchema);
-    console.log(req.params)
-    Post.remove({_id: req.params.id}, 
+    Post.findByIdAndRemove(req.params.id, 
       function(err, docs) {
         if(err) res.json(err);
         else res.status(201).redirect("/posts");
-      }) 
-      
-    // res.status(201).redirect("/posts");
-    console.log(dc);
-    console.log('testing delete')
+      })
   }
 }  
        
