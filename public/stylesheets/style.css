@@ -63,10 +63,10 @@ li {
   clear: both;
   display: table;
 }
-navigation-bar {
+.navigation-bar {
   width: 100%;  /* i'm assuming full width */
   height: 80px; /* change it to desired width */
-  background-color: red; /* change to desired color */
+  background-color: rgb(230, 45, 45); /* change to desired color */
 }
 .logo {
   display: inline-block;
@@ -82,6 +82,11 @@ navigation-bar {
   margin-right: 20px;
   height: 80px;        /* if you want it to take the full height of the bar */
   line-height: 80px;    /* if you want it vertically middle of the navbar */
+  color: white;
+}
+
+.navigation-bar > a:hover{
+  opacity: 0.5;
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
