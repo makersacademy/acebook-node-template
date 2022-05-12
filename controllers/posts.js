@@ -2,13 +2,15 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
-      if (err) {
-        throw err;
-      }
+    Post.find({})
+      .sort({ _id: -1 })
+      .exec(function (err, userposts) {
+        if (err) {
+          throw err;
+        }
 
-      res.render("posts/index", { posts: posts });
-    });
+        res.render("posts/index", { posts: userposts });
+      });
   },
   New: (req, res) => {
     res.render("posts/new", {});

@@ -1,6 +1,7 @@
 class Postsview {
   constructor() {
-    let likeButton = document.querySelector("#like-button");
-    likeButton.addEventListener("click", () => {});
+    let likeButton = document
+      .querySelectorAll("#like-button")
+      .forEach((btn) => btn.addEventListener("click", () => {}));
   }
 }
