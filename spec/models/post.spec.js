@@ -15,11 +15,6 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
-  it("has a datestamp", () => {
-    var post = new Post({ message: "some message" });
-    expect(post.createdAt).toMatch(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/);
-  })
-
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
@@ -37,7 +32,25 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: "some message" });
+        expect(posts[0]).toMatchObject({ message: "some message", createdAt: expect.anything() });
+
+        done();
+      });
+    });
+  });
+
+  it("saves a post with a createdAt timestamp", (done) => {
+    var post = new Post({ message: "some message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+
+        expect(posts[0]).toMatchObject({ createdAt: expect.anything() });
+
         done();
       });
     });
