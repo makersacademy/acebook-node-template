@@ -15,6 +15,7 @@ const PostsController = {
   Create: (req, res) => {
     const postInfo = req.body;
     postInfo.user = req.session.user._id;
+    postInfo.time = 'at ' + new Date().toString().substring(16,21) + ' on ' + new Date().toString().substring(4,15);
     const post = new Post(postInfo);
     post.save((err) => {
       if (err) {
