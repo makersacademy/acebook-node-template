@@ -1,17 +1,16 @@
 
 
 
-<h1>Timeline</h1>
+<div class="timeline"><h1>Timeline</h1></div>
 <div class="new-post">
 <form id="new-post-form" action="/posts" method="post">
-  <textarea class="new-field" id="message" name="message" rows="4" cols="50" placeholder="New post.."></textarea>
-  <br>
-  {{!-- <input class="new-field" id="message" type="text" name="message" value="" placeholder="New post.."> --}}
-  <input class="post-button" type="submit" value="Post">
+  <textarea class="new-field" id="message" name="message" rows="4" placeholder="New post.."></textarea>
+  <input class="post-button" type="image" src= "/images/funny-zuck.png" >
+  
 </form>
 </div>
 
-<ul class="posts" >
+<div class="posts"></div>
  {{#each posts}}
 <div class="card">
   <div class="post-user">
@@ -31,7 +30,7 @@
 </div>
   
   {{/each}}
-</ul>
+</div>
 
 
 
