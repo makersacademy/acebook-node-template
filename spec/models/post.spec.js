@@ -37,4 +37,19 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can like a post", (done) => {
+    let post = new Post({ message: "some message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ likes: 0 });
+        done();
+      });
+    });
+  });
 });

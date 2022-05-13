@@ -1,16 +1,25 @@
-<form action="/" method="GET">
-  <input type="submit" value="Home" />
-</form>
 
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-    <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+<HTML>
+  <script type="text/javascript" src="./javascripts/likesView.js" defer></script>
+  <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+  <form action="/" method="GET">
+    <input type="submit" value="Home" />
+  </form>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+  <h1>Timeline</h1>
 
-<form action="/sessions?_method=DELETE" method="POST">
-  <input id="logout" type="submit" value="Log Out" />
-</form>
+  <ul class="posts">
+    {{#each posts}}
+      <li>{{this.message}}</li>
+      <button id="like-button" class="{{this.id}}" type="submit" value="Like">Like</button>
+      <span id="likes-count-{{this.id}}">{{this.likes}}</span>
+    {{/each}}
+  </ul>
+
+  <a class="new-post-link" href="/posts/new">New post</a>
+
+   <form action="/sessions?_method=DELETE" method="POST">
+      <input id="logout" value="Log Out" />
+  </form>
+
+</HTML>
