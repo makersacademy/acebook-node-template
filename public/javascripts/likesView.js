@@ -29,7 +29,13 @@ class LikesView {
             toggleButtonText[action](event.target);
         updateLikeStats[action](postId);
         // eslint-disable-next-line no-use-before-define
-          axios.post('posts/' + postId + '/likes', { action: action });
+        /*eslint-disable */
+
+        //suppress all warnings between comments
+        axios.post('posts/' + postId + '/likes', { action: action });
+
+        /*eslint-enable */
+          
       });
     });
   }
