@@ -8,4 +8,14 @@ describe("Registration", () => {
 
     cy.url().should("include", "/posts");
   });
+
+  it("A user cannot sign up with an email that is already in use", () => {
+    // credentials already used in previous test
+    cy.visit("/users/new");
+    cy.get("#email").type("someone2@example.com");
+    cy.get("#password").type("password2");
+    cy.get("#submit").click();
+
+    cy.contains("Email already in use");
+  });
 });
