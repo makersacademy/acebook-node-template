@@ -6,8 +6,6 @@ describe("Delete button", () => {
     cy.get("#password").type("password4");
     cy.get("#submit").click();
 
-    cy.get('.posts').find('.dltbtn').click();
-
     cy.get(".new-field").type("Delete test");
     cy.get(".post-button").click();
 

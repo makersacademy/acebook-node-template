@@ -28,6 +28,6 @@ describe("Timeline", () => {
 
     // Unit tests already submitted a message which will be older than this one, 
     cy.get(".posts").first().find(".post-message").should("contain", "This goes on top!");
-    cy.get(".posts").last().find(".post-message").should("contain", "Hello, world!");
+    cy.get(".posts").last().find(".post-message").should("contain", "some message");
   })
 });
