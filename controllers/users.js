@@ -4,7 +4,6 @@ const User = require("../models/user");
 const CryptoJS = require('crypto-js');
 const encryptWithAES = (text) => {
   var passphrase = process.env.SALT || '123';
-  console.log(passphrase);
   return CryptoJS.AES.encrypt(text, passphrase).toString();
 };
 // End of encryption
