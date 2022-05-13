@@ -40,7 +40,7 @@ describe("Post model", () => {
   });
 
   it("each post has the time it was made", (done) => {
-    var post = new Post({ user: "627b88582de61f0e5db7f4ca", message: "some message", time: "at 15:00 on May 12 2022" })
+    var post = new Post({ user: "627b88582de61f0e5db7f4ca", message: "some message" })
 
     post.save((err) => {
       expect(err).toBeNull();
@@ -48,7 +48,7 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts[0].time).toEqual("at 15:00 on May 12 2022")
+        expect(posts[0].createdAt).toBeDefined();
         done();
       });
     });
