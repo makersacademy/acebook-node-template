@@ -16,8 +16,6 @@ describe("Timeline", () => {
 
     cy.get(".posts").should("contain", "Hello, world!");
     cy.get(".posts").should("contain", "someone3@example.com");
-
-    
   });
 
   it("when posts are submitted, new posts are shown at the top", () => {

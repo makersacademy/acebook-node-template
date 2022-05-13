@@ -1,5 +1,3 @@
-const CryptoJS = require('crypto-js');
-
 describe("Authentication", () => {
   it("A user signs in and is redirected to /posts", () => {
     // sign up

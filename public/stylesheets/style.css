@@ -33,6 +33,7 @@ button {
   opacity: 0.9;
 }
 
+
 button:hover {
   opacity:1;
 }
@@ -63,25 +64,54 @@ li {
   clear: both;
   display: table;
 }
-navigation-bar {
+.navigation-bar {
   width: 100%;  /* i'm assuming full width */
-  height: 80px; /* change it to desired width */
-  background-color: red; /* change to desired color */
+  height: 150px; /* change it to desired width */
+  background-color: rgb(230, 45, 45); /* change to desired color */
 }
 .logo {
   display: inline-block;
   vertical-align: top;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   margin-right: 20px;
   margin-top: 15px;    /* if you want it vertically middle of the navbar. */
 }
 .navigation-bar > a {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: center;
   margin-right: 20px;
-  height: 80px;        /* if you want it to take the full height of the bar */
+  height: 200px;        /* if you want it to take the full height of the bar */
   line-height: 80px;    /* if you want it vertically middle of the navbar */
+  color: white;
+}
+
+.navigation-bar > a:hover{
+  opacity: 0.5;
+}
+
+/* Style buttons */
+.btn {
+  background-color: rgb(69, 170, 119); /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 8px 15px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  width: 5%;
+  
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(225, 65, 65);
+}
+.btn-text-right{
+	text-align: right;	
+}
+
+.btn-text-left{
+	text-align: left;	
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
@@ -117,7 +147,6 @@ navigation-bar {
   margin: 10px; 
   padding: 0.45rem;
   width: 20rem;
-  right: 50;
 }
 
 .post-message {
