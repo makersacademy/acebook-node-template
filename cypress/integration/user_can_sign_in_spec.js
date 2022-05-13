@@ -4,7 +4,6 @@ describe("Authentication", () => {
     cy.visit("/");
     cy.get("#Signup").click();
     cy.url().should("include", "/users/new");
-    // cy.visit("/users/new");
     cy.get("#username").type("someone");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
@@ -16,21 +15,24 @@ describe("Authentication", () => {
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
   });
 
-  it("user sign in from home page", () => {
+
+  it('user sign in from home page', () => {
+    // sign in
+
     cy.visit("/");
     cy.get("#Login").click();
     cy.url().should("include", "/sessions/new");
-    // cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
-  });
+
+
+  }); 
+
 });
