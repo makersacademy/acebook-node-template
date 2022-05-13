@@ -39,7 +39,7 @@ button:hover {
 }
 
 li {
-  list-style-type: none
+  list-style-type: none;
 }
 
 /* Add padding to container elements */
@@ -81,19 +81,20 @@ li {
 }
 
 /* Style buttons */
-.btn {
+.dltbtn {
   background-color: rgb(69, 170, 119); /* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */
   padding: 8px 15px; /* Some padding */
   font-size: 16px; /* Set a font size */
   width: 10%;
-  
+  border-radius: 2px;
+  margin-right: 10px;
   cursor: pointer; /* Mouse pointer on hover */
 }
 
 /* Darker background on mouse-over */
-.btn:hover {
+.dltbtn:hover {
   background-color: rgb(225, 65, 65);
 }
 .btn-text-right{
@@ -115,7 +116,7 @@ li {
   margin-top: 20px;
   max-width: 600px;
   border-radius: 20px;
-  margin-left: -1em;
+  /* margin-left: -1em; */
   
 }
 
@@ -156,8 +157,6 @@ li {
   margin-top: 20px;
   max-width: 600px;
   border-radius: 20px;
-  margin-left: -1em;
-  
 }
 
 textarea {
