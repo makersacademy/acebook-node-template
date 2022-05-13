@@ -1,4 +1,4 @@
-body {font-family: Arial, Helvetica, sans-serif;}
+body * {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
 /* Full-width input fields */
@@ -39,18 +39,7 @@ button:hover {
 }
 
 li {
-  list-style-type: none
-}
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
+  list-style-type: none;
 }
 
 /* Add padding to container elements */
@@ -72,16 +61,17 @@ li {
 .logo {
   display: inline-block;
   vertical-align: top;
-  width: 100px;
-  height: 100px;
+  width: 125px;
+  height: 125px;
   margin-right: 20px;
+  margin-left: 10px;
   margin-top: 15px;    /* if you want it vertically middle of the navbar. */
 }
 .navigation-bar > a {
   display: inline-block;
   vertical-align: center;
   margin-right: 20px;
-  height: 200px;        /* if you want it to take the full height of the bar */
+  height: 20px;        /* if you want it to take the full height of the bar */
   line-height: 80px;    /* if you want it vertically middle of the navbar */
   color: white;
 }
@@ -91,19 +81,20 @@ li {
 }
 
 /* Style buttons */
-.btn {
+.dltbtn {
   background-color: rgb(69, 170, 119); /* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */
   padding: 8px 15px; /* Some padding */
   font-size: 16px; /* Set a font size */
-  width: 5%;
-  
+  width: 10%;
+  border-radius: 2px;
+  margin-right: 10px;
   cursor: pointer; /* Mouse pointer on hover */
 }
 
 /* Darker background on mouse-over */
-.btn:hover {
+.dltbtn:hover {
   background-color: rgb(225, 65, 65);
 }
 .btn-text-right{
@@ -115,18 +106,18 @@ li {
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-  }
-}
+
 
 /* Add a card effect for articles */
 .card {
+  margin: auto;
   background-color: #d3d3d3;
   padding: 20px;
   margin-top: 20px;
-  width: 97%
+  max-width: 600px;
+  border-radius: 20px;
+  /* margin-left: -1em; */
+  
 }
 
 .post-user {
@@ -136,7 +127,7 @@ li {
   color: white;
   margin: 10px; 
   padding: 0.45rem;
-  width: 7.5rem;
+  min-width: 1rem;
 }
 
 .post-date {
@@ -146,7 +137,8 @@ li {
   color: white;
   margin: 10px; 
   padding: 0.45rem;
-  width: 20rem;
+  min-width: 1rem;
+  text-align: right;
 }
 
 .post-message {
@@ -154,7 +146,40 @@ li {
   border-radius: 2px;
   color: black;
   font-size: 18px;
-   margin: 10px; 
+  margin: 10px; 
   padding: 0.45rem;
-  
+}
+
+.new-post {
+  margin: auto;
+  background-color: #e8a7a7;
+  padding: 20px;
+  margin-top: 20px;
+  max-width: 600px;
+  border-radius: 20px;
+}
+
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  width: 85%;
+}
+
+.new-field {
+  font-size: 18px;
+  resize: none;
+}
+
+.post-button {
+  max-height: 90px;
+  max-width: 100px;
+}
+
+.timeline {
+  margin: auto;
+  margin-top: 20px;
+  max-width: 600px;
+  color:rgb(200, 4, 4)
 }

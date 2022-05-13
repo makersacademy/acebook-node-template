@@ -1,7 +1,14 @@
+<ul class="posts">
 
-<h1>Timeline</h1>
-<a class="new-post-link" href="/posts/new">New post</a>
-<ul class="posts" >
+<div class="timeline"><h1>Timeline</h1></div>
+<div class="new-post">
+<form id="new-post-form" action="/posts" method="post">
+  <textarea class="new-field" id="message" name="message" rows="4" placeholder="New post.."></textarea>
+  <input class="post-button" type="image" src= "/images/funny-zuck.png" >
+  
+</form>
+</div>
+
  {{#each posts}}
 <div class="card">
   <div class="post-user">
@@ -17,7 +24,7 @@
   {{#if (ifEqual ../user.email this.user.email)}} 
     <form action='/posts/{{this.id}}?_method=DELETE' method='POST'>
     <div class="btn-text-right">
-      <button class="btn"><i class="fa fa-trash"></i></button>
+      <button class="dltbtn"><i class="fa fa-trash"></i></button>
     </div>
     </form>
   {{else}}
