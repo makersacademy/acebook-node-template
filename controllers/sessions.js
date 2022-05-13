@@ -17,6 +17,7 @@ const SessionsController = {
 
         if (isMatch) {
           req.session.user = user;
+          
           res.redirect("/posts");
         } else {
           req.flash("message", "Invalid Credentials");

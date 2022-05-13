@@ -9,7 +9,9 @@ const PostsController = {
           throw err;
         }
 
-        res.render("posts/index", { posts: userposts });
+        res.render("posts/index", {
+          posts: userposts
+        });
       });
   },
   New: (req, res) => {

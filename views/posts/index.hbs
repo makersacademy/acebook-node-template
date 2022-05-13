@@ -1,4 +1,3 @@
-
 <HTML>
   <script type="text/javascript" src="./javascripts/likesView.js" defer></script>
   <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
@@ -10,7 +9,8 @@
 
   <ul class="posts">
     {{#each posts}}
-      <li>{{this.message}}</li>
+      <li>{{this.message}}<br>
+      Created at: {{this.createdAt}}</li>
       <button id="like-button" class="{{this.id}}" type="submit" value="Like">Like</button>
       <span id="likes-count-{{this.id}}">{{this.likes}}</span>
     {{/each}}

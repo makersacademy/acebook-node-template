@@ -32,7 +32,25 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: "some message" });
+        expect(posts[0]).toMatchObject({ message: "some message", createdAt: expect.anything() });
+
+        done();
+      });
+    });
+  });
+
+  it("saves a post with a createdAt timestamp", (done) => {
+    var post = new Post({ message: "some message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+
+        expect(posts[0]).toMatchObject({ createdAt: expect.anything() });
+
         done();
       });
     });
