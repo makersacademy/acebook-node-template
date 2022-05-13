@@ -1,5 +1,6 @@
 <HTML>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="./javascripts/likesView.js" defer></script>
   <form action="/" method="GET">
     <input type="submit" value="Home" />
   </form>
@@ -9,18 +10,16 @@
   <ul class="posts">
     {{#each posts}}
       <li>{{this.message}}</li>
-      <li>{{this.likes}}</li>
-      <li>{{this.id}}</li>
-      <input id="like-button" class="{{this.id}}" type="submit" value="Like" />
+      <button id="like-button" class="{{this.id}}" type="submit" value="Like">Like</button>
+      <span id="likes-count-{{this.id}}">{{this.likes}}</span>
     {{/each}}
   </ul>
 
   <a class="new-post-link" href="/posts/new">New post</a>
 
+
   <script>
-    document.querySelectorAll("#like-button").forEach((btn) => {
-    btn.addEventListener("click", (event) => { axios.post('posts/' +
-    event.target.className + '/likes'); }); });
+
   </script>
 
 </HTML>

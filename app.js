@@ -6,14 +6,11 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
-const axios = require("axios");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-const PostsView = require("./models/postsView");
-
 const app = express();
 // const postsview = new PostsView
 // app.use(postsview)

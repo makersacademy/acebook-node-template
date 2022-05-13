@@ -28,14 +28,17 @@ const PostsController = {
   UpdateLikes: (req, res) => {
     console.log("Update likes in controller");
     console.log(req.params.id);
-    // const action = req.body.action;
-    // const counter = action === "Like" ? 1 : -1;
+    const action = req.body.action;
+    const counter = (action === "Like" ? 1 : -1);
     Post.updateOne(
       { _id: req.params.id },
-      { $inc: { likes: 1 } },
+      { $inc: { likes: counter } },
       {},
       (err, number) => {
-        res.send("");
+        if (err) {
+          throw err;
+        }
+        res.send(number);
       }
     );
   },
