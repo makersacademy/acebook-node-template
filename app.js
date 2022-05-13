@@ -6,14 +6,28 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 
-
-
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+var hbs = require('hbs');
+const moment = require('moment');
+
 const app = express();
+
+hbs.registerHelper('formatDate', function(dateString) {
+  return new hbs.SafeString(
+      'at ' + moment(dateString).format("HH:mm") +' on ' + moment(dateString).format("MMM D") + ' ' + moment(dateString).format("YYYY")
+  );
+});
+
+hbs.registerHelper('ifEqual', function(userId, postId) {
+  if (userId === postId) {
+    return true
+  } 
+  return false
+})
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -76,7 +90,5 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
-
-
 
 module.exports = app;
