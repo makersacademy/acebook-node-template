@@ -12,8 +12,6 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const app = express();
-// const postsview = new PostsView
-// app.use(postsview)
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

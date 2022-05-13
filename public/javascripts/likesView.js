@@ -1,4 +1,5 @@
 // const PostsController = require("../../controllers/posts");
+// {/* <script src="https://unpkg.com/axios/dist/axios.min.js"></script> */ }
 
 class LikesView {
   constructor() {
@@ -26,7 +27,8 @@ class LikesView {
         const action = event.target.textContent.trim();
         console.log(event.target)
             toggleButtonText[action](event.target);
-            updateLikeStats[action](postId);
+        updateLikeStats[action](postId);
+        // eslint-disable-next-line no-use-before-define
           axios.post('posts/' + postId + '/likes', { action: action });
       });
     });
