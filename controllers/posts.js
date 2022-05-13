@@ -9,7 +9,8 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts });
+      let reverse = posts.reverse()
+      res.render("posts/index", { posts: reverse });
     });
   },
   New: (req, res) => {
@@ -18,6 +19,7 @@ const PostsController = {
   Create: (req, res) => {
     const postInfo = req.body;
     postInfo.user = req.session.user._id;
+    postInfo.time = 'at ' + new Date().toString().substring(16,21) + ' on ' + new Date().toString().substring(4,15);
     const post = new Post(postInfo);
     post.save((err) => {
       if (err) {

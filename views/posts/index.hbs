@@ -1,14 +1,25 @@
+
+
+
 <h1>Timeline</h1>
 <ul class="posts" >
-  {{#each posts}}
-<li>{{this.message}}  <small style= "font-size:0.5em"">{{this.user.email}}</small>
-
-<form action='/posts/{{this.id}}?_method=DELETE' method='POST'>
+ {{#each posts}}
+<div class="card">
+  <div class="post-user">
+   <li><small style= "font-size:0.7em">{{this.user.email}}</small></li>
+  </div>
+   <div class="post-date" style = "position:relative; left:62.5%;";>
+      <li><small style= "font-size:0.7em">{{this.time}}</small></li>
+  </div>
+  <div class="post-message">
+  <li>{{this.message}}</li>
+  </div>
+  <form action='/posts/{{this.id}}?_method=DELETE' method='POST'>
   <div class="btn-text-right">
   <button class="btn"><i class="fa fa-trash"></i></button>
   </div>
-</form></li>
-<br>
+</form>
+</div>
   
   {{/each}}
 </ul>
@@ -18,3 +29,6 @@
 <form action='/sessions?_method=DELETE' method='POST'>
   <button type="submit" value="Log Out">Log out</button>
 </form>
+
+
+
