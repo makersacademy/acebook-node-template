@@ -2,7 +2,15 @@
 
 
 <h1>Timeline</h1>
-<a class="new-post-link" href="/posts/new">New post</a>
+<div class="new-post">
+<form id="new-post-form" action="/posts" method="post">
+  <textarea class="new-field" id="message" name="message" rows="4" cols="50" placeholder="New post.."></textarea>
+  <br>
+  {{!-- <input class="new-field" id="message" type="text" name="message" value="" placeholder="New post.."> --}}
+  <input class="post-button" type="submit" value="Post">
+</form>
+</div>
+
 <ul class="posts" >
  {{#each posts}}
 <div class="card">
