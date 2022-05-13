@@ -16,10 +16,14 @@
   <br>
   {{#if (ifEqual ../user.email this.user.email)}} 
     <form action='/posts/{{this.id}}?_method=DELETE' method='POST'>
-      <div class="btn-text-right">
-    <button class="btn"><i class="fa fa-trash"></i></button>
+    <div class="btn-text-right">
+      <button class="btn"><i class="fa fa-trash"></i></button>
+    </div>
+    </form>
   {{else}}
-    <button type="submit" value="Like">Like</button>
+    <div class="btn-text-right">
+      <button class="btn"> <i class="fa fa-thumbs-up"></i> </button>
+    </div>
   {{/if}}
 </div>
 {{/each}}
