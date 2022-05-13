@@ -13,13 +13,13 @@ describe("Timeline", () => {
     cy.get(".new-field").type("Hello, world!");
     cy.get(".post-button").click();
 
-    cy.get(".posts").should("contain", "Hello, world!");
-    cy.get(".posts").should("contain", "someone3@example.com");
+    cy.get(".posts").find(".post-message").should("contain", "Hello, world!");
+    cy.get(".posts").find(".post-user").should("contain", "someone3@example.com");
   });
 
   it("when posts are submitted, new posts are shown at the top", () => {
     cy.visit("/users/new");
-    cy.get("#email").type("someone4@example.com");
+    cy.get("#email").type("someone10@example.com");
     cy.get("#password").type("password3");
     cy.get("#submit").click();
 
@@ -27,7 +27,7 @@ describe("Timeline", () => {
     cy.get(".post-button").click();
 
     // Unit tests already submitted a message which will be older than this one, 
-    cy.get(".posts").first("This goes on top!");
-    cy.get(".posts").last("some message");
+    cy.get(".posts").first().find(".post-message").should("contain", "This goes on top!");
+    cy.get(".posts").last().find(".post-message").should("contain", "some message");
   })
 });
