@@ -4,7 +4,8 @@ const PostSchema = new mongoose.Schema(
 {
   message: String,
 },
-  { timestamps: true }
+{ timestamps: true
+},
 );
 
 const Post = mongoose.model("Post", PostSchema);

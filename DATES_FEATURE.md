@@ -17,6 +17,8 @@ How to format the timestamp
 4. Formatting of the view of the date created needs revision (not its own bullet point, but rather subpoint of the message)
 5. Format the date to make it shorter, easier to read.
 
+tried .toLocaleString('en-GB', {hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'long', day: 'numeric'})
+
 ## Bonus requirement
 3. Adding the user ID foreign key to the Posts table
 4. Display the user ID with the post on the posts page.

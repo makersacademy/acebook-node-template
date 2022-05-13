@@ -5,8 +5,11 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-    <li>{{this.message}}</li>
-    <li>Created at: {this.createdAt}}</li>
+    <li>
+      {{this.message}}<br>
+      Created at: {{date}}
+    </li>
+
   {{/each}}
 </ul>
 
