@@ -9,14 +9,10 @@ describe("Delete button", () => {
     cy.get(".new-field").type("Delete test");
     cy.get(".post-button").click();
 
-    cy.get(".posts").within(() => {
-      cy.get(".card").within(() => {
-        cy.get(".post-message").should("contain", "Delete test");
-        cy.get(".post-user").should("contain", "someone4@example.com");
-      })
-    });
+    cy.get(".posts").should("contain", "Delete test");
+    cy.get(".posts").should("contain", "someone4@example.com");
 
-    cy.get('.post-message').contains('Delete test').get(".btn").click();
+    cy.get('.post-message').contains('Delete test').gfind(".btn").click();
 
     cy.get('.post-message').should("not.contain", "Delete test");
   });
