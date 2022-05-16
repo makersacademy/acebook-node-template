@@ -2,12 +2,15 @@ var mongoose = require("mongoose"),
   // Schema = mongoose.Schema,
   bcrypt = require("bcrypt"),
   SALT_WORK_FACTOR = 10;
+const uniqueValidator = require('mongoose-unique-validator')
 
 let UserSchema = new mongoose.Schema({
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  username: { type: String, required: true },
+  username: { type: String, required: true, unique: true },
 });
+
+UserSchema.plugin(uniqueValidator);
 
 UserSchema.pre("save", function (next) {
   let user = this;

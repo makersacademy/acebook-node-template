@@ -30,6 +30,7 @@
     "moment": "^2.29.3",
     "mongodb": "^3.4.1",
     "mongoose": "^5.8.11",
+    "mongoose-unique-validator": "^3.0.0",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15",
     "popups": "^1.1.3",
