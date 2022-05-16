@@ -21,6 +21,7 @@
     <li>{{this.message}}</li>
   </div>
   <br>
+  <a href="/posts/{{this.id}}">{{this.likesCount}}</a>
   {{#if (ifEqual ../user.email this.user.email)}} 
     <form action='/posts/{{this.id}}?_method=DELETE' method='POST'>
     <div class="btn-text-right">
@@ -28,9 +29,19 @@
     </div>
     </form>
   {{else}}
-    <div class="btn-text-right">
-      <button class="btn"> <i class="fa fa-thumbs-up"></i> </button>
-    </div>
+    {{#if (userLike this ../user)}}
+    <form action='/posts/{{this.id}}/unlike' method='POST'>
+      <div class="btn-text-right">
+        <button class="unlikebtn"> <i class="fa fa-thumbs-down"></i> </button>
+      </div>
+    </form>
+    {{else}}
+    <form action='/posts/{{this.id}}/like' method='POST'>
+      <div class="btn-text-right">
+        <button class="likebtn"> <i class="fa fa-thumbs-up"></i> </button>
+      </div>
+    </form>
+    {{/if}}
   {{/if}}
 </div>
 {{/each}}
