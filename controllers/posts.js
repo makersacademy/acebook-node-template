@@ -35,7 +35,7 @@ const PostsController = {
   IncreaseLikes: (req, res) => {
     Post.findOneAndUpdate({_id: req.params.id}, {
       "$inc" : { "likesCount" : 1 },
-      "$push": { "likesBy": req.session.user._id }
+      "$push": { "likesBy": req.session.user.email }
     }).exec((err, post) => {
       if (err) res.json(err);
       else res.status(201).redirect(`/posts`);
@@ -44,10 +44,21 @@ const PostsController = {
   DecreaseLikes: (req, res) => {
     Post.findOneAndUpdate({_id: req.params.id}, {
       "$inc" : { "likesCount" : -1 },
-      "$pull": { "likesBy": req.session.user._id }
+      "$pull": { "likesBy": req.session.user.email }
     }).exec((err, post) => {
       if (err) res.json(err);
       else res.status(201).redirect(`/posts`);
+    })
+  },
+  LikedBy: (req, res) => {
+    Post.findOne({_id: req.params.id}).exec((err, post) => {
+      if (err) {
+        throw err;
+      }
+      res.render("posts/id", { 
+        post: post,
+        user: req.session.user 
+      });
     })
   },
   Delete: (req, res) => {
