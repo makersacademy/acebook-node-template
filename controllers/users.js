@@ -30,13 +30,16 @@ const UsersController = {
           res.status(400).send("Oops, something went wrong!");
         }
       } else {
-        req.session.user = user
-        res.status(201).redirect("/posts");
+        req.session.user = user;
+        res.status(201).redirect("/users/profile");
       }
     });
   },
 
   Display: (req, res) => {
+    console.log(req.session.user);
+    const user = req.session.user;
+    console.log(user);
     res.render("users/profile", {});
   },
 };
