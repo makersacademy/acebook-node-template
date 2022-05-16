@@ -27,5 +27,6 @@ describe("Likes", () => {
     cy.get('.card').first().find("a").click()
 
     cy.contains("Liked by:");
+    cy.contains("someone6@example.com");
   });
 });
