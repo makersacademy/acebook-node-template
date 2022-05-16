@@ -35,6 +35,7 @@
   <form action="/comments" method="POST">
     <input class="new-comment" type="text" placeholder="Comment..">
     <input class="post-comment" type="submit" value="Post">
+    <input type="hidden" id="custId" name="custId" value={{this.id}}>
   </form>
 </div>
 {{/each}}
