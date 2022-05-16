@@ -10,7 +10,8 @@
   <ul class="posts">
     {{#each posts}}
       <li>{{this.message}}<br>
-      Created at {{formatDate this.createdAt}}</li>
+      <div id="datestamp">Created at {{formatDate this.createdAt}}</div>
+      </li>
       <button id="like-button" class="{{this.id}}" type="submit" value="Like">Like</button>
       <span id="likes-count-{{this.id}}">{{this.likes}}</span>
     {{/each}}
