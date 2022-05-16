@@ -14,7 +14,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+[Trello Board](https://trello.com/b/DA4anZb2/acebook-aws)
 
 ## Quickstart
 
