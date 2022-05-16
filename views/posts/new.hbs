@@ -4,6 +4,14 @@
 
 <form id="new-post-form" action="/posts" method="post">
   <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="" />
+  <textarea
+    id="message"
+    name="message"
+    value=""
+    rows="2"
+    placeholder="Type your post here..."
+    required
+  ></textarea>
+  {{! <input id="message" type="text" name="message" value="" /> }}
   <input type="submit" value="Submit" />
 </form>
