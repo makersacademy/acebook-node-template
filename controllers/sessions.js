@@ -12,7 +12,7 @@ const decryptWithAES = (ciphertext) => {
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", {user: req.session.user});
   },
 
   Create: (req, res) => {

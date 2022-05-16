@@ -10,7 +10,7 @@ const encryptWithAES = (text) => {
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {});
+    res.render("users/new", {user: req.session.user});
   },
 
   Create: (req, res) => {
