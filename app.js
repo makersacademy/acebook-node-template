@@ -81,4 +81,12 @@ app.use((err, req, res) => {
   res.render("error");
 });
 
+// hbs helpers
+const hbs = require('hbs');
+hbs.registerHelper('formatDate', function(datestamp) {
+  return new hbs.SafeString(
+
+  );
+});
+
 module.exports = app;
