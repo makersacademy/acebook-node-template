@@ -21,7 +21,7 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
     cy.get(".posts").should("contain", "Hello, world!");
-    cy.get(".posts").should("contain", "Created at");
+    cy.get(".posts").should("contain", /\d{2}:\d{2} on \d{1,2} \w{3,} \d{4}/);
 
     // checks if posts are in order of newest first
     cy.visit("/posts");

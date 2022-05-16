@@ -83,10 +83,11 @@ app.use((err, req, res) => {
 
 // hbs helpers
 const hbs = require('hbs');
+const moment = require('moment');
 hbs.registerHelper('formatDate', function(datestamp) {
   return new hbs.SafeString(
-    datestamp.toLocaleString('en-GB', {hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'long', day: 'numeric'})
-  );
+    moment(datestamp).format("HH:mm") + ' on ' + moment(datestamp).format("DD MMMM YYYY")
+  )
 });
 
 module.exports = app;
