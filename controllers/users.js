@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {});
+    res.render("users/new", { error: req.flash("error") });
   },
 
   Create: (req, res) => {
@@ -13,9 +13,16 @@ const UsersController = {
 
     user.save((err) => {
       if (err) {
-        throw err;
+        if (err.name === "ValidationError") {
+          req.flash("error", "Email/Username in use");
+          res.redirect("/users/new");
+        }
+        else {
+          throw err;
+        }
+      } else {
+        res.status(201).redirect("/posts");
       }
-      res.status(201).redirect("/posts");
     });
   },
 };
