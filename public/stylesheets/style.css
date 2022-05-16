@@ -67,18 +67,35 @@ li {
   margin-left: 10px;
   margin-top: 15px;    /* if you want it vertically middle of the navbar. */
 }
-.navigation-bar > a {
+nav button {
+  float: left;
+  vertical-align: top;
+  background-color: rgb(230, 45, 45);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  opacity: 1.0;
+}
+
+nav button:hover {
+  opacity: 0.8;
+}
+
+/* .navigation-bar > a {
   display: inline-block;
   vertical-align: center;
   margin-right: 20px;
-  height: 20px;        /* if you want it to take the full height of the bar */
-  line-height: 80px;    /* if you want it vertically middle of the navbar */
+  height: 20px;       
+  line-height: 80px;    
   color: white;
-}
+} 
 
 .navigation-bar > a:hover{
   opacity: 0.5;
-}
+} */
 
 /* Style buttons */
 .dltbtn {
