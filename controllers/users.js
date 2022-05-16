@@ -36,12 +36,21 @@ const UsersController = {
     });
   },
 
-  Display: (req, res) => {
-    console.log(req.session.user);
-    const user = req.session.user;
-    console.log(user);
-    res.render("users/profile", {user: user});
+  Display: (req, res, next) => {
+
+    const email = req.params.email
+
+    User.findOne({email: email})
+    .exec()
+    .then(doc => {
+        res.render('users/profile', {
+            user: doc
+        });
+    })
   },
 };
 
 module.exports = UsersController;
+
+
+
