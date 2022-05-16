@@ -28,9 +28,17 @@
     </div>
     </form>
   {{else}}
-    <div class="btn-text-right">
-      <button class="btn"> <i class="fa fa-thumbs-up"></i> </button>
-    </div>
+    {{this.likesCount}}
+    <form action='/posts/{{this.id}}/like' method='POST'>
+      <div class="btn-text-right">
+        <button class="likebtn"> <i class="fa fa-thumbs-up"></i> </button>
+      </div>
+    </form>
+    <form action='/posts/{{this.id}}/unlike' method='POST'>
+      <div class="btn-text-right">
+        <button class="unlikebtn"> <i class="fa fa-thumbs-down"></i> </button>
+      </div>
+    </form>
   {{/if}}
 </div>
 {{/each}}

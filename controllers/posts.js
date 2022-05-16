@@ -32,7 +32,24 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   }, 
-  
+  IncreaseLikes: (req, res) => {
+    Post.findOneAndUpdate({_id: req.params.id}, {
+      "$inc" : { "likesCount" : 1 },
+      "$push": { "likesBy": req.session.user._id }
+    }).exec((err, post) => {
+      if (err) res.json(err);
+      else res.status(201).redirect(`/posts`);
+    })
+  },
+  DecreaseLikes: (req, res) => {
+    Post.findOneAndUpdate({_id: req.params.id}, {
+      "$inc" : { "likesCount" : -1 },
+      "$pull": { "likesBy": req.session.user._id }
+    }).exec((err, post) => {
+      if (err) res.json(err);
+      else res.status(201).redirect(`/posts`);
+    })
+  },
   Delete: (req, res) => {
     Post.findByIdAndRemove(req.params.id, 
       function(err, docs) {
