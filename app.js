@@ -85,7 +85,7 @@ app.use((err, req, res) => {
 const hbs = require('hbs');
 hbs.registerHelper('formatDate', function(datestamp) {
   return new hbs.SafeString(
-
+    datestamp.toLocaleString('en-GB', {hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'long', day: 'numeric'})
   );
 });
 
