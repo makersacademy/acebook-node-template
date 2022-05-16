@@ -13,9 +13,8 @@
 
   <ul class="posts">
     {{#each posts}}
-      <li>{{this.message}}<br />
-        <div id="datestamp">Created at {{formatDate this.createdAt}}</div>
-      </li>
+      <p class="post-message">{{this.message}}</p>
+      <div id="datestamp">Created at {{formatDate this.createdAt}}</div>
       <button
         id="like-button"
         class="{{this.id}}"
