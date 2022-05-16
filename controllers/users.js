@@ -40,7 +40,7 @@ const UsersController = {
     console.log(req.session.user);
     const user = req.session.user;
     console.log(user);
-    res.render("users/profile", {});
+    res.render("users/profile", {user: user});
   },
 };
 
