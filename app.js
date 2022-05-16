@@ -81,4 +81,13 @@ app.use((err, req, res) => {
   res.render("error");
 });
 
+// hbs helpers
+const hbs = require('hbs');
+const moment = require('moment');
+hbs.registerHelper('formatDate', function(datestamp) {
+  return new hbs.SafeString(
+    moment(datestamp).format("HH:mm") + ' on ' + moment(datestamp).format("DD MMMM YYYY")
+  )
+});
+
 module.exports = app;
