@@ -1,7 +1,4 @@
-const { Schema } = require("mongoose");
-const { post } = require("../app");
 const Post = require("../models/post");
-const mongoose = require('mongoose');
 
 const PostsController = {
   Index: (req, res) => {
