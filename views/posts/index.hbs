@@ -32,11 +32,13 @@
       <button class="btn"> <i class="fa fa-thumbs-up"></i> </button>
     </div>
   {{/if}}
-  <form action="/comments" method="POST">
-    <input class="new-comment" type="text" placeholder="Comment..">
+  
+  <form action="/posts/{{this._id}}/comment" method="POST">
+    <input class="new-comment" type="text" name="comment" placeholder="Comment..">
     <input class="post-comment" type="submit" value="Post">
     <input type="hidden" id="custId" name="custId" value={{this.id}}>
   </form>
+  <p>{{this.comment}}</p>
 </div>
 {{/each}}
 </ul>
