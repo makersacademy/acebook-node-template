@@ -1,0 +1,10 @@
+<h1> {{profile.first_name}} {{profile.last_name}}</h1> <br>
+
+Date of Birth: {{profile.dob}} <br>
+Gender: {{profile.gender}} <br>
+Home town: {{profile.home_town}} <br>
+Bio: {{profile.bio}} <br>
+
+<form action ='/users/{{user.email}}/edit'>
+  <button class ='editprofile' type = 'submit'>Edit Profile</button>
+</form>

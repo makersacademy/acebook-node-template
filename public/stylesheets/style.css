@@ -2,7 +2,7 @@ body * {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
 /* Full-width input fields */
-input[type=email], input[type=password] {
+input[type=email], input[type=password], input[type=text], input[type=date]{
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -11,7 +11,7 @@ input[type=email], input[type=password] {
   background: #f1f1f1;
 }
 
-input[type=email]:focus, input[type=password]:focus {
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=date]:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -69,18 +69,35 @@ ul {
   margin-left: 10px;
   margin-top: 15px;    /* if you want it vertically middle of the navbar. */
 }
-.navigation-bar > a {
+nav button {
+  float: left;
+  vertical-align: top;
+  background-color: rgb(230, 45, 45);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  opacity: 1.0;
+}
+
+nav button:hover {
+  opacity: 0.8;
+}
+
+/* .navigation-bar > a {
   display: inline-block;
   vertical-align: center;
   margin-right: 20px;
-  height: 20px;        /* if you want it to take the full height of the bar */
-  line-height: 80px;    /* if you want it vertically middle of the navbar */
+  height: 20px;       
+  line-height: 80px;    
   color: white;
-}
+} 
 
 .navigation-bar > a:hover{
   opacity: 0.5;
-}
+} */
 
 /* Style buttons */
 .dltbtn {
@@ -163,13 +180,12 @@ textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-
-  width: 85%;
 }
 
 .new-field {
   font-size: 18px;
   resize: none;
+  width: 85%;
 }
 
 .post-button {
@@ -182,4 +198,19 @@ textarea {
   margin-top: 20px;
   max-width: 600px;
   color:rgb(200, 4, 4)
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  min-width: 60%;
+}
+
+td {
+  border: 1px solid;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #ffc0c0;
 }

@@ -4,9 +4,11 @@ describe("Timeline", () => {
     cy.visit("/users/new");
     cy.get("#email").type("someone3@example.com");
     cy.get("#password").type("password3");
+    cy.get("#first_name").type("Bob");
+    cy.get("#last_name").type("Smith");
+    cy.get("#dob").type("2022-05-16");
     cy.get("#submit").click();
-
-
+    cy.get('.timelinepage').click()
     // submit a post
     // cy.visit("/posts");
 
@@ -21,7 +23,11 @@ describe("Timeline", () => {
     cy.visit("/users/new");
     cy.get("#email").type("someone10@example.com");
     cy.get("#password").type("password3");
+    cy.get("#first_name").type("Bob");
+    cy.get("#last_name").type("Smith");
+    cy.get("#dob").type("2022-05-16");
     cy.get("#submit").click();
+    cy.get('.timelinepage').click()
 
     cy.get(".new-field").type("This goes on top!");
     cy.get(".post-button").click();

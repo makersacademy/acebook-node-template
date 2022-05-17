@@ -2,12 +2,40 @@
 <html>
   <head>
     <nav class="navigation-bar">
-    <img class="logo" src="/images/logo.png">
-    <a href="#">Home</a>
-    <a href="#">Projects</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Get in Touch</a>
+      <img class="logo" src="/images/logo.png">
+      {{#if user}}
+        <form action = "/posts">
+          <button class="timelinepage" type="submit" value = "Timeline"> Timeline</button>
+        </form>
+        <form action='/sessions?_method=DELETE' method='POST'>
+          <button class="logout" type="submit" value="Log Out">Log out</button>
+        </form>
+        <form action = "https://github.com/jmcnally17/acebook-zark-muckerberg">
+          <button class="aboutus" type="submit" value = "About Us"> About Us</button>
+        </form>
+        <form action = "/help">
+          <button class="help" type="submit" value = "Help"> Help</button>
+        </form>
+        <form action = "/users/{{user.email}}">
+          <button class="profilepage" type="submit" value = "Profile"> Profile</button>
+        </form>
+      {{else}}
+        <form action = "/sessions/new">
+          <button class="loginpage"type="submit" value = "Sign In"> Sign In</button>
+        </form>
+        <form action = "/users/new">
+          <button class="registerpage" type="submit" value = "Register"> Register</button>
+        </form>
+        <form action = "https://github.com/jmcnally17/acebook-zark-muckerberg">
+          <button class="aboutus" type="submit" value = "About Us"> About Us</button>
+        </form>
+        <form action = "/help">
+          <button class="help" type="submit" value = "Help"> Help</button>
+        </form>
+        <form action = "/">
+          <button class="homepage" type="submit" value = "Home"> Home</button>
+        </form>
+      {{/if}}
     </nav>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
@@ -15,6 +43,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
+    <br>
+    <br>
+    <br>
     {{{body}}}
   </body>
 </html>

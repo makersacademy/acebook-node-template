@@ -1,9 +1,5 @@
-<form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="" required>
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="" required>
-  <br>
+<div class="editprofile">
+<form id="new-user-form" action="/users/{{user.email}}/edit" method="post">
   <label for="first_name">First Name: </label>
   <input id="first_name" type="text" name="first_name" value="" required>
   <label for="last_name">Last Name: </label>
@@ -24,5 +20,6 @@
   <label for="bio">Add a short bio here: </label>
   <br>
   <textarea class="new-field" rows="4" id="bio" type="text" name="bio" value="" ></textarea>
-  <button id="submit" type="submit" value="Submit">Register</button>
+  <button id="submit" type="submit" value="Submit">Update</button>
 </form>
+</div>

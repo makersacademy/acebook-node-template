@@ -1,7 +1,4 @@
-const { Schema } = require("mongoose");
-const { post } = require("../app");
 const Post = require("../models/post");
-const mongoose = require('mongoose');
 
 const PostsController = {
   Index: (req, res) => {
@@ -18,7 +15,7 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", {user: req.session.user});
   },
   Create: (req, res) => {
     const postInfo = req.body;
@@ -32,7 +29,35 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   }, 
-  
+  IncreaseLikes: (req, res) => {
+    Post.findOneAndUpdate({_id: req.params.id}, {
+      "$inc" : { "likesCount" : 1 },
+      "$push": { "likesBy": req.session.user.email }
+    }).exec((err, post) => {
+      if (err) res.json(err);
+      else res.status(201).redirect(`/posts`);
+    })
+  },
+  DecreaseLikes: (req, res) => {
+    Post.findOneAndUpdate({_id: req.params.id}, {
+      "$inc" : { "likesCount" : -1 },
+      "$pull": { "likesBy": req.session.user.email }
+    }).exec((err, post) => {
+      if (err) res.json(err);
+      else res.status(201).redirect(`/posts`);
+    })
+  },
+  LikedBy: (req, res) => {
+    Post.findOne({_id: req.params.id}).exec((err, post) => {
+      if (err) {
+        throw err;
+      }
+      res.render("posts/id", { 
+        post: post,
+        user: req.session.user 
+      });
+    })
+  },
   Delete: (req, res) => {
     Post.findByIdAndRemove(req.params.id, 
       function(err, docs) {
