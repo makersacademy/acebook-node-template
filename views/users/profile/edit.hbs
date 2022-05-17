@@ -1,12 +1,12 @@
 <div class="editprofile">
 <form id="new-user-form" action="/users/{{user.email}}/edit" method="post">
   <label for="first_name">First Name: </label>
-  <input id="first_name" type="text" name="first_name" value="" required>
+  <input id="first_name" type="text" name="first_name" value="">
   <label for="last_name">Last Name: </label>
-  <input id="last_name" type="text" name="last_name" value="" required>
+  <input id="last_name" type="text" name="last_name" value="">
   <br>
   <label for="dob">Date of Birth: </label>
-  <input id="dob" type="date" name="dob" value="" required>
+  <input id="dob" type="date" name="dob" value="">
   <br>
   <label for="gender">Gender: </label>
   <input type="radio" name="gender" value="male">Male
@@ -19,7 +19,7 @@
   <br>
   <label for="bio">Add a short bio here: </label>
   <br>
-  <textarea class="new-field" rows="4" id="bio" type="text" name="bio" value="" ></textarea>
+  <textarea class="new-field" rows="4" id="bio" type="text" name="bio" value=""></textarea>
   <button id="submit" type="submit" value="Submit">Update</button>
 </form>
 </div>

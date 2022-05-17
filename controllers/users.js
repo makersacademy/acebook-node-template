@@ -54,16 +54,12 @@ const UsersController = {
     res.render("users/profile/edit", { user: req.session.user })
   },
 
-  UpdateDetails: (req, res) => {
-    User.findByIdAndUpdate({_id: req.session.user._id}, {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      dob: req.body.dob,
-      gender: req.body.gender,
-      home_town: req.body.home_town,
-      bio: req.body.bio,
-      profile_pic: req.body.profile_pic,
-    }).exec((err, post) => {
+
+  UpdateDetails: (req, res) => { 
+    Object.keys(req.body).forEach((k) =>req.body[k] == '' && delete req.body[k]);
+    User.findByIdAndUpdate({_id: req.session.user._id},
+      req.body
+    ).exec((err, post) => {
       if (err) res.json(err);
       else res.status(201).redirect(`/users/${req.session.user.email}`);
     })

@@ -22,6 +22,12 @@ hbs.registerHelper('formatDate', function(dateString) {
   );
 });
 
+hbs.registerHelper('formatDob', function(dateString) {
+  return new hbs.SafeString(
+    moment(dateString).format("MMM D") + ' ' + moment(dateString).format("YYYY")
+  );
+});
+
 hbs.registerHelper('ifEqual', function(userId, postId) {
   if (userId === postId) {
     return true
