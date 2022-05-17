@@ -44,10 +44,31 @@ const UsersController = {
     .exec()
     .then(doc => {
         res.render('users/profile', {
-            user: doc
+            profile: doc,
+            user: req.session.user
         });
     })
   },
+
+  Update: (req, res) => {
+    res.render("users/profile/edit", { user: req.session.user })
+  },
+
+  UpdateDetails: (req, res) => {
+    console.log(req.body),
+    User.findByIdAndUpdate({_id: req.session.user._id}, {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      dob: req.body.dob,
+      gender: req.body.gender,
+      home_town: req.body.home_town,
+      bio: req.body.bio,
+      profile_pic: req.body.profile_pic,
+    }).exec((err, post) => {
+      if (err) res.json(err);
+      else res.status(201).redirect(`/users/${req.session.user.email}`);
+    })
+  }
 };
 
 module.exports = UsersController;
