@@ -8,8 +8,7 @@ describe("Edit Profile", () => {
     cy.get("#last_name").type("Smith");
     cy.get("#dob").type("2022-05-16");
     cy.get("#submit").click();
-    // replace with profile button when implemented
-    cy.visit("/users/someone11@example.com");
+    cy.get('.profilepage').click();
 
     cy.get('.editprofile').click()
     cy.get("#first_name").type("Bobby");
@@ -24,5 +23,3 @@ describe("Edit Profile", () => {
     cy.contains("Bobby Smithers");
   });
 });
-
-// cy.get('[type="radio"].XyzTypeRadio').check("2")
