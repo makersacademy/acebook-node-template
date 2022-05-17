@@ -18,3 +18,4 @@ const User = mongoose.model("User", UserSchema);
 UserSchema.plugin(uniqueValidator);
 
 module.exports = User;
+

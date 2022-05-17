@@ -23,6 +23,9 @@ describe("Navigation Bar", () => {
     cy.visit("/users/new")
     cy.get("#email").type("someone7@example.com");
     cy.get("#password").type("password");
+    cy.get("#first_name").type("Bob");
+    cy.get("#last_name").type("Smith");
+    cy.get("#dob").type("2022-05-16");
     cy.get("#submit").click();
 
     cy.get(".navigation-bar").find('.timelinepage').click();
