@@ -4,7 +4,7 @@ const HomeController = {
   },
 
   Contact: (req, res) => {
-    res.render("home/contact", {});
+    res.render("home/help", {});
   },
 };
 

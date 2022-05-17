@@ -188,12 +188,6 @@ textarea {
   width: 85%;
 }
 
-.contact-field {
-  font-size: 18px;
-  resize: none;
-  width: 100%;
-}
-
 .post-button {
   max-height: 90px;
   max-width: 100px;
@@ -204,4 +198,19 @@ textarea {
   margin-top: 20px;
   max-width: 600px;
   color:rgb(200, 4, 4)
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  min-width: 60%;
+}
+
+td {
+  border: 1px solid;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #ffc0c0;
 }
