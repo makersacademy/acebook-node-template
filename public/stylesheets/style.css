@@ -180,13 +180,18 @@ textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-
-  width: 85%;
 }
 
 .new-field {
   font-size: 18px;
   resize: none;
+  width: 85%;
+}
+
+.contact-field {
+  font-size: 18px;
+  resize: none;
+  width: 100%;
 }
 
 .post-button {
