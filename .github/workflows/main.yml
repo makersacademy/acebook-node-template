@@ -30,4 +30,4 @@ jobs:
           # Email from Heroku Account
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           # The appname to use for deploying/updating
-          heroku_app_name: acebook_zark_muckerberg
+          heroku_app_name: acebook-zark-muckerberg
