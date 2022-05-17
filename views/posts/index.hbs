@@ -38,7 +38,11 @@
     <input class="post-comment" type="submit" value="Post">
     <input type="hidden" id="custId" name="custId" value={{this.id}}>
   </form>
-  <p>{{this.comment}}</p>
+  
+  <br>{{#each comments}}
+  {{this.message}}<br>
+  {{/each}}
+
 </div>
 {{/each}}
 </ul>
