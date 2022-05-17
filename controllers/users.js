@@ -31,7 +31,7 @@ const UsersController = {
         }
       } else {
         req.session.user = user;
-        res.status(201).redirect("/users/profile");
+        res.status(201).redirect(`/users/${user.email}` );
       }
     });
   },
