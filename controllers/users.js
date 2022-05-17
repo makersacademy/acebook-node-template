@@ -51,9 +51,12 @@ const UsersController = {
   },
 
   Update: (req, res) => {
-    res.render("users/profile/edit", { user: req.session.user })
+    if (req.params.email === req.session.user.email) {
+      res.render("users/profile/edit", { user: req.session.user })
+    } else {
+      res.redirect(`/users/${req.params.email}`)
+    }
   },
-
 
   UpdateDetails: (req, res) => { 
     Object.keys(req.body).forEach((k) =>req.body[k] == '' && delete req.body[k]);
