@@ -1,7 +1,4 @@
-const { Schema } = require("mongoose");
-const { post } = require("../app");
 const Comment = require("../models/comment");
-const mongoose = require('mongoose');
 const Post = require("../models/post");
 
 const CommentsController = {
