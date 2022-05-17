@@ -55,7 +55,6 @@ const UsersController = {
   },
 
   UpdateDetails: (req, res) => {
-    console.log(req.body),
     User.findByIdAndUpdate({_id: req.session.user._id}, {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
