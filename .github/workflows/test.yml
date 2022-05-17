@@ -23,7 +23,7 @@ jobs:
       uses: supercharge/mongodb-github-action@1.7.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-replica-set: test-rs
+        mongodb-replica-set: acebook_test
         mongodb-port: 3030
 
     - run: npm install
