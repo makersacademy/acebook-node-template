@@ -67,17 +67,15 @@ ul {
 }
 .navigation-bar {
   width: 100%;  /* i'm assuming full width */
-  height: 150px; /* change it to desired width */
+  height: 150px;
   background-color: rgb(235, 82, 82); /* change to desired color */
 }
 .logo {
   display: inline-block;
   vertical-align: top;
-  width: 125px;
-  height: 125px;
-  margin-right: 20px;
-  margin-left: 10px;
-  margin-top: 15px;    /* if you want it vertically middle of the navbar. */
+  height: 90%;
+  max-width: 90%;
+  max-height: 120px;
 }
 nav button {
   float: left;

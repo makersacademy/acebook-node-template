@@ -2,23 +2,29 @@
   <h1 class="title">{{title}}</h1>
   <p>Welcome to {{title}}</p>
   <br>
-  <div class="home-text">
-    <p>Already have an account?</p>
-  </div>
-  <form action="/sessions/new">
-    <div class = 'centerbutton'>
-      <button class= "home-page-button" style="background-color:red;" id="submit" type="submit" value="Submit">Login</button>
+  {{#if user}}
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  {{else}}
+    <br><br>
+    <div class="home-text">
+      <p>Already have an account?</p>
     </div>
-  </form>
-  <br><br>
-  <div class="home-text">
-    <p>Looking to join Acebook?</p>
-  </div>
-  <form action="/users/new">
-    <div class = 'centerbutton'>
-      <button class= "home-page-button" style="background-color:orange;" id="submit" type="submit" value="Submit">Register</button>
+    <form action="/sessions/new">
+      <div class = 'centerbutton'>
+        <button class= "home-page-button" style="background-color:red;" id="submit" type="submit" value="Submit">Login</button>
+      </div>
+    </form>
+    <br><br><br>
+    <div class="home-text">
+      <p>Looking to join Acebook?</p>
     </div>
-  </form>
-  <br>
+    <form action="/users/new">
+      <div class = 'centerbutton'>
+        <button class= "home-page-button" style="background-color:orange;" id="submit" type="submit" value="Submit">Register</button>
+      </div>
+    </form>
+    <br><br><br>
+  {{/if}}
 </div>
+
 
