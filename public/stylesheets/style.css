@@ -195,6 +195,12 @@ textarea {
 .new-field {
   font-size: 18px;
   resize: none;
+  width: 85%;
+}
+
+.bio {
+  font-size: 18px;
+  resize: none;
   width: 100%;
 }
 
@@ -231,7 +237,9 @@ tr:nth-child(even) {
 }
 
 .home-page-button {
-  width: 20%;
+  width: 100%;
+  text-align: center;
+
 }
 
 .box-left {
@@ -240,7 +248,5 @@ tr:nth-child(even) {
 
 .box-right {
   float: right;
-  text-align: center;
-  margin: 0 auto;
 }
 
