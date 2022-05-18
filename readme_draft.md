@@ -41,8 +41,8 @@ In order to access for the website to function, you will need to run the server 
 If you wish to clear the database, use the command `mongo` while in the terminal, you can then use the command `use acebook` (or `use acebook_test` for the test database) to access the database. You can then use the commands `db.users.drop()` to clear the users, `db.posts.drop()` to clear the posts and `db.comments.drop()` to clear the comments. You can do the same for the test database although those get cleared before running your tests so they are relatively small.\
 \
 Here are some images to show what it looks like:
-![Screenshot]()
-![Screenshot]()
+![Screenshot](https://i.imgur.com/TwFbQDm.png)
+![Screenshot](https://i.imgur.com/qXDkGZD.png)
 
 ## Features
 - Users are able to create their own accounts
