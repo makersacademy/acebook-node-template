@@ -18,26 +18,10 @@
 </div>
 <br>
 
-<script>
-const acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-}
-</script>
+<script src="javascripts/help.js"></script>
 
 <form action="mailto:zarkmuckerbergacebook@gmail.com?body=Dear Acebook Team" method="post">
   <div class = 'centerbutton'>
     <button type="submit" id="submit" value="Submit">Email us with any issues you have</button>
   </div>
 </form>
-
