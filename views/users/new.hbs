@@ -1,28 +1,49 @@
+{{#if user}}
+<div class ='centerbutton'>
+You are already logged in
+</div>
+{{else}}
+
 <form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="" required>
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="" required>
-  <br>
-  <label for="first_name">First Name: </label>
-  <input id="first_name" type="text" name="first_name" value="" required>
-  <label for="last_name">Last Name: </label>
-  <input id="last_name" type="text" name="last_name" value="" required>
-  <br>
-  <label for="dob">Date of Birth: </label>
-  <input id="dob" type="date" name="dob" value="" required>
-  <br>
-  <label for="gender">Gender: </label>
-  <input type="radio" name="gender" value="male">Male
-  <input type="radio" name="gender" value="female">Female
-  <input type="radio" name="gender" value="other">Other
-  <br>
-  <br>
-  <label for="home_town">Home Town: </label>
-  <input id="home_town" type="text" name="home_town" value="" >
-  <br>
-  <label for="bio">Tell us about yourself: </label>
-  <br>
-  <textarea class="new-field" rows="4" id="bio" type="text" name="bio" value="" ></textarea>
-  <button id="submit" type="submit" value="Submit">Register</button>
+
+  <div class="center">
+    <label for="email">Email: </label>
+    <input id="email" type="email" name="email" value="" required>
+    <label for="password">Password: </label>
+    <input id="password" type="password" name="password" value="" required>
+    <br>
+    <label for="first_name">First Name: </label>
+    <input id="first_name" type="text" name="first_name" value="" required>
+    <label for="last_name">Last Name: </label>
+    <input id="last_name" type="text" name="last_name" value="" required>
+    <br>
+    <br>
+    <div style = "color:rgb(130, 130, 130)">
+      <strong>Optional Fields:</strong>
+    </div>
+    <br>
+    <br>
+    <label for="dob">Date of Birth: </label>
+    <input id="dob" type="date" name="dob" value="">
+    <br>
+    <label for="gender">Gender: </label>
+    <br>
+    <input type="radio" name="gender" value="Male">Male
+    <br>
+    <input type="radio" name="gender" value="Female">Female
+    <br>
+    <input type="radio" name="gender" value="Other">Other
+    <br>
+    <br>
+    <label for="home_town">Home Town: </label>
+    <input id="home_town" type="text" name="home_town" value="" >
+    <br>
+    <label for="bio">Tell us about yourself: </label>
+    <br>
+    <textarea class="bio" rows="4" id="bio" type="text" name="bio" value="" ></textarea>
+  </div>
+  <div class = 'centerbutton'>
+    <button id="submit" type="submit" value="Submit">Register</button>
+  </div>
 </form>
+{{/if}}

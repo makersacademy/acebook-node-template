@@ -24,4 +24,14 @@ describe("Registration", () => {
 
     cy.contains("Email already in use");
   });
+
+  it("User cannot register after signing in already", () => {
+    cy.visit("/sessions/new");
+    cy.get("#email").type("someone2@example.com");
+    cy.get("#password").type("password2");
+    cy.get("#submit").click();
+    cy.visit("/users/new");
+
+    cy.contains("You are already logged in")
+  })
 });

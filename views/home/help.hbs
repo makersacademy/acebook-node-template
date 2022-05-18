@@ -1,17 +1,43 @@
-<h1 class="title">Help and Support</h1>
+<div class="title">
+  <h1>Help and Support</h1>
+</div>
 
-<table>
-  <tr>
-    <td>What's up with your face?</td>
-    <td>Too much smokey meats</td>
-  </tr>
-  <tr>
-    <td>What do you think of metaperverse?</td>
-    <td>Pathetic</td>
-  </tr>
-</table>
+<button class="accordion">What's up with your face?</button>
+<div class="panel">
+  <p>Too many smokey meats</p>
+</div>
+<br>
+<button class="accordion">What do you think of Metaperverse?</button>
+<div class="panel">
+  <p>Pathetic</p>
+</div>
+<br>
+<button class="accordion">How do I make a new post?</button>
+<div class="panel">
+  <p>Enter your text into the field on the timeline page and then click on the Zucc's meaty head</p>
+</div>
+<br>
+
+<script>
+const acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    const panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
 
 <form action="mailto:zarkmuckerbergacebook@gmail.com?body=Dear Acebook Team" method="post">
-  <button type="submit" id="submit" value="Submit">Email us with any issues you have</button>
+  <div class = 'centerbutton'>
+    <button type="submit" id="submit" value="Submit">Email us with any issues you have</button>
+  </div>
 </form>
 

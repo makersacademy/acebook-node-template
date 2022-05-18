@@ -30,7 +30,7 @@
       <button class="dltbtn"><i class="fa fa-trash"></i></button>
     </div>
     </form>
-  {{else}}
+  {{/if}}
     {{#if (userLike this ../user)}}
     <form action='/posts/{{this.id}}/unlike' method='POST'>
       <div class="btn-text-left">
@@ -44,7 +44,6 @@
       </div>
     </form>
     {{/if}}
-  {{/if}}
 
   
   <div class="post-likes">
@@ -59,7 +58,10 @@
   
   <div class="comments">
   <br>{{#each comments}}
-  {{this.message}}<br>
+  <div class="post-comment-box">
+  {{this.message}}
+  </div>
+  <br>
   {{/each}}
   </div>
 
