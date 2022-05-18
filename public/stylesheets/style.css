@@ -242,10 +242,6 @@ tr:nth-child(even) {
   background-color: #ffc0c0;
 }
 
-.title {
-  margin: auto;
-  width: 300px;
-}
 
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
@@ -290,20 +286,37 @@ tr:nth-child(even) {
 }
 
 .main-page {
-  margin: auto;
-  width: 80%;
+  margin: 0 100px;
 }
 
 .home-page-button {
   width: 100%;
   text-align: center;
-
+  border-radius: 10px;
 }
 
 .box-left {
   float: left;
+  max-width: 600px;
+  height: auto;
+  width: auto;
 }
 
 .box-right {
+  width: 400px;
+  background-color: rgb(173, 169, 169);
+  padding: 20px;
+  border-radius: 20px;
+  margin-left: 50px;
+}
+
+.big-box-right {
   float: right;
+  vertical-align: middle;
+  margin-top: 100px;
+  width: 450px;
+}
+
+.home-img {
+  max-width: 100%;
 }
