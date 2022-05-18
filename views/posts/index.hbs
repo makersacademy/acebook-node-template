@@ -32,20 +32,19 @@
       <button class="dltbtn"><i class="fa fa-trash"></i></button>
     </div>
     </form>
+  {{/if}}
+  {{#if (userLike this ../user)}}
+  <form action='/posts/{{this.id}}/unlike' method='POST'>
+    <div class="btn-text-right">
+      <button class="unlikebtn"> <i class="fa fa-thumbs-down"></i> </button>
+    </div>
+  </form>
   {{else}}
-    {{#if (userLike this ../user)}}
-    <form action='/posts/{{this.id}}/unlike' method='POST'>
-      <div class="btn-text-right">
-        <button class="unlikebtn"> <i class="fa fa-thumbs-down"></i> </button>
-      </div>
-    </form>
-    {{else}}
-    <form action='/posts/{{this.id}}/like' method='POST'>
-      <div class="btn-text-right">
-        <button class="likebtn"> <i class="fa fa-thumbs-up"></i> </button>
-      </div>
-    </form>
-    {{/if}}
+  <form action='/posts/{{this.id}}/like' method='POST'>
+    <div class="btn-text-right">
+      <button class="likebtn"> <i class="fa fa-thumbs-up"></i> </button>
+    </div>
+  </form>
   {{/if}}
 </div>
 {{/each}}
