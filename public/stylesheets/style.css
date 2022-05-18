@@ -127,7 +127,7 @@ nav button:hover {
   float: right;
 }
 
-.lkebtn {
+.likebtn {
   background-color: rgb(69, 170, 119); /* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */
@@ -140,8 +140,21 @@ nav button:hover {
   display: inline-block;
   float: left;
   margin-right: 10px;
- 
+}
 
+.unlikebtn {
+  background-color: rgb(69, 170, 119); /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 8px 15px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  width: 10%;
+  border-radius: 2px;
+  margin-left: 1px;
+  cursor: pointer; /* Mouse pointer on hover */
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
 }
 
 .post-comment {

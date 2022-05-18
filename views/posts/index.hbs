@@ -34,13 +34,13 @@
     {{#if (userLike this ../user)}}
     <form action='/posts/{{this.id}}/unlike' method='POST'>
       <div class="btn-text-left">
-        <button class="lkebtn" > <i class="fa fa-thumbs-down"></i> </button>
+        <button class="unlikebtn" > <i class="fa fa-thumbs-down"></i> </button>
       </div>
     </form>
     {{else}}
     <form action='/posts/{{this.id}}/like' method='POST'>
       <div class="btn-text-left">
-        <button class="lkebtn" > <i class="fa fa-thumbs-up"></i> </button>
+        <button class="likebtn" > <i class="fa fa-thumbs-up"></i> </button>
       </div>
     </form>
     {{/if}}
