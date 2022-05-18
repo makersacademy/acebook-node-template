@@ -158,6 +158,15 @@ nav button:hover {
   min-width: 1rem;
   text-align: right;
 }
+.post-comment-box {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  font-size: 14px;
+  border: none;
+  background: #f1f1f1;
+}
 
 .post-message {
   background-color: white;
@@ -167,6 +176,7 @@ nav button:hover {
   margin: 10px; 
   padding: 0.45rem;
 }
+
 
 .new-post {
   margin: auto;
