@@ -69,25 +69,27 @@ ul {
 }
 .navigation-bar {
   width: 100%;  /* i'm assuming full width */
-  height: 150px; /* change it to desired width */
+  height: 150px;
   background-color: rgb(235, 82, 82); /* change to desired color */
 }
 .logo {
   display: inline-block;
   vertical-align: top;
-  width: 125px;
-  height: 125px;
+  height: 90%;
+  max-width: 90%;
+  max-height: 120px;
   margin-right: 20px;
   margin-left: 10px;
-  margin-top: 15px;    /* if you want it vertically middle of the navbar. */
+  margin-top: 20px;    /* if you want it vertically middle of the navbar. */
 }
+
 nav button {
   float: left;
   vertical-align: top;
   background-color: rgb(243, 106, 106);
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 10px 0;
   border: none;
   cursor: pointer;
   width: 20%;
@@ -292,10 +294,6 @@ textarea {
   
 }
 
-.title {
-  margin: auto;
-  width: 300px;
-}
 
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
@@ -340,21 +338,24 @@ textarea {
   transition: max-height 0.2s ease-out;
 }
 
-.main-page {
-  margin: auto;
-  width: 80%;
+/* homepage css */
+.box {
+  width: 90%;
+  background-image: url("/images/home.jpeg");
+  background-size: 50%;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 5%;
+  color: white; text-shadow: 2px 2px #ff0000;
 }
 
 .home-page-button {
   width: 100%;
   text-align: center;
-
+  border-radius: 10px;
+  text-shadow: 2px 2px black;
 }
 
-.box-left {
-  float: left;
-}
-
-.box-right {
-  float: right;
+.home-text {
+  text-align: center;
 }

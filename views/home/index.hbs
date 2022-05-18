@@ -1,22 +1,30 @@
-
-<div class = "main-page">
-  <div class="box-left">
-    <h1 class="title">{{title}}</h1>
-    <p>Welcome to {{title}}</p>
-  </div>
-  <div class="box-right">
-    <br>
+<div class="box">
+  <h1 class="title">{{title}}</h1>
+  <p>Welcome to {{title}}</p>
+  <br>
+  {{#if user}}
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  {{else}}
+    <br><br>
+    <div class="home-text">
+      <p>Already have an account?</p>
+    </div>
     <form action="/sessions/new">
       <div class = 'centerbutton'>
-        <button class= "home-page-button" style="background-color:red" id="submit" type="submit" value="Submit">Sign in</button>
+        <button class= "home-page-button" style="background-color:red;" id="submit" type="submit" value="Submit">Login</button>
       </div>
     </form>
-    <br>
+    <br><br><br>
+    <div class="home-text">
+      <p>Looking to join Acebook?</p>
+    </div>
     <form action="/users/new">
       <div class = 'centerbutton'>
-        <button class= "home-page-button" style="background-color:orange" id="submit" type="submit" value="Submit">Register</button>
+        <button class= "home-page-button" style="background-color:orange;" id="submit" type="submit" value="Submit">Register</button>
       </div>
     </form>
-  </div>
+    <br><br><br>
+  {{/if}}
 </div>
+
 
