@@ -214,3 +214,50 @@ td {
 tr:nth-child(even) {
   background-color: #ffc0c0;
 }
+
+.title {
+  margin: auto;
+  width: 300px;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  margin: auto;
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  max-width: 600px;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  display: block;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.accordion:hover {
+  background-color: #ccc;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  margin: auto;
+  max-width: 600px;
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
