@@ -1,3 +1,6 @@
+{{#if user}}
+You are already logged in
+{{else}}
 <form id="new-user-form" action="/users" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="" required>
@@ -26,3 +29,4 @@
   <textarea class="new-field" rows="4" id="bio" type="text" name="bio" value="" ></textarea>
   <button id="submit" type="submit" value="Submit">Register</button>
 </form>
+{{/if}}

@@ -1,3 +1,6 @@
+{{#if user}}
+You are already logged in
+{{else}}
 <form id="new-session-form" action="/sessions" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="" required>
@@ -5,3 +8,4 @@
   <input id="password" type="password" name="password" value="" required>
   <button id="submit" type="submit" value="Submit">Log in</button>
 </form>
+{{/if}}
