@@ -1,2 +1,22 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+<div class = "main-page">
+  <div class="box-left">
+    <h1 class="title">{{title}}</h1>
+    <p>Welcome to {{title}}</p>
+  </div>
+  <div class="box-right">
+    <br>
+    <form action="/sessions/new">
+      <div class = 'centerbutton'>
+        <button class= "home-page-button" style="background-color:red" id="submit" type="submit" value="Submit">Sign in</button>
+      </div>
+    </form>
+    <br>
+    <form action="/users/new">
+      <div class = 'centerbutton'>
+        <button class= "home-page-button" style="background-color:orange" id="submit" type="submit" value="Submit">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+

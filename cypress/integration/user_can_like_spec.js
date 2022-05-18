@@ -1,5 +1,5 @@
 describe("Likes", () => {
-  it("A user can like and unlike a post made by someone else", () => {
+  it("A user can like and unlike a post", () => {
     cy.visit("/users/new");
     cy.get("#email").type("someone5@example.com");
     cy.get("#password").type("password");
