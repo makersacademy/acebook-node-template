@@ -76,14 +76,18 @@ ul {
   height: 90%;
   max-width: 90%;
   max-height: 120px;
+  margin-right: 20px;
+  margin-left: 10px;
+  margin-top: 20px;    /* if you want it vertically middle of the navbar. */
 }
+
 nav button {
   float: left;
   vertical-align: top;
   background-color: rgb(243, 106, 106);
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 10px 0;
   border: none;
   cursor: pointer;
   width: 20%;
