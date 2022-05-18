@@ -233,6 +233,7 @@ nav button:hover {
   font-size: 14px;
   border: none;
   background: #f1f1f1;
+  word-break: break-word;
 }
 
 .no-of-comments{
@@ -246,6 +247,7 @@ nav button:hover {
   font-size: 18px;
   margin: 1px; 
   padding: 0.45rem;
+  word-break: break-word;
 
 }
 .post-likes{
@@ -294,6 +296,10 @@ textarea {
   
 }
 
+.title {
+  margin: auto;
+  width: 300px;
+}
 
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
