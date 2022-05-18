@@ -46,6 +46,22 @@
     </div>
   </form>
   {{/if}}
+  
+  <form action="/posts/{{this._id}}/comment" method="POST">
+    <input class="new-comment" type="text" name="comment" placeholder="Comment..">
+    <input class="post-comment" type="submit" value="Post">
+    <input type="hidden" id="custId" name="custId" value={{this.id}}>
+  </form>
+  
+  <div class="comments">
+  <br>{{#each comments}}
+  <div class="post-comment-box">
+  {{this.message}}
+  </div>
+  <br>
+  {{/each}}
+  </div>
+
 </div>
 {{/each}}
 </ul>
