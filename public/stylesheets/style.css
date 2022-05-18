@@ -285,38 +285,24 @@ tr:nth-child(even) {
   transition: max-height 0.2s ease-out;
 }
 
-.main-page {
-  margin: 0 100px;
+/* homepage css */
+.box {
+  width: 90%;
+  background-image: url("/images/home.jpeg");
+  background-size: 50%;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 5%;
+  color: white; text-shadow: 2px 2px #ff0000;
 }
 
 .home-page-button {
   width: 100%;
   text-align: center;
   border-radius: 10px;
+  text-shadow: 2px 2px black;
 }
 
-.box-left {
-  float: left;
-  max-width: 600px;
-  height: auto;
-  width: auto;
-}
-
-.box-right {
-  width: 400px;
-  background-color: rgb(173, 169, 169);
-  padding: 20px;
-  border-radius: 20px;
-  margin-left: 50px;
-}
-
-.big-box-right {
-  float: right;
-  vertical-align: middle;
-  margin-top: 100px;
-  width: 450px;
-}
-
-.home-img {
-  max-width: 100%;
+.home-text {
+  text-align: center;
 }

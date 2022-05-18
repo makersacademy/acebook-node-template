@@ -1,31 +1,24 @@
-
-<div class = "main-page">
-  <div class="box-left">
-    <div class="home-text">
-      <h1 class="title">{{title}}</h1>
-      <br>
-      <p>Welcome to {{title}}</p>
-    </div>
-    <img class= "home-img" src="/images/home.jpeg">
+<div class="box">
+  <h1 class="title">{{title}}</h1>
+  <p>Welcome to {{title}}</p>
+  <br>
+  <div class="home-text">
+    <p>Already have an account?</p>
   </div>
-  <div class="big-box-right">
-    <div class="box-right">
-      <br>
-      <p style="text-align:center">Already have an account?</p>
-      <form action="/sessions/new">
-        <div class = 'centerbutton'>
-          <button class= "home-page-button" style="background-color:red" id="submit" type="submit" value="Submit">Login</button>
-        </div>
-      </form>
-      <br><br>
-      <p style="text-align:center">Looking to join Acebook?</p>
-      <form action="/users/new">
-        <div class = 'centerbutton'>
-          <button class= "home-page-button" style="background-color:orange" id="submit" type="submit" value="Submit">Register</button>
-        </div>
-      </form>
-      <br>
+  <form action="/sessions/new">
+    <div class = 'centerbutton'>
+      <button class= "home-page-button" style="background-color:red;" id="submit" type="submit" value="Submit">Login</button>
     </div>
+  </form>
+  <br><br>
+  <div class="home-text">
+    <p>Looking to join Acebook?</p>
   </div>
+  <form action="/users/new">
+    <div class = 'centerbutton'>
+      <button class= "home-page-button" style="background-color:orange;" id="submit" type="submit" value="Submit">Register</button>
+    </div>
+  </form>
+  <br>
 </div>
 
