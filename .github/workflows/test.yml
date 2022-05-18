@@ -23,8 +23,6 @@ jobs:
       uses: supercharge/mongodb-github-action@1.7.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-port: 3030
-        port: 3030
 
     - run: npm install
 
