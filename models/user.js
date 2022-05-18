@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
   home_town: String,
   bio: String,
   dob: Date,
+  profilepic: String,
 });
 
 const User = mongoose.model("User", UserSchema);
