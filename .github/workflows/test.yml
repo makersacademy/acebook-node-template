@@ -31,10 +31,7 @@ jobs:
     - run: npm run test:unit
     
     - name: Cypress setup
-      uses: cypress-io/github-action@v1
+      uses: cypress-io/github-action@v2
       with:
         start: npm run start:test
         wait-on: http://localhost:3030
-        
-      env:
-        CI: true
