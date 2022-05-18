@@ -224,3 +224,23 @@ td {
 tr:nth-child(even) {
   background-color: #ffc0c0;
 }
+
+.main-page {
+  margin: auto;
+  width: 80%;
+}
+
+.home-page-button {
+  width: 20%;
+}
+
+.box-left {
+  float: left;
+}
+
+.box-right {
+  float: right;
+  text-align: center;
+  margin: 0 auto;
+}
+
