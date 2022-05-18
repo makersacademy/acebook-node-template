@@ -5,7 +5,7 @@
 
 <div class="new-post">
 <form id="new-post-form" action="/posts" method="post">
-  <textarea class="new-field" id="message" name="message" rows="4" placeholder="New post.."></textarea>
+  <textarea class="new-field" id="message" name="message" rows="4" placeholder="Enter a useless thought that no one cares about..."></textarea>
   <input class="post-button" type="image" src= "/images/funny-zuck.png" >
   
 </form>
@@ -23,9 +23,7 @@
     <li>{{this.message}}</li>
   </div>
   <br>
-  <div class="post-likes">
-    <a href="/posts/{{this.id}}">{{this.likesCount}}</a>
-  </div>
+ 
   {{#if (ifEqual ../user.email this.user.email)}} 
     <form action='/posts/{{this.id}}?_method=DELETE' method='POST'>
     <div class="btn-text-right">
@@ -33,23 +31,28 @@
     </div>
     </form>
   {{/if}}
-  {{#if (userLike this ../user)}}
-  <form action='/posts/{{this.id}}/unlike' method='POST'>
-    <div class="btn-text-right">
-      <button class="unlikebtn"> <i class="fa fa-thumbs-down"></i> </button>
-    </div>
-  </form>
-  {{else}}
-  <form action='/posts/{{this.id}}/like' method='POST'>
-    <div class="btn-text-right">
-      <button class="likebtn"> <i class="fa fa-thumbs-up"></i> </button>
-    </div>
-  </form>
-  {{/if}}
+    {{#if (userLike this ../user)}}
+    <form action='/posts/{{this.id}}/unlike' method='POST'>
+      <div class="btn-text-left">
+        <button class="lkebtn" > <i class="fa fa-thumbs-down"></i> </button>
+      </div>
+    </form>
+    {{else}}
+    <form action='/posts/{{this.id}}/like' method='POST'>
+      <div class="btn-text-left">
+        <button class="lkebtn" > <i class="fa fa-thumbs-up"></i> </button>
+      </div>
+    </form>
+    {{/if}}
+
   
+  <div class="post-likes">
+    <a  style="text-decoration:none; color: inherit;" href="/posts/{{this.id}}">{{this.likesCount}}</a> Likes
+  </div>
+
   <form action="/posts/{{this._id}}/comment" method="POST">
     <input class="new-comment" type="text" name="comment" placeholder="Comment..">
-    <input class="post-comment" type="submit" value="Post">
+    <input class="post-comment" type="submit" value="Post Comment">
     <input type="hidden" id="custId" name="custId" value={{this.id}}>
   </form>
   

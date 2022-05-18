@@ -123,6 +123,38 @@ nav button:hover {
   cursor: pointer; /* Mouse pointer on hover */
 }
 
+.lkebtn {
+  background-color: rgb(69, 170, 119); /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 8px 15px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  width: 10%;
+  border-radius: 2px;
+  margin-left: 1px;
+  cursor: pointer; /* Mouse pointer on hover */
+
+}
+
+.post-comment {
+  background-color: rgb(69, 170, 119); /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 8px 15px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  width: 30%;
+  border-radius: 2px;
+  cursor: pointer; /* Mouse pointer on hover */
+ 
+}
+
+.post-comment:hover {
+  background-color: rgb(112, 168, 202);
+}
+
+.lkebtn:hover {
+  background-color: rgb(112, 168, 202);
+}
 /* Darker background on mouse-over */
 .dltbtn:hover {
   background-color: rgb(225, 65, 65);
@@ -185,6 +217,7 @@ nav button:hover {
   font-size: 18px;
   margin: 10px; 
   padding: 0.45rem;
+
 }
 
 
@@ -222,9 +255,11 @@ textarea {
 
 .timeline {
   margin: auto;
+  text-align: center;
   margin-top: 20px;
   max-width: 600px;
-  color:rgb(200, 4, 4)
+  color:rgb(200, 4, 4);
+  
 }
 
 table {
