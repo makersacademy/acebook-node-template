@@ -1,4 +1,4 @@
-name: Run unit tests
+name: Run tests
 
 on:
   push:
@@ -27,7 +27,13 @@ jobs:
         mongodb-version: ${{ matrix.mongodb-version }}
 
     - run: npm install
+    
+    - name: Cypress setup
+      uses: cypress-io/github-action@v1
+      with:
+        start: npm run start:test
+        wait-on: http://localhost:3030
 
-    - run: npm run test:unit
+    - run: npm test
       env:
         CI: true
