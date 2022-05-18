@@ -45,10 +45,12 @@
     </form>
     {{/if}}
 
-  
+<br>
+  {{#if (ifLikesZero this ../post)}}
   <div class="post-likes">
-    <a  style="text-decoration:none; color: inherit;" href="/posts/{{this.id}}">{{this.likesCount}}</a> Likes
+    <a  style="text-decoration:none; color: inherit;" href="/posts/{{this.id}}">{{this.likesCount}}</a> {{#if (ifEqual this.likesCount 1)}} Like {{else}} Likes {{/if}}
   </div>
+    {{/if}}
 
   <form action="/posts/{{this._id}}/comment" method="POST">
     <input class="new-comment" type="text" name="comment" placeholder="Comment..">
@@ -58,7 +60,9 @@
   
   <div class="comments">
     <br>
+  <div class="no-of-comments">
     {{this.comments.length}} {{#if (ifEqual this.comments.length 1)}} Comment {{else}} Comments {{/if}}
+    </div>
   <br>{{#each comments}}
   <div class="post-comment-box">
   {{this.message}}

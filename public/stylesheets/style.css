@@ -119,8 +119,10 @@ nav button:hover {
   font-size: 16px; /* Set a font size */
   width: 10%;
   border-radius: 2px;
-  margin-right: 10px;
+  margin-right: 1px;
   cursor: pointer; /* Mouse pointer on hover */
+  display: inline-block;
+  float: right;
 }
 
 .lkebtn {
@@ -133,6 +135,10 @@ nav button:hover {
   border-radius: 2px;
   margin-left: 1px;
   cursor: pointer; /* Mouse pointer on hover */
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+ 
 
 }
 
@@ -185,9 +191,10 @@ nav button:hover {
   display: inline-block;
   border-radius: 2px;
   color: white;
-  margin: 10px; 
+  margin: 1px; 
   padding: 0.45rem;
   min-width: 1rem;
+  
 }
 
 .post-date {
@@ -195,7 +202,8 @@ nav button:hover {
   display: inline-block;
   border-radius: 2px;
   color: white;
-  margin: 10px; 
+  margin: 1px; 
+  margin-bottom: 10px; 
   padding: 0.45rem;
   min-width: 1rem;
   text-align: right;
@@ -210,14 +218,21 @@ nav button:hover {
   background: #f1f1f1;
 }
 
+.no-of-comments{
+  font-size: 13px;
+}
+
 .post-message {
   background-color: white;
   border-radius: 2px;
   color: black;
   font-size: 18px;
-  margin: 10px; 
+  margin: 1px; 
   padding: 0.45rem;
 
+}
+.post-likes{
+  font-size: 13px;
 }
 
 

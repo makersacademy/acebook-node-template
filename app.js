@@ -40,6 +40,13 @@ hbs.registerHelper('userLike', function(post, user) {
   if (post.likesBy.includes(user.email)) return true
 })
 
+hbs.registerHelper('ifLikesZero', function(post) {
+  if (post.likesCount === 0) {
+    return false
+  } 
+  return true
+})
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
