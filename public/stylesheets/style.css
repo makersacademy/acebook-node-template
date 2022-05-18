@@ -26,22 +26,24 @@ button {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
-  margin: 0 auto;
+  margin: auto;
+  display: block;
   border: none;
   cursor: pointer;
-  width: 50%;
+  width: 100%;
   opacity: 0.9;
 }
 
 .centerbutton {
   margin: auto;
   text-align: center;  
+  max-width: 700px;
 }
 
 .center {
   margin: auto;
-  width: 50%;
-}
+  max-width: 700px;
+} 
 
 
 button:hover {
@@ -227,21 +229,6 @@ textarea {
   color:rgb(200, 4, 4)
 }
 
-table {
-  margin: auto;
-  border-collapse: collapse;
-  min-width: 60%;
-}
-
-td {
-  border: 1px solid;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #ffc0c0;
-}
-
 .title {
   margin: auto;
   width: 300px;
@@ -254,12 +241,13 @@ tr:nth-child(even) {
   color: #444;
   cursor: pointer;
   padding: 18px;
-  max-width: 600px;
+  max-width: 700px;
   text-align: left;
   border: none;
   outline: none;
   transition: 0.4s;
   display: block;
+  font-size: 15pt;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -281,7 +269,7 @@ tr:nth-child(even) {
 
 .panel {
   margin: auto;
-  max-width: 600px;
+  max-width: 700px;
   padding: 0 18px;
   background-color: white;
   max-height: 0;
