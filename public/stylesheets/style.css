@@ -26,11 +26,21 @@ button {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 0 auto;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
   opacity: 0.9;
+}
+
+.centerbutton {
+  margin: auto;
+  text-align: center;  
+}
+
+.center {
+  margin: auto;
+  width: 50%;
 }
 
 
@@ -185,7 +195,7 @@ textarea {
 .new-field {
   font-size: 18px;
   resize: none;
-  width: 85%;
+  width: 100%;
 }
 
 .post-button {
