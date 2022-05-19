@@ -80,6 +80,7 @@ ul {
   height: 150px;
   background-color: rgb(235, 82, 82); /* change to desired color */
 }
+
 .logo {
   display: inline-block;
   vertical-align: top;
@@ -105,8 +106,16 @@ nav button {
   font-size: 20px;
 }
 
+@media screen and (max-width: 500px) {
+  nav button {
+    font-size: 4.5vw;
+    padding: 14px 5px;
+
+  }
+}
+
 nav button:hover {
-  opacity: 0.8;
+  background-color: rgb(239, 129, 129);
 }
 
 /* .navigation-bar > a {
@@ -133,9 +142,9 @@ nav button:hover {
   border-radius: 2px;
   margin-right: 1px;
   cursor: pointer; /* Mouse pointer on hover */
-  display: inline-block;
   float: right;
 }
+
 
 .likebtn {
   background-color: rgb(69, 170, 119); /* Blue background */
@@ -147,7 +156,6 @@ nav button:hover {
   border-radius: 2px;
   margin-left: 1px;
   cursor: pointer; /* Mouse pointer on hover */
-  display: inline-block;
   float: left;
   margin-right: 10px;
 }
@@ -162,9 +170,20 @@ nav button:hover {
   border-radius: 2px;
   margin-left: 1px;
   cursor: pointer; /* Mouse pointer on hover */
-  display: inline-block;
   float: left;
   margin-right: 10px;
+}
+
+@media screen and (max-width: 450px) {
+  .dltbtn {
+    padding: 5px;
+  }
+  .likebtn {
+    padding: 5px;
+  }
+  .unlikebtn {
+    padding: 5px;
+  }
 }
 
 .post-comment {
@@ -179,15 +198,26 @@ nav button:hover {
  
 }
 
+@media screen and (max-width: 520px) {
+  .post-comment {
+    padding: 5px;
+    font-size: 3.2vw;
+  }
+}
+
 .post-comment:hover {
   background-color: rgb(112, 168, 202);
 }
 
-.lkebtn:hover {
+.likebtn:hover {
   background-color: rgb(112, 168, 202);
 }
 /* Darker background on mouse-over */
 .dltbtn:hover {
+  background-color: rgb(225, 65, 65);
+}
+
+.unlikebtn:hover {
   background-color: rgb(225, 65, 65);
 }
 .btn-text-right{
@@ -220,7 +250,13 @@ nav button:hover {
   margin: 1px; 
   padding: 0.45rem;
   min-width: 1rem;
-  
+  font-size: 0.7em;
+}
+
+.post-user:hover{
+  box-shadow: 2px 2px #e8a7a7;
+  color: rgb(112, 112, 213);
+
 }
 
 .post-date {
@@ -233,6 +269,21 @@ nav button:hover {
   padding: 0.45rem;
   min-width: 1rem;
   text-align: right;
+  font-size: 0.7em;
+}
+
+@media screen and (max-width: 410px) {
+  .post-date {
+    font-size: 0.4em;
+    padding: 1.55em 0.2em;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .post-user {
+    font-size: 0.55em;
+    padding: 1.2em 0.2em;
+  }
 }
 .post-comment-box {
   width: 100%;
@@ -276,6 +327,7 @@ nav button:hover {
   overflow-y:scroll;
 }
 
+
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 7px;
@@ -285,6 +337,10 @@ nav button:hover {
   border-radius: 4px;
   background-color: rgba(0, 0, 0, .5);
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.post-likes:hover{
+  color: rgb(112, 112, 213);
 }
 
 
@@ -318,6 +374,35 @@ textarea {
 .post-button {
   max-height: 90px;
   max-width: 100px;
+}
+
+@media screen and (max-width: 600px) {
+  .new-field {
+    width: 70vw;
+  }
+  .post-button {
+    width: 12vw;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .new-field {
+    width: 65vw;
+  }
+  .post-button {
+    width: 15vw;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .new-field {
+    width: 55vw;
+  }
+  .post-button {
+    width: 20vw;
+  }
 }
 
 .timeline {
