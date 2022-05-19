@@ -14,7 +14,7 @@
  {{#each posts}}
 <div class="card">
   <div class="post-user">
-   <li><small style= "font-size:0.7em"><a href="/users/{{this.user.email}}">{{this.user.email}}</a> </small></li>
+   <li><small style= "font-size:0.7em"><a style="text-decoration:none; color: inherit;" href="/users/{{this.user.email}}">{{this.user.email}}</a> </small></li>
   </div>
    <div class="post-date" style = "position:sticky; left:100%;";>
     <li><small style= "font-size:0.7em">{{formatDate this.createdAt}}</small></li>
