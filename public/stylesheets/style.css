@@ -373,6 +373,7 @@ textarea {
 .profile-title {
   font-size: 1.5em;
   text-align: center;
+  word-break: break-word;
 }
 
 .profile-details {
