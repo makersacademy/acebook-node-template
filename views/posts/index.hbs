@@ -44,13 +44,21 @@
       </div>
     </form>
     {{/if}}
-
-<br>
+ 
   {{#if (ifLikesZero this ../post)}}
   <div class="post-likes">
-    <a  style="text-decoration:none; color: inherit;" href="/posts/{{this.id}}">{{this.likesCount}}</a> {{#if (ifEqual this.likesCount 1)}} Like {{else}} Likes {{/if}}
+    <button onclick="myFunction()" class="dropbtn">{{this.likesCount}} Likes</button>
+    <div id="myDropdown" class="dropdown-content">
+      {{#each this.likesBy}}
+        <a href="/users/{{this}}">{{this}}</a>
+      {{/each}}
+    </div>
   </div>
     {{/if}}
+
+    <br>
+    <br>
+   
 
   <div class ='btn-text-right'>
     <form action="/posts/{{this._id}}/comment" method="POST">
@@ -77,3 +85,4 @@
 {{/each}}
 </ul>
 
+<script src="javascripts/likes.js"></script>
