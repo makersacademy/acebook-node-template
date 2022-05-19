@@ -1,20 +1,28 @@
-<h1> {{profile.first_name}} {{profile.last_name}}</h1> <br>
-Date of Birth: {{formatDob profile.dob}} <br>
+<div class="card">
+    <div class="profile-title"><h1> {{profile.first_name}} {{profile.last_name}}</h1></div>
+    <div class="profile-headings"> Date of Birth: </div>
+    <div class="profile-details">{{formatDob profile.dob}}</div>
 
-{{#if profile.gender}} 
-Gender: {{profile.gender}} <br>
-{{/if}}
+    {{#if profile.gender}} 
+    <div class="profile-headings"> Gender:</div><br>
+    <div class="profile-details">{{profile.gender}} </div>
+    {{/if}}
 
-{{#if profile.home_town}} 
-Home town: {{profile.home_town}} <br>
-{{/if}}
+    {{#if profile.home_town}} 
+    <div class="profile-headings"> Home town: </div><br>
+    <div class="profile-details">{{profile.home_town}} </div>
+    {{/if}}
 
-{{#if profile.bio}} 
-Bio: {{profile.bio}} <br>
-{{/if}}
+    {{#if profile.bio}} 
+    <div class="profile-headings"> Bio: </div><br>
+    <div class="profile-details">{{profile.bio}} </div>
+    {{/if}}
 
-{{#if (ifEqual user.email profile.email)}} 
-<form action ='/users/{{user.email}}/edit'>
-  <button class ='editprofile' type = 'submit'>Edit Profile</button>
-</form>
-{{/if}}
+    {{#if (ifEqual user.email profile.email)}} 
+    <form action ='/users/{{user.email}}/edit'>
+    <button class ='editprofile' type = 'submit'>Edit Profile</button>
+    </form>
+    {{else}}
+    <br><br>
+    {{/if}}
+</div>

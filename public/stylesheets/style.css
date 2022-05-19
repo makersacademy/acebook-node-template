@@ -369,3 +369,27 @@ textarea {
 .home-text {
   text-align: center;
 }
+
+.profile-title {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.profile-details {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  display: inline-block;
+  font-size: 14px;
+  border: none;
+  background: #f1f1f1;
+  word-break: break-word;
+}
+
+
+.profile-headings {
+  font-weight: bold;
+  margin: 5px 0;
+  display: inline-block;
+  font-size: 18px;
+}
