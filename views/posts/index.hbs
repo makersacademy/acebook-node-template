@@ -49,10 +49,8 @@
  
   {{#if (ifLikesZero this ../post)}}
   <div class="post-likes">
-
-
-    <button onclick="myFunction()" class="dropbtn">{{this.likesCount}} Likes</button>
-    <div id="myDropdown" class="dropdown-content">
+    <button onclick="myFunction({{@index}})" class="dropbtn">{{this.likesCount}} Likes</button>
+    <div id="myDropdown-{{@index}}" class="dropdown-content">
       {{#each this.likesBy}}
         <a href="/users/{{this}}">{{this}}</a>
       {{/each}}
@@ -81,7 +79,8 @@
   </div>
   <div class="allcomments">
 
-  <br>{{#each comments}}
+  <br>
+  {{#each comments}}
   <div class="post-comment-box">
   {{this.message}}
   </div>
