@@ -14,6 +14,7 @@ This is our team which worked on this project:
 
 
 Technologies used:
+- [Trello](https://trello.com/b/wlp4ENq8/acebook-zark-muckerberg) for planning.
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
 - [Handlebars](https://handlebarsjs.com/) to render view templates.
@@ -23,9 +24,7 @@ Technologies used:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 - [Heroku](https://www.heroku.com/) for hosting our app.
-
-## Card wall
-Trello Board: https://trello.com/b/wlp4ENq8/acebook-zark-muckerberg
+- [GitHub](https://github.com/) for hosting our code, version control and GitHub Actions for CI and CD.
 
 ## Instructions
 Clone this repository to your desired location using `git clone https://github.com/jmcnally17/acebook-zark-muckerberg.git`.\
@@ -48,12 +47,13 @@ Here are some images to show what it looks like:
 - Users are able to create their own accounts
 - Users are not able to create an account if the email has already been used to create an existing account
 - Passwords are stored encrypted
-- When a User registers, they will automatically be logged in and redirected to their own profile page so that they can see the details they entered
+- When a user registers, they will automatically be logged in and redirected to their own profile page so that they can see the details they entered
 - Users can log in and log out
 - Users can create a post
+- Posts and comments get contained within their own boxes
 - Posts have the user which created them aswell as the time and date they were created
 - Posts can be liked by users
-- Each User can only like each post once
+- Each user can only like each post once
 - Users are able to click the number of likes to see a list of who has liked the post
 - Users are able to unlike posts they have liked
 - Users are able to delete posts they have made (but they cannot delete posts made by others)
@@ -67,4 +67,3 @@ Here are some images to show what it looks like:
 - Users can return to the homepage by clicking on the logo/banner
 - Users are able to use our website on their mobile phones with a mobile-friendly interface
 - Help page with a FAQ, that only shows the answer to the question when clicked
-
