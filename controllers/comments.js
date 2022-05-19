@@ -8,6 +8,7 @@ const CommentsController = {
                const id = req.params.id;
               // get the comment text and record post id
                const comment = new Comment({
+               user: req.session.user,
                message: req.body.comment,
                post: id
             })

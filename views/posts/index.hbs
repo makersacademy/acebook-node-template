@@ -14,7 +14,7 @@
  {{#each posts}}
 <div class="card">
   <div class="post-user">
-   <li><small style= "font-size:0.7em"><a style="text-decoration:none; color: inherit;" href="/users/{{this.user.email}}">{{this.user.email}}</a> </small></li>
+   <li><small style= "font-size:0.7em"><a style="text-decoration:none; color: inherit; href="/users/{{this.user.email}}">{{this.user.first_name}} {{this.user.last_name}}</a> </small></li>
   </div>
    <div class="post-date" style = "position:sticky; left:100%;";>
     <li><small style= "font-size:0.7em">{{formatDate this.createdAt}}</small></li>
@@ -52,11 +52,13 @@
   </div>
     {{/if}}
 
-  <form action="/posts/{{this._id}}/comment" method="POST">
-    <input class="new-comment" type="text" name="comment" placeholder="Comment.." required>
-    <input class="post-comment" type="submit" value="Post Comment">
-    <input type="hidden" id="custId" name="custId" value={{this.id}}>
-  </form>
+  <div class ='btn-text-right'>
+    <form action="/posts/{{this._id}}/comment" method="POST">
+      <input class="new-comment" type="text" name="comment" placeholder="Comment.." required>
+      <input class="post-comment" type="submit" value="Post Comment">
+      <input type="hidden" id="custId" name="custId" value={{this.id}}>
+    </form>
+  </div>
   
   <div class="comments">
     <br>

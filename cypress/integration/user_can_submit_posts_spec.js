@@ -16,7 +16,7 @@ describe("Timeline", () => {
     cy.get(".post-button").click();
 
     cy.get(".posts").find(".post-message").should("contain", "Hello, world!");
-    cy.get(".posts").find(".post-user").should("contain", "someone3@example.com");
+    cy.get(".posts").find(".post-user").should("contain", "Bob Smith");
   });
 
   it("when posts are submitted, new posts are shown at the top", () => {
