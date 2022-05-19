@@ -41,7 +41,7 @@ If you wish to clear the database, use the command `mongo` while in the terminal
 \
 Here are some images to show what it looks like:
 ![Screenshot](https://i.imgur.com/TwFbQDm.png)
-![Screenshot](https://i.imgur.com/qXDkGZD.png)
+![Screenshot](https://i.imgur.com/493XLK6.png)
 
 ## Features
 - Users are able to create their own accounts
