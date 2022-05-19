@@ -16,7 +16,7 @@ describe("Edit Profile", () => {
     cy.get("#dob").type("2000-05-16");
     cy.get('[type="radio"]').first().check();
     cy.get("#home_town").type("bob town");
-    cy.get(".new-field").type("bob is the best");
+    cy.get(".textarea").type("bob is the best");
     cy.get("#submit").click();
     
     cy.url().should("include", "someone11@example.com");
