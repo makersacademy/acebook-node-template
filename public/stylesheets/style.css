@@ -201,6 +201,7 @@ nav button:hover {
   margin-top: 20px;
   max-width: 600px;
   border-radius: 20px;
+  word-break: break-all;
 }
 
 .post-user {
@@ -246,6 +247,9 @@ nav button:hover {
   font-size: 18px;
   margin: 1px; 
   padding: 0.45rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
 }
 .post-likes{
@@ -260,6 +264,7 @@ nav button:hover {
   margin-top: 20px;
   max-width: 600px;
   border-radius: 20px;
+  
 }
 
 textarea {
