@@ -64,7 +64,12 @@ const UsersController = {
       req.body
     ).exec((err, post) => {
       if (err) res.json(err);
-      else res.status(201).redirect(`/users/${req.session.user.email}`);
+      else {
+        User.findOne({ email: req.session.user.email }).then((user) => {
+          req.session.user = user,
+          res.status(201).redirect(`/users/${req.session.user.email}`)
+        })
+      };
     })
   }
 };

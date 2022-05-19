@@ -32,9 +32,8 @@ describe("Likes", () => {
 
     cy.contains("1");
 
-    cy.get('.post-likes').find("a").first().click()
+    cy.get('.post-likes').find(".dropbtn").first().click()
 
-    cy.contains("Liked by:");
     cy.contains("someone6@example.com");
   });
 });
