@@ -41,17 +41,15 @@ describe("User model", () => {
     });
 
     user.save((err) => {
-      expect(err).toBeNull();
+      if (err) throw err;
 
-      User.find((err, users) => {
+      User.find({ email: "someone@example.com" }, (err, users) => {
         expect(err).toBeNull();
-
         expect(users[0]).toMatchObject({
           email: "someone@example.com",
-          password: "password",
         });
-        done();
       });
+      done();
     });
   });
 });
