@@ -5,7 +5,7 @@
 
 <div class="new-post">
 <form id="new-post-form" action="/posts" method="post">
-  <textarea class="new-field" id="message" name="message" rows="4" placeholder="{{this.user.first_name}}, enter a useless thought that no one cares about..."></textarea>
+  <textarea class="new-field" id="message" name="message" rows="4" placeholder="{{this.user.first_name}}, enter a useless thought that no one cares about..." required></textarea>
   <input class="post-button" type="image" src= "/images/funny-zuck.png" >
   
 </form>
@@ -53,7 +53,7 @@
     {{/if}}
 
   <form action="/posts/{{this._id}}/comment" method="POST">
-    <input class="new-comment" type="text" name="comment" placeholder="Comment..">
+    <input class="new-comment" type="text" name="comment" placeholder="Comment.." required>
     <input class="post-comment" type="submit" value="Post Comment">
     <input type="hidden" id="custId" name="custId" value={{this.id}}>
   </form>
