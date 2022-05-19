@@ -237,17 +237,29 @@ nav button:hover {
 .post-comment-box {
   width: 100%;
   padding: 10px;
-  margin: 5px 0 22px 0;
+  margin: 5px 15px 22px 15px;
   display: inline-block;
   font-size: 14px;
   border: none;
   background: #f1f1f1;
   word-break: break-word;
+  max-height: 10vh;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y:scroll;
 }
 
 .no-of-comments{
   font-size: 13px;
 }
+
+.allcomments{
+  max-height: 20vh;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y:scroll;
+}
+
 
 .post-message {
   background-color: white;
@@ -260,6 +272,19 @@ nav button:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-height: 30vh;
+  overflow-y:scroll;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
 
@@ -270,7 +295,6 @@ nav button:hover {
   margin-top: 20px;
   max-width: 600px;
   border-radius: 20px;
-  
 }
 
 textarea {

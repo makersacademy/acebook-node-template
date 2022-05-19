@@ -73,12 +73,14 @@
   <div class="no-of-comments">
     {{this.comments.length}} {{#if (ifEqual this.comments.length 1)}} Comment {{else}} Comments {{/if}}
     </div>
+  <div class="allcomments">
   <br>{{#each comments}}
   <div class="post-comment-box">
   {{this.message}}
   </div>
   <br>
   {{/each}}
+  </div>
   </div>
 
 </div>
