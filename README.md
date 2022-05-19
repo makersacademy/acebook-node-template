@@ -1,97 +1,69 @@
 # Acebook
+![Screenshot](https://i.imgur.com/629Ep5m.png)
 
-This is a Node.js template for the Acebook engineering project.
+## Task
+We have been tasked to create a web app that should work similar to Facebook. Users are be able to create their own accounts, log in to them, log out of them, be able to create posts, like posts and comment on any posts that they want. They will also have a Profile Page which they are able to edit.\
+\
+This is our team which worked on this project:
+- [Baljit](https://github.com/baljitrakhra)
+- [Joe M](https://github.com/jmcnally17)
+- [Joe N](https://github.com/Josenewmano)
+- [Michael](https://github.com/mcsuGH)
+- [Monica](https://github.com/monenavarro)
+- [Nadia](https://github.com/NBenzineb)
 
-Trello Board: https://trello.com/b/wlp4ENq8/acebook-zark-muckerberg
 
-It uses:
-
+Technologies used:
+- [Trello](https://trello.com/b/wlp4ENq8/acebook-zark-muckerberg) for planning.
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
 - [Handlebars](https://handlebarsjs.com/) to render view templates.
 - [Mongoose](https://mongoosejs.com) to model objects in MongoDB.
+- [MongoDB Atlas](https://www.mongodb.com/atlas/database) for hosting our database.
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
+- [Heroku](https://www.heroku.com/) for hosting our app.
+- [GitHub](https://github.com/) for hosting our code, version control and GitHub Actions for CI and CD.
 
-## Card wall
+## Instructions
+Clone this repository to your desired location using `git clone https://github.com/jmcnally17/acebook-zark-muckerberg.git`.\
+\
+Make sure you have the most recent update of Node and then you can run `npm install` whilst in the main directory in your terminal to install dependencies.\
+\
+You can run tests by using the command `npm run start:test` to load up the test server then using `npm test` to run all the test files.\
+\
+You will need to have mongoDB to be able to run this web app in it's intended manner, you can run the commands `brew tap mongodb/brew` and then `brew install mongodb-community@5.0` in order to install mongoDB.\
+\
+In order to access for the website to function, you will need to run the server on localhost by using `npm start` and then going on `localhost:3000` to access the website. From there, you will be able to make an account and those account details will then be stored on your local database.\
+\
+If you wish to clear the database, use the command `mongo` while in the terminal, you can then use the command `use acebook` (or `use acebook_test` for the test database) to access the database. You can then use the commands `db.users.drop()` to clear the users, `db.posts.drop()` to clear the posts and `db.comments.drop()` to clear the comments. You can do the same for the test database although those get cleared before running your tests so they are relatively small.\
+\
+Here are some images to show what it looks like:
+![Screenshot](https://i.imgur.com/TwFbQDm.png)
+![Screenshot](https://i.imgur.com/493XLK6.png)
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
-
-## Quickstart
-
-### Install Node.js
-
-1. Install Node Version Manager (NVM)
-   ```
-   brew install nvm
-   ```
-   Then follow the instructions to update your `~/.bash_profile`.
-2. Open a new terminal
-3. Install the latest version of [Node.js](https://nodejs.org/en/), currently `18.1.0`.
-   ```
-   nvm install 18
-   ```
-
-### Set up your project
-
-1. Fork this repository
-2. Rename your fork to `acebook-<team name>`
-3. Clone your fork to your local machine
-4. Install Node.js dependencies
-   ```
-   npm install
-   ```
-5. Install an ESLint plugin for your editor. For example: [linter-eslint](https://github.com/AtomLinter/linter-eslint) for Atom.
-6. Install MongoDB
-   ```
-   brew tap mongodb/brew
-   brew install mongodb-community@4.4
-   ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@4.4 first in your PATH, run:`, follow the instruction and run the following command. Restart your terminal after this.
-7. Start MongoDB
-   ```
-   brew services start mongodb-community@4.4
-   ```
-
-### Start
-
-1. Start the server
-   ```
-   npm start
-   ```
-2. Browse to [http://localhost:3000](http://localhost:3000)
-
-### Test
-
-- Run all tests
-  ```
-  npm test
-  ```
-- Run a check
-  ```bash
-  npm run lint              # linter only
-  npm run test:unit         # unit tests only
-  npm run test:integration  # integration tests only
-  ```
-
-#### Start test server
-
-The server must be running locally with test configuration for the
-integration tests to pass.
-
-```
-npm run start:test
-```
-
-This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
-so that integration tests do not interact with the development server.
-
-## MongoDB Connection Errors?
-
-Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
-
-- Check that MongoDB is installed using `mongo --version`
-- Check that it's running using `brew services list`
-
-If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+## Features
+- Users are able to create their own accounts
+- Users are not able to create an account if the email has already been used to create an existing account
+- Passwords are stored encrypted
+- When a user registers, they will automatically be logged in and redirected to their own profile page so that they can see the details they entered
+- Users can log in and log out
+- Users can create a post
+- Posts and comments get contained within their own boxes
+- Posts have the user which created them aswell as the time and date they were created
+- Posts can be liked by users
+- Each user can only like each post once
+- Users are able to click the number of likes to see a list of who has liked the post
+- Users are able to unlike posts they have liked
+- Users are able to delete posts they have made (but they cannot delete posts made by others)
+- Users have their own personal profile pages which they can edit their information on
+- If a user leaves one (or more) of their edit fields blank, those fields will remain unchanged
+- Users will be redirected if they try to go on a different user's edit page
+- If a user is logged in, they will not be able to log in again until they are logged out
+- If a user is logged in, they will not be able to register until they are logged out
+- Users can navigate the website using the navigation bar
+- The navigation bar shows different options for pages depending whether or not there is a user logged in
+- Users can return to the homepage by clicking on the logo/banner
+- Users are able to use our website on their mobile phones with a mobile-friendly interface
+- Help page with a FAQ, that only shows the answer to the question when clicked
