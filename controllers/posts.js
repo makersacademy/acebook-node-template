@@ -47,17 +47,6 @@ const PostsController = {
       else res.status(201).redirect(`/posts`);
     })
   },
-  LikedBy: (req, res) => {
-    Post.findOne({_id: req.params.id}).exec((err, post) => {
-      if (err) {
-        throw err;
-      }
-      res.render("posts/id", { 
-        post: post,
-        user: req.session.user 
-      });
-    })
-  },
   Delete: (req, res) => {
     Post.findByIdAndRemove(req.params.id, 
       function(err, docs) {
