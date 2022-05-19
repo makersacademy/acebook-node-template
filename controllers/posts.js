@@ -2,7 +2,7 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find().populate({path: "user", select: "email"}).populate({path : "comments", select: "message"}).exec((err, posts) => {
+    Post.find().populate("user").populate("comments").exec((err, posts) => {
       if (err) {
         throw err;
       }
@@ -11,7 +11,7 @@ const PostsController = {
         posts: reverse, 
         user: req.session.user
       });
-     
+    
     });
   },
   New: (req, res) => {
