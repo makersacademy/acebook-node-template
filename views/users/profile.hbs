@@ -1,5 +1,6 @@
+<div class="center">
 <h1> {{profile.first_name}} {{profile.last_name}}</h1> <br>
-Date of Birth: {{formatDob profile.dob}} <br>
+
 
 {{#if profile.gender}} 
 Gender: {{profile.gender}} <br>
@@ -13,8 +14,13 @@ Home town: {{profile.home_town}} <br>
 Bio: {{profile.bio}} <br>
 {{/if}}
 
+{{#if profile.dob}}
+Date of Birth: {{formatDob profile.dob}} <br>
+{{/if}}
+
 {{#if (ifEqual user.email profile.email)}} 
 <form action ='/users/{{user.email}}/edit'>
   <button class ='editprofile' type = 'submit'>Edit Profile</button>
 </form>
 {{/if}}
+</div>
