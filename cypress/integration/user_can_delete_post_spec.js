@@ -14,7 +14,7 @@ describe("Delete button", () => {
     cy.get(".post-button").click();
 
     cy.get(".posts").should("contain", "Delete test");
-    cy.get(".posts").should("contain", "someone4@example.com");
+    cy.get(".posts").should("contain", "Bob Smith");
 
     cy.get('.posts').find('.dltbtn').click();
 
