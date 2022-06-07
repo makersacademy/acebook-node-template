@@ -3,11 +3,35 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
+    <header>
+      <div class="navbar">
+        <div class="header_buttons">
+          <form action='/' method='GET'>
+            <i class="fa-solid fa-house"></i>
+            <input id="home" class="header_button"  type="submit" value="Home">
+          </form>
+          <form action='/users/new' method='GET'>
+            <input id="sign-up" class="header_button" type="submit" value="Sign Up">
+          </form>
+          <form action='/sessions/new' method='GET'>
+            <input id="log-in"class="header_button"  type="submit" value="Log In">
+          </form>
+          <form action='/sessions?_method=DELETE' method='POST'>
+            <input id="log-out" class="header_button"  type="submit" value="Log Out">
+          </form>
+         </div>
+        </div>
+        </div>
+      
+      
+    </header>
     {{{body}}}
+    <script src="https://kit.fontawesome.com/d88bffd7d7.js" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+

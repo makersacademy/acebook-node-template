@@ -1,8 +1,45 @@
 body {
-  padding: 50px;
+  
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.navbar {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #1B5C9D;
+  overflow: auto;
 }
+
+
+.header_buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header_button {
+  padding: 10px 15px; 
+  color: #fff;
+  background: #1B5C9D; 
+  border: 0 none;
+  cursor: pointer;
+  border-radius: 0px; 
+}
+
+.header_button:hover {
+  background-color:#1E66AE;
+}
+
+
+input[type=text] {
+      padding:5px; 
+      border:2px solid #ccc; 
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+  }
+input[type=text]:focus {
+      border-color:#333; 
+    }
+  
