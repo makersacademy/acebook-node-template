@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'});
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -76,5 +78,7 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
 
 module.exports = app;

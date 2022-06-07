@@ -1,5 +1,17 @@
 <h1>Sign Up</h1>
 <form id="new-user-form" action="/users" method="post">
+  <label for="img">Your img</label>
+  
+  <div>
+      <label for="image">Upload Image</label>
+      <input type="file" id="image" 
+              name="image" value="" required>
+  </div>
+
+  <div>
+      <button type="submit">Submit</button>
+  </div>
+
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
   <label for="password">Password: </label>

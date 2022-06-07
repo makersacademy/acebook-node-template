@@ -16,6 +16,7 @@ const UsersController = {
       req.session.userName = user.userName;
       res.status(201).redirect("/posts");
     });
+    console.log(req.file)
   },
 };
 
