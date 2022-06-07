@@ -37,4 +37,30 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can list all posts in reverse chronological order", (done) => {
+    var post1 = new Post({ message: "first message" });
+    var post2 = new Post({ message: "second message" });
+
+    post1.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "first message" });
+      });
+    });
+
+    post2.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts.reverse()).toMatchObject([{ message: "second message" }, {message: "first message"}]);
+        done();
+      })//.sort({message: -1}); - could be used instead of reverse();
+    });
+  });
 });

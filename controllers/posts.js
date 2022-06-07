@@ -7,8 +7,9 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts });
-    });
+      let reversedPosts = posts.reverse();
+      res.render("posts/index", { posts: reversedPosts });
+    })//.sort({message: -1}); - could be used instead of reverse();
   },
   New: (req, res) => {
     res.render("posts/new", {});
