@@ -63,3 +63,7 @@ typings/
 # cypress.io
 cypress/screenshots
 cypress/videos
+cypress/.DS_Store
+
+# others
+.DS_Store
