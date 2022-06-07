@@ -1,5 +1,5 @@
 describe("Registration", () => {
-  it("A user signs up and is redirected to sign in", () => {
+  it("A user signs up and is redirected posts", () => {
     // sign up
     cy.visit("/");
     cy.get("#signup").click();
@@ -7,6 +7,7 @@ describe("Registration", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    cy.url().should("include", "/sessions/new");
+    cy.url().should("include", "/posts");
+    cy.contains("a", "New post");
   });
 });
