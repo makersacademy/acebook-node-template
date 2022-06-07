@@ -10,9 +10,13 @@ describe("Post model", () => {
     });
   });
 
-  it("has a message", () => {
-    var post = new Post({ message: "some message" });
+  it("has a message and a number of likes next to it", () => {
+    var post = new Post({ 
+      message: "some message",
+      likes: 6,
+   });
     expect(post.message).toEqual("some message");
+    expect(post.likes).toEqual(6);
   });
 
   it("can list all posts", (done) => {
