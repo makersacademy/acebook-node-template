@@ -4,10 +4,10 @@
   <li>
     {{this.message}}
     <form action="/posts/update" method="post">
-      <label for="timestamp">Time: </label>
-      <input id="timestamp" type="text" name="timestamp" value="">
+      <label for="comments"></label>
+      <input id="comments" type="text" name="comments" value="">
       <input type="hidden" name="id" value="{{this.id}}">
-      <input type="submit" value="Submit">
+      <input type="submit" value="Add a comment">
     </form>
   </li>
   {{/each}}

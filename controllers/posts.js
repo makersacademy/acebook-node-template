@@ -15,14 +15,11 @@ const PostsController = {
   },
   Update: (req, res) => {
     console.log(req.body);
-    // let currentDoc = Post.findById(req.body.id);
-    Post.updateOne({_id: req.body.id}, {timestamp: req.body.timestamp}, (err, result)=>{
+    Post.updateOne({_id: req.body.id}, {comments: req.body.comments}, (err, result)=>{
       console.log(err);
       console.log(result);
       res.status(201).redirect("/posts");
-    });
-    // currentDoc.save();
-  
+    });  
   },
   Create: (req, res) => {
     console.log(req.body);
