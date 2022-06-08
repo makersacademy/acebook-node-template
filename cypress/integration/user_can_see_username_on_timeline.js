@@ -12,8 +12,7 @@ describe("Authentication", () => {
     cy.get("#email").type("someone@gmail.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-
-    cy.url().should("include", "/posts");
+    
     cy.contains("h1", "Jane Doe's Timeline");
   });
 });
