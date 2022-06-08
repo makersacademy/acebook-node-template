@@ -1,6 +1,6 @@
 const HomeController = {
   Index: (req, res) => {
-    res.render("home/index", { title: "Makebook", newUser: true });
+    res.render("home/index", { title: "makebook", newUser: true });
   },
 };
 
