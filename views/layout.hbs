@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html>
+  <header class="header">
+    <h1 class="logo"><a>Makebook</a></h1>
+
+    <ul class="main-nav">
+
+      {{#if newUser}}
+      <li><a class="a" href="/users/new">Sign up</a></li>
+      <li><a class="a" href="/sessions/new">Log in</a></li>
+
+      {{else}}
+      <li><a class="a" href="/posts">Home</a></li>
+      <li><a class="a" href="/posts/new">New post</a></li>
+      <li>
+        <form id="logout" action='/sessions?_method=DELETE' method='POST'></form>
+        <a href="javascript:;" onclick="document.getElementById('logout').submit();">Log Out</a>
+        <input type="hidden" name="logout">
+      </li>
+      {{/if}}
+
+    </ul>
+
+	</header> 
+  
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
+    {{!-- <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
-    </form>
+    </form> --}}
     {{{body}}}
   </body>
 </html>

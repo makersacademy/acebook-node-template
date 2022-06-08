@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", {newUser: true});
   },
 
   Create: (req, res) => {
@@ -19,6 +19,7 @@ const SessionsController = {
         req.session.user = user;
         res.redirect("/posts");
       }
+      
     });
   },
 
