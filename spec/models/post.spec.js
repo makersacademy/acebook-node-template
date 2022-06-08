@@ -15,6 +15,11 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it.skip("has a user id", () => {
+    var post = new Post({ message: "some message"});
+    expect(post.user_id).toEqual();
+  });
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
