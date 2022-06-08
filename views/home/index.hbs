@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
+
 <body>
 
 	<main id="fb-main">
 		<div class="fb-container">
-			<section class="fb-form">
-        <div class="space"></div>
-					<span class="frm-header">Create an account</span><br>
-					<span class="frm-spn1">It's free and always will be</span>
 
-					<form id="new-user-form" action="/users" method="post">
+			<div class="logo-m"><img class="logo-img" src="https://i.postimg.cc/sgBfXLYP/Favicon.png" alt="mongoose-logo"></div>
+			
+			<div class="right-signup">
+				<section class="fb-form">
 
-            <input class="frm-textbox" id="email" type="email" name="email" value="">
-            <input  class="frm-textbox" id="password" type="password" name="password" value="">
+					<div class="space"></div>
+					
+						<span class="frm-header">Create an account</span>
+						<br>
+						<br>
+						<span class="frm-spn1">It's free and always will be</span>
+					
+						<form id="new-user-form" action="/users" method="post">
+							
+							<input class="frm-textbox" id="name" type="name" name="name" value="" placeholder="Your name">
+							<input class="frm-textbox" id="email" type="email" name="email" value="" placeholder="Email address">
+							<input  class="frm-textbox" id="password" type="password" name="password" value="" placeholder="Your password">
+							<input class="img-input" type='file' /><img id="myImg">
 
-          	<div class="form-div">
-							<p class="policy">By clicking Sign Up, you agree to our <a href="#">Terms, Data Policy</a> and <a href="#">Cookie Policy</a>. You may receive Email notifications from us and can opt out at any time.</p>
-							<button id="submit" type="submit" value="Sign Up">Sign Up</button>
+							<div class="form-div">
+								<p class="policy">By clicking Sign Up, you agree to our <a href="https://www.mongodb.com/">Terms, Data Policy</a> and <a href="https://www.milliescookies.com/">Cookie Policy</a>. You may receive Email notifications from us and can opt out at any time.</p>
+								<button id="submit-signup" type="submit" value="Sign Up">Sign Up</button>
 
-              <form action='/posts' method='GET'>
-                <button id='submit' type="submit" value="Log In">Log In</button>
-              </form>
-						</div>
+								<form id="new-session-form" action="/sessions" method="post">
+									<button id='submit-login' type="submit" value="Log In">Log In</button>
+								</form>
+							</div>
+						</form>
+				</section>
+			</div>
 
-					</form>
-
-			</section>
 		</div>
 	</main>
 	<footer class="fb-footer">
