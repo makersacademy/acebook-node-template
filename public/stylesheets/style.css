@@ -54,6 +54,10 @@ a {
 	background-color: #385898
 }
 
+.new-post-link {
+  color: #959393;
+}
+
 /* Media Queries */
 
 @media (min-width: 769px) {
