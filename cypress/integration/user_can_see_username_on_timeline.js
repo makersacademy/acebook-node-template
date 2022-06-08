@@ -1,5 +1,5 @@
 describe("Authentication", () => {
-  it("A user signs in and is redirected to /posts", () => {
+  it("A user signs in and can see their username in /posts", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@gmail.com");

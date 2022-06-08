@@ -24,8 +24,8 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Goodbye, world!");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts>li").eq(0).should("contain", "Goodbye, world!");
-    cy.get(".posts>li").eq(1).should("contain", "Hello, world!");
+    cy.get(".posts>div.message").eq(0).should("contain", "Goodbye, world!");
+    cy.get(".posts>div.message").eq(1).should("contain", "Hello, world!");
     
   });
 });
