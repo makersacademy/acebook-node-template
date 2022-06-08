@@ -47,4 +47,51 @@ describe("Like model", () => {
       });
     });
   });
-});
+
+  it("can add a second like to the post", (done) => {
+    let like = new Like({
+      post_id: "12345",
+      likes_array: 1,
+    });
+
+    like.save((err) => {
+      expect(err).toBeNull();
+    });
+
+    Like.likes.update({'likes_array' : '[1]'},{$set:{'likes_array' : '[1, 1]'}});
+
+      Like.find((err, likes) => {
+            expect(err).toBeNull();
+    
+            console.log(likes);
+    
+            let result = Array.from([...likes[0].likes_array]);
+    
+            expect(result).toEqual([1, 1]);
+            expect(likes[0].post_id).toEqual("12345");
+            done(); 
+          })
+        });
+      });
+
+      // Failing test
+    // const secondLike = new Like({
+    //   post_id: "12345",
+    //   likes_array: 2,
+    // });
+
+    // secondLike.save((err) => {
+    //   expect(err).toBeNull();
+
+    //   Like.find((err, likes) => {
+    //     expect(err).toBeNull();
+
+    //     console.log(likes);
+
+    //     const result = Array.from([...likes[0].likes_array]);
+
+    //     expect(result).toEqual([1, 1]);
+    //     expect(likes[0].post_id).toEqual("12345");
+    //     done(); 
+    //   });
+    // });
