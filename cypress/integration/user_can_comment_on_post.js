@@ -1,3 +1,6 @@
+// Manually clear database and then run specific test:
+//npx cypress run --spec "./cypress/integration/user_can_comment_on_post.js"
+
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
     // sign up
