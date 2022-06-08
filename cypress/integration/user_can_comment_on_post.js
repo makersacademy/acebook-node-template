@@ -24,9 +24,7 @@ describe("Timeline", () => {
     // add a comment
     cy.get("#add-comment-to-post").find('[data-cy="comments"]').type('Hello back!');
     cy.get("#add-comment-to-post").submit();
-    
-    cy.get(".comments").should("contain", 'Hello back!');
 
-    //CypressError: `cy.type()` can only be called on a single element. Your subject contained 2 elements.
+    cy.get("#comments-list").should("contain", 'Hello back!');
   });
 });
