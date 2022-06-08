@@ -1,18 +1,14 @@
+const signUp = require('../support/signup_helper')
+const signIn = require('../support/signin_helper')
+
+
 describe("Authentication", () => {
   it("A user signs up and in, signs out and is redirected to home", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+    signUp();
+    signIn();
 
     cy.get("#logout").click();
-    cy.get(".title").should("contain", "Acebook");
+    cy.url().should("eq", "http://localhost:3030/");
+
   });
 });
