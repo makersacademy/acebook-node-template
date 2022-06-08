@@ -1,4 +1,4 @@
-describe("Navbar home button", () => {
+describe("Navbar sign-up button", () => {
   it("navigates to the sign up page", () => {
     cy.visit("/");
     cy.get("#sign-up").click();

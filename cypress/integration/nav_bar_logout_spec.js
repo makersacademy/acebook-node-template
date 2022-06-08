@@ -1,4 +1,4 @@
-describe("Navbar home button", () => {
+describe("Navbar log-out button", () => {
   it("log-out logs out  a signed in user and navigates to new session page", () => {
     cy.visit("/");
     cy.get("#log-in").click();
