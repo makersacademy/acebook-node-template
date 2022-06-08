@@ -12,7 +12,11 @@
       {{else}}
       <li><a class="a" href="/posts">Home</a></li>
       <li><a class="a" href="/posts/new">New post</a></li>
-      <li><a class="a" href="/">Log Out</a></li>
+      <li>
+        <form id="logout" action='/sessions?_method=DELETE' method='POST'></form>
+        <a href="javascript:;" onclick="document.getElementById('logout').submit();">Log Out</a>
+        <input type="hidden" name="logout">
+      </li>
       {{/if}}
 
     </ul>
