@@ -1,7 +1,15 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <li>
+    {{this.message}}
+    <form action="/posts/update" method="post">
+      <label for="timestamp">Time: </label>
+      <input id="timestamp" type="text" name="timestamp" value="">
+      <input type="hidden" name="id" value="{{this.id}}">
+      <input type="submit" value="Submit">
+    </form>
+  </li>
   {{/each}}
 </ul>
 
