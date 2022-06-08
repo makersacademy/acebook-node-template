@@ -1,10 +1,48 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
 
-<form action='/users/new' method='GET'>
-  <input id='signup' type="submit" value="Sign Up">
-</form>
+	<main id="fb-main">
+		<div class="fb-container">
+			<section class="fb-form">
+        <div class="space"></div>
+					<span class="frm-header">Create an account</span><br>
+					<span class="frm-spn1">It's free and always will be</span>
 
-<form action='/sessions/new' method='GET'>
-  <input id='signin' type="submit" value="Sign In">
-</form>
+					<form id="new-user-form" action="/users" method="post">
+
+            <input class="frm-textbox" id="email" type="email" name="email" value="">
+            <input  class="frm-textbox" id="password" type="password" name="password" value="">
+
+          	<div class="form-div">
+							<p>By clicking Sign Up, you agree to our <a href="#">Terms, Data Policy</a> and <a href="#">Cookie Policy</a>. You may receive Email notifications from us and can opt out at any time.</p>
+							<button id="submit" type="submit" value="Sign Up">Sign Up</button>
+
+              <form action='/sessions/new' method='GET'>
+                <button id='submit' type="submit" value="Log In">Log In</button>
+              </form>
+						</div>
+
+					</form>
+
+			</section>
+		</div>
+	</main>
+	<footer class="fb-footer">
+		<div class="div-footer">
+			<ul class="ul1">
+        <li><a href="#">Tim</a></li>
+        <li><a href="#">Anish</a></li>
+        <li><a href="#">Keiran</a></li>
+        <li><a href="#">Jimmy</a></li>
+        <li><a href="#">George</a></li>
+        <li><a href="#">Slava</a></li>
+			</ul>
+			<p>Makebook © 2022</p>
+		</div>
+	</footer>
+</body>
+</html>
