@@ -1,9 +1,9 @@
 <h1>{{username}}'s Timeline</h1>
 <div class="posts">
-  <div class="username">
-    Jerry Smith
-  </div>
   {{#each posts}}
+  <div class="username">
+    {{this.username}}
+  </div>
   <div class="message">
     {{this.message}}
   </div>
