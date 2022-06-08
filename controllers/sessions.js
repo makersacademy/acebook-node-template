@@ -19,6 +19,7 @@ const SessionsController = {
         req.session.user = user;
         res.redirect("/posts");
       }
+      
     });
   },
 
