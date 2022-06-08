@@ -1,5 +1,5 @@
 body {
-  
+  margin-top: 50px;
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -7,6 +7,7 @@ body {
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -22,12 +23,12 @@ body {
 }
 
 .header_button {
-  padding: 10px 15px; 
+  padding: 10px 15px;
   color: #fff;
-  background: #1B5C9D; 
+  background: #1B5C9D;
   border: 0 none;
   cursor: pointer;
-  border-radius: 0px; 
+  border-radius: 0px;
 }
 
 .header_button:hover {
