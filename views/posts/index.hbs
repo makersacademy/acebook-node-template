@@ -3,11 +3,15 @@
   {{#each posts}}
   <li>
     {{this.message}}
-    <form action="/posts/update" method="post">
-      <label for="comments"></label>
-      <input id="comments" type="text" name="comments" value="">
+    <form id="add-comment-to-post" action="/posts/update" method="post">
+      <input id="comments" type="text" name="comments" value="" data-cy="comments" placeholder="Add a comment!">
       <input type="hidden" name="id" value="{{this.id}}">
       <input type="submit" value="Add a comment">
+      <ul id="comments-list">
+        {{#each this.comments}}
+            <li>{{ this }}</li>
+        {{/each}}
+      </ul>
     </form>
   </li>
   {{/each}}

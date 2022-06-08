@@ -16,12 +16,17 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find('[id="message"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
 
     // add a comment
-    cy.get()
+    cy.get("#add-comment-to-post").find('[data-cy="comments"]').type('Hello back!');
+    cy.get("#add-comment-to-post").submit();
+    
+    cy.get(".comments").should("contain", 'Hello back!');
+
+    //CypressError: `cy.type()` can only be called on a single element. Your subject contained 2 elements.
   });
 });
