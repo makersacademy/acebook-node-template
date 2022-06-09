@@ -7,7 +7,7 @@ describe("Authentication", () => {
     signUp("username", "password", "email@email.com");
     signIn("username", "password");
 
-    cy.get("#logout").click();
+    cy.get("#log-out").click();
     cy.url().should("eq", "http://localhost:3030/");
 
   });
