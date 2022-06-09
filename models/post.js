@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   message: String,
-  likes: Number,
+  likes: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Like"
+  }
 });
 
 const Post = mongoose.model("Post", PostSchema);

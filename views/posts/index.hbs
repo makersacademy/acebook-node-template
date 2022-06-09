@@ -1,11 +1,15 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}} <button class="like-button">Like</button></li>
+  <li>{{this.message}} {{this.likes}}<form action="/likes" method="post">
+  <input type="hidden" name="post_id" value={{this._id}}>
+  <input type="submit" value="Like">
+  </form>
+  </li>
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
 
-{{!-- <script type="text/x-handlebars-template" id="like-template" src="../../public/javascripts/likeCounter.js"></script> --}}
-<script src="public/javascripts/likeCounter">{{!}}</script>
+
+{{!-- {{this._id}} --}}

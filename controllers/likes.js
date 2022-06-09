@@ -1,0 +1,32 @@
+const Like = require("../models/like");
+const Post = require("../models/post");
+
+const LikesController = {
+  AddLike: (req, res) => {
+    Post.findOne({_id: req.body.post_id}).exec((err, post) => {
+      if (err) {
+        throw err;
+      }
+
+      const filter = {_id: post.likes};
+      const update = {$push: {likes_array: 1}};
+
+      Like.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err, updateResult) => {
+        if (err) {
+          throw err;
+        }
+
+        console.log(updateResult);
+      })
+
+
+    })
+
+    // console.log(req.body.post_id)
+
+    res.status(201).redirect("/posts");
+
+  }
+}
+
+module.exports = LikesController;
