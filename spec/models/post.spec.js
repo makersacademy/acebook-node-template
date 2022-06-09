@@ -15,6 +15,24 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("post has an id for the user who made the post", () => {
+    let post = new Post({ 
+      message: "this post allows us to see user id",
+      user_id: 'test_user_id'
+    });
+    expect(post.message).toEqual("this post allows us to see user id");
+    expect(post.user_id).toEqual('test_user_id');
+  });
+
+  it("post has an id for the user who made the post", () => {
+    let post = new Post({ 
+      message: "this post allows us to see user id",
+      user_id: 'test_user_id',
+      username: 'Harry Styles'
+    });
+    expect(post.username).toEqual('Harry Styles');
+  });
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();

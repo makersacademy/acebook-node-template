@@ -9,6 +9,5 @@ describe("Authentication", () => {
 
     cy.get("#log-out").click();
     cy.url().should("eq", "http://localhost:3030/");
-
   });
 });

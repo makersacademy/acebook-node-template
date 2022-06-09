@@ -7,8 +7,8 @@ const PostsController = {
       if (err) {
         throw err;
       }
-        posts = posts.reverse();
-        res.render("posts/index", { posts: posts, username: req.session.user.username });      
+      posts = posts.reverse();
+      res.render("posts/index", { posts: posts , username: req.session.user.username });
     });
   },
   New: (req, res) => {
@@ -16,7 +16,8 @@ const PostsController = {
   },
   
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const contents = { message: req.body.message, user_id: req.session.user._id, username: req.session.user.username }
+    const post = new Post(contents);
     post.save((err) => {
       if (err) {
         throw err;

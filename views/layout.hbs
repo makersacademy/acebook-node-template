@@ -3,11 +3,33 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input id="logout" type="submit" value="Log Out">
-    </form>
+
+    <header>
+      <div class="navbar">
+        <div class="header_buttons">
+          <a id="home" href="/" class="header_button" style="text-decoration: none"><i class="fa-solid fa-house"></i> Home</a>
+
+          <a id="sign-up" href='/users/new' class="header_button" style="text-decoration: none">Sign Up</a>
+
+          <a id="log-in" href='/sessions/new' class="header_button" style="text-decoration: none">Log In</a>
+
+          <form action='/sessions?_method=DELETE' method='POST'>
+            <input id="log-out" class="header_button" style='font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;' type="submit" value="Log Out">
+          </form>
+         </div>
+        </div>
+        </div>
+      
+      
+    </header>
+
     {{{body}}}
+    <script src="https://kit.fontawesome.com/d88bffd7d7.js" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+
