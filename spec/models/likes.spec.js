@@ -33,6 +33,7 @@ describe("Like model", () => {
       post_id: "12345",
       likes_array: 1,
     });
+
     like.save((err) => {
       expect(err).toBeNull();
 
@@ -40,7 +41,6 @@ describe("Like model", () => {
         expect(err).toBeNull();
 
         const result = Array.from([...likes[0].likes_array]);
-
         expect(result).toEqual([1]);
         expect(likes[0].post_id).toEqual("12345");
         done();
@@ -54,44 +54,25 @@ describe("Like model", () => {
       likes_array: 1,
     });
 
-    like.save((err) => {
+     like.save((err) => {
       expect(err).toBeNull();
-    });
+      
+      const filter = { post_id: '12345' };
+      const update = {$push: {likes_array: 1}};
+  
+      Like.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err, updatedResult) => {
+        expect(err).toBeNull();
+        expect(updatedResult.likes_array[0]).toEqual(1);
+        expect(updatedResult.likes_array[1]).toEqual(1);
 
-    Like.likes.update({'likes_array' : '[1]'},{$set:{'likes_array' : '[1, 1]'}});
+        Like.find((err, likes) => {
+          expect(err).toBeNull();
 
-      Like.find((err, likes) => {
-            expect(err).toBeNull();
-    
-            console.log(likes);
-    
-            let result = Array.from([...likes[0].likes_array]);
-    
-            expect(result).toEqual([1, 1]);
-            expect(likes[0].post_id).toEqual("12345");
-            done(); 
-          })
+          const result = Array.from([...likes[0].likes_array]);
+          expect(result).toEqual([1, 1]);
+          done();
         });
       });
-
-      // Failing test
-    // const secondLike = new Like({
-    //   post_id: "12345",
-    //   likes_array: 2,
-    // });
-
-    // secondLike.save((err) => {
-    //   expect(err).toBeNull();
-
-    //   Like.find((err, likes) => {
-    //     expect(err).toBeNull();
-
-    //     console.log(likes);
-
-    //     const result = Array.from([...likes[0].likes_array]);
-
-    //     expect(result).toEqual([1, 1]);
-    //     expect(likes[0].post_id).toEqual("12345");
-    //     done(); 
-    //   });
-    // });
+    });
+  });
+});
