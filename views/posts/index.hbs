@@ -1,11 +1,23 @@
 <h1>{{username}}'s Timeline</h1>
 <div class="posts">
   {{#each posts}}
-  <div class="username">
-    {{this.username}}
-  </div>
-  <div class="message">
-    {{this.message}}
+  <div class="post">
+    <div class=""username">{{this.username}}</div>
+    <div class="post-message">
+      {{this.message}}
+      </div>
+      <div class="footer">
+        <form action="/posts/new_comment" method="post" class="new-comment-link">
+          <input type="hidden" name="post_id" value="{{this._id}}">
+          </input>
+          <input type="submit" value="Add comment">
+        </form>
+      </div>
+      {{#each this.comments}}
+      <div class="comment">
+        {{this.message}}
+      </div>
+      {{/each}}
   </div>
   {{/each}}
 </div>

@@ -68,6 +68,12 @@ body {
   padding-top: 150px;
 }
 
+.post {
+  background-color: #eee;
+  margin: 20px;
+  padding: 20px;
+}
+
 .sign_up_box_padding {
   padding: 10px;
   padding-top: 10px;

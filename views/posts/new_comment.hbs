@@ -1,0 +1,7 @@
+<form id="new-comment-form" action="/posts/create_comment" method="post">
+  <label for="message">Comment: </label>
+  <input id="message" type="text" name="message" value="">
+  <input id="user_id" type="hidden" name="user_email" value="{{user_id}}">
+  <input id="post_id" type="hidden" name="post_id" value="{{post_id}}">
+  <input id="submit" type="submit" value="Submit">
+</form>
