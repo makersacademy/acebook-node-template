@@ -29,6 +29,7 @@ app.use(
     key: "user_sid",
     secret: "super_secret",
     resave: false,
+    userID: null,
     saveUninitialized: false,
     cookie: {
       expires: 600000,
