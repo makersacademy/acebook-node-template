@@ -4,8 +4,8 @@ const submitPost = require('../support/submitpost_helper')
 
 describe("Timeline", () => {
   it("can comment on a post", () => {
-    signUp();
-    signIn();
+    signUp("username", "password", "email@email.com");
+    signIn("username", "password");
     submitPost("New post");
     cy.get('.new-comment-link').eq([0]).submit();
     cy.get('#new-comment-form').find('[type=text]').type('This is a comment');

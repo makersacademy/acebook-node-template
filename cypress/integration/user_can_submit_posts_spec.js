@@ -4,8 +4,8 @@ const submitPost = require('../support/submitpost_helper')
 
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
-    signUp();
-    signIn();
+    signUp("username", "password", "email@email.com");
+    signIn("username", "password");
     submitPost("Hello, world!");
     cy.get(".post").should("contain", "Hello, world!");
   });

@@ -1,7 +1,7 @@
-const signIn = () => {
+const signIn = (email, password) => {
   cy.visit("/sessions/new");
-  cy.get("#email").type("someone@example.com");
-  cy.get("#password").type("password");
+  cy.get("#email").type(email);
+  cy.get("#password").type(password);
   cy.get("#submit").click();
 };
 

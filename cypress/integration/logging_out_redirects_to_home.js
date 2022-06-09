@@ -4,8 +4,8 @@ const signIn = require('../support/signin_helper')
 
 describe("Authentication", () => {
   it("A user signs up and in, signs out and is redirected to home", () => {
-    signUp();
-    signIn();
+    signUp("username", "password", "email@email.com");
+    signIn("username", "password");
 
     cy.get("#logout").click();
     cy.url().should("eq", "http://localhost:3030/");

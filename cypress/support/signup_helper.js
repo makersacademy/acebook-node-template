@@ -1,7 +1,8 @@
-const signUp = () => {
+const signUp = (email, password, username) => {
   cy.visit("/users/new");
-  cy.get("#email").type("someone@example.com");
-  cy.get("#password").type("password");
+  cy.get("#email").type(email);
+  cy.get("#password").type(password);
+  cy.get("#username").type(username);
   cy.get("#submit").click();
 };
 
