@@ -1,9 +1,23 @@
-<form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <label for="username">Username: </label>
-  <input id="username" type="username" name="username" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+<div class="center">
+  <div>
+    <a href="/home"><img src="/images/test_logo.png" id="logo"/></a>
+  </div>
+  <div class="main_container">
+    <div class="form_box">
+      <div class="sign_up_font_size"> Sign up </div><br>
+      <form id="new-user-form" action="/users" method="post">
+        <div class="sign_up_box_padding">
+          {{!-- <label for="email">Email: </label> --}}
+          <input class="input_box" id="email" type="email" name="email" value="" placeholder="email@example.com">
+        </div>
+        <div class="sign_up_box_padding">
+          {{!-- <label for="password">Password: </label> --}}
+          <input class="input_box" id="password" type="password" name="password" value="" placeholder="password">
+        </div>
+        <div class="sign_up_box_padding">
+          <input class="input_box" id="submit" type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
