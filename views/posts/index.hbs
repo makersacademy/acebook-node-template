@@ -10,6 +10,7 @@
 
   {{#each posts}}
   <li>
+    {{this.userName}}
     {{this.message}}
     <form id="add-comment-to-post" action="/posts/update" method="post">
       <input id="comments" type="text" name="comments" value="" data-cy="comments" placeholder="Add a comment!">

@@ -30,7 +30,8 @@ const PostsController = {
     console.log(req.session.userID)
     const post = new Post({ 
       message: req.body.message,
-      userID: req.session.userID
+      userID: req.session.userID,
+      userName: req.session.userName
     });
     post.save((err) => {
       if (err) {

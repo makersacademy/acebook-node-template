@@ -13,6 +13,7 @@ const UsersController = {
       }
       req.session.user = user; // login in user straight away after sign up and redirect to posts page
       req.session.userID = user._id;
+      req.session.userName = user.userName;
       res.status(201).redirect("/posts");
     });
   },

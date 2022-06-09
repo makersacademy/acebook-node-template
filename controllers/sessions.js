@@ -17,6 +17,7 @@ const SessionsController = {
       } else {
         req.session.user = user
         req.session.userID = user._id
+        req.session.userName = user.userName;
         res.redirect('/posts')
    
       }
@@ -29,6 +30,7 @@ const SessionsController = {
       res.clearCookie('user_sid')
     }
     req.session.userID = null
+    req.session.userName = null;
     res.redirect('/sessions/new')
   },
 }

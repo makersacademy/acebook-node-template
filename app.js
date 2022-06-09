@@ -30,6 +30,7 @@ app.use(
     secret: "super_secret",
     resave: false,
     userID: null,
+    userName: null,
     saveUninitialized: false,
     cookie: {
       expires: 600000,
