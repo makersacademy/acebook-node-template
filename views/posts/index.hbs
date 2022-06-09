@@ -1,8 +1,13 @@
-<h1>Timeline</h1>
-<ul class="posts">
+<h1>{{username}}'s Timeline</h1>
+<div class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <div class="username">
+    {{this.username}}
+  </div>
+  <div class="message">
+    {{this.message}}
+  </div>
   {{/each}}
-</ul>
+</div>
 
 <a class="new-post-link" href="/posts/new">New post</a>
