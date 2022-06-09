@@ -12,7 +12,7 @@ describe("Authentication", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    cy.get("#logout").click();
+    cy.get("#log-out").click();
     cy.get(".title").should("contain", "Acebook");
   });
 });

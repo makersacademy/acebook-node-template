@@ -10,18 +10,14 @@
     <header>
       <div class="navbar">
         <div class="header_buttons">
-          <form action='/' method='GET'>
-            <i class="fa-solid fa-house"></i>
-            <input id="home" class="header_button"  type="submit" value="Home">
-          </form>
-          <form action='/users/new' method='GET'>
-            <input id="sign-up" class="header_button" type="submit" value="Sign Up">
-          </form>
-          <form action='/sessions/new' method='GET'>
-            <input id="log-in"class="header_button"  type="submit" value="Log In">
-          </form>
+          <a id="home" href="/" class="header_button" style="text-decoration: none"><i class="fa-solid fa-house"></i> Home</a>
+
+          <a id="sign-up" href='/users/new' class="header_button" style="text-decoration: none">Sign Up</a>
+
+          <a id="log-in" href='/sessions/new' class="header_button" style="text-decoration: none">Log In</a>
+
           <form action='/sessions?_method=DELETE' method='POST'>
-            <input id="log-out" class="header_button"  type="submit" value="Log Out">
+            <input id="log-out" class="header_button" style='font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;' type="submit" value="Log Out">
           </form>
          </div>
         </div>
