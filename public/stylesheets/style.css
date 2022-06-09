@@ -140,11 +140,10 @@ ul {
 	font-weight: 600;
 }
 
-.frm-spn1 {
-	font-size: 19px;
-	line-height: 25px;
-	color: #959393;
+.frm-spn2 {
+	padding: 0px 5px;
 }
+
 
 .frm-textbox {
 	width: 92%;
@@ -156,6 +155,18 @@ ul {
 	margin: 5px 8px;
 	margin-left: 0;
 }
+
+.frm-textbox-peach {
+	border: 1px solid #6d6d6d;
+	background-color: #f7c59f68;
+  color:#707070;
+	border-radius: 5px;
+	font-size: 18px;
+  margin: auto;
+  width: 50%;
+  padding: 8px 10px;
+}
+
 
 .form-div {
 	position: relative;
@@ -177,9 +188,9 @@ ul {
 
 .form-div p {
 	color: #777;
-    font-size: 11px;
-    width: 386px;
-    line-height: 1.34;
+	font-size: 11px;
+	width: 386px;
+	line-height: 1.34;
 }
 
 .form-div button {
@@ -265,11 +276,39 @@ ul {
 }
 
 .space {
-  margin-top: 150px;
+	margin-top: 150px;
 }
 
 .img-input {
-  color: #919191;
+	color: #919191;
 }
 
-/* next page (please specify) */
+/* Posts Page */
+#posts-main{
+	background-color: #FA6C8B;
+	background: linear-gradient(white, #EFEFD0);
+}
+
+.frm-textbox-yellow {
+	width: 92%;
+	color:#707070;
+	font-size: 18px;
+	padding: 8px 10px;
+	margin: auto;
+}
+
+.timeline-text{
+	font-size: 36px;
+	line-height: 48px;
+	color: #333;
+	font-weight: 600;
+	text-align: center;
+}
+
+#new-post-form{
+	font-size: 30px;
+	line-height: 25px;
+	color: #959393;
+	font-weight: 500;
+	text-align: center;
+}
