@@ -7,6 +7,10 @@
       <div class="sign_up_font_size"> Sign up </div><br>
       <form id="new-user-form" action="/users" method="post">
         <div class="sign_up_box_padding">
+          {{!-- <label for="username">Username: </label> --}}
+          <input class="input_box" id="username" type="username" name="username" value="" placeholder="User Name">
+        </div>
+        <div class="sign_up_box_padding">
           {{!-- <label for="email">Email: </label> --}}
           <input class="input_box" id="email" type="email" name="email" value="" placeholder="email@example.com">
         </div>

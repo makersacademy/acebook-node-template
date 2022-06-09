@@ -13,6 +13,6 @@ describe("Authentication", () => {
     cy.get("#submit").click();
 
     cy.get("#log-out").click();
-    cy.get(".title").should("contain", "Acebook");
+    cy.get("#title").should("contain", "Acebook");
   });
 });
