@@ -12,12 +12,15 @@
           <input type="hidden" name="post_id" value="{{this._id}}">
           </input>
           <input type="submit" value="Add comment">
-          </form>
-        </div>
+        </form>
+      </div>
+      {{#each this.comments}}
+      <div class="comment">
+        {{this.message}}
+      </div>
+      {{/each}}
   </div>
   {{/each}}
-
- 
 </div>
 
 <a class="new-post-link" href="/posts/new">New post</a>

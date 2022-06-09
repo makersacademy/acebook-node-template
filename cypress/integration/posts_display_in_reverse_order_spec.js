@@ -8,7 +8,7 @@ describe("Timeline", () => {
     signIn();
     submitPost("Hello, world!");
     submitPost("Goodbye, world!");
-    cy.get(".posts>li").eq(0).should("contain", "Goodbye, world!");
-    cy.get(".posts>li").eq(1).should("contain", "Hello, world!");
+    cy.get(".post").eq(0).should("contain", "Goodbye, world!");
+    cy.get(".post").eq(1).should("contain", "Hello, world!");
   });
 });

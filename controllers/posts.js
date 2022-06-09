@@ -10,8 +10,7 @@ const PostsController = {
 
        
         posts = posts.reverse();
-        res.render("posts/index", { posts: posts });
-      
+        res.render("posts/index", { posts: posts });      
     });
   },
   New: (req, res) => {
@@ -34,7 +33,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      post = posts[0]
+      var post = posts[0]
       post.comments.push({user_id: req.session.user._id, message: req.body.message})
       post.save((err) => {
         if (err) {

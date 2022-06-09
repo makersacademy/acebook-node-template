@@ -7,6 +7,6 @@ describe("Timeline", () => {
     signUp();
     signIn();
     submitPost("Hello, world!");
-    cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".post").should("contain", "Hello, world!");
   });
 });
