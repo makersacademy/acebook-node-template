@@ -1,5 +1,5 @@
 const Post = require("../models/post");
-const Comment = require("../models/comment");
+
 
 const PostsController = {
   Index: (req, res) => {
@@ -7,14 +7,11 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      Comment.find((err, comments) => {
-        if(err) {
-          throw err;
-        }
-        comments = comments;
+
+       
         posts = posts.reverse();
-        res.render("posts/index", { posts: posts, comments: comments });
-      });
+        res.render("posts/index", { posts: posts });
+      
     });
   },
   New: (req, res) => {
@@ -31,6 +28,26 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+
+  CreateComment:  (req, res) => {
+    Post.find({_id: req.body.post_id}, (err, posts) => {
+      if (err) {
+        throw err;
+      }
+      post = posts[0]
+      post.comments.push({user_id: req.session.user._id, message: req.body.message})
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+
+        res.status(201).redirect("/posts")
+      })
+    })
+  },
+  NewComment: (req, res) => {
+    res.render("posts/new_comment", {user_id: req.session.user._id, post_id: req.body.post_id})
+  }
 };
 
 module.exports = PostsController;
