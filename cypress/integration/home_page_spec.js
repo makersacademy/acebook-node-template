@@ -1,6 +1,6 @@
 describe("Home page", () => {
   it("has a title", () => {
     cy.visit("/");
-    cy.get(".title").should("contain", "Makebook");
+    cy.get(".logo").should("contain", "Makebook");
   });
 });
