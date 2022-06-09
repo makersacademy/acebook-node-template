@@ -31,7 +31,6 @@ describe("Post model", () => {
 
       Post.find((err, posts) => {
         expect(err).toBeNull();
-
         expect(posts[0]).toMatchObject({ message: "some message" });
         done();
       });

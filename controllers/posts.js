@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
@@ -6,13 +7,20 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      posts = posts.reverse();
-      res.render("posts/index", { posts: posts });
+      Comment.find((err, comments) => {
+        if(err) {
+          throw err;
+        }
+        comments = comments;
+        posts = posts.reverse();
+        res.render("posts/index", { posts: posts, comments: comments });
+      });
     });
   },
   New: (req, res) => {
     res.render("posts/new", {});
   },
+  
   Create: (req, res) => {
     const post = new Post(req.body);
     post.save((err) => {
