@@ -1,7 +1,13 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}} <button class="like-button">Like</button></li>
+  <li>{{this.message}}
+    <form id="new-comment-form" action="/comments" method="post">
+      <input id="comment" placeholder="comment" type="text" name="comment" value="">
+      <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
+      <input type="submit" value="Comment">
+    </form>
+  </li>
   {{/each}}
 </ul>
 
