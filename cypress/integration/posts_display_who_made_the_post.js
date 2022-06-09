@@ -22,7 +22,7 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     // logout
-    cy.get("#logout").click();
+    cy.get("#log-out").click();
 
     // user 2 sign up
     cy.visit("/users/new");
