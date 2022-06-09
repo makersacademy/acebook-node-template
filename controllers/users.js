@@ -11,6 +11,7 @@ const UsersController = {
       if (err) {
         throw err;
       }
+      req.session.user = user; // login in user straight away after sign up and redirect to posts page
       res.status(201).redirect("/posts");
     });
   },
