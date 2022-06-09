@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const correctPassword = require("../models/correct_password_helper");
 
 const SessionsController = {
   New: (req, res) => {
@@ -13,7 +14,7 @@ const SessionsController = {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         res.redirect("/sessions/new");
-      } else if (user.password != password) {
+      } else if (correctPassword(password, user.password)) {
         res.redirect("/sessions/new");
       } else {
         req.session.user = user;
@@ -27,8 +28,9 @@ const SessionsController = {
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie("user_sid");
     }
-    res.redirect("/sessions/new");
+    res.redirect("/");
   },
 };
 
 module.exports = SessionsController;
+
