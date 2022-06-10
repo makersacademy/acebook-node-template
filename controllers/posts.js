@@ -3,12 +3,10 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find().populate('likes user_id comments').exec((err, posts) => {
+    Post.find().populate('likes').exec((err, posts) => {
       if (err) {
         throw err;
       }
-
-      console.log(posts);
 
       let reversedPosts = posts.reverse();
       res.render("posts/index", { posts: reversedPosts });
