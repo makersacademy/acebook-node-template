@@ -13,6 +13,6 @@ describe("Navbar log-out button", () => {
      cy.url().should("include", "/posts")
     
     cy.get("#log-out").click();
-    cy.url().should("include", "http://localhost:3030/");
+    cy.url().should("eq", "http://localhost:3030/");
   });
 });
