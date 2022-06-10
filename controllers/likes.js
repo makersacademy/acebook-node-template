@@ -15,13 +15,9 @@ const LikesController = {
         if (err) {
           throw err;
         }
+        res.status(201).redirect("/posts");
       })
     })
-
-    // console.log(req.body.post_id)
-
-    res.status(201).redirect("/posts");
-
   }
 }
 
