@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <li>{{this.user_id.name}} wrote: {{this.message}}</li>
   {{/each}}
 </ul>
 

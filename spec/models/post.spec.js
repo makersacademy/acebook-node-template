@@ -15,6 +15,12 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("has a user id", () => {
+    const mockUserId = new mongoose.Types.ObjectId();
+    var post = new Post({ message: "some message", user_id: mockUserId});
+    expect(post.user_id).toBe(mockUserId);
+  });
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
@@ -24,7 +30,8 @@ describe("Post model", () => {
   });
 
   it("can save a post", (done) => {
-    var post = new Post({ message: "some message" });
+    const mockUserId = new mongoose.Types.ObjectId();
+    var post = new Post({ message: "some message", user_id: mockUserId });
 
     post.save((err) => {
       expect(err).toBeNull();
@@ -32,7 +39,7 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: "some message" });
+        expect(posts[0]).toMatchObject({ message: "some message", user_id: mockUserId });
         done();
       });
     });
