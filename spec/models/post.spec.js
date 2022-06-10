@@ -77,22 +77,24 @@ describe("Post model", () => {
 
   it("updates the comments array with the coment id", (done) => {
     var post = new Post({ message: "some message" });
+    const mockCommentId = new mongoose.Types.ObjectId();
+    
 
     post.save((err) => {
       expect(err).toBeNull();
 
-      const filter = { message: 'some message' };
-      const update = {$push: {comments: 'comment_id'}};
+      const filter = { _id: post._id };
+      const update = {$push: {comments: mockCommentId }};
 
       Post.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err, updatedResults) => {
         expect(err).toBeNull();
-        expect(updatedResults.comments[0]).toEqual('comment_id');
+        expect(updatedResults.comments[0]).toEqual(mockCommentId);
 
         Post.find((err, posts) => {
           expect(err).toBeNull();
 
           const result = Array.from([...posts[0].comments]);
-          expect(result).toEqual(['comment_id']);
+          expect(result).toEqual([mockCommentId]);
           done();
         });
       })
