@@ -8,16 +8,16 @@
   <ul class="posts">
     {{#each posts}}
     <li class="frm-textbox-yellow">
+      <div class="name-and-image">
+        <img class="picture-tag" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+        <div class="name-tag">{{this.userName}}</div>
+      </div>
       {{this.message}}
       <form id="delete-post" action="/posts/remove" method="post">
         <input type="hidden" name="id" value="{{this.id}}">
         <input class="post-delete-button" type="submit" value="Delete">
       </form>
-      <div class="name-and-image">
-        <img class="picture-tag" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
-        <div class="name-tag">{{this.userName}}</div>
-      </div>
-      <div class="message-tag">{{this.message}}</div>
+      {{!-- <div class="message-tag">{{this.message}}</div> --}}
       <form id="add-comment-to-post" action="/posts/update" method="post">
         <div class="comment-and-image">
           <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
