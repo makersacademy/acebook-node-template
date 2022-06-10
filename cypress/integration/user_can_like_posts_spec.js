@@ -1,4 +1,8 @@
 describe("Likes", () => {
+  // beforeEach(() => {
+  //   cy.task('db:reset');
+  // })
+
   it("can like posts and view the number of likes", () => {
     // sign up
     cy.visit("/users/new");
@@ -22,7 +26,9 @@ describe("Likes", () => {
     // cy.get(".posts").should("contain", "Hello, world!");
 
     //Like a post
-    cy.get(".like-button").click();
-    cy.get('li').should("contain", 1);
+    cy.get(".like-button").first().click();
+    cy.get(".like-button").first().should("contain", 1);
   });
 });
+
+// haven't reset the database, should be one post but there is three posts

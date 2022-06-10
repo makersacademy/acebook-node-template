@@ -17,4 +17,26 @@
 // import './commands'
 
 // Alternatively you can use CommonJS syntax:
-require('./commands')
+require("./commands");
+
+// var mongoose = require("mongoose");
+
+// require("../../spec/mongodb_helper");
+
+// beforeEach((done) => {
+//   mongoose.connection.collections.posts.drop(() => {
+//     done();
+//   });
+// });
+
+// beforeEach((done) => {
+//   mongoose.connection.collections.users.drop(() => {
+//     done();
+//   });
+// });
+
+beforeEach(() => {
+  cy.exec("mongo acebook_test --eval 'db.users.remove({})'");
+  cy.exec("mongo acebook_test --eval 'db.posts.remove({})'");
+  cy.exec("mongo acebook_test --eval 'db.likes.remove({})'");
+});

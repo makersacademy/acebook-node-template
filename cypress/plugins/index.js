@@ -7,11 +7,27 @@
 // You can read more here:
 // https://on.cypress.io/plugins-guide
 // ***********************************************************
-
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-module.exports = function() {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+// `on` is used to hook into various events Cypress emits
+// `config` is the resolved Cypress config
+
+// var mongoose = require("mongoose");
+
+// module.exports = (on, config) => {
+//   on('task', {
+//      mongoose.connection.collections.posts.drop(() => {
+//    })
+//   })
+// }
+
+module.exports = (on) => {
+  on('task', {
+    'db:reset': () => {
+      const resetDatabase = require('./resetDatabase')
+      return resetDatabase()
+    }
+  })
 }
+

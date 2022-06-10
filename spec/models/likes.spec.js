@@ -11,12 +11,14 @@ describe("Like model", () => {
   });
 
   it("has a like", () => {
+    const mockUserId = new mongoose.Types.ObjectId();
+
     const like = new Like({
       post_id: "12345",
-      likes_array: 1,
+      likes_array: [mockUserId]
     });
-    const result = Array.from([...like.likes_array])
-    expect(result).toEqual([1]);
+  
+    expect(like.likes_array[0]).toEqual(mockUserId);
     expect(like.post_id).toEqual("12345");
   });
 
@@ -29,9 +31,11 @@ describe("Like model", () => {
   });
 
   it("can save a like", (done) => {
+    const mockUserId = new mongoose.Types.ObjectId();
+
     const like = new Like({
       post_id: "12345",
-      likes_array: 1,
+      likes_array: [mockUserId]
     });
 
     like.save((err) => {
@@ -40,8 +44,7 @@ describe("Like model", () => {
       Like.find((err, likes) => {
         expect(err).toBeNull();
 
-        const result = Array.from([...likes[0].likes_array]);
-        expect(result).toEqual([1]);
+        expect(like.likes_array[0]).toEqual(mockUserId);
         expect(likes[0].post_id).toEqual("12345");
         done();
       });
@@ -49,27 +52,30 @@ describe("Like model", () => {
   });
 
   it("can add a second like to the post", (done) => {
+    const mockUserId = new mongoose.Types.ObjectId();
+    const anotherMockUserId = new mongoose.Types.ObjectId();
+
     let like = new Like({
       post_id: "12345",
-      likes_array: 1,
+      likes_array: [mockUserId]
     });
 
      like.save((err) => {
       expect(err).toBeNull();
       
       const filter = { post_id: '12345' };
-      const update = {$push: {likes_array: 1}};
+      const update = {$push: {likes_array: [anotherMockUserId]}};
   
       Like.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err, updatedResult) => {
         expect(err).toBeNull();
-        expect(updatedResult.likes_array[0]).toEqual(1);
-        expect(updatedResult.likes_array[1]).toEqual(1);
+        expect(updatedResult.likes_array[0]).toEqual(mockUserId);
+        expect(updatedResult.likes_array[1]).toEqual(anotherMockUserId);
 
         Like.find((err, likes) => {
           expect(err).toBeNull();
 
           const result = Array.from([...likes[0].likes_array]);
-          expect(result).toEqual([1, 1]);
+          expect(result).toEqual([mockUserId, anotherMockUserId]);
           done();
         });
       });
