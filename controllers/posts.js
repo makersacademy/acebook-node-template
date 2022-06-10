@@ -43,6 +43,16 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  Delete: (req, res) => {
+    Post.findOneAndDelete(
+      {_id: req.body.id},
+      (err, result)=>{
+      console.log(req)
+      console.log(err);
+      console.log(result);
+      res.status(201).redirect("/posts");
+    });  
+  },
 };
 
 module.exports = PostsController;

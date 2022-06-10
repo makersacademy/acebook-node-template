@@ -9,6 +9,10 @@
     {{#each posts}}
     <li class="frm-textbox-yellow">
       {{this.message}}
+      <form id="delete-post" action="/posts/remove" method="post">
+        <input type="hidden" name="id" value="{{this.id}}">
+        <input class="post-delete-button" type="submit" value="Delete">
+      </form>
       <form id="add-comment-to-post" action="/posts/update" method="post">
         <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder=Comment>
         <input type="hidden" name="id" value="{{this.id}}">
