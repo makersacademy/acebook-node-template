@@ -145,9 +145,15 @@ ul {
 	font-weight: 600;
 }
 
+.frm-spn1 {
+	padding: 0px 5px;
+	font-size: 14px;
+}
+
 .frm-spn2 {
 	padding: 0px 5px;
-	font-size: 18px;
+	font-size: 14px;
+	color:#707070;
 }
 
 
@@ -205,8 +211,8 @@ ul {
   display: inline-block;
   position: relative;
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
-  margin-top: 10px;
-  margin-bottom: 40px;
+  margin-top: 1px;
+  margin-bottom: 60px;
   background: linear-gradient(#fc95ac, #FA6C8B);
   background-color: #FA6C8B;
   box-shadow: inset 0 1px 1px #fcc8d4;
@@ -229,8 +235,8 @@ ul {
   display: inline-block;
   position: relative;
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
-  margin-top: 10px;
-  margin-bottom: 40px;
+  margin-top: 1px;
+  margin-bottom: 60px;
   background: linear-gradient(#f6a6b8, #f48ba2);
   background-color: #fd9fb3;
   box-shadow: inset 0 1px 1px #f6c6d1;
