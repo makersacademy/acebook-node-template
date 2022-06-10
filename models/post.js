@@ -5,6 +5,10 @@ const PostSchema = new mongoose.Schema({
   userName: String,
   message: String,
   comments: Array,
+  date: {
+    type: Date,
+    default: Date.now
+  },
 });
 
 const Post = mongoose.model("Post", PostSchema);
