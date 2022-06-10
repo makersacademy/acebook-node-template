@@ -4,8 +4,8 @@ const submitPost = require('../support/submitpost_helper')
 
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them displayed in reverse chronological order", () => {
-    signUp("username", "password", "email@email.com");
-    signIn("username", "password");
+    signUp("email@email.com", "password", "username");
+    signIn("email@email.com", "password");
     submitPost("Hello, world!");
     submitPost("Goodbye, world!");
     cy.get(".post").eq(0).should("contain", "Goodbye, world!");
