@@ -1,17 +1,18 @@
-<h1>{{username}}'s Timeline</h1>
+<h1 class="timeline_header">{{username}}'s Timeline</h1>
 <div class="posts"> <!Big box for all posts. Yellow box in miro>
   {{#each posts}}
-  <div class="post"> <!Post box that contains everything for each post. Purple box in miro>
-    <div><!Still contains everything in post, but its padding. Teal box in miro.>
-      <div><!Contain poster photo, name and timestamp? Lime green box in miro.>
+  <div class="post"> <!Post box that contains everything for each post. Purple box in miro. Post CSS currently commented out.>
+    <div class="post_contents"><!Still contains everything in post, but its padding. Teal box in miro.>
+      <div class="author_container"><!Contain poster photo, name and timestamp? Lime green box in miro.>
         <div class="username">{{this.username}}</div>
       </div>
-      <div><!Message container. That also contains the number of likes container. Light blue box in miro.>
+      <div class="message_container"><!Message container. That also contains the number of likes container. Light blue box in miro.>
+        <div class="likes_container"><!Number of likes container. Pink box with little hand in miro.>
+          <meta charset="UTF-8">
+          <p style="display: flex; flex-direction: column; align-items: center;"><span> 👍 </span> </p>
+        </div>
         <div class="post-message">
           {{this.message}}
-        </div>
-        <div><!Number of likes container. Pink box with little hand in miro.>
-
         </div>
         <!Put bottom border line in here.>
       </div>
@@ -23,7 +24,7 @@
         </form>
       </div>
       {{#each this.comments}}
-      <div><!Comment container. Black box in miro.>
+      <div class="comment_container"><!Comment container. Black box in miro.>
         <div class="comment">
           {{this.message}}
         </div>
