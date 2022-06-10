@@ -1,15 +1,13 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}<form action="/likes" method="post">
-  <input type="hidden" name="post_id" value={{this._id}}>
-  <input class="like-button" type="submit" value="Like: {{this.likes.likes_array.length}}">
-  </form>
+  <li>{{this.user_id.name}} wrote: {{this.message}}
+    <form action="/likes" method="post">
+      <input type="hidden" name="post_id" value={{this._id}}>
+      <input class="like-button" type="submit" value="Like: {{this.likes.likes_array.length}}">
+    </form>
   </li>
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
-
-
-{{!-- {{this._id}} --}}
