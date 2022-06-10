@@ -1,7 +1,16 @@
 <h1>Timeline</h1>
 <ul class="posts">
+  <form id="new-post-form" action="/posts" method="post">
+    <label for="message">Message: </label>
+    <input id="message" type="text" name="message" value="">
+    {{!-- <input type="hidden" name="userId" value="{{this.}}"> --}}
+    <input type="submit" value="Submit">
+
+  </form>
+
   {{#each posts}}
   <li>
+    {{this.userName}}
     {{this.message}}
     <form id="add-comment-to-post" action="/posts/update" method="post">
       <input id="comments" type="text" name="comments" value="" data-cy="comments" placeholder="Add a comment!">

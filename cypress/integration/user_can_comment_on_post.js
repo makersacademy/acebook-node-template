@@ -4,7 +4,8 @@
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
     // sign up
-    cy.visit("/users/new");
+    cy.visit("/");
+    cy.get("#userName").should("contain", "Tim and Jimmy")
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
@@ -23,6 +24,8 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+
+    cy.get(".posts").should("contain", "Tim and Jimmy")
 
     // add a comment
     cy.get("#add-comment-to-post").find('[data-cy="comments"]').type('Hello back!');
