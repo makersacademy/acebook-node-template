@@ -13,13 +13,25 @@
         <input type="hidden" name="id" value="{{this.id}}">
         <input class="post-delete-button" type="submit" value="Delete">
       </form>
+      <div class="name-and-image">
+        <img class="picture-tag" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+        <div class="name-tag">{{this.userName}}</div>
+      </div>
+      <div class="message-tag">{{this.message}}</div>
       <form id="add-comment-to-post" action="/posts/update" method="post">
-        <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder=Comment>
+        <div class="comment-and-image">
+          <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+          <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder='Add A Comment' required>
+          <input class="comment-submit-button" type="submit" value="Add">
+        </div>
         <input type="hidden" name="id" value="{{this.id}}">
-        <input class="comment-submit-button" type="submit" value="Add">
-        <ul class="frm-textbox-peach" id="comments-list">
+        
+        <ul id="comments-list">
           {{#each this.comments}}
-              <li class="comment-box">{{ this }}</li>
+              <div class="comment-and-image">
+                <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+                <li class="frm-textbox-peach">{{ this }}</li>
+              </div>
           {{/each}}
         </ul>
       </form>
