@@ -8,6 +8,11 @@
   <ul class="posts">
     {{#each posts}}
     <li class="frm-textbox-yellow">
+      {{this.message}}
+      <form id="delete-post" action="/posts/remove" method="post">
+        <input type="hidden" name="id" value="{{this.id}}">
+        <input class="post-delete-button" type="submit" value="Delete">
+      </form>
       <div class="name-and-image">
         <img class="picture-tag" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
         <div class="name-tag">{{this.userName}}</div>

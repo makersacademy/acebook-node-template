@@ -1,24 +1,32 @@
-// describe("Timeline", () => {
-//   it("can submit posts, when signed in, and view them", () => {
-//     // sign up
-//     cy.visit("/users/new");
-//     cy.get("#email").type("someone@example.com");
-//     cy.get("#password").type("password");
-//     cy.get("#submit").click();
+const clearTestDatabase = require('./test_database_helper')
 
-//     // sign in
-//     cy.visit("/sessions/new");
-//     cy.get("#email").type("someone@example.com");
-//     cy.get("#password").type("password");
-//     cy.get("#submit").click();
+describe("Timeline", () => {
 
-//     // submit a post
-//     cy.visit("/posts");
-//     cy.contains("New post").click();
+  clearTestDatabase();
 
-//     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
-//     cy.get("#new-post-form").submit();
+  it("can submit posts, when signed in, and view them", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
 
-//     cy.get(".posts").should("contain", "Hello, world!");
-//   });
-// });
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    // submit a post
+    cy.visit("/posts");
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").submit();
+
+    cy.get(".posts").should("contain", "Hello, world!");
+
+
+     
+  });
+});
