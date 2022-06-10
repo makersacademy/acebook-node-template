@@ -8,7 +8,8 @@
   <ul class="posts">
     {{#each posts}}
     <li class="frm-textbox-yellow">
-      {{this.message}}
+      <div class="name-tag">{{this.userName}}</div>
+      <div class="message-tag">{{this.message}}</div>
       <form id="add-comment-to-post" action="/posts/update" method="post">
         <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder=Comment>
         <input type="hidden" name="id" value="{{this.id}}">
