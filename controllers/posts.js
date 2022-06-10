@@ -1,7 +1,9 @@
 const Post = require("../models/post");
+// const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
+    // ().populate('comments').exec
     Post.find((err, posts) => {
       if (err) {
         throw err;
@@ -11,9 +13,11 @@ const PostsController = {
       res.render("posts/index", { posts: reversedPosts });
     })//.sort({message: -1}); - could be used instead of reverse();
   },
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
+
   Create: (req, res) => {
     const post = new Post(req.body);
     post.save((err) => {

@@ -11,23 +11,28 @@ describe("Comment model", () => {
     });
   });
 
-  it("should have a message and post id", () => {
+  it("should have a message, user id and post id", () => {
     const mockPostId = new mongoose.Types.ObjectId();
+    const mockUserId = new mongoose.Types.ObjectId();
 
     const comment = new Comment({
       post_id: mockPostId,
+      user_id: mockUserId,
       comment: "a comment",
     });
 
     expect(comment.comment).toEqual("a comment");
     expect(comment.post_id).toBe(mockPostId);
+    expect(comment.user_id).toBe(mockUserId);
   });
 
   it("should save the comment to the database", (done) => {
     const mockPostId = new mongoose.Types.ObjectId();
+    const mockUserId = new mongoose.Types.ObjectId();
 
     const comment = new Comment({
       post_id: mockPostId,
+      user_id: mockUserId,
       comment: "another comment",
     });
 
@@ -38,8 +43,9 @@ describe("Comment model", () => {
         expect(err).toBeNull();
 
         expect(comments[0]).toMatchObject({comment: "another comment"});
+        expect(comments[0]).toMatchObject({user_id: mockUserId});
         done();
-      })
-    })
-  })
+      });
+    });
+  });
 });

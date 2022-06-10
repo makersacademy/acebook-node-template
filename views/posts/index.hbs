@@ -2,6 +2,9 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}
+    {{#each this.comments}}
+    {{this.comment.comment}}
+    {{/each}}
     <form id="new-comment-form" action="/comments" method="post">
       <input id="comment" placeholder="comment" type="text" name="comment" value="">
       <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
@@ -12,6 +15,3 @@
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
-
-{{!-- <script type="text/x-handlebars-template" id="like-template" src="../../public/javascripts/likeCounter.js"></script> --}}
-<script src="public/javascripts/likeCounter">{{!}}</script>
