@@ -9,17 +9,13 @@ const LikesController = {
       }
 
       const filter = {_id: post.likes};
-      const update = {$push: {likes_array: 1}};
+      const update = {$push: {likes_array: [req.session.user._id]}};
 
-      Like.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err, updateResult) => {
+      Like.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err) => {
         if (err) {
           throw err;
         }
-
-        console.log(updateResult);
       })
-
-
     })
 
     // console.log(req.body.post_id)
