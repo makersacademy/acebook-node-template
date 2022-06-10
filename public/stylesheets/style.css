@@ -304,10 +304,11 @@ ul {
 	border-radius: 5px;
 	color:#707070;
 	font-size: 25px;
-	padding: 8px 10px;
+	padding: 8px 20px;
 	margin: auto;
 	margin-bottom: 20px;
 	font-weight: lighter;
+	text-align: left;
 }
 
 .timeline-text{
@@ -457,4 +458,19 @@ ul {
   padding: 7px 20px;
   text-align: center;
   border-radius: 5px;
+}
+
+.name-tag{
+	font-weight: 700;
+	font-size: 17px;
+	line-height: 18px;
+	padding: 5px 0px 10px 0px;
+	text-align: left	;
+	color: #000000;
+}
+
+.message-tag{
+	text-align: left;
+	padding-bottom: 10px;
+	font-size: 20px;
 }
