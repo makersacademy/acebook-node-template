@@ -27,6 +27,7 @@ describe("Likes", () => {
 
     //Like a post
     cy.get(".like-button").first().click();
+
     cy.get(".like-button").first().should("contain", 1);
   });
 });

@@ -24,6 +24,6 @@ describe("Timeline", () => {
     cy.get("#new-comment-form").submit();
 
     //expect
-    cy.get('.posts').children('li').children('ul li:first').should("contain", "yet another comment");
+    cy.get('.comments').first().should("contain", "yet another comment");
     })
 })
