@@ -2,6 +2,12 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.user_id.name}} wrote: {{this.message}}
+    {{#if this.image}}
+      <div class="image" >
+        <img src={{this.image}} height="200" width="200">
+      </div>
+    {{/if}}
+    
     <form action="/likes" method="post">
       <input type="hidden" name="post_id" value={{this._id}}>
       <input class="like-button" type="submit" value="Like: {{this.likes.likes_array.length}}">
@@ -22,3 +28,7 @@
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+{{!-- {{#if this.image}}
+    <img src={{this.image}} >
+{{/if}} --}}

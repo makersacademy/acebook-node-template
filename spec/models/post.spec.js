@@ -9,7 +9,7 @@ describe("Post model", () => {
       done();
     });
   });
-  
+
   it("has a message", () => {
     var post = new Post({ message: "some message" });
     expect(post.message).toEqual("some message");
@@ -17,8 +17,13 @@ describe("Post model", () => {
 
   it("has a user id", () => {
     const mockUserId = new mongoose.Types.ObjectId();
-    var post = new Post({ message: "some message", user_id: mockUserId});
+    var post = new Post({ message: "some message", user_id: mockUserId });
     expect(post.user_id).toBe(mockUserId);
+  });
+
+  it("can have an image url", () => {
+    const post = new Post({ image: "https://image.com" });
+    expect(post.image).toBe("https://image.com");
   });
 
   it("can list all posts", (done) => {
@@ -39,7 +44,29 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: "some message", user_id: mockUserId });
+        expect(posts[0]).toMatchObject({
+          message: "some message",
+          user_id: mockUserId,
+        });
+        done();
+      });
+    });
+  });
+
+  it("can save an image post", (done) => {
+    const mockUserId = new mongoose.Types.ObjectId();
+    const post = new Post({ image: "https://image.com", user_id: mockUserId });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({
+          image: "https://image.com",
+          user_id: mockUserId,
+        });
         done();
       });
     });
@@ -81,35 +108,42 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts.reverse()).toMatchObject([{ message: "second message" }, {message: "first message"}]);
+        expect(posts.reverse()).toMatchObject([
+          { message: "second message" },
+          { message: "first message" },
+        ]);
         done();
-      })//.sort({message: -1}); - could be used instead of reverse();
+      }); //.sort({message: -1}); - could be used instead of reverse();
     });
   });
 
   it("updates the comments array with the coment id", (done) => {
     var post = new Post({ message: "some message" });
     const mockCommentId = new mongoose.Types.ObjectId();
-    
 
     post.save((err) => {
       expect(err).toBeNull();
 
       const filter = { _id: post._id };
-      const update = {$push: {comments: mockCommentId }};
+      const update = { $push: { comments: mockCommentId } };
 
-      Post.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err, updatedResults) => {
-        expect(err).toBeNull();
-        expect(updatedResults.comments[0]).toEqual(mockCommentId);
-
-        Post.find((err, posts) => {
+      Post.findOneAndUpdate(
+        filter,
+        update,
+        { new: true, useFindAndModify: false },
+        (err, updatedResults) => {
           expect(err).toBeNull();
+          expect(updatedResults.comments[0]).toEqual(mockCommentId);
 
-          const result = Array.from([...posts[0].comments]);
-          expect(result).toEqual([mockCommentId]);
-          done();
-        });
-      })
+          Post.find((err, posts) => {
+            expect(err).toBeNull();
+
+            const result = Array.from([...posts[0].comments]);
+            expect(result).toEqual([mockCommentId]);
+            done();
+          });
+        }
+      );
     });
   });
 });
