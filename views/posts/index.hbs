@@ -10,9 +10,9 @@
     <li class="frm-textbox-yellow">
       {{this.message}}
       <form id="add-comment-to-post" action="/posts/update" method="post">
-        <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder="Add a comment!">
+        <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder=Comment>
         <input type="hidden" name="id" value="{{this.id}}">
-        <input class="comment-submit-button" type="submit" value="Add a comment">
+        <input class="comment-submit-button" type="submit" value="Add">
         <ul class="frm-textbox-peach" id="comments-list">
           {{#each this.comments}}
               <li class="comment-box">{{ this }}</li>
