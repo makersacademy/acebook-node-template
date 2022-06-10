@@ -7,8 +7,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      console.log(posts);
     
       let reversedPosts = posts.reverse();
       res.render("posts/index", { posts: reversedPosts });
