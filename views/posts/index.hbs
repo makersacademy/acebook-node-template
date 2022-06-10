@@ -13,7 +13,7 @@
 
 
 
-<body class="w3-theme-l5"></body>
+<body class="w3 background"></body>
 
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
@@ -41,15 +41,15 @@
 
 
         <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> These will beeeeeeee...</button>
+          {{!-- <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"> These will beeeeeeee...</button> --}}
           <div id="Demo1" class="w3-hide w3-container">
             <p>Some text..</p>
           </div>
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> deleted, please ignore!</button>
+          {{!-- <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"> deleted, please ignore!</button> --}}
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
-          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Many thanks!</button>
+          {{!-- <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"> Many thanks!</button> --}}
           <div id="Demo3" class="w3-hide w3-container">
          <div class="w3-row-padding">
 
@@ -118,12 +118,12 @@
     
       <div class="w3-row-padding">
         <div class="w3-col m12">
-          <h1>Timeline</h1>
-          <div class="w3-card w3-round w3-white">
+          <h1 class="w3-text-white">Timeline</h1>
+          <div class="w3-card w3-round-xlarge post-bgc">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">What's on your mind?</h6>
               <p contenteditable="true" class="w3-border w3-padding">Share your thoughts...</p>
-              <a class="new-post-link w3-button w3-theme"  href="/posts/new"><i class="fa fa-pencil"></i> New post</a>
+              <a class="new-post-link w3-button w3-theme w3-round-large"  href="/posts/new"><i class="fa fa-pencil"></i> New post</a>
             </div>
           </div>
         </div>
@@ -134,15 +134,15 @@
 
 
         {{#each posts}}
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+      <div class="w3-container w3-card post-bgc w3-round-xlarge w3-margin"><br>
         <img src="../images/cutie-pie.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
         {{!-- Placeholder Time --}}
         {{!-- <span class="w3-right w3-opacity">16 min</span> --}}
         <h4>Cutie Pie</h4><br>
         <hr class="w3-clear">
         <p>{{this.message}}</p>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom w3-round-large"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom w3-round-large"><i class="fa fa-comment"></i>  Comment</button> 
       </div>  
         {{/each}}
 
