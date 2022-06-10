@@ -45,6 +45,22 @@ describe("Post model", () => {
     });
   });
 
+  it("can save a post, wiht an empty array for comments", (done) => {
+    var post = new Post({ message: "some message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        const result = Array.from([...posts[0].comments]);
+        expect(result).toMatchObject([]);
+        done();
+      });
+    });
+  });
+
   it("can list all posts in reverse chronological order", (done) => {
     var post1 = new Post({ message: "first message" });
     var post2 = new Post({ message: "second message" });
@@ -68,6 +84,32 @@ describe("Post model", () => {
         expect(posts.reverse()).toMatchObject([{ message: "second message" }, {message: "first message"}]);
         done();
       })//.sort({message: -1}); - could be used instead of reverse();
+    });
+  });
+
+  it("updates the comments array with the coment id", (done) => {
+    var post = new Post({ message: "some message" });
+    const mockCommentId = new mongoose.Types.ObjectId();
+    
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      const filter = { _id: post._id };
+      const update = {$push: {comments: mockCommentId }};
+
+      Post.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err, updatedResults) => {
+        expect(err).toBeNull();
+        expect(updatedResults.comments[0]).toEqual(mockCommentId);
+
+        Post.find((err, posts) => {
+          expect(err).toBeNull();
+
+          const result = Array.from([...posts[0].comments]);
+          expect(result).toEqual([mockCommentId]);
+          done();
+        });
+      })
     });
   });
 });

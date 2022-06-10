@@ -4,7 +4,7 @@ const Post = require("../models/post");
 const PostsController = {
   Index: (req, res) => {
 
-    Post.find().populate('user_id').populate('likes').exec((err, posts) => {
+    Post.find().populate('user_id').populate('likes').populate('comments').exec((err, posts) => {
       if (err) {
         throw err;
       }
@@ -13,9 +13,11 @@ const PostsController = {
       res.render("posts/index", { posts: reversedPosts });
     })
   },
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
+
   Create: (req, res) => {
     const like = new Like();
 
