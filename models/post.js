@@ -4,7 +4,7 @@ const PostSchema = new mongoose.Schema({
   message: String,
   comments: {type: [{
     type: mongoose.SchemaTypes.ObjectId,
-    ref: "Comment",}]}
+    ref: "Comment"}]}
 });
 
 const Post = mongoose.model("Post", PostSchema);

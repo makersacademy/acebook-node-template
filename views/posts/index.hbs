@@ -3,7 +3,7 @@
   {{#each posts}}
   <li>{{this.message}}
     {{#each this.comments}}
-    {{this.comment.comment}}
+    {{this.comment}}
     {{/each}}
     <form id="new-comment-form" action="/comments" method="post">
       <input id="comment" placeholder="comment" type="text" name="comment" value="">
