@@ -141,8 +141,36 @@
         <h4>Cutie Pie</h4><br>
         <hr class="w3-clear">
         <p>{{this.message}}</p>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom w3-round-large"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom w3-round-large"><i class="fa fa-comment"></i>  Comment</button> 
+        
+        <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#likes"><i class="fa fa-thumbs-up"></i> Like</div>
+        {{!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom w3-round-large"><i class="fa fa-thumbs-up"></i>  Like</button>  --}}
+        <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#comments"><i class="fa fa-comment"></i> Comment</div>
+        
+        {{!-- <div class="w3-button w3-theme-d1 w3-margin-bottom w3-round-larg wrap-collabsible">
+          <input id="collapsible" class="toggle" type="checkbox">
+          <label for="collapsible" class="lbl-toggle">Test Comment</label>
+          <div class="collapsible-content">
+            <div class="content-inner">
+              <p>
+                Lovely Poem!! 
+              </p>
+            </div>
+          </div>
+        </div> --}}
+        
+        
+        
+        
+          {{!-- <span class="pop">
+            Comment Comment Comment
+          </span> --}}
+       
+
+
+
+        {{!-- <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom w3-round-large"><i class="fa fa-comment"></i>  Comment
+        {{!-- </button>  --}}
+      
       </div>  
         {{/each}}
 
