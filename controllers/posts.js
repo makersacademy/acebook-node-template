@@ -14,7 +14,6 @@ const PostsController = {
     res.render("posts/new", { newUser: false });
   },
   Update: (req, res) => {
-    console.log(req.body);
     Post.findOneAndUpdate(
       {_id: req.body.id},
       {$push:
@@ -27,7 +26,13 @@ const PostsController = {
     });  
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+    console.log(req.body)
+    console.log(req.session.userID)
+    const post = new Post({ 
+      message: req.body.message,
+      userID: req.session.userID,
+      userName: req.session.userName
+    });
     post.save((err) => {
       if (err) {
         throw err;

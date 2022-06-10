@@ -106,12 +106,22 @@ ul {
 }
 
 .logo-m {
-  width: 150px;
+  width: 350px;
   float: left;
-  height: 150px;
+  height: 350px;
   margin-top: 180px;
 	margin-left: 250px;
 	/* display: flex; */
+}
+
+.logo-m {
+	overflow: hidden;
+	transition-duration: 0.8s;
+	transition-property: transform;
+}
+.logo-m:hover {
+	transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
 }
 
 .logo-img {
