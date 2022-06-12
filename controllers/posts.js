@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -9,7 +10,21 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts, newUser: false });
+
+      Promise.all(posts.map(async (post) => {
+        const user = await User.findOne({ userName: post.userName }).exec();
+        const photo = {
+          contentType: user.photo.contentType,
+          data: user.photo.data.toString('base64'),
+        };
+
+        post.photo = photo;
+
+        return post;
+        
+      })).then((postsWithPhotos) => {
+        res.render("posts/index", { posts: postsWithPhotos, newUser: false });
+      });
     });
   },
   New: (req, res) => {

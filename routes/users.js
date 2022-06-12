@@ -6,6 +6,6 @@ const upload = multer({dest: 'uploads/'});
 const UsersController = require("../controllers/users");
 
 router.get("/new", UsersController.New);
-router.post("/", upload.single('userImage'), UsersController.Create);
+router.post("/", upload.single('photo'), UsersController.Create);
 
 module.exports = router;
