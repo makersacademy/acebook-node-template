@@ -2,12 +2,11 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {});
+    console.log(req.messages);
+    res.render("users/new", { messages: req.locals });
   },
 
   Create: (req, res) => {
-    // const user = new User(req.body);
-    // console.log("Emaaaaaaaaaail")
     try {
       const user = new User(req.body);
       user.save((err) => {
@@ -16,8 +15,11 @@ const UsersController = {
         }
         res.status(201).redirect("/sessions/new");
       });
-    } catch(err) {
-      console.log("Email must be unique")
+    } catch (err) {
+      if (err.code === 11000) {
+        res.flash("errors", `${err.keyValue.email} is already in use`);
+        res.redirect("/users/new");
+      }
     }
   },
 };
