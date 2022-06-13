@@ -1,16 +1,34 @@
-<div class="container">
-  <div class="center">
-      <div>
+<body>
+  <div class="grid-container">
+    <div class="item1">
       <a href="/"><img src="/images/test_logo.png" id="logo"/></a>
     </div>
-    <div id="title" class="welcome_text">
-      <p>Welcome to {{title}}</p>
-      <p>Wilkommen bei {{title}}</p>
-      <p>欢迎来到 {{title}}</p>
-      <p>Bienvenida a {{title}}</p>
-      <p>Velkommen til {{title}}</p>
-      <p>Witamy w {{title}}</p>
-      <p>Добро пожаловать в Эйсбук</p>
+    <div class="item3">
+      <div id="title" class="welcome_text">
+        <p>Welcome to {{title}}</p>
+        <p>Wilkommen bei {{title}}</p>
+        <p>欢迎来到 {{title}}</p>
+        <p>Bienvenida a {{title}}</p>
+        <p>Velkommen til {{title}}</p>
+        <p>Witamy w {{title}}</p>
+        <p>Добро пожаловать в Эйсбук</p>
+      </div>
+    </div>  
+    <div class="item4">
+      <div class="form_box">
+        <div class="sign_up_font_size"> Log in </div>
+        <form id="new-session-form" action="/sessions" method="post">
+          <div class="sign_up_box_padding">
+            <input class="input_box" id="email" type="email" name="email" value="" placeholder="email@example.com">
+          </div>
+          <div class="sign_up_box_padding">
+            <input class="input_box" id="password" type="password" name="password" value="" placeholder="password">
+          </div>
+          <div class="sign_up_box_padding">
+            <input class="input_box" id="submit" type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
     </div>
-   </div>
-</div>
+  </div>
+</body>

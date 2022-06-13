@@ -176,3 +176,32 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.item1 { grid-area: header; }
+.item3 { grid-area: main; }
+.item4 { 
+  justify-content: center;
+  align-content: center;
+  padding: 20px;
+  padding-top: 20px;
+  grid-area: right; 
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'main main main right right right'
+    'main main main right right right'
+    'main main main right right right'
+    'main main main right right right';
+  gap: 10px;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
