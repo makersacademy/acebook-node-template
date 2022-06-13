@@ -6,7 +6,9 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
+    var userInput = req.body;
+    userInput["profilePhotoPath"] = 'images/default_profile_photo.png';
+    const user = new User(userInput);
     user.save((err) => {
       if (err) {
         throw err;
