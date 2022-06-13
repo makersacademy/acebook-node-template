@@ -52,7 +52,7 @@
 {{!-- new div here --}}
 
       <button onclick="myFunction()">click to comment</button>
-        <div id="drop-down-comments">
+        <div id="drop-down-comments" style="display:none">
           <form class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="new-comment-form" action="/comments" method="post">
             <input id="comment" placeholder="comment" type="text" name="comment" value="">
             <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
