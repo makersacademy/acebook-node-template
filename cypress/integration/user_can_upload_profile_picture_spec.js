@@ -19,17 +19,18 @@ describe("Profile", () => {
       .should('include', "/images/cutie-pie.jpeg");
 
     // upload picture
-    cy.fixture("raccoon_1.jpg").then((fileContent) => {
-      cy.get('input[type="file"]').attachFile({
-        fileContent: fileContent.toString(),
-        fileName: "raccoon_1.jpg",
-        mimeType: "image/jpg",
-      });
-    });
-    cy.get('#upload-profile-photo-form').submit();
+    // cy.fixture("raccoon_1.jpg").then((fileContent) => {
+    //   cy.get('input[type="file"]').attachFile({
+    //     fileContent: fileContent.toString(),
+    //     fileName: "raccoon_1.jpg",
+    //     mimeType: "image/jpg",
+    //   });
+    // });
+    cy.get('input[type="file"]').attachFile('raccoon_1.jpg');
+    cy.get('#upload-profile-photo-form').click();
 
-    // cy.get("#profile-photo").should('have.attr', 'src')
-    //   .should('include', "raccoon_1.jpg");
-    // test not working
-  });
+    cy.get("#profile-photo").should('have.attr', 'src')
+      .should('include', "http://res.cloudinary.com/");
+    cy.get('#profile-photo').should("be.visible");
+    });
 });
