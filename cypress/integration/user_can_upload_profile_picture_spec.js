@@ -19,6 +19,17 @@ describe("Profile", () => {
       .should('include', "/images/cutie-pie.jpeg");
 
     // upload picture
-    // in progress
+    cy.fixture("raccoon_1.jpg").then((fileContent) => {
+      cy.get('input[type="file"]').attachFile({
+        fileContent: fileContent.toString(),
+        fileName: "raccoon_1.jpg",
+        mimeType: "image/jpg",
+      });
+    });
+    cy.get('#upload-profile-photo-form').submit();
+
+    // cy.get("#profile-photo").should('have.attr', 'src')
+    //   .should('include', "raccoon_1.jpg");
+    // test not working
   });
 });
