@@ -17,6 +17,11 @@
         <input type="hidden" name="id" value="{{this.id}}">
         <input class="post-delete-button" type="submit" value="Delete">
       </form>
+      <form id="like-form" action="/posts/like" method="post">
+        <input type="hidden" name="id" value="{{this.id}}">
+        <div class="like-count">{{this.likes.length}}</div>
+        <input class="like-button" type="submit" value="Like">
+      </form>
       {{!-- <div class="message-tag">{{this.message}}</div> --}}
       <form id="add-comment-to-post" action="/posts/update" method="post">
         <div class="comment-and-image">

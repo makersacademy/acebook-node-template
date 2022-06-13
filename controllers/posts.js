@@ -25,7 +25,24 @@ const PostsController = {
       console.log(err);
       console.log(result);
       res.status(201).redirect("/posts");
-    });  
+    });
+  },  
+  Like: (req, res) => {
+    Post.findOneAndUpdate(
+      {_id: req.body.id},
+      {$pull:
+        {likes: req.session.userID}
+      })
+      ,
+      {$push:
+        {likes: req.session.userID}
+      },
+      (err, result)=>{
+      console.log(err);
+      console.log(result);
+      res.status(201).redirect("/posts");
+
+      });
   },
   Create: (req, res) => {
     console.log(req.body)

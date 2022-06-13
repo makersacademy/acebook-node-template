@@ -20,7 +20,7 @@ describe("Timeline", () => {
 
     // like post
 
-    cy.get("#like-button").click();
+    cy.get(".like-button").click();
 
     cy.get(".likes").should("equal", 1)
   });
