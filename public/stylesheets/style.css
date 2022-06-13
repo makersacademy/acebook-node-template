@@ -61,6 +61,13 @@ body {
   padding: 2px;
 }
 
+.profile-photo-header {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
 .main_container {
   justify-content: center;
   align-content: center;
