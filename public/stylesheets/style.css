@@ -1,6 +1,14 @@
 /* -----------------GENERAL--------------------------------------------------- */
 
 /* General Setting */
+.comments-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.comments-buttons {
+  margin: 5px;
+}
 * {box-sizing: border-box;}
 
 /* Overall Background Colour */
