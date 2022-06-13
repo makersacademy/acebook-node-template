@@ -1,4 +1,11 @@
 <h1 class="timeline_header">{{username}}'s Timeline</h1>
+<div class="center">
+  <form id="new-post-form" action="/posts" method="post">
+    <label for="message">Message: </label>
+    <input id="message" type="text" name="message" value="">
+    <input type="submit" value="Submit">
+  </form>
+</div>
 <div class="posts"> <!Big box for all posts. Yellow box in miro>
   {{#each posts}}
   <div class="post"> <!Post box that contains everything for each post. Purple box in miro. Post CSS currently commented out.>
@@ -36,5 +43,3 @@
   </div>
   {{/each}}
 </div>
-
-<a class="new-post-link" href="/posts/new">New post</a>
