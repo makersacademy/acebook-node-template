@@ -14,7 +14,7 @@ describe("Timeline", () => {
     submitPost("Hello,world");
   
     // test to see the username displayed for both posts
-    cy.get(".posts>div.post>div.username").eq(0).should("contain", "Boris Johnson");
-    cy.get(".posts>div.post>div.username").eq(1).should("contain", "Jerry Smith");
+    cy.get(".posts>div.post").eq(0).should("contain", "Boris Johnson");
+    cy.get(".posts>div.post").eq(1).should("contain", "Jerry Smith");
   });
 });
