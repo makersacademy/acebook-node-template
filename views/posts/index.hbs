@@ -37,12 +37,28 @@
       <div class="w3-container w3-card post-bgc w3-round-xlarge w3-margin">
         <br>
         <img src="../images/cutie-pie.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
-        <h4>Cutie Pie</h4>
+        <h4>{{this.user_id.name}}</h4>
         <br>
         <hr class="w3-clear">
         <p>{{this.message}}</p>
         
-        <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#likes"><i class="fa fa-thumbs-up"></i> Like</div>
-        <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#comments"><i class="fa fa-comment"></i> Comment</div>      
+          <form class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  action="/likes" method="post">
+            <input type="hidden" name="post_id" value={{this._id}}>
+            <input class="like-button" type="submit" value="Like: {{this.likes.likes_array.length}}"><i class="fa fa-thumbs-up"></i>
+          </form>  
+
+          <form class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="new-comment-form" action="/comments" method="post">
+            <input id="comment" placeholder="comment" type="text" name="comment" value="">
+            <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
+            <i class="fa fa-comment"></i> <input type="submit" value="Comment">
+          </form>
+
+          <div class="comments">
+            {{#each this.comments}}
+              {{this.comment}}
+            {{/each}}
+          </div>
+        {{!-- <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#likes"><i class="fa fa-thumbs-up"></i> Like</div> --}}
+        {{!-- <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#comments"><i class="fa fa-comment"></i> Comment</div>       --}}
       </div>  
         {{/each}}
