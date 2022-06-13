@@ -23,7 +23,21 @@ const UsersController = {
 
   CreatePhoto: (req, res) => {
     console.log(JSON.stringify(req.file));
-    res.status(201).redirect("/users/new");
+    var fileName = req.file.filename;
+    User.find({_id: req.session.user._id }, (err, users) => {
+      if (err) {
+        throw err;
+      }
+      var user = users[0];
+      user["profilePhotoPath"] = `/uploads/${fileName}`;
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        req.session.user = user;
+        res.status(201).redirect("/posts")
+      })
+    })
   }
 };
 
