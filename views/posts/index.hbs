@@ -37,7 +37,7 @@
       
       <!-- Posts Overview -->
       {{#each posts}}
-      <div class="w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+      <div class="posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
         <br>
         <img src="../images/cutie-pie.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
         <h4>{{this.user_id.name}}</h4>
@@ -47,7 +47,7 @@
         <div class="comments-container">
             <form action="/likes" method="post">
               <input type="hidden" name="post_id" value={{this._id}}>
-              <input class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" type="submit" value="Like: {{this.likes.likes_array.length}}">
+              <input class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large like-button" type="submit" value="Like: {{this.likes.likes_array.length}}">
             </form>  
   {{!-- new div here --}}
 
