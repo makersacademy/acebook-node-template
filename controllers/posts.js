@@ -8,7 +8,8 @@ const PostsController = {
         throw err;
       }
       posts = posts.reverse();
-      res.render("posts/index", { posts: posts , username: req.session.user.username });
+      // added user_id below for likes implementation
+      res.render("posts/index", { posts: posts , username: req.session.user.username, user_id: req.session.user._id });
     });
   },
   New: (req, res) => {
@@ -45,6 +46,24 @@ const PostsController = {
   },
   NewComment: (req, res) => {
     res.render("posts/new_comment", {user_id: req.session.user._id, post_id: req.body.post_id})
+  },
+
+  AddLike: (req, res) => {
+    Post.find({_id: req.body.post_id}, (err, posts) => {
+      if (err) {
+        throw err;
+      }
+      var post = posts[0]
+      post.likes.push({user_id: req.session.user._id})
+      post.save((err) => {
+        if(err) {
+          throw err;
+        }
+
+        res.status(201).redirect("/posts")
+      })
+    })
+
   }
 };
 

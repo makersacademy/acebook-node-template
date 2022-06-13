@@ -1,4 +1,11 @@
 <h1 class="timeline_header">{{username}}'s Timeline</h1>
+<div class="center">
+  <form id="new-post-form" action="/posts" method="post">
+  <label for="message">Message: </label>
+  <input id="message" type="text" name="message" value="">
+  <input type="submit" value="Submit">
+  </form>
+</div>
 <div class="posts"> <!Big box for all posts. Yellow box in miro>
   {{#each posts}}
   <div class="post"> <!Post box that contains everything for each post. Purple box in miro. Post CSS currently commented out.>
@@ -8,8 +15,7 @@
       </div>
       <div class="message_container"><!Message container. That also contains the number of likes container. Light blue box in miro.>
         <div class="likes_container"><!Number of likes container. Pink box with little hand in miro.>
-          <meta charset="UTF-8">
-          <p style="display: flex; flex-direction: column; align-items: center;"><span> 👍 </span> </p>
+         Likes: {{this.likes.length}} |
         </div>
         <div class="post-message">
           {{this.message}}
@@ -17,6 +23,11 @@
         <!Put bottom border line in here.>
       </div>
       <div class="footer"><!Like and comment button container. Red box in miro.>
+          <form id="add-like-form" action="/posts/add_like" method="post">
+           <input id="user_id" type="hidden" name="user_email" value="{{user_id}}">
+           <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
+          <input id="add-like-button" type="submit" value="Like">
+          </form>
         <form action="/posts/new_comment" method="post" class="new-comment-link">
           <input type="hidden" name="post_id" value="{{this._id}}">
           </input>

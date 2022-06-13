@@ -70,6 +70,21 @@ describe("Post model", () => {
       })
     })
   })
+  it("can have a like saved onto it", (done) => {
+    var post = new Post({message: "some message", comments: [], likes: [{user_id: "1"}] });
 
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull()
+        expect(posts[0].message).toEqual("some message")
+        expect(posts[0].likes.length).toEqual(1)
+        expect(posts[0].likes[0].user_id).toEqual("1")
+
+        done()
+      })
+    })
+  })
 })
 
