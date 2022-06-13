@@ -1,6 +1,6 @@
-{{!-- {{#if messages.errors}}
-  <h1>{{}}</h1>
-{{/if}} --}}
+{{#if error}}
+  <h1>{{error}}</h1>
+{{/if}}
 
 <form id="new-user-form" action="/users" method="post">
   <label for="name">Name: </label>

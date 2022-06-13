@@ -2,25 +2,24 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    console.log(req.messages);
-    res.render("users/new", { messages: req.locals });
+    res.render("users/new", { error: req.flash("error") });
   },
 
   Create: (req, res) => {
-    try {
-      const user = new User(req.body);
-      user.save((err) => {
-        if (err) {
-          throw err;
-        }
+    const user = new User(req.body);
+
+    user
+      .save()
+
+      .then(() => {
         res.status(201).redirect("/sessions/new");
-      });
-    } catch (err) {
-      if (err.code === 11000) {
-        res.flash("errors", `${err.keyValue.email} is already in use`);
+      })
+
+      .catch((err) => {
+        if (err.code === 11000) req.flash("error", "Email already exists");
+
         res.redirect("/users/new");
-      }
-    }
+      });
   },
 };
 

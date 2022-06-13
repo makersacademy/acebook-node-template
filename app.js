@@ -14,8 +14,6 @@ const usersRouter = require("./routes/users");
 const commentsRouter = require("./routes/comments");
 const likesRouter = require("./routes/likes");
 
-
-
 const app = express();
 
 // view engine setup
