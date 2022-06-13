@@ -46,7 +46,7 @@ describe("User model", () => {
     expect(user.profile_picture).toBeNull();
   });
 
-  it("has a profile picture url", () => {
+  it("has a profile picture url", (done) => {
     const user = new User({
       name: "Kepa Arrizabalaga",
       email: "someone@example.com",
@@ -66,6 +66,7 @@ describe("User model", () => {
         User.findOne((err, user) => {
           expect(err).toBeNull();
           expect(user.profile_picture).toBe('www.picture.com')
+          done()
         });
       });
     }); 
