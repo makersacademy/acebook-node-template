@@ -61,33 +61,28 @@ describe("User model", () => {
         expect(users[0]).toMatchObject({
           name: "Kepa Arrizabalaga",
           email: "someone@example.com",
-          password: "password",
         });
         done();
       });
     });
   });
 
-  // it("bcrypt is used on the password for the user", (done) => {
-  //   const user = new User({
-  //     name: "Kepa Arrizabalaga",
-  //     email: "someone@example.com",
-  //     password: "password",
-  //   });
+  it("bcrypt is used on the password for the user", (done) => {
+    const user = new User({
+      name: "Kepa Arrizabalaga",
+      email: "someone@example.com",
+      password: "password",
+    });
 
-  //   user.save((err) => {
-  //     expect(err).toBeNull();
+    user.save((err) => {
+      expect(err).toBeNull();
 
-  //     User.find((err, users) => {
-  //       expect(err).toBeNull();
+      User.find((err, users) => {
+        expect(err).toBeNull();
 
-  //       expect(users[0]).toMatchObject({
-  //         name: "Kepa Arrizabalaga",
-  //         email: "someone@example.com",
-  //         password: "$2a$10$rT6ngdmS26utdW35aw/hbuKAl5AuT1w9HrDi1QX/L69/dbhO3AxA.",
-  //       });
-  //       done();
-  //     });
-  //   });
-  // })
+        expect(users[0].password).not.toEqual("password");
+        done();
+      });
+    });
+  })
 });
