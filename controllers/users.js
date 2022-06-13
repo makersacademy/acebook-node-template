@@ -6,13 +6,19 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/sessions/new");
-    });
+    // const user = new User(req.body);
+    // console.log("Emaaaaaaaaaail")
+    try {
+      const user = new User(req.body);
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/sessions/new");
+      });
+    } catch(err) {
+      console.log("Email must be unique")
+    }
   },
 };
 
