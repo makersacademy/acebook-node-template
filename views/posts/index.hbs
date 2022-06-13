@@ -30,13 +30,6 @@
                 <input id="message" type="text" name="message" value="" placeholder="What's on your mind?">
                 <input type="submit" value="Post" class="new-post-link w3-button w3-theme w3-round-large">
               </form>
-
-              {{!-- <form class="login-margin-top" id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
-  <input type="submit" value="Submit">
-</form> --}}
-
             </div>
           </div>
         </div>
@@ -56,7 +49,10 @@
             <input type="hidden" name="post_id" value={{this._id}}>
             <input class="like-button" type="submit" value="Like: {{this.likes.likes_array.length}}"><i class="fa fa-thumbs-up"></i>
           </form>  
+{{!-- new div here --}}
 
+      <button onclick="myFunction()">click to comment</button>
+        <div id="drop-down-comments">
           <form class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="new-comment-form" action="/comments" method="post">
             <input id="comment" placeholder="comment" type="text" name="comment" value="">
             <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
@@ -68,7 +64,22 @@
               {{this.comment}}
             {{/each}}
           </div>
+        </div>
+
+{{!-- end new div here --}}
+
         {{!-- <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#likes"><i class="fa fa-thumbs-up"></i> Like</div> --}}
         {{!-- <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#comments"><i class="fa fa-comment"></i> Comment</div>       --}}
       </div>  
         {{/each}}
+
+        <script>
+function myFunction() {
+  var x = document.getElementById("drop-down-comments");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
