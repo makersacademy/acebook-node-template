@@ -28,8 +28,6 @@ const PostsController = {
     });  
   },
   Create: (req, res) => {
-    console.log(req.body)
-    console.log(req.session.userID)
     const post = new Post({ 
       message: req.body.message,
       userID: req.session.userID,
@@ -47,7 +45,6 @@ const PostsController = {
     Post.findOneAndDelete(
       {_id: req.body.id},
       (err, result)=>{
-      console.log(req)
       console.log(err);
       console.log(result);
       res.status(201).redirect("/posts");
