@@ -1,6 +1,12 @@
 const User = require("../models/user");
 
 const UsersController = {
+
+  Index: (req, res) => {
+    console.log(req.session.userName);
+    res.render("users/profile", { userName: req.session.userName });
+  },
+
   New: (req, res) => {
     res.render("users/new", { newUser: true });
   },
