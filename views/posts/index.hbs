@@ -24,8 +24,18 @@
               
               <!-- New Post -->
               <h6 class="w3-opacity"></h6>
-              <p contenteditable="true" class="w3-border w3-padding">What's on your mind?</p>
-              <a class="new-post-link w3-button w3-theme w3-round-large"  href="/posts/new"><i class="fa fa-pencil"></i> New post</a>
+              {{!-- <p contenteditable="true" class="w3-border w3-padding"></p> --}}
+
+              <form class="login-margin-top" action="/posts" method="post" id="new-post-form">
+                <input id="message" type="text" name="message" value="" placeholder="What's on your mind?">
+                <input type="submit" value="Post" class="new-post-link w3-button w3-theme w3-round-large">
+              </form>
+
+              {{!-- <form class="login-margin-top" id="new-post-form" action="/posts" method="post">
+  <label for="message">Message: </label>
+  <input id="message" type="text" name="message" value="">
+  <input type="submit" value="Submit">
+</form> --}}
 
             </div>
           </div>
