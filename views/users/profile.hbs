@@ -7,6 +7,15 @@
   <title>Profile</title>
 </head>
 <body>
-  <h1 data-cy="greeting">{{userName}}</h1>
+  <h1 data-cy="greeting">{{userName}}</h1><br>
+  <div>
+    <ul class="post" data-cy="user-posts">
+      {{#each posts}}
+      <li>
+        {{this.message}}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
 </body>
 </html>
