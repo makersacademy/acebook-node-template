@@ -14,6 +14,15 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
+
+  NewPhoto: (req, res) => {
+    res.render("users/photo/new", {});
+  },
+
+  CreatePhoto: (req, res) => {
+    console.log(JSON.stringify(req.file));
+    res.status(201).redirect("/users/new");
+  }
 };
 
 module.exports = UsersController;
