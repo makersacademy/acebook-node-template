@@ -16,14 +16,11 @@ describe("Timeline", () => {
     cy.visit("/sessions/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#submit-signin").click();
 
     // submit a post
-    cy.visit("/posts");
-    cy.contains("New post").click();
-
-    cy.get("#new-post-form").find('[id="message"]').type("Hello, world!");
-    cy.get("#new-post-form").submit();
+    cy.get("#message").type("Hello, world!");
+    cy.get(".post-submit-button").click();
 
     cy.get(".posts").should("contain", "Hello, world!");
 
