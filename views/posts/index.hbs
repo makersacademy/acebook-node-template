@@ -51,11 +51,11 @@
             </form>  
   {{!-- new div here --}}
 
-        <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" onclick="myFunction()">click to comment</button>
+        <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="drop-down" onclick="myFunction()">click to comment</button>
 
           <div class="drop-down-comments" id="drop-down-comments" style="display:none">
             <form id="new-comment-form" action="/comments" method="post">
-              <input class="comments" id="comment" placeholder="comment" type="text" name="comment" value="">
+              <input class="comments-input" id="comment" placeholder="comment" type="text" name="comment" value="">
               <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
               <i class="fa fa-comment"></i> <input class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" type="submit" value="Comment">
             </form>
