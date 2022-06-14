@@ -27,9 +27,6 @@ const PostsController = {
       });
     });
   },
-  New: (req, res) => {
-    res.render("posts/new", { newUser: false });
-  },
   Update: (req, res) => {
     Post.findOneAndUpdate(
       {_id: req.body.id},
