@@ -1,8 +1,23 @@
 const User = require("../models/user");
+const Post = require("../models/post");
 const fs = require('fs');
 const path = require('path');
 
 const UsersController = {
+
+  Index: (req, res) => {
+    console.log(req.session.userName);
+    Post.find({userID: req.session.userID})
+    .sort({'date': -1})
+    .limit(10)
+    .exec((err, posts) => {
+      if (err) {
+        throw err;
+      }
+      res.render("users/profile", { userName: req.session.userName, posts: posts});
+    });
+  },
+
   New: (req, res) => {
     res.render("users/new", { newUser: true });
   },
