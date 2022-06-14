@@ -27,6 +27,7 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },  
+
   Like: (req, res) => {
     Post.findOne({_id: req.body.id},
       (err, result)=>{
@@ -52,12 +53,12 @@ const PostsController = {
                 (err, result)=>{
                   console.log(err);
                   console.log(result);
-            
+                  
               }
             )}  
+            res.status(201).redirect("/posts");
           })
         
-      res.status(201).redirect("/posts");
   },
 
   Create: (req, res) => {
