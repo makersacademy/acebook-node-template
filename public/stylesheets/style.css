@@ -271,6 +271,7 @@ body { background: linear-gradient(#09111f, #062d3b);}
 .flex-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -308,6 +309,64 @@ body { background: linear-gradient(#09111f, #062d3b);}
 
 /* -----------------Profile--------------------------------------------------- */
 
+.grey-div {
+  background: linear-gradient(#ffffff, #ffffffac);
+  padding: 1em;
+  border-radius: 16px;
+}
+
+/* * {
+  border: 1px red solid;
+} */
+
 .profile {
-  margin-top: 60px !important;
+  text-align: center;
+}
+
+.main-title {
+  padding-top: 4em;
+}
+
+#profile-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 20px;
+}
+
+.friends {
+  max-width: 500px;
+  gap: 10px;
+  text-align: center;
+}
+
+.friend {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  font-size: 15px;
+  border: none;
+  display: inline-block;
+  padding: 10px 16px;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #fff;
+  background-color: #607d8b;
+  width: 30%;
+  border-radius: 8px;
+  margin: 0 10px;
+}
+
+input.button {
+  padding: 12.5px;
 }
