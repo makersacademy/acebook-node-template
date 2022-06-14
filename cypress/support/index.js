@@ -34,6 +34,7 @@ require("./commands");
 //     done();
 //   });
 // });
+require("./commands");
 
 beforeEach(() => {
   cy.exec("mongo acebook_test --eval 'db.users.remove({})'");

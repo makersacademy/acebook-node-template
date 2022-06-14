@@ -1,0 +1,15 @@
+<h1>Profile</h1>
+<h2>Hi {{user.name}}!</h2>
+
+{{#if user.profile_picture}}
+  <img id="profile-photo" src={{user.profile_picture}} width="100" height="100" />
+        {{!-- size can be removed when css is done --}}
+{{else}}
+  <img id="profile-photo" src="/images/cutie-pie.jpeg" width="100" height="100"/>
+{{/if}}
+
+<form id="upload-profile-photo-form" action="/profile" method="post" enctype="multipart/form-data">
+  <label for="file">Upload your profile picture here</label>
+  <input type="file" name="image" accept="image/*" > 
+  <input type="submit" name="upload" value="Upload" >
+</form>
