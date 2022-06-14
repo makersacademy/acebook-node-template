@@ -20,16 +20,16 @@
           <div class="form_box">
             <div class="sign_up_font_size"> Sign up </div><br>
             <div class="sign_up_box_padding">
-              <input class="input_box" id="username" type="username" name="username" value="" placeholder="User Name">
+              <input class="input_box" id="SignUpUsername" type="username" name="username" value="" placeholder="User Name">
             </div>
             <div class="sign_up_box_padding">
-              <input class="input_box" id="email" type="email" name="email" value="" placeholder="email@example.com">
+              <input class="input_box" id="SignUpEmail" type="email" name="email" value="" placeholder="email@example.com">
             </div>
             <div class="sign_up_box_padding">
-              <input class="input_box" id="password" type="password" name="password" value="" placeholder="password">
+              <input class="input_box" id="SignUpPassword" type="password" name="password" value="" placeholder="password">
             </div>
             <div class="sign_up_box_padding">
-              <input class="input_box" id="submit" type="submit" value="Submit">
+              <input class="input_box" id="SignUpSubmit" type="submit" value="Submit">
             </div>
           </div>
           <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -41,13 +41,13 @@
         <div class="sign_up_font_size"> Log in </div>
         <form id="new-session-form" action="/sessions" method="post">
           <div class="sign_up_box_padding">
-            <input class="input_box" id="email" type="email" name="email" value="" placeholder="email@example.com">
+            <input class="input_box" id="LogInEmail" type="email" name="email" value="" placeholder="email@example.com">
           </div>
           <div class="sign_up_box_padding">
-            <input class="input_box" id="password" type="password" name="password" value="" placeholder="password">
+            <input class="input_box" id="LogInPassword" type="password" name="password" value="" placeholder="password">
           </div>
           <div class="sign_up_box_padding">
-            <input class="input_box" id="submit" type="submit" value="Submit">
+            <input class="input_box" id="LogInSubmit" type="submit" value="Submit">
           </div>
         </form>
           <div class="sign-up-button">
@@ -56,30 +56,5 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="javascripts/formHandler.js"></script>
 </body>
-
-<script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-  document.getElementById("WelcomePage").style.opacity = "0.2";
-  document.getElementById("LogIn").style.opacity = "0.2";
-  document.getElementById("body").style.background = "gray";
-  document.getElementById("HeaderBox").style.background = "gray";
-  document.getElementById("WelcomePage").style.background = "gray";
-  document.getElementById("LogIn").style.background = "gray";
-  document.getElementById("SignUpBox").style.background = "gray";
-  document.getElementById("new-user-form").style.background = "gray";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-  document.getElementById("WelcomePage").style.opacity = "1";
-  document.getElementById("LogIn").style.opacity = "1";
-  document.getElementById("body").style.background = "white";
-  document.getElementById("HeaderBox").style.background = "white";
-  document.getElementById("WelcomePage").style.background = "white";
-  document.getElementById("LogIn").style.background = "white";
-  document.getElementById("SignUpBox").style.background = "white";
-  document.getElementById("new-user-form").style.background = "white";
-}
-</script>

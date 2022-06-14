@@ -177,7 +177,11 @@ body {
   flex-direction: column;
 }
 
-.item1 { grid-area: header; }
+.item1 { 
+  grid-area: header;
+  justify-content: center;
+  align-content: center;
+}
 .item3 { grid-area: main; }
 .item2 { 
   justify-content: center;
@@ -230,7 +234,7 @@ body {
 /* The popup form - hidden by default */
 .form-popup {
   margin: auto;
-  width: 50%;
+  width: 58%;
   padding: 10px;
 
 }
@@ -271,7 +275,7 @@ body {
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+  background-color: #F08700;
 }
 
 /* Add some hover effects to buttons */
