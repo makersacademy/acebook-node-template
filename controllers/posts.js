@@ -28,22 +28,38 @@ const PostsController = {
     });
   },  
   Like: (req, res) => {
-    Post.findOneAndUpdate(
-      {_id: req.body.id},
-      {$pull:
-        {likes: req.session.userID}
-      })
-      ,
-      {$push:
-        {likes: req.session.userID}
-      },
+    Post.findOne({_id: req.body.id},
       (err, result)=>{
-      console.log(err);
-      console.log(result);
+        console.log(err);
+        console.log(result.likes)
+        console.log(req.session.userID)
+        if(result.likes.includes(req.session.userID)) {
+          Post.findOneAndUpdate(
+            {_id: req.body.id},
+            {$pull:
+              {likes: req.session.userID}
+            },
+            (err, result)=>{
+              console.log(err);
+              console.log(result);
+            });
+            } else {
+              Post.findOneAndUpdate(
+                {_id: req.body.id},
+                {$push:
+                  {likes: req.session.userID}
+                },
+                (err, result)=>{
+                  console.log(err);
+                  console.log(result);
+            
+              }
+            )}  
+          })
+        
       res.status(201).redirect("/posts");
-
-      });
   },
+
   Create: (req, res) => {
     console.log(req.body)
     console.log(req.session.userID)
