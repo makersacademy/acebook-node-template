@@ -96,10 +96,28 @@ describe("User model", () => {
         expect(users[0]).toMatchObject({
           name: "Kepa Arrizabalaga",
           email: "someone@example.com",
-          password: "password",
         });
         done();
       });
     });
   });
+
+  it("bcrypt is used on the password for the user", (done) => {
+    const user = new User({
+      name: "Kepa Arrizabalaga",
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    user.save((err) => {
+      expect(err).toBeNull();
+
+      User.find((err, users) => {
+        expect(err).toBeNull();
+
+        expect(users[0].password).not.toEqual("password");
+        done();
+      });
+    });
+  })
 });
