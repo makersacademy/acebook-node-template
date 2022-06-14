@@ -12,9 +12,9 @@
   flex-direction: row;
   height: 100vh;
   width: 100vw;
-  padding-top: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
+  /* padding-top: 0vh; */
+  /* margin-left: 0px;
+  margin-right: 0px; */
 
 }
 
@@ -24,40 +24,57 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: blue;
+  /* background-color: blue; */
   /* margin-top: 0px; */
-  padding-left: 0;
 }
 
 .title-and-signup-box {
-  background-color: grey;
+  /* background-color: pink; */
+  padding-top: 5vw;
   width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-and-login-box {
+  /* background-color: pink; */
+  padding-top: 5vw;
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .signup-boxes-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 35%;
   /* justify-content: center; */
   background-color: pink;
   padding-left: 10px;
   padding-bottom: 10px;
   padding-right: 10px;
   padding-top: 10px;
-  
-
-  
 }
 
-.login-signup-box {
-  /* text-align: center; */
+.login-boxes-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  /* width: 30vw; */
-  min-height: 40px;
-  margin: 40px;
-  padding: 20px;
+  min-width: 30%;
+  /* justify-content: center; */
+  background-color: pink;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
 }
+
 
 .form-element {
   padding: 10px;
@@ -71,9 +88,44 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-left: 45px;
-  padding-top: 10px;
+  /* padding-left: 45px; */
+  padding-top: 12px;
 }
+
+.signup-box {
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 30vw; */
+  /* min-height: 40px; */
+  /* margin: 40px;
+  padding: 20px; */
+}
+
+.login-box {
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 30vw; */
+  /* min-height: 40px; */
+  /* margin: 40px;
+  padding: 20px; */
+}
+
+.login-button-form-element {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-top: 12px;
+  /* justify-content: center; */
+}
+
+.login-button {
+  margin: 5px;
+}
+* {box-sizing: border-box;}
 
 .signup-div {
   display: flex;
@@ -89,7 +141,10 @@
 .signup-button {
   margin: 5px;
 }
-* {box-sizing: border-box;}
+
+.empty-div {
+  margin-top: 10%;
+}
 
 /* Overall Background Colour */
 .background {
