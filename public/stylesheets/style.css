@@ -163,16 +163,16 @@ body {
   padding: 5px;
 }
 
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 15px;
-}
-
 .comment_container {
   border-bottom: 1px solid lightslategray;
   padding: 5px;
   display: flex;
   flex-direction: column;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-top: 15px;
 }

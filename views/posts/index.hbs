@@ -16,14 +16,6 @@
         </div>
         <!Put bottom border line in here.>
       </div>
-      <div class="footer"><!Like and comment button container. Red box in miro.>
-        <form  id="new-comment-form" action="posts/create_comment" method="post">
-          <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
-          <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
-          <input id="message" type="text" name="message" value="">
-          <input type="submit" value="Add comment">
-        </form>
-      </div>
       {{#each this.comments}}
       <div class="comment_container"><!Comment container. Black box in miro.>
         <div class="comment">
@@ -32,6 +24,14 @@
         <!Put bottom border line in here.>
       </div>
       {{/each}}
+      <div class="footer"><!Like and comment button container. Red box in miro.>
+        <form  id="new-comment-form" action="posts/create_comment" method="post">
+          <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
+          <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
+          <input id="message" type="text" name="message" value="" placeholder="Write a comment...">
+          <input type="submit" value="Add comment">
+        </form>
+      </div>
     </div>
 
   </div>
