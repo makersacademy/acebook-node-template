@@ -18,12 +18,12 @@
 						<br>
 						<span class="frm-spn1">It's free and always will be</span>
 					
-						<form id="new-user-form" action="/users" method="post">
+						<form id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
 							
 							<input class="frm-textbox" id="userName" type="userName" name="userName" value="" placeholder="Your name" required>
 							<input class="frm-textbox" id="email" type="email" name="email" value="" placeholder="Email address" required>
 							<input  class="frm-textbox" id="password" type="password" name="password" value="" placeholder="Your password" required>
-							<input class="img-input" type='file' /><img id="myImg">
+							<input class="img-input" type='file' name="photo" /><img id="myImg">
 
 							<div class="form-div">
 								<p class="policy">By clicking Sign Up, you agree to our <a href="https://www.mongodb.com/">Terms, Data Policy</a> and <a href="https://www.milliescookies.com/">Cookie Policy</a>. You may receive Email notifications from us and can opt out at any time.</p>

@@ -1,5 +1,7 @@
 const User = require("../models/user");
 const Post = require("../models/post");
+const fs = require('fs');
+const path = require('path');
 
 const UsersController = {
 
@@ -21,7 +23,12 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
+    const photo = {
+      data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
+      contentType: req.file.mimetype,
+    };
+
+    const user = new User({ ...req.body, photo });
     user.save((err) => {
       if (err) {
         throw err;
@@ -31,6 +38,7 @@ const UsersController = {
       req.session.userName = user.userName;
       res.status(201).redirect("/posts");
     });
+    console.log(req.file)
   },
 };
 
