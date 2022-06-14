@@ -1,5 +1,5 @@
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+  it("can submit posts, when signed in, and view them (with default profile picture)", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -20,6 +20,8 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+    cy.get("#timeline-profile-photo").should('have.attr', 'src')
+      .should('include', "/images/cutie-pie.jpeg");
   });
 
   it("can submit posts, when signed in, and view them in reverse order", () => {

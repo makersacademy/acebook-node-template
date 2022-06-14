@@ -1,4 +1,6 @@
+
 <body class="background"></body>
+
 
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
@@ -39,8 +41,16 @@
       {{#each posts}}
       <div class="posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
         <br>
-        <img src="../images/cutie-pie.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
+        <div class="profile-pic">
+          {{#if this.user_id.profile_picture}}
+            <img alt="Avatar" id="timeline-profile-photo" class="w3-left w3-circle w3-margin-right" style="width:80px" src={{this.user_id.profile_picture}}> 
+          {{else}}
+            <img alt="Avatar" id="timeline-profile-photo" class="w3-left w3-circle w3-margin-right" style="width:80px" src="/images/cutie-pie.jpeg">
+          {{/if}}
+        </div>
         <h4>{{this.user_id.name}}</h4>
+        
+            
         <br>
         <hr class="w3-clear">
         <p>{{this.message}}</p>
@@ -51,9 +61,9 @@
             </form>  
   {{!-- new div here --}}
 
-        <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="drop-down" onclick="myFunction()">click to comment</button>
+        <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="drop-down">Comment</button>
 
-          <div class="drop-down-comments" id="drop-down-comments" style="display:none">
+          <div class="drop-down-comments" id="drop-down-comments">
             <form id="new-comment-form" action="/comments" method="post">
               <input class="comments-input" id="comment" placeholder="comment" type="text" name="comment" value="">
               <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
@@ -70,19 +80,5 @@
         
 
 {{!-- end new div here --}}
-
-        {{!-- <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#likes"><i class="fa fa-thumbs-up"></i> Like</div> --}}
-        {{!-- <div class="new-post-link w3-button w3-theme w3-margin-bottom w3-round-large"  href="#comments"><i class="fa fa-comment"></i> Comment</div>       --}}
       </div>  
         {{/each}}
-
-        <script>
-function myFunction() {
-  var x = document.getElementById("drop-down-comments");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
