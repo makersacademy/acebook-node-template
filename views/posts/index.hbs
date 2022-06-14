@@ -54,25 +54,33 @@
         <br>
         <hr class="w3-clear">
         <p>{{this.message}}</p>
-        <div class="comments-container">
+
+        <div class="likes-comments-container">
             <form action="/likes" method="post">
               <input type="hidden" name="post_id" value={{this._id}}>
               <input class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large like-button" type="submit" value="Like: {{this.likes.likes_array.length}}">
             </form>  
   {{!-- new div here --}}
 
-        <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="drop-down">Comment</button>
+        {{!-- <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="drop-down">Comment</button> --}}
 
-          <div class="drop-down-comments" id="drop-down-comments">
-            <form id="new-comment-form" action="/comments" method="post">
-              <input class="comments-input" id="comment" placeholder="comment" type="text" name="comment" value="">
-              <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
-              <i class="fa fa-comment"></i> <input class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" type="submit" value="Comment">
-            </form>
+          <div class="comments-section-container" id="comments-container">
+            <div class="comment-form-container">
+              <form id="new-comment-form" action="/comments" method="post">
+                <input class="comments-input" id="comment-input" placeholder="comment" type="text" name="comment" value="">
+                <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
+                <input id="comment-button" class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" type="submit" value="Comment">
+              </form>
+            </div>
 
-            <div class="comments">
+            <div class="comments-container">
               {{#each this.comments}}
-                {{this.comment}}
+                <div class="comment-container">
+                  <div class="comment-pic">
+                    <img src={{this.user_id.profile_picture}}></div>
+                  <div class="comment-author">{{this.user_id.name}}</div>
+                  <div class="comment-text">{{this.comment}}</div>
+                </div>
               {{/each}}
             </div>
           </div>

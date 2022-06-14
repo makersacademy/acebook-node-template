@@ -224,6 +224,40 @@ hr {
   border-radius:50%
 }
 
+/* -----------------Comments box--------------------------------------------------- */
+
+/* Likes & Comments Container */
+.likes-comments-container {
+  width: 100%;
+  border: solid 1px red;
+}
+
+/* Comments & Form Container */
+.comments-section-container {
+  width: 90%;
+  margin: auto;
+  border: solid 1px red;
+}
+
+#comment-input {
+  width: 80%;
+}
+
+#comment-button {
+  margin-left: 0;
+}
+
+/* Comments Container */
+.comments-container {
+  display: block;
+}
+
+.comment-container {
+  width: 100%;
+  background-color: white;
+  border: solid 1px blue; 
+}
+
 /* Comment Box Sizing */
 .w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-threequarter,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col {
   padding:0 8px
