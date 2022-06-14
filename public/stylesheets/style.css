@@ -127,8 +127,7 @@ h1,h2,h3,h4,h5,h6{
 /* NavBar Size and Position */
 .w3-bar .w3-bar-item {
   padding:8px 22px;
-  margin-left:12px;
-  margin-right:12px;
+  margin: 10px;
   float:left;
   width:auto;
   border:none;
@@ -263,4 +262,52 @@ hr {
 /* Comment Box Internal Aligning */
 .w3-left {
   float:left!important
+}
+
+/* -----------------Homepage--------------------------------------------------- */
+
+body { background: linear-gradient(#09111f, #062d3b);}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  margin-top: 180px;
+  color: #062d3b;
+  font-size: 100px;
+}
+
+.homepage-buttons {
+  color:rgb(255, 255, 255)!important;
+  background: -webkit-linear-gradient(-45deg, #50d7d0bc, #023d8ab6);
+  font-size: 25px;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 0px;
+  text-align: center;
+  width: 35%;
+  border-radius: 10px;
+  margin: 80px 20px;
+}
+
+.homepage-buttons:hover {
+  background: -webkit-linear-gradient(-45deg, #023d8ab6, #50d7d0bc );
+}
+
+.whole-page {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+/* -----------------Profile--------------------------------------------------- */
+
+.profile {
+  margin-top: 60px !important;
 }
