@@ -15,6 +15,10 @@ elements.forEach((element) => {
     }
     fetch('http://localhost:3000/posts/add_like', options).then((data) => console.log(data))
     like_button = element.querySelector(".add-like-button")
-    like_button.value = "Liked"
+    if(like_button.value === "Like") {
+      like_button.value = "Unlike"
+    } else if (like_button.value === "Unlike") {
+      like_button.value = "Like"
+    }
   })
 })

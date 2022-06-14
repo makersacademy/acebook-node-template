@@ -5,7 +5,7 @@ const PostSchema = new mongoose.Schema({
   comments: [{ user_id: String, message: String }],
   user_id: String,
   username: String,
-  likes: [{user_id: String}]
+  likes: Array
 });
 
 const Post = mongoose.model("Post", PostSchema);

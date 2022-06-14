@@ -49,21 +49,38 @@ const PostsController = {
   },
 
   AddLike: (req, res) => {
-    Post.find({_id: req.body.post_id}, (err, posts) => {
+    Post.findOne({_id: req.body.post_id}, (err, posts) => {
       if (err) {
         throw err;
       }
-      var post = posts[0]
-      post.likes.push({user_id: req.session.user._id})
-      post.save((err) => {
-        if(err) {
-          throw err;
-        }
-
-        res.status(201).redirect("/posts")
-      })
+      if(posts.likes.includes(req.session.user._id)) {
+        Post.findOneAndUpdate(
+          {_id: req.body.post_id},
+          {$pull:
+            {likes: req.session.user._id}
+          },
+          (err, result)=>{
+            console.log(err)
+            console.log(result)
+          });
+      } else {
+        Post.findOneAndUpdate(
+          {_id: req.body.post_id},
+          {$push:
+            {likes: req.session.user._id}
+          },
+          (err, result) => {
+            console.log(err);
+            console.log(result)
+          }
+        )}
+    }).exec((err, placeholder) => {
+      if(err) {
+        throw err;
+      }
+      res.status(201).redirect("/posts")
     })
-
+    
   }
 };
 
