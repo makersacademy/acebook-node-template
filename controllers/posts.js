@@ -9,18 +9,16 @@ const PostsController = {
         throw err;
       }
       posts = posts.reverse();
-      var post = posts[0];
-      User.findOne({ _id: post.user_id }).then((user) => {
-        post["profilePhotoPath"] = user.profilePhotoPath;
-        posts = [post];
-        console.log(posts);
-        return(posts);
-      }).then((posts) => {
+      Promise.all(posts.map((post) => {
+        User.findOne({ _id: post.user_id }).then((user) => {
+          post["profilePhotoPath"] = user.profilePhotoPath;
+      })})).then(() => {
         console.log(posts);
         res.render("posts/index", { posts: posts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath })
       });
     });
   },
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
