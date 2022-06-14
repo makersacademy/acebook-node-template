@@ -43,9 +43,6 @@ const PostsController = {
       })
     })
   },
-  NewComment: (req, res) => {
-    res.render("posts/new_comment", {user_id: req.session.user._id, post_id: req.body.post_id})
-  }
 };
 
 module.exports = PostsController;
