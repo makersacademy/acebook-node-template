@@ -13,7 +13,6 @@ const PostsController = {
         User.findOne({ _id: post.user_id }).then((user) => {
           post["profilePhotoPath"] = user.profilePhotoPath;
       })})).then(() => {
-        console.log(posts);
         res.render("posts/index", { posts: posts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath })
       });
     });
