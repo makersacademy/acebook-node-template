@@ -22,11 +22,11 @@
         </div>
         <!Put bottom border line in here.>
       </div>
-      <div class="footer"><!Like and comment button container. Red box in miro.>
-          <form id="add-like-form" action="/posts/add_like" method="post">
+      <div  class="footer"><!Like and comment button container. Red box in miro.>
+          <form id="{{this._id}}" data-user-id="{{user_id}}" action="/posts/add_like" method="post" class="like-form">
            <input id="user_id" type="hidden" name="user_email" value="{{user_id}}">
            <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
-          <input id="add-like-button" type="submit" value="Like">
+           <input class="add-like-button" id="add-like-button" type="submit" value="Like">
           </form>
         <form action="/posts/new_comment" method="post" class="new-comment-link">
           <input type="hidden" name="post_id" value="{{this._id}}">
@@ -46,6 +46,9 @@
 
   </div>
   {{/each}}
+    <div id="example">
+          Hello
+    </div>
 </div>
+  <script type="text/javascript" src="javascripts/likes_dom.js"></script>
 
-<a class="new-post-link" href="/posts/new">New post</a>
