@@ -6,6 +6,12 @@
   flex-direction: row;
 }
 
+.whole-page {
+  height: 100vh;
+  width: 100vw;
+
+}
+
 .comments-buttons {
   margin: 5px;
 }
