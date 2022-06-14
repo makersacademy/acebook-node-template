@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const flash = require("express-flash");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -30,6 +31,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public/images")));
 app.use(methodOverride("_method"));
+
+// Error flash module
+app.use(flash());
 
 app.use(
   session({

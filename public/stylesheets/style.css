@@ -1,78 +1,266 @@
+/* -----------------GENERAL--------------------------------------------------- */
+
+/* General Setting */
+.comments-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.comments-buttons {
+  margin: 5px;
+}
 * {box-sizing: border-box;}
 
-body { 
-  margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Overall Background Colour */
+.background {
+  background: linear-gradient(#09111f, #062d3b);
 }
 
-p {
-  text-align: center;
-  color: #455A64
+/* Overall Page Margins */
+html {
+  -ms-text-size-adjust:100%;
+  -webkit-text-size-adjust:100%
+}
+body {
+  margin:0
 }
 
+.drop-down-comments {
+  display: block;
+}
+
+.comments {
+  border-style: 2px solid;
+  border-color: rgb(24, 93, 136);
+  background-color: rgba(255, 255, 255, 0.814);
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.comments-input {
+  border-style: 2px solid;
+  border-color: rgb(24, 93, 136);
+  background-color: rgba(255, 255, 255, 0.814);
+  border-radius: 6px;
+  padding: 5px;
+}
+
+/* NavBar */
+.w3-top,.w3-bottom {
+  position:fixed;
+  width:100%;
+  z-index:1
+}
+
+/* Font Stuff */
+html,body {
+  font-family:Verdana,sans-serif;
+  font-size:15px;
+  line-height:1.5
+}
+html {
+  overflow-x:hidden
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family:"Segoe UI",Arial,sans-serif;
+  font-weight:400;
+  margin:10px 0
+}
+
+/* rounded corners */
+.w3-round-small {
+  border-radius:2px
+}
+.w3-round,.w3-round-medium {
+  border-radius:4px
+}
+.w3-round-large {
+  border-radius:8px
+}
+.w3-round-xlarge {
+  border-radius:16px
+}
+.w3-round-xxlarge {
+  border-radius:32px
+}
+
+/* NavBar Text Align Right */
+.w3-right {
+  float:right!important;
+  /* position: absolute; */
+  /* top: 50%; */
+ 
+  transform: translateY(25%);
+}
+
+/* NavBar Size */
+.border {
+  padding-right: 15px;
+  right: -5%;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+/* Button Colours */
+.w3-theme {
+  color:#fff !important; 
+  background-color:#607d8b !important
+}
+
+.login-margin-top {
+  margin-top:50px!important
+}
+
+/* -----------------NAV BAR--------------------------------------------------- */
+
+/* NavBar Colour */
+.w3-theme-d2 {
+  color:rgb(255, 255, 255) !important; 
+  /* color:rgb(42, 132, 144) !important;  */
+  /* background-color:#09111f !important; */
+  background: -webkit-linear-gradient(#09111f, #09111feb)
+  /* background: linear-gradient(#fffffff7, #3dafafd4) */
+  /* border-bottom: 0.2px solid rgb(191, 191, 191); */
+}
+
+/* NavBar Size and Position */
+.w3-bar .w3-bar-item {
+  padding:8px 22px;
+  margin-left:12px;
+  margin-right:12px;
+  float:left;
+  width:auto;
+  border:none;
+  display:block;
+  outline:0
+}
+
+.w3-bar .w3-dropdown-hover,.w3-bar .w3-dropdown-click {
+  position:static;
+  float:left
+}
+
+.w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before,
+.w3-cell-row:before,.w3-cell-row:after,.w3-clear:after,.w3-clear:before,.w3-bar:before,.w3-bar:after { 
+  content:"";
+  display:table;
+  clear:both
+}
+
+/* NavBar Padding */
+.w3-padding-large {
+  padding:12px 24px!important;
+}
+
+
+.w3-button:hover{
+  color:rgb(255, 255, 255)!important;
+  background: -webkit-linear-gradient(-45deg, #50d7d0bc, #023d8ab6)
+  /* background: -webkit-linear-gradient(-45deg, #50d7d0, #023e8a) */
+}
+
+/* -----------------TIMELINE--------------------------------------------------- */
+
+/* -----------------NAV BAR--------------------------------------------------- */
+/* TimeLine Headline Gradient */
 h1 {
-  text-align: center;
-  color: #455A64;
+  font-size: 72px;
+  background: -webkit-linear-gradient(-45deg, #ffffff, #50d7d0, #023e8a, #023e8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.header {
-  overflow: hidden;
-  background-color: #D9D9D9;
-  padding: 20px 10px;
+/* Timeline Centered */
+.w3-col,.w3-half,.w3-third,.w3-twothird,.w3-threequarter,.w3-quarter {
+  float:left;
+  width:100%
 }
 
-.header a {
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 12px;
-  margin: 5px;
-  text-decoration: none;
-  font-size: 18px; 
-  line-height: 25px;
-  border-radius: 4px;
-}
-
-.header a.logo {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.header a:hover {
-  background-color: #455A64;
-  color: white;
-}
-
-.header a.active {
-  background-color: #455A64;
-  color: white;
-}
-
-.header-right {
-  float: right;
-}
-
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
+@media (min-width:601px) {
+  .w3-col.m3,.w3-quarter {
+    width:24.99999%
   }
-  
-  .header-right {
-    float: none;
-  }
+.w3-col.m7 {
+  width:58.33333% 
+}
+/* Throughout */
+.w3-col.l12 {
+  width:99.99999%
+}
 }
 
-.buttons {
-  text-align: center;
+/* Comment Box Spacing */
+/* Comment Box Line */
+hr {
+  border:0;
+  /* border-top:1px solid #607d8b; */
+  margin:20px 0
 }
 
-.buttons :hover{
-  background-color: #80D8FF;
-  color: black;
+/* Posts Background Colour */
+.post-bgc {
+  background: linear-gradient(#ffffff, #ffffffac);
+  /* background: linear-gradient(#ffffff, #ffffffac); */
 }
 
-button {
-  padding: 15px 32px;
+/* New Post Button */
+.w3-btn,.w3-button{
+  border:none;
+  display:inline-block;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap
+}
+
+/* post profile pic */
+.w3-circle {
+  border-radius:50%
+}
+
+/* Comment Box Sizing */
+.w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-threequarter,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col {
+  padding:0 8px
+}
+
+/* Comment Box Text Padding */
+.w3-container,.w3-panel {
+  padding:0.01em 16px 
+}
+
+/* New Post Text Field Outline */
+.w3-border {
+  border:1px solid #ccc!important
+}
+
+/* Comment Box Margins */
+.w3-margin {
+  margin:16px!important
+}
+.w3-margin-top {
+  margin-top:16px!important
+}
+.w3-margin-bottom {
+  margin-bottom:16px!important
+}
+
+/* User Name in Comment Box */
+.w3-margin-right {
+  margin-right:16px!important
+}
+
+/* Boxes Padding */
+.w3-padding {
+  padding:8px 16px!important
+}
+
+/* Comment Box Internal Aligning */
+.w3-left {
+  float:left!important
 }
