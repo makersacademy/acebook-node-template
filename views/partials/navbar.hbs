@@ -1,12 +1,25 @@
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 nav-bgc w3-left-align w3-medium border">
+  <img class="logo w3-bar-item" src="../images/acebook_logo.png" height="60" width="60" >
+  <div class="w3-dropdown-hover w3-hide-small">
+  </div>
+
+  <form action='/sessions?_method=DELETE' method='POST'>
+    <input class="active w3-bar-item w3-button w3-hide-small w3-right w3-padding-medium w3-hover-white w3-round-xxlarge" type="submit" value="Log Out">
+  </form>
+  {{!-- <a href="#profile" class="active w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white w3-round-xxlarge" title="Account Settings">Profile</a> --}}
+  <form action='/profile' method='POST'>
+    <input class="active w3-bar-item w3-button w3-hide-small w3-right w3-padding-medium w3-hover-white w3-round-xxlarge" type="submit" value="Profile">
+  </form>
+  <form action='/posts' method='POST'>
+    <input class="active w3-bar-item w3-button w3-hide-small w3-right w3-padding-medium w3-hover-white w3-round-xxlarge" type="submit" value="Home">
+  </form>
+ </div>
+</div>
+ 
 <div class="header">
-  <img class="logo" src="../images/logo.png" height="80" width="80" >
+  <img class="logo" src="" height="40" width="40" >
   <div class="header-right">
-    <a class="active" href="#home">Home</a>
-    <a href="#profile">Profile</a>
-    <a href="#log-out">Log out</a>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
   </div>
 </div>
-

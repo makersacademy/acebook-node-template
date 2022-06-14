@@ -19,7 +19,6 @@
     "cloudinary": "^1.30.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "dotenv": "^16.0.1",
     "express": "~4.16.1",
     "express-session": "^1.17.2",
     "hbs": "^4.1.0",
@@ -40,7 +39,8 @@
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "dotenv": "^16.0.1"
   },
   "nodemonConfig": {
     "ext": "js,hbs"
