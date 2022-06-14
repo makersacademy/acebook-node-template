@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+  
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
   <header class="header">
     <h1 class="logo"><a>Makebook</a></h1>
 
@@ -22,14 +28,12 @@
 
 	</header> 
   
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+
   <body>
     {{!-- <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
     </form> --}}
     {{{body}}}
   </body>
+
 </html>

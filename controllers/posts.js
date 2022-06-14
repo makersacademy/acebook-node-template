@@ -31,32 +31,33 @@ const PostsController = {
   Like: (req, res) => {
     Post.findOne({_id: req.body.id},
       (err, result)=>{
-        console.log(err);
-        console.log(result.likes)
-        console.log(req.session.userID)
         if(result.likes.includes(req.session.userID)) {
           Post.findOneAndUpdate(
             {_id: req.body.id},
             {$pull:
               {likes: req.session.userID}
+            }, {
+              new: true // <- setting the new option to true to return the document after update was applied
             },
             (err, result)=>{
               console.log(err);
               console.log(result);
+              res.send(result);
             });
             } else {
               Post.findOneAndUpdate(
                 {_id: req.body.id},
                 {$push:
                   {likes: req.session.userID}
+                }, {
+                  new: true
                 },
                 (err, result)=>{
                   console.log(err);
                   console.log(result);
-                  
+                  res.send(result);
               }
-            )}  
-            res.status(201).redirect("/posts");
+            )} 
           })
         
   },

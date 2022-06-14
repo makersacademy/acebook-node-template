@@ -1,10 +1,13 @@
 <main id="posts-main">
+
   <h1 class="timeline-text">Timeline</h1>
+
   <form id="new-post-form" action="/posts" method="post">
     <label class="input-post" for="message"></label>
     <input id="message" type="text" name="message" placeholder="Talk To The Constable" required><br>
     <input class="post-submit-button" type="submit" value="Submit">
   </form><br>
+
   <ul class="posts">
     {{#each posts}}
     <li class="frm-textbox-yellow">
@@ -17,11 +20,11 @@
         <input type="hidden" name="id" value="{{this.id}}">
         <input class="post-delete-button" type="submit" value="Delete">
       </form>
-      <form id="like-form" action="/posts/like" method="post">
-        <input type="hidden" name="id" value="{{this.id}}">
-        <div class="like-count">{{this.likes.length}}</div>
-        <input class="like-button" type="submit" value="Like">
-      </form>
+
+      {{!-- button and counter for likes --}}
+      <div id="like-count-{{ this.id }}" class="like-count">{{this.likes.length}}</div>
+      <button onclick="like('{{this.id}}')">Like</button>
+
       {{!-- <div class="message-tag">{{this.message}}</div> --}}
       <form id="add-comment-to-post" action="/posts/update" method="post">
         <div class="comment-and-image">
@@ -43,7 +46,24 @@
     </li>
     {{/each}}
   </ul>
+
   <footer class="fb-footer">
     <div class="div-footer"></div>
   </footer>
+
+  {{!-- JS for like button, should be outside the loop--}}
+  <script>
+    async function like(id) {
+      const options = {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ id: id })
+      }
+      const response = await fetch("/posts/like", options)
+      const post = await response.json()
+      const likes = post.likes.length
+      document.getElementById(`like-count-${ id }`).innerText = likes
+    }
+  </script>
+
 </main>
