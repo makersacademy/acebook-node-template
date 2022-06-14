@@ -21,6 +21,11 @@ describe("Post model", () => {
     expect(post.user_id).toBe(mockUserId);
   });
 
+  it("has a picture", () => {
+    var post = new Post({post_picture: 'www.picture.com'})
+    expect(post.post_picture).toBe('www.picture.com');
+  })
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
@@ -28,6 +33,7 @@ describe("Post model", () => {
       done();
     });
   });
+
 
   it("can save a post", (done) => {
     const mockUserId = new mongoose.Types.ObjectId();

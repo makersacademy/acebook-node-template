@@ -30,7 +30,6 @@ const PostsController = {
       }
     })
 
-//  maybe could refactor the below
     const post = new Post({likes: like._id, user_id: req.session.user._id });
         
     receiveImage(req, res, async (err) => {
@@ -40,14 +39,11 @@ const PostsController = {
         if (err) {
           return res.status(401).json({ error: err.message });
         }
-        console.log(req.body);
   
         try {
           // format the image with sharp (i.e. Format class)
-          console.log(req.file.buffer)
           const file = new Format();
           const fileToUpload = await file.format(req.file.buffer);
-          console.log(req.file.buffer)
   
           if(!fileToUpload) {
             return res.status(401).json({ error: 'Image could not be formatted'});
@@ -69,15 +65,11 @@ const PostsController = {
         if (err) {
           throw err;
         }
-      
-        console.log(post);
   
         res.status(201).redirect("/posts");
       });
     });
   },
 };
-
-
 
 module.exports = PostsController;
