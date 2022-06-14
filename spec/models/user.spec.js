@@ -37,6 +37,41 @@ describe("User model", () => {
     expect(user.password).toEqual("password");
   });
 
+  it("initiates new user no profile picture url", () => {
+    const user = new User({
+      name: "Kepa Arrizabalaga",
+      email: "someone@example.com",
+      password: "password",
+    });
+    expect(user.profile_picture).toBeNull();
+  });
+
+  it("has a profile picture url", (done) => {
+    const user = new User({
+      name: "Kepa Arrizabalaga",
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    user.save((err) => {
+      expect(err).toBeNull();
+
+      const filter = { _id: user._id };
+      const update = { profile_picture: 'www.picture.com'};
+
+      User.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err, updatedResult) => {
+        expect(err).toBeNull();
+        expect(updatedResult.profile_picture).toBe('www.picture.com')
+
+        User.findOne((err, user) => {
+          expect(err).toBeNull();
+          expect(user.profile_picture).toBe('www.picture.com')
+          done()
+        });
+      });
+    }); 
+  });
+
   it("can list all users", (done) => {
     User.find((err, users) => {
       expect(err).toBeNull();

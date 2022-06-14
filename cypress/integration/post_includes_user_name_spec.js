@@ -16,12 +16,12 @@ describe("name on Posts ", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
 
     cy.get("#new-post-form").find('[type="text"]').type("First post");
     cy.get("#new-post-form").submit();
 
     // expect
-    cy.get('li').should("contain", "Test name wrote: First post");
+    cy.get('div').should("contain", "First post");
   })
 })

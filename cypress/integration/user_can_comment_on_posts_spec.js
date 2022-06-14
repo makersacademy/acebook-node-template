@@ -14,15 +14,16 @@ describe("Timeline", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Post").click();
 
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
     //comment on a post
+    cy.get("#drop-down").click();
     cy.get("#new-comment-form").find('[type="text"]').type("yet another comment");
     cy.get("#new-comment-form").submit();
-
+    cy.get("#drop-down").click();
     //expect
     cy.get('.comments').first().should("contain", "yet another comment");
     })
