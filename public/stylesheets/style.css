@@ -88,9 +88,6 @@ h1,h2,h3,h4,h5,h6{
 /* NavBar Text Align Right */
 .w3-right {
   float:right!important;
-  /* position: absolute; */
-  /* top: 50%; */
- 
   transform: translateY(25%);
 }
 
@@ -156,7 +153,6 @@ h1,h2,h3,h4,h5,h6{
 .w3-button:hover{
   color:rgb(255, 255, 255)!important;
   background: -webkit-linear-gradient(-45deg, #50d7d0bc, #023d8ab6)
-  /* background: -webkit-linear-gradient(-45deg, #50d7d0, #023e8a) */
 }
 
 /* -----------------TIMELINE--------------------------------------------------- */
@@ -220,7 +216,10 @@ hr {
 
 /* post profile pic */
 .w3-circle {
-  border-radius:50%
+  border-radius: 50%;
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
 }
 
 /* Comment Box Sizing */
@@ -335,6 +334,14 @@ body { background: linear-gradient(#09111f, #062d3b);}
   margin: 20px;
 }
 
+#preview {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 20px;
+}
+
 .friends {
   max-width: 500px;
   gap: 10px;
@@ -367,6 +374,16 @@ body { background: linear-gradient(#09111f, #062d3b);}
   margin: 0 10px;
 }
 
+.button:hover {
+  color:rgb(255, 255, 255)!important;
+  background: -webkit-linear-gradient(-45deg, #50d7d0bc, #023d8ab6)
+}
+
 input.button {
   padding: 12.5px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }

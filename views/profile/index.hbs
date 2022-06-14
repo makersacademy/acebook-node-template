@@ -19,6 +19,9 @@
         <label class="button" for="img">Select Image</label>
         <input type="file" id="img" name="image" accept="image/*" class="hidden" required> 
         <input class="button" type="submit" name="upload" value="Update Profile" >
+        <div class="flex-container">
+          <img id="preview" src="" class="hidden">
+        </div>
       </form>
 
       <hr>
@@ -45,3 +48,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  img.onchange = evt => {
+  const [file] = img.files
+  if (file) {
+    preview.src = URL.createObjectURL(file)
+    preview.style.display = "block"
+  }
+}
+</script>
