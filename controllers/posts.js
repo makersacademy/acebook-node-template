@@ -31,49 +31,50 @@ const PostsController = {
     })
 
 //  maybe could refactor the below
-    const post = new Post({message: req.body.message, likes: like._id, user_id: req.session.user._id });
-    console.log(!!req.body.image);
-      if (req.body.image) {
-        receiveImage(req, res, async (err) => {
-          // handling errors from multer
-          if (err) {
-            return res.status(401).json({ error: err.message });
-          }
-    
-          try {
-            // format the image with sharp (i.e. Format class)
-            const file = new Format();
-            const fileToUpload = await file.format(req.file.buffer);
-    
-            if(!fileToUpload) {
-              return res.status(401).json({ error: 'Image could not be formatted'});
-            }
-            // upload to cloudinary
-            const imageStream = fileToUpload.formattedFile;
-            const imageName = fileToUpload.fileName;
-    
-            const uploadResult = await uploadImage(imageStream, imageName); 
-            const uploadUrl = uploadResult.url;
-            post.post_picture = uploadUrl
-            post.save((err) => {
-              if (err) {
-                throw err;
-              }
+    const post = new Post({likes: like._id, user_id: req.session.user._id });
         
-              res.status(201).redirect("/posts");
-            });
-          } catch (error) {
+    receiveImage(req, res, async (err) => {
+      if (req.file) {
+
+        // handling errors from multer
+        if (err) {
+          return res.status(401).json({ error: err.message });
+        }
+        console.log(req.body);
+  
+        try {
+          // format the image with sharp (i.e. Format class)
+          console.log(req.file.buffer)
+          const file = new Format();
+          const fileToUpload = await file.format(req.file.buffer);
+          console.log(req.file.buffer)
+  
+          if(!fileToUpload) {
+            return res.status(401).json({ error: 'Image could not be formatted'});
+          }
+          // upload to cloudinary
+          const imageStream = fileToUpload.formattedFile;
+          const imageName = fileToUpload.fileName;
+  
+          const uploadResult = await uploadImage(imageStream, imageName); 
+          const uploadUrl = uploadResult.url;
+          post.post_picture = uploadUrl
+        } catch (error) {
           return res.json({error: 'Failed to upload'})
-          }
-        });
-      } else {
-        post.save((err) => {
-          if (err) {
-            throw err;
-          }
+        }
+      }
+      post.message = req.body.message;
+      
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+      
+        console.log(post);
+  
         res.status(201).redirect("/posts");
-    })};
-    console.log(post);
+      });
+    });
   },
 };
 
