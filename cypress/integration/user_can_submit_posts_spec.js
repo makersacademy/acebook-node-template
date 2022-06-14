@@ -50,6 +50,8 @@ describe("Timeline", () => {
 
     // expect
     cy.get('.posts:first').should("contain", "Second post");
+    
+    // cy.get('.posts:last').should("contain", "First post");
 
     // this test doesn't pass
     // cy.get('.posts').eq(1).should("contain", "First post");
