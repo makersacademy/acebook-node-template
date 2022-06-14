@@ -1,19 +1,44 @@
 <body class="background">
   <div class="whole-page">
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
-      <div class="w3-row">
+      <div class="main-signup-boxes-container w3-row">
         <div class="w3-col m7">
           <div class="w3-row-padding">
             <div class="w3-col m12">
-              <form class="login-margin-top" id="new-user-form" action="/users" method="post">
-                <label for="name">Name: </label>
-                <input id="name" type="text" name="name" value="">
-                <label for="email">Email: </label>
-                <input id="email" type="email" name="email" value="">
-                <label for="password">Password: </label>
-                <input id="password" type="password" name="password" value="">
-                <input id="submit" type="submit" value="Sign up">
-              </form>
+
+              <div class="signup-div">
+                <h1 class="w3-text-white">Signup</h1>
+              </div>
+
+
+              <div class="signup-boxes-container">
+                <form class="login-margin-top" id="new-user-form" action="/users" method="post">
+                  <div class="login-signup-box posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+                    <div class="form-element">
+                      <label for="name">Name: </label>
+                      <input id="name" type="text" name="name" value="">
+                    </div>
+                  </div>
+                    <div class="login-signup-box posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+                      <div class="form-element">
+                        <label for="email">Email: </label>
+                        <input id="email" type="email" name="email" value="">
+                      </div>
+                  </div>
+                    <div class="login-signup-box posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+                      <div class="form-element">
+                      <label for="password">Password: </label>
+                      <input id="password" type="password" name="password" value="">
+                    </div>
+                  </div>
+                  <div class="login-signup-box posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+                    <div class="form-element">
+                      <input id="submit" type="submit" value="Sign up">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              
             </div>
           </div>
         </div>
