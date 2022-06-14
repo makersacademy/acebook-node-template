@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 
 const PostsController = {
@@ -8,7 +9,16 @@ const PostsController = {
         throw err;
       }
       posts = posts.reverse();
-      res.render("posts/index", { posts: posts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath });
+      var post = posts[0];
+      User.findOne({ _id: post.user_id }).then((user) => {
+        post["profilePhotoPath"] = user.profilePhotoPath;
+        posts = [post];
+        console.log(posts);
+        return(posts);
+      }).then((posts) => {
+        console.log(posts);
+        res.render("posts/index", { posts: posts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath })
+      });
     });
   },
   New: (req, res) => {
