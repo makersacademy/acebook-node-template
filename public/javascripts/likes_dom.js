@@ -14,6 +14,7 @@ elements.forEach((element) => {
       })
     }
     fetch('http://localhost:3000/posts/add_like', options).then((data) => console.log(data))
-    
+    like_button = element.querySelector(".add-like-button")
+    like_button.value = "Liked"
   })
 })
