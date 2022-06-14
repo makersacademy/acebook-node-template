@@ -5,7 +5,8 @@ const { uploadImage } = require("../utilities/cloudinaryUtil");
 
 const ProfileController = {
   Index: (req, res) => {
-    User.findOne({ _id: req.session.user._id }).exec((err, user) => {
+    const user = req.params.user_id;
+    User.findOne({ _id: user }).exec((err, user) => {
       if (err) {
         throw err;
       }
