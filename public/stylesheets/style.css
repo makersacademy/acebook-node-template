@@ -292,6 +292,11 @@ h1,h2,h3,h4,h5,h6{
 
 /* -----------------TIMELINE--------------------------------------------------- */
 
+.posted-picture {
+  width: 100%;
+  height: auto;
+}
+
 /* -----------------NAV BAR--------------------------------------------------- */
 /* TimeLine Headline Gradient */
 h1 {
@@ -363,11 +368,13 @@ hr {
 /* Post input */
 #message {
   width: 100%;
-  height: 2rem;
+  /* height: 2rem; */
   border-radius: 25px;
   border: none;
   background-color: rgb(206, 206, 206);
+  resize: none;
 }
+
 
 /* post profile pic */
 .w3-circle {
@@ -453,9 +460,10 @@ hr {
 }
 
 #comment-pic {
-  display: block;
-  width: 100%;
-  height: auto;
+  /* display: block; */
+  width: 50px;
+  height: 50px;
+  margin-top: 0.5rem;
 }
 
 /* Comment Box Sizing */

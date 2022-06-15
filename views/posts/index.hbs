@@ -29,10 +29,9 @@
               {{!-- <p contenteditable="true" class="w3-border w3-padding"></p> --}}
 
               <form class="login-margin-top" action="/posts" method="post" id="new-post-form" enctype="multipart/form-data">
-                <input id="message" type="text" name="message" value="" placeholder="What's on your mind?"> <br>
-                <label for="file">Upload your image here</label>
+                <textarea id="message" form="new-post-form" type="text" name="message" value="" placeholder="   What's on your mind?" rows="4"></textarea> <br>
                 <input type="file" name="image" accept="image/*" class="new-post-link w3-button w3-theme w3-round-large">
-                <input type="submit" value="Post" name="upload" class="new-post-link w3-button w3-theme w3-round-large">
+                <input id="post-button" type="submit" value="Post" name="upload" class="new-post-link w3-button w3-theme w3-round-large">
               </form>
             </div>
           </div>
@@ -56,7 +55,7 @@
             
         <p>{{this.message}}</p>
         {{#if this.post_picture}}
-          <img class="posted-picture" src={{this.post_picture}} width="100" height="100" />
+          <img class="posted-picture" src={{this.post_picture}}  />
                   {{!-- size can be removed when css is done --}}
         {{/if}}
         
@@ -71,9 +70,9 @@
                 {{#each this.comments}}
                   <div class="comment-container">
                     <div class="comment-left">
-                      <div class="comment-pic-container">
-                        <img id="comment-pic" src={{this.user_id.profile_picture}}>
-                      </div>
+                      
+                        <img class="w3-left w3-circle w3-margin-right" id="comment-pic" src={{this.user_id.profile_picture}}>
+                      
                     </div>  
                     <div class="comment-right">
                       <div class="comment-author">{{this.user_id.name}}</div>
