@@ -1,5 +1,7 @@
-<form class="login-margin-top" id="new-post-form" action="/posts" method="post">
+<form class="login-margin-top" id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
   <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="" required>
-  <input type="submit" value="Submit">
+  <input id="message" type="text" name="message" value="">
+  <label for="file">Upload your image here</label>
+  <input type="file" name="image" accept="image/*">
+  <input type="submit" name="upload" value="Post">
 </form>

@@ -1,6 +1,6 @@
 {
   "projectId": "vr99ym",
   "baseUrl": "http://localhost:3030",
-  "video": false,
+
   "chromeWebSecurity": false
 }
