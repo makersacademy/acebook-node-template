@@ -170,6 +170,16 @@ body {
   flex-direction: column;
 }
 
+.comment-form {
+  display: flex;
+  width: 100%;
+}
+
+.comment-input {
+  flex: auto;
+  margin-right: 5px;
+}
+
 .footer {
   display: flex;
   flex-direction: row;
