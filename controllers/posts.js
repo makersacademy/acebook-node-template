@@ -7,15 +7,19 @@ const {uploadImage} = require("../utilities/cloudinaryUtil");
 const PostsController = {
   Index: (req, res) => {
     Post.find()
-      .populate("user_id")
-      .populate("likes")
-      .populate("comments")
-      .exec((err, posts) => {
-        if (err) {
-          throw err;
+      .populate('user_id')
+      .populate('likes')
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'user_id'
         }
-
-        let reversedPosts = posts.reverse();
+      })
+      .exec((err, posts) => {
+      if (err) {
+        throw err;
+      }
+      let reversedPosts = posts.reverse();
         res.render("posts/index", {
           session: req.session.user,
           posts: reversedPosts,
