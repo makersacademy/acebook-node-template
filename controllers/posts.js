@@ -12,10 +12,7 @@ const PostsController = {
       res.render("posts/index", { posts: posts , username: req.session.user.username, user_id: req.session.user._id });
     });
   },
-  New: (req, res) => {
-    res.render("posts/new", {});
-  },
-  
+
   Create: (req, res) => {
     const contents = { message: req.body.message, user_id: req.session.user._id, username: req.session.user.username }
     const post = new Post(contents);

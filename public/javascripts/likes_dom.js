@@ -15,7 +15,7 @@ posts.forEach((post) => {
       })
     }
 
-    fetch('http://localhost:3000/posts/add_like', options).then((data) => console.log(data))
+    fetch('http://localhost:3000/posts/add_like', options).then((data) => console.log(data)).catch((err) => console.log(err))
     
     like_button = like_form.querySelector(".add-like-button")
 

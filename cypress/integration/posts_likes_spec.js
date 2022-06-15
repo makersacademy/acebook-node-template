@@ -8,14 +8,14 @@ describe("Timeline", () => {
     signIn("email@email.com", "password");
     submitPost("Hello, world!");
 
-    cy.get('.likes_container').eq(0).should("contain", "Likes: 0")
+    cy.get('.likes-count').eq(0).should("contain", "0")
   })
   it("users can like the post and the likes increment by 1", () => {
     signUp("email@email.com", "password", "username");
     signIn("email@email.com", "password");
     submitPost("Hello, world!");
 
-    cy.get('#add-like-button').click();
-    cy.get('.likes_container').eq(0).should("contain", "Likes: 1")
+    cy.get('.add-like-button').eq(0).click();
+    cy.get('.likes-count').eq(0).should("contain", "1")
   })
 })
