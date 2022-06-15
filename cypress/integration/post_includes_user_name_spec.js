@@ -6,13 +6,13 @@ describe("name on Posts ", () => {
     cy.get("#name").type("Test name")
     cy.get("#email").type("someon@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#signup-button").click();
 
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someon@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#login").click();
 
     // submit a post
     cy.visit("/posts");

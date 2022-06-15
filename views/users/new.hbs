@@ -6,7 +6,9 @@
           <div class="w3-row-padding">
             <div class="w3-col m12"> --}}
               
-              
+            {{#if error}}
+              <h1>{{error}}</h1>
+            {{/if}}
 
               <div class="title-and-signup-box">
                 <div class="signup-div">
@@ -17,24 +19,25 @@
                   <div class="login-signup-box">
                     <div class="form-element">
                       <label for="name">Name: </label>
-                      <input id="name" type="text" name="name" value="">
+                      <input id="name" type="text" name="name" value="" required>
                     </div>
                   </div>
                     <div class="signup-box">
                       <div class="form-element">
                         <label for="email">Email: </label>
-                        <input id="email" type="email" name="email" value="">
+                        <input id="email" type="email" name="email" value="" required>
                       </div>
                   </div>
                     <div class="signup-box">
                       <div class="form-element">
                       <label for="password">Password: </label>
-                      <input id="password" type="password" name="password" value="">
+                      <input id="password" type="password" name="password" value="" required>
                     </div>
                   </div>
                   <div class="signup-box">
                     <div class="signup-button-form-element">
-                      <button class="signup-button new-post-link w3-button w3-theme w3-margin-bottom w3-round-large">Sign up</button>
+                      {{!-- <input id="submit" type="submit" value="Sign up"> --}}
+                      <button id="signup-button" class="signup-button new-post-link w3-button w3-theme w3-margin-bottom w3-round-large">Sign up</button>
                     </div>
                   </div>
                 </form>
