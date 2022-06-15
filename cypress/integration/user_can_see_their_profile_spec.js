@@ -10,7 +10,7 @@ describe("Profile", () => {
     cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
     cy.get('input[type=file]').attachFile("../fixtures/earth.jpg")
-    cy.get("#submit-signup").click();
+    cy.get("#submit-signup").click({force:true});
 
     // visits profile
     cy.visit("/users/profile");
