@@ -7,8 +7,28 @@
 	box-sizing: border-box;
 }
 
+*:before,
+*:after {
+ box-sizing: border-box;
+}
+
+html,
+body {
+ height: 100%;
+ position: relative;
+}
+
+.main-container {
+	min-height: 100vh; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	padding-bottom: 143px; /* height of your footer */
+ }
+
 body {
 	line-height: 1.6;
+	padding-bottom: 143px;
 	margin: 0;
 	min-height: 100vh;
   margin: 0px;
@@ -245,7 +265,9 @@ ul {
 
 .fb-footer {
 	background-color: #F7C59F;
-	width: 100%
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 .div-footer {
@@ -289,6 +311,7 @@ ul {
 #posts-main{
 	background-color: #FA6C8B;
 	background: linear-gradient(white, #EFEFD0);
+	min-height: calc(100vh - 143px);
 }
 
 .frm-textbox-peach {
