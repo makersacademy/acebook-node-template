@@ -20,7 +20,7 @@
       {{!-- <div class="message-tag">{{this.message}}</div> --}}
       <form id="add-comment-to-post" action="/posts/update" method="post">
         <div class="comment-and-image">
-          <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+          <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png"   alt="mongoose-logo">
           <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder='Add A Comment' required>
           <input class="comment-submit-button" type="submit" value="Add">
         </div>
@@ -30,7 +30,7 @@
         <ul id="comments-list">
           {{#each this.comments}}
               <div class="comment-and-image">
-                <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+                <img class="picture-tag-comment" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-image">
                 <li class="frm-textbox-peach">{{ this.userName }}: {{ this.comments }}</li>
               </div>
           {{/each}}
