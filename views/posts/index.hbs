@@ -28,8 +28,8 @@
               <h6 class="w3-opacity"></h6>
               {{!-- <p contenteditable="true" class="w3-border w3-padding"></p> --}}
 
-              <form class="login-margin-top" action="/posts" method="post" id="new-post-form">
-                <input id="message" type="text" name="message" value="" placeholder="What's on your mind?">
+              <form class="login-margin-top" action="/posts" method="post" id="new-post-form" autocomplete="off">
+                <input id="message" type="text" name="message" value="" placeholder="What's on your mind?" >
                 <input type="submit" value="Post" class="new-post-link w3-button w3-theme w3-round-large">
               </form>
             </div>
@@ -41,18 +41,17 @@
       {{#each posts}}
       <div class="posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
         <br>
-        <div class="profile-pic">
-          {{#if this.user_id.profile_picture}}
-            <img alt="Avatar" id="timeline-profile-photo" class="w3-left w3-circle w3-margin-right" style="width:80px" src={{this.user_id.profile_picture}}> 
-          {{else}}
-            <img alt="Avatar" id="timeline-profile-photo" class="w3-left w3-circle w3-margin-right" style="width:80px" src="/images/cutie-pie.jpeg">
-          {{/if}}
+        <div id="pic-name-container">
+          <div class="profile-pic">
+            {{#if this.user_id.profile_picture}}
+              <img alt="Avatar" id="timeline-profile-photo" class="w3-left w3-circle w3-margin-right" style="width:80px" src={{this.user_id.profile_picture}}> 
+            {{else}}
+              <img alt="Avatar" id="timeline-profile-photo" class="w3-left w3-circle w3-margin-right" style="width:80px" src="/images/cutie-pie.jpeg">
+            {{/if}}
+          </div>
+          <div id="user-name"><h4>{{this.user_id.name}}</h4></div>
         </div>
-        <h4>{{this.user_id.name}}</h4>
-        
             
-        <br>
-        <hr class="w3-clear">
         <p>{{this.message}}</p>
 
         <div class="likes-comments-container">
@@ -67,19 +66,25 @@
           <div class="comments-section-container" id="comments-container">
             <div class="comment-form-container">
               <form id="new-comment-form" action="/comments" method="post">
-                <input class="comments-input" id="comment-input" placeholder="comment" type="text" name="comment" value="">
+                <input class="comments-input" id="comment-input" placeholder="  Comment" type="text" name="comment" value="" required>
                 <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
-                <input id="comment-button" class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" type="submit" value="Comment">
+                <input id="comment-button" class="comments-buttons new-post-link w3-button w3-round-large" type="submit" value="Comment">
+                {{!-- w3-theme for colour of the comment button --}}
               </form>
             </div>
 
             <div class="comments-container">
               {{#each this.comments}}
                 <div class="comment-container">
-                  <div class="comment-pic">
-                    <img src={{this.user_id.profile_picture}}></div>
-                  <div class="comment-author">{{this.user_id.name}}</div>
-                  <div class="comment-text">{{this.comment}}</div>
+                  <div class="comment-left">
+                    <div class="comment-pic-container">
+                      <img id="comment-pic" src={{this.user_id.profile_picture}}>
+                    </div>
+                  </div>  
+                  <div class="comment-right">
+                    <div class="comment-author">{{this.user_id.name}}</div>
+                    <div class="comment-text">{{this.comment}}</div>
+                  </div> 
                 </div>
               {{/each}}
             </div>

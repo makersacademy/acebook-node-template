@@ -42,7 +42,7 @@ body {
   border-color: rgb(24, 93, 136);
   background-color: rgba(255, 255, 255, 0.814);
   border-radius: 6px;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 /* NavBar */
@@ -190,6 +190,17 @@ h1 {
 }
 }
 
+/* User name and photo */
+#pic-name-container {
+  display: flex;
+  align-items: center;
+}
+
+/* User name */
+h4 {
+  font-weight: 700;
+}
+
 /* Comment Box Spacing */
 /* Comment Box Line */
 hr {
@@ -219,6 +230,15 @@ hr {
   white-space:nowrap
 }
 
+/* Post input */
+#message {
+  width: 100%;
+  height: 2rem;
+  border-radius: 25px;
+  border: none;
+  background-color: rgb(206, 206, 206);
+}
+
 /* post profile pic */
 .w3-circle {
   border-radius:50%
@@ -229,22 +249,36 @@ hr {
 /* Likes & Comments Container */
 .likes-comments-container {
   width: 100%;
-  border: solid 1px red;
 }
 
 /* Comments & Form Container */
 .comments-section-container {
-  width: 90%;
+  width: 97%;
+  padding: 1.5rem;
   margin: auto;
-  border: solid 1px red;
+  border: solid 1px rgb(191, 190, 190); 
+  border-radius: 1rem;
+}
+.comment-form-container {
+  margin-bottom: 2rem;
 }
 
 #comment-input {
-  width: 80%;
+  width: 75%;
+  margin: 0;
+  margin-right: 2rem;
+  height: 2rem;
+  border-radius: 25px;
+  border: none;
+  background-color: rgb(206, 206, 206);
+  margin-left: 2rem;
 }
 
 #comment-button {
-  margin-left: 0;
+  margin: 0;
+  height: 2rem;
+  background-color: rgb(238, 236, 236);
+  font-weight: 600;
 }
 
 /* Comments Container */
@@ -253,9 +287,39 @@ hr {
 }
 
 .comment-container {
+  margin: 1rem 0;
   width: 100%;
-  background-color: white;
-  border: solid 1px blue; 
+  border: solid 1px rgb(191, 190, 190); 
+  border-radius: 1rem;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.comment-left {
+  width: 20%;
+}
+
+.comment-right {
+  width: 80%;
+  padding: 0.5rem;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+/* Comment Picture */
+.comment-pic-container {
+  width: 50%;
+  margin: auto;
+  overflow: hidden;
+  border-radius:50%;
+}
+
+#comment-pic {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* Comment Box Sizing */
