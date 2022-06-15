@@ -233,7 +233,7 @@ input[type=text]:focus, input[type=password]:focus {
   outline: none;
 }
 
-/* Set a style for all buttons */
+/* Set a style for sign-up-buttons */
 .Sign-up-button {
   background-color: #04AA6D;
   color: white;
@@ -249,10 +249,6 @@ button:hover {
   opacity:1;
 }
 
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-}
 
 /* The Modal (background) */
 .modal {
