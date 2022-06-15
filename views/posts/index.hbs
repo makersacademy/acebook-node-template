@@ -60,27 +60,22 @@
               <input class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large like-button" type="submit" value="Like: {{this.likes.likes_array.length}}">
             </form>  
   {{!-- new div here --}}
-
-        {{!-- <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="drop-down">Comment</button> --}}
-
           <div class="comments-section-container" id="comments-container">
-            
-
-            <div class="comments-container">
-              {{#each this.comments}}
-                <div class="comment-container">
-                  <div class="comment-left">
-                    <div class="comment-pic-container">
-                      <img id="comment-pic" src={{this.user_id.profile_picture}}>
-                    </div>
-                  </div>  
-                  <div class="comment-right">
-                    <div class="comment-author">{{this.user_id.name}}</div>
-                    <div class="comment-text">{{this.comment}}</div>
-                  </div> 
-                </div>
-              {{/each}}
-            </div>
+              <div class="comments-container">
+                {{#each this.comments}}
+                  <div class="comment-container">
+                    <div class="comment-left">
+                      <div class="comment-pic-container">
+                        <img id="comment-pic" src={{this.user_id.profile_picture}}>
+                      </div>
+                    </div>  
+                    <div class="comment-right">
+                      <div class="comment-author">{{this.user_id.name}}</div>
+                      <div class="comment-text">{{this.comment}}</div>
+                    </div> 
+                  </div>
+                {{/each}}
+              </div>
 
             <div class="comment-form-container">
               <form id="new-comment-form" action="/comments" method="post">
@@ -93,7 +88,6 @@
           </div>
         </div>
         
-
 {{!-- end new div here --}}
       </div>  
         {{/each}}

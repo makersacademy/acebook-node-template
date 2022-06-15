@@ -179,7 +179,7 @@ h1 {
 
 @media (min-width:601px) {
   .w3-col.m3,.w3-quarter {
-    width:37%
+    width:27.7%
   }
 .w3-col.m7 {
   width:58.33333% 
@@ -284,8 +284,8 @@ hr {
 /* Comments Container */
 .comments-container {
   display: block;
-  height: 16rem;
-  overflow-y : scroll;
+  /* height: 16rem;
+  overflow-y : scroll; */
 }
 
 .comment-container {
