@@ -9,12 +9,13 @@ const PostsController = {
         throw err;
       }
       posts = posts.reverse();
-      Promise.all(posts.map((post) => {
+      const updatedPosts = Promise.all(posts.map((post) => {
         User.findOne({ _id: post.user_id }).then((user) => {
           post["profilePhotoPath"] = user.profilePhotoPath;
-      })})).then(() => {
-        res.render("posts/index", { posts: posts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath })
-      });
+        });
+      }));
+      console.log(updatedPosts);
+      res.render("posts/index", { posts: updatedPosts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath });
     });
   },
 
