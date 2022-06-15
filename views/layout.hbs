@@ -10,6 +10,11 @@
       <li><a class="a" href="/sessions/new">Log in</a></li> --}}
 
       {{else}}
+      <form action="/friends/search" method="post">
+        <input type="text" name="userName" class="search-bar" placeholder="Find an Acquaintance">
+        <input type="submit" class="submit-button" value="Search">
+      </form>
+
       <li><a class="a" href="/users/profile">Profile</a></li>
       <li><a class="a" href="/posts">Home</a></li>
       <li>
