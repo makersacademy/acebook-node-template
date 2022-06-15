@@ -23,7 +23,11 @@
           <h1 class="w3-text-white">Timeline</h1>
           <div class="w3-card w3-round-xlarge post-bgc">
             <div class="w3-container w3-padding">
-              
+              {{#if error}}
+                <div class="error">
+                  <p>{{error}}</p>
+                </div>
+              {{/if}}
               <!-- New Post -->
               <h6 class="w3-opacity"></h6>
               {{!-- <p contenteditable="true" class="w3-border w3-padding"></p> --}}
