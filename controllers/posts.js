@@ -9,12 +9,16 @@ const PostsController = {
     Post.find()
       .populate("user_id")
       .populate("likes")
-      .populate("comments")
+      .populate({
+        path: "comments",
+        populate: {
+          path: "user_id",
+        },
+      })
       .exec((err, posts) => {
         if (err) {
           throw err;
         }
-
         const reversedPosts = posts.reverse();
 
         reversedPosts.forEach((post) => {
