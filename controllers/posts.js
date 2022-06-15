@@ -27,20 +27,23 @@ const PostsController = {
       });
     });
   },
-  New: (req, res) => {
-    res.render("posts/new", { newUser: false });
-  },
   Update: (req, res) => {
+    User.findOne({ userName: req.session.userName}).then( (commenter) => {
+      const photo = { 
+        contentType: commenter.photo.contentType,
+        data: commenter.photo.data.toString('base64')
+      }
     Post.findOneAndUpdate(
       {_id: req.body.id},
       {$push:
-        {comments: req.body.comments}
+        {comments: {userName: req.session.userName, comments: req.body.comments, photo: photo }}
+        
       },
       (err, result)=>{
       console.log(err);
       console.log(result);
       res.status(201).redirect("/posts");
-    });  
+    })});
   },
   Create: (req, res) => {
     const post = new Post({ 
