@@ -9,7 +9,7 @@ describe("Authentication", () => {
     cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
     cy.get('input[type=file]').attachFile("../fixtures/earth.jpg")
-    cy.get("#submit-signup").click();
+    cy.get("#submit-signup").click({force:true});
 
     cy.url().should("include", "/posts");
     cy.contains("h1", "Timeline");
@@ -22,7 +22,7 @@ describe("Authentication", () => {
     cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
     cy.get('input[type=file]').attachFile("../fixtures/earth.jpg")
-    cy.get("#submit-signup").click();
+    cy.get("#submit-signup").click({force: true});
 
     //log out
     cy.get("#logout").click({force: true});
@@ -31,7 +31,7 @@ describe("Authentication", () => {
     cy.visit("/sessions/new")
     cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit-signin").click();
+    cy.get("#submit-signin").click({force: true});
 
     cy.url().should("include", "/posts");
     cy.contains("h1", "Timeline");
