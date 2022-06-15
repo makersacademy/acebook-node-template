@@ -74,7 +74,7 @@ const PostsController = {
             console.log(result)
           }
         )}
-    }).exec((err, placeholder) => {
+    }).exec((err) => {
       if(err) {
         throw err;
       }
