@@ -183,13 +183,19 @@ body {
   align-content: center;
 }
 .item3 { 
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
   padding: 20px;
   padding-top: 20px;
-  grid-area: main; 
+  grid-area: main;
 }
 .item4 { 
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
   padding: 20px;
@@ -200,11 +206,11 @@ body {
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
-    'main main main right right right'
-    'main main main right right right'
-    'main main main right right right'
-    'main main main right right right';
+    'header header'
+    'main right'
+    'main right'
+    'main right'
+    'main right';
   gap: 10px;
   padding: 10px;
 }
@@ -218,7 +224,7 @@ body {
 
 /* Styling for CSS Modal sign up form */
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email], input[type=username]{
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -228,7 +234,7 @@ input[type=text], input[type=password] {
 }
 
 /* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=username]:focus {
   background-color: #ddd;
   outline: none;
 }
