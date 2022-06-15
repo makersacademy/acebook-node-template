@@ -11,10 +11,10 @@ describe("Profile", () => {
     cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
     cy.get('input[type=file]').attachFile("../fixtures/earth.jpg")
-    cy.get("#submit-signup").click();
+    cy.get("#submit-signup").click({force: true}); 
 
     cy.get("#message").type("Hello, world!");
-    cy.get(".post-submit-button").click();
+    cy.get(".post-submit-button").click({force: true});
 
     // log out
     cy.get("#logout").click({force: true});
@@ -25,10 +25,10 @@ describe("Profile", () => {
     cy.get("#email").type("terry@example.com");
     cy.get("#password").type("password");
     cy.get('input[type=file]').attachFile("../fixtures/earth.jpg")
-    cy.get("#submit-signup").click();
+    cy.get("#submit-signup").click({force: true});
 
     cy.get("#message").type("Terro, world!");
-    cy.get(".post-submit-button").click();
+    cy.get(".post-submit-button").click({force: true});
 
     // visit profile page
     cy.visit("/users/profile");
