@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   message: String,
+  post_picture: {type: String, default: null},
   
   comments:[{
     type: mongoose.SchemaTypes.ObjectId,

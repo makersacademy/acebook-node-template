@@ -1,9 +1,53 @@
-<form class="login-margin-top" id="new-user-form" action="/users" method="post">
-  <label for="name">Name: </label>
-  <input id="name" type="text" name="name" value="">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Sign up">
-</form>
+<body class="background">
+  <div class="whole-page">
+    {{!-- <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px"> --}}
+      <div class="main-signup-boxes-container w3-row">
+        {{!-- <div class="w3-col m7">
+          <div class="w3-row-padding">
+            <div class="w3-col m12"> --}}
+              
+            {{#if error}}
+              <h1>{{error}}</h1>
+            {{/if}}
+
+              <div class="title-and-signup-box">
+                <div class="signup-div">
+                <h1 class="w3-text-white">Signup</h1>
+              </div>
+              <div class="signup-boxes-container posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+                <form class="login-margin-top" id="new-user-form" action="/users" method="post">
+                  <div class="login-signup-box">
+                    <div class="form-element">
+                      <label for="name">Name: </label>
+                      <input id="name" type="text" name="name" value="" required>
+                    </div>
+                  </div>
+                    <div class="signup-box">
+                      <div class="form-element">
+                        <label for="email">Email: </label>
+                        <input id="email" type="email" name="email" value="" required>
+                      </div>
+                  </div>
+                    <div class="signup-box">
+                      <div class="form-element">
+                      <label for="password">Password: </label>
+                      <input id="password" type="password" name="password" value="" required>
+                    </div>
+                  </div>
+                  <div class="signup-box">
+                    <div class="signup-button-form-element">
+                      {{!-- <input id="submit" type="submit" value="Sign up"> --}}
+                      <button id="signup-button" class="signup-button new-post-link w3-button w3-theme w3-margin-bottom w3-round-large">Sign up</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

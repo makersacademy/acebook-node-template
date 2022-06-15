@@ -1,6 +1,10 @@
 # Acebook
 
-This is a Node.js template for the Acebook engineering project.
+[![Tests](https://github.com/lukestorey95/acebook/actions/workflows/test.yml/badge.svg)](https://github.com/lukestorey95/acebook/actions/workflows/test.yml)
+
+## Project Specification
+
+For the penultimate engineering project during Weeks 8 and 9 of the Makers Academy hybrid course, we were tasked with developing a [Facebook](https://en-gb.facebook.com/) clone, known as Acebook. Within a team of 7 developers we developed this version that we're proud to present.
 
 It uses:
 
@@ -11,10 +15,11 @@ It uses:
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
+- [CSS](https://www.w3.org/Style/CSS/Overview.en.html) for styling of the webpages.
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+We used a [Trello](https://trello.com/b/jFmua5rj/lukeingforsuggestions) board to keep track of the features we want to implement. We organised tickets amongst the team and moved the tickets accordingly to demonstrate at what stage that feature's at (To do/In progress/In review etc.).
 
 ## Quickstart
 
@@ -31,16 +36,16 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    nvm install 18
    ```
 
-### Set up your project
+### Set up this project
 
 1. Fork this repository
-2. Rename your fork to `acebook-<team name>`
-3. Clone your fork to your local machine
+2. Rename this fork
+3. Clone the fork to your local machine
 4. Install Node.js dependencies
    ```
    npm install
    ```
-5. Install an ESLint plugin for your editor. For example: [linter-eslint](https://github.com/AtomLinter/linter-eslint) for Atom.
+5. Install an ESLint plugin for your editor. For example: [linter-eslint](https://github.com/AtomLinter/linter-eslint) for Atom and installing the `ES Lint` 
 6. Install MongoDB
    ```
    brew tap mongodb/brew
@@ -93,3 +98,7 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Check that it's running using `brew services list`
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+
+## Conclusion
+
+We were able to develop a
