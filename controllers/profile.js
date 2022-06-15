@@ -52,7 +52,7 @@ const ProfileController = {
               console.log(err);
               throw err;
             }
-            res.status(201).redirect("/profile");
+            res.status(201).redirect(`/profile/${req.session.user._id}`);
           }
         );
       } catch (error) {

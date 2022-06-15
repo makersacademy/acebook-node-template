@@ -13,14 +13,14 @@ describe("Profile", () => {
     cy.get("#submit").click();
 
     // visit the profile page
-    cy.visit("/profile");
+    cy.get("#profileBtn").click();
     cy.get("#profile-photo")
       .should("have.attr", "src")
       .should("include", "/images/cutie-pie.jpeg");
 
     // upload image and submit form
     cy.get('input[type="file"]').attachFile("raccoon_1.jpg");
-    cy.get("#upload-profile-photo-form").click();
+    cy.get("#ppSubmit").click();
 
     // expect image is displayed
     cy.get("#profile-photo")
