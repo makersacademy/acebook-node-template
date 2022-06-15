@@ -6,15 +6,24 @@ const path = require('path');
 const UsersController = {
 
   Index: (req, res) => {
-    console.log(req.session.userName);
+    console.log("Checking", req.session.userName);
+    if(!req.session.userName) {
+      res.redirect("/");
+      return;
+    }
     Post.find({userID: req.session.userID})
     .sort({'date': -1})
     .limit(10)
-    .exec((err, posts) => {
+    .exec(async(err, posts) => {
       if (err) {
         throw err;
       }
-      res.render("users/profile", { userName: req.session.userName, posts: posts});
+      const user = await User.findOne({ userName: req.session.userName }).exec();
+      const photo = {
+        contentType: user.photo.contentType,
+        data: user.photo.data.toString('base64'), // <- user photo added to profile page
+      };
+      res.render("users/profile", { userName: req.session.userName, posts: posts, photo});
     });
   },
 
