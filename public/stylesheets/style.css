@@ -182,13 +182,12 @@ body {
   justify-content: center;
   align-content: center;
 }
-.item3 { grid-area: main; }
-.item2 { 
+.item3 { 
   justify-content: center;
   align-content: center;
   padding: 20px;
   padding-top: 20px;
-  grid-area: middle; 
+  grid-area: main; 
 }
 .item4 { 
   justify-content: center;
@@ -201,11 +200,11 @@ body {
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header'
-    'main main middle right right'
-    'main main middle right right'
-    'main main middle right right'
-    'main main middle right right';
+    'header header header header header header'
+    'main main main right right right'
+    'main main main right right right'
+    'main main main right right right'
+    'main main main right right right';
   gap: 10px;
   padding: 10px;
 }
@@ -217,7 +216,118 @@ body {
   font-size: 30px;
 }
 
-/* Button used to open the contact form - fixed at the bottom of the page */
+/* Styling for CSS Modal sign up form */
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+
+
+
+
+/* Button used to open the contact form - fixed at the bottom of the page
 .open-button {
   background-color: #555;
   color: white;
@@ -229,40 +339,40 @@ body {
   bottom: 23px;
   right: 28px;
   width: 280px; */
-}
+/* } */
 
 /* The popup form - hidden by default */
-.form-popup {
+/* .form-popup {
   margin: auto;
   width: 58%;
   padding: 10px;
 
-}
+} */
 
 /* Add styles to the form container */
-.form-container {
+/* .form-container {
   max-width: 300px;
   padding: 10px;
   background-color: white;
-}
+} */
 
 /* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
+/* .form-container input[type=text], .form-container input[type=password] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
   background: #f1f1f1;
-}
+} */
 
 /* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+/* .form-container input[type=text]:focus, .form-container input[type=password]:focus {
   background-color: #ddd;
   outline: none;
-}
+} */
 
 /* Set a style for the submit/login button */
-.form-container .btn {
+/* .form-container .btn {
   background-color: #04AA6D;
   color: white;
   padding: 16px 20px;
@@ -271,14 +381,14 @@ body {
   width: 100%;
   margin-bottom:10px;
   opacity: 0.8;
-}
+} */
 
 /* Add a red background color to the cancel button */
-.form-container .cancel {
+/* .form-container .cancel {
   background-color: #F08700;
-}
+} */
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
+/* .form-container .btn:hover, .open-button:hover {
   opacity: 1;
-}
+} */ 
