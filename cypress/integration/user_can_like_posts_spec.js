@@ -9,12 +9,12 @@ describe("Likes", () => {
     cy.get("#name").type("Name");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#signup-button").click();
 
     // sign in
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#login").click();
 
     // submit a post
     cy.contains("Post").click();

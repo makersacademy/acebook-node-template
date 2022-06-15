@@ -1,7 +1,47 @@
-<form class="login-margin-top" id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="" required>
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="" required>
-  <input id="submit" type="submit" value="Log in">
-</form>
+<body class="background">
+  <div class="whole-page">
+    {{!-- <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px"> --}}
+      <div class="main-signup-boxes-container w3-row">
+        {{!-- <div class="w3-col m7">
+          <div class="w3-row-padding">
+            <div class="w3-col m12"> --}}
+              
+              
+
+              <div class="title-and-login-box">
+                <div class="signup-div">
+                <h1 class="w3-text-white">Login</h1>
+              </div>
+              <div class="login-boxes-container posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+                <form class="login-margin-top" id="new-session-form" action="/sessions" method="post">
+                    <div class="empty-div">
+                      {{!-- this is here to keep the height of the login and signups the same. dirty hack, sorry --}}
+                    </div>
+                    <div class="login-box">
+                      <div class="form-element">
+                        <label for="email">Email: </label>
+                        <input id="email" type="email" name="email" value="">
+                      </div>
+                  </div>
+                    <div class="login-box">
+                      <div class="form-element">
+                      <label for="password">Password: </label>
+                      <input id="password" type="password" name="password" value="">
+                    </div>
+                  </div>
+                  <div class="login-box">
+                    <div class="login-button-form-element">
+                      <button id="login" class="login-button new-post-link w3-button w3-theme w3-margin-bottom w3-round-large">Login</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

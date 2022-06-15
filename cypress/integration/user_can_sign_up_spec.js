@@ -5,7 +5,7 @@ describe("Registration", () => {
     cy.get("#name").type("Test name 1");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#signup-button").click();
 
     cy.url().should("include", "/sessions/new");
   });
