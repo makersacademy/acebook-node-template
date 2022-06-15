@@ -17,7 +17,10 @@ const CommentsController = {
         throw err;
       }
       const filter = { _id: post_id };
-      const update = {$push: {comments: comment._id }};
+      const update = {$push: {comments: {
+                              $each: [comment._id],
+                              $position: 0
+                            }}};
       
       Post.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false}, (err) => {
         if (err) {
