@@ -30,7 +30,7 @@
         <ul id="comments-list">
           {{#each this.comments}}
               <div class="comment-and-image">
-                <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+                <img class="picture-tag-comment" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-image">
                 <li class="frm-textbox-peach">{{ this.userName }}: {{ this.comments }}</li>
               </div>
           {{/each}}
