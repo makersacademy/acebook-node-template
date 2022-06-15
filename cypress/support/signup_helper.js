@@ -1,6 +1,6 @@
 const signUp = (email, password, username) => {
   cy.visit("/");
-  cy.get(".open-button").click();
+  cy.get(".Sign-up-button").click();
   cy.get("#SignUpEmail").type(email);
   cy.get("#SignUpPassword").type(password);
   cy.get("#SignUpUsername").type(username);

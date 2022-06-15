@@ -234,7 +234,7 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 /* Set a style for all buttons */
-button {
+.Sign-up-button {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
