@@ -21,15 +21,16 @@ jobs:
 
       - name: Setup and Run Cypress
         uses: cypress-io/github-action@v2
-        env:
-          CLOUD_NAME: ${{ secrets.CLOUD_NAME }}
-          API_KEY: ${{ secrets.API_KEY }}
-          API_SECRET: ${{ secrets.API_SECRET }}
         with:
           record: true
           browser: chrome
           headless: true
           start: npm run start:test
+        env:
+          CLOUD_NAME: ${{ secrets.CLOUD_NAME }}
+          API_KEY: ${{ secrets.API_KEY }}
+          API_SECRET: ${{ secrets.API_SECRET }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
       - run: npm run test:unit
         env:
