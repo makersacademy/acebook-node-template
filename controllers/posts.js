@@ -15,7 +15,12 @@ const PostsController = {
           throw err;
         }
 
-        let reversedPosts = posts.reverse();
+        const reversedPosts = posts.reverse();
+
+        reversedPosts.forEach((post) => {
+          post.liked = post.likes.likes_array.includes(req.session.user._id);
+        });
+
         res.render("posts/index", {
           session: req.session.user,
           posts: reversedPosts,

@@ -65,10 +65,17 @@
                   {{!-- size can be removed when css is done --}}
         {{/if}}
         <div class="comments-container">
+          {{#if liked}}
+            <form action='/likes?_method=DELETE' method='POST'>
+              <input type="hidden" name="post_id" value={{this._id}}>
+              <input class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large like-button" type="submit" value="Un-Like: {{this.likes.likes_array.length}}">
+            </form>
+          {{else}}
             <form action="/likes" method="post">
               <input type="hidden" name="post_id" value={{this._id}}>
               <input class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large like-button" type="submit" value="Like: {{this.likes.likes_array.length}}">
-            </form>  
+            </form> 
+          {{/if}} 
   {{!-- new div here --}}
 
         <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="drop-down">Comment</button>
