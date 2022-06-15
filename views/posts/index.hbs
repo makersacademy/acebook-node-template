@@ -14,20 +14,28 @@
         <div class="username">{{this.username}}</div>
       </div>
       <div class="message_container"><!Message container. That also contains the number of likes container. Light blue box in miro.>
+        
         <div class="likes_container"><!Number of likes container. Pink box with little hand in miro.>
-          <meta charset="UTF-8">
-          <p style="display: flex; flex-direction: column; align-items: center;"><span> 👍 </span> </p>
+         Likes:
         </div>
+        <div class="likes-count">{{this.likes.length}}</div>
+        <div>  |  </div>
+  
         <div class="post-message">
           {{this.message}}
         </div>
         <!Put bottom border line in here.>
       </div>
-      <div class="footer"><!Like and comment button container. Red box in miro.>
+      <div  class="footer"><!Like and comment button container. Red box in miro.>
+          <form class="like-form" id="{{this._id}}" data-user-id="{{user_id}}" action="/posts/add_like" method="post">
+           <input id="user_id" type="hidden" value="{{user_id}}">
+           <input id="post_id" type="hidden"  value="{{this._id}}">
+           <input class="add-like-button" id="submit-button" type="submit" value="Like">
+          </form>
         <form action="/posts/new_comment" method="post" class="new-comment-link">
           <input type="hidden" name="post_id" value="{{this._id}}">
           </input>
-          <input type="submit" value="Add comment">
+          <input id="submit-button" type="submit" value="Add comment">
         </form>
       </div>
       {{#each this.comments}}
@@ -43,3 +51,5 @@
   </div>
   {{/each}}
 </div>
+  <script type="text/javascript" src="javascripts/likes_dom.js"></script>
+
