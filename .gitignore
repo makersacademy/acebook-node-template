@@ -66,3 +66,6 @@ cypress/videos
 
 # uploads
 public/uploads
+
+# unknown
+.DS_Store
