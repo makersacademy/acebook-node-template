@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", { session: req.session.user });
   },
 
   Create: (req, res) => {
@@ -10,13 +10,13 @@ const SessionsController = {
     const email = req.body.email;
     const password = req.body.password;
 
-    User.findOne({email: email}).exec(function(error, user) {
+    User.findOne({ email: email }).exec(function (error, user) {
       if (error) {
         res.redirect("/sessions/new");
       } else if (!user) {
         res.redirect("/sessions/new");
       } else {
-        user.comparePassword(password, function(matchError, isMatch) {
+        user.comparePassword(password, function (matchError, isMatch) {
           if (matchError) {
             res.redirect("/sessions/new");
           } else if (!isMatch) {
@@ -25,9 +25,9 @@ const SessionsController = {
             req.session.user = user;
             res.redirect("/posts");
           }
-        })
+        });
       }
-    })
+    });
   },
   Destroy: (req, res) => {
     console.log("logging out");
@@ -35,6 +35,6 @@ const SessionsController = {
       res.clearCookie("user_sid");
     }
     res.redirect("/sessions/new");
-  }
-}
+  },
+};
 module.exports = SessionsController;

@@ -1,15 +1,60 @@
-<h1>Profile</h1>
-<h2>Hi {{user.name}}!</h2>
+<div class="whole-page">
 
-{{#if user.profile_picture}}
-  <img id="profile-photo" src={{user.profile_picture}} width="100" height="100" />
-        {{!-- size can be removed when css is done --}}
-{{else}}
-  <img id="profile-photo" src="/images/cutie-pie.jpeg" width="100" height="100"/>
-{{/if}}
+  <div>
+    <div class="profile main-title">
+      <h1>Profile</h1>
+    </div>
 
-<form id="upload-profile-photo-form" action="/profile" method="post" enctype="multipart/form-data">
-  <label for="file">Upload your profile picture here</label>
-  <input type="file" name="image" accept="image/*" > 
-  <input type="submit" name="upload" value="Upload" >
-</form>
+    <div class="profile grey-div">
+      
+      <h2>Hi {{user.name}}!</h2>
+
+      {{#if user.profile_picture}}
+        <img id="profile-photo" src={{user.profile_picture}}>
+      {{else}}
+        <img id="profile-photo" src="/images/cutie-pie.jpeg" width="100" height="100"/>
+      {{/if}}
+
+      <form id="upload-profile-photo-form" action="/profile" method="post" enctype="multipart/form-data">
+        <label class="button" for="img">Select Image</label>
+        <input type="file" id="img" name="image" accept="image/*" class="hidden" required> 
+        <input id="ppSubmit" class="button" type="submit" name="upload" value="Update Profile" >
+        <div class="flex-container">
+          <img id="preview" src="" class="hidden">
+        </div>
+      </form>
+
+      <hr>
+
+      <h2>Friends</h2>
+
+      <div class="flex-container">
+        <div class="friends flex-container">
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+          <div class="friend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  img.onchange = evt => {
+  const [file] = img.files
+  if (file) {
+    preview.src = URL.createObjectURL(file)
+    preview.style.display = "block"
+  }
+}
+</script>

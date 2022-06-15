@@ -24,7 +24,7 @@ describe("Timeline", () => {
       .should("include", "/images/cutie-pie.jpeg");
   });
 
-  it.only("can submit posts, when signed in, and view them in reverse order", () => {
+  it("can submit posts, when signed in, and view them in reverse order", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#name").type("Name");
