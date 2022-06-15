@@ -30,12 +30,12 @@
           <form class="like-form" id="{{this._id}}" data-user-id="{{user_id}}" action="/posts/add_like" method="post">
            <input id="user_id" type="hidden" value="{{user_id}}">
            <input id="post_id" type="hidden"  value="{{this._id}}">
-           <input class="add-like-button" id="add-like-button" type="submit" value="Like">
+           <input class="add-like-button" id="submit-button" type="submit" value="Like">
           </form>
         <form action="/posts/new_comment" method="post" class="new-comment-link">
           <input type="hidden" name="post_id" value="{{this._id}}">
           </input>
-          <input type="submit" value="Add comment">
+          <input id="submit-button" type="submit" value="Add comment">
         </form>
       </div>
       {{#each this.comments}}
