@@ -1,9 +1,10 @@
 const signUp = (email, password, username) => {
-  cy.visit("/users/new");
-  cy.get("#email").type(email);
-  cy.get("#password").type(password);
-  cy.get("#username").type(username);
-  cy.get("#submit").click();
+  cy.visit("/");
+  cy.get(".Sign-up-button").click();
+  cy.get("#SignUpEmail").type(email);
+  cy.get("#SignUpPassword").type(password);
+  cy.get("#SignUpUsername").type(username);
+  cy.get("#SignUpSubmit").click();
 };
 
 module.exports = signUp;
