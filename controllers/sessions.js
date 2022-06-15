@@ -3,7 +3,7 @@ const correctPassword = require("../models/correct_password_helper");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("/", {});
   },
 
   Create: (req, res) => {
@@ -13,9 +13,9 @@ const SessionsController = {
 
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        res.redirect("/sessions/new");
+        res.redirect("/");
       } else if (correctPassword(password, user.password)) {
-        res.redirect("/sessions/new");
+        res.redirect("/");
       } else {
         req.session.user = user;
         res.redirect("/posts");

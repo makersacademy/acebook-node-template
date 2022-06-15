@@ -1,8 +1,8 @@
 const signIn = (email, password) => {
-  cy.visit("/sessions/new");
-  cy.get("#email").type(email);
-  cy.get("#password").type(password);
-  cy.get("#submit").click();
+  cy.visit("/");
+  cy.get("#LogInEmail").type(email);
+  cy.get("#LogInPassword").type(password);
+  cy.get("#LogInSubmit").click();
 };
 
 module.exports = signIn;
