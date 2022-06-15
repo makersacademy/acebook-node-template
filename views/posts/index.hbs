@@ -1,44 +1,48 @@
-<main id="posts-main">
-  <h1 class="timeline-text">Timeline</h1>
-  <form id="new-post-form" action="/posts" method="post">
-    <label class="input-post" for="message"></label>
-    <input id="message" type="text" name="message" placeholder="Talk To The Constable" required><br>
-    <input class="post-submit-button" type="submit" value="Submit" required>
-  </form><br>
-  <ul class="posts">
-    {{#each posts}}
-    <li class="frm-textbox-yellow">
-      <div class="name-and-image">
-        <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo">
-        <div class="name-tag">{{this.userName}}</div>
-      </div>
-      {{this.message}}
-      <form id="delete-post" action="/posts/remove" method="post">
-        <input type="hidden" name="id" value="{{this.id}}">
-        <input class="post-delete-button" type="submit" value="Delete">
-      </form>
-      {{!-- <div class="message-tag">{{this.message}}</div> --}}
-      <form id="add-comment-to-post" action="/posts/update" method="post">
-        <div class="comment-and-image">
-          <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
-          <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder='Add A Comment' required>
-          <input class="comment-submit-button" type="submit" value="Add">
+<div class="main-container">
+  <main id="posts-main">
+    <h1 class="timeline-text">Timeline</h1>
+    <form id="new-post-form" action="/posts" method="post">
+      <label class="input-post" for="message"></label>
+      <input id="message" type="text" name="message" placeholder="Talk To The Constable" required><br>
+      <input class="post-submit-button" type="submit" value="Submit" required>
+    </form><br>
+    <ul class="posts">
+      {{#each posts}}
+      <li class="frm-textbox-yellow">
+        <div class="name-and-image">
+          <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo">
+          <div class="name-tag">{{this.userName}}</div>
         </div>
-        <input type="hidden" name="id" value="{{this.id}}">
-        
-      </form>
-        <ul id="comments-list">
-          {{#each this.comments}}
-              <div class="comment-and-image">
-                <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
-                <li class="frm-textbox-peach">{{ this }}</li>
-              </div>
-          {{/each}}
-        </ul>
-    </li>
-    {{/each}}
-  </ul>
-  <footer class="fb-footer">
-    <div class="div-footer"></div>
-  </footer>
-</main>
+        {{this.message}}
+        <form id="delete-post" action="/posts/remove" method="post">
+          <input type="hidden" name="id" value="{{this.id}}">
+          <input class="post-delete-button" type="submit" value="Delete">
+        </form>
+        {{!-- <div class="message-tag">{{this.message}}</div> --}}
+        <form id="add-comment-to-post" action="/posts/update" method="post">
+          <div class="comment-and-image">
+            <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+            <input class="comment-text" id="comments" type="text" name="comments" value="" data-cy="comments" placeholder='Add A Comment' required>
+            <input class="comment-submit-button" type="submit" value="Add">
+          </div>
+          <input type="hidden" name="id" value="{{this.id}}">
+          
+        </form>
+          <ul id="comments-list">
+            {{#each this.comments}}
+                <div class="comment-and-image">
+                  <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
+                  <li class="frm-textbox-peach">{{ this }}</li>
+                </div>
+            {{/each}}
+          </ul>
+      </li>
+      {{/each}}
+    </ul>
+    <footer class="fb-footer">
+      <div class="div-footer">
+        <p>Makebook © 2022. All rights unreserved.</p>
+      </div>
+    </footer>
+  </main>
+</div> 
