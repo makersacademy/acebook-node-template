@@ -41,9 +41,6 @@ const PostsController = {
       })
     })
   },
-  NewComment: (req, res) => {
-    res.render("posts/new_comment", {user_id: req.session.user._id, post_id: req.body.post_id})
-  },
 
   AddLike: (req, res) => {
     Post.findOne({_id: req.body.post_id}, (err, posts) => {

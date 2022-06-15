@@ -32,11 +32,6 @@
            <input id="post_id" type="hidden"  value="{{this._id}}">
            <input class="add-like-button" id="submit-button" type="submit" value="Like">
           </form>
-        <form action="/posts/new_comment" method="post" class="new-comment-link">
-          <input type="hidden" name="post_id" value="{{this._id}}">
-          </input>
-          <input id="submit-button" type="submit" value="Add comment">
-        </form>
       </div>
       {{#each this.comments}}
       <div class="comment_container"><!Comment container. Black box in miro.>
@@ -46,6 +41,14 @@
         <!Put bottom border line in here.>
       </div>
       {{/each}}
+      <div class="footer"><!Like and comment button container. Red box in miro.>
+        <form  id="new-comment-form" class="comment-form" action="posts/create_comment" method="post">
+          <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
+          <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
+          <input id="message" class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
+          <input type="submit" value="Add comment">
+        </form>
+      </div>
     </div>
 
   </div>
