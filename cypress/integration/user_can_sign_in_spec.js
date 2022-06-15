@@ -5,9 +5,10 @@ describe("Authentication", () => {
   it("A user signs in after signing up and is redirected to /posts", () => {
     // sign up
     cy.visit("/");
-    cy.get("#userName").type("The Constable");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#userName").type("Jerry");
+    cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
+    cy.get('input[type=file]').attachFile("../fixtures/earth.jpg")
     cy.get("#submit-signup").click();
 
     cy.url().should("include", "/posts");
@@ -17,9 +18,10 @@ describe("Authentication", () => {
   it("A user with an account logs in and is redirected to /posts", () => {
     //sign up
     cy.visit("/");
-    cy.get("#userName").type("The Constable");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#userName").type("Jerry");
+    cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
+    cy.get('input[type=file]').attachFile("../fixtures/earth.jpg")
     cy.get("#submit-signup").click();
 
     //log out
@@ -27,7 +29,7 @@ describe("Authentication", () => {
 
     //log in
     cy.visit("/sessions/new")
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
     cy.get("#submit-signin").click();
 

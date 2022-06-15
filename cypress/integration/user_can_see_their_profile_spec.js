@@ -7,8 +7,9 @@ describe("Profile", () => {
     // sign up
     cy.visit("/");
     cy.get("#userName").type("Jerry");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("jerry@example.com");
     cy.get("#password").type("password");
+    cy.get('input[type=file]').attachFile("../fixtures/earth.jpg")
     cy.get("#submit-signup").click();
 
     // visits profile
