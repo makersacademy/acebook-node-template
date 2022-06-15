@@ -1,0 +1,27 @@
+<body class="background">
+  <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="list-all-users whole-page">
+      <div class=class="users w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+        <h1>All Acebook Users</h1> 
+          <ul> 
+            {{#each users}}
+              <li class="each-user">{{this.name}}</li><button>Send friend request</button>
+            {{/each}}
+          </ul>
+      </div>
+    </div>
+  </div>
+</body>
+
+{{!-- input method in the field --}}
+{{!-- know the info I want to send to the connect --}}
+
+{{!-- make a new form for the buttons --}}
+{{!-- make the route of the form go towards the new route (make a new one) --}}
+{{!-- create a new route in the app  --}}
+
+{{!-- plan how the connecting friends would work --}}
+{{!-- update the users table to have the friends listed by user_id --}}
+{{!-- draw the user table and visualise the table how it would like --}}
+{{!-- add someone, goes into array of friends --}}
+

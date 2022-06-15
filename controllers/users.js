@@ -24,6 +24,28 @@ const UsersController = {
         res.redirect("/users/new");
       });
   },
-};
+
+  All: (req, res) => {
+    User.find()
+    .exec((err, users) => {
+      if (err) {
+        throw err;
+      }
+
+      res.render("users/all", {
+        session: req.session.user,
+        users: users,
+      })
+    });
+  }
+
+  //   Connect: (req, res) => {
+//     User.findOneAndUpdate()
+
+//     // 
+//   }
+// };
+}
+
 
 module.exports = UsersController;
