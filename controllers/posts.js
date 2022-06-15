@@ -34,7 +34,7 @@ const PostsController = {
     Post.findOneAndUpdate(
       {_id: req.body.id},
       {$push:
-        {comments: req.body.comments}
+        {comments: {userName: req.session.userName, comments: req.body.comments}}
       },
       (err, result)=>{
       console.log(err);
