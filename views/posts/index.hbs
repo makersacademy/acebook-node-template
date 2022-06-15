@@ -64,14 +64,7 @@
         {{!-- <button class="comments-buttons new-post-link w3-button w3-theme w3-margin-bottom w3-round-large" id="drop-down">Comment</button> --}}
 
           <div class="comments-section-container" id="comments-container">
-            <div class="comment-form-container">
-              <form id="new-comment-form" action="/comments" method="post">
-                <input class="comments-input" id="comment-input" placeholder="  Comment" type="text" name="comment" value="" required>
-                <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
-                <input id="comment-button" class="comments-buttons new-post-link w3-button w3-round-large" type="submit" value="Comment">
-                {{!-- w3-theme for colour of the comment button --}}
-              </form>
-            </div>
+            
 
             <div class="comments-container">
               {{#each this.comments}}
@@ -87,6 +80,15 @@
                   </div> 
                 </div>
               {{/each}}
+            </div>
+
+            <div class="comment-form-container">
+              <form id="new-comment-form" action="/comments" method="post">
+                <input class="comments-input" id="comment-input" placeholder="  Comment" type="text" name="comment" value="" required>
+                <input id="post_id" name="post_id" type="hidden" value="{{this._id}}">
+                <input id="comment-button" class="comments-buttons new-post-link w3-button w3-round-large" type="submit" value="Comment">
+                {{!-- w3-theme for colour of the comment button --}}
+              </form>
             </div>
           </div>
         </div>

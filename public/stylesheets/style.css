@@ -254,13 +254,13 @@ hr {
 /* Comments & Form Container */
 .comments-section-container {
   width: 97%;
-  padding: 1.5rem;
+  padding: 0 1.5rem 1.5rem 1.5rem;
   margin: auto;
   border: solid 1px rgb(191, 190, 190); 
   border-radius: 1rem;
 }
 .comment-form-container {
-  margin-bottom: 2rem;
+  margin: 2rem 0 1rem 0;
 }
 
 #comment-input {
@@ -284,6 +284,8 @@ hr {
 /* Comments Container */
 .comments-container {
   display: block;
+  height: 16rem;
+  overflow-y : scroll;
 }
 
 .comment-container {
@@ -293,6 +295,7 @@ hr {
   border-radius: 1rem;
   display: flex;
   background-color: rgba(255, 255, 255, 0.3);
+  padding: 0.8rem;
 }
 
 .comment-left {
@@ -310,7 +313,7 @@ hr {
 
 /* Comment Picture */
 .comment-pic-container {
-  width: 50%;
+  width: 60%;
   margin: auto;
   overflow: hidden;
   border-radius:50%;
