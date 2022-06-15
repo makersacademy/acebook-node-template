@@ -245,7 +245,10 @@ ul {
 
 .fb-footer {
 	background-color: #F7C59F;
-	width: 100%
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
 }
 
 .div-footer {
@@ -289,6 +292,8 @@ ul {
 #posts-main{
 	background-color: #FA6C8B;
 	background: linear-gradient(white, #EFEFD0);
+	min-height: calc(100vh - 143px);
+
 }
 
 .frm-textbox-peach {
