@@ -21,6 +21,10 @@ jobs:
 
       - name: Setup and Run Cypress
         uses: cypress-io/github-action@v2
+        env:
+          CLOUD_NAME: ${{ secrets.CLOUD_NAME }}
+          API_KEY: ${{ secrets.API_KEY }}
+          API_SECRET: ${{ secrets.API_SECRET }}
         with:
           browser: chrome
           headless: true
