@@ -31,16 +31,17 @@ const PostsController = {
     res.render("posts/new", { newUser: false });
   },
   Update: (req, res) => {
+    User.findOne({ userName: req.session.userName}).then( (commenter) => {
     Post.findOneAndUpdate(
       {_id: req.body.id},
       {$push:
-        {comments: {userName: req.session.userName, comments: req.body.comments}}
+        {comments: {userName: req.session.userName, comments: req.body.comments, photo: commenter.photo}}
       },
       (err, result)=>{
       console.log(err);
       console.log(result);
       res.status(201).redirect("/posts");
-    });  
+    })});  
   },
   Create: (req, res) => {
     const post = new Post({ 
