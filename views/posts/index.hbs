@@ -22,8 +22,8 @@
       </form>
 
       {{!-- button and counter for likes --}}
-      <div id="like-count-{{ this.id }}" class="like-count">{{this.likes.length}}</div>
-      <button onclick="like('{{this.id}}')">Like</button>
+      <div id="like-count-{{ this.id }}" class="likes-count">{{this.likes.length}}</div>
+      <button id="like-button" onclick="like('{{this.id}}')">Like</button>
 
       {{!-- <div class="message-tag">{{this.message}}</div> --}}
       <form id="add-comment-to-post" action="/posts/update" method="post">
