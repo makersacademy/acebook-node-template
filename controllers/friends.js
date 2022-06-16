@@ -49,26 +49,26 @@ const FriendsController = {
   },
 
   Retrieve: (req, res) => {
-    User.find({_id: req.body.id})
-    .exec((async(err, posts) => {
+    User.findOne({_id: req.body.id})
+    .exec(((err, user) => {
       if (err) {
         throw err;
+      } else {
+        const photo = {
+          contentType: user.photo.contentType,
+          data: user.photo.data.toString('base64'), // <- user photo added to profile page
+        };
+        const locations = ["Bumpass, Virginia", "Hell, Norway", "Titty Hill, England", "Sandy Balls, England"]
+        const statuses = ["A Mongoose never tells", "Already ordered 15 cats", "Depends on who's asking"]
+        res.render("friends/profile", { 
+          userName: user.userName,
+          photo: photo,
+          age: Math.floor(Math.random() * 101),
+          location: locations[Math.floor(Math.random() * locations.length)],
+          relation_status: statuses[Math.floor(Math.random() * statuses.length)]
+        });
+
       }
-      const user = await User.findOne({ _id: req.body.id }).exec();
-      const photo = {
-        contentType: user.photo.contentType,
-        data: user.photo.data.toString('base64'), // <- user photo added to profile page
-      };
-      const locations = ["Bumpass, Virginia", "Hell, Norway", "Titty Hill, England", "Sandy Balls, England"]
-      const statuses = ["A Mongoose never tells", "Already ordered 15 cats", "Depends on who's asking"]
-      res.render("friends/profile", { 
-        userName: user.userName, 
-        posts: posts, 
-        photo, 
-        age: Math.floor(Math.random() * 101),
-        location: locations[Math.floor(Math.random() * locations.length)],
-        relation_status: statuses[Math.floor(Math.random() * statuses.length)]
-      });
     }))
   }
   
