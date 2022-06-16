@@ -1,8 +1,11 @@
-<div class="page-container"><h1 class="timeline_header">{{username}}'s Timeline</h1>
+<div class="page-container">
 <div class="three-columns">
-  <div class="left-column">
- <a id="change_profile_photo" href='/users/photo' class="" style="text-decoration: none">Change Profile Photo</a> 
-  <img class="profile-photo-header"  src={{profilePhotoPath}}>
+  <div class="left-column"><div class="profile-card">
+    <div class="username-card">{{username}}</div>
+    <img class="profile-photo-header"  src={{profilePhotoPath}}><br>
+    <a id="change_profile_photo" href='/users/photo' class="" style="text-decoration: none">Change Profile Photo</a>
+  </div>
+
 </div>
 <div class="center-column">
  <form id="new-post-form" action="/posts" method="post">
