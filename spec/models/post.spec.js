@@ -52,6 +52,20 @@ describe("Post model", () => {
       })
     })
   })
+  it("can have a like saved onto it", (done) => {
+    var post = new Post({message: "some message", comments: [], likes: ["1"] });
 
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull()
+        expect(posts[0].likes.length).toEqual(1)
+        expect(posts[0].likes).toContain("1")
+
+        done()
+      })
+    })
+  })
 })
 

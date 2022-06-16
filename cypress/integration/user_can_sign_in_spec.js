@@ -6,6 +6,5 @@ describe("Authentication", () => {
     signUp("email@email.com", "password", "username");
     signIn("email@email.com", "password");
     cy.url().should("include", "/posts");
-    cy.contains("a", "New post");
   });
 });

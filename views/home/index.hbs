@@ -1,16 +1,67 @@
-<div class="container">
-  <div class="center">
-      <div>
+<body id="body">
+  <div class="grid-container">
+    <div class="item1" id="HeaderBox">
       <a href="/"><img src="/images/test_logo.png" id="logo"/></a>
     </div>
-    <div id="title" class="welcome_text">
-      <p>Welcome to {{title}}</p>
-      <p>Wilkommen bei {{title}}</p>
-      <p>欢迎来到 {{title}}</p>
-      <p>Bienvenida a {{title}}</p>
-      <p>Velkommen til {{title}}</p>
-      <p>Witamy w {{title}}</p>
-      <p>Добро пожаловать в Эйсбук</p>
+    <div class="item3" id="WelcomePage">
+      <div id="title" class="welcome_text">
+        <p>Welcome to {{title}}</p>
+        <p>Wilkommen bei {{title}}</p>
+        <p>欢迎来到 {{title}}</p>
+        <p>Bienvenida a {{title}}</p>
+        <p>Velkommen til {{title}}</p>
+        <p>Witamy w {{title}}</p>
+        <p>Добро пожаловать в Эйсбук</p>
+      </div>
+    </div> 
+    <div class="item4" id="LogIn">
+      <div class="form_box">
+        <div class="controls">
+          <div class="sign_up_font_size"> Log in </div>
+          <form id="new-session-form" action="/sessions" method="post">
+            <div class="sign_up_box_padding">
+              <input class="input_box" id="LogInEmail" type="email" name="email" value="" placeholder="email@example.com">
+            </div>
+            <div class="sign_up_box_padding">
+              <input class="input_box" id="LogInPassword" type="password" name="password" value="" placeholder="password">
+            </div>
+            <div class="sign_up_box_padding">
+              <input class="button-5" id="LogInSubmit" type="submit" value="Submit">
+            </div>
+          </form>
+        </div>
+          <div><!Sign up button.>
+            <button class="button-5" id="CreateAccountButton" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create Account</button>
+          </div>
+      </div>
     </div>
-   </div>
-</div>
+  </div>
+  <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <form class="form-container" id="new-user-form" action="/users" method="post">
+        <div class="form_box">
+          <div class="sign_up_font_size"> Sign up </div><br>
+          <div class="controls">
+            <div class="sign_up_box_padding">
+              <input class="input_box" id="SignUpUsername" type="username" name="username" value="" placeholder="User Name">
+            </div>
+            <div class="sign_up_box_padding">
+              <input class="input_box" id="SignUpEmail" type="email" name="email" value="" placeholder="email@example.com">
+            </div>
+            <div class="sign_up_box_padding">
+              <input class="input_box" id="SignUpPassword" type="password" name="password" value="" placeholder="password">
+            </div>
+            <div class="sign_up_box_padding">
+              <input class="button-5" id="SignUpSubmit" type="submit" value="Submit">
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>
+  <script type="text/javascript" src="javascripts/getModal.js"></script>
+</body>
+
+
+
+
+<!input form stuff below >

@@ -2,6 +2,14 @@
 <div>  
   <a id="change_profile_photo" href='/users/photo' class="" style="text-decoration: none">Change Profile Photo</a> 
   <img class="profile-photo-header"  src={{profilePhotoPath}}>
+<div class="center">
+  <form id="new-post-form" action="/posts" method="post">
+    <div class="controls">
+      <label for="message">Message: </label>
+      <input id="message" type="text" name="message" value="">
+      <input class="button-5" type="submit" value="Submit">
+    </div>
+  </form>
 </div>
 <div class="posts"> <!Big box for all posts. Yellow box in miro>
   {{#each posts}}
@@ -12,21 +20,24 @@
         <div class="username">{{this.author.username}}</div>
       </div>
       <div class="message_container"><!Message container. That also contains the number of likes container. Light blue box in miro.>
+        
         <div class="likes_container"><!Number of likes container. Pink box with little hand in miro.>
-          <meta charset="UTF-8">
-          <p style="display: flex; flex-direction: column; align-items: center;"><span> 👍 </span> </p>
+         Likes:
         </div>
+        <div class="likes-count">{{this.likes.length}}</div>
+        <div>  |  </div>
+  
         <div class="post-message">
           {{this.message}}
         </div>
         <!Put bottom border line in here.>
       </div>
-      <div class="footer"><!Like and comment button container. Red box in miro.>
-        <form action="/posts/new_comment" method="post" class="new-comment-link">
-          <input type="hidden" name="post_id" value="{{this._id}}">
-          </input>
-          <input type="submit" value="Add comment">
-        </form>
+      <div  class="footer"><!Like and comment button container. Red box in miro.>
+          <form class="like-form" id="{{this._id}}" data-user-id="{{user_id}}" action="/posts/add_like" method="post">
+           <input id="user_id" type="hidden" value="{{user_id}}">
+           <input id="post_id" type="hidden"  value="{{this._id}}">
+           <input class="add-like-button" id="submit-button" type="submit" value="Like">
+          </form>
       </div>
       {{#each this.comments}}
       <div class="comment_container"><!Comment container. Black box in miro.>
@@ -36,10 +47,20 @@
         <!Put bottom border line in here.>
       </div>
       {{/each}}
+      <div class="footer"><!Like and comment button container. Red box in miro.>
+        <form  id="new-comment-form" class="comment-form" action="posts/create_comment" method="post">
+          <div class="controls">
+            <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
+            <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
+            <input id="message" class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
+            <input class="button-5"type="submit" value="Add comment">
+          </div>
+        </form>
+      </div>
     </div>
 
   </div>
   {{/each}}
 </div>
+  <script type="text/javascript" src="javascripts/likes_dom.js"></script>
 
-<a class="new-post-link" href="/posts/new">New post</a>

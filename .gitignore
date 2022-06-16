@@ -64,8 +64,8 @@ typings/
 cypress/screenshots
 cypress/videos
 
-# DS store file
-.DS_Store
-
-# uploads folder
+# uploads
 public/uploads
+
+# unknown
+.DS_Store
