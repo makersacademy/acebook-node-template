@@ -1,51 +1,44 @@
-<h1 class="timeline_header">{{username}}'s Timeline</h1>
-<div class="center">
-  <form id="new-post-form" action="/posts" method="post">
-    <label for="message">Message: </label>
-    <input id="message" type="text" name="message" value="">
-    <input type="submit" value="Submit">
+<div class="page-container"><h1 class="timeline_header">{{username}}'s Timeline</h1>
+ <form id="new-post-form" action="/posts" method="post">
+  <div class="new-message-form">
+    <input id="message" type="text" name="message" placeholder="What's on your mind?" value="">
+    <input class="new-post-button" type="submit" value="Submit">
+    </div>
   </form>
-</div>
-<div class="posts"> <!Big box for all posts. Yellow box in miro>
+<div class="posts">
   {{#each posts}}
-  <div class="post"> <!Post box that contains everything for each post. Purple box in miro. Post CSS currently commented out.>
-    <div class="post_contents"><!Still contains everything in post, but its padding. Teal box in miro.>
-      <div class="author_container"><!Contain poster photo, name and timestamp? Lime green box in miro.>
+  <div class="post"> 
+    <div class="post_contents">
+      <div class="author_container">
         <div class="username">{{this.username}}</div>
       </div>
-      <div class="message_container"><!Message container. That also contains the number of likes container. Light blue box in miro.>
-        
-        <div class="likes_container"><!Number of likes container. Pink box with little hand in miro.>
-         Likes:
-        </div>
-        <div class="likes-count">{{this.likes.length}}</div>
-        <div>  |  </div>
-  
+      <div class="message_container">  
         <div class="post-message">
           {{this.message}}
         </div>
-        <!Put bottom border line in here.>
       </div>
-      <div  class="footer"><!Like and comment button container. Red box in miro.>
-          <form class="like-form" id="{{this._id}}" data-user-id="{{user_id}}" action="/posts/add_like" method="post">
+      <div class="like-bar-container">
+      <form class="like-form" id="{{this._id}}" data-user-id="{{user_id}}" action="/posts/add_like" method="post">
            <input id="user_id" type="hidden" value="{{user_id}}">
            <input id="post_id" type="hidden"  value="{{this._id}}">
-           <input class="add-like-button" id="submit-button" type="submit" value="Like">
-          </form>
-      </div>
+           <button class="add-like-button" type="submit" value="Like"><i class="fa-regular fa-thumbs-up"></i></i></button>
+          </form> <div class="likes_container">
+         Likes:
+        
+        <div class="likes-count">{{this.likes.length}}</div>
+       </div></div>
       {{#each this.comments}}
-      <div class="comment_container"><!Comment container. Black box in miro.>
+      <div class="comment_container">
         <div class="comment">
           {{this.message}}
         </div>
-        <!Put bottom border line in here.>
       </div>
       {{/each}}
-      <div class="footer"><!Like and comment button container. Red box in miro.>
+      <div class="footer">
         <form  id="new-comment-form" class="comment-form" action="posts/create_comment" method="post">
-          <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
-          <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
-          <input id="message" class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
+          <input class="post_id" type="hidden" name="post_id" value="{{this._id}}">
+          <input class="user_id" type="hidden" name="user_email" value="{{../user_id}}">
+          <input class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
           <input type="submit" value="Add comment">
         </form>
       </div>
@@ -53,6 +46,6 @@
 
   </div>
   {{/each}}
-</div>
+</div></div></div>
   <script type="text/javascript" src="javascripts/likes_dom.js"></script>
 
