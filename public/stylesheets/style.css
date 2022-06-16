@@ -247,6 +247,10 @@ hr {
   margin-bottom: 10px;
 }
 
+#message::placeholder {
+  line-height: 70px; 
+}
+
 #postpreview {
   width: 200px;
   height: 200px;
