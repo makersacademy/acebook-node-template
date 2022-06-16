@@ -111,18 +111,20 @@ ul {
 
 /* sign up and log in page */
 #fb-main{
-	margin: 0 auto;
-	height: 722.5px;
-	width: 100%;
+	min-height: 100vh; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
 	background-color: #FA6C8B;
 	background: linear-gradient(white, #EFEFD0);
 }
 
 .fb-container{
-	width: auto;
-	margin: 0 auto;
-	height: auto;
-  overflow: hidden;
+	min-height: 100vh; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	padding-bottom: 143px; /* height of your footer */
 }
 
 .logo-m {
