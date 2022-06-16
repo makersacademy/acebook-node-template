@@ -6,16 +6,23 @@ const path = require('path');
 const UsersController = {
 
   Index: (req, res) => {
-    console.log(req.session.userName);
-    Post.find({userID: req.session.userID})
+    
+    const postSearch = Post.find({userID: req.session.userID})
     .sort({'date': -1})
     .limit(10)
-    .exec((err, posts) => {
-      if (err) {
-        throw err;
-      }
-      res.render("users/profile", { userName: req.session.userName, posts: posts});
-    });
+    .exec();
+
+    const userSearch = User.findOne({_id: req.session.userID})
+    .exec();
+
+    Promise.all([postSearch, userSearch]).then( searchResults => {
+      console.log("line 30", searchResults[1])
+      res.render("users/profile", 
+        { userName: req.session.userName, 
+          posts: searchResults[0],
+          requests: searchResults[1].requests
+        });
+    })
   },
 
   New: (req, res) => {
