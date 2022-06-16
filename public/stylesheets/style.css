@@ -1,7 +1,8 @@
 body {
   margin-top: 50px;
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ecf8fd;
 }
 
 .navbar {
@@ -109,6 +110,20 @@ body {
   padding: 2px;
 }
 
+.profile-photo-header {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+.profile-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
 .main_container {
   justify-content: center;
   align-content: center;
@@ -165,7 +180,9 @@ body {
   font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #f49f0a;
 }
-
+.colour_white_blue{
+  color: #ecf8fd;
+}
 .colour_snow {
   color: #f8f1f3;
 }
@@ -264,38 +281,44 @@ body {
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header'
-    'main right'
-    'main right'
-    'main right'
-    'main right';
+  'header header'
+  'main right'
+  'main right'
+  'main right'
+  'main right';
   gap: 10px;
   padding: 10px;
 }
 
 .grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+  /* background-color: rgba(255, 255, 255, 0.8); */
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
 }
 
+/* COMMENTING OUT TO TEST NEW INPUT FORM CSS START*/
+
 /* Styling for CSS Modal sign up form */
 /* Full-width input fields */
-input[type=text], input[type=password], input[type=email], input[type=username]{
+/* input[type=text], input[type=password], input[type=email], input[type=username]{
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
-}
+} */
+
 
 /* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=username]:focus {
+
+/* input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=username]:focus {
   background-color: #ddd;
   outline: none;
-}
+} */
+
+/* COMMENTING OUT TO TEST NEW INPUT FORM CSS FINISH*/
 
 /* Set a style for sign-up-buttons */
 .Sign-up-button {
@@ -369,6 +392,159 @@ hr {
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
   .signupbtn {
-     width: 100%;
+    width: 100%;
   }
+}
+
+
+/* CSS_Shared below form input classes */
+
+.controls input[type="text"],
+.controls input[type="email"],
+.controls input[type="password"],
+.controls input[type="username"],
+.controls textarea,
+.controls button,
+.controls select {
+  padding: 12px;
+  font-size: 14px;
+  border: 2px solid #808184;
+  width: 100%;
+  color: #888;
+  font-family: 'Lato', 'sans-serif';
+  font-size: 16px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.controls input[type="text"]:focus, 
+.controls input[type="text"]:hover,
+.controls input[type="email"]:focus,
+.controls input[type="email"]:hover,
+.controls input[type="password"]:focus,
+.controls input[type="password"]:hover,
+.controls input[type="username"]:focus,
+.controls input[type="username"]:hover,
+
+.controls textarea:focus,
+.controls textarea:hover,
+.controls button:focus,
+.controls button:hover,
+.controls select:focus,
+.controls select:hover {
+  outline: none;
+  border-color: #1394cf;
+  background: #ecf8fd;
+}
+
+/* Button css */
+.controls button {
+  cursor: pointer;
+  background-color: #46A8E3;
+  border: none;
+  color: #fff;
+  padding: 12px 0;
+  margin: 1em 0;
+}
+.controls button:hover {
+  background-color: #7dc2eb;
+}
+
+/* button choices */
+
+
+/* CSS */
+.button-5 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #F08700;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-5:hover,
+.button-5:focus {
+  background-color: #f49f0a;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+/* Archies like/unlike button */
+
+#submit-button {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #F08700;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+#submit-button:hover,
+#submit-button:focus {
+  background-color: #f49f0a;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+#submit-button:hover {
+  transform: translateY(-1px);
+}
+
+#submit-button:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
 }

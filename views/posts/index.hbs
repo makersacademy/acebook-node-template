@@ -1,9 +1,14 @@
 <h1 class="timeline_header">{{username}}'s Timeline</h1>
+<div>  
+  <a id="change_profile_photo" href='/users/photo' class="" style="text-decoration: none">Change Profile Photo</a> 
+  <img class="profile-photo-header"  src={{profilePhotoPath}}>
 <div class="center">
   <form id="new-post-form" action="/posts" method="post">
-    <label for="message">Message: </label>
-    <input id="message" type="text" name="message" value="">
-    <input type="submit" value="Submit">
+    <div class="controls">
+      <label for="message">Message: </label>
+      <input id="message" type="text" name="message" value="">
+      <input class="button-5" type="submit" value="Submit">
+    </div>
   </form>
 </div>
 <div class="posts"> <!Big box for all posts. Yellow box in miro>
@@ -11,7 +16,8 @@
   <div class="post"> <!Post box that contains everything for each post. Purple box in miro. Post CSS currently commented out.>
     <div class="post_contents"><!Still contains everything in post, but its padding. Teal box in miro.>
       <div class="author_container"><!Contain poster photo, name and timestamp? Lime green box in miro.>
-        <div class="username">{{this.username}}</div>
+        <img class="profile-photo" src={{this.author.profilePhotoPath}}>
+        <div class="username">{{this.author.username}}</div>
       </div>
       <div class="message_container"><!Message container. That also contains the number of likes container. Light blue box in miro.>
         
@@ -43,10 +49,12 @@
       {{/each}}
       <div class="footer"><!Like and comment button container. Red box in miro.>
         <form  id="new-comment-form" class="comment-form" action="posts/create_comment" method="post">
-          <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
-          <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
-          <input id="message" class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
-          <input type="submit" value="Add comment">
+          <div class="controls">
+            <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
+            <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
+            <input id="message" class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
+            <input class="button-5"type="submit" value="Add comment">
+          </div>
         </form>
       </div>
     </div>
