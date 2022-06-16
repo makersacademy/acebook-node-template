@@ -1,20 +1,15 @@
+const { populate } = require("../models/post");
 const Post = require("../models/post");
 const User = require("../models/user");
 
-
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find().populate('author').exec((err, posts) => {
       if (err) {
         throw err;
       }
       posts = posts.reverse();
-      Promise.all(posts.map((post) => {
-        User.findOne({ _id: post.user_id }).then((user) => {
-          post["profilePhotoPath"] = user.profilePhotoPath;
-      })})).then(() => {
-        res.render("posts/index", { posts: posts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath })
-      });
+      res.render("posts/index", { posts: posts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath })
     });
   },
 
@@ -23,7 +18,7 @@ const PostsController = {
   },
   
   Create: (req, res) => {
-    const contents = { message: req.body.message, user_id: req.session.user._id, username: req.session.user.username }
+    const contents = { message: req.body.message, author: req.session.user }
     const post = new Post(contents);
     post.save((err) => {
       if (err) {

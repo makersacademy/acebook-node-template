@@ -24,7 +24,7 @@ describe("Post model", () => {
     expect(post.user_id).toEqual('test_user_id');
   });
 
-  it("post has an id for the user who made the post", () => {
+  it("has an id for the user who made the post", () => {
     let post = new Post({ 
       message: "this post allows us to see user id",
       user_id: 'test_user_id',
