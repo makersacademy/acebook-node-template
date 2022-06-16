@@ -2,7 +2,7 @@ body {
   margin-top: 50px;
   padding: 0px;
   font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #f8f1f3;
+  background-color: #ecf8fd;
 }
 
 .navbar {
@@ -36,21 +36,6 @@ body {
   background-color:#1FAAEA;
 }
 
-#submit-button {
-  padding: 10px 15px;
-  color: #fff;
-  background: #1394cf;
-  border: 0 none;
-  cursor: pointer;
-  border-radius: 0px;
-}
-
-#submit-button:hover {
-  border: none;
-  background-color:#1FAAEA;
-  box-shadow: 0px 0px 1px #777;
-}
-  
 .form_box {
   display: flex;
   flex-wrap: wrap;
@@ -133,7 +118,9 @@ body {
   font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #f49f0a;
 }
-
+.colour_white_blue{
+  color: #ecf8fd;
+}
 .colour_snow {
   color: #f8f1f3;
 }
@@ -232,11 +219,11 @@ body {
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header'
-    'main right'
-    'main right'
-    'main right'
-    'main right';
+  'header header'
+  'main right'
+  'main right'
+  'main right'
+  'main right';
   gap: 10px;
   padding: 10px;
 }
@@ -343,7 +330,7 @@ hr {
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
   .signupbtn {
-     width: 100%;
+    width: 100%;
   }
 }
 
@@ -389,7 +376,7 @@ hr {
 .controls select:hover {
   outline: none;
   border-color: #1394cf;
-  background: #EFCA08;
+  background: #ecf8fd;
 }
 
 /* Button css */
@@ -449,6 +436,52 @@ hr {
 }
 
 .button-5:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+/* Archies like/unlike button */
+
+#submit-button {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #F08700;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+#submit-button:hover,
+#submit-button:focus {
+  background-color: #f49f0a;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+#submit-button:hover {
+  transform: translateY(-1px);
+}
+
+#submit-button:active {
   background-color: #c85000;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
