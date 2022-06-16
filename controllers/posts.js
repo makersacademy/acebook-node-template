@@ -1,6 +1,4 @@
-const { populate } = require("../models/post");
 const Post = require("../models/post");
-const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
