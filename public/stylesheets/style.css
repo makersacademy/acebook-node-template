@@ -1,7 +1,7 @@
 body {
   margin-top: 50px;
   padding: 0px;
-  font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #ecf8fd;
 }
 
@@ -181,7 +181,7 @@ body {
   border: 2px solid #808184;
   width: 92%;
   color: #888;
-  font-family: 'Lato', 'sans-serif';
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 16px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -207,8 +207,8 @@ body {
 .controls select:focus,
 .controls select:hover {
   outline: none;
-  border-color: #1394cf;
-  background: #ecf8fd;
+  border-color: #F08700;
+  background: #FFCA85;
 }
 
 /* Button css */
@@ -239,7 +239,7 @@ body {
   color: #fff;
   cursor: pointer;
   display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
@@ -285,7 +285,7 @@ body {
   color: #fff;
   cursor: pointer;
   display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
