@@ -18,6 +18,11 @@
           <input type="hidden" name="id" value="{{this.id}}">
           <input class="post-delete-button" type="submit" value="Delete">
         </form>
+
+              {{!-- button and counter for likes --}}
+      <div id="like-count-{{ this.id }}" class="likes-count">{{this.likes.length}}</div>
+      <button id="like-button" onclick="like('{{this.id}}')">Like</button>
+
         {{!-- <div class="message-tag">{{this.message}}</div> --}}
         <form id="add-comment-to-post" action="/posts/update" method="post">
           <div class="comment-and-image">
@@ -44,5 +49,21 @@
         <p>Makebook © 2022. All rights unreserved.</p>
       </div>
     </footer>
+
+      {{!-- JS for like button, should be outside the loop--}}
+  <script>
+    async function like(id) {
+      const options = {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ id: id })
+      }
+      const response = await fetch("/posts/like", options)
+      const post = await response.json()
+      const likes = post.likes.length
+      document.getElementById(`like-count-${ id }`).innerText = likes
+    }
+  </script>
+  
   </main>
 </div> 
