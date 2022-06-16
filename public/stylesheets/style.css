@@ -137,7 +137,8 @@ body {
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
   border-radius: 5px;
   margin: 0 10px 0 0;
-  padding: 15px;
+  padding: 30px 15px;
+  text-align: center;
 }
 
 .post_header {
@@ -195,6 +196,7 @@ body {
 .username-card {
   font-size: 25px;
   color: #f49f0a;
+  margin-bottom: 5px;
 }
 
 .colour_white_blue{
