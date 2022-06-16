@@ -23,8 +23,9 @@ body {
 	overflow: hidden;
 	display: block;
 	position: relative;
+	height: auto;
 	padding-bottom: 143px; /* height of your footer */
- }
+}
 
 body {
 	line-height: 1.6;
@@ -653,6 +654,7 @@ p {
 	width: 50px;
 	height: 50px;
 	float:left;
+	margin-top: -15px;
 }
 
 ion-icon.active{
@@ -673,11 +675,131 @@ ion-icon{
   100% { transform: scale(1.1); }
 }
 
-div {
+/* div {
   border: 1px solid red;
-}
+} */
 
 .counter {
-	font-size: 25px;
+	font-size: 20px;
 	margin-top: 10px;
+}
+
+.space-icon {
+	margin-top: 20px;
+}
+
+/* fixing footer for login page */
+.fb-footer-login {
+	background-color: #F7C59F;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	max-height: 143px;
+	margin-top: -243px;
+}
+
+.div-footer-login {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	color: #737373;
+	width: 980px;
+	height: 143px;
+	background-color: #F7C59F;
+	margin:0 auto;
+	padding-top: 45px;
+  text-align: center;
+	
+}
+
+.div-footer-login a {
+	padding: 0;
+	margin: 0;
+	color: #656565;
+	text-decoration: none;
+}
+
+.div-footer-login a:hover {
+	text-decoration: underline;
+}
+
+.div-footer-login li {
+	display: inline-block;
+  text-align: center;
+}
+
+.main-container-login {
+	min-height: 80%; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	height: auto;
+	padding-bottom: 143px; /* height of your footer */
+}
+
+#fb-main-login {
+	min-height: 80%; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	background-color: #FA6C8B;
+	background: linear-gradient(white, #EFEFD0);
+}
+
+/* fixing footer for signup page */
+.fb-footer-signup {
+	background-color: #F7C59F;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	max-height: 143px;
+	margin-top: -243px;
+}
+
+.div-footer-signup {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	color: #737373;
+	width: 980px;
+	height: 143px;
+	background-color: #F7C59F;
+	margin:0 auto;
+	padding-top: 45px;
+  text-align: center;
+	
+}
+
+.div-footer-signup a {
+	padding: 0;
+	margin: 0;
+	color: #656565;
+	text-decoration: none;
+}
+
+.div-footer-signup a:hover {
+	text-decoration: underline;
+}
+
+.div-footer-signup li {
+	display: inline-block;
+  text-align: center;
+}
+
+.main-container-signup {
+	min-height: 80%; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	height: auto;
+	padding-bottom: 143px; /* height of your footer */
+}
+
+#fb-main-signup {
+	min-height: 80%; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	background-color: #FA6C8B;
+	background: linear-gradient(white, #EFEFD0);
 }
