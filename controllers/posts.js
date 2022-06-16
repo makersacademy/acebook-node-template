@@ -10,7 +10,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
+console.log(req.session.userID)
       Promise.all(posts.map(async (post) => {
         const user = await User.findOne({ userName: post.userName }).exec();
         const photo = {
@@ -19,6 +19,7 @@ const PostsController = {
         };
 
         post.photo = photo;
+        post.userLikes = post.likes.includes(req.session.userID);
 
         return post;
         
