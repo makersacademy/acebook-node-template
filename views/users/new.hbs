@@ -5,16 +5,17 @@
         {{!-- <div class="w3-col m7">
           <div class="w3-row-padding">
             <div class="w3-col m12"> --}}
-              
-            {{#if error}}
-              <h1>{{error}}</h1>
-            {{/if}}
 
               <div class="title-and-signup-box">
                 <div class="signup-div">
                 <h1 class="w3-text-white">Signup</h1>
               </div>
               <div class="signup-boxes-container posts w3-container w3-card post-bgc w3-round-xlarge w3-margin">
+                {{#if error}}
+                  <div class="error">
+                    <p>{{error}}</p>
+                  </div>
+                {{/if}}
                 <form class="login-margin-top" id="new-user-form" action="/users" method="post">
                   <div class="login-signup-box">
                     <div class="form-element">

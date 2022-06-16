@@ -623,3 +623,13 @@ input.button {
   display: flex;
   justify-content: center;
 }
+
+.error {
+  color: #D8000C;
+  background-color: #FFBABA;
+  border: 1px solid;
+  margin: 10px 0px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+}
