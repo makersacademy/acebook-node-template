@@ -32,7 +32,7 @@
             {{#each this.comments}}
                 <div class="comment-and-image">
                   <img class="picture-tag-comment" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo">
-                  <li class="frm-textbox-peach">{{ this }}</li>
+                  <li class="frm-textbox-peach">{{ this.userName }}: {{ this.comments }}</li>
                 </div>
             {{/each}}
           </ul>
