@@ -123,7 +123,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .login-margin-top {
-  margin-top:50px!important
+  margin-top:10px!important;
 }
 
 .w3-theme-d2 {
@@ -165,6 +165,13 @@ h1,h2,h3,h4,h5,h6{
 
 /* -----------------TIMELINE--------------------------------------------------- */
 
+.posted-picture {
+  width: 100%;
+  height: auto;
+}
+
+/* -----------------NAV BAR--------------------------------------------------- */
+/* TimeLine Headline Gradient */
 h1 {
   font-size: 72px;
   background: -webkit-linear-gradient(-45deg, #ffffff, #50d7d0, #023e8a, #023e8a);
@@ -231,12 +238,48 @@ hr {
 
 /* Post input */
 #message {
+  font-family: verdana, sans-serif;
   width: 100%;
-  height: 2rem;
-  border-radius: 25px;
+  /* height: 2rem; */
+  border-radius: 10px;
   border: none;
   background-color: rgb(206, 206, 206);
+  resize: none;
+  margin-bottom: 10px;
 }
+
+#postpreview {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 20px;
+}
+
+#input-button {
+  display: none;
+}
+
+.post-buttons {
+  display: flex;
+  width: 100%;
+}
+
+.post-buttons-left {
+  display: flex;
+  width: 50%;
+  justify-content: flex-start;
+}
+
+.post-buttons-right {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+}
+
+#post-button {
+  font-size: 20px;
+}
+
 
 /* post profile pic */
 .w3-circle {
@@ -260,9 +303,14 @@ hr {
   width: 100%;
 }
 
+#new-comment-form {
+  margin-bottom: 30px;
+}
+
+/* Comments & Form Container */
 .comments-section-container {
   width: 97%;
-  padding: 0 1.5rem 1.5rem 1.5rem;
+  padding: 0 1.5rem 0 1.5rem;
   margin: auto;
   border: solid 1px rgb(191, 190, 190); 
   border-radius: 1rem;
@@ -324,9 +372,11 @@ hr {
 }
 
 #comment-pic {
-  display: block;
-  width: 100%;
-  height: auto;
+  /* display: block; */
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-top: 0.5rem;
 }
 
 .w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-threequarter,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col {
