@@ -2,11 +2,25 @@
 
 [![Tests](https://github.com/lukestorey95/acebook/actions/workflows/test.yml/badge.svg)](https://github.com/lukestorey95/acebook/actions/workflows/test.yml)
 
-## Project Specification
+## Contributors
+-------
 
+- [Alexandros Papagiannis](https://github.com/Alexandros91)
+- [Erlantz Ramos Sanchez](https://github.com/ErlantzR)
+- [Farzan Imanzadeh](https://github.com/Farzan-I)
+- [Laura Voss](https://github.com/laura-voss)
+- [Luiza Gretzk](https://github.com/LGretzk)
+- [Luke Storey](https://github.com/lukestorey95)
+- [Stevie Spiegl](https://github.com/S-Spiegl)
+
+
+## Project Description
+------
 For the penultimate engineering project during Weeks 8 and 9 of the Makers Academy hybrid course, we were tasked with developing a [Facebook](https://en-gb.facebook.com/) clone, known as Acebook. Within a team of 7 developers we developed this version that we're proud to present.
 
-It uses:
+
+## Technologies Used
+------
 
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
@@ -18,10 +32,11 @@ It uses:
 - [CSS](https://www.w3.org/Style/CSS/Overview.en.html) for styling of the webpages.
 
 ## Card wall
-
+--------
 We used a [Trello](https://trello.com/b/jFmua5rj/lukeingforsuggestions) board to keep track of the features we want to implement. We organised tickets amongst the team and moved the tickets accordingly to demonstrate at what stage that feature's at (To do/In progress/In review etc.).
 
-## Quickstart
+## How to run locally
+--------
 
 ### Install Node.js
 
@@ -90,15 +105,87 @@ so that integration tests do not interact with the development server.
   npm run test:integration  # integration tests only
   ```
 
-## MongoDB Connection Errors?
+## Demo
+-------
+### Home page
+[screenshot]
 
-Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
+### Login page
+[screenshot]
 
-- Check that MongoDB is installed using `mongo --version`
-- Check that it's running using `brew services list`
+### Sign up page
 
-If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+### Timeline
 
-## Conclusion
+### Profile page
 
-We were able to develop a
+## Team approach
+---------
+
+## User stories
+-------
+### Login
+```
+As a user,
+so that I can join Acebook's vibrant community,
+I would like to be able to sign up.
+```
+
+```
+As a user,
+so that I can use Acebook,
+I would like to be able to log in.
+```
+
+```
+As a user, 
+so I can choose how other users identify me,
+I would like to be able to choose a username to display.
+```
+### Posts
+```
+As a user, 
+so that I can express myself,
+I would like to be able to publish a post.
+```
+
+```
+As a user, 
+so that I know who is posting, 
+I would like to see a username attached to each post.
+```
+
+```
+As a user,
+so that I know who is posting,
+I would like to see a profile picture attached to each post.
+```
+
+```
+As a user, 
+so that I can share photos, 
+I would like t be able to publish photos.
+```
+
+```
+
+```
+
+## Further User Stories
+-------
+
+## MVP
+------
+
+## Wireframes
+-------
+
+[screenshots]
+
+### Edge cases
+
+## Future improvements
+--------
+
+
+
