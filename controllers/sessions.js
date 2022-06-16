@@ -2,7 +2,10 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", { session: req.session.user });
+    res.render("sessions/new", {
+      session: req.session.user,
+      error: req.flash("error"),
+    });
   },
 
   Create: (req, res) => {
@@ -12,14 +15,18 @@ const SessionsController = {
 
     User.findOne({ email: email }).exec(function (error, user) {
       if (error) {
+        req.flash("error", "Email or password incorrect");
         res.redirect("/sessions/new");
       } else if (!user) {
+        req.flash("error", "Email or password incorrect");
         res.redirect("/sessions/new");
       } else {
         user.comparePassword(password, function (matchError, isMatch) {
           if (matchError) {
+            req.flash("error", "Email or password incorrect");
             res.redirect("/sessions/new");
           } else if (!isMatch) {
+            req.flash("error", "Email or password incorrect");
             res.redirect("/sessions/new");
           } else {
             req.session.user = user;

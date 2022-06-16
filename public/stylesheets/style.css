@@ -240,7 +240,6 @@ hr {
 #message {
   font-family: verdana, sans-serif;
   width: 100%;
-  /* height: 2rem; */
   border-radius: 10px;
   border: none;
   background-color: rgb(206, 206, 206);
@@ -297,6 +296,10 @@ hr {
   margin-right: 0px;
 }
 
+.timeline {
+  width: 60%;
+}
+
 /* -----------------Comments box--------------------------------------------------- */
 
 .likes-comments-container {
@@ -351,12 +354,7 @@ hr {
   padding: 0.8rem;
 }
 
-.comment-left {
-  width: 20%;
-}
-
 .comment-right {
-  width: 80%;
   padding: 0.5rem;
 }
 
@@ -372,7 +370,6 @@ hr {
 }
 
 #comment-pic {
-  /* display: block; */
   width: 50px;
   height: 50px;
   object-fit: cover;
@@ -453,6 +450,7 @@ body { background: linear-gradient(#09111f, #062d3b);}
   background: linear-gradient(#ffffff, #ffffffac);
   padding: 20px;
   border-radius: 16px;
+  margin: 20px;
 }
 
 .profile {

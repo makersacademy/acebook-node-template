@@ -1,45 +1,37 @@
 <div class="whole-page-timeline">
-  <div>
+  <div class="timeline">
     <div class="main-title">
       <h1>Timeline</h1>
     </div>
 
+     <!-- New Post -->
     <div class="grey-div">
-
       {{#if error}}
         <div class="error">
           <p>{{error}}</p>
-              <form class="login-margin-top" action="/posts" method="post" id="new-post-form" enctype="multipart/form-data">
-                <textarea id="message" form="new-post-form" type="text" name="message" value="" placeholder="   What's on your mind?" rows="4"></textarea> <br>
-                <div class="post-buttons">
-                  <div class="post-buttons-left">
-                    <label for="img" class="new-post-link w3-button w3-theme w3-round-large" >
-                      Upload picture
-                    </label>
-                    <input id="img" type="file" name="image" accept="image/*" class="hidden">
-                  </div>
-                  <div class="post-buttons-right">
-                    <input id="post-button" type="submit" value="Post" name="upload" class="new-post-link w3-button w3-theme w3-round-large">
-                  </div>
-                </div>
-                <div class="flex-container">
-                  <img id="postpreview" src="" class="hidden">
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
       {{/if}}
 
       <form action="/posts" method="post" id="new-post-form" enctype="multipart/form-data">
+        <textarea id="message" form="new-post-form" type="text" name="message" value="" placeholder="   What's on your mind?" rows="4"></textarea>
 
-        <input id="message" type="text" name="message" value="" placeholder="What's on your mind?">
+        <div class="post-buttons">
+          <div class="post-buttons-left">
+            <label for="img" class="new-post-link w3-button w3-theme w3-round-large" >
+              Upload picture
+            </label>
+            <input id="img" type="file" name="image" accept="image/*" class="hidden">
+          </div>
 
-        <label for="file">Upload your image here</label>
-        <input type="file" name="image" accept="image/*" class="new-post-link w3-button w3-theme w3-round-large">
+          <div class="post-buttons-right">
+            <input id="post-button" type="submit" value="Post" name="upload" class="new-post-link w3-button w3-theme w3-round-large">
+          </div>
+        </div>
 
-        <input type="submit" value="Post" name="upload" class="new-post-link w3-button w3-theme w3-round-large">
-      </form>
+        <div class="flex-container">
+          <img id="postpreview" src="" class="hidden">
+        </div>
+      </form>     
     </div>
 
     <!-- All Posts -->
@@ -83,28 +75,18 @@
                 {{#each this.comments}}
                   <div class="comment-container">
                     <div class="comment-left">
-                        {{#if this.user_id.profile_picture}}
-                          <img class="w3-left w3-circle w3-margin-right" id="comment-pic" src={{this.user_id.profile_picture}}>
-                        {{else}}
-                          <img class="w3-left w3-circle w3-margin-right" id="comment-pic" src="/images/cutie-pie.jpeg">
-                        {{/if}}
+                      {{#if this.user_id.profile_picture}}
+                        <img class="w3-left w3-circle w3-margin-right" id="comment-pic" src={{this.user_id.profile_picture}}>
+                      {{else}}
+                        <img class="w3-left w3-circle w3-margin-right" id="comment-pic" src="/images/cutie-pie.jpeg">
+                      {{/if}}
                     </div>  
+
                     <div class="comment-right">
                       <div class="comment-author">{{this.user_id.name}}</div>
                       <div class="comment-text">{{this.comment}}</div>
                     </div> 
                   </div>
-
-                  <div class="comment-right">
-                    <div class="comment-author">
-                      {{this.user_id.name}}
-                    </div>
-
-                    <div class="comment-text">
-                      {{this.comment}}
-                    </div>
-                  </div> 
-                </div>
               {{/each}}
             </div>
 
@@ -117,9 +99,10 @@
             </div>
           </div>
         </div>
-        
       </div>  
-        {{/each}}
+    {{/each}}
+  </div>
+</div>
 
 <script>
   img.onchange = evt => {

@@ -59,12 +59,14 @@ const PostsController = {
         if (req.file) {
           // handling errors from multer
           if (err) {
+            console.log("no file", err);
             return res.status(401).json({ error: err.message });
           }
 
           try {
             // format the image with sharp (i.e. Format class)
             const file = new Format();
+
             const fileToUpload = await file.format(req.file.buffer);
 
             if (!fileToUpload) {
@@ -74,12 +76,16 @@ const PostsController = {
             }
             // upload to cloudinary
             const imageStream = fileToUpload.formattedFile;
+
             const imageName = fileToUpload.fileName;
 
             const uploadResult = await uploadImage(imageStream, imageName);
+
             const uploadUrl = uploadResult.url;
+
             post.post_picture = uploadUrl;
           } catch (error) {
+            console.log(error);
             return res.json({ error: "Failed to upload" });
           }
         }
