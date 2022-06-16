@@ -1,9 +1,11 @@
 <h1 class="timeline_header">{{username}}'s Timeline</h1>
 <div class="center">
   <form id="new-post-form" action="/posts" method="post">
-    <label for="message">Message: </label>
-    <input id="message" type="text" name="message" value="">
-    <input type="submit" value="Submit">
+    <div class="controls">
+      <label for="message">Message: </label>
+      <input id="message" type="text" name="message" value="">
+      <input class="button-5" type="submit" value="Submit">
+    </div>
   </form>
 </div>
 <div class="posts"> <!Big box for all posts. Yellow box in miro>
@@ -43,10 +45,12 @@
       {{/each}}
       <div class="footer"><!Like and comment button container. Red box in miro.>
         <form  id="new-comment-form" class="comment-form" action="posts/create_comment" method="post">
-          <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
-          <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
-          <input id="message" class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
-          <input type="submit" value="Add comment">
+          <div class="controls">
+            <input id="post_id" type="hidden" name="post_id" value="{{this._id}}">
+            <input id="user_id" type="hidden" name="user_email" value="{{../user_id}}">
+            <input id="message" class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
+            <input class="button-5"type="submit" value="Add comment">
+          </div>
         </form>
       </div>
     </div>
