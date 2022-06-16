@@ -1,0 +1,17 @@
+<div class="navbar">
+  <div class="header_buttons">
+    {{#if session}}
+    <img id="profile-photo" class="header_button_photo" style="text-decoration: none" {{session.user.profilePhotoPath}}>
+    <a id="username" href="/posts" class="header_button" style="text-decoration: none"> {{session.username}}</a>
+    <a id="home" href="/" class="header_button" style="text-decoration: none"><i class="fa-solid fa-house"></i> Home</a>
+    <a id="timeline" href="/posts" class="header_button" style="text-decoration: none"> Timeline</a>
+    <form action='/sessions?_method=DELETE' method='POST'>
+      <input id="log-out" class="header_button" style='font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;' type="submit" value="Log Out">
+    </form>
+    {{else}}
+    <a id="home" href="/" class="header_button" style="text-decoration: none"><i class="fa-solid fa-house"></i> Home</a>
+    {{/if}}
+    </div>
+  </div>
+</div>
+
