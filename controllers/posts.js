@@ -1,20 +1,18 @@
 const Post = require("../models/post");
 
-
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find().populate('author').exec((err, posts) => {
       if (err) {
         throw err;
       }
       posts = posts.reverse();
-      // added user_id below for likes implementation
-      res.render("posts/index", { posts: posts , username: req.session.user.username, user_id: req.session.user._id });
+      res.render("posts/index", { posts: posts , username: req.session.user.username, profilePhotoPath: req.session.user.profilePhotoPath })
     });
   },
 
   Create: (req, res) => {
-    const contents = { message: req.body.message, user_id: req.session.user._id, username: req.session.user.username }
+    const contents = { message: req.body.message, author: req.session.user }
     const post = new Post(contents);
     post.save((err) => {
       if (err) {

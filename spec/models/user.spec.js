@@ -35,6 +35,16 @@ describe("User model", () => {
     expect(user.password).toEqual("password");
   });
 
+  it("has a filepath for a profile photo", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      username: "John Smith",
+      profilePhotoPath: "./public/images/default_profile_photo.png"
+    });
+    expect(user.profilePhotoPath).toEqual("./public/images/default_profile_photo.png");
+  });
+
   it("can list all users", (done) => {
     User.find((err, users) => {
       expect(err).toBeNull();

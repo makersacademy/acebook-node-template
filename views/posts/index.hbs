@@ -1,8 +1,12 @@
 <div class="page-container"><h1 class="timeline_header">{{username}}'s Timeline</h1>
+
+ <a id="change_profile_photo" href='/users/photo' class="" style="text-decoration: none">Change Profile Photo</a> 
+  <img class="profile-photo-header"  src={{profilePhotoPath}}>
+
  <form id="new-post-form" action="/posts" method="post">
   <div class="new-message-form">
     <input id="message" type="text" name="message" placeholder="What's on your mind?" value="">
-    <input class="new-post-button" type="submit" value="Submit">
+    <input class="button-5" type="submit" value="Submit">
     </div>
   </form>
 <div class="posts">
@@ -10,6 +14,7 @@
   <div class="post"> 
     <div class="post_contents">
       <div class="author_container">
+        <img class="profile-photo" src={{this.author.profilePhotoPath}}>
         <div class="username">{{this.username}}</div>
       </div>
       <div class="message_container">  
@@ -39,7 +44,7 @@
           <input class="post_id" type="hidden" name="post_id" value="{{this._id}}">
           <input class="user_id" type="hidden" name="user_email" value="{{../user_id}}">
           <input class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
-          <input type="submit" value="Add comment">
+          <input class="button-5" type="submit" value="Add comment">
         </form>
       </div>
     </div>
