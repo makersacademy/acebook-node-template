@@ -597,7 +597,7 @@ ul {
 }
 
 .container {
-  width: 600px;
+  width: 900px;
   margin: 120px auto 120px;
   background-color: #fff;
   padding: 0 20px 20px;
@@ -611,19 +611,8 @@ ul {
 }
 
 .avatar-flip {
-  border-radius: 100px;
-  overflow: hidden;
-  height: 150px;
-  width: 150px;
-  position: relative;
-  margin: auto;
-  top: -60px;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 0 13px #f0f0f0;
-  -webkit-box-shadow: 0 0 0 13px #f0f0f0;
-  -moz-box-shadow: 0 0 0 13px #f0f0f0;
+	margin-top: 30px;
+  border-radius: 50%;
 }
 
 h2 {
@@ -638,4 +627,20 @@ p {
   line-height: 26px;
   margin-bottom: 20px;
   color: #666;
+}
+
+.frm-textbox-yellow-2 {
+	border: 1px solid #6d6d6d;
+	background-color: #f7c59f68;
+	width: 90%;
+	border-radius: 5px;
+	color:#707070;
+	font-size: 25px;
+	padding: 8px 20px;
+	margin: auto;
+	margin-bottom: 20px;
+	font-weight: lighter;
+	text-align: left;
+	word-wrap: break-word;
+	position: relative;
 }

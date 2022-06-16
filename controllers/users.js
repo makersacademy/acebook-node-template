@@ -23,7 +23,16 @@ const UsersController = {
         contentType: user.photo.contentType,
         data: user.photo.data.toString('base64'), // <- user photo added to profile page
       };
-      res.render("users/profile", { userName: req.session.userName, posts: posts, photo});
+      const locations = ["Bumpass, Virginia", "Hell, Norway", "Titty Hill, England", "Sandy Balls, England"]
+      const statuses = ["A Mongoose never tells", "Already ordered 15 cats", "Depends on who's asking"]
+      res.render("users/profile", { 
+        userName: req.session.userName, 
+        posts: posts, 
+        photo, 
+        age: Math.floor(Math.random() * 101),
+        location: locations[Math.floor(Math.random() * locations.length)],
+        relation_status: statuses[Math.floor(Math.random() * statuses.length)]
+      });
     });
   },
 
