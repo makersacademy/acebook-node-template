@@ -23,3 +23,10 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+ require('cypress-file-upload');
+ beforeEach(() => {
+  cy.exec("mongo acebook_test --eval 'db.users.remove({})'");
+  cy.exec("mongo acebook_test --eval 'db.posts.remove({})'");
+  cy.exec("mongo acebook_test --eval 'db.likes.remove({})'");
+  cy.exec("mongo acebook_test --eval 'db.comments.remove({})'");
+});

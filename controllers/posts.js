@@ -9,7 +9,14 @@ const PostsController = {
       }
       posts = posts.reverse();
       // added user_id below for likes implementation
-      res.render("posts/index", { posts: posts , username: req.session.user.username, user_id: req.session.user._id });
+      res.render("posts/index", { 
+        posts: posts, 
+        username: req.session.user.username, 
+        user_id: req.session.user._id,
+        session: req.session,
+        profilePhoto: req.session.profilePhotoPath
+      });
+      console.log(req.session)
     });
   },
 
