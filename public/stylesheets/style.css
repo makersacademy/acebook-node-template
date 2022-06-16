@@ -2,148 +2,15 @@
 
 /* General Setting */
 
-.comments-container {
-  display: flex;
-  flex-direction: row;
-}
-
 .whole-page {
   display: flex;
   flex-direction: row;
   height: 100vh;
   width: 100vw;
-  /* padding-top: 0vh; */
-  /* margin-left: 0px;
-  margin-right: 0px; */
-
 }
 
-.main-signup-boxes-container {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* background-color: blue; */
-  /* margin-top: 0px; */
-}
-
-.title-and-signup-box {
-  /* background-color: pink; */
-  padding-top: 5vw;
-  width: 50vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.title-and-login-box {
-  /* background-color: pink; */
-  padding-top: 5vw;
-  width: 50vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-}
-
-.signup-boxes-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 35%;
-  /* justify-content: center; */
-  background-color: pink;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-}
-
-.login-boxes-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 30%;
-  /* justify-content: center; */
-  background-color: pink;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-}
-
-
-.form-element {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  /* text-align: center; */
-}
-
-.signup-button-form-element {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  /* padding-left: 45px; */
-  padding-top: 12px;
-}
-
-.signup-box {
-  /* text-align: center; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* width: 30vw; */
-  /* min-height: 40px; */
-  /* margin: 40px;
-  padding: 20px; */
-}
-
-.login-box {
-  /* text-align: center; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* width: 30vw; */
-  /* min-height: 40px; */
-  /* margin: 40px;
-  padding: 20px; */
-}
-
-.login-button-form-element {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  padding-top: 12px;
-  /* justify-content: center; */
-}
-
-.login-button {
-  margin: 5px;
-}
-* {box-sizing: border-box;}
-
-.signup-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.comments-buttons {
-  margin: 5px;
-}
-* {box-sizing: border-box;}
-
-.signup-button {
-  margin: 5px;
-}
-
-.empty-div {
-  margin-top: 10%;
+* {
+  box-sizing: border-box;
 }
 
 /* Overall Background Colour */
@@ -160,8 +27,17 @@ body {
   margin:0
 }
 
+.comments-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .drop-down-comments {
   display: block;
+}
+
+.comments-buttons {
+  margin: 5px;
 }
 
 .comments {
@@ -177,7 +53,6 @@ body {
   border-color: rgb(24, 93, 136);
   background-color: rgba(255, 255, 255, 0.814);
   border-radius: 6px;
-  /* padding: 5px; */
 }
 
 /* NavBar */
@@ -249,11 +124,7 @@ h1,h2,h3,h4,h5,h6{
 /* NavBar Colour */
 .w3-theme-d2 {
   color:rgb(255, 255, 255) !important; 
-  /* color:rgb(42, 132, 144) !important;  */
-  /* background-color:#09111f !important; */
   background: -webkit-linear-gradient(#09111f, #09111feb)
-  /* background: linear-gradient(#fffffff7, #3dafafd4) */
-  /* border-bottom: 0.2px solid rgb(191, 191, 191); */
 }
 
 /* NavBar Size and Position */
@@ -335,14 +206,12 @@ h4 {
 /* Comment Box Line */
 hr {
   border:0;
-  /* border-top:1px solid #607d8b; */
   margin:20px 0
 }
 
 /* Posts Background Colour */
 .post-bgc {
   background: linear-gradient(#ffffff, #ffffffac);
-  /* background: linear-gradient(#ffffff, #ffffffac); */
 }
 
 /* New Post Button */
@@ -417,8 +286,6 @@ hr {
 /* Comments Container */
 .comments-container {
   display: block;
-  /* height: 16rem;
-  overflow-y : scroll; */
 }
 
 .comment-container {
@@ -546,13 +413,9 @@ body { background: linear-gradient(#09111f, #062d3b);}
 
 .grey-div {
   background: linear-gradient(#ffffff, #ffffffac);
-  padding: 1em;
+  padding: 20px;
   border-radius: 16px;
 }
-
-/* * {
-  border: 1px red solid;
-} */
 
 .profile {
   text-align: center;
@@ -560,6 +423,7 @@ body { background: linear-gradient(#09111f, #062d3b);}
 
 .main-title {
   padding-top: 4em;
+  text-align: center;
 }
 
 #profile-photo {
@@ -619,7 +483,18 @@ input.button {
   padding: 12.5px;
 }
 
+input.input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .center {
+  text-align: center;
   display: flex;
   justify-content: center;
 }
@@ -632,4 +507,23 @@ input.button {
   padding: 10px;
   text-align: center;
   border-radius: 8px;
+}
+
+.login-signup {
+  flex-direction: column;
+  width: 500px;
+}
+
+.login-signup-submit {
+  font-size: 15px;
+  border: none;
+  display: inline-block;
+  padding: 10px 16px;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #fff;
+  background-color: #607d8b;
+  width: 100%;
+  border-radius: 8px;
+  text-align: center;
 }

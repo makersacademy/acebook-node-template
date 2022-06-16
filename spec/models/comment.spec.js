@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 require("../mongodb_helper");
 
-var Comment = require("../../models/comment");
+const Comment = require("../../models/comment");
 
 describe("Comment model", () => {
   beforeEach((done) => {
@@ -42,8 +42,8 @@ describe("Comment model", () => {
       Comment.find((err, comments) => {
         expect(err).toBeNull();
 
-        expect(comments[0]).toMatchObject({comment: "another comment"});
-        expect(comments[0]).toMatchObject({user_id: mockUserId});
+        expect(comments[0]).toMatchObject({ comment: "another comment" });
+        expect(comments[0]).toMatchObject({ user_id: mockUserId });
         done();
       });
     });

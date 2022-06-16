@@ -53,7 +53,6 @@ const PostsController = {
 
     receiveImage(req, res, async (err) => {
       if (!req.body.message && !req.file) {
-        console.log("NO POST CONTENT");
         req.flash("error", "Post cannot be blank");
         res.redirect("/posts");
       } else {

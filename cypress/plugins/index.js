@@ -13,7 +13,7 @@
 // `on` is used to hook into various events Cypress emits
 // `config` is the resolved Cypress config
 
-// var mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 // module.exports = (on, config) => {
 //   on('task', {
@@ -23,11 +23,10 @@
 // }
 
 module.exports = (on) => {
-  on('task', {
-    'db:reset': () => {
-      const resetDatabase = require('./resetDatabase')
-      return resetDatabase()
-    }
-  })
-}
-
+  on("task", {
+    "db:reset": () => {
+      const resetDatabase = require("./resetDatabase");
+      return resetDatabase();
+    },
+  });
+};
