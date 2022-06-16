@@ -21,7 +21,7 @@
       <div class="author_container">
         <img class="profile-photo" src={{this.author.profilePhotoPath}}>
         <div class="username">{{this.author.username}}</div>
-      </div>
+      </div>z
       <div class="message_container">  
         <div class="post-message">
           {{this.message}}
@@ -37,19 +37,21 @@
         
         <div class="likes-count">{{this.likes.length}}</div>
        </div></div>
-      {{#each this.comments}}
+      <div class="all_comments">
+        {{#each this.comments}}
       <div class="comment_container">
         <div class="comment">
           {{this.message}}
-        </div>
+        </div>x
       </div>
       {{/each}}
+      </div>
       <div class="footer">
         <form  id="new-comment-form" class="comment-form" action="posts/create_comment" method="post">
           <input class="post_id" type="hidden" name="post_id" value="{{this._id}}">
           <input class="user_id" type="hidden" name="user_email" value="{{../user_id}}">
-          <input class="comment-input" type="text" name="message" value="" placeholder="Write a comment...">
-          <input class="button-5" type="submit" value="Add comment">
+          <input class="comment-input" data-username="{{username}}" type="text" name="message" value="" placeholder="Write a comment...">
+          <input class="button-5 submit-comment" type="submit" value="Add comment">
         </form>
       </div>
     </div>
@@ -58,4 +60,6 @@
   {{/each}}
 </div></div><div class="right-column"><img src="https://via.placeholder.com/150x700"></div></div></div>
   <script type="text/javascript" src="javascripts/likes_dom.js"></script>
+    <script type="text/javascript" src="javascripts/comments_dom.js"></script>
+
 
