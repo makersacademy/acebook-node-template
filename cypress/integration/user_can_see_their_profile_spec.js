@@ -15,6 +15,6 @@ describe("Profile", () => {
     // visits profile
     cy.visit("/users/profile");
 
-    cy.get('[data-cy="greeting"]').should("contain", "Jerry");
+    cy.get('h2').should("contain", "Jerry");
   });
 });
