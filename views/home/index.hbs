@@ -30,15 +30,17 @@
             </div>
           </form>
         </div>
-          <div><!Sign up button.>
-            <button class="button-5" id="CreateAccountButton" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create Account</button>
+          <div class="Create_account_box"><!Sign up button.>
+            <button class="button-5" id="CreateAccountButton" onclick="document.getElementById('id01').style.display='block'">Create Account</button>
           </div>
       </div>
     </div>
   </div>
   <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <div id="id02" class="modal_background">
+    </div>
       <form class="form-container" id="new-user-form" action="/users" method="post">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <div class="form_box">
           <div class="sign_up_font_size"> Sign up </div><br>
           <div class="controls">
@@ -60,8 +62,3 @@
   </div>
   <script type="text/javascript" src="javascripts/getModal.js"></script>
 </body>
-
-
-
-
-<!input form stuff below >
