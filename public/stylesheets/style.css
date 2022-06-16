@@ -1,12 +1,28 @@
 body {
   margin-top: 50px;
   padding: 0px;
-  font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #ECF8FD;
 }
 
+.padding15 {
+  padding: 15px;
+}
+
+.margin15 {
+  margin: 15px !important;
+}
+
+.nopadding {
+  padding: 0;
+}
+
+.nomargin {
+  margin: 0;
+}
+
 .page-container {
-  max-width: 1000px;
+  padding: 20px;
   margin: 0 auto;
 }
 
@@ -14,7 +30,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   margin: 0;
   padding: 0;
   background-color: #1394cf;
@@ -104,7 +120,7 @@ body {
 
 .post {
   background-color: #ecf8fd;
-  margin: 20px;
+  margin: 30px 20px;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%)
@@ -149,9 +165,29 @@ body {
   flex-direction: column;
 }
 
+.three-columns {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+  
+.left-column {
+  flex: 1 1 150px;
+}
+
+.center-column {
+  flex: 10 1 auto;
+}
+
+.right-column {
+  flex: 2 1 auto;
+}
+
 .username {
   font: 25px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #f49f0a;
+  margin-left: 5px;
+  display: inline;
 }
 .colour_white_blue{
   color: #ecf8fd;
@@ -203,8 +239,6 @@ body {
   background: #fff;
   border-bottom: 1px solid rgba(0,0,0,0.2);
   border-radius: 5px 5px 0 0;
-  padding: 15px;
-
 }
 
 .likes_container {
@@ -241,21 +275,27 @@ body {
   margin-bottom: 0px;
 }
 
+input.comment-input[type="text"] {
+  padding: 15px;
+  
+}
+
 input.comment-input[type="text"], input#message[type="text"] {
   background: #fff;
-  margin: 5px 20px 0 0;
+  margin: 0 20px 0 0;
+  border: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-radius: 3px;
 }
 
 input#message[type="text"] {
   width: calc(100% - 30px);
-  padding: 0;
-
 }
 
 input.comment-input[type="text"]:focus, input#message[type="text"]:focus {
   background: #daf1fb;
+  outline: 0
 }
-
 
 .footer {
   display: flex;
@@ -419,12 +459,10 @@ hr {
 .controls button,
 .controls select {
   padding: 12px;
-  font-size: 14px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   border: 2px solid #808184;
   width: 100%;
   color: #888;
-  font-family: 'Lato', 'sans-serif';
-  font-size: 16px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -559,4 +597,32 @@ hr {
   background-color: #c85000;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
+}
+
+
+@media screen and (max-width: 768px) {
+  .three-columns {
+    flex-direction: column;
+  }
+  
+  .right-column { 
+    display: none;
+  }
+
+  .mobile-ad {
+    display: block;
+  }
+
+  .comment-form {
+    flex-direction: column;
+    border: 0;
+  }
+
+  .post {
+    margin: 30px 0;
+  }
+
+  .comment-input {
+    margin: 0 !important;
+  }
 }

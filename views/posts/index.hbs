@@ -1,12 +1,14 @@
 <div class="page-container"><h1 class="timeline_header">{{username}}'s Timeline</h1>
-
+<div class="three-columns">
+  <div class="left-column">
  <a id="change_profile_photo" href='/users/photo' class="" style="text-decoration: none">Change Profile Photo</a> 
   <img class="profile-photo-header"  src={{profilePhotoPath}}>
-
+</div>
+<div class="center-column">
  <form id="new-post-form" action="/posts" method="post">
   <div class="new-message-form">
-    <input id="message" type="text" name="message" placeholder="What's on your mind?" value="">
-    <input class="button-5" type="submit" value="Submit">
+    <input class="nomargin padding15" id="message" type="text" name="message" placeholder="What's on your mind?" value="">
+    <input class="button-5 margin15" type="submit" value="Submit">
     </div>
   </form>
 <div class="posts">
@@ -15,7 +17,7 @@
     <div class="post_contents">
       <div class="author_container">
         <img class="profile-photo" src={{this.author.profilePhotoPath}}>
-        <div class="username">{{this.username}}</div>
+        <div class="username">{{this.author.username}}</div>
       </div>
       <div class="message_container">  
         <div class="post-message">
@@ -51,6 +53,6 @@
 
   </div>
   {{/each}}
-</div></div></div>
+</div></div><div class="right-column"><img src="https://via.placeholder.com/150x700"></div></div></div>
   <script type="text/javascript" src="javascripts/likes_dom.js"></script>
 
