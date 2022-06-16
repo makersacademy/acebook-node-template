@@ -245,7 +245,10 @@ ul {
 
 .fb-footer {
 	background-color: #F7C59F;
-	width: 100%
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	max-height: 143px;
 }
 
 .div-footer {
