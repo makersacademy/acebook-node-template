@@ -587,8 +587,6 @@ ul {
   box-shadow: inset 0 1px 1px #f6c6d1;
   border-color: #f8bbc8 #d597a4 #9f747d;
 }
-<<<<<<< HEAD
-=======
 
 /* profile page */
 @import url(https://fonts.googleapis.com/css?family=Roboto:900,300);
@@ -612,10 +610,10 @@ ul {
   text-align: center;
 }
 
-.container:hover .avatar-flip {
+/* .container:hover .avatar-flip {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-}
+} */
 
 .container:hover .avatar-flip img:first-child {
   opacity: 0;
@@ -655,12 +653,12 @@ ul {
   z-index: 1;
 }
 
-.avatar-flip img:last-child {
+/* .avatar-flip img:last-child {
   z-index: 0;
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   opacity: 0;
-}
+} */
 
 h2 {
   font-size: 32px;
@@ -675,4 +673,3 @@ p {
   margin-bottom: 20px;
   color: #666;
 }
->>>>>>> main

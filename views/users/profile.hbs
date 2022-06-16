@@ -13,17 +13,24 @@
   <div class="container">
     <div class="avatar-flip">
       <img src="data:{{photo.contentType}};base64,{{photo.data}}" alt="user-photo" height="150" width="150">
-      <img src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo" height="150" width="150">
-    </div>
+     </div>
     <h2>{{userName}}</h2>
+    <h3> Intro </h3>
+    <p> 
+      Age: 6 
+      <br>
+      Lives: South Africa
+       <br>
+      Relationship status: A Mongoose never tells
+    </p>
 
-    <input class="post-submit-button" type="submit" value="Follow" required>
-
+    <input class="post-submit-button" type="submit" value="Acquaint" required>
+    <h3> Posts </h3>
     <div>
       <ul class="post" data-cy="user-posts">
         {{#each posts}}
         <li>
-          <p>{{this.message}}<br></p>
+          <p class="frm-textbox-yellow">{{this.message}}<br></p>
         </li>
         {{/each}}
       </ul>
