@@ -4,7 +4,7 @@ describe("Timeline", () => {
 
   clearTestDatabase();
   
-  it("can submit posts, when signed in, and view them", () => {
+  it("can submit posts, when signed in, and view them with profile pic", () => {
     // sign up
     cy.visit("/");
     cy.get("#userName").type("Jerry");
@@ -14,11 +14,14 @@ describe("Timeline", () => {
     cy.get("#submit-signup").click({force:true});
 
     // submit a post
-    cy.get("#message").type("Hello, world!");
-    cy.get(".post-submit-button").click({force:true});
+    cy.visit("/posts");
 
-    cy.get(".posts").should("contain", "Hello, world!");
+    cy.get("#new-post-form").find('[id="message"]').type("Hello, world!");
+    cy.get("#new-post-form").submit({force:true});
 
+    cy.get(".posts").should("contain", "Hello, world!")
+    cy.get(".picture-tag").should("be.visible");
+   
 
     // add a comment
     cy.get("#add-comment-to-post").find('[data-cy="comments"]').type('Hello back!');

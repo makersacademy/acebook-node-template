@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -9,24 +10,41 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts, newUser: false });
+
+      Promise.all(posts.map(async (post) => {
+        const user = await User.findOne({ userName: post.userName }).exec();
+        const photo = {
+          contentType: user.photo.contentType,
+          data: user.photo.data.toString('base64'),
+        };
+
+        post.photo = photo;
+
+        return post;
+        
+      })).then((postsWithPhotos) => {
+        res.render("posts/index", { posts: postsWithPhotos, newUser: false });
+      });
     });
   },
-  New: (req, res) => {
-    res.render("posts/new", { newUser: false });
-  },
   Update: (req, res) => {
+    User.findOne({ userName: req.session.userName}).then( (commenter) => {
+      const photo = { 
+        contentType: commenter.photo.contentType,
+        data: commenter.photo.data.toString('base64')
+      }
     Post.findOneAndUpdate(
       {_id: req.body.id},
       {$push:
-        {comments: req.body.comments}
+        {comments: {userName: req.session.userName, comments: req.body.comments, photo: photo }}
+        
       },
       (err, result)=>{
       console.log(err);
       console.log(result);
       res.status(201).redirect("/posts");
     });
-  },  
+  })},  
 
   Like: (req, res) => {
     Post.findOne({_id: req.body.id},
@@ -63,8 +81,6 @@ const PostsController = {
   },
 
   Create: (req, res) => {
-    console.log(req.body)
-    console.log(req.session.userID)
     const post = new Post({ 
       message: req.body.message,
       userID: req.session.userID,
@@ -82,7 +98,6 @@ const PostsController = {
     Post.findOneAndDelete(
       {_id: req.body.id},
       (err, result)=>{
-      console.log(req)
       console.log(err);
       console.log(result);
       res.status(201).redirect("/posts");

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+</head>
+
+<body>
+
+  <div class="profile-main">
+  <div class="container">
+    <div class="avatar-flip">
+      <img src="data:{{photo.contentType}};base64,{{photo.data}}" alt="user-photo" height="150" width="150">
+      <img src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo" height="150" width="150">
+    </div>
+    <h2>{{userName}}</h2>
+
+    <input class="post-submit-button" type="submit" value="Follow" required>
+
+    <div>
+      <ul class="post" data-cy="user-posts">
+        {{#each posts}}
+        <li>
+          <p>{{this.message}}<br></p>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>
