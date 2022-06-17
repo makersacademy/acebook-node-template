@@ -37,5 +37,16 @@
       {{/each}}
     </ul>
   </div>
+  <div>
+    <h2>Aquaintances</h2>
+    <ul class="aquaintances">
+      {{#each friends}}
+        <li>
+          <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo">
+          {{this.userName}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 </body>
 </html>

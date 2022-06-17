@@ -19,7 +19,8 @@ const UsersController = {
       res.render("users/profile", 
         { userName: req.session.userName, 
           posts: searchResults[0],
-          requests: searchResults[1].requests
+          requests: searchResults[1].requests,
+          friends: searchResults[1].friends
         });
     })
   },
