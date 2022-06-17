@@ -29,7 +29,7 @@ body {
 
 body {
 	line-height: 1.6;
-	/* padding-bottom: 143px; */
+	padding-bottom: 143px;
 	margin: 0;
 	min-height: 100vh;
   margin: 0px;
@@ -736,7 +736,6 @@ ion-icon{
 	display: block;
 	position: relative;
 	height: auto;
-
 }
 
 #fb-main-login {

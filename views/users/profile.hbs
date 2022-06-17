@@ -10,21 +10,21 @@
 <body>
 
   <div class="profile-main">
-  <div class="container">
-    <div class="avatar-flip">
-      <img  class="avatar-flip" src="data:{{photo.contentType}};base64,{{photo.data}}" alt="user-photo" height="150" width="150">
-     </div>
-    <h2>{{userName}}</h2>
-    <h3> Intro </h3>
-    <p> 
-      Age: {{ age }}
-      <br>
-      Lives: {{ location }}
-       <br>
-      Relationship status: {{ relation_status }}
-    </p>
+    <div class="container">
+      <div class="avatar-flip">
+        <img  class="avatar-flip" src="data:{{photo.contentType}};base64,{{photo.data}}" alt="user-photo" height="150" width="150">
+      </div>
+      <h2>{{userName}}</h2>
+      <h3> Intro </h3>
+      <p> 
+        Age: {{ age }}
+        <br>
+        Lives: {{ location }}
+        <br>
+        Relationship status: {{ relation_status }}
+      </p>
 
-    <input class="post-submit-button" type="submit" value="Acquaint" required>
+    {{!-- <input class="post-submit-button" type="submit" value="Acquaint" required> --}}
     <h3> Posts </h3>
     <div>
       <ul class="post" data-cy="user-posts">
@@ -38,6 +38,37 @@
   </div>
   </div>
 
+  <div>
+    <h2>Acquaintance Requests</h2>
+    <ul class="requests">
+      {{#each requests}}
+      <li>
+        {{!-- This picture isn't rendering --}}
+        {{!-- <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo"> --}}
+        {{this.userName}} has requested your acquaintance.
+        <form class="friend-approval" action="/friends/approval" method="post">
+          <input type="hidden" name="userID" value="{{this._id}}">
+          <input class="accept-button" type="submit" value="Accept">
+        </form>
+        <form class="friend-reject" action="/friends/reject" method="post">
+          <input type="hidden" name="userID" value="{{this._id}}">
+          <input class="refject-button" type="submit" value="Reject">
+        </form>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <div>
+    <h2>Acquaintances</h2>
+    <ul class="aquaintances">
+      {{#each friends}}
+        <li>
+          {{!-- This picture isn't rendering --}}
+          {{!-- <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo"> --}}
+          {{this.userName}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 </body>
-
 </html>

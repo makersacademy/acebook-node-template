@@ -11,29 +11,32 @@ const UsersController = {
       res.redirect("/");
       return;
     }
-    Post.find({userID: req.session.userID})
+
+    const postSearch = Post.find({userID: req.session.userID})
     .sort({'date': -1})
     .limit(10)
-    .exec(async(err, posts) => {
-      if (err) {
-        throw err;
-      }
-      const user = await User.findOne({ userName: req.session.userName }).exec();
-      const photo = {
-        contentType: user.photo.contentType,
-        data: user.photo.data.toString('base64'), // <- user photo added to profile page
-      };
+    .exec();
+
+    const userSearch = User.findOne({_id: req.session.userID})
+    .exec();
+
+    Promise.all([postSearch, userSearch]).then( searchResults => {
       const locations = ["Bumpass, Virginia", "Hell, Norway", "Titty Hill, England", "Sandy Balls, England"]
       const statuses = ["A Mongoose never tells", "Already ordered 15 cats", "Depends on who's asking"]
-      res.render("users/profile", { 
-        userName: req.session.userName, 
-        posts: posts, 
-        photo, 
-        age: Math.floor(Math.random() * 101),
-        location: locations[Math.floor(Math.random() * locations.length)],
-        relation_status: statuses[Math.floor(Math.random() * statuses.length)]
-      });
-    });
+      res.render("users/profile", 
+        { userName: req.session.userName, 
+          posts: searchResults[0],
+          requests: searchResults[1].requests,
+          friends: searchResults[1].friends,
+          photo: {
+            contentType: searchResults[1].photo.contentType,
+            data: searchResults[1].photo.data.toString('base64')
+            },
+          age: Math.floor(Math.random() * 101),
+          location: locations[Math.floor(Math.random() * locations.length)],
+          relation_status: statuses[Math.floor(Math.random() * statuses.length)]
+        });
+    })
   },
 
   New: (req, res) => {
