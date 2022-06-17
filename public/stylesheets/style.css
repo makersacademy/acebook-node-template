@@ -7,8 +7,29 @@
 	box-sizing: border-box;
 }
 
+*:before,
+*:after {
+ box-sizing: border-box;
+}
+
+html,
+body {
+ height: 100%;
+ position: relative;
+}
+
+.main-container {
+	min-height: 100vh; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	height: auto;
+	padding-bottom: 143px; /* height of your footer */
+}
+
 body {
 	line-height: 1.6;
+	padding-bottom: 143px;
 	margin: 0;
 	min-height: 100vh;
   margin: 0px;
@@ -91,18 +112,20 @@ ul {
 
 /* sign up and log in page */
 #fb-main{
-	margin: 0 auto;
-	height: 722.5px;
-	width: 100%;
+	min-height: 100vh; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
 	background-color: #FA6C8B;
 	background: linear-gradient(white, #EFEFD0);
 }
 
 .fb-container{
-	width: auto;
-	margin: 0 auto;
-	height: auto;
-  overflow: hidden;
+	min-height: 100vh; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	padding-bottom: 143px; /* height of your footer */
 }
 
 .logo-m {
@@ -156,7 +179,6 @@ ul {
 	color:#707070;
 }
 
-
 .frm-textbox {
 	width: 92%;
 	border: 1px solid #6d6d6d;
@@ -167,8 +189,6 @@ ul {
 	margin: 5px 8px;
 	margin-left: 0;
 }
-
-
 
 .form-div {
 	position: relative;
@@ -245,7 +265,10 @@ ul {
 
 .fb-footer {
 	background-color: #F7C59F;
-	width: 100%
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	max-height: 143px;
 }
 
 .div-footer {
@@ -289,6 +312,7 @@ ul {
 #posts-main{
 	background-color: #FA6C8B;
 	background: linear-gradient(white, #EFEFD0);
+	min-height: calc(100vh - 143px);
 }
 
 .frm-textbox-peach {
@@ -360,6 +384,7 @@ ul {
   box-shadow: inset 0 1px 1px #fcc8d4;
   border-color: #FA6C8B #d85d78 #a93e55;
 }
+
 .post-submit-button:hover {
 	font-size: 19px;
 	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
@@ -383,6 +408,7 @@ ul {
   box-shadow: inset 0 1px 1px #f6c6d1;
   border-color: #f8bbc8 #d597a4 #9f747d;
 }
+
 .comment-submit-button {
 	font-size: 14px;
 	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
@@ -406,6 +432,7 @@ ul {
   box-shadow: inset 0 1px 1px #fcc8d4;
   border-color: #FA6C8B #d85d78 #a93e55;
 }
+
 .comment-submit-button:hover {
 	font-size: 14px;
 	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
@@ -427,6 +454,7 @@ ul {
   box-shadow: inset 0 1px 1px #f6c6d1;
   border-color: #f8bbc8 #d597a4 #9f747d;
 }
+
 .comment-text{
 	justify-content: left;
 	background-color: #ffffffc0;
@@ -441,10 +469,12 @@ ul {
 	margin-bottom: 14px;
 	margin-right: 70px;
 }
+
 .comment-and-image{
 	display: flex;
 	align-items: center;
 }
+
 .comment-text::placeholder{
 	color: #2a2a2a96;
 	font-style: italic;
@@ -493,9 +523,12 @@ ul {
 }
 
 .picture-tag{
-	max-width: 50px;
 	max-height: auto;
 	display: block;
+	border-radius: 50%;
+	width: 70px;
+	height: 70px;
+	object-fit: cover;
 }
 
 .name-and-image{
@@ -558,4 +591,217 @@ ul {
   background-color: #fd9fb3;
   box-shadow: inset 0 1px 1px #f6c6d1;
   border-color: #f8bbc8 #d597a4 #9f747d;
+}
+
+/* profile page */
+@import url(https://fonts.googleapis.com/css?family=Roboto:900,300);
+.profile-main{
+	background-color: #FA6C8B;
+	background: linear-gradient(white, #EFEFD0);
+	min-height: calc(100vh - 143px);
+}
+
+.container {
+  width: 900px;
+  margin: 120px auto 120px;
+  background-color: #fff;
+  padding: 0 20px 20px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  text-align: center;
+}
+
+.avatar-flip {
+	margin-top: 30px;
+  border-radius: 50%;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+p {
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.frm-textbox-yellow-2 {
+	border: 1px solid #6d6d6d;
+	background-color: #f7c59f68;
+	width: 90%;
+	border-radius: 5px;
+	color:#707070;
+	font-size: 25px;
+	padding: 8px 20px;
+	margin: auto;
+	margin-bottom: 20px;
+	font-weight: lighter;
+	text-align: left;
+	word-wrap: break-word;
+	position: relative;
+}
+
+/* likes styling */
+.large-font{
+  font-size:xxx-large;
+	width: 50px;
+	height: 50px;
+	float:left;
+	margin-top: -15px;
+}
+
+ion-icon.active{
+  animation:like 0.7s 1;
+  fill:#FA6C8B;
+  stroke: black;
+}
+ion-icon{
+  fill:transparent;
+  stroke:black;
+  stroke-width: 30;
+  transition:all 0.7s;
+}
+
+@-webkit-keyframes like {
+  0%   { transform: scale(1); }
+  90%   { transform: scale(1.3); }
+  100% { transform: scale(1.1); }
+}
+
+/* div {
+  border: 1px solid red;
+} */
+
+.counter {
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+.space-icon {
+	margin-top: 20px;
+}
+
+/* fixing footer for login page */
+.fb-footer-login {
+	background-color: #F7C59F;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	max-height: 143px;
+	margin-top: -243px;
+}
+
+.div-footer-login {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	color: #737373;
+	width: 980px;
+	height: 143px;
+	background-color: #F7C59F;
+	margin:0 auto;
+	padding-top: 45px;
+  text-align: center;
+	
+}
+
+.div-footer-login a {
+	padding: 0;
+	margin: 0;
+	color: #656565;
+	text-decoration: none;
+}
+
+.div-footer-login a:hover {
+	text-decoration: underline;
+}
+
+.div-footer-login li {
+	display: inline-block;
+  text-align: center;
+}
+
+.main-container-login {
+	min-height: 80%; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	height: auto;
+	padding-bottom: 143px; /* height of your footer */
+}
+
+#fb-main-login {
+	min-height: 80%; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	background-color: #FA6C8B;
+	background: linear-gradient(white, #EFEFD0);
+}
+
+/* fixing footer for signup page */
+.fb-footer-signup {
+	background-color: #F7C59F;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	max-height: 143px;
+	margin-top: -243px;
+}
+
+.div-footer-signup {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	color: #737373;
+	width: 980px;
+	height: 143px;
+	background-color: #F7C59F;
+	margin:0 auto;
+	padding-top: 45px;
+  text-align: center;
+	
+}
+
+.div-footer-signup a {
+	padding: 0;
+	margin: 0;
+	color: #656565;
+	text-decoration: none;
+}
+
+.div-footer-signup a:hover {
+	text-decoration: underline;
+}
+
+.div-footer-signup li {
+	display: inline-block;
+  text-align: center;
+}
+
+.main-container-signup {
+	min-height: 80%; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	height: auto;
+	padding-bottom: 143px; /* height of your footer */
+}
+
+#fb-main-signup {
+	min-height: 80%; /* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	background-color: #FA6C8B;
+	background: linear-gradient(white, #EFEFD0);
 }

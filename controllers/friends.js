@@ -1,5 +1,5 @@
 const User = require("../models/user")
-
+const Posts = require("../models/post")
 const FriendsController = {
   Search: (req, res) => {
     User.find( 
@@ -113,7 +113,32 @@ const FriendsController = {
           res.redirect('/users/profile')
         }
       )
-  })}
+    }
+    )
+  },
+
+  Retrieve: (req, res) => {
+    const user = User.findOne({_id: req.body.id})
+    const posts = Posts.find({userID: req.body.id})
+
+    Promise.all([user, posts]).then((searchResults) => {
+      const photo = {
+        contentType: searchResults[0].photo.contentType,
+        data: searchResults[0].photo.data.toString('base64'), // <- user photo added to profile page
+      };
+      const locations = ["Bumpass, Virginia", "Hell, Norway", "Titty Hill, England", "Sandy Balls, England"]
+      const statuses = ["A Mongoose never tells", "Already ordered 15 cats", "Depends on who's asking"]
+      res.render("friends/profile", { 
+        userName: searchResults[0].userName,
+        posts: searchResults[1],
+        photo: photo,
+        age: Math.floor(Math.random() * 101),
+        location: locations[Math.floor(Math.random() * locations.length)],
+        relation_status: statuses[Math.floor(Math.random() * statuses.length)]
+      });
+    })
+    }
 }
+
 
 module.exports = FriendsController;

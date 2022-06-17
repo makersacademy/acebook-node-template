@@ -10,6 +10,12 @@
           <input id="request-button" class="request-button" type="submit" value="Aquaint">
         </form>
       </div>
+      <div>
+        <form class="name-of-person"action="/friends/profile" method="post">
+          <input type="hidden" name="id" value="{{this._id}}">
+          <input id="friends-name" type="submit" value="{{this.userName}}">
+        </form>
+      </div>
     </li>
   {{/each}}
 </ul>

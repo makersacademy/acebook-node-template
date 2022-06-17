@@ -1,61 +1,63 @@
-<!DOCTYPE html>
-<html>
+<div class="main-container-signup">
+	<!DOCTYPE html>
+	<html>
 
-<body>
+	<body>
 
-	<main id="fb-main">
-		<div class="fb-container">
+		<main id="fb-main-signup">
+			<div class="fb-container-signup">
 
-			<div class="logo-m"><img class="logo-img" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo"></div>
-			
-			<div class="right-signup">
-				<section class="fb-form">
+				<div class="logo-m"><img class="logo-img" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo"></div>
+				
+				<div class="right-signup">
+					<section class="fb-form">
 
-					<div class="space"></div>
-					
-						<span class="frm-header">Create an account</span>
-						<br>
-						<br>
-						<span class="frm-spn1">It's free and always will be</span>
-					
-						<form id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
-							
-							<input class="frm-textbox" id="userName" type="userName" name="userName" value="" placeholder="Your name" required>
-							<input class="frm-textbox" id="email" type="email" name="email" value="" placeholder="Email address" required>
-							<input  class="frm-textbox" id="password" type="password" name="password" value="" placeholder="Your password" required>
-							<input class="img-input" type='file' name="photo" /><img id="myImg">
+						<div class="space"></div>
+						
+							<span class="frm-header">Create an account</span>
+							<br>
+							<br>
+							<span class="frm-spn1">It's free and always will be</span>
+						
+							<form id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
+								
+								<input class="frm-textbox" id="userName" type="userName" name="userName" value="" placeholder="Your name" required>
+								<input class="frm-textbox" id="email" type="email" name="email" value="" placeholder="Email address" required>
+								<input  class="frm-textbox" id="password" type="password" name="password" value="" placeholder="Your password" required>
+								<input class="img-input" type='file' name="photo" required><img id="myImg" required>
 
-							<div class="form-div">
-								<p class="policy">By clicking Sign Up, you agree to our <a href="https://www.mongodb.com/">Terms, Data Policy</a> and <a href="https://www.milliescookies.com/">Cookie Policy</a>. You may receive Email notifications from us and can opt out at any time.</p>
-								<button id="submit-signup" type="submit" value="Sign Up">Sign Up</button>
+								<div class="form-div">
+									<p class="policy">By clicking Sign Up, you agree to our <a href="https://www.mongodb.com/">Terms, Data Policy</a> and <a href="https://www.milliescookies.com/">Cookie Policy</a>. You may receive Email notifications from us and can opt out at any time.</p>
+									<button id="submit-signup" type="submit" value="Sign Up">Sign Up</button>
 
-							</div>
-						</form>
-						<form id="new-session-form" action="/sessions/new" method="get">
-							<div class="form-div">
-								<div class="frm-spn2">
-                  Already have an account?
-                </div>
-								<button id='submit-login' type="submit" value="Log In">Log In</button>
-							</div>
-						</form>
-				</section>
+								</div>
+							</form>
+							<form id="new-session-form" action="/sessions/new" method="get">
+								<div class="form-div">
+									<div class="frm-spn2">
+										Already have an account?
+									</div>
+									<button id='submit-login' type="submit" value="Log In">Log In</button>
+								</div>
+							</form>
+					</section>
+				</div>
+
 			</div>
-
-		</div>
-	</main>
-	<footer class="fb-footer">
-		<div class="div-footer">
-			<ul class="ul1">
-        <li><a href="https://github.com/timbo-graham">Tim</a></li>
-        <li><a href="https://github.com/AKCDNG">Anish</a></li>
-        <li><a href="https://github.com/K-Carty">Kieran</a></li>
-        <li><a href="https://github.com/jimmy-lyons">Jimmy</a></li>
-        <li><a href="https://github.com/GeorgeDainton">George</a></li>
-        <li><a href="https://github.com/amfibiya17">Slava</a></li>
-			</ul>
-			<p>Makebook © 2022</p>
-		</div>
-	</footer>
-</body>
-</html>
+		</main>
+		<footer class="fb-footer-signup">
+			<div class="div-footer-signup">
+				<ul class="ul1">
+					<li><a href="https://github.com/timbo-graham">Tim</a></li>
+					<li><a href="https://github.com/AKCDNG">Anish</a></li>
+					<li><a href="https://github.com/K-Carty">Kieran</a></li>
+					<li><a href="https://github.com/jimmy-lyons">Jimmy</a></li>
+					<li><a href="https://github.com/GeorgeDainton">George</a></li>
+					<li><a href="https://github.com/amfibiya17">Slava</a></li>
+				</ul>
+				<p>Makebook © 2022</p>
+			</div>
+		</footer>
+	</body>
+	</html>
+</div>
