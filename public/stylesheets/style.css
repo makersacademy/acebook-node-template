@@ -731,7 +731,7 @@ ion-icon{
 }
 
 .main-container-login {
-	min-height: 80%; /* will cover the 100% of viewport */
+	min-height: 100%; /* will cover the 100% of viewport */
 	overflow: hidden;
 	display: block;
 	position: relative;
@@ -739,7 +739,7 @@ ion-icon{
 }
 
 #fb-main-login {
-	min-height: 80%; /* will cover the 100% of viewport */
+	min-height: 100%; /* will cover the 100% of viewport */
 	overflow: hidden;
 	display: block;
 	position: relative;
