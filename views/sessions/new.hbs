@@ -28,23 +28,30 @@
 						<br>
 						<span class="frm-spn1">Give your details to the Constable</span>
 					
-						<form id="new-session-form" action="/sessions" method="post">
-							<input class="frm-textbox" id="email" type="email" name="email" value="" placeholder="Email address" required>
-							<input  class="frm-textbox" id="password" type="password" name="password" value="" placeholder="Your password" required>
 
-							<div class="form-div">
-								<button id="submit-signin" type="submit" value="Sign In">Log In</button>
+						<div class="buttons-close">
 
-							</div>
-						</form>
-						<form id="new-user-form" action="/" method="get">
-							<div class="form-div">
-                <div class="frm-spn2">
-                  Don't have an account?
-                </div>
-								<button id='submit-signup' type="submit" value="Sign_Up">Sign Up</button>
-							</div>
-						</form>
+							<form id="new-session-form" action="/sessions" method="post">
+								<input class="frm-textbox" id="email" type="email" name="email" value="" placeholder="Email address" required>
+								<input  class="frm-textbox" id="password" type="password" name="password" value="" placeholder="Your password" required>
+
+								<div class="form-div-login">
+									<button id="submit-signin" type="submit" value="Sign In">Log In</button>
+
+								</div>
+							</form>
+
+							<form id="new-user-form" action="/" method="get">
+								<div class="form-div-signup">
+									<div class="frm-spn2">
+										Don't have an account?
+									</div>
+									<button id='submit-signup' type="submit" value="Sign_Up">Sign Up</button>
+								</div>
+							</form>
+
+						</div>
+
 				</section>
 			</div>
 
