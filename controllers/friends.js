@@ -61,6 +61,7 @@ const FriendsController = {
       const statuses = ["A Mongoose never tells", "Already ordered 15 cats", "Depends on who's asking"]
       res.render("friends/profile", { 
         userName: searchResults[0].userName,
+        posts: searchResults[1],
         photo: photo,
         age: Math.floor(Math.random() * 101),
         location: locations[Math.floor(Math.random() * locations.length)],
