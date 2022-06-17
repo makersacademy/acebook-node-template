@@ -1,20 +1,23 @@
-<h1>Mongeese</h1>
+<h1 class="timeline-text">Mongeese</h1>
 <body>
 <ul class="users">
   {{#each users}}
     <li>
       <div class="userSearchResults">
-        {{this.userName}}
-        <form id="send-friend-request" action="/friends/request" method="post">
-          <input type="hidden" name="id" value="{{this._id}}">
-          <input id="request-button" class="request-button" type="submit" value="Aquaint">
-        </form>
+        <img class="avatar-flip" src="data:{{photo.contentType}};base64,{{photo.data}}" height="100px" width="100px">
+        <div class="name-and-buttons">
+          <h3> {{this.userName}} </h3>
+          <form id="send-friend-request" action="/friends/request" method="post">
+            <input type="hidden" name="id" value="{{this._id}}">
+            <input id="request-button" class="request-button" type="submit" value="Aquaint">
+          </form>
+          <form class="name-of-person"action="/friends/profile" method="post">
+            <input type="hidden" name="id" value="{{this._id}}">
+            <input id="view-profile" type="submit" value="View Profile">
+          </form>
+        </div>
       </div>
       <div>
-        <form class="name-of-person"action="/friends/profile" method="post">
-          <input type="hidden" name="id" value="{{this._id}}">
-          <input id="friends-name" type="submit" value="{{this.userName}}">
-        </form>
       </div>
     </li>
   {{/each}}
