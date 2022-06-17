@@ -6,7 +6,6 @@ const path = require('path');
 const UsersController = {
 
   Index: (req, res) => {
-    
     console.log("Checking", req.session.userName);
     if(!req.session.userName) {
       res.redirect("/");
