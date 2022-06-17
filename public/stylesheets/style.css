@@ -1,4 +1,4 @@
-/* div { <- use this to see all divs
+/* div {
   border: 1px solid red;
 } */
 
@@ -731,7 +731,7 @@ ion-icon{
 }
 
 .main-container-login {
-	min-height: 80%; /* will cover the 100% of viewport */
+	min-height: 100%; /* will cover the 100% of viewport */
 	overflow: hidden;
 	display: block;
 	position: relative;
@@ -739,7 +739,7 @@ ion-icon{
 }
 
 #fb-main-login {
-	min-height: 80%; /* will cover the 100% of viewport */
+	min-height: 100%; /* will cover the 100% of viewport */
 	overflow: hidden;
 	display: block;
 	position: relative;
@@ -1308,3 +1308,114 @@ ion-icon{
 	.name-and-buttons{
 		margin-left: 50px;
 	}
+
+.accept-button {
+		font-size: 14px;
+		font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+		font-weight: bold !important;
+		letter-spacing: normal;
+		text-rendering: optimizelegibility;
+		padding: 7px 20px;
+		text-align: center;
+		border: 1px solid;
+		border-radius: 5px;
+		color: #fff;
+		cursor: pointer;
+		display: inline-block;
+		position: absolute;
+		text-shadow: 0 1px 2px rgba(0,0,0,.5);
+		margin-top: 10px;
+		margin-bottom: 25px;
+		margin-left: 100px;
+		background: linear-gradient(#fc95ac, #FA6C8B);
+		background-color: #FA6C8B;
+		box-shadow: inset 0 1px 1px #fcc8d4;
+		border-color: #FA6C8B #d85d78 #a93e55;
+}
+		
+	.accept-button:hover {
+		font-size: 14px;
+		font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+		font-weight: bold !important;
+		letter-spacing: normal;
+		text-rendering: optimizelegibility;
+		padding: 7px 20px;
+		text-align: center;
+		border: 1px solid;
+		border-radius: 5px;
+		color: #fff;
+		cursor: pointer;
+		display: inline-block;
+		position: absolute;
+		text-shadow: 0 1px 2px rgba(0,0,0,.5);
+		background: linear-gradient(#f6a6b8, #f48ba2);
+		background-color: #fd9fb3;
+		box-shadow: inset 0 1px 1px #f6c6d1;
+		border-color: #f8bbc8 #d597a4 #9f747d;
+
+}
+
+.reject-button {
+	font-size: 14px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+	font-weight: bold !important;
+	letter-spacing: normal;
+	text-rendering: optimizelegibility;
+	padding: 7px 20px;
+	text-align: center;
+	border: 1px solid;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+	text-shadow: 0 1px 2px rgba(0,0,0,.5);
+	margin-top: 10px;
+	margin-bottom: 25px;
+	background: linear-gradient(#fc95ac, #FA6C8B);
+	background-color: #FA6C8B;
+	box-shadow: inset 0 1px 1px #fcc8d4;
+	border-color: #FA6C8B #d85d78 #a93e55;
+}
+	
+.reject-button:hover {
+	font-size: 14px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+	font-weight: bold !important;
+	letter-spacing: normal;
+	text-rendering: optimizelegibility;
+	padding: 7px 20px;
+	text-align: center;
+	border: 1px solid;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+	text-shadow: 0 1px 2px rgba(0,0,0,.5);
+	background: linear-gradient(#f6a6b8, #f48ba2);
+	background-color: #fd9fb3;
+	box-shadow: inset 0 1px 1px #f6c6d1;
+	border-color: #f8bbc8 #d597a4 #9f747d;
+
+}
+
+.a-container {
+  width: 900px;
+	height: 200px;
+  margin: 120px auto 120px;
+  background-color: #fff;
+  padding: 0 20px 20px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  text-align: center;
+}
+
+.parent-a-container{
+	display: inline-block;
+	padding-right: 500px;
+}

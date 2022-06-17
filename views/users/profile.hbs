@@ -36,29 +36,29 @@
       </ul>
     </div>
   </div>
-  </div>
-
-  <div>
+  <div class="a-container">
     <h2>Acquaintance Requests</h2>
     <ul class="requests">
       {{#each requests}}
-      <li>
+      <li class="list-a">
         {{!-- This picture isn't rendering --}}
         {{!-- <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo"> --}}
         {{this.userName}} has requested your acquaintance.
-        <form class="friend-approval" action="/friends/approval" method="post">
-          <input type="hidden" name="userID" value="{{this._id}}">
-          <input class="accept-button" type="submit" value="Accept">
-        </form>
-        <form class="friend-reject" action="/friends/reject" method="post">
-          <input type="hidden" name="userID" value="{{this._id}}">
-          <input class="refject-button" type="submit" value="Reject">
-        </form>
+        <div class="parent-a-container">
+          <form class="friend-approval" action="/friends/approval" method="post">
+            <input type="hidden" name="userID" value="{{this._id}}">
+            <input class="accept-button" type="submit" value="Accept">
+          </form>
+          <form class="friend-reject" action="/friends/reject" method="post">
+            <input type="hidden" name="userID" value="{{this._id}}">
+            <input class="reject-button" type="submit" value="Reject">
+          </form>
+        </div>
       </li>
       {{/each}}
     </ul>
   </div>
-  <div>
+  <div class="container">
     <h2>Acquaintances</h2>
     <ul class="aquaintances">
       {{#each friends}}
@@ -70,5 +70,7 @@
       {{/each}}
     </ul>
   </div>
+  </div>
+
 </body>
 </html>
