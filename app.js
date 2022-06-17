@@ -29,6 +29,8 @@ app.use(
     key: "user_sid",
     secret: "super_secret",
     resave: false,
+    userID: null,
+    userName: null,
     saveUninitialized: false,
     cookie: {
       expires: 600000,
@@ -74,5 +76,7 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
 
 module.exports = app;

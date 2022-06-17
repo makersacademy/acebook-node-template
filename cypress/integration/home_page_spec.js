@@ -1,6 +1,9 @@
+const clearTestDatabase = require('./test_database_helper')
+
 describe("Home page", () => {
+  clearTestDatabase();
   it("has a title", () => {
     cy.visit("/");
-    cy.get(".title").should("contain", "Acebook");
+    cy.get(".logo").should("contain", "Makebook");
   });
 });

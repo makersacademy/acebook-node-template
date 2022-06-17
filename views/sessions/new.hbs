@@ -1,7 +1,67 @@
+{{!-- <h1>Sign In</h1>
 <form id="new-session-form" action="/sessions" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+  <input id="submit" type="submit" value="Sign In">
+</form> --}}
+
+
+<!DOCTYPE html>
+<html>
+
+<body>
+
+	<main id="fb-main">
+		<div class="fb-container">
+
+			<div class="logo-m"><img class="logo-img" src="https://i.postimg.cc/wjkhqDFy/Higher-res-mongoose.png" alt="mongoose-logo"></div>
+			
+			<div class="right-signup">
+				<section class="fb-form">
+
+					<div class="space"></div>
+					
+						<span class="frm-header">Log In</span>
+						<br>
+						<br>
+						<span class="frm-spn1">Give your details to the Constable</span>
+					
+						<form id="new-session-form" action="/sessions" method="post">
+							<input class="frm-textbox" id="email" type="email" name="email" value="" placeholder="Email address" required>
+							<input  class="frm-textbox" id="password" type="password" name="password" value="" placeholder="Your password" required>
+
+							<div class="form-div">
+								<button id="submit-signin" type="submit" value="Sign In">Log In</button>
+
+							</div>
+						</form>
+						<form id="new-user-form" action="/" method="get">
+							<div class="form-div">
+                <div class="frm-spn2">
+                  Don't have an account?
+                </div>
+								<button id='submit-signup' type="submit" value="Sign_Up">Sign Up</button>
+							</div>
+						</form>
+				</section>
+			</div>
+
+		</div>
+	</main>
+	<footer class="fb-footer">
+		<div class="div-footer">
+			<ul class="ul1">
+        <li><a href="https://github.com/timbo-graham">Tim</a></li>
+        <li><a href="https://github.com/AKCDNG">Anish</a></li>
+        <li><a href="https://github.com/K-Carty">Kieran</a></li>
+        <li><a href="https://github.com/jimmy-lyons">Jimmy</a></li>
+        <li><a href="https://github.com/GeorgeDainton">George</a></li>
+        <li><a href="https://github.com/amfibiya17">Slava</a></li>
+			</ul>
+			<p>Makebook © 2022</p>
+		</div>
+	</footer>
+</body>
+</html>

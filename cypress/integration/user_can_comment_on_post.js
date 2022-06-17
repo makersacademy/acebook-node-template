@@ -3,7 +3,7 @@ const clearTestDatabase = require('./test_database_helper')
 describe("Timeline", () => {
 
   clearTestDatabase();
-
+  
   it("can submit posts, when signed in, and view them", () => {
     // sign up
     cy.visit("/");
@@ -20,5 +20,12 @@ describe("Timeline", () => {
     cy.get(".posts").should("contain", "Hello, world!");
 
 
+    // add a comment
+    cy.get("#add-comment-to-post").find('[data-cy="comments"]').type('Hello back!');
+    cy.get("#add-comment-to-post").submit({force:true});
+
+    cy.get("#comments-list").should("contain", 'Hello back!');
+
+    
   });
 });
