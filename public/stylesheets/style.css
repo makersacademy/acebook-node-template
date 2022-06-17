@@ -24,12 +24,12 @@ body {
 	display: block;
 	position: relative;
 	height: auto;
-	padding-bottom: 143px; /* height of your footer */
+	padding-bottom: 143px; 
 }
 
 body {
 	line-height: 1.6;
-	padding-bottom: 143px;
+	/* padding-bottom: 143px; */
 	margin: 0;
 	min-height: 100vh;
   margin: 0px;
@@ -736,7 +736,7 @@ ion-icon{
 	display: block;
 	position: relative;
 	height: auto;
-	padding-bottom: 143px; /* height of your footer */
+
 }
 
 #fb-main-login {
@@ -789,21 +789,21 @@ ion-icon{
 }
 
 .main-container-signup {
-	min-height: 80%; /* will cover the 100% of viewport */
+	min-height: 100vh; /* will cover the 100% of viewport */
 	overflow: hidden;
 	display: block;
 	position: relative;
 	height: auto;
-	padding-bottom: 143px; /* height of your footer */
 }
 
 #fb-main-signup {
-	min-height: 80%; /* will cover the 100% of viewport */
+	min-height: 100vh; /* will cover the 100% of viewport */
 	overflow: hidden;
 	display: block;
 	position: relative;
 	background-color: #FA6C8B;
 	background: linear-gradient(white, #EFEFD0);
+	padding-bottom: 143px;
 }
 
 /* search bar */
@@ -877,3 +877,318 @@ ion-icon{
     border: 1px solid #FA6C8B;  
   }
 }
+
+/* fixing buttons */
+.buttons-close {
+	display:inline-block;
+	padding: 5px;
+}
+
+.form-div-login {
+	float: left;
+	top: 25px;
+	margin-top: 22px;
+	padding: auto;
+	width: 45%;
+}
+
+.form-div-login a {
+	color: #484848;
+	text-decoration: none;
+	font-size: 11px;
+	display: inline-block;
+	max-width: 150px;
+	vertical-align: middle;
+}
+
+.form-div-login a:hover {
+	text-decoration: underline;
+}
+
+.form-div-login p {
+	color: #777;
+	font-size: 11px;
+	width: 386px;
+	line-height: 1.34;
+}
+
+.form-div-login button {
+	font-size: 19px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  min-width: 184px;
+  padding: 7px 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin-top: 1px;
+  margin-bottom: 60px;
+  background: linear-gradient(#fc95ac, #FA6C8B);
+  background-color: #FA6C8B;
+  box-shadow: inset 0 1px 1px #fcc8d4;
+  border-color: #FA6C8B #d85d78 #a93e55;
+}
+
+.form-div-login button:hover {
+	font-size: 19px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  min-width: 184px;
+  padding: 7px 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin-top: 1px;
+  margin-bottom: 60px;
+  background: linear-gradient(#f6a6b8, #f48ba2);
+  background-color: #fd9fb3;
+  box-shadow: inset 0 1px 1px #f6c6d1;
+  border-color: #f8bbc8 #d597a4 #9f747d;
+}
+
+/* div {
+  border: 1px solid red;
+} */
+
+.form-div-signup {
+	float: left;
+	top: 15px;
+	padding-left: 15px;
+}
+
+.form-div-signup a {
+	color: #484848;
+	text-decoration: none;
+	font-size: 11px;
+	display: inline-block;
+	max-width: 150px;
+	vertical-align: middle;
+}
+
+.form-div-signup a:hover {
+	text-decoration: underline;
+}
+
+.form-div-signup p {
+	color: #777;
+	font-size: 11px;
+	width: 386px;
+	line-height: 1.34;
+}
+
+.form-div-signup button {
+	font-size: 19px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  min-width: 184px;
+  padding: 7px 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin-top: 1px;
+  margin-bottom: 60px;
+  background: linear-gradient(#fc95ac, #FA6C8B);
+  background-color: #FA6C8B;
+  box-shadow: inset 0 1px 1px #fcc8d4;
+  border-color: #FA6C8B #d85d78 #a93e55;
+}
+
+.form-div-signup button:hover {
+	font-size: 19px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  min-width: 184px;
+  padding: 7px 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin-top: 1px;
+  margin-bottom: 60px;
+  background: linear-gradient(#f6a6b8, #f48ba2);
+  background-color: #fd9fb3;
+  box-shadow: inset 0 1px 1px #f6c6d1;
+  border-color: #f8bbc8 #d597a4 #9f747d;
+}
+
+.form-div-signup-login {
+	float: left;
+	top: 45px;
+	padding-left: 15px;
+	padding-top: 86px;
+}
+
+.form-div-signup-login a {
+	color: #484848;
+	text-decoration: none;
+	font-size: 11px;
+	display: inline-block;
+	max-width: 150px;
+	vertical-align: middle;
+}
+
+.form-div-signup-login a:hover {
+	text-decoration: underline;
+}
+
+.form-div-signup-login p {
+	color: #777;
+	font-size: 11px;
+	width: 386px;
+	line-height: 1.34;
+}
+
+.form-div-signup-login button {
+	font-size: 19px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  min-width: 184px;
+  padding: 7px 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin-top: 1px;
+  margin-bottom: 60px;
+  background: linear-gradient(#fc95ac, #FA6C8B);
+  background-color: #FA6C8B;
+  box-shadow: inset 0 1px 1px #fcc8d4;
+  border-color: #FA6C8B #d85d78 #a93e55;
+}
+
+.form-div-signup-login button:hover {
+	font-size: 19px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  min-width: 184px;
+  padding: 7px 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin-top: 1px;
+  margin-bottom: 60px;
+  background: linear-gradient(#f6a6b8, #f48ba2);
+  background-color: #fd9fb3;
+  box-shadow: inset 0 1px 1px #f6c6d1;
+  border-color: #f8bbc8 #d597a4 #9f747d;
+}
+
+.form-div-login-signup {
+	float: left;
+	top: 25px;
+	margin-top: 22px;
+	padding: auto;
+	width: 45%;
+}
+
+.form-div-login-signup a {
+	color: #484848;
+	text-decoration: none;
+	font-size: 11px;
+	display: inline-block;
+	max-width: 150px;
+	vertical-align: middle;
+}
+
+.form-div-login-signup a:hover {
+	text-decoration: underline;
+}
+
+.form-div-login-signup p {
+	color: #777;
+	font-size: 11px;
+	width: 386px;
+	line-height: 1.34;
+}
+
+.form-div-login-signup button {
+	font-size: 19px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  min-width: 184px;
+  padding: 7px 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin-top: 1px;
+  margin-bottom: 60px;
+  background: linear-gradient(#fc95ac, #FA6C8B);
+  background-color: #FA6C8B;
+  box-shadow: inset 0 1px 1px #fcc8d4;
+  border-color: #FA6C8B #d85d78 #a93e55;
+}
+
+.form-div-login-signup button:hover {
+	font-size: 19px;
+	font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: normal;
+  text-rendering: optimizelegibility;
+  min-width: 184px;
+  padding: 7px 20px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  margin-top: 1px;
+  margin-bottom: 60px;
+  background: linear-gradient(#f6a6b8, #f48ba2);
+  background-color: #fd9fb3;
+  box-shadow: inset 0 1px 1px #f6c6d1;
+  border-color: #f8bbc8 #d597a4 #9f747d;
+}
+
+/* div {
+  border: 1px solid red;
+} */
