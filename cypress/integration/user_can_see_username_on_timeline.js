@@ -7,6 +7,6 @@ describe("Authentication", () => {
     signUp("someone@gmail.com", "password", "Jane Doe");
     signIn("someone@gmail.com", "password");
     
-    cy.contains("h1", "Jane Doe's Timeline");
+    cy.get(".username-card").should("contain", "Jane Doe");
   });
 });
