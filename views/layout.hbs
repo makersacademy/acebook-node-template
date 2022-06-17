@@ -4,6 +4,7 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <header class="header">
@@ -16,13 +17,23 @@
       <li><a class="a" href="/sessions/new">Log in</a></li> --}}
 
       {{else}}
-      <form action="/friends/search" method="post">
-        <input type="text" name="userName" class="search-bar" placeholder="Find an Acquaintance">
-        <input type="submit" class="submit-button" value="Search">
-      </form>
+
+      <div class="topnav">
+  
+        <div class="search-container">
+        
+          <form action="/friends/search" method="post">
+            <input placeholder="Find an Acquaintance..." type="text" name="userName" class="search-bar">
+            <button type="submit" class="submit-button" value="Search"><i class="fa fa-search"></i></button>
+          </form>
+          
+        </div>
+      </div>
+
 
       <li><a class="a" href="/users/profile">Profile</a></li>
       <li><a class="a" href="/posts">Home</a></li>
+
       <li>
         <form id="logout" action='/sessions?_method=DELETE' method='POST'></form>
         <a href="javascript:;" onclick="document.getElementById('logout').submit();">Log Out</a>
