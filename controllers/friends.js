@@ -9,7 +9,20 @@ const FriendsController = {
       if(err) {
         throw err;
       }
-      res.render("friends/search", { users: users });
+      Promise.all(users.map(async (user) => {
+        const userImage = await User.findOne({ userName: user.userName }).exec();
+        const photo = {
+          contentType: userImage.photo.contentType,
+          data: userImage.photo.data.toString('base64'),
+        };
+
+        user.photo = photo;
+
+        return user;
+        
+      })).then((usersWithPhotos) => {
+        res.render("friends/search", { users: usersWithPhotos });
+      });
       }
     );
   },
