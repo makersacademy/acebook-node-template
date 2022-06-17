@@ -16,7 +16,6 @@ const UsersController = {
     .exec();
 
     Promise.all([postSearch, userSearch]).then( searchResults => {
-      console.log("line 30", searchResults[1])
       res.render("users/profile", 
         { userName: req.session.userName, 
           posts: searchResults[0],

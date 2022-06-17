@@ -9,6 +9,7 @@
 <body>
   <h1 data-cy="greeting">{{userName}}</h1><br>
   <div>
+    <h2>Posts</h2>
     <ul class="post" data-cy="user-posts">
       {{#each posts}}
       <li>
@@ -18,10 +19,20 @@
     </ul>
   </div>
   <div>
+    <h2>Aquaintance Requests</h2>
     <ul class="requests">
       {{#each requests}}
       <li>
-        {{this.userName}}
+        <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo">
+        {{this.userName}} has requested your aquaintance.
+        <form class="friend-approval" action="/friends/approval" method="post">
+          <input type="hidden" name="userID" value="{{this._id}}">
+          <input class="accept-button" type="submit" value="Accept">
+        </form>
+        <form class="friend-reject" action="/friends/reject" method="post">
+          <input type="hidden" name="userID" value="{{this._id}}">
+          <input class="refject-button" type="submit" value="Reject">
+        </form>
       </li>
       {{/each}}
     </ul>

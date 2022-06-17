@@ -18,7 +18,6 @@ const FriendsController = {
     const aquaintnce = User.findById(req.body.id);
     
     Promise.all([sessionUser, aquaintnce]).then( searchResults => {
-      console.log("line 21", searchResults)
       User.findOne({_id: searchResults[1]._id},
         (err, result) => {
           if(result.requests.includes(searchResults[0]._id)) {
@@ -52,9 +51,69 @@ const FriendsController = {
         }
       )
     })
-
-
-  }
+  },
+  Accept: (req, res) => {
+    console.log(req.body.userID)
+    console.log(req.session.userID)
+    User.findById(req.body.userID)
+    .exec((err, user) => {
+      if(err) {
+        console.log(err);
+        throw err;
+      }
+      console.log("got to 64")
+      const friend = user;
+      User.findOneAndUpdate(
+        {_id: req.session.userID},
+        {$pull:
+          {requests: user}
+        },
+        (err) => {
+          if(err) {
+            console.log(err);
+            throw err;
+          }
+          console.log("got to 76")
+          User.findOneAndUpdate(
+            {_id: req.session.userID},
+            {$push:
+              {friends: friend}
+            },
+            {new: true},
+            (err) => {
+              if(err) {
+                console.log(err);
+                throw err;
+              }
+              console.log("got to 88")
+              res.redirect('/users/profile')
+            }
+          )
+        }
+      )
+    })
+  },
+  Reject: (req, res) => {
+    User.findById(req.body.userID)
+    .exec((err, user) => {
+      if(err) {
+        console.log(err);
+        throw err;
+      }
+      User.findOneAndUpdate(
+        {_id: req.session.userID},
+        {$pull:
+          {requests: user}
+        },
+        (err) => {
+          if(err) {
+            console.log(err);
+            throw err;
+          }
+          res.redirect('/users/profile')
+        }
+      )
+  })}
 }
 
 module.exports = FriendsController;
