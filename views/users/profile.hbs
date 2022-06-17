@@ -23,6 +23,7 @@
     <ul class="requests">
       {{#each requests}}
       <li>
+        {{!-- This picture isn't rendering --}}
         <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo">
         {{this.userName}} has requested your aquaintance.
         <form class="friend-approval" action="/friends/approval" method="post">
@@ -42,6 +43,7 @@
     <ul class="aquaintances">
       {{#each friends}}
         <li>
+          {{!-- This picture isn't rendering --}}
           <img class="picture-tag" src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" alt="user-photo">
           {{this.userName}}
         </li>
