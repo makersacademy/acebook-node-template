@@ -805,3 +805,75 @@ ion-icon{
 	background-color: #FA6C8B;
 	background: linear-gradient(white, #EFEFD0);
 }
+
+/* search bar */
+.topnav {
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 13px;
+}
+
+.topnav a:hover {
+  background-color: #FA6C8B;
+  color: #FA6C8B;
+}
+
+.topnav a.active {
+  background-color: #FA6C8B;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+	outline: none !important;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ff97ae;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.topnav .search-container button:hover {
+  background: #F7C59F;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #FA6C8B;  
+  }
+}
