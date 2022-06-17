@@ -523,10 +523,12 @@ ul {
 }
 
 .picture-tag{
-	max-width: 50px;
 	max-height: auto;
 	display: block;
 	border-radius: 50%;
+	width: 70px;
+	height: 70px;
+	object-fit: cover;
 }
 
 .name-and-image{
