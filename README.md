@@ -16,6 +16,12 @@ It uses:
 
 REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 
+## Github page:
+https://github.com/fridayshoes/acebook-node-priceless
+
+## Trello board:
+https://trello.com/b/jaHA0ziM/priceless-ace-book
+
 ## Quickstart
 
 ### Install Node.js
