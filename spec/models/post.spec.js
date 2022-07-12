@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 require("../mongodb_helper");
 var Post = require("../../models/post");
+const User = require("../../models/user");
 
 describe("Post model", () => {
   beforeEach((done) => {
@@ -10,31 +11,39 @@ describe("Post model", () => {
     });
   });
 
-  it("has a message", () => {
-    var post = new Post({ message: "some message" });
-    expect(post.message).toEqual("some message");
-  });
+  // it("has a message", () => {
+  //   var post = new Post({ message: "some message" });
+  //   expect(post.message).toEqual("some message");
+  // });
 
-  it("can list all posts", (done) => {
-    Post.find((err, posts) => {
-      expect(err).toBeNull();
-      expect(posts).toEqual([]);
-      done();
+  // it("can list all posts", (done) => {
+  //   Post.find((err, posts) => {
+  //     expect(err).toBeNull();
+  //     expect(posts).toEqual([]);
+  //     done();
+  //   });
+  // });
+
+  // it("can save a post", (done) => {
+  //   var post = new Post({ message: "some message" });
+
+  //   post.save((err) => {
+  //     expect(err).toBeNull();
+
+  //     Post.find((err, posts) => {
+  //       expect(err).toBeNull();
+
+  //       expect(posts[0]).toMatchObject({ message: "some message" });
+  //       done();
+  //     });
+  //   });
+  // });
+
+  it("has a User associated to it", () => {
+    var post = new Post({
+      message: "another message",
+      email: "mongo@goose.com",
     });
-  });
-
-  it("can save a post", (done) => {
-    var post = new Post({ message: "some message" });
-
-    post.save((err) => {
-      expect(err).toBeNull();
-
-      Post.find((err, posts) => {
-        expect(err).toBeNull();
-
-        expect(posts[0]).toMatchObject({ message: "some message" });
-        done();
-      });
-    });
+    expect(post.email).toEqual("mongo@goose.com");
   });
 });
