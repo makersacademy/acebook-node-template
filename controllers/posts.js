@@ -14,6 +14,7 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
+    console.log(req.params);
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
@@ -22,6 +23,10 @@ const PostsController = {
 
       res.status(201).redirect("/posts");
     });
+  },
+  Delete: (req, res) => {
+    console.log(req.body.id);
+    res.redirect("/posts");
   },
 };
 
