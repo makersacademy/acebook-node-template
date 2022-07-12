@@ -43,18 +43,18 @@ describe("Post model", () => {
 
     post.save((err) => {
       expect(err).toBeNull();
+
+      Post.deleteOne({ message: "some message" }, (err) => {
+        expect(err).toBeNull();
+       })
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts).toEqual([]);
+        done();
+      });
+      
     })
-
-    Post.remove({ message: "some message" }, (err) => {
-      expect(err).toBeNull();
-    })
-
-    Post.find((err, posts) => {
-      expect(err).toBeNull();
-      expect(posts).toEqual([]);
-      done();
-    });
-
   });
 
 });
