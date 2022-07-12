@@ -11,33 +11,42 @@ describe("Post model", () => {
     });
   });
 
-  // it("has a message", () => {
-  //   var post = new Post({ message: "some message" });
-  //   expect(post.message).toEqual("some message");
-  // });
+  it("has a message", () => {
+    var post = new Post({
+      message: "another message",
+      email: "mongo@goose.com",
+    });
+    expect(post.message).toEqual("another message");
+  });
 
-  // it("can list all posts", (done) => {
-  //   Post.find((err, posts) => {
-  //     expect(err).toBeNull();
-  //     expect(posts).toEqual([]);
-  //     done();
-  //   });
-  // });
+  it("can list all posts", (done) => {
+    Post.find((err, posts) => {
+      expect(err).toBeNull();
+      expect(posts).toEqual([]);
+      done();
+    });
+  });
 
-  // it("can save a post", (done) => {
-  //   var post = new Post({ message: "some message" });
+  it("can save a post", (done) => {
+    var post = new Post({
+      message: "another message",
+      email: "mongo@goose.com",
+    });
 
-  //   post.save((err) => {
-  //     expect(err).toBeNull();
+    post.save((err) => {
+      expect(err).toBeNull();
 
-  //     Post.find((err, posts) => {
-  //       expect(err).toBeNull();
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
 
-  //       expect(posts[0]).toMatchObject({ message: "some message" });
-  //       done();
-  //     });
-  //   });
-  // });
+        expect(posts[0]).toMatchObject({
+          message: "another message",
+          email: "mongo@goose.com",
+        });
+        done();
+      });
+    });
+  });
 
   it("has a User associated to it", () => {
     var post = new Post({
