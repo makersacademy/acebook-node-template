@@ -58,6 +58,7 @@ As a user,
 So I can engage with a post,
 I'd like to be able to comment on posts.
 
+
 As a user,
 So I can read people's life stories clearly,
 I'd like posts to include linebreaks (paragraphs).
