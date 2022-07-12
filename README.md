@@ -91,6 +91,50 @@ so that integration tests do not interact with the development server.
   npm run test:integration  # integration tests only
   ```
 
+## MongoDB Tutorial
+
+MongoDb documentation: https://www.mongodb.com/docs/manual/
+
+
+
+MongoDB Shell (mongosh) documentation: https://www.mongodb.com/docs/mongodb-shell/
+
+The MongoDB Shell, mongosh, is a fully functional JavaScript and Node.js 16.x REPL environment for interacting with MongoDB deployments. You can use the MongoDB Shell to test queries and operations directly with your database.
+
+With MongoDB Shell, we can interact with MongoDB using command lines in termainl:
+```
+$ mongosh
+```
+To see all databases available on the current connection, type:
+```
+> show dbs
+acebook_test  64.00 KiB
+admin         40.00 KiB
+config        72.00 KiB
+local         72.00 KiB
+```
+
+To connect to one database:
+```
+> use acebook_test
+switched to db acebook_test
+```
+
+When connected to a database, it is possible to show the "collections", equialvent to TABLES in SQL:
+```
+> show collections
+posts
+users
+```
+
+It is possible to look into these collections:
+```
+> use posts
+switched to db posts
+```
+
+
+
 ## MongoDB Connection Errors?
 
 Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
