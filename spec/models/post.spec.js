@@ -37,4 +37,24 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can delete a post", (done) => {
+    var post = new Post({ message: "some message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+    })
+
+    Post.remove({ message: "some message" }, (err) => {
+      expect(err).toBeNull();
+    })
+
+    Post.find((err, posts) => {
+      expect(err).toBeNull();
+      expect(posts).toEqual([]);
+      done();
+    });
+
+  });
+
 });
