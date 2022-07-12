@@ -31,7 +31,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000,
+      expires: 3600000,
+      // you will currently be kicked out after 1 hour
     },
   })
 );

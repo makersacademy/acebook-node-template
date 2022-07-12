@@ -12,6 +12,61 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
+## User stories
+
+As a user,
+So I can use Acebook,
+I'm like to be able to register an account.
+
+As a user,
+For a personalised expierence,
+I'd like to be able to log into Acebook.
+
+As a user,
+So that nobody posts on my behalf,
+I'd like to be able to log out of Acebook.
+
+As a user,
+So that I can say what's on my mind,
+I'd like to be able to make a post on the timeline.
+
+As a user,
+So I can see what other people have to say,
+I'd like to be able to view other user's posts on the timeline.
+
+As a user,
+So I know who said what,
+I'd like to see who posted each post.
+
+As a user,
+So I am keeping up with the latest news,
+I'd like to see the time and date when other's have posted.
+
+As a user,
+So I see the latest news first,
+I'd like to see the newest posts first.
+
+As a user,
+So I can retract something I have said,
+I'd like to be able to delete a post.
+
+As a user,
+So I can express my appreciation for a post,
+I'd like to be able to like a post. (only once per person)
+
+As a user,
+So I can engage with a post,
+I'd like to be able to comment on posts.
+
+As a user,
+So I can read people's life stories clearly,
+I'd like posts to include linebreaks (paragraphs).
+
+As a user,
+so I don't cry inside from the lack of design,
+I'd like Acebook to be somewhat attractive and well proportioned.
+
+
 ## Card wall
 
 REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
