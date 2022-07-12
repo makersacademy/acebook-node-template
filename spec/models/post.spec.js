@@ -37,4 +37,31 @@ describe("Post model", () => {
       });
     });
   });
+
+  // trying to write a delete post test
+  it('can delete a post', (done) => {
+    var post = new Post({ message: "some message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts[0]).toMatchObject({ message: "some message" });
+      });
+
+      // how to delete the post?
+      // const postToDelete = new Post({ message: "some message" })
+      Post.findOneAndDelete({ message: "some message" }, (err) => {
+        expect(err).toBeNull();
+      });
+      // Results: trying to the deleted message, and the return is an empty array
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts).toEqual([]);
+        done();
+      })
+    });
+
+  })
 });
