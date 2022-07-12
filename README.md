@@ -40,11 +40,23 @@ I'd like to see who posted each post.
 
 As a user,
 So I am keeping up with the latest news,
-I'd like to see when other's have posted.
+I'd like to see the time and date when other's have posted.
 
 As a user,
 So I see the latest news first,
 I'd like to see the newest posts first.
+
+As a user,
+So I can retract something I have said,
+I'd like to be able to delete a post.
+
+As a user,
+So I can express my appreciation for a post,
+I'd like to be able to like a post. (only once per person)
+
+As a user,
+So I can engage with a post,
+I'd like to be able to comment on posts.
 
 As a user,
 So I can read people's life stories clearly,
