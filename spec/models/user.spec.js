@@ -12,57 +12,65 @@ describe("User model", () => {
 
   it("has an name", () => {
     const user = new User({
-      firstName: "Mongo",
-      lastName: "Goose",
+      firstname: "Mongo",
+      lastname: "Goose",
       email: "someone@example.com",
       password: "password",
     });
-    expect(user.firstName).toEqual("Mongo");
-    expect(user.lastName).toEqual("Goose");
+    expect(user.firstname).toEqual("Mongo");
+    expect(user.lastname).toEqual("Goose");
   });
 
-  // it("has an email address", () => {
-  //   const user = new User({
-  //     email: "someone@example.com",
-  //     password: "password",
-  //   });
-  //   expect(user.email).toEqual("someone@example.com");
-  // });
+  it("has an email address", () => {
+    const user = new User({
+      firstname: "Mongo",
+      lastname: "Goose",
+      email: "someone@example.com",
+      password: "password",
+    });
+    expect(user.email).toEqual("someone@example.com");
+  });
 
-  // it("has a password", () => {
-  //   const user = new User({
-  //     email: "someone@example.com",
-  //     password: "password",
-  //   });
-  //   expect(user.password).toEqual("password");
-  // });
+  it("has a password", () => {
+    const user = new User({
+      firstname: "Mongo",
+      lastname: "Goose",
+      email: "someone@example.com",
+      password: "password",
+    });
+    expect(user.password).toEqual("password");
+  });
 
-  // it("can list all users", (done) => {
-  //   User.find((err, users) => {
-  //     expect(err).toBeNull();
-  //     expect(users).toEqual([]);
-  //     done();
-  //   });
-  // });
+  it("can list all users", (done) => {
+    User.find((err, users) => {
+      expect(err).toBeNull();
+      expect(users).toEqual([]);
+      done();
+    });
+  });
 
-  // it("can save a user", (done) => {
-  //   const user = new User({
-  //     email: "someone@example.com",
-  //     password: "password",
-  //   });
+  it("can save a user", (done) => {
+    const user = new User({
+      firstname: "Mongo",
+      lastname: "Goose",
+      email: "someone@example.com",
+      password: "password",
+    });
 
-  //   user.save((err) => {
-  //     expect(err).toBeNull();
+    user.save((err) => {
+      expect(err).toBeNull();
 
-  //     User.find((err, users) => {
-  //       expect(err).toBeNull();
+      User.find((err, users) => {
+        expect(err).toBeNull();
 
-  //       expect(users[0]).toMatchObject({
-  //         email: "someone@example.com",
-  //         password: "password",
-  //       });
-  //       done();
-  //     });
-  //   });
-  // });
+        expect(users[0]).toMatchObject({
+          firstname: "Mongo",
+          lastname: "Goose",
+          email: "someone@example.com",
+          password: "password",
+        });
+        done();
+      });
+    });
+  });
 });

@@ -2,7 +2,6 @@ var mongoose = require("mongoose");
 
 require("../mongodb_helper");
 var Post = require("../../models/post");
-const User = require("../../models/user");
 
 describe("Post model", () => {
   beforeEach((done) => {
@@ -14,7 +13,7 @@ describe("Post model", () => {
   it("has a message", () => {
     var post = new Post({
       message: "another message",
-      email: "mongo@goose.com",
+      firstname: "Mongo",
     });
     expect(post.message).toEqual("another message");
   });
@@ -30,7 +29,7 @@ describe("Post model", () => {
   it("can save a post", (done) => {
     var post = new Post({
       message: "another message",
-      email: "mongo@goose.com",
+      firstname: "Mongo",
     });
 
     post.save((err) => {
@@ -41,7 +40,7 @@ describe("Post model", () => {
 
         expect(posts[0]).toMatchObject({
           message: "another message",
-          email: "mongo@goose.com",
+          firstname: "Mongo",
         });
         done();
       });
@@ -51,8 +50,8 @@ describe("Post model", () => {
   it("has a User associated to it", () => {
     var post = new Post({
       message: "another message",
-      email: "mongo@goose.com",
+      firstname: "Mongo",
     });
-    expect(post.email).toEqual("mongo@goose.com");
+    expect(post.firstname).toEqual("Mongo");
   });
 });
