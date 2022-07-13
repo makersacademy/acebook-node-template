@@ -14,6 +14,10 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
+    req.body = {
+      message: req.body.message,
+      firstname: req.session.user.firstname,
+    };
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
