@@ -129,8 +129,20 @@ users
 
 It is possible to look into these collections:
 ```
-> use posts
-switched to db posts
+> db.posts.find()
+[
+  {
+    _id: ObjectId("62ce9ed31099b91369b89370"),
+    message: 'Hello, world!',
+    __v: 0
+  },
+  {
+    _id: ObjectId("62ce9efa1099b91369b8937e"),
+    message: 'Hello, world!',
+    __v: 0
+  },
+   ...
+]
 ```
 
 
