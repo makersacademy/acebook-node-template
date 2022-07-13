@@ -13,7 +13,7 @@
 
 const mongoose = require('mongoose');
 
-// the below four lines are commented out to test the mongoose drop function.
+// the below 3 lines are commented out to test the mongoose drop function.
 // module.exports = function() {
 //   // `on` is used to hook into various events Cypress emits
 //   // `config` is the resolved Cypress config
@@ -21,17 +21,18 @@ const mongoose = require('mongoose');
 
 module.exports = async (on, config) => {
   on('task', {
-      async emptyPosts() {
-        var con = mongoose.connect("mongodb://0.0.0.0/acebook_test");
-        console.log(`con: ${con}`)
-        console.log(`mongoose.connection: ${mongoose.connection}`)
-        mongoose.connection.on('open', function(){
-            mongoose.dropCollection(function(err, result){
-              console.log(err);
-              console.log(result);
-            });
-        })
-      }
+    async emptyPosts() {
+      var con = mongoose.connect("mongodb://0.0.0.0/acebook_test");
+      console.log(`mongoose.connection: ${mongoose.connection}`); // this is a [object Object]
+      console.log(`con: ${con}`); // this is a [object Promise]
+      mongoose.connection.on('open', function(){
+      return  mongoose.connection.collection('posts').drop() //function(err, result){
+        //   console.log(`err: ${err}`);
+        //   console.log(`result: ${result}`)
+        //   return result;
+        // });
+      })
+    }
   })
 }
 
