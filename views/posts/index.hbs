@@ -3,9 +3,9 @@
   {{#each posts}}
     <li id={{this._id}}>
       {{this.message}}
-      <form action="/posts/delete" method="post">
+      <form class="delete-post" action="/posts/delete" method="post">
         <input type="hidden" name="id" value={{this._id}} />
-        <input type="submit" value="Delete" />
+        <input id={{this._id}} type="submit" value="Delete" />
       </form>
     </li>
 

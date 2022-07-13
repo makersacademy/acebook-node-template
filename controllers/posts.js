@@ -25,6 +25,7 @@ const PostsController = {
     });
   },
   Delete: (req, res) => {
+    console.log("button was clicked")
     const ObjectId = require("mongodb").ObjectId;
     const id = new ObjectId(req.body.id);
     console.log(id);
