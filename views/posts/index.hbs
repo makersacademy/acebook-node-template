@@ -1,7 +1,11 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}, {{this.firstname}}</li>
+  <li>{{this.message}}, {{this.firstname}}
+    <form id="delete-button" action="/posts/delete/{{ this.id }}" method="post">
+      <button class="delete-button">Delete</button>
+    </form>
+  </li>
   {{/each}}
 </ul>
 
