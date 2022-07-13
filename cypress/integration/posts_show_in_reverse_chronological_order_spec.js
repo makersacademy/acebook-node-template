@@ -19,6 +19,6 @@ describe("Timeline", () => {
 
     cy.get("li")
       .first()
-      .should("have.text", "Second post, should appear first");
+      .should("have.text", "Second post, should appear first, Mongo");
   });
 });
