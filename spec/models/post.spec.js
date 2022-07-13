@@ -47,11 +47,23 @@ describe("Post model", () => {
     });
   });
 
+
+  it("adds a time and date to a post", () => {
+    var post = new Post({ message: "some message", createdAt: "2014-12-23T03:15:56.257Z" });
+
+    var date = new Date("2014-12-23T03:15:56.257Z")
+
+    
+    expect(post.message).toEqual("some message");
+    expect(post.createdAt).toEqual(date);
+  });
+
   it("has a User associated to it", () => {
     var post = new Post({
       message: "another message",
       firstname: "Mongo",
     });
     expect(post.firstname).toEqual("Mongo");
+
   });
 });
