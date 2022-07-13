@@ -25,16 +25,40 @@ describe("Post model", () => {
 
   it("can save a post", (done) => {
     var post = new Post({ message: "some message" });
-
+    
     post.save((err) => {
-      expect(err).toBeNull();
+      expect(err).toBeNull()
+
 
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
+      
         expect(posts[0]).toMatchObject({ message: "some message" });
         done();
+        
       });
     });
   });
-});
+  it("can delete a post", (done) => {
+    var post = new Post({ message: "some message" });
+
+    post.save((err, save) => {
+      expect(err).toBeNull();
+  
+      post.delete((err, del) => {
+        expect(err).toBeNull();
+      
+        Post.find((err, posts) => {
+        expect(err).toBeNull();
+             
+          expect(posts).toEqual([])
+          done();
+        });
+        });
+      });
+    });
+  });
+  
+      
+

@@ -12,6 +12,7 @@ const PostsController = {
   },
   New: (req, res) => {
     res.render("posts/new", {});
+   
   },
   Create: (req, res) => {
     const post = new Post(req.body);
@@ -20,7 +21,23 @@ const PostsController = {
         throw err;
       }
 
+      
+
       res.status(201).redirect("/posts");
+    
+    });
+  },
+  Delete: (req, res) => {
+    const post = new Post(req.body);
+    post.delete((err) => {
+      if (err) {
+        throw err;
+      }
+
+      
+
+      res.status(201).redirect("/posts");
+    
     });
   },
 };
