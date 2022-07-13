@@ -90,6 +90,14 @@ so that integration tests do not interact with the development server.
   npm run test:unit         # unit tests only
   npm run test:integration  # integration tests only
   ```
+  
+## Test Coverage
+Test coverage is shown for unit tests by using collectCoverageFrom in the jest.config.js. Jest will calculate the coverage based one the following criteria:
+- ./app.js
+- ./controllers/**
+- ./models/**
+- ./routes/**
+
 
 ## MongoDB Connection Errors?
 
