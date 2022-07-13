@@ -27,9 +27,16 @@ const PostsController = {
   },
   // implementing a delete function:
   Delete: (req, res) => {
-    const post = new Post(req.body);
-    Post.deleteOne(post); // Post.deleteOne({message: req.body})
-  }
+    console.log(req);
+    console.log(req.body.id);
+    Post.findOneAndDelete(
+      {_id: req.body.id},
+      (err, result)=>{
+      console.log(err);
+      console.log(result);
+      res.status(201).redirect("/posts");
+    });  
+  },
 };
 
 module.exports = PostsController;
