@@ -16,6 +16,12 @@ It uses:
 
 REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 
+## Github page:
+https://github.com/fridayshoes/acebook-node-priceless
+
+## Trello board:
+https://trello.com/b/jaHA0ziM/priceless-ace-book
+
 ## Quickstart
 
 ### Install Node.js
@@ -84,6 +90,14 @@ so that integration tests do not interact with the development server.
   npm run test:unit         # unit tests only
   npm run test:integration  # integration tests only
   ```
+  
+## Test Coverage
+Test coverage is shown for unit tests by using collectCoverageFrom in the jest.config.js. Jest will calculate the coverage based one the following criteria:
+- ./app.js
+- ./controllers/**
+- ./models/**
+- ./routes/**
+
 
 ## MongoDB Connection Errors?
 

@@ -23,6 +23,11 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  // implementing a delete function:
+  Delete: (req, res) => {
+    const post = new Post(req.body);
+    Post.findOneAndDelete(post);
+  }
 };
 
 module.exports = PostsController;
