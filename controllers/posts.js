@@ -30,7 +30,7 @@ const PostsController = {
     console.log(req);
     console.log(req.body.id);
     Post.findOneAndDelete(
-      {_id: req.body.id},
+      {_id: req.body._id},
       (err, result)=>{
       console.log(err);
       console.log(result);
