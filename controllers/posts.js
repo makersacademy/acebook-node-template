@@ -17,6 +17,7 @@ const PostsController = {
     req.body = {
       message: req.body.message,
       firstname: req.session.user.firstname,
+      likes: 0,
     };
     const post = new Post(req.body);
     post.save((err) => {
@@ -27,8 +28,17 @@ const PostsController = {
     });
   },
   Like: (req, res) => {
-    // some code here
-  }
+    Post.findOneAndUpdate({ _id: req.params.id }, { $inc: { likes: 1 } }).exec(
+      function (err) {
+        if (err) {
+          console.log(err);
+          res.redirect("back");
+        } else {
+          res.redirect("/posts");
+        }
+      }
+    );
+  },
 };
 
 module.exports = PostsController;
