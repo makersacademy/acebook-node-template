@@ -1,7 +1,12 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}, {{this.firstname}}</li>
+  <li>{{this.message}}, {{this.firstname}}
+    <form id="like-button" action="/posts" method="post">
+      <button class="like-button">Like</button> 
+    </form>
+    <div class="like-counter">{{this.likes}}</div>
+  </li>
   {{/each}}
 </ul>
 
