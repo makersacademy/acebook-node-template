@@ -25,13 +25,9 @@ module.exports = async (on, config) => {
       var con = mongoose.connect("mongodb://0.0.0.0/acebook_test");
       console.log(`mongoose.connection: ${mongoose.connection}`); // this is a [object Object]
       console.log(`con: ${con}`); // this is a [object Promise]
-      mongoose.connection.on('open', function(){
-      return  mongoose.connection.collection('posts').drop() //function(err, result){
-        //   console.log(`err: ${err}`);
-        //   console.log(`result: ${result}`)
-        //   return result;
-        // });
-      })
+      // mongoose.connection.on('open', function(){
+      const result = mongoose.connection.collection('posts').drop()
+      return result;
     }
   })
 }
