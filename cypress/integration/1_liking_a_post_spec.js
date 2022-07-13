@@ -1,7 +1,7 @@
 import { signUp, signIn, submitPost } from "./web_helpers";
 
-describe("Adding a name to a post", () => {
-  it("checks the author of a post", () => {
+describe("Timeline", () => {
+  it("can like a post", () => {
     // sign up
     signUp();
 
@@ -10,7 +10,7 @@ describe("Adding a name to a post", () => {
 
     // submit a post
     submitPost();
-
-    cy.get(".posts").should("contain", "Mongo");
+    cy.get(".like-button").click();
+    cy.get(".like-counter").should("have.text", "1");
   });
 });

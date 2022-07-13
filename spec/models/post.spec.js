@@ -14,6 +14,7 @@ describe("Post model", () => {
     var post = new Post({
       message: "another message",
       firstname: "Mongo",
+      likes: 0,
     });
     expect(post.message).toEqual("another message");
   });
@@ -30,6 +31,7 @@ describe("Post model", () => {
     var post = new Post({
       message: "another message",
       firstname: "Mongo",
+      likes: 0,
     });
 
     post.save((err) => {
@@ -41,6 +43,7 @@ describe("Post model", () => {
         expect(posts[0]).toMatchObject({
           message: "another message",
           firstname: "Mongo",
+          likes: 0,
         });
         done();
       });
@@ -62,8 +65,18 @@ describe("Post model", () => {
     var post = new Post({
       message: "another message",
       firstname: "Mongo",
+      likes: 0,
     });
     expect(post.firstname).toEqual("Mongo");
 
+  });
+
+  it("has a like count", () => {
+    var post = new Post({
+      message: "another message",
+      firstname: "Mongo",
+      likes: 0,
+    });
+    expect(post.likes).toEqual(0);
   });
 });

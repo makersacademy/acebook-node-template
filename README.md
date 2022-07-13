@@ -52,7 +52,7 @@ I'd like to be able to delete a post.
 
 As a user,
 So I can express my appreciation for a post,
-I'd like to be able to like a post. (only once per person)
+I'd like to be able to like a post.
 
 As a user,
 So I can engage with a post,
