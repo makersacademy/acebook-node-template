@@ -17,7 +17,6 @@ const PostsController = {
     req.body = {
       message: req.body.message,
       firstname: req.session.user.firstname,
-      lastname: req.session.user.lastname,
     };
     const post = new Post(req.body);
     post.save((err) => {
