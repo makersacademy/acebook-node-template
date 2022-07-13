@@ -25,8 +25,16 @@ const PostsController = {
     });
   },
   Delete: (req, res) => {
-    console.log(req.body.id);
-    res.redirect("/posts");
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId(req.body.id);
+    console.log(id);
+    Post.deleteOne({ _id: id }, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/posts");
+    });
+    // console.log(req.body.id);
   },
 };
 
