@@ -95,7 +95,7 @@ so that integration tests do not interact with the development server.
 
 MongoDb documentation: https://www.mongodb.com/docs/manual/
 
-
+Mongoosh documentation: https://mongoosejs.com/docs/queries.html
 
 MongoDB Shell (mongosh) documentation: https://www.mongodb.com/docs/mongodb-shell/
 
