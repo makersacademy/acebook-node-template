@@ -1,8 +1,12 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
-  <!-- To implement a delete button, method should be DELETE -->
+  <li>{{this.message}}
+    <form action="/posts" class="delete" method="delete">
+      <input id="{{this._id}}" value="{{this._id}}" type="submit">🗑️</input>
+    </form>
+  </li>
+
   {{/each}}
 </ul>
 

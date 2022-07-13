@@ -19,7 +19,7 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
     
     // delete a post
-    cy.get('.posts').submit();
+    cy.get('.delete').submit();
     cy.get(".posts").should("not.contain", "Hello, world!");
   });
 });
