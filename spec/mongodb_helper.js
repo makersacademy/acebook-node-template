@@ -11,6 +11,7 @@ beforeAll(function (done) {
   db.on("open", function () {
     done();
   });
+  db.posts.remove({})
 });
 
 afterAll(function (done) {
