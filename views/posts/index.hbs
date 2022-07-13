@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}, {{this.firstname}}
+  <li><div class="post-text">{{this.message}}, {{this.firstname}}</div>
     <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
       <button class="like-button">Like</button> 
     </form>
@@ -11,3 +11,8 @@
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+
+
+
+
