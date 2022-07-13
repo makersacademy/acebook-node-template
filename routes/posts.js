@@ -10,4 +10,7 @@ router.get("/new", PostsController.Index)
 router.post("/delete", PostsController.Delete)
 
 
+
+
+
 module.exports = router;

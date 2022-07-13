@@ -15,31 +15,28 @@ const PostsController = {
    
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
         throw err;
       }
-
-      
-
+  
       res.status(201).redirect("/posts");
     
     });
   },
-  Delete: (req, res) => {
-    const post = new Post(req.body);
-    post.delete((err) => {
+
+  Delete:(req, res) => {
+    Post.deleteOne((err, posts) => {
       if (err) {
         throw err;
       }
-
-      
-
-      res.status(201).redirect("/posts");
     
-    });
-  },
+ 
+     res.status(201).redirect("/posts");
+   
+   });
+ },
 };
 
 module.exports = PostsController;
