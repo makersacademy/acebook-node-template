@@ -11,23 +11,46 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const mongoose = require('mongoose');
+
 module.exports = function() {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 }
 
-// const { connect } = require('../../db')
+module.exports = async (on, config) => {
+  on('task', {
+      async emptyPosts() {
+        var con = mongoose.connect("mongodb://0.0.0.0/acebook_test");
+        mongoose.connection.on('open', function(){
+            con.connection.db.dropDatabase(function(err, result){
+              console.log(err);
+              console.log(result);
+            });
+        })
+      }
+  })
+}
 
-// module.exports = async (on, config) => {
-//   const db = await connect()
-//   const pizzas = db.collection('pizzas')
+// afterEach(async function () {
+//   const collections = await mongoose.connection.db.collections()
 
-//   on('task', {
-//     async clearPizzas() {
-//       console.log('clear pizzas')
-//       await pizzas.remove({})
+//   for (let collection of collections) {
+//     await collection.remove()
+//   }
+// })
 
-//       return null
-//     },
-//   })
-// }
+
+
+// mongoose.connection.collections.posts.drop
+
+// mongoose.connect("mongodb://0.0.0.0/acebook_test", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   });
+
+//   var db = mongoose.connection;
+//   db.on("error", console.error.bind(console, "MongoDB connection error:"));
+//   db.on("open", function () {
+//     done();
+//   });
