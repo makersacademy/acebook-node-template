@@ -10,7 +10,7 @@ describe("Timeline", () => {
 
     // submit a post
     submitPost();
-    cy.get(".like-button").click();
-    cy.get(".like-counter").should("have.text", "1");
+    cy.get(".like-button").first().click();
+    cy.get(".like-counter").first().should("have.text", "1");
   });
 });
