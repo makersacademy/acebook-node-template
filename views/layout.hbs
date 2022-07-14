@@ -6,6 +6,11 @@
   </head>
   <body>
     E-mail: {{session.user.email}}
+    {{#if session.user.email }}
+    <h1>User has logged in</h1>
+    {{else}}
+    <h1>User has not logged in</h1>
+    {{/if}}
     <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log In">
     </form>
