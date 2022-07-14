@@ -14,7 +14,6 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    console.log(req.params);
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
@@ -33,7 +32,6 @@ const PostsController = {
       }
       res.redirect("/posts");
     });
-   
   },
 };
 
