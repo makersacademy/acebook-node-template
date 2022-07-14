@@ -6,7 +6,8 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      posts.reverse()
+
+      posts.reverse() // reorders posts, so newest post is always at the top of the list
 
       res.render("posts/index", { posts: posts });
     });
@@ -15,6 +16,8 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
+    console.log(req.body) // delete this line after testing
+    console.log(req._startTime) // delete this line after testing
     const post = new Post(req.body);
     // const datepost = (req._startTime); // gets time/date from message body
     const todaysdate = Date().slice(0, -31); // gets time/date from mongoose
@@ -35,9 +38,16 @@ const PostsController = {
   },
   // implementing a delete function:
   Delete: (req, res) => {
-    const post = new Post(req.body);
-    Post.findOneAndDelete(post);
-  }
+    console.log(req);
+    console.log(req.body.id);
+    Post.findOneAndDelete(
+      {_id: req.body._id},
+      (err, result)=>{
+      console.log(err);
+      console.log(result);
+      res.status(201).redirect("/posts");
+    });  
+  },
 };
 
 module.exports = PostsController;

@@ -6,8 +6,9 @@ const PostsController = require("../controllers/posts");
 router.get("/", PostsController.Index);
 router.post("/", PostsController.Create);
 router.get("/new", PostsController.New);
+router.post("/delete", PostsController.Delete);
 
 // implementing delete function
-router.delete("/", PostsController.Delete); // assume it's "/" first.
+// router.delete("/", PostsController.Delete); // assume it's "/" first.
 
 module.exports = router;
