@@ -15,5 +15,6 @@ describe("Timeline", () => {
     const date = today.getFullYear();
     cy.get(".posts").should("contain", "Example Post from Cypress Testing");
     cy.get(".datestamp").first().should("contain", `${date}`);
+    // checked test, passed
   });
 });
