@@ -6,6 +6,9 @@ const PostsController = {
       if (err) {
         throw err;
       }
+
+      posts.reverse() // reorders posts, so newest post is always at the top of the list
+
       res.render("posts/index", { posts: posts });
     });
   },
