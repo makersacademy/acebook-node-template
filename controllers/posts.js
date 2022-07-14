@@ -6,6 +6,8 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      console.log('Index')
+      console.log(posts)
 
       res.render("posts/index", { posts: posts });
     });
@@ -15,6 +17,8 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    console.log('Create');
+    console.log(req.body);
     post.save((err) => {
       if (err) {
         throw err;
