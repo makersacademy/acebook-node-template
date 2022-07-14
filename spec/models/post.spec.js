@@ -29,6 +29,22 @@ describe("Post model", () => {
     });
   });
 
+  it("can list the date with the post", (done) => {
+    const mockedDateObject = new Date("2022-07-14T00:00:00.000Z");
+    var post = new Post({ message: "some message", createdAt: mockedDateObject });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "some message", createdAt: mockedDateObject });
+        done();
+      });
+    });
+  });
+
   it("can save a post", (done) => {
     var post = new Post({ message: "some message" });
 
@@ -43,4 +59,5 @@ describe("Post model", () => {
       });
     });
   });
+
 });
