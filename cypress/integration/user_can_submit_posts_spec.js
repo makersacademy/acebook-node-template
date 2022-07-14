@@ -20,5 +20,6 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".posts").should("contain", "Thu Jul 14 2022");
   });
 });
