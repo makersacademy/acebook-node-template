@@ -16,16 +16,18 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("I love zuckerberg");
+    cy.get("#new-post-form").find('[type="text"]').type("I like zuckerberg");
     cy.get("#new-post-form").submit();
 ;
     // Delete Button
-    cy.get("#delete-list-button").submit();
+    // cy.get("#delete-list-button").submit();
     
+    
+    // cy.get('ul').children('.active')
+    cy.get('.formPost').contains('I like zuckerberg').click();
+    cy.get('.post').contains('I like zuckerberg').should('not.exist')
 
-    //  cy.get(".post").should("contain", );
-    // cy.find(".post").length > 0  
-    cy.contains("Hello, world!").should('not.exist')
-    cy.contains("I love zuckerberg").should('not.exist')
+
+    // cy.contains("I love zuckerberg").should('not.exist')
   });
 });

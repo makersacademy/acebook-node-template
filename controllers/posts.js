@@ -27,12 +27,13 @@ const PostsController = {
   },
 
   Delete:(req, res) => {
-    Post.deleteOne((err, posts) => {
+    Post.deleteOne({_id: req.body }, (err, posts) => {
       if (err) {
         throw err;
       }
-    
- 
+      
+
+  
      res.status(201).redirect("/posts");
    
    });

@@ -1,5 +1,5 @@
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+  xit("can submit posts, when signed in, and view them", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
