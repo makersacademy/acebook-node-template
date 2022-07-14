@@ -5,6 +5,7 @@ var Post = require("../../models/post");
 
 describe("Post model", () => {
   beforeEach((done) => {
+    // this clears the posts collection from the database before each test
     mongoose.connection.collections.posts.drop(() => {
       done();
     });

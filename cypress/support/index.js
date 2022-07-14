@@ -18,3 +18,14 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands')
+
+// var mongoose = require("mongoose");
+
+// beforeEach(async () => {
+//   const collections = await mongoose.connection.db.collections();
+
+//   for (let collection of collections) {
+//        // note: collection.remove() has been depreceated.        
+//        await collection.deleteOne(); 
+//   }
+// });
