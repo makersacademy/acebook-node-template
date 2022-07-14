@@ -6,7 +6,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
+      
       res.render("posts/index", { posts: posts });
     });
   },
@@ -16,7 +16,11 @@ const PostsController = {
   Create: (req, res) => {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
-    const post = new Post({userId: id, message: req.body.message});
+    const name = req.session.user.name
+    console.log(req.session.user)
+    
+    const post = new Post({userId: id, username: name, message: req.body.message});
+    console.log(post)
     post.save((err) => {
       if (err) {
         throw err;

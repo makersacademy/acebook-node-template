@@ -18,8 +18,15 @@ describe("Post model", () => {
   it("has a userId", () => {
     const ObjectId = require("mongodb").ObjectId
     const id = new ObjectId("123456ABCDEF")
-    var post = new Post({ userId: id, message: "some message"});
+    let post = new Post({ userId: id, message: "some message"});
     expect(post.userId).toEqual(id)
+  })
+
+  it("has a username", () => {
+    const ObjectId = require("mongodb").ObjectId
+    const id = new ObjectId("123456ABCDEF")
+    let post = new Post({ userId: id, username: "TestUser", message: "some message"});
+    expect(post.username).toEqual("TestUser")
   })
 
   it("can list all posts", (done) => {
