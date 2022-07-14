@@ -79,4 +79,24 @@ describe("Post model", () => {
     });
     expect(post.likes).toEqual(0);
   });
+
+  it("can delete a post", (done) => {
+    var post = new Post({ message: "this message is to be deleted1" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.deleteOne({ message: "this message is to be deleted1" }, (err) => {
+        expect(err).toBeNull();
+      });
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        console.log(posts);
+        expect(posts.length).toEqual(0);
+        done();
+      });
+    });
+  });
+
 });
