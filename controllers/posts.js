@@ -17,18 +17,18 @@ const PostsController = {
     req.body = {
       message: req.body.message,
       firstname: req.session.user.firstname,
+      likes: 0,
     };
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
         throw err;
       }
-
       res.status(201).redirect("/posts");
     });
   },
+
   Delete: (req, res) => {
-    // some code to delete the post here
     Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
       if (err) {
         console.log(err);
@@ -37,6 +37,18 @@ const PostsController = {
         res.redirect("/posts");
       }
     });
+
+  Like: (req, res) => {
+    Post.findOneAndUpdate({ _id: req.params.id }, { $inc: { likes: 1 } }).exec(
+      function (err) {
+        if (err) {
+          console.log(err);
+          res.redirect("back");
+        } else {
+          res.redirect("/posts");
+        }
+      }
+    );
   },
 };
 

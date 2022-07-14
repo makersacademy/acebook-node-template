@@ -7,5 +7,6 @@ router.get("/", PostsController.Index);
 router.post("/", PostsController.Create);
 router.get("/new", PostsController.New);
 router.post("/delete/:id", PostsController.Delete);
+router.post("/likes/:id", PostsController.Like);
 
 module.exports = router;

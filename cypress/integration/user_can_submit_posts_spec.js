@@ -11,6 +11,6 @@ describe("Timeline", () => {
     // submit a post
     submitPost();
 
-    cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".posts").should("contain", "Example Post from Cypress Testing");
   });
 });
