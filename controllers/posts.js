@@ -23,6 +23,16 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  Delete: (req, res) => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId(req.body.id);
+    Post.deleteOne({ _id: id }, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/posts");
+    });
+  },
 };
 
 module.exports = PostsController;
