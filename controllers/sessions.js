@@ -11,14 +11,32 @@ const SessionsController = {
     const password = req.body.password;
 
     User.findOne({ email: email }).then((user) => {
-      if (!user) {
-        res.redirect("/sessions/new");
-      } else if (user.password != password) {
-        res.redirect("/sessions/new");
-      } else {
-        req.session.user = user;
-        res.redirect("/posts");
+      if (user) {
+        user.comparePassword(password, function (matchError, isMatch) {
+          if (matchError) {
+            console.log("error");
+            callback({ error: true });
+            res.redirect("/sessions/new");
+          } else if (!isMatch) {
+            console.log("did not match");
+            callback({ error: true });
+            res.redirect("/sessions/new");
+          } else {
+            console.log("successful");
+            callback({ success: true });
+            res.redirect("/posts");
+          }
+        });
       }
+
+      // if (!user) {
+      //   res.redirect("/sessions/new");
+      // } else if (user.password != password) {
+      //   res.redirect("/sessions/new");
+      // } else {
+      //   req.session.user = user;
+      //   res.redirect("/posts");
+      // }
     });
   },
 

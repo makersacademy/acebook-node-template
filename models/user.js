@@ -20,6 +20,7 @@ UserSchema.pre("save", function (next) {
           }
           user.password = hash;
           next();
+          console.log(hash);
         });
       }
     });
@@ -27,6 +28,16 @@ UserSchema.pre("save", function (next) {
     return next();
   }
 });
+
+UserSchema.methods.comparePassword = function (password, callback) {
+  bcrypt.compare(password, this.password, function (error, isMatch) {
+    if (error) {
+      return callback(error);
+    } else {
+      callback(null, isMatch);
+    }
+  });
+};
 
 const User = mongoose.model("User", UserSchema);
 
