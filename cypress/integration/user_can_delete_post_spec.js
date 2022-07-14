@@ -32,10 +32,10 @@ describe("Timeline", () => {
     
     
     // cy.get('ul').children('.active')
-    cy.get('input[name="I am saif"]').click();
+    cy.get('input[name="I am saif"]').click({ multiple: true });
     cy.get('.post').contains('I am saif').should('not.exist')
    
-    cy.get('input[name="I am amir"]').click();
+    cy.get('input[name="I am amir"]').click({ multiple: true });
     cy.get('.post').contains('I am amir').should('not.exist')
 
     // cy.contains("I love zuckerberg").should('not.exist')
