@@ -15,6 +15,11 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("has a message with multiple lines", () => {
+    var post = new Post({ message: 'This is the first line.\r\n' + 'This is the second line.\r\n' });
+    expect(post.message).toEqual('This is the first line.\r\n' + 'This is the second line.\r\n');
+  });
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
