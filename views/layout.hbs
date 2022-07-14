@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
+      {{!-- <div class="container" rel="stylesheet" href="stylesheet.css"> --}}
+
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
+  <div class="left" style="width: 190px;
+    height: 22px;
+    margin: 0;float: left;
+    width: 95px;
+    height: 22px;">
+
+  <form action='/sessions?_method=DELETE' method='POST'>
+    <input type="submit" value="Log Out">
+  </form><br>
+  
+  </div>
+  
+  <div class="centre" style="width: 190px;
+  height: 22px;
+  margin: 0;float:right;width:95px;height:22px">
+
+    <form action="/">
+    <input type="submit" value="Home">
+    </form><br>
+  </div>
+
+  <div class="centre" style="width: 190px;
+  height: 22px;
+  margin: 0;float:right;width:95px;height:22px" >
+
+    <form action="/users/new">
+    <input type="submit" value="new user">
+    </form><br>
+  </div>
+  
+  <div class="centre" style="width: 190px;
+  height: 22px;
+  margin: 0;float:right;width:95px;height:22px">
+
+    <form action="/users/new">
+    <input type="submit" value="posts">
+    </form><br>
+  </div>
+
+<form action="/sessions/new">
+<input type="submit" value="login">
+</form>
+<h1></h1>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
     {{{body}}}
   </body>
 </html>
