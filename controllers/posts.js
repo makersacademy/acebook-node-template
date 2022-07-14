@@ -12,17 +12,31 @@ const PostsController = {
   },
   New: (req, res) => {
     res.render("posts/new", {});
+   
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
         throw err;
       }
-
+  
       res.status(201).redirect("/posts");
+    
     });
   },
+
+  Delete:(req, res) => {
+    Post.deleteOne((err, posts) => {
+      if (err) {
+        throw err;
+      }
+    
+ 
+     res.status(201).redirect("/posts");
+   
+   });
+ },
 };
 
 module.exports = PostsController;
