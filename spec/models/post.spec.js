@@ -46,7 +46,7 @@ describe("Post model", () => {
     post.save((err, save) => {
       expect(err).toBeNull();
   
-      post.delete((err, del) => {
+      Post.deleteOne((err, del) => {
         expect(err).toBeNull();
       
         Post.find((err, posts) => {

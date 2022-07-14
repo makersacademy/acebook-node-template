@@ -1,5 +1,5 @@
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+  it("Can delete the mosts recent post", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -16,12 +16,16 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find('[type="text"]').type("I love zuckerberg");
     cy.get("#new-post-form").submit();
 ;
-
+    // Delete Button
     cy.get("#delete-list-button").submit();
+    
 
-    cy.get(".posts").should('be.empty');
+    //  cy.get(".post").should("contain", );
+    // cy.find(".post").length > 0  
+    cy.contains("Hello, world!").should('not.exist')
+    cy.contains("I love zuckerberg").should('not.exist')
   });
 });
