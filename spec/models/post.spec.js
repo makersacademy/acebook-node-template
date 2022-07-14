@@ -37,4 +37,17 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can delete a post", (done) => {
+    let post = new Post({ message: "delete this message" });
+
+    post.save()
+    Post.deleteOne({ message: "delete this messsage" });
+
+    Post.find((err, posts) => {
+      expect(err).toBeNull();
+      expect(posts).toEqual([]);
+      done();
+    })
+  })
 });

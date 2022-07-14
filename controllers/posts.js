@@ -32,7 +32,6 @@ const PostsController = {
       }
       res.redirect("/posts");
     });
-
   },
 };
 
