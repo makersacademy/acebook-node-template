@@ -20,5 +20,6 @@ describe("like button", function(){
 
     cy.get('#like-button:last').click();
     cy.get('#like-counter:last').should('contain', 1)
+
  });
 });
