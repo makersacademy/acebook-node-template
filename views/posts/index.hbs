@@ -2,7 +2,8 @@
 <ul class="posts">
   {{#each posts}}
 
-  <li>{{this.message}}<br>{{this.date}}</li>
+  <li style = 'white-space: pre-wrap'>{{this.message}}<br>{{this.date}}</li>
+
     <form action="/posts/delete" method="post" class="delete" >
       <input name="_id" type="hidden" value="{{this._id}}">
       <input name="delete" type="submit" value ="🗑️">

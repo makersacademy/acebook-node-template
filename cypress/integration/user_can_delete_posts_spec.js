@@ -3,6 +3,7 @@ describe("Timeline", () => {
  
   it('can delete posts, when signed in', () => {
     // sign up
+
     cy.task('emptyPosts').then(() => {
       cy.visit("/users/new");
       cy.get("#email").type("someone@example.com");

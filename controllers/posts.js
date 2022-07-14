@@ -6,7 +6,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log(posts) // delete this line after test
       res.render("posts/index", { posts: posts });
     });
   },
