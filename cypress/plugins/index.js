@@ -22,35 +22,10 @@ const mongoose = require('mongoose');
 module.exports = async (on, config) => {
   on('task', {
     async emptyPosts() {
+      // this is a new task that cypress understands, to delete the posts from the db
       var con = mongoose.connect("mongodb://0.0.0.0/acebook_test");
-      console.log(`mongoose.connection: ${mongoose.connection}`); // this is a [object Object]
-      console.log(`con: ${con}`); // this is a [object Promise]
-      // mongoose.connection.on('open', function(){
       const result = mongoose.connection.collection('posts').drop()
       return result;
     }
   })
 }
-
-// afterEach(async function () {
-//   const collections = await mongoose.connection.db.collections()
-
-//   for (let collection of collections) {
-//     await collection.remove()
-//   }
-// })
-
-
-
-// mongoose.connection.collections.posts.drop
-
-// mongoose.connect("mongodb://0.0.0.0/acebook_test", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   });
-
-//   var db = mongoose.connection;
-//   db.on("error", console.error.bind(console, "MongoDB connection error:"));
-//   db.on("open", function () {
-//     done();
-//   });
