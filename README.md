@@ -145,6 +145,11 @@ It is possible to look into these collections:
 ]
 ```
 
+It is also possible to view local MongoDB with TablePlus.
+ - Create a new connection...
+ - Mongo -> Create
+ - Name: Acebook_test; URL: mongodb://0.0.0.0/acebook_test
+ - Connect
 
 
 ## MongoDB Connection Errors?
