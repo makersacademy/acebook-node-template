@@ -14,6 +14,7 @@ describe("Post model", () => {
     var post = new Post({
       message: "another message",
       firstname: "Mongo",
+      likes: 0,
     });
     expect(post.message).toEqual("another message");
   });
@@ -30,6 +31,7 @@ describe("Post model", () => {
     var post = new Post({
       message: "another message",
       firstname: "Mongo",
+      likes: 0,
     });
 
     post.save((err) => {
@@ -41,6 +43,7 @@ describe("Post model", () => {
         expect(posts[0]).toMatchObject({
           message: "another message",
           firstname: "Mongo",
+          likes: 0,
         });
         done();
       });
@@ -60,8 +63,38 @@ describe("Post model", () => {
     var post = new Post({
       message: "another message",
       firstname: "Mongo",
+      likes: 0,
     });
     expect(post.firstname).toEqual("Mongo");
 
   });
+
+  it("has a like count", () => {
+    var post = new Post({
+      message: "another message",
+      firstname: "Mongo",
+      likes: 0,
+    });
+    expect(post.likes).toEqual(0);
+  });
+
+  it("can delete a post", (done) => {
+    var post = new Post({ message: "this message is to be deleted1" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.deleteOne({ message: "this message is to be deleted1" }, (err) => {
+        expect(err).toBeNull();
+      });
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        console.log(posts);
+        expect(posts.length).toEqual(0);
+        done();
+      });
+    });
+  });
+
 });
