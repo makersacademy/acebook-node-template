@@ -1,3 +1,5 @@
+import { signUp, signIn } from "./spec_helpers";
+
 describe("Delete Post", () => {
   it("A user can delete a post when they're signed in", () => {
      // sign up

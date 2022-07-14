@@ -2,7 +2,7 @@ const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  userID: ObjectId,
+  userId: ObjectId,
   message: String,
 });
 

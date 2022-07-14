@@ -15,10 +15,10 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
-  it.only("has a userId", () => {
+  it("has a userId", () => {
     const ObjectId = require("mongodb").ObjectId
     const id = new ObjectId("123456ABCDEF")
-    let post = new Post({ userId: id, message: "some message"});
+    var post = new Post({ userId: id, message: "some message"});
     expect(post.userId).toEqual(id)
   })
 
