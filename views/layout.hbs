@@ -1,49 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-      {{!-- <div class="container" rel="stylesheet" href="stylesheet.css"> --}}
+  <ul>
+
+  <li><a><form action="/">
+    <input class="nav-buttons" type="submit" value="Home">
+  </form>
+ </a></li>
+
+  <li><a><form action="/users/new">
+    <input class="nav-buttons" type="submit" value="Sign Up">
+  </form>
+  </a></li>
+
+
+  <li><a><form action="/users/new">
+    <input class="nav-buttons" type="submit" value="Posts">
+  </form>
+  </a></li>
+
+  <li><a><form class="home-butt" action="/sessions/new">
+    <input class="nav-buttons" type="submit" value="Login">
+  </form>
+  </a></li>
+
+   <li><a><form action='/sessions?_method=DELETE' method='POST'>
+    <input class="nav-buttons" type="submit" value="Log Out">
+  </form>
+  </a></li>
+
+</ul>
 
     <title>{{title}}</title>
     <link rel='stylesheet' href='/css/style.css' />
   </head>
 
-<ul>
-  <li><a><form action='/sessions?_method=DELETE' method= 'POST'> 
-  <input type="submit" value="Log Out"></a></li>
-</ul>
-
-{{!-- <div class="nav-bar-1">
-  <form action='/sessions?_method=DELETE' method='POST'>
-    <input type="submit" value="Log Out">
-  </form>
-  </div>
-
-<div class="nav-bar-2">
-  <form action="/">
-    <input type="submit" value="Home">
-  </form>
-  </div>
-
-<div class="nav-bar-3">
-  <form action="/users/new">
-    <input type="submit" value="new user">
-  </form>
-  </div>
-
-<div class="nav-bar-4">
-  <form action="/users/new">
-    <input type="submit" value="posts">
-  </form>
-  </div>
-
-<div class="nav-bar-5">
-  <form action="/sessions/new">
-    <input type="submit" value="login">
-  </form>
-  </div> --}}
-
-<h1></h1>
   <body>
     {{{body}}}
   </body>
+  
 </html>

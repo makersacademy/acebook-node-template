@@ -1,11 +1,62 @@
-<form id="new-user-form" action="/users" method="post">
-  <label for="firstname">First Name: </label>
-  <input id="firstname" type="text" name="firstname" value="">
-  <label for="lastname">Last Name: </label>
-  <input id="lastname" type="text" name="lastname" value="">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+<div class="sign-up-form">
+  <form class="sign-up" id="new-user-form" action="/users" method="post">
+    <h2>
+    <label for="firstname">First Name: </label>
+    <input class="input-box" id="firstname" type="text" name="firstname" value="">
+    </h2>
+    <h2>
+      <label for="lastname">Last Name: </label>
+    <input class="input-box" id="lastname" type="text" name="lastname" value="">
+    </h2>
+    <h2>
+      <label for="email">Email: </label>
+    <input class="input-box" id="email" type="email" name="email" value="">
+    </h2>
+    <h2>
+      <label for="password">Password: </label>
+    <input class="input-box" id="password" type="password" name="password" value="">
+    </h2>
+    <input class="input-submit" id="submit" type="submit" value="Submit">
+  </form>
+</div>
+
+
+
+
+
+
+
+
+{{!-- <div id="sign-up-form">
+  <div class="table">
+    <ul class="sign-up">
+      <form class="sign-up" id="new-user-form" action="/users" method="post">
+        <li>
+          <a>
+            <label for="firstname">First Name: </label>
+            <input id="firstname" type="text" name="firstname" value="">
+          </a>
+        </li>
+        <li>
+          <a>
+            <label for="lastname">Last Name: </label>
+            <input id="lastname" type="text" name="lastname" value="">
+          </a>
+        </li>
+        <li>
+          <a>
+            <label for="email">Email: </label>
+            <input id="email" type="email" name="email" value="">
+          </a>
+        </li>
+        <li>
+          <a>
+            <label for="password">Password: </label>
+            <input id="password" type="password" name="password" value="">
+          </a>
+        </li>
+        <input id="submit" type="submit" value="Submit">
+      </form>
+    </ul>
+  </div>
+</div> --}}

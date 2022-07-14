@@ -1,50 +1,40 @@
-title-color {
-  background-color: lightblue;
-  color: red;
+/* layout page */
+
+.title {
+  background-color: white;
+  color: black;
+  display: block;
+  /* padding: 14px 16px; */
+  text-decoration: none;
 }
 
 body {
-  background-color: lightblue;
+  background-color:;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 17px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+p.welcome {
+  color: black;
 }
-
-/* .nav-bar-1 {
-  width: 2000px;
-  height: 22px;
-  margin: 0;
-  float: left;
-  width:95px;
-  height:22px;
-  background-color: purple;
-  text-align:center;
-}
-
-.nav-bar-2 {
-  width: 2000px;
-  height: 22px;
-  margin: 0;
-  float: right;
-  width:95px;
-  height:22px;
-  background-color: purple;
-  text-align:center; */
-/* } */
 
 ul {
   list-style-type: none;
-  margin: 0;
+  margin: 5;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color:  #3b5998;
+  position:relative; 
+  left:1px; 
+  top:2px
 }
 
 li {
   float: left;
+}
+
+.invisible {
+  list-style: none;
 }
 
 li a {
@@ -53,12 +43,64 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  
+}
+
+li b {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  float:right;
+  position:relative; 
+  left:-40px; 
+  top:2px
 }
 
 li a:hover:not(.active) {
-  background-color: #111;
+  background-color: lightblue;
 }
 
-.active {
-  background-color: #04AA6D;
+input.nav-buttons {
+  background-color: transparent;
+  border: none !important;
+  color: white;
+  font-size: 20px;
+}
+/* sign-up form*/
+
+.sign-up-form {
+  font-size: 10px;
+}
+
+label {
+  width:170px;
+  display: inline-block;
+}
+
+input.input-box{
+  width: 300px
+}
+
+input.input-submit {
+  width: 200px;
+  position:relative;
+  left: 230px;
+  background-color: #3b5998;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
+}
+
+input.input-submit:hover {
+  width: 200px;
+  position:relative;
+  left: 230px;
+  background-color: lightblue;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
 }
