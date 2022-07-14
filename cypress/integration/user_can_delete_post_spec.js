@@ -16,17 +16,27 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("I sadfasdf zuckerberg");
+    cy.get("#new-post-form").find('[type="text"]').type("I am saif");
     cy.get("#new-post-form").submit();
-;
+
+
+    // submit a 2nd post
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").find('[type="text"]').type("I am amir");
+    cy.get("#new-post-form").submit();
+
+
     // Delete Button
     // cy.get("#delete-list-button").submit();
     
     
     // cy.get('ul').children('.active')
-    cy.get('input[name="I sadfasdf zuckerberg"]').click();
-    cy.get('.post').contains('I sadfasdf zuckerberg').should('not.exist')
-
+    cy.get('input[name="I am saif"]').click();
+    cy.get('.post').contains('I am saif').should('not.exist')
+   
+    cy.get('input[name="I am amir"]').click();
+    cy.get('.post').contains('I am amir').should('not.exist')
 
     // cy.contains("I love zuckerberg").should('not.exist')
   });
