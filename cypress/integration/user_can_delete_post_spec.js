@@ -1,9 +1,8 @@
-import { signUp, signIn } from "./spec_helpers";
-
 describe("Delete Post", () => {
   it("A user can delete a post when they're signed in", () => {
      // sign up
      cy.visit("/users/new");
+     cy.get("#name").type("TestUser");
      cy.get("#email").type("someone@example.com");
      cy.get("#password").type("password");
      cy.get("#submit").click();
