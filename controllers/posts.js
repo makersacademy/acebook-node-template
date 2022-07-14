@@ -15,6 +15,7 @@ const PostsController = {
   },
   Create: (req, res) => {
     req.body = {
+      createdAt: req.body.createdAt,
       message: req.body.message,
       firstname: req.session.user.firstname,
       likes: 0,
