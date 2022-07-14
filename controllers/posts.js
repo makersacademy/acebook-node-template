@@ -17,6 +17,7 @@ const PostsController = {
       message: req.body.message,
       firstname: req.session.user.firstname,
       likes: 0,
+      comments: []
     };
     const post = new Post(req.body);
     post.save((err) => {
