@@ -1,8 +1,9 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <small id="datestamp">Created at {{this.createdAt}}</small>
-  <li>{{this.message}}, {{this.firstname}}</li>
+  <li>{{this.message}}, {{this.firstname}},
+    <div class="datestamp">Created at {{this.createdAt}}</div>
+  </li>
   {{/each}}
 </ul>
 
