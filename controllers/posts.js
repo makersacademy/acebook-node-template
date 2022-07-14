@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
@@ -6,8 +7,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts.reverse() });
+      res.render("posts/index", { posts: posts.reverse() });    
     });
   },
   New: (req, res) => {
