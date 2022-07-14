@@ -1,7 +1,9 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li style = 'white-space: pre-wrap'>{{this.message}}</li>
+
+  <li style = 'white-space: pre-wrap'>{{this.message}}<br>{{this.date}}</li>
+
   <!-- To implement a delete button, method should be DELETE -->
   {{/each}}
 </ul>
