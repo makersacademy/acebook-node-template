@@ -2,6 +2,8 @@
 <ul class="posts">
   {{#each posts}}
     <li>
+      {{this.userId}}
+      <br />
       {{this.message}}
       <form class="delete-post" action="/posts/delete" method="post">
         <input type="hidden" name="id" value={{this._id}} />

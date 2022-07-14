@@ -14,7 +14,9 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const ObjectId = require("mongodb").ObjectId;
+    const id = ObjectId(req.session.user._id);
+    const post = new Post({userId: id, message: req.body.message});
     post.save((err) => {
       if (err) {
         throw err;
