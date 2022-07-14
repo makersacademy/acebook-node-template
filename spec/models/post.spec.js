@@ -10,9 +10,14 @@ describe("Post model", () => {
     });
   });
 
-  it("has a message", () => {
+  it("post has a message", () => {
     var post = new Post({ message: "some message" });
     expect(post.message).toEqual("some message");
+  });
+
+  it("post has a date", () => {
+    var post = new Post({ date: Date().slice(0, -31)});
+    expect(post.date).toEqual( Date().slice(0, -31) );
   });
 
   it("can list all posts", (done) => {
