@@ -2,16 +2,17 @@ const Comment = require("../models/comment");
 const Post = require("../models/post");
 
 const CommentsController = {
-  Create: (req, res) => {
+  Create: async (req, res) => {
+    const id = req.params.id;
     req.body = {
       message: req.body.commentmessage,
-      post: req.params.id 
+      post: id 
     };
     const comment = new Comment(req.body);
-    comment.save();
-    const post = Post.findById(req.params.id)
+    await comment.save();
+    const post = await Post.findById(id)
     post.comments.push(comment)
-      post.save(function(err) {
+    await post.save(function(err) {
       if(err) {console.log(err)}
       res.redirect("/posts");
     })
