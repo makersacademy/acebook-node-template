@@ -1,5 +1,5 @@
 describe("Home page", () => {
-  it.skip("has a title", () => {
+  it("has a title", () => {
     cy.visit("/");
     cy.get(".title").should("contain", "Acebook");
   });
