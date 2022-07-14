@@ -10,8 +10,10 @@ describe("Timeline", () => {
 
     // submit a post
     submitPost();
-
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    const date = today.getFullYear();
     cy.get(".posts").should("contain", "Example Post from Cypress Testing");
-    cy.get(".datestamp").first().should("contain", 123);
+    cy.get(".datestamp").first().should("contain", `${date}`);
   });
 });
