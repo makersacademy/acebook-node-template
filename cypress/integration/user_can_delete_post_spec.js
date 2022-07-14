@@ -16,7 +16,7 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("I like zuckerberg");
+    cy.get("#new-post-form").find('[type="text"]').type("I sadfasdf zuckerberg");
     cy.get("#new-post-form").submit();
 ;
     // Delete Button
@@ -24,8 +24,8 @@ describe("Timeline", () => {
     
     
     // cy.get('ul').children('.active')
-    cy.get('.formPost').contains('I like zuckerberg').click();
-    cy.get('.post').contains('I like zuckerberg').should('not.exist')
+    cy.get('input[name="I sadfasdf zuckerberg"]').click();
+    cy.get('.post').contains('I sadfasdf zuckerberg').should('not.exist')
 
 
     // cy.contains("I love zuckerberg").should('not.exist')
