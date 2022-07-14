@@ -37,6 +37,7 @@ const PostsController = {
         res.redirect("/posts");
       }
     });
+  },
 
   Like: (req, res) => {
     Post.findOneAndUpdate({ _id: req.params.id }, { $inc: { likes: 1 } }).exec(
@@ -47,9 +48,8 @@ const PostsController = {
         } else {
           res.redirect("/posts");
         }
-      }
-    );
-  },
+      });
+    },
 };
 
 module.exports = PostsController;
