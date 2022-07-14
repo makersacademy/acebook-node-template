@@ -9,6 +9,10 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
+PostSchema.methods.formatDate = function() {
+  return this.createdAt.toString().substring(0,10);
+}
+
 const Post = mongoose.model("Post", PostSchema);
 
 module.exports = Post;
