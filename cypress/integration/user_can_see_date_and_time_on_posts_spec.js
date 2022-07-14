@@ -12,6 +12,5 @@ describe("Timeline", () => {
     submitPost();
 
     cy.get(".posts").should("contain", "Example Post from Cypress Testing");
-    cy.get(".posts").get("#createdAt").should("contain", )
   });
 });

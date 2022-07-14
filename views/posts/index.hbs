@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <small id="datestamp">Created at {{dateFormat this.createdAt}}</small>
+  <small id="datestamp">Created at {{this.createdAt}}</small>
   <li>{{this.message}}</li>
   {{/each}}
 </ul>

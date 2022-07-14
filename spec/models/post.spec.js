@@ -43,8 +43,6 @@ describe("Post model", () => {
 
     var date = new Date("2014-12-23T03:15:56.257Z")
 
-    
-    expect(post.message).toEqual("some message");
     expect(post.createdAt).toEqual(date);
   });
 });

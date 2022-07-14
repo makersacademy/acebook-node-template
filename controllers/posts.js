@@ -14,6 +14,9 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
+    req.body = {
+      createdAt: req.body.createdAt
+    };
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
