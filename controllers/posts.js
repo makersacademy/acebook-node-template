@@ -7,7 +7,7 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts.reverse() });
     });
   },
   New: (req, res) => {
@@ -16,6 +16,8 @@ const PostsController = {
   Create: (req, res) => {
     req.body = {
       createdAt: req.body.createdAt
+      message: req.body.message,
+      firstname: req.session.user.firstname,
     };
     const post = new Post(req.body);
     post.save((err) => {

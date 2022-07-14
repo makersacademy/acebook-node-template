@@ -11,8 +11,11 @@ describe("Post model", () => {
   });
 
   it("has a message", () => {
-    var post = new Post({ message: "some message" });
-    expect(post.message).toEqual("some message");
+    var post = new Post({
+      message: "another message",
+      firstname: "Mongo",
+    });
+    expect(post.message).toEqual("another message");
   });
 
   it("can list all posts", (done) => {
@@ -24,7 +27,10 @@ describe("Post model", () => {
   });
 
   it("can save a post", (done) => {
-    var post = new Post({ message: "some message" });
+    var post = new Post({
+      message: "another message",
+      firstname: "Mongo",
+    });
 
     post.save((err) => {
       expect(err).toBeNull();
@@ -32,11 +38,15 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: "some message" });
+        expect(posts[0]).toMatchObject({
+          message: "another message",
+          firstname: "Mongo",
+        });
         done();
       });
     });
   });
+
 
   it("adds a time and date to a post", () => {
     var post = new Post({ message: "some message", createdAt: "2014-12-23T03:15:56.257Z" });
@@ -44,5 +54,14 @@ describe("Post model", () => {
     var date = new Date("2014-12-23T03:15:56.257Z")
 
     expect(post.createdAt).toEqual(date);
+  });
+
+  it("has a User associated to it", () => {
+    var post = new Post({
+      message: "another message",
+      firstname: "Mongo",
+    });
+    expect(post.firstname).toEqual("Mongo");
+
   });
 });
