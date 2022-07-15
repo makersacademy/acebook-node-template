@@ -51,7 +51,7 @@ describe("like button", function(){
 
     cy.get('.post-container').first().find('#like-button').click();
     cy.get('.post-container').first().should('contain',1);
-
+    cy.get('.post-container').last().should('contain',0);
     // these tests will need to be adjusted when the lists show in reverse order
   })
 });
