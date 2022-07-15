@@ -38,6 +38,12 @@ div.navigation-menu {
   height: 40px;
 }
 
+.navigation-button:hover {
+  color: greenyellow;
+  background-color: darkgreen;
+  padding-top: 3px;
+}
+
 div.content {
   margin-left: 15%;
   padding: 1px 16px;
