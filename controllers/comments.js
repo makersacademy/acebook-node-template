@@ -5,7 +5,7 @@ const CommentsController = {
   Create: async (req, res) => {
     const id = req.params.id;
     req.body = {
-      message: req.body.commentmessage,
+      commentMessage: req.body.commentmessage,
       post: id 
     };
     const comment = new Comment(req.body);

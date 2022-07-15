@@ -13,7 +13,7 @@ describe("Comment model", () => {
 
   it("has a comment", () => {
     var comment = new Comment({
-      message: "another message"
+      commentMessage: "another message"
     });
     expect(comment.message).toEqual("another message");
   });
@@ -28,7 +28,7 @@ describe("Comment model", () => {
 
   it("can save a comment", (done) => {
     var comment = new Comment({
-      message: "another message",
+      commentMessage: "another message",
     });
 
     comment.save((err) => {
@@ -38,7 +38,7 @@ describe("Comment model", () => {
         expect(err).toBeNull();
 
         expect(comments[0]).toMatchObject({
-          message: "another message",
+          commentMessage: "another message",
         });
         done();
       });
