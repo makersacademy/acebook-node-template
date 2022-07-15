@@ -11,7 +11,7 @@ const CommentsController = {
     const comment = new Comment(req.body);
     await comment.save();
     const post = await Post.findById(id)
-    post.comments.push(comment)
+    post.comments.push(req.body.commentMessage)
     await post.save(function(err) {
       if(err) {console.log(err)}
       res.redirect("/posts");

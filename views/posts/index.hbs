@@ -11,10 +11,9 @@
       <button class="comment-button">Comment</button>
     </form>
     <div class="comment-text">
-      {{this.comments}}
-      {{!-- {{#each this.comments}}
-      <li><div class="comment-message-text">{{this.comments}}</div>
-      {{/each}} --}}
+      {{#each this.comments}}
+      <li><div class="comment-message-text">{{this}}</div>
+      {{/each}}
     </div>
   </li>
   {{/each}}
