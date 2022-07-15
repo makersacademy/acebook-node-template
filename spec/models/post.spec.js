@@ -55,13 +55,22 @@ describe("Post model", () => {
   it("can delete a post", (done) => {
     let post = new Post({ message: "delete this message" });
 
-    post.save()
-    Post.deleteOne({ message: "delete this messsage" });
-
-    Post.find((err, posts) => {
+    post.save((err) => {
       expect(err).toBeNull();
-      expect(posts).toEqual([]);
-      done();
-    })
+
+
+      Post.deleteOne({ message: "delete this message" }, (err) => {
+        expect(err).toBeNull();
+       })
+
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts).toEqual([]);
+        done();
+
+      })
+    });
+
   })
 });
