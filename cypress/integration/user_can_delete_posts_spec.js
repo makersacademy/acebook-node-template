@@ -2,8 +2,8 @@
 describe("Timeline", () => {
  
   it('can delete posts, when signed in', () => {
-    // sign up
-    cy.task('emptyPosts').then(() => {
+      // sign up
+      cy.task('emptyPosts').then(() => {
       cy.visit("/users/new");
       cy.get("#email").type("someone@example.com");
       cy.get("#password").type("password");
@@ -18,7 +18,7 @@ describe("Timeline", () => {
       // submit a post
       cy.visit("/posts");
       cy.contains("New post").click();
-      cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+      cy.get("#new-post-form").find('#message').type("Hello, world!");
       cy.get("#new-post-form").submit();
       
       // delete a post

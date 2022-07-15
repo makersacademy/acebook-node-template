@@ -16,9 +16,9 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('#message').type("Hello, world!");
+    cy.get("#new-post-form").find('#message').type("This is the first line.\nThis is the second line.\nThis is the last line.");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".posts").should("contain", "This is the first line.\nThis is the second line.\nThis is the last line.");
   });
 });

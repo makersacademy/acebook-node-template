@@ -6,12 +6,13 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log(posts) // delete this line after test
-      res.render("posts/index", { posts: posts });
+      posts.reverse() // reorders posts, so newest post is always at the top of the list
+
+      res.render("posts/index", { posts: posts, session: req.session });
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", { session: req.session });
   },
   Create: (req, res) => {
     console.log(req.body) // delete this line after testing
