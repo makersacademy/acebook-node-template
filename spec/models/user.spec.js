@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
+const UsersController = require("../../controllers/users");
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -47,11 +49,24 @@ describe("User model", () => {
         expect(err).toBeNull();
 
         expect(users[0]).toMatchObject({
-          email: "someone@example.com",
-          password: "password",
+          "email": "someone@example.com",
+          "password": "password",
         });
         done();
       });
     });
   });
+  it('Registering users work as expected', (done) => {
+    const user = new User({email: 'jestUser', password: 'jestUser'});
+    
+    
+        expect(UsersController.Create(user)).toMatchObject({
+        user: {
+            "password": expect.anything(),
+            "email": 'jestUser'
+        }
+      });
+      done()
+    })
 });
+
