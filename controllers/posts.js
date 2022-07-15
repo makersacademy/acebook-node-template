@@ -49,12 +49,8 @@ const PostsController = {
 
   UpdateLikes: function(req, res){
     var id = req.params.id;
-    console.log(id)
     Post.findById(id, function (err, post) {
       if (err) {throw err;}
-      console.log("//")
-      console.log("HERE")
-      console.log(post)
       post.likes += 1;
 
       post.save(function(err) {
