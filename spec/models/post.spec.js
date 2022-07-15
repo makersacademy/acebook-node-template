@@ -80,4 +80,10 @@ describe("Post model", () => {
     });
 
   })
+
+  it("has a timestamp", () => {
+    const timePosted = new Date()
+    var post = new Post({ timestamp: timePosted });
+    expect(post.timestamp).toEqual(timePosted);
+  });
 });

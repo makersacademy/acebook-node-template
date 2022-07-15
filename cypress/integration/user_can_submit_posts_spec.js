@@ -14,5 +14,6 @@ describe("Timeline", () => {
 
     cy.get(".posts").should("contain", "Test message: cypress submit post test!");
     cy.get(".posts").should("contain", "CypressTestUser");
+    cy.get(".posts").should("contain", "2022")
   });
 });
