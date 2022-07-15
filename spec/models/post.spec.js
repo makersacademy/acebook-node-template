@@ -16,6 +16,12 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("has the date it was posted on", () => {
+    const mockedDateObject = new Date("2022-07-14T00:00:00.000Z");
+    var post = new Post({ message: "some message", createdAt: mockedDateObject });
+    expect(post.createdAt).toEqual(mockedDateObject);
+  })
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
