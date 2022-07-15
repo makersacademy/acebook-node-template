@@ -6,17 +6,20 @@ const CommentsController = {
     const id = req.params.id;
     req.body = {
       commentMessage: req.body.commentmessage,
-      post: id 
+      post: id,
     };
     const comment = new Comment(req.body);
     await comment.save();
-    const post = await Post.findById(id)
-    post.comments.push(comment)
-    await post.save(function(err) {
-      if(err) {console.log(err)}
+    const postRelated = await Post.findById(id);
+    postRelated.comments.push(comment);
+    await postRelated.save(function (err) {
+      if (err) {
+        console.log(err);
+      }
       res.redirect("/posts");
-    })
+    });
   },
 };
 
 module.exports = CommentsController;
+
