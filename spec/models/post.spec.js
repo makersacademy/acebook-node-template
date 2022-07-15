@@ -76,9 +76,7 @@ describe("Post model", () => {
 
   it("has a timestamp", () => {
     const timePosted = new Date()
-    console.log(timePosted)
     var post = new Post({ timestamp: timePosted });
-    console.log(post)
     expect(post.timestamp).toEqual(timePosted);
   });
 });
