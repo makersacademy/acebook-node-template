@@ -55,7 +55,7 @@ const PostsController = {
       console.log("//")
       console.log("HERE")
       console.log(post)
-      post.postLikeCounter += 1;
+      post.likes += 1;
 
       post.save(function(err) {
         if (err) {throw err;}
