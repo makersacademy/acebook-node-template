@@ -4,7 +4,6 @@
   background-color: white;
   color: black;
   display: block;
-  /* padding: 14px 16px; */
   text-decoration: none;
 }
 
@@ -68,10 +67,12 @@ input.nav-buttons {
   color: white;
   font-size: 20px;
 }
+
 /* sign-up form*/
 
 .sign-up-form {
-  font-size: 10px;
+  font: 10px Helvetica;
+  font-weight: normal;
 }
 
 label {
@@ -103,4 +104,85 @@ input.input-submit:hover {
   font: 15px arial,sans-serif;
   border-radius: 8px;
   border: none;
+}
+
+/* sign-in form */
+
+.sign-in-form {
+  /* font-size: 10px; */
+  font: 10px Helvetica;
+  font-weight: normal;
+}
+
+/* posts */
+
+h1.posts {
+  text-align: center;
+  font: 30px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+
+}
+
+ul.posts {
+  list-style-type: none;
+  margin: 5;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 7px;
+
+  position:relative; 
+  left:1px; 
+  top:2px
+}
+
+
+div.post-text {
+  text-align: center;
+  
+  font: 18px "Lucida Grande", Helvetica, Arial;
+  font-weight: bold;
+}
+
+input.new-post-link {
+  width: 200px;
+  position:relative;
+  left: 30px;
+  background-color: #3b5998;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
+}
+
+button.delete-button {
+  width: 60px;
+  position:relative;
+  left: 230px;
+  background-color: #3b5998;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  font-size: x-small;
+}
+button.like-button {
+  width: 60px;
+  position:relative;
+  left: 230px;
+  background-color: #3b5998;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
+  font-size: x-small;
+}
+
+div.post {
+  margin: auto;
+  text-align: center;
+
 }
