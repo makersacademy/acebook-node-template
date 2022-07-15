@@ -21,6 +21,11 @@ describe("Post model", () => {
     expect(post.date).toEqual( Date().slice(0, -31) );
   });
 
+  it("has a likes count of 0 when the post is created", () => {
+    var post = new Post({ message: "some message" });
+    expect(post.likes).toEqual(0);
+  });
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
@@ -50,11 +55,9 @@ describe("Post model", () => {
     post.save((err) => {
       expect(err).toBeNull();
 
-
       Post.deleteOne({ message: "some message" }, (err) => {
         expect(err).toBeNull();
        })
-
 
       Post.find((err, posts) => {
         expect(err).toBeNull();
@@ -63,6 +66,6 @@ describe("Post model", () => {
 
       })
     });
-
   })
+
 });
