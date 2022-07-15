@@ -22,4 +22,3 @@ const CommentsController = {
 };
 
 module.exports = CommentsController;
-

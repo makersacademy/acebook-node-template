@@ -16,6 +16,7 @@ describe("Timeline", () => {
       .find('[type="text"]')
       .type("Example comment from Cypress Testing");
     cy.get("#new-comment-form").submit();
-    cy.get(".comment-text").first().should("have.text", "Example comment from Cypress Testing");
+    cy.get(".posts").first()
+    .get(".comment-message-text").last().should("have.text", "Example comment from Cypress Testing");
   });
 });
