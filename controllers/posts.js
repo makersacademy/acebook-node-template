@@ -1,13 +1,17 @@
+const Comment = require("../models/comment");
 const Post = require("../models/post");
 
 const PostsController = {
-  Index: (req, res) => {
-    Post.find((err, posts) => {
+  Index: async (req, res) => {
+    const posts = await Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts.reverse() });
+    }).populate("comments");
+    const comments = await Comment.find({});
+    res.render("posts/index", {
+      posts: posts.reverse(),
+      comments: comments,
     });
   },
   New: (req, res) => {
@@ -15,9 +19,11 @@ const PostsController = {
   },
   Create: (req, res) => {
     req.body = {
+      createdAt: req.body.createdAt,
       message: req.body.message,
       firstname: req.session.user.firstname,
       likes: 0,
+      comments: [],
     };
     const post = new Post(req.body);
     post.save((err) => {

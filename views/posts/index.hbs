@@ -5,18 +5,28 @@
   <li class="post-elements">
     <tr class="post-text">
       {{this.message}}, {{this.firstname}}
+      <div class="datestamp">Created at {{this.createdAt}}</div>
     </tr>
-   <form class="button" id="delete-button" action="/posts/delete/{{ this.id }}" method="post">
+   <form id="delete-button" action="/posts/delete/{{ this.id }}" method="post">
       <button class="delete-button">Delete</button>
     </form>
     <tr>
-      <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
-        <button class="like-button">Like</button> 
-      </form>
-      <td class="like-counter">
+    <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
+      <button class="like-button">Like</button> 
+    </form>
+      <div class="like-counter">
         {{this.likes}}
-      </td>
+      </div>
     </tr>
+    <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
+      <input type="text" value="" name="commentmessage">
+      <button class="comment-button">Comment</button>
+    </form>
+    <div class="comment-text">
+      {{#each this.comments}}
+        <li><div class="comment-message-text">{{this.commentMessage}}</div>
+      {{/each}}
+    </div>
   </li>
   </table>
   {{/each}}
@@ -25,8 +35,3 @@
 <form action="/posts/new">
   <input class="new-post-link" type="submit" value="New post">
 </form>
-
-
-
-
-
