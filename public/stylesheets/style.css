@@ -38,6 +38,16 @@ div.navigation-menu {
   height: 40px;
 }
 
+.post-button, input[type=submit] {
+  border: none;
+  color: white;
+  background-color: darkgreen;
+  text-align: center;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 3px;
+}
+
 .navigation-button:hover {
   color: greenyellow;
   background-color: darkgreen;
@@ -58,5 +68,4 @@ li.each-message {
   margin-bottom: 3px;
   list-style-type: none;
   background-color: blanchedalmond;
-
 }
