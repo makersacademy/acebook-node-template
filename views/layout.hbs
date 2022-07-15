@@ -9,16 +9,13 @@
     <div class="navigation-menu">
       <input type="button" class="navigation-button" id="home-button" value="🏠 Home" onclick="location.href='/'"></input>
       {{#if session.user.email }}
-      <input type="button" class="navigation-button" id="view-posts" value="View Posts" onclick="location.href='/posts/'"></input>
+        <input type="button" class="navigation-button" id="view-posts" value="View Posts" onclick="location.href='/posts/'"></input>
         <form action='/sessions?_method=DELETE' method='POST'>
-          <input class="navigation-button" id="sign-out-button" type="submit" value="Sign Out">
+          <input class="navigation-button" id="sign-out-button" type="submit" value="🚪 Sign Out">
         </form>
-        
       {{else}}
-          <input class="navigation-button" id="login-button" type="submit" onclick="location.href='/sessions/new'" value="🔑 Log In">
-        <form action='/users/new'>
-          <input class="navigation-button" id="sign-up-button" type="submit" value="✍️ Sign Up">
-        </form>
+        <input class="navigation-button" id="login-button" type="submit" onclick="location.href='/sessions/new'" value="🔑 Log In">
+        <input class="navigation-button" id="sign-up-button" type="button" onclick="location.href='/users/new'" value="✍️ Sign Up">
       {{/if}}
     </div>
     <div class="content">

@@ -4,6 +4,14 @@ body {
   background-color: beige;
 }
 
+h1.title {
+  background-color: darkgreen;
+  color: white;
+  font-family: Monaco;
+  display:table;
+  padding: 7px;
+}
+
 a {
   color: #00B7FF;
 }
@@ -37,7 +45,7 @@ div.content {
 }
 
 li.each-message {
-  padding: 3px;
+  padding: 1px;
   margin-right: 0;
   margin-left: 0;
   margin-top: 3px;
