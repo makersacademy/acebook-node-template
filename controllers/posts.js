@@ -16,7 +16,8 @@ const PostsController = {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
     const name = req.session.user.name
-    const post = new Post({userId: id, username: name, message: req.body.message});
+    const timePosted = new Date()
+    const post = new Post({userId: id, username: name, message: req.body.message, timestamp: timePosted});
     post.save((err) => {
       if (err) {
         throw err;
