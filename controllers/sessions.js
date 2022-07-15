@@ -12,31 +12,21 @@ const SessionsController = {
 
     User.findOne({ email: email }).then((user) => {
       if (user) {
+        console.log(user);
         user.comparePassword(password, function (matchError, isMatch) {
           if (matchError) {
-            console.log("error");
-            callback({ error: true });
+            console.log(`Error : ${matchError}`);
             res.redirect("/sessions/new");
           } else if (!isMatch) {
-            console.log("did not match");
-            callback({ error: true });
+            console.log("Passwords did not match");
             res.redirect("/sessions/new");
           } else {
             console.log("successful");
-            callback({ success: true });
+            req.session.user = user;
             res.redirect("/posts");
           }
         });
       }
-
-      // if (!user) {
-      //   res.redirect("/sessions/new");
-      // } else if (user.password != password) {
-      //   res.redirect("/sessions/new");
-      // } else {
-      //   req.session.user = user;
-      //   res.redirect("/posts");
-      // }
     });
   },
 
