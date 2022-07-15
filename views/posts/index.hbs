@@ -11,6 +11,15 @@
       <button class="like-button">Like</button> 
     </form>
     <div class="like-counter">{{this.likes}}</div>
+    <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
+      <input type="text" value="" name="commentmessage">
+      <button class="comment-button">Comment</button>
+    </form>
+    <div class="comment-text">
+      {{#each this.comments}}
+        <li><div class="comment-message-text">{{this.commentMessage}}</div>
+      {{/each}}
+    </div>
   </li>
   {{/each}}
 </ul>
