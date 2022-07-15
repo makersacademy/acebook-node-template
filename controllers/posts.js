@@ -16,8 +16,11 @@ const PostsController = {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
     const name = req.session.user.name
+
     const timePosted = new Date()
-    const post = new Post({userId: id, username: name, message: req.body.message, timestamp: timePosted});
+    const post = new Post({userId: id, username: name, message: req.body.message, likes: 0,timestamp: timePosted});
+
+
     post.save((err) => {
       if (err) {
         throw err;
@@ -36,6 +39,17 @@ const PostsController = {
       res.redirect("/posts");
     });
   },
+  Like: (req, res) => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId(req.body.id);
+    Post.updateOne({_id: id}, { $inc: { likes: 1 }}, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/posts");
+    })
+   
+  }
 };
 
 module.exports = PostsController;

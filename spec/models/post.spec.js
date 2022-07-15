@@ -29,6 +29,13 @@ describe("Post model", () => {
     expect(post.username).toEqual("TestUser")
   })
 
+  it("has a like counter", () => {
+    const ObjectId = require("mongodb").ObjectId
+    const id = new ObjectId("123456ABCDEF")
+    let post = new Post({userId: id, username: "TestUser", message: "some message", likes: 0});
+    expect(post.likes).toEqual(0);
+  })
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
