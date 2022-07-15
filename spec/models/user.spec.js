@@ -15,10 +15,10 @@ describe("User model", () => {
       name: "testUser",
       email: "someone@example.com",
       password: "password",
-    })
+    });
 
     expect(user.name).toEqual("testUser");
-  })
+  });
 
   it("has an email address", () => {
     const user = new User({
@@ -62,8 +62,25 @@ describe("User model", () => {
         expect(users[0]).toMatchObject({
           name: "testUser",
           email: "someone@example.com",
-          password: "password",
         });
+        done();
+      });
+    });
+  });
+
+  it("can hash a user's password", (done) => {
+    const user = new User({
+      name: "test",
+      email: "test@example.com",
+      password: "password",
+    });
+
+    user.save((err) => {
+      expect(err).toBeNull();
+
+      User.find((err, users) => {
+        expect(err).toBeNull();
+        expect(users[0].password).not.toMatch("password");
         done();
       });
     });
