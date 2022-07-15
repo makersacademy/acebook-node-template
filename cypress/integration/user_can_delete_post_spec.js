@@ -15,7 +15,7 @@ describe("Delete Post", () => {
 
     // delete a post
     cy.visit("/posts");
-    cy.get(".delete-post").submit();
+    cy.get(".delete-post").contains("Delete this post!").submit();
 
     cy.visit("/posts");
     cy.get(".posts").should("not.contain", "Delete this post!");
