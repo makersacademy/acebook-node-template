@@ -15,7 +15,7 @@ describe("Comment model", () => {
     var comment = new Comment({
       commentMessage: "another message"
     });
-    expect(comment.message).toEqual("another message");
+    expect(comment.commentMessage).toEqual("another message");
   });
 
   it("can list all comments", (done) => {
