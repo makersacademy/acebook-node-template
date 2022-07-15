@@ -19,7 +19,8 @@ describe("like button", function(){
       
 
     cy.get('#like-button:last').click();
-    cy.get('#like-counter:last').should('contain', 1)
+    cy.get('.posts').should('contain',1)
+    // cy.get('.like-counter:last').should('contain', 1)
 
  });
 });

@@ -9,13 +9,22 @@
     </form>
 
   </li>
-  <div>
+  {{!-- <div>
        <button id="like-button">
         like
        
     </button>
     <span id="like-counter">0</span>
-  </div> 
+  </div>  --}}
+
+   </div>
+    </form>
+      <form action="/posts/updateLikes/{{this.id}}" method="post">
+          <button id="like-button">
+            Like
+          </button><span id="like-counter">{{this.postLikeCounter}}</span>
+        </form>
+        </div>
    
   {{/each}}
 </ul>
