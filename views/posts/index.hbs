@@ -1,7 +1,27 @@
 <h1>Timeline</h1>
 <ul class="posts">
+
+  {{!-- Show Posts --}}
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <h3 id="{{this._id}}">{{this.message}}</h3>
+
+  {{!-- Show comments for each post --}}
+  {{#each comments}}
+  {{log comments}}
+  <li>{{comment}}</li>
+  {{/each}}
+
+  {{!-- Add comment box to each post --}}
+  <p>
+  <form id="new-comment-form" action="/comments" method="post">
+    <label for="comment">Comment: </label>
+    <input id="comment" type="text" name="comment" value="">
+    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
+    <input type="submit" value="Submit">
+  </form>
+  </p>
+
+
   {{/each}}
 </ul>
 
