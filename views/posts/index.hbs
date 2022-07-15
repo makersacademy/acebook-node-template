@@ -1,13 +1,18 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-    <li>
+    <li class="post">
       {{this.username}}
       <br />
       {{this.message}}
       <form class="delete-post" action="/posts/delete" method="post">
         <input type="hidden" name="id" value={{this._id}} />
         <input type="submit" value="Delete" />
+      </form>
+      <div class="likes">Likes: {{this.likes}}</div>
+      <form class="like-post" action="/posts/like" method="post">
+        <input type="hidden" name="id" value={{this._id}} />
+        <input type="submit" value="like" />
       </form>
     </li>
   {{/each}}
