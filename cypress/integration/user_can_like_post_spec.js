@@ -33,11 +33,25 @@ describe("like button", function(){
     cy.get("#new-post-form").find('[type="text"]').type("I am Matilda cakes");
     cy.get("#new-post-form").submit();
 
-    //check that the post is in the list
-    cy.get(".posts").should("contain", "I am Matilda cakes");
+    //check that the post is last in the list
+    cy.get('.post-container').last().should("contain", "I am Matilda cakes");
 
     //like the post and see that the likes have gone up
+    cy.get('.post-container').last().find('#like-button').click();
+    cy.get('.post-container').last().should('contain',1);
+  })
+
+  it('can like the least recent when there are multiple posts', function(){
+    cy.visit("/posts");
+    cy.contains("New post").click();
+    cy.get("#new-post-form").find('[type="text"]').type("Most recent post");
+    cy.get("#new-post-form").submit();
+
+    cy.get('.post-container').first().should('contain', "Hello, world!")
+
     cy.get('.post-container').first().find('#like-button').click();
     cy.get('.post-container').first().should('contain',1);
+
+    // these tests will need to be adjusted when the lists show in reverse order
   })
 });
