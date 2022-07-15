@@ -3,8 +3,8 @@
   {{#each posts}}
   <li id="list" class="post">{{this.message}}</li> 
     <form class='formPost' id="delete-list-button" action="/posts/delete" method="post">
-      <input id='submitPost' class='deletePost' type="submit" name="{{this.message}}" value="Delete posts">
-      <input id="id" type="hidden" name="_id" value={{this.id}}>
+      <input type="submit" name="{{this.message}}" value="Delete posts">
+      <input type="hidden" name="_id" value={{this.id}}>
   </form>
   {{/each}}
 </ul>
