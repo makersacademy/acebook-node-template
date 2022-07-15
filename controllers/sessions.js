@@ -14,6 +14,7 @@ const SessionsController = {
       if (!user) {
         res.redirect("/sessions/new");
       } else if (user.password != password) {
+        
         res.redirect("/sessions/new");
       } else {
         req.session.user = user;
