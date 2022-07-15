@@ -1,10 +1,20 @@
 const Post = require("../models/post");
+//const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
+    // Post.find((err, posts) => {
+    //   if (err) {
+    //     throw err;
+    //   }
 
     Post.find()
     .populate("comments")
+    // .populate({
+    //   path: "comments",
+    // populate: {
+    //   path: "postID"
+    // }})
     .exec((err, posts) => {
               if (err) {
           throw err;
@@ -21,6 +31,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
+
       res.status(201).redirect("/posts");
     });
   },
