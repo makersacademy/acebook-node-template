@@ -9,6 +9,6 @@ describe("Authentication", () => {
     signIn();
 
     cy.url().should("include", "/posts");
-    cy.contains("a", "New post");
+    cy.contains(".new-post-link", "New post");
   });
 });
