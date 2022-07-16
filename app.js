@@ -1,3 +1,4 @@
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -11,6 +12,7 @@ const postsRouter = require("./routes/posts");
 const commentsRouter = require("./routes/comments");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const UsersController = require("./controllers/users");
 
 const app = express();
 
@@ -76,5 +78,8 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
+
 
 module.exports = app;

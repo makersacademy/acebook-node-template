@@ -1,17 +1,12 @@
 <h1>Timeline</h1>
 <ul class="posts">
 
-  {{!-- Show Posts --}}
   {{#each posts}}
   <h3 id="{{this._id}}">{{this.message}}</h3>
-
-  {{!-- Show comments for each post --}}
   {{#each comments}}
   {{log comments}}
   <li>{{comment}}</li>
   {{/each}}
-
-  {{!-- Add comment box to each post --}}
   <p>
   <form id="new-comment-form" action="/comments" method="post">
     <label for="comment">Comment: </label>
@@ -26,3 +21,16 @@
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+  <li id="list" class="post">{{this.message}} {{this.formatDate}}</li> 
+    <form id="delete-list-button" action="/posts/delete" method="post">
+      <input type="submit" name="{{this.message}}" value="Delete posts">
+      <input type="hidden" name="_id" value={{this.id}}>
+  </form>
+  {{/each}}
+</ul>
+
+
+  
+<a class="new-post-link" href="/posts/new">New post</a>
+
