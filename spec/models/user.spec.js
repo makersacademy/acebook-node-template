@@ -55,3 +55,43 @@ describe("User model", () => {
     });
   });
 });
+
+it("it can't save a user, if the same user already exists", (done) => {
+  const user1 = new User({
+    email: "someone@example.com",
+    password: "password",
+  });
+
+  user1.save((err) => {
+    expect(err).toBeNull();
+
+    User.find((err, users) => {
+      expect(err).toBeNull();
+
+      expect(users[0]).toMatchObject({
+        email: "someone@example.com",
+        password: "password",
+      });
+    });
+  });
+  
+  const user2 = new User({
+    email: "someone@example.com",
+    password: "password",
+  });
+
+  user2.save((err) => {
+    expect(err).toBeNull();
+
+    User.find((err, users) => {
+      expect(err).toBeNull();
+
+      expect(users[1]).not.toMatchObject({
+        email: "someone@example.com",
+        password: "password",
+      });
+      done();
+    });
+  });
+});
+
