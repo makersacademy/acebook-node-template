@@ -9,7 +9,7 @@ const UsersController = {
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
-        res.status(201).redirect("/users/new");
+        res.status(409).render("users/new", { error: 'User already exists!' });
       } else {
       res.status(201).redirect("/posts");
       }
