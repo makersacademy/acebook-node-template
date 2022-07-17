@@ -1,17 +1,13 @@
-describe("Authentication", () => {
-  it("A user signs in and is redirected to /posts", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#name").type("CypressTestUser");
-    cy.get("#email").type("test@cypress.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+const signUpAndSignIn = require("./webhelper");
 
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("test@cypress.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+describe("Authentication", () => {
+  afterEach(() => {
+    cy.task("dropUsers");
+  });
+
+  it("A user signs in and is redirected to /posts", () => {
+    // run webhelper to sign up and sign in to acebook
+    signUpAndSignIn();
 
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
