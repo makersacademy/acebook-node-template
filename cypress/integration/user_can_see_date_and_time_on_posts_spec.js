@@ -8,13 +8,21 @@ describe("Timeline", () => {
     // sign in
     signIn();
 
+
+    const timeBeforePost = new Date();
     // submit a post
     submitPost();
-    const timeElapsed = Date.now();
-    const today = new Date(timeElapsed);
-    const date = today.getFullYear();
-    cy.get(".posts").should("contain", "Example Post from Cypress Testing");
-    cy.get(".datestamp").first().should("contain", `${date}`);
+    const timeAfterPost = new Date();
+    // const date = today.getFullYear();
+
+    cy.get(".datestamp").invoke('text').then(dateText => {
+      const date = new Date(dateText);
+
+      expect(date).to.be.lte(timeAfterPost);
+      expect(date).to.be.gte(timeBeforePost);
+  });
+
+    //cy.get(".datestamp").first() //.should("have.text", `${range}`);
     // checked test, passed
   });
 });
