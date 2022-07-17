@@ -19,15 +19,20 @@ mongoose.connect("mongodb://0.0.0.0/acebook_test", {
   useUnifiedTopology: true,
 });
 
-module.exports = async (on, config) => {
+module.exports = async (on) => {
   const db = await mongoose.connection;
   const posts = db.collection("posts");
   const users = db.collection("users");
   on("task", {
-    async dropCollections() {
+    async dropPosts() {
       await posts.drop();
-      await users.drop();
       return null;
     },
-  });
+  }),
+    on("task", {
+      async dropUsers() {
+        await users.drop();
+        return null;
+      },
+    });
 };
