@@ -37,8 +37,8 @@ describe("like button", function(){
     cy.get('.post-container').first().should("contain", "I am Matilda cakes");
 
     //like the post and see that the likes have gone up
-    cy.get('.post-container').first().find('#like-button').click();
-    cy.get('.post-container').first().should('contain',1);
+    cy.get('.like-container').first().find('#like-button').click();
+    cy.get('.like-container').first().should('contain',1);
   });
 
   it('can like the least recent when there are multiple posts', function(){
@@ -49,18 +49,22 @@ describe("like button", function(){
 
     cy.get('.post-container').last().should('contain', "Hello, world!")
 
-    cy.get('.post-container').last().find('#like-button').click();
-    cy.get('.post-container').last().should('contain',1);
-    cy.get('.post-container').first().should('contain',0);
+    cy.get('.like-container').last().find('#like-button').click();
+    cy.get('.like-container').last().should('contain',1);
+    cy.get('.like-container').first().should('contain',0);
     // these tests will need to be adjusted when the lists show in reverse order
   });
 
-  // it('cannot like the same post twice for the same user', function() {
-  //   cy.visit('/posts');
-  //   cy.contains("New post").click();
-  //   cy.get('#new-post-form').find('#message').type('a post to be liked');
-  //   cy.get("#new-post-form").submit();
+  it('cannot like the same post twice for the same user', function() {
+    cy.visit('/posts');
+    cy.contains("New post").click();
+    cy.get('#new-post-form').find('#message').type('a post to be liked');
+    cy.get("#new-post-form").submit();
 
-  //   cy.get('.post-containger').
-  // });
+    cy.get('.post-container').first().should('contain', 'a post to be liked');
+    cy.get('.like-container').first().find('#like-button').click();
+    cy.get('.like-container').first().should('contain',1);
+    cy.get('.like-container').first().find('#like-button').click();
+    cy.get('.like-container').first().should('contain',1);
+  });
 });
