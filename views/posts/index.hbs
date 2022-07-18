@@ -24,6 +24,14 @@
         <input type="hidden" name="id" value={{this._id}} />
         <input type="submit" value="like" />
       </form>
+      <form class="enter-comment" action="/posts/comment" method="post">
+      <div> 
+<textarea name="comment" id="comment" >
+</textarea>
+</div>
+<input type="submit" value="Comment">
+</form>
+      </li>
     </li>
   {{/each}}
 </ul>
