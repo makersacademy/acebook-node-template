@@ -29,8 +29,13 @@ describe("Post model", () => {
 
   it("has a likes count of 0 when the post is created", () => {
     var post = new Post({ message: "some message" });
-    expect(post.likes).toEqual(0);
+    expect(post.likes.count).toEqual(0);
   });
+
+  it('has an empty array of likers when the post is created', () => {
+    var post = new Post({ message: "a new message without like"});
+    expect(post.likes.emails.toObject()).toEqual([]);
+  })
 
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
@@ -61,7 +66,7 @@ describe("Post model", () => {
     post.save((err) => {
       expect(err).toBeNull();
 
-      Post.deleteOne({ message: "some message" }, (err) => {
+      Post.deleteOne({ message: "some message" }, (err, result) => {
         expect(err).toBeNull();
        })
 
@@ -69,7 +74,6 @@ describe("Post model", () => {
         expect(err).toBeNull();
         expect(posts).toEqual([]);
         done();
-
       })
     });
   })
