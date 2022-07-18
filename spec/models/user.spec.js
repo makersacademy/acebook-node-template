@@ -5,7 +5,7 @@ const User = require("../../models/user");
 
 describe("User model", () => {
   beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
+    mongoose.connection.collections.collection('users').deleteMany({}, () => {
       done();
     });
   });
@@ -56,42 +56,38 @@ describe("User model", () => {
   });
 });
 
-it("it can't save a user, if the same user already exists", (done) => {
+fit("it can't save a user, if the same user already exists", (done) => {
+  
+  // To create one user
   const user1 = new User({
-    email: "someone@example.com",
+    email: "test@duplicate.com",
     password: "password",
   });
-
   user1.save((err) => {
     expect(err).toBeNull();
-
     User.find((err, users) => {
       expect(err).toBeNull();
-
       expect(users[0]).toMatchObject({
-        email: "someone@example.com",
+        email: "test@duplicate.com",
         password: "password",
       });
-    });
-  });
-  
-  const user2 = new User({
-    email: "someone@example.com",
-    password: "password",
-  });
-
-  user2.save((err) => {
-    expect(err).toBeNull();
-
-    User.find((err, users) => {
-      expect(err).toBeNull();
-
-      expect(users[1]).not.toMatchObject({
-        email: "someone@example.com",
+      // Creating another user with same email
+      const user2 = new User({
+        email: "test@duplicate.com",
         password: "password",
       });
-      done();
+      
+      // Expecting Mongo Error E11000 -> duplicate entry in a unique key
+      // expect(user2.save()).rejects.toEqual({MongoError: 'E11000 duplicate key error collection: acebook_test.users index: email_1 dup key: { email: "test@duplicate.com" }'});
+      user2.save((err) () => {
+        console.log(err)
+      } );
+
+      User.find((err, users) => {
+        expect(err).toBeNull();
+        expect(users.length).toEqual(1);
+        done();
+      });
     });
   });
 });
-
