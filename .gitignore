@@ -64,5 +64,6 @@ typings/
 cypress/screenshots
 cypress/videos
 
-# DS Store files
-.DS_Store
+# DS Store
+cypress/.DS_Store
+

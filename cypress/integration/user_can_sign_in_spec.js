@@ -11,5 +11,7 @@ describe("Authentication", () => {
 
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
+
   });
+
 });
