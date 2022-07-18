@@ -48,8 +48,11 @@ const PostsController = {
       }
       res.redirect("/posts");
     })
-   
-  }
+  },
+  // Comment: (req, res) => {
+  //   let comment = req.body;
+  //   console.log(comment);
+  // }
 };
 
 module.exports = PostsController;

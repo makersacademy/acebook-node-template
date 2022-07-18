@@ -91,4 +91,30 @@ describe("Post model", () => {
     var post = new Post({ timestamp: timePosted });
     expect(post.timestamp).toEqual(timePosted);
   });
+
+  it("has comments", () => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId("123456ABCDEF");
+    let post = new Post({
+      userId: id,
+      username: "TestUser",
+      message: "some message",
+      comments: [
+        { userId: id,
+          comment: "this is a comment"
+        }
+      ]
+    });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts.comments[0].comment).toEqual("this is a comment");
+      
+      });
+
+    })
+  })
 });

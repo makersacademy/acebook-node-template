@@ -1,7 +1,5 @@
 const signUpAndSignIn = require("./webhelper");
 
-
-
 describe("Timeline", () => {
   afterEach(() => {
     cy.task("dropPosts");

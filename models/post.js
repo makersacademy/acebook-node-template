@@ -7,6 +7,7 @@ const PostSchema = new mongoose.Schema({
   message: String,
   likes: Number,
   timestamp: Date,
+  comments: Array,
 
 });
 
