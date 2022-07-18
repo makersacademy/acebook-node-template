@@ -15,10 +15,10 @@ const PostsController = {
   Create: (req, res) => {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
-    const name = req.session.user.name
+    const username = req.session.user.username
 
     const timePosted = new Date()
-    const post = new Post({userId: id, username: name, message: req.body.message, likes: 0,timestamp: timePosted});
+    const post = new Post({userId: id, username: username, message: req.body.message, likes: 0,timestamp: timePosted});
 
 
     post.save((err) => {

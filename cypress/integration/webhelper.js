@@ -1,7 +1,7 @@
 const signUpAndSignIn = () => {
   // sign up
   cy.visit("/users/new");
-  cy.get("#name").type("CypressTestUser");
+  cy.get("#username").type("CypressTestUser");
   cy.get("#email").type("test@cypress.com");
   cy.get("#password").type("password");
   cy.get("#submit").click();
