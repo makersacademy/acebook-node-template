@@ -12,12 +12,11 @@ describe("User model", () => {
   });
 
   it("has a first name", () => {
-    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
@@ -27,12 +26,11 @@ describe("User model", () => {
   });
 
   it("has a last name", () => {
-    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
@@ -42,12 +40,11 @@ describe("User model", () => {
   });
 
   it("has a username", () => {
-    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
@@ -57,12 +54,12 @@ describe("User model", () => {
   });
 
   it("has a birthday", () => {
-    let dob = new Date("1999-06-11T00:00:00.000Z")
+    let dob = new Date("1999-06-11T00:00:00.000Z");
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
@@ -72,12 +69,11 @@ describe("User model", () => {
   });
 
   it("has a location", () => {
-    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
@@ -87,12 +83,11 @@ describe("User model", () => {
   });
 
   it("has an email address", () => {
-    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
@@ -102,12 +97,11 @@ describe("User model", () => {
   });
 
   it("has a password", () => {
-    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
@@ -125,12 +119,11 @@ describe("User model", () => {
   });
 
   it("can save a user", (done) => {
-   let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
@@ -146,7 +139,7 @@ describe("User model", () => {
           firstName: "Test",
           lastName: "User",
           username: "testUser",
-          birthday: dob,
+          birthday: new Date("1999-06-11"),
           location: "London",
           email: "someone@example.com",
         });
@@ -156,12 +149,11 @@ describe("User model", () => {
   });
 
   it("can hash a user's password", (done) => {
-    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
       firstName: "Test",
       lastName: "User",
       username: "testUser",
-      birthday: dob,
+      birthday: new Date("1999-06-11"),
       location: "London",
       email: "someone@example.com",
       password: "password",
