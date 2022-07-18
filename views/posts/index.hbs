@@ -9,7 +9,7 @@
         <input name="delete" type="submit" value ="🗑️">
       </form>
     </li>
-
+    
     <div>
       <form action="/posts/updateLikes/{{this.id}}" method="post">
         <button id="like-button">
@@ -24,16 +24,16 @@
     <input id="comments" type="text" name="comments" value="">
     <input type="submit" value="Submit">
   </form>
-  
+
   <p> Comments: </p>
   <div class='array-output-wrapper'>
     <ul> {{#each this.comments}}
         <li> {{this}} </li>
       {{/each}}
   </div>
-
-  {{/each}}
   
+  {{/each}}
+
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
