@@ -17,9 +17,11 @@ It uses:
 REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 
 ## Github page:
+
 https://github.com/fridayshoes/acebook-node-priceless
 
 ## Trello board:
+
 https://trello.com/b/jaHA0ziM/priceless-ace-book
 
 ## Quickstart
@@ -52,7 +54,7 @@ https://trello.com/b/jaHA0ziM/priceless-ace-book
    brew tap mongodb/brew
    brew install mongodb-community@5.0
    ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
+   _Note:_ If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
 7. Start MongoDB
    ```
    brew services start mongodb-community@5.0
@@ -90,14 +92,15 @@ so that integration tests do not interact with the development server.
   npm run test:unit         # unit tests only
   npm run test:integration  # integration tests only
   ```
-  
-## Test Coverage
-Test coverage is shown for unit tests by using collectCoverageFrom in the jest.config.js. Jest will calculate the coverage based one the following criteria:
-- ./app.js
-- ./controllers/**
-- ./models/**
-- ./routes/**
 
+## Test Coverage
+
+Test coverage is shown for unit tests by using collectCoverageFrom in the jest.config.js. Jest will calculate the coverage based one the following criteria:
+
+- ./app.js
+- ./controllers/\*\*
+- ./models/\*\*
+- ./routes/\*\*
 
 ## MongoDB Tutorial
 
@@ -168,3 +171,14 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Check that it's running using `brew services list`
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+
+## Feature List
+
+- User can signup for an account
+- User can signin with an account
+- User can create a post
+- User can create a post with multiple lines
+- User can delete a post
+- Users can like a post
+- Users cannout signup for an account with the same email address
+-
