@@ -1,11 +1,10 @@
 const signUpAndSignIn = require("./webhelper");
 
 describe("Profile Page", () => {
-  // afterEach(() => {
-  //   // use tasks to drop collections after each test
-  //   cy.task("dropPosts");
-  //   cy.task("dropUsers");
-  // })
+  afterEach(() => {
+    // use tasks to drop collections after each test
+    cy.task("dropUsers");
+  })
 
   it("navigates to user's profile page from timeline", () => {
     // run webhelper to sign up and sign in to acebook
