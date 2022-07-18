@@ -5,11 +5,13 @@ const PostsController = {
   Index: (req, res) => {
     Post.find()
     .populate("comments")
+    .populate("author", "firstName")
     .exec((err, posts) => {
               if (err) {
-          throw err;
+          throw err;  
         }
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { 
+        posts: posts });
     });
   },
   New: (req, res) => {
