@@ -17,10 +17,15 @@ const PostSchema = new mongoose.Schema({
 PostSchema.methods.formatDate = function() {
   return this.createdAt.toString().substring(0,10);
 }
-PostSchema.methods.showUserName = function() {
-  return this.author;
+PostSchema.methods.upperCaseName = function() {
+
+  return this.author.firstName[0].toUpperCase() + this.author.firstName.substring(1);
 
 }
+
+
+
+
 
 const Post = mongoose.model("Post", PostSchema);
 

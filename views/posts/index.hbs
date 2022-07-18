@@ -2,7 +2,8 @@
 
 <ul class="posts">
   {{#each posts}}
-  <h3 class="post" id="{{this._id}}">{{this.message}} {{this.author.firstName}} </h3>
+  <h3 class="post" id="{{this._id}}">{{this.message}}</h3>
+    <h4>{{this.formatFirstName}} {{this.author.lastName}}</h4>
    <p id="list" class="posts">{{this.formatDate}}</p> 
 
 

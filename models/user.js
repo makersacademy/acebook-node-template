@@ -10,4 +10,16 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
+
+// UserSchema.pre('save', function (next) {
+//   // capitalize
+//   this.firstName = "hello"
+//   // this.firstName.charAt(0).toUpperCase() + this.firstName.slice(1);  
+//   next();
+// });
+
+UserSchema.methods.formatFirstName = function() {
+  return this.firstName[0].toUpperCase() + this.firstName.slice(1);
+}
+
 module.exports = User;

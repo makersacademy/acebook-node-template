@@ -5,7 +5,7 @@ const PostsController = {
   Index: (req, res) => {
     Post.find()
     .populate("comments")
-    .populate("author", "firstName")
+    .populate("author")
     .exec((err, posts) => {
               if (err) {
           throw err;  
