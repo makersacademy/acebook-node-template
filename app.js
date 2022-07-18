@@ -10,7 +10,7 @@ const methodOverride = require("method-override");
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const commentsRouter = require("./routes/comments");
-const likesRouter = require("./routes/likes");
+const likesPostRouter = require("./routes/likes-post");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const UsersController = require("./controllers/users");
@@ -61,7 +61,7 @@ const sessionChecker = (req, res, next) => {
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/comments", commentsRouter);
-app.use("/likes", likesRouter);
+app.use("/likes-post", likesPostRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 

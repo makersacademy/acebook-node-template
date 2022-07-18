@@ -13,9 +13,13 @@
   Likes: {{likes.length}}
   {{/if}}
   <p>
-  <form id="like-comment" action="/likes" method="post">
+  <form id="like-post" action="/likes-post" method="post">
     <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
     <input type="submit" value="Like">
+  </form>
+  <form id="remove-like-post" action="/likes-post?_method=DELETE" method="post">
+    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
+    <input type="submit" value="Remove Like">
   </form>
 
   <form id="new-comment-form" action="/comments" method="post">

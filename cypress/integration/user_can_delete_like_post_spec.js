@@ -28,5 +28,12 @@ describe("Timeline", () => {
     cy.get("#like-comment").submit();
 
     cy.get(".posts").should("contain", "Likes: 1");
+
+    // delete like from a post
+    cy.visit("/posts");
+
+    cy.get("#remove-like-comment").submit();
+
+    cy.get(".posts").should("not.contain", "Likes: 1");
   });
 });
