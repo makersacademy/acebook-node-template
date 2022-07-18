@@ -1,6 +1,7 @@
 const ProfileController = {
   Index: (req, res) => {
-    res.render("profile/userProfile", { title: "Profile Page"});
+    const username = req.session.user.name;
+    res.render("profile/userProfile", { name: username, title: "Profile Page"});
   }
 }
 

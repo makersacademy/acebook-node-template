@@ -17,10 +17,10 @@ describe("Profile Page", () => {
     cy.contains("Profile Page").click();
 
     // user should be redirected to profile page, with the route displaying their username
-    cy.url().should("include", "/profile")
+    cy.url().should("include", "/profile/user")
   })
 
-  it("Profile page displays content", () => {
+  it("Profile page displays username", () => {
     // run webhelper to sign up and sign in to acebook
     signUpAndSignIn();
 
@@ -29,5 +29,6 @@ describe("Profile Page", () => {
 
     // page contains the content 'Profile Page'
     cy.contains("Profile Page")
+    cy.contains("Username: CypressTestUser")
   })
 })
