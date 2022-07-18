@@ -3,10 +3,12 @@ const Post = require("../models/post");
 const PostsController = {
   Index: (req, res) => {
     Post.find((err, posts) => {
+      const formattedDate = new Date(posts[0].timestamp).toLocaleDateString();
+      // this needs to be in create
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts.reverse() });
+      res.render("posts/index", { posts: posts.reverse(), date: formattedDate });
     });
   },
   New: (req, res) => {
