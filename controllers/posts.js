@@ -52,8 +52,12 @@ const PostsController = {
     var id = req.params.id;
     Post.findById(id, function (err, post) {
       if (err) {throw err;}
-      post.likes.count += 1;
-      
+      console.log(post.likes.emails);
+      console.log(req.session.user.email);
+      if (!post.likes.emails.includes(req.session.user.email) ) {
+        post.likes.count += 1;
+        post.likes.emails.push(req.session.user.email);
+      }      
 
       post.save(function(err) {
         if (err) {throw err;}
