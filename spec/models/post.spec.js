@@ -96,7 +96,7 @@ describe("Post model", () => {
       });
       });
     });
-    it("add a like to a comment", (done) => {
+    it("add a like to a post", (done) => {
       var post = new Post({ 
         message: "some message",
         likes: new mongoose.Types.ObjectId() });

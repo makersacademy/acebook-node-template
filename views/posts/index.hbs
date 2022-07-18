@@ -5,8 +5,17 @@
   <h3 class="post" id="{{this._id}}">{{this.message}}</h3>
   <p id="list" class="posts">{{this.formatDate}}</p>
   {{#each comments}}
-  {{log comments}}
-  <li>{{comment}}</li>
+
+
+  <li>{{comment}} - {{#if likes}}Likes: {{likes.length}}{{/if}}</li>
+  <form id="like-comment" action="/likes-comment" method="post">
+    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
+    <input type="submit" value="Like">
+  </form>
+  <form id="remove-like-comment" action="/likes-comment?_method=DELETE" method="post">
+    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
+    <input type="submit" value="Remove Like">
+  </form>
   {{/each}}
 
   {{#if likes}}

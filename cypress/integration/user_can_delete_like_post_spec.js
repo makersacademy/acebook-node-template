@@ -1,7 +1,6 @@
-var mongoose = require("mongoose");
-
 describe("Timeline", () => {
-  it("can like a post", () => {
+  it("can remove like from a post", () => {
+    cy.exec("mongo acebook_test --eval 'db.dropDatabase()'");
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -25,14 +24,14 @@ describe("Timeline", () => {
     // like a post
     cy.visit("/posts");
 
-    cy.get("#like-comment").submit();
+    cy.get("#like-post").submit();
 
     cy.get(".posts").should("contain", "Likes: 1");
 
     // delete like from a post
     cy.visit("/posts");
 
-    cy.get("#remove-like-comment").submit();
+    cy.get("#remove-like-post").submit();
 
     cy.get(".posts").should("not.contain", "Likes: 1");
   });

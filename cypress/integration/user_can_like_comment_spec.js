@@ -1,5 +1,5 @@
 describe("Timeline", () => {
-  it("can like a post", () => {
+  it("can like a comment", () => {
     cy.exec("mongo acebook_test --eval 'db.dropDatabase()'");
     // sign up
     cy.visit("/users/new");
@@ -20,11 +20,17 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
-
-    // like a post
+    // submit a comment
     cy.visit("/posts");
 
-    cy.get("#like-post").submit();
+    cy.get("#new-comment-form").find('[type="text"]').type("Hi!");
+    cy.get("#new-comment-form").submit();
+
+
+    // like a comment
+    cy.visit("/posts");
+
+    cy.get("#like-comment").submit();
 
     cy.get(".posts").should("contain", "Likes: 1");
   });
