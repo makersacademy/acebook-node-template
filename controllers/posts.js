@@ -52,7 +52,8 @@ const PostsController = {
     var id = req.params.id;
     Post.findById(id, function (err, post) {
       if (err) {throw err;}
-      post.likes += 1;
+      post.likes.count += 1;
+      
 
       post.save(function(err) {
         if (err) {throw err;}

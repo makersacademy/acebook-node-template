@@ -16,7 +16,7 @@ a {
   color: #00B7FF;
 }
 div.navigation-menu {
-  width: 15%;
+  width: 25%;
   padding: 5px;
   margin: 0;
   position: fixed;
@@ -55,7 +55,7 @@ div.navigation-menu {
 }
 
 div.content {
-  margin-left: 15%;
+  margin-left: 25%;
   padding: 1px 16px;
   height: 1000px;
 }
