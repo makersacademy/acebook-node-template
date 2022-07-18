@@ -67,4 +67,36 @@ describe("like button", function(){
     cy.get('.like-container').first().find('#like-button').click();
     cy.get('.like-container').first().should('contain',1);
   });
+
+  it('two different users can like the same post, making total likes 2', () => {
+    cy.visit('/posts');
+    cy.contains("New post").click();
+    cy.get('#new-post-form').find('#message').type('a post to be liked');
+    cy.get("#new-post-form").submit();
+
+    // like as a first user
+    cy.get('.post-container').first().should('contain', 'a post to be liked');
+    cy.get('.like-container').first().find('#like-button').click();
+
+    // log out
+    cy.get('#sign-out-button').click();
+
+    // sign up as a second user
+    cy.visit("/users/new");
+    cy.get("#email").type("secondsomeone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    // sign in as a second user
+    cy.visit("/sessions/new");
+    cy.get("#email").type("secondsomeone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    // like as the second user
+    cy.get('.post-container').first().should('contain', 'a post to be liked');
+    cy.get('.like-container').first().find('#like-button').click();
+    cy.get('.like-container').first().should('contain',2);
+
+  })
 });
