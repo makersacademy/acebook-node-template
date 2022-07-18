@@ -16,9 +16,8 @@ describe("Timeline", () => {
     // const date = today.getFullYear();
 
     cy.get(".datestamp").first().invoke('text').then(dateText => {
-      console.log(dateText)
       const date = new Date(dateText);
-      
+
       const timeAfterPost = new Date();
 
       expect(date).to.be.lte(timeAfterPost);
