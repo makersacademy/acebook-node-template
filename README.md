@@ -99,6 +99,67 @@ Test coverage is shown for unit tests by using collectCoverageFrom in the jest.c
 - ./routes/**
 
 
+## MongoDB Tutorial
+
+MongoDb documentation: https://www.mongodb.com/docs/manual/
+
+Mongoosh documentation: https://mongoosejs.com/docs/queries.html
+
+MongoDB Shell (mongosh) documentation: https://www.mongodb.com/docs/mongodb-shell/
+
+The MongoDB Shell, mongosh, is a fully functional JavaScript and Node.js 16.x REPL environment for interacting with MongoDB deployments. You can use the MongoDB Shell to test queries and operations directly with your database.
+
+With MongoDB Shell, we can interact with MongoDB using command lines in termainl:
+```
+$ mongosh
+```
+To see all databases available on the current connection, type:
+```
+> show dbs
+acebook_test  64.00 KiB
+admin         40.00 KiB
+config        72.00 KiB
+local         72.00 KiB
+```
+
+To connect to one database:
+```
+> use acebook_test
+switched to db acebook_test
+```
+
+When connected to a database, it is possible to show the "collections", equialvent to TABLES in SQL:
+```
+> show collections
+posts
+users
+```
+
+It is possible to look into these collections:
+```
+> db.posts.find()
+[
+  {
+    _id: ObjectId("62ce9ed31099b91369b89370"),
+    message: 'Hello, world!',
+    __v: 0
+  },
+  {
+    _id: ObjectId("62ce9efa1099b91369b8937e"),
+    message: 'Hello, world!',
+    __v: 0
+  },
+   ...
+]
+```
+
+It is also possible to view local MongoDB with TablePlus.
+ - Create a new connection...
+ - Mongo -> Create
+ - Name: Acebook_test; URL: mongodb://0.0.0.0/acebook_test
+ - Connect
+
+
 ## MongoDB Connection Errors?
 
 Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
