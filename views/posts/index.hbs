@@ -19,10 +19,15 @@
     </div>
   </div>
 
-  <form action="/posts/comment/{{this._id}}" method="get">
+  <form id="comment-post-form" action="/posts/{{this._id}}/comment" method="post">
+  <label for="comments">Write your comment: </label>
+  <input id="comments" type="text" name="comments" value="">
+  <input type="submit" value="Submit">
+</form>
+  {{!-- <form action="/posts/comment/{{this._id}}" method="get">
     <input type="submit" value="Comment" />
-  </form>
-  <p> Comments: {{this.comments}} </p>
+  </form> --}}
+  {{!-- <p> Comments: {{this.comments}} </p> --}}
   
 
 
@@ -30,4 +35,4 @@
   
 </ul>
 
-
+<a class="new-post-link" href="/posts/new">New post</a>
