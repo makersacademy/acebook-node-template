@@ -60,6 +60,21 @@ const PostsController = {
       });
     });
   },
+  
+  Comment: function(req, res){
+    var id = req.params.id
+    var newComment = req.body.comment
+
+    Post.findById(id, function(err, post) {
+      if (err) {throw err;}
+
+      post.comments.push(newComment)
+      post.save();
+
+      res.render('/posts', {id: post.id, comments: post.comments});
+      res.status(201).redirect('/posts')
+    })
+  }
 
 };
 

@@ -15,8 +15,13 @@
         <button id="like-button">
           Like
         </button><span id="like-counter">{{this.likes}}</span>
+
+      <form action="/posts/{{this._id}}/comments" method="post" class="form-container" id="commentform-{{this._id}}">
+       <input type="text" placeholder="Enter Comment" name="comment" required>
+       <button type="submit" class="btn">Send</button>
       </form>
-    </div>
+    {{!-- </div> --}}
+    <li>{{this.comments}}</li>
   </div>
 
 
