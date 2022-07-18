@@ -10,14 +10,23 @@ const SessionsController = {
     const email = req.body.email;
     const password = req.body.password;
 
+    // Find the user in the db that matches with the user in the req.body .
+    // compare passwords and redirect depending on the result .
     User.findOne({ email: email }).then((user) => {
-      if (!user) {
-        res.redirect("/sessions/new");
-      } else if (user.password != password) {
-        res.redirect("/sessions/new");
-      } else {
-        req.session.user = user;
-        res.redirect("/posts");
+      if (user) {
+        user.comparePassword(password, function (matchError, isMatch) {
+          if (matchError) {
+            console.log(`Error : ${matchError}`);
+            res.redirect("/sessions/new");
+          } else if (!isMatch) {
+            console.log("Passwords did not match");
+            res.redirect("/sessions/new");
+          } else {
+            console.log("successful");
+            req.session.user = user;
+            res.redirect("/posts");
+          }
+        });
       }
     });
   },

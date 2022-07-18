@@ -1,16 +1,8 @@
+const signUpAndSignIn = require("./webhelper");
+
 describe("Delete Post", () => {
   it("A user can delete a post when they're signed in", () => {
-     // sign up
-     cy.visit("/users/new");
-     cy.get("#email").type("someone@example.com");
-     cy.get("#password").type("password");
-     cy.get("#submit").click();
- 
-     // sign in
-     cy.visit("/sessions/new");
-     cy.get("#email").type("someone@example.com");
-     cy.get("#password").type("password");
-     cy.get("#submit").click();
+    signUpAndSignIn();
 
     // submit a post
     cy.visit("/posts");
@@ -23,7 +15,7 @@ describe("Delete Post", () => {
 
     // delete a post
     cy.visit("/posts");
-    cy.get(".delete-post").submit();
+    cy.get(".delete-post").first().submit();
 
     cy.visit("/posts");
     cy.get(".posts").should("not.contain", "Delete this post!");
