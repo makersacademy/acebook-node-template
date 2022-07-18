@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 require("../mongodb_helper");
 const User = require("../../models/user");
 
@@ -111,7 +112,7 @@ describe("User model", () => {
       email: "someone@example.com",
       password: "password",
     });
-    
+
     expect(user.password).toEqual("password");
   });
 
@@ -124,8 +125,13 @@ describe("User model", () => {
   });
 
   it("can save a user", (done) => {
+   let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
+      firstName: "Test",
+      lastName: "User",
       username: "testUser",
+      birthday: dob,
+      location: "London",
       email: "someone@example.com",
       password: "password",
     });
@@ -137,7 +143,11 @@ describe("User model", () => {
         expect(err).toBeNull();
 
         expect(users[0]).toMatchObject({
+          firstName: "Test",
+          lastName: "User",
           username: "testUser",
+          birthday: dob,
+          location: "London",
           email: "someone@example.com",
         });
         done();
@@ -146,9 +156,14 @@ describe("User model", () => {
   });
 
   it("can hash a user's password", (done) => {
+    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
-      username: "test",
-      email: "test@example.com",
+      firstName: "Test",
+      lastName: "User",
+      username: "testUser",
+      birthday: dob,
+      location: "London",
+      email: "someone@example.com",
       password: "password",
     });
 
