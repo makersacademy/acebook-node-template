@@ -10,11 +10,11 @@
       </form>
     </li>
 
-    <div>
+    <div class="like-container">
       <form action="/posts/updateLikes/{{this.id}}" method="post">
         <button id="like-button">
           Like
-        </button><span id="like-counter">{{this.likes}}</span>
+        </button><span id="like-counter">{{this.likes.count}}</span>
       </form>
     </div>
   </div>
