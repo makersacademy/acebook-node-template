@@ -9,7 +9,9 @@ router.get("/new", PostsController.New);
 router.post("/delete", PostsController.Delete);
 
 router.post('/updateLikes/:id', PostsController.UpdateLikes);
-router.post('/:id/comments', PostsController.Comment);
+
+router.get('/comment/:_id', PostsController.Comment)
+router.post('/:id/comment', PostsController.PostComment);
 
 // implementing delete function
 // router.delete("/", PostsController.Delete); // assume it's "/" first.

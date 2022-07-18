@@ -60,22 +60,29 @@ const PostsController = {
       });
     });
   },
+
+  Comment: function(req, res) {
+    Post.find({_id: req.params._id}, function(err, posts) {
+      if (err) {
+        throw err;
+      }
+      res.render('posts/comment', {
+        posts: posts});
+    });
+  },
+
+  PostComment: function(req, res) {
+    Post.findOneAndUpdate({
+      _id: req.params._id},
+    {$push: {comments: req.body.comments}},
+    function(err, posts) {
+      if (err) {
+        throw err;
+      }
+    res.status(201).redirect('/posts');
+    });
+  },
   
-  Comment: function(req, res){
-    var id = req.params.id
-    var newComment = req.body.comment
-
-    Post.findById(id, function(err, post) {
-      if (err) {throw err;}
-
-      post.comments.push(newComment)
-      post.save();
-
-      res.render('/posts', {id: post.id, comments: post.comments});
-      res.status(201).redirect('/posts')
-    })
-  }
-
 };
 
 module.exports = PostsController;
