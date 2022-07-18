@@ -5,7 +5,7 @@
   <li class="post-elements">
     <tr class="post-text">
       {{this.message}}, {{this.firstname}}
-      <div class="datestamp">Created at {{this.createdAt}}</div>
+      <small class="datestamp">Created at {{this.createdAt}}</small>
     </tr>
    <form id="delete-button" action="/posts/delete/{{ this.id }}" method="post">
       <button class="delete-button">Delete</button>
