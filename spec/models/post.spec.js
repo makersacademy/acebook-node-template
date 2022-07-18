@@ -96,6 +96,19 @@ describe("Post model", () => {
       });
       });
     });
+    it("add a like to a comment", (done) => {
+      var post = new Post({ 
+        message: "some message",
+        likes: new mongoose.Types.ObjectId() });
+      post.save((err) => {
+        expect(err).toBeNull()
+        Post.find((err, posts) => {
+          expect(err).toBeNull();  
+          expect(posts[0].likes).toHaveLength(1);
+          done();      
+        });
+      });
+    });
 });
   
       
