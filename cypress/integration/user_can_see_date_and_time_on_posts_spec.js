@@ -12,11 +12,14 @@ describe("Timeline", () => {
     const timeBeforePost = new Date();
     // submit a post
     submitPost();
-    const timeAfterPost = new Date();
+    
     // const date = today.getFullYear();
 
-    cy.get(".datestamp").invoke('text').then(dateText => {
+    cy.get(".datestamp").first().invoke('text').then(dateText => {
+      console.log(dateText)
       const date = new Date(dateText);
+      
+      const timeAfterPost = new Date();
 
       expect(date).to.be.lte(timeAfterPost);
       expect(date).to.be.gte(timeBeforePost);
