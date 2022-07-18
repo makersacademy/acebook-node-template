@@ -2,19 +2,20 @@ import { signUp, signIn, submitPost } from "./web_helpers";
 
 describe("Timeline", () => {
   it("can submit a post and see the date and time of it", () => {
-    // sign up
     signUp();
-
-    // sign in
     signIn();
 
-    // submit a post
+    const timeBeforePost = new Date();
+
     submitPost();
-    const timeElapsed = Date.now();
-    const today = new Date(timeElapsed);
-    const date = today.getFullYear();
-    cy.get(".posts").should("contain", "Example Post from Cypress Testing");
-    cy.get(".datestamp").first().should("contain", `${date}`);
-    // checked test, passed
+
+    cy.get(".datestamp").first().invoke('text').then(dateText => {
+      const date = new Date(dateText);
+
+      const timeAfterPost = new Date();
+
+      expect(date).to.be.lte(timeAfterPost);
+      expect(date).to.be.gte(timeBeforePost);
+    });
   });
 });
