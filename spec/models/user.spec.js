@@ -10,9 +10,44 @@ describe("User model", () => {
     });
   });
 
-  it("has a username", () => {
+  it("has a first name", () => {
+    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
+      firstName: "Test",
+      lastName: "User",
       username: "testUser",
+      birthday: dob,
+      location: "London",
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    expect(user.firstName).toEqual("Test");
+  });
+
+  it("has a last name", () => {
+    let dob = new Date("1999-06-11T00:00:00.000Z")
+    const user = new User({
+      firstName: "Test",
+      lastName: "User",
+      username: "testUser",
+      birthday: dob,
+      location: "London",
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    expect(user.lastName).toEqual("User");
+  });
+
+  it("has a username", () => {
+    let dob = new Date("1999-06-11T00:00:00.000Z")
+    const user = new User({
+      firstName: "Test",
+      lastName: "User",
+      username: "testUser",
+      birthday: dob,
+      location: "London",
       email: "someone@example.com",
       password: "password",
     });
@@ -20,21 +55,63 @@ describe("User model", () => {
     expect(user.username).toEqual("testUser");
   });
 
-  it("has an email address", () => {
+  it("has a birthday", () => {
+    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
+      firstName: "Test",
+      lastName: "User",
       username: "testUser",
+      birthday: dob,
+      location: "London",
       email: "someone@example.com",
       password: "password",
     });
+
+    expect(user.birthday).toEqual(dob);
+  });
+
+  it("has a location", () => {
+    let dob = new Date("1999-06-11T00:00:00.000Z")
+    const user = new User({
+      firstName: "Test",
+      lastName: "User",
+      username: "testUser",
+      birthday: dob,
+      location: "London",
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    expect(user.location).toEqual("London");
+  });
+
+  it("has an email address", () => {
+    let dob = new Date("1999-06-11T00:00:00.000Z")
+    const user = new User({
+      firstName: "Test",
+      lastName: "User",
+      username: "testUser",
+      birthday: dob,
+      location: "London",
+      email: "someone@example.com",
+      password: "password",
+    });
+
     expect(user.email).toEqual("someone@example.com");
   });
 
   it("has a password", () => {
+    let dob = new Date("1999-06-11T00:00:00.000Z")
     const user = new User({
+      firstName: "Test",
+      lastName: "User",
       username: "testUser",
+      birthday: dob,
+      location: "London",
       email: "someone@example.com",
       password: "password",
     });
+    
     expect(user.password).toEqual("password");
   });
 
