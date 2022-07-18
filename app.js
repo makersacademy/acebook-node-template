@@ -78,5 +78,4 @@ app.use((err, req, res) => {
 
 module.exports = app;
 
-
 /* set up for flash */
