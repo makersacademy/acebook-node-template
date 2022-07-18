@@ -7,7 +7,7 @@ describe("Home page", () => {
   it("Navigates to Sign up page from Home", () => {
     cy.visit("/");
     cy.contains("Sign Up").click();
-    cy.url().should("include", "/users/new?");
+    cy.url().should("include", "/users/new");
   });
 
   it("Navigates to Sign in page from Home", () => {
