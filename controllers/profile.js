@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 const ProfileController = {
   Index: (req, res) => {
@@ -27,7 +28,20 @@ const ProfileController = {
   },
 
   OtherUser: (req, res) => {
-    res.render("profile/otherUserProfile")
+    // create mongodb objectId from the userId passed from the post
+    const ObjectId = require("mongodb").ObjectId;
+    const userId = ObjectId(req.body.id);
+   
+    // find the user's data in the database, return one object that matches
+    User.findOne({ _id: userId }, (err, userData) => {
+      if (err) {
+        throw err;
+      }
+      // pass user data object into view file
+      res.render("profile/otherUserProfile", {
+        user: userData
+      })
+    })
   }
 }
 

@@ -27,7 +27,7 @@ describe("Timeline", () => {
     cy.get(".posts").first().should("contain", "Second post");
   });
 
-  it("can navigate to other users profile page using the username on the post", () => {
+  it.only("can navigate to other users profile page using the username on the post", () => {
      // sign up, sign in, and make post as different user
     cy.visit("/users/new");
     cy.get("#firstName").type("Someone");
@@ -54,9 +54,9 @@ describe("Timeline", () => {
     // use webhelper to sign up and sign in
     signUpAndSignIn();
 
-    cy.contains("AnotherTestUser").click();
+    cy.get(".display-profile").submit();
 
-    cy.url().should("include", "/profile/AnotherTestUser");
+    cy.url().should("include", "/profile/");
     cy.contains("Someone Else")
     })
 });

@@ -13,7 +13,10 @@
       {{this.timestamp}}
       <br />
       <div class="username">
-        <a href="/profile/AnotherTestUser">{{this.username}}</a>
+        <form class="display-profile" action="/profile/" method="post">
+        <input type="hidden" name="id" value={{this.userId}} />
+        <input type="submit" value={{this.username}} />
+        </form>
       </div>
      
       <br />

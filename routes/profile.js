@@ -4,6 +4,6 @@ const router = express.Router();
 const ProfileController = require("../controllers/profile")
 
 router.get("/user", ProfileController.Index);
-router.get("/AnotherTestUser", ProfileController.OtherUser);
+router.post('/', ProfileController.OtherUser);
 
 module.exports = router;
