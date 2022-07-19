@@ -24,7 +24,7 @@ module.exports = async (on, config) => {
     async emptyPosts() {
       // this is a new task that cypress understands, to delete the posts from the db
       var con = mongoose.connect("mongodb://0.0.0.0/acebook_test");
-      const result = mongoose.connection.collection('posts').drop()
+      const result = mongoose.connection.collection('posts').deleteMany({})
       return result;
     }
   })
