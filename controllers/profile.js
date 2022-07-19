@@ -37,9 +37,15 @@ const ProfileController = {
       if (err) {
         throw err;
       }
+      // creating date of birth in correct format from userData
+      const birthdayData = new Date(userData.birthday)
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const dateOfBirth = birthdayData.toLocaleDateString('en-GB', options)
+
       // pass user data object into view file
       res.render("profile/otherUserProfile", {
-        user: userData
+        user: userData,
+        birthday: dateOfBirth
       })
     })
   }
