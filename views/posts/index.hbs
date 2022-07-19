@@ -4,17 +4,19 @@
 
   <div class="post-container">
     <li class="each-message">{{this.message}}<br>{{this.date}}</li>
+    <br>
       <form action="/posts/delete" method="post" class="delete" >
         <input name="_id" type="hidden" value="{{this._id}}">
-        <input name="delete" type="submit" value ="🗑️">
+        <input style="background-color=transparent" name="delete" type="submit" value ="🗑️">
       </form>
     </li>
+    <br>
 
     <div class="like-container">
       <form action="/posts/updateLikes/{{this.id}}" method="post">
         <button id="like-button">
           Like
-        </button><span id="like-counter">{{this.likes.count}}</span>
+        </button> <span id="like-counter">{{this.likes.count}}</span>
       </form>
     </div>
   </div>
