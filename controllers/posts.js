@@ -15,11 +15,18 @@ const PostsController = {
   Create: (req, res) => {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
-    const name = req.session.user.name
+    console.log(req.body._id);
+    console.log("A");
+    const name = req.session.user.name;
 
-    const timePosted = new Date()
-    const post = new Post({userId: id, username: name, message: req.body.message, likes: 0,timestamp: timePosted});
-
+    const timePosted = new Date();
+    const post = new Post({
+      userId: id,
+      username: name,
+      message: req.body.message,
+      likes: 0,
+      timestamp: timePosted,
+    });
 
     post.save((err) => {
       if (err) {
@@ -42,17 +49,27 @@ const PostsController = {
   Like: (req, res) => {
     const ObjectId = require("mongodb").ObjectId;
     const id = new ObjectId(req.body.id);
-    Post.updateOne({_id: id}, { $inc: { likes: 1 }}, (err) => {
+    Post.updateOne({ _id: id }, { $inc: { likes: 1 } }, (err) => {
       if (err) {
         throw err;
       }
       res.redirect("/posts");
-    })
+    });
   },
-  // Comment: (req, res) => {
-  //   let comment = req.body;
-  //   console.log(comment);
-  // }
+  Comment: (req, res) => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = ObjectId(req.body.id);
+    console.log(id);
+    console.log("B");
+    const comment = req.body.comment;
+    console.log(req.body.comment);
+    Post.updateOne({ _id: id }, { $push: { comments: comment } }, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/posts");
+    });
+  },
 };
 
 module.exports = PostsController;
