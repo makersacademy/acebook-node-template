@@ -7,11 +7,16 @@ const SessionsController = {
     res.render("sessions/new", {});
   },
 
+  Error: (req, res) => {
+    res.render("sessions/new/error", {});
+  },
+
+
   Create: async (req, res) => {
     const body = req.body;
     const user = await User.findOne({ email: body.email });
     if (user) {
-      // check user password with hashed password stored in the database
+     
       const validPassword = await bcrypt.compare(body.password, user.password);
       if (validPassword) {
         res.status(200)
@@ -19,10 +24,10 @@ const SessionsController = {
         res.redirect("/posts");
         
       } else {
-        res.status(400).json({ error: "Invalid Password" });
+        res.status(400).redirect("sessions/new/error");
       }
     } else {
-      res.status(401).json({ error: "User does not exist" });
+      res.status(401).redirect("sessions/new/error");
     }
      
     

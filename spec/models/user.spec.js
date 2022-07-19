@@ -1,9 +1,12 @@
+
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+
+
 
 require("../mongodb_helper");
 const User = require("../../models/user");
 const UsersController = require("../../controllers/users");
+const { redirect } = require("express/lib/response");
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -56,15 +59,26 @@ describe("User model", () => {
       });
     });
   });
-  it('Registering users work as expected', (done) => {
-    const user = new User({email: 'jestUser', password: 'jestUser'});
+  xit('Registering users work as expected', async () => {
+      const user = {
+      body: {
+      email: 'a@test.com',
+      password: 'password',
+      },
+      }; 
+     const res = {
+        status: () => { 
     
-    
-        expect(UsersController.Create(user)).toMatchObject({
+        },  
+      }
+         
+      const result = await UsersController.Create(user, res)
+        expect(result).toMatchObject({
         user: {
             "password": expect.anything(),
-            "email": 'jestUser'
+            "email": 'a@test.com'
         }
+        
       });
       done()
     })
