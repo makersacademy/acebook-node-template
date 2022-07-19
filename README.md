@@ -1,8 +1,34 @@
-# Acebook
+# Acebook - ETA Team build
 
-This is a Node.js template for the Acebook engineering project.
+## Overview
+Acebook is a Facebook-clone developed whilst on the Makers Aacademy Bootcamp July 2022.
+- A (full stack) web app that allows users to login to the social media platform
+- Users can interact with other users and profiles by the feed through posts, comments and likes 
+- Build using Test Driven Development and working cohesively as a team 
 
-It uses:
+## Group Collabrators (Alphabetical)
+
+- [Aisha](https://github.com/Aisha-Yusuff)
+- [Daniel](https://github.com/danielotf)
+- [Dave](https://github.com/davekempsell)
+- [Ephron](https://github.com/Ephfullstack)
+- [Raphaella](https://github.com/raphaella-rose)
+- [Naz H](https://github.com/nazhudha)
+
+
+## Features include: 
+
+- User can sign up
+- User can log in
+- User can log out
+- User can create and edit posts (from own profile news feed)
+- User can edit their post
+- User can add and edit comments
+- User can 'like' post and see 'likes' count
+- User can view their own and other users profile page
+- User's username and timestamp displayed next to their post
+
+## Technologies: 
 
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
@@ -12,10 +38,14 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
-## Card wall
+## Card wall (Trello Planning)
 
 (https://trello.com/b/fBi79KiE/eta-trello-board)
 
+## ScreenShots 
+
+
+# Setup
 ## Quickstart
 
 ### Install Node.js
