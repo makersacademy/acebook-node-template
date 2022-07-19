@@ -1,29 +1,27 @@
-
 describe("Timeline", () => {
- 
-  it('can delete posts, when signed in', () => {
-      // sign up
-      cy.task('emptyPosts').then(() => {
+  it("can submit posts, when signed in, and view them", () => {
+    
+    // sign up
+      cy.task('emptyUsers').then(() => {
       cy.visit("/users/new");
       cy.get("#email").type("someone@example.com");
       cy.get("#password").type("password");
       cy.get("#submit").click();
-  
+      
       // sign in
       cy.visit("/sessions/new");
       cy.get("#email").type("someone@example.com");
       cy.get("#password").type("password");
       cy.get("#submit").click();
-  
+
       // submit a post
       cy.visit("/posts");
       cy.contains("New post").click();
+
       cy.get("#new-post-form").find('#message').type("Hello, world!");
       cy.get("#new-post-form").submit();
-      
-      // delete a post
-      cy.get('.delete').submit();
-      cy.get(".posts").should("not.contain", "Hello, world!");
-    })
+
+      cy.get(".posts").should("contain", "Hello, world!");
+    });  
   });
 });

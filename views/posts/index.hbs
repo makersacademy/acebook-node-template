@@ -16,7 +16,7 @@
     </form> 
     <span id="like-counter">{{this.likes}}</span>
   </div>
-
+  
   <div class = "comments">
     <form action="/posts/comment/{{this._id}}" method="get">
       <button id="comment-button">
@@ -30,6 +30,7 @@
           <li id="commenting"> {{this}} </li>
         {{/each}}
       </ul>
+
     </div>
   </div>
   {{/each}}
