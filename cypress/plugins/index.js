@@ -28,4 +28,13 @@ module.exports = async (on, config) => {
       return result;
     }
   })
+
+  on('task', {
+    async emptyUsers() {
+      // this is a new task that cypress understands, to delete the users from the db
+      var con = mongoose.connect("mongodb://0.0.0.0/acebook_test");
+      const result = mongoose.connection.collection('users').drop()
+      return result;
+    }
+  })
 }
