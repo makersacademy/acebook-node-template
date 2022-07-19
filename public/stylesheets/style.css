@@ -11,6 +11,9 @@ h1.title {
   display:table;
   padding: 7px;
 }
+li.each-message {
+  white-space: pre-wrap;
+}
 
 a {
   color: #00B7FF;
