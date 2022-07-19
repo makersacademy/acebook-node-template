@@ -62,12 +62,16 @@ const PostsController = {
   },
 
   Comment: function(req, res) {
-    Post.find({_id: req.params._id}, function(err, posts) {
+    Post.find({_id: req.params._id}, function(err, post) {
+      console.log(err)
+      console.log("///")
+      console.log(post)
       if (err) {
         throw err;
       }
       res.render('posts/comment', {
-        posts: posts});
+        posts:post});
+        
     });
   },
 

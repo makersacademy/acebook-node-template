@@ -19,20 +19,29 @@
     </div>
   </div>
 
-  <form id="comment-post-form" action="/posts/{{this._id}}/comment" method="post">
-    <label for="comments">Write your comment: </label>
-    <input id="comments" type="text" name="comments" value="">
-    <input type="submit" value="Submit">
+   <div class = "comments">
+  <form action="/posts/comment/{{this._id}}" method="get">
+    <button id="comment-button">
+      Comment
+    </button>
   </form>
-  
-  <p> Comments: </p>
-  <div class='array-output-wrapper'>
-    <ul> {{#each this.comments}}
-        <li> {{this}} </li>
-      {{/each}}
+</div>
+
+
+
+<p> Comments: </p>
+<div class='array-output-wrapper'>
+  <ul id= "comments-list">
+    {{#each this.comments}}
+      <li id = "commenting"> {{this}} </li>
+    {{/each}}
+    </div>
   </div>
 
+
   {{/each}}
+
+
   
 </ul>
 
