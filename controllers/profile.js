@@ -2,8 +2,8 @@ const Post = require("../models/post");
 
 const ProfileController = {
   Index: (req, res) => {
-    // username pulled from the session data
-    const username = req.session.user.name;
+    console.log(req.session.user)
+  
     // userId from session data stored as variable to pass to Post.find method
     const ObjectId = require("mongodb").ObjectId;
     const userId = ObjectId(req.session.user._id);
@@ -12,7 +12,7 @@ const ProfileController = {
       if (err) {
         throw err;
       }
-      res.render("profile/userProfile", { posts: userPosts.reverse(), name: username, title: "Profile Page"});
+      res.render("profile/userProfile", { posts: userPosts.reverse(), title: "Profile Page", userData: req.session.user});
     }
     )
   }
