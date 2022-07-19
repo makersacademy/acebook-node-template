@@ -49,7 +49,6 @@ describe("Post model", () => {
   });
   it("can delete a post", (done) => {
     var post = new Post({ message: "some message" });
-    console.log(post.id);
     post.save((err, save) => {
       expect(err).toBeNull();
   

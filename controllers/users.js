@@ -1,14 +1,19 @@
 const User = require("../models/user");
+const bcrypt = require("bcrypt");
+
+
 
 const UsersController = {
   New: (req, res) => {
     res.render("users/new", {});
   },
 
-  Create: (req, res) => {
-    // var query = {'firstName': req.user.firstName};
-    // req.newData.firstName = req.user.firstName;
-    // User.findOneAndUpdate(query, req.newData, {upsert: true}, function(err, doc) {
+ Create: async (req, res, ) => {
+    
+     
+    if (!(req.body.email && req.body.password)) {
+      return res.status(400).send({ error: "Data not formatted properly" });
+    } 
     const firstNameCapitalized = req.body.firstName[0].toUpperCase() + req.body.firstName.substring(1).toLowerCase();
     const lastNameCapitalized = req.body.lastName[0].toUpperCase() + req.body.lastName.substring(1).toLowerCase();
     const user = new User({
@@ -17,15 +22,12 @@ const UsersController = {
       firstName: firstNameCapitalized,
       lastName: lastNameCapitalized,
     });
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-    
-
-      res.status(201).redirect("/posts");
-    });
-  },
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+    console.log(user.password)
+    await user.save().then((doc) => res.status(201).redirect("/sessions/new"));
+  }
 };
+
 
 module.exports = UsersController;
