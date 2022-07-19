@@ -1,7 +1,8 @@
 <h1 class="title">Post Timeline</h1>
+<a class="new-post-link" href="/posts/new">New post</a>
+
 <ul class="posts">
   {{#each posts}}
-
   <div class="post-container">
     <li class="each-message">{{this.message}}<br>{{this.date}}</li>
       <form action="/posts/delete" method="post" class="delete" >
@@ -10,36 +11,26 @@
       </form>
     </li>
     
-    <div>
-      <form action="/posts/updateLikes/{{this.id}}" method="post">
-        <button id="like-button">
-          Like
-        </button><span id="like-counter">{{this.likes}}</span>
-      </form>
-    </div>
+    <form action="/posts/updateLikes/{{this.id}}" method="post">
+      <button id="like-button"> 👍 </button>
+    </form> 
+    <span id="like-counter">{{this.likes}}</span>
   </div>
 
-   <div class = "comments">
-  <form action="/posts/comment/{{this._id}}" method="get">
-    <button id="comment-button">
-      Comment
-    </button>
-  </form>
-</div>
-
-
-
-<p> Comments: </p>
-<div class='array-output-wrapper'>
-  <ul id= "comments-list">
-    {{#each this.comments}}
-      <li id = "commenting"> {{this}} </li>
-    {{/each}}
+  <div class = "comments">
+    <form action="/posts/comment/{{this._id}}" method="get">
+      <button id="comment-button">
+        Comment
+      </button>
+    </form>
+    <h3> Comments: </h3>
+    <div class='comment-container'>
+      <ul class="Comment-List">
+        {{#each this.comments}}
+          <li id="commenting"> {{this}} </li>
+        {{/each}}
+      </ul>
     </div>
   </div>
-
-
   {{/each}}
 </ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>
