@@ -1,6 +1,9 @@
 const signUpAndSignIn = require("./webhelper");
 
 describe("Profile Page", () => {
+  afterEach(() => {
+    cy.task("dropUsers");
+  });
 
   it("Profile page displays username", () => {
     // run webhelper to sign up and sign in to acebook
@@ -12,9 +15,6 @@ describe("Profile Page", () => {
     // page contains the content 'Profile Page'
     cy.contains("Profile Page")
     cy.contains("CypressTestUser")
-
-    // use webhelper to drop users collection
-    cy.task("dropUsers");
   })
 
 
@@ -29,9 +29,6 @@ describe("Profile Page", () => {
     cy.contains("Test User")
     cy.contains("Cypress")
     cy.contains("11 June 1999")
-
-    // use webhelper to drop users collection
-    cy.task("dropUsers");
   })
 
   it("Displays posts made by user", () => {
@@ -77,6 +74,5 @@ describe("Profile Page", () => {
   
   // use webhelper to drop users and posts collections
   cy.task("dropPosts");
-  cy.task("dropUsers");
   })
 })
