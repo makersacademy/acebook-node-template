@@ -45,8 +45,6 @@ describe("User's Own Profile Page", function() {
       cy.get('#view-self-profile').click();
       cy.get(".posts").should("contain", "Hello, world!");
       cy.get(".posts").should("contain", "someone@example.com");
-  })
+    });
+  });
 });
-
-
-
