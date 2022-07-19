@@ -7,3 +7,17 @@
   <p class="location">Location: {{user.location}}</p>
   <p class="birthday">Date of Birth: {{birthday}}</p>
 </div>
+
+{{!-- posts only from this user displayed --}}
+<ul class="posts">
+  {{#each posts}}
+    {{this.timestamp}}
+    <br />
+    {{this.message}}
+    <br />
+    {{#if this.likes}}
+    <div class="likes">Likes: {{this.likes}}</div>
+    {{/if}}
+    <br />
+  {{/each}}
+</ul>

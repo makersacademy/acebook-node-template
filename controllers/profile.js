@@ -42,10 +42,18 @@ const ProfileController = {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       const dateOfBirth = birthdayData.toLocaleDateString('en-GB', options)
 
+      //search for posts made by this user
+      Post.find({ userId: userId }, (err, userPosts) => {
+        if (err) {
+          throw err;
+        }
+      
       // pass user data object into view file
       res.render("profile/otherUserProfile", {
         user: userData,
+        posts: userPosts,
         birthday: dateOfBirth
+      })
       })
     })
   }

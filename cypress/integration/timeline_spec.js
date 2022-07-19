@@ -27,7 +27,7 @@ describe("Timeline", () => {
     cy.get(".posts").first().should("contain", "Second post");
   });
 
-  it.only("can navigate to other users profile page using the username on the post", () => {
+  it("can navigate to other users profile page using the username on the post", () => {
      // sign up, sign in, and make post as different user
     cy.visit("/users/new");
     cy.get("#firstName").type("Someone");
