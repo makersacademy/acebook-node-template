@@ -1,1 +1,16 @@
 <h1 class="title">{{title}}</h1>
+
+<p class="username">Username: {{name}}</p>
+
+<ul class="posts">
+  {{#each posts}}
+    {{this.timestamp}}
+    <br />
+    {{this.message}}
+    <br />
+    {{#if this.likes}}
+    <div class="likes">Likes: {{this.likes}}</div>
+    {{/if}}
+    <br />
+  {{/each}}
+</ul>
