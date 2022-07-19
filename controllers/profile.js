@@ -24,6 +24,10 @@ const ProfileController = {
       });
     }
     )
+  },
+
+  OtherUser: (req, res) => {
+    res.render("profile/otherUserProfile")
   }
 }
 

@@ -12,7 +12,10 @@
     <li class="post">
       {{this.timestamp}}
       <br />
-      {{this.username}}
+      <div class="username">
+        <a href="/profile/AnotherTestUser">{{this.username}}</a>
+      </div>
+     
       <br />
       {{this.message}}
       <form class="delete-post" action="/posts/delete" method="post">
