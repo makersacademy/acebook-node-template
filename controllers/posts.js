@@ -5,11 +5,13 @@ const PostsController = {
   Index: (req, res) => {
     Post.find()
     .populate("comments")
+    .populate("author")
     .exec((err, posts) => {
               if (err) {
-          throw err;
+          throw err;  
         }
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { 
+        posts: posts });
     });
   },
   New: (req, res) => {
@@ -17,7 +19,11 @@ const PostsController = {
    
   },
   Create: (req, res) => {
-     const post = new Post(req.body);
+    console.log(req.session.user._id)
+     const post = new Post({
+      message: req.body.message,
+      author: req.session.user._id
+    });
     post.save((err) => {
       if (err) {
         throw err;

@@ -3,7 +3,9 @@
 <ul class="posts">
   {{#each posts}}
   <h3 class="post" id="{{this._id}}">{{this.message}}</h3>
-  <p id="list" class="posts">{{this.formatDate}}</p>
+    <h4>{{this.author.firstName}} {{this.author.lastName}}</h4>
+   <p id="list" class="posts">{{this.formatDate}}</p> 
+
   {{#each comments}}
 
 
@@ -47,7 +49,6 @@
   <br />
   {{/each}}
 </ul>
-
 
 
 <a class="new-post-link" href="/posts/new">New post</a>
