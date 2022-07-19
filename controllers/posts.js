@@ -17,7 +17,9 @@ const PostsController = {
   Create: (req, res) => {
     const post = new Post(req.body);
     const todaysdate = Date().slice(0, -31); // gets time/date from mongoose
+    const user = req.session.user.email;
     Object.assign(post, {date: todaysdate}); // adds key/value pair to object
+    Object.assign(post, {user: user});
     post.save((err) => {
       if (err) {
         throw err;
