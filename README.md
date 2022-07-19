@@ -1,7 +1,7 @@
 # Acebook - ETA Team build
 
 ## Overview
-Acebook is a Facebook-clone developed whilst on the Makers Aacademy Bootcamp July 2022.
+Acebook is a Facebook-clone developed whilst on the Makers Academy Bootcamp July 2022.
 - A (full stack) web app that allows users to login to the social media platform
 - Users can interact with other users and profiles by the feed through posts, comments and likes 
 - Build using Test Driven Development and working cohesively as a team 
@@ -42,10 +42,11 @@ Acebook is a Facebook-clone developed whilst on the Makers Aacademy Bootcamp Jul
 
 (https://trello.com/b/fBi79KiE/eta-trello-board)
 
-## ScreenShots 
+## ScreenShots (app)
 
 
 # Setup
+
 ## Quickstart
 
 ### Install Node.js
