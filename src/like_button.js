@@ -32,10 +32,9 @@ class LikeButton extends React.Component {
   }
 }
 
-// Add comments explaining this
-let domContainer = document.querySelector("#like-button-container");
-ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
+// in order to render the like button for all posts, we must iterate through all instances of the element
+document.querySelectorAll(".like-button-container")
+  .forEach(domContainer => {
+    ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
+  })
 
-// Updating likes
-// Need a new route, post request, mongodb
-// comments, form and button and
