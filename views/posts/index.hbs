@@ -26,14 +26,15 @@
       </form>
 
       <div class="comments">
-       <li>Comments: {{this.comment}} </li>
-      </div>
-
+     Comments: {{#each comments}} 
+         <li> {{this}}</li>
+         {{/each}}
       <form class="enter-comment" action="/posts/comment" method="post">
         <input type="text" id="comment" name="comment" value="" />
          <input type="hidden" name="id" value={{this._id}} />
         <input type="submit" value="Comment">
       </form>
+       </div>
       </li>
     </li>
   {{/each}}
