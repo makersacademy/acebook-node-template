@@ -78,4 +78,20 @@ describe("Post model", () => {
     });
   })
 
-});
+  it('has a user', (done) => {
+    var post = new Post({ message: "some message", user: "example@example.com" });
+    
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "some message", user: "example@example.com" });
+
+        expect(posts[0].user).toEqual("example@example.com");
+        done();
+      })
+    })
+  })
+})
