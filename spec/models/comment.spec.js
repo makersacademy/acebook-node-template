@@ -32,5 +32,20 @@ describe("Comment model", () => {
     });
   });
  });
-
+ it("add a like to a comment", (done) => {
+  var postID = new mongoose.Types.ObjectId();
+  var like = new mongoose.Types.ObjectId();
+  var comment = new Comment({
+    postID: postID, 
+    comment: "some comment",
+    likes: like });
+    comment.save((err) => {
+    expect(err).toBeNull()
+    Comment.find((err, comments) => {
+      expect(err).toBeNull();  
+      expect(comments[0].likes).toHaveLength(1);
+      done();      
+    });
+  });
+});
 });
