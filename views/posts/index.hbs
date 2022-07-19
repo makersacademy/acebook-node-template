@@ -10,11 +10,12 @@
         <input name="delete" type="submit" value ="🗑️">
       </form>
     </li>
-    
-    <form action="/posts/updateLikes/{{this.id}}" method="post">
-      <button id="like-button"> 👍 </button>
-    </form> 
-    <span id="like-counter">{{this.likes}}</span>
+    <div class="like-container">
+      <form action="/posts/updateLikes/{{this.id}}" method="post">
+        <button id="like-button"> 👍 </button>
+      </form> 
+      <span id="like-counter">{{this.likes}}</span>
+    </div>
   </div>
   
   <div class = "comments">
@@ -30,7 +31,6 @@
           <li id="commenting"> {{this}} </li>
         {{/each}}
       </ul>
-
     </div>
   </div>
   {{/each}}
