@@ -77,9 +77,32 @@ describe("Post model", () => {
       })
     });
   })
+  it('can write a comment', function(done) {
+    const post = new Post({message: 'some message'});
 
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      Post.updateOne(
+          {'message': 'some message'},
+          {$set: {'comments': 'amazing'}},
+          function(err) {
+            expect(err).toBeNull();
+
+        Post.find(function(err, posts) {
+          expect(err).toBeNull();
+
+          expect(posts[0].toObject()).toMatchObject({
+            message: 'some message',
+            comments: ['amazing']
+          });
+          done();
+        });
+      });
+    });
+  });
   it('has a user', (done) => {
-    var post = new Post({ message: "some message", user: "example@example.com" });
+    var post = new Post({ message: "some message", user: "someone@example.com" });
     
     post.save((err) => {
       expect(err).toBeNull();
@@ -87,11 +110,11 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
 
-        expect(posts[0]).toMatchObject({ message: "some message", user: "example@example.com" });
+        expect(posts[0]).toMatchObject({ message: "some message", user: "someone@example.com" });
 
         expect(posts[0].user).toEqual("example@example.com");
         done();
       })
     })
   })
-})
+});

@@ -1,5 +1,5 @@
-describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+describe("Timeline", function() {
+  it("can can view comments on post", function() {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -15,11 +15,17 @@ describe("Timeline", () => {
     // submit a post
     cy.visit("/posts");
     cy.contains("New post").click();
-
     cy.get("#new-post-form").find('#message').type("Hello, world!");
     cy.get("#new-post-form").submit();
+  
+    // comment on post
+    cy.get('#comment-button:last').click();
+    cy.get('#comment-post-form').find('#comments').type('This is a comment');
+    cy.get('#comment-post-form').submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
-    cy.get(".posts").should("contain", "someone@example.com");
+    // check if the comment appears in the correct div class
+    cy.get(".Comment-List").should("contain", 'This is a comment');
   });
 });
+
+
