@@ -21,11 +21,24 @@ var LikeButton = function (_React$Component) {
       _this.setState({
         likes: newCount
       });
+      // Retrieve Likes
     };
 
-    _this.state = { likes: 0 };
+    _this.componentDidMount = function () {
+      fetch("/posts/viewlikes/" + _this.props.postId).then(function (response) {
+        return response.json();
+      }).then(function (responseJson) {
+        _this.setState({ likes: responseJson.likes });
+      });
+    };
+
+    console.log(props);
+    _this.state = { likes: null };
     return _this;
   }
+
+  // lifecyle method
+
 
   _createClass(LikeButton, [{
     key: "render",
@@ -42,5 +55,12 @@ var LikeButton = function (_React$Component) {
   return LikeButton;
 }(React.Component);
 
+// Add comments explaining this
+
+
 var domContainer = document.querySelector("#like-button-container");
-ReactDOM.render(React.createElement(LikeButton, null), domContainer);
+ReactDOM.render(React.createElement(LikeButton, domContainer.dataset), domContainer);
+
+// Updating likes
+// Need a new route, post request, mongodb
+// comments, form and button and

@@ -54,8 +54,15 @@ const PostsController = {
         } else {
           res.redirect("/posts");
         }
-      });
-    },
+      }
+    );
+  },
+  viewLikeReact: (req, res) => {
+    Post.findOne({ _id: req.params.id }, function (err, post) {
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify({ id: post._id, likes: post.likes }));
+    });
+  },
 };
 
 module.exports = PostsController;

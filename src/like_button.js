@@ -3,7 +3,8 @@
 class LikeButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { likes: 0 };
+    console.log(props);
+    this.state = { likes: null };
   }
 
   addLike = () => {
@@ -11,6 +12,16 @@ class LikeButton extends React.Component {
     this.setState({
       likes: newCount,
     });
+    // Retrieve Likes
+  };
+
+  // lifecyle method
+  componentDidMount = () => {
+    fetch(`/posts/viewlikes/${this.props.postId}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ likes: responseJson.likes });
+      });
   };
 
   render() {
@@ -18,5 +29,10 @@ class LikeButton extends React.Component {
   }
 }
 
+// Add comments explaining this
 let domContainer = document.querySelector("#like-button-container");
-ReactDOM.render(<LikeButton />, domContainer);
+ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
+
+// Updating likes
+// Need a new route, post request, mongodb
+// comments, form and button and
