@@ -87,8 +87,9 @@ describe("Post model", () => {
   });
 
   it("has a timestamp", () => {
-    const timePosted = new Date().toLocaleDateString();
-    var post = new Post({ timestamp: timePosted });
-    expect(post.timestamp).toEqual(timePosted);
+    const datePosted = new Date().toLocaleDateString('en-GB');
+    const timePosted = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    var post = new Post({ timestamp: timePosted + datePosted});
+    expect(post.timestamp).toEqual(timePosted + datePosted);
   });
 });

@@ -17,9 +17,10 @@ const PostsController = {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
     const username = req.session.user.username
-
-    const timePosted = new Date().toLocaleDateString();
-    const post = new Post({userId: id, username: username, message: req.body.message, likes: 0,timestamp: timePosted});
+   
+    const datePosted = new Date().toLocaleDateString('en-GB');
+    const timePosted = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const post = new Post({userId: id, username: username, message: req.body.message, likes: 0,timestamp: `${datePosted} ${timePosted}`});
 
 
     post.save((err) => {
