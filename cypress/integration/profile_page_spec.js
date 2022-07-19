@@ -73,7 +73,7 @@ describe("Profile Page", () => {
     expect($post).not.to.include.text("Do not display")
   })
   // cy.get(".posts").should("contain", "Show this message")
-  // cy.get(".posts").should("not.contain", "Test Post1")
+  // cy.get(".posts").should("not.contain", "Do not display")
   
   // drop Posts collection from database
   cy.task("dropPosts");
