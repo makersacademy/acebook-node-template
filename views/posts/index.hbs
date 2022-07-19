@@ -14,9 +14,6 @@
     <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
       <div class="like-button-container" data-post-id="{{ this._id }}"></div>
     </form>
-      <div class="like-counter">
-        {{this.likes}}
-      </div>
     </tr>
     <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
       <input type="text" value="" name="commentmessage">

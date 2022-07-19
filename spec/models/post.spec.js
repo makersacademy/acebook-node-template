@@ -90,7 +90,6 @@ describe("Post model", () => {
 
       Post.find((err, posts) => {
         expect(err).toBeNull();
-        console.log(posts);
         expect(posts.length).toEqual(0);
         done();
       });

@@ -33,7 +33,6 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-
   Delete: (req, res) => {
     Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
       if (err) {
@@ -44,26 +43,13 @@ const PostsController = {
       }
     });
   },
-
-  Like: (req, res) => {
-    Post.findOneAndUpdate({ _id: req.params.id }, { $inc: { likes: 1 } }).exec(
-      function (err) {
-        if (err) {
-          console.log(err);
-          res.redirect("back");
-        } else {
-          res.redirect("/posts");
-        }
-      }
-    );
-  },
-  viewLikeReact: (req, res) => {
+  ViewLikeReact: (req, res) => {
     Post.findOne({ _id: req.params.id }, function (err, post) {
       res.setHeader("Content-Type", "application/json");
       res.end(JSON.stringify({ id: post._id, likes: post.likes }));
     });
   },
-  updateLikeReact: (req, res) => {
+  UpdateLikeReact: (req, res) => {
     Post.findOneAndUpdate({ _id: req.params.id }, { $inc: { likes: 1 } }).exec(
       function (err) {
         if (err) {
