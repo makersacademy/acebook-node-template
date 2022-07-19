@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <table class="post">
+  <div class="post">
   <li class="post-elements">
     <tr class="post-text">
       {{this.message}}, {{this.firstname}}
@@ -19,7 +19,7 @@
       </div>
     </tr>
     <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
-      <input type="text" value="" name="commentmessage">
+      <input id="comment" type="text" value="" name="commentmessage" class="commentinput">
       <button class="comment-button">Comment</button>
     </form>
     <div class="comment-text">
@@ -28,7 +28,7 @@
       {{/each}}
     </div>
   </li>
-  </table>
+  </div>
   {{/each}}
 </ul>
 
