@@ -88,8 +88,10 @@ describe("Post model", () => {
         Post.find(function(err, posts) {
           expect(err).toBeNull();
 
-          expect(posts[0]).toMatchObject({
-            message: 'some message'});
+          expect(posts[0].toObject()).toMatchObject({
+            message: 'some message',
+            comments: ['amazing']
+          });
           done();
         });
       });
