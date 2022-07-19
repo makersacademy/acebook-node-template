@@ -11,5 +11,6 @@ router.post("/delete/:id", PostsController.Delete);
 router.post("/likes/:id", PostsController.Like);
 router.post("/comments/:id", CommentsController.Create);
 router.get("/viewlikes/:id", PostsController.viewLikeReact);
+router.post("/updatelikes/:id", PostsController.updateLikeReact);
 
 module.exports = router;

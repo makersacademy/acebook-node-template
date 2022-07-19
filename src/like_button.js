@@ -13,6 +13,9 @@ class LikeButton extends React.Component {
       likes: newCount,
     });
     // Retrieve Likes
+    fetch(`/posts/updatelikes/${this.props.postId}`, {
+      method: "POST",
+    });
   };
 
   // lifecyle method

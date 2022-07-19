@@ -22,6 +22,9 @@ var LikeButton = function (_React$Component) {
         likes: newCount
       });
       // Retrieve Likes
+      fetch("/posts/updatelikes/" + _this.props.postId, {
+        method: "POST"
+      });
     };
 
     _this.componentDidMount = function () {

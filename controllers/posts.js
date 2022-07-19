@@ -63,6 +63,16 @@ const PostsController = {
       res.end(JSON.stringify({ id: post._id, likes: post.likes }));
     });
   },
+  updateLikeReact: (req, res) => {
+    Post.findOneAndUpdate({ _id: req.params.id }, { $inc: { likes: 1 } }).exec(
+      function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+        }
+      }
+    );
+  },
 };
 
 module.exports = PostsController;
