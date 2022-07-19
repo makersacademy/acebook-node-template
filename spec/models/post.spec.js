@@ -87,7 +87,7 @@ describe("Post model", () => {
   });
 
   it("has a timestamp", () => {
-    const timePosted = new Date();
+    const timePosted = new Date().toLocaleDateString();
     var post = new Post({ timestamp: timePosted });
     expect(post.timestamp).toEqual(timePosted);
   });
