@@ -1,10 +1,6 @@
 const signUpAndSignIn = require("./webhelper");
 
 describe("Profile Page", () => {
-  afterEach(() => {
-    // use tasks to drop collections after each test
-    cy.task("dropUsers");
-  })
 
   it("Profile page displays username", () => {
     // run webhelper to sign up and sign in to acebook
@@ -16,6 +12,9 @@ describe("Profile Page", () => {
     // page contains the content 'Profile Page'
     cy.contains("Profile Page")
     cy.contains("CypressTestUser")
+
+    // use webhelper to drop users collection
+    cy.task("dropUsers");
   })
 
 
@@ -29,14 +28,16 @@ describe("Profile Page", () => {
     // test for information on profile page
     cy.contains("Test User")
     cy.contains("Cypress")
-    cy.contains("11th June 1999")
+    cy.contains("11 June 1999")
 
+    // use webhelper to drop users collection
+    cy.task("dropUsers");
   })
 
   it("Displays posts made by user", () => {
   // sign up, sign in, and make post as different user
   cy.visit("/users/new");
-  cy.get("#name").type("AnotherTestUser");
+  cy.get("#username").type("AnotherTestUser");
   cy.get("#email").type("test2@cypress.com");
   cy.get("#password").type("password123");
   cy.get("#submit").click();
@@ -73,10 +74,9 @@ describe("Profile Page", () => {
     expect($post).to.contain("Show this message")
     expect($post).not.to.include.text("Do not display")
   })
-  // cy.get(".posts").should("contain", "Show this message")
-  // cy.get(".posts").should("not.contain", "Do not display")
   
-  // drop Posts collection from database
+  // use webhelper to drop users and posts collections
   cy.task("dropPosts");
+  cy.task("dropUsers");
   })
 })
