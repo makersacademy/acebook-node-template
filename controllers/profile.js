@@ -20,7 +20,7 @@ const ProfileController = {
       res.render("profile/userProfile", { 
         posts: userPosts.reverse(),
         title: "Profile Page",
-        userData: req.session.user,
+        user: req.session.user,
         birthday: dateOfBirth
       });
     }
