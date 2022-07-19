@@ -5,9 +5,23 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
-    {{{body}}}
+    <div class="navigation-menu">
+      {{#if session.user.email }}
+      📧 E-mail: {{session.user.email}}
+      {{/if}}
+      <input type="button" class="navigation-button" id="home-button" value="🏠 Home" onclick="location.href='/'"></input>
+      {{#if session.user.email }}
+        <input type="button" class="navigation-button" id="view-posts" value="📜 Posts" onclick="location.href='/posts/'"></input>
+        <form action='/sessions?_method=DELETE' method='POST'>
+          <input class="navigation-button" id="sign-out-button" type="submit" value="🚪 Sign Out">
+        </form>
+      {{else}}
+        <input class="navigation-button" id="login-button" type="submit" onclick="location.href='/sessions/new'" value="🔑 Log In">
+        <input class="navigation-button" id="sign-up-button" type="submit" onclick="location.href='/users/new'" value="✍️ Sign Up">
+      {{/if}}
+    </div>
+    <div class="content">
+      {{{body}}}
+    </div>
   </body>
 </html>

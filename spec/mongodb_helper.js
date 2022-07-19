@@ -11,6 +11,8 @@ beforeAll(function (done) {
   db.on("open", function () {
     done();
   });
+
+  // mongoose.connection.collections.posts.drop();
 });
 
 afterAll(function (done) {
