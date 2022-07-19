@@ -18,7 +18,6 @@ describe("Timeline", function() {
     cy.get("#new-post-form").find('#message').type("Hello, world!");
     cy.get("#new-post-form").submit();
   
-
     // comment on post
     cy.get('#comment-button:last').click();
     cy.get('#comment-post-form').find('#comments').type('This is a comment');
