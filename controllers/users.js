@@ -18,7 +18,7 @@ const UsersController = {
   },
   SelfProfile: (req, res) => {
     // console.log(req.session.user.email);
-    res.render("users/profile", {user_email: req.session.user.email})
+    res.render("users/profile", {session: req.session})
 
   },
   ShowProfile: (req, res) => {
