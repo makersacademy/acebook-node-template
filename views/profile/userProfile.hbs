@@ -1,6 +1,12 @@
 <h1 class="title">{{title}}</h1>
 
-<p class="username">Username: {{name}}</p>
+<div class="user-information-container">
+  <h2 class="fullname">{{userData.firstName}} {{userData.lastName}}</h2>
+  <p class="username">Username: {{userData.username}}</p>
+  <p class="location">Location: {{userData.location}}</p>
+  <p class="birthday">Date of Birth: {{birthday}}</p>
+</div>
+
 
 <ul class="posts">
   {{#each posts}}
