@@ -6,3 +6,55 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* NAV BAR TOP OF PAGE */
+
+.topnav {
+  background-color: black;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* MAIN CONTAINER - MAIN PAGE */
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+}
+
+h1 {
+  font-size: 5rem;
+  margin: 0px;
+  color: black;
+}
+
+.main-text {
+  margin-left: 80px;
+  margin-top: 150px;
+  margin-bottom: 150px;
+  position: relative;
+  left: -0.9em;
+}
+
+.main-text p {
+  font-size: 1.8rem;
+  color: black;
+}
+
+#main{
+  background-image: url('https://thumbs.dreamstime.com/z/yellow-textured-plain-background-wallpaper-design-use-text-image-yellow-textured-plain-background-wallpaper-137515345.jpg');
+  background-repeat: no-repeat;    
+  background-size: cover;
+  background-position: center;
+}
+
