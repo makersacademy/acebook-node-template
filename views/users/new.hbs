@@ -1,14 +1,39 @@
-<h1>Please sign up</h1>
+<link rel="stylesheet" href="/stylesheets/signup.css" />
 
+<h1>Please sign up</h1>
 
 <form id="new-user-form" action="/users" method="post">
   <label for="firstName">First name: </label>
-  <input id="firstName" type="text" name="firstName" value="">
-   <label for="lastName">Last name: </label>
-  <input id="lastName" type="text" name="lastName" value="">
+  <input
+    id="firstName"
+    type="text"
+    name="firstName"
+    placeholder="Enter First Name"
+    value=""
+  />
+  <label for="lastName">Last name: </label>
+  <input
+    id="lastName"
+    type="text"
+    name="lastName"
+    placeholder="Enter Last Name"
+    value=""
+  />
   <label for="email">Email: </label>
-  <input id="email" type="email" name="email" placeholder="Enter Email" value="">
+  <input
+    id="email"
+    type="email"
+    name="email"
+    placeholder="Enter Email"
+    value=""
+  />
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" placeholder="Enter Password" value="">
-  <input id="submit" type="submit" value="Submit">
+  <input
+    id="password"
+    type="password"
+    name="password"
+    placeholder="Enter Password"
+    value=""
+  />
+  <input id="submit" type="submit" value="Submit" class="submit-button" />
 </form>

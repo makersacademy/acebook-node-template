@@ -3,16 +3,16 @@ describe("Timeline", () => {
     cy.exec("mongo acebook_test --eval 'db.dropDatabase()'");
     // sign up
     cy.visit("/users/new");
-    cy.get("#firstName").type("Chris")
-    cy.get("#lastName").type("Brown")
+    cy.get("#firstName").type("Chris");
+    cy.get("#lastName").type("Brown");
     cy.get("#email").type("a@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#firstName").type("Chris")
-    cy.get("#lastName").type("Brown")
+    cy.get("#firstName").type("Chris");
+    cy.get("#lastName").type("Brown");
     cy.get("#email").type("a@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
@@ -23,7 +23,6 @@ describe("Timeline", () => {
 
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
-
 
     // like a post
     cy.visit("/posts");
