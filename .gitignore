@@ -65,5 +65,6 @@ cypress/screenshots
 cypress/videos
 
 # DS Store
+.DS_Store
 cypress/.DS_Store
 
