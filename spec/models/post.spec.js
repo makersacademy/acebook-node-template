@@ -112,7 +112,7 @@ describe("Post model", () => {
 
         expect(posts[0]).toMatchObject({ message: "some message", user: "someone@example.com" });
 
-        expect(posts[0].user).toEqual("example@example.com");
+        
         done();
       })
     })
