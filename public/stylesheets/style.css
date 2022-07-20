@@ -1,11 +1,20 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: beige;
+  background-color: rgb(220, 239, 245);
 }
 
 h1.title {
-  background-color: darkgreen;
+  background-color:  #1391CC;
+  color: rgb(196, 214, 218);
+  font-family: Monaco;
+  display:table;
+  padding: 7px;
+}
+
+
+h4.title {
+  background-color: rgb(0, 90, 100);
   color: white;
   font-family: Monaco;
   display:table;
@@ -30,7 +39,7 @@ div.navigation-menu {
 .navigation-button {
   border: none;
   color: white;
-  background-color: darkgreen;
+  background-color: #1391CC;
   text-align: center;
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
@@ -44,7 +53,7 @@ div.navigation-menu {
 .post-button, input[type=submit] {
   border: none;
   color: white;
-  background-color: darkgreen;
+  background-color: #1391CC;
   text-align: center;
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
@@ -53,7 +62,7 @@ div.navigation-menu {
 
 .navigation-button:hover {
   color: greenyellow;
-  background-color: darkgreen;
+  background-color: rgb(21, 119, 206);
   padding-top: 3px;
 }
 
@@ -70,5 +79,6 @@ li.each-message {
   margin-top: 3px;
   margin-bottom: 3px;
   list-style-type: none;
-  background-color: blanchedalmond;
+  background-color: rgb(196, 225, 229);
+  display:table
 }
