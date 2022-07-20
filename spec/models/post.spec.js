@@ -87,9 +87,12 @@ describe("Post model", () => {
   });
 
   it("has a timestamp", () => {
-    const datePosted = new Date().toLocaleDateString('en-GB');
-    const timePosted = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    var post = new Post({ timestamp: timePosted + datePosted});
+    const datePosted = new Date().toLocaleDateString("en-GB");
+    const timePosted = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    var post = new Post({ timestamp: timePosted + datePosted });
     expect(post.timestamp).toEqual(timePosted + datePosted);
   });
 
@@ -100,14 +103,16 @@ describe("Post model", () => {
       userId: id,
       username: "TestUser",
       message: "some message",
-      likes: [{
-        userId: id,
-        liked: true,
-      }],
+      likes: [
+        {
+          userId: id,
+          liked: true,
+        },
+      ],
     });
 
     expect(post.likes[0].userId).toEqual(ObjectId("123456ABCDEF"));
-  })
+  });
 
   it("stores a boolean value if the user has liked the post", () => {
     const ObjectId = require("mongodb").ObjectId;
@@ -116,12 +121,30 @@ describe("Post model", () => {
       userId: id,
       username: "TestUser",
       message: "some message",
-      likes: [{
-        userId: id,
-        liked: true,
-      }],
+      likes: [
+        {
+          userId: id,
+          liked: true,
+        },
+      ],
     });
 
     expect(post.likes[0].liked).toBe(true);
-  })
+  });
+
+  it("stores the url of an image if a user submits one", (done) => {
+    let post = new Post({
+      message: "delete this message",
+      image: "www.testimage.com",
+    });
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts[0].image).toEqual("www.testimage.com");
+        done();
+      });
+    });
+  });
 });
