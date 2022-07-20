@@ -1,23 +1,23 @@
-const signUpAndSignIn = () => {
+const signUpAndSignIn = (firstName, lastName) => {
   // sign up
   cy.visit("/users/new");
 
-  cy.get("#firstName").type("Test");
-  cy.get("#lastName").type("User");
+  cy.get("#firstName").type(firstName);
+  cy.get("#lastName").type(lastName);
 
-  cy.get("#username").type("CypressTestUser");
+  cy.get("#username").type(`${firstName}${lastName}`);
 
   cy.get("#birthday").type("1999-06-11");
-  cy.get("#location").type("Cypress");
+  cy.get("#location").type("London");
 
-  cy.get("#email").type("test@cypress.com");
+  cy.get("#email").type(`${firstName}${lastName}@cypress.com`);
   cy.get("#password").type("password");
 
   cy.get("#submit").click();
 
   // sign in
   cy.visit("/sessions/new");
-  cy.get("#email").type("test@cypress.com");
+  cy.get("#email").type(`${firstName}${lastName}@cypress.com`);
   cy.get("#password").type("password");
   cy.get("#submit").click();
 }

@@ -7,7 +7,7 @@ describe("Delete Post", () => {
   });
 
   it("A user can delete a post when they're signed in", () => {
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User");
 
     // submit a post
     cy.visit("/posts");
@@ -21,6 +21,7 @@ describe("Delete Post", () => {
     cy.visit("/posts");
     cy.get(".delete-post").first().submit();
 
+    // assert that the page no longer shows the post
     cy.visit("/posts");
     cy.get(".posts").should("not.contain", "Delete this post!");
   });

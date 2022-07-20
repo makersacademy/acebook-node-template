@@ -7,7 +7,7 @@ describe("Timeline", () => {
 
   it("displays posts most recent first", () => {
     // run webhelper to sign up and sign in to acebook
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User");
 
     // submit first post
     cy.visit("/posts");
@@ -23,6 +23,7 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Second post");
     cy.get("#new-post-form").submit();
 
+    // assert that the first post on the page is the most recently posted
     cy.get(".posts").first().should("contain", "Second post");
 
     // use webhelper to drop posts database
@@ -31,17 +32,7 @@ describe("Timeline", () => {
 
   it("can navigate to other users profile page using the username on the post", () => {
      // sign up, sign in, and make post as different user
-    cy.visit("/users/new");
-    cy.get("#firstName").type("Someone");
-    cy.get("#lastName").type("Else");
-    cy.get("#username").type("AnotherTestUser");
-    cy.get("#email").type("test2@cypress.com");
-    cy.get("#password").type("password123");
-    cy.get("#submit").click();
-
-    cy.get("#email").type("test2@cypress.com");
-    cy.get("#password").type("password123");
-    cy.get("#submit").click();
+    signUpAndSignIn("Test", "User2")
 
     cy.contains("New post").click();
 
@@ -54,12 +45,12 @@ describe("Timeline", () => {
     cy.url().should("include", "/");
 
     // use webhelper to sign up and sign in
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User1");
 
     cy.get(".username > a").click();
 
-    cy.url().should("include", "/profile/AnotherTestUser");
-    cy.contains("Someone Else")
+    cy.url().should("include", "/profile/");
+    cy.contains("Test User2")
 
     // use webhelper to drop posts database
     cy.task("dropPosts")
