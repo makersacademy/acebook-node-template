@@ -1,10 +1,11 @@
 <h1>Timeline</h1>
-{{!-- 
+
 <ul class="posts">
   {{#each posts}}
+  {{log posts}}
   <h3 class="post" id="{{this._id}}">{{this.message}}</h3>
     <h4>{{this.author.firstName}} {{this.author.lastName}}</h4>
-   <p id="list" class="posts">{{this.formatDate}}</p>  --}}
+   <p id="list" class="posts">{{this.formatDate}}</p> 
 
   {{!-- {{#each comments}}
 
@@ -18,9 +19,9 @@
     <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
     <input type="submit" value="Remove Like">
   </form>
-  {{/each}}
+  {{/each}} --}}
 
-  {{#if likes}}
+  {{!-- {{#if likes}}
   Likes: {{likes.length}}
   {{/if}}
   <p>
@@ -44,11 +45,11 @@
   <form id="delete-list-button" action="/posts/delete" method="post">
     <input type="submit" name="{{this.message}}" value="Delete post">
     <input type="hidden" name="_id" value={{this.id}}>
-  </form>
+  </form> --}}
   <br />
-  <br /> 
+  <br />
   {{/each}}
 </ul>
 
 
-<a class="new-post-link" href="/posts/new">New post</a>--}}
+<a class="new-post-link" href="/posts/new">New post</a>
