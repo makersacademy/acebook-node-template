@@ -7,7 +7,10 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts.reverse(), user: req.session.user });
+      res.render("posts/index", {
+        posts: posts.reverse(),
+        user: req.session.user,
+      });
     });
   },
   New: (req, res) => {
@@ -16,12 +19,21 @@ const PostsController = {
   Create: (req, res) => {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
-    const username = req.session.user.username
-   
-    const datePosted = new Date().toLocaleDateString('en-GB');
-    const timePosted = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const post = new Post({userId: id, username: username, message: req.body.message, likes: [],timestamp: `${datePosted} ${timePosted}`});
+    const username = req.session.user.username;
 
+    const datePosted = new Date().toLocaleDateString("en-GB");
+    const timePosted = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    const post = new Post({
+      userId: id,
+      username: username,
+      message: req.body.message,
+      likes: [],
+      timestamp: `${datePosted} ${timePosted}`,
+      comments: []
+    });
 
     post.save((err) => {
       if (err) {
@@ -45,15 +57,27 @@ const PostsController = {
     const ObjectId = require("mongodb").ObjectId;
     const postId = new ObjectId(req.body.id);
     const likingUserId = new ObjectId(req.session.user._id);
-    const like = { userId: likingUserId, liked: true }
-    Post.updateOne({_id: postId},  { $push: { likes: like } }, (err) => {
+    const like = { userId: likingUserId, liked: true };
+    Post.updateOne({ _id: postId }, { $push: { likes: like } }, (err) => {
       if (err) {
         throw err;
       }
       res.redirect("/posts");
-    })
+    });
   },
-
+  Comment: (req, res) => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = ObjectId(req.body.id);
+    const comment = req.body.comment;
+    Post.updateOne({ _id: id }, { $push: { comments: comment } }, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/posts")
+    });
+  },
 };
+
+
 
 module.exports = PostsController;
