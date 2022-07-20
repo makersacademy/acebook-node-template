@@ -19,7 +19,7 @@ describe("Timeline", () => {
 
     cy.get(".post-text")
       .first()
-      .should("have.text", "Second post, should appear first, Mongo");
+      .should("include.text", "Second post, should appear first, Mongo");
   });
 });
 
