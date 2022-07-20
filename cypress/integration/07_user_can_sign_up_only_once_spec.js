@@ -18,7 +18,7 @@ describe("Registration", () => {
 
       // there should be a warning
       cy.url().should("include", "/users");
-      cy.get("#error-message").should("contain", "User Already Exists. Please Enter A New Email Address")
+      cy.get(".error-message").should("contain", "User Already Exists. Please Enter A New Email Address")
     });
   });
 });

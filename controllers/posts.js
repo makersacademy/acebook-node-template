@@ -6,8 +6,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      posts.reverse() // reorders posts, so newest post is always at the top of the list
-
+      posts.reverse(); // reorders posts, so newest post is always at the top of the list
       res.render("posts/index", { posts: posts, session: req.session });
     });
   },
@@ -24,21 +23,17 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.status(201).redirect("/posts");
     });
   },
   // implementing a delete function:
   Delete: (req, res) => {
-    console.log(req);
-    console.log(req.body.id);
     Post.findOneAndDelete(
       {_id: req.body._id},
       (err, result)=>{
-      console.log(err);
-      console.log(result);
-      res.status(201).redirect("/posts");
-    });  
+        res.status(201).redirect("/posts");
+      }
+    );  
   },
 
   UpdateLikes: function(req, res){

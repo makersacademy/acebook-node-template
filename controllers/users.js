@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Post = require('../models/post');
 
 const UsersController = {
   New: (req, res) => {
@@ -17,9 +18,14 @@ const UsersController = {
     });
   },
   SelfProfile: (req, res) => {
-    // console.log(req.session.user.email);
-    res.render("users/profile", {session: req.session})
-
+    const accountEmail = req.session.user.email;
+    Post.find({user: accountEmail}, (err, posts) => {
+      if (err) {
+        throw err;
+      }
+      posts.reverse() // reorders posts, so newest post is always at the top of the list
+      res.render("users/profile", {posts: posts, session: req.session});
+    });
   },
   ShowProfile: (req, res) => {
     
