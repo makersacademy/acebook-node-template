@@ -42,7 +42,7 @@ describe("Post model", () => {
       message: "some message",
       likes: [],
     });
-    expect(Array.from(post.likes)).toEqual([]);
+    expect(post.likes).toBeInstanceOf(Array);
   });
 
   it("can list all posts", (done) => {

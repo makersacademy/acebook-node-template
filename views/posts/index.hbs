@@ -21,7 +21,7 @@
       </form>
       {{#if this.likes}}
       <div class="likes">
-       <button>Likes: {{this.likes}}</button> 
+       Likes: {{this.likes.length}}
         </div>
       {{/if}}
       <form class="like-post" action="/posts/like" method="post">
