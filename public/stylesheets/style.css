@@ -12,3 +12,58 @@ a {
   font-weight: bolder;
   color: #1877f2;
 }
+
+#welcome-paragraph {
+  font: 30px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin-top: 20px;
+}
+
+#login-button {
+  background-color: #1877f2;
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  font-weight: bold;
+  width: 70px;
+  align-items: right;
+}
+
+#login-button:hover {
+  background-color: #166fe5;
+  cursor: pointer;
+}
+
+#signup-button {
+  background-color: #42b72a;
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  font-weight: bold;
+  width: 180px;
+  margin-top: 20px;
+}
+
+#signup-button:hover {
+  background-color: #36a420;
+  cursor: pointer;
+}
+
+#logout-button {
+  background-color: #1877f2;
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  font-weight: bold;
+  width: 70px;
+}
+
+#logout-button:hover {
+  background-color: #166fe5;
+  cursor: pointer;
+}

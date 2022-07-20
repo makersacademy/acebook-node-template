@@ -1,35 +1,30 @@
-
-
 <html>
   <head>
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    
-  <form action="/sessions?_method=DELETE" method="POST">
-    <input type="submit" value="Log Out" />
-  </form>
-    
-  <form action="/sessions/new" method="GET">
-    <input type="submit" value="Log in" />
-  </form>    
-    
-  <form action="/users/new" method="GET">
-    <input type="submit" value="Sign up" />
-  </form>
 
+    <form action="/sessions?_method=DELETE" method="POST">
+      <input type="submit" value="Log Out" id="logout-button" />
+    </form>
 
-  <form action="/" method="GET">
-    <input type="submit" value="Home page" />
-  </form>
+    <form action="/sessions/new" method="GET">
+      <input type="submit" value="Log in" id="login-button" />
+    </form>
 
-  <form action="/posts" method="GET">
-    <input type="submit" value="Posts" />
-  </form>
+    <form action="/users/new" method="GET">
+      <input type="submit" value="Create New Account" id="signup-button" />
+    </form>
 
-    
-   
+    <form action="/" method="GET">
+      <input type="submit" value="Home page" id="homepage-button" />
+    </form>
+
+    <form action="/posts" method="GET">
+      <input type="submit" value="Posts" id="posts-button" />
+    </form>
+
     {{{body}}}
   </body>
 </html>
