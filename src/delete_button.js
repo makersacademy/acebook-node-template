@@ -1,42 +1,38 @@
- class DeleteButton extends React.Component {
+'use strict';
+
+class DeleteButton extends React.Component {
+  constructor(props) {
+    super(props);
+   this.state = { status: 'Delete' };
+  }
+
+  addDelete = () => {
+    this.setState({ status: 'Delete successful' });
+  };
+
+   // lifecyle method
+   
+  componentDidMount() {
+    fetch(`/posts/deletepost/${this.props.postId}`, { method: 'POST' })
+      .then(() => this.setState({
+         status: 'Delete successful' 
+      }));
+  }
 
   render() {
-    return <button class="delete-button"> hello BUTTON</button>;
+    const { status } = this.state;
+    return (
+      <button onClick={this.addDelete}>
+       { status }
+      </button>
+    );
   }
 }
 
 
-var domContainer = document.querySelector(“.delete-button-container”);
-ReactDOM.render(React.createElement(DeleteButton, null), domContainer);
+// state data set
 
 
-/*
 
-
-*/
-// include respective post inside the state of Delete constructor
-// so that it is stored/remembered there
-// or call it from outside
-
-// when child function of DeleteButton i.e. deletepost/renderDelete is called with onClick/handleClick
-// the state is switched to null
-
-// then connect to database, so deleted from database with 
-
-// no constructor in stoverflow example
-
-
-/*
-
-  Delete: (req, res) => {
-    Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
-      if (err) {
-        console.log(err);
-        res.redirect("back");
-      } else {
-        res.redirect("/posts");
-      }
-    });
-  },
-
-  */
+let domContainer = document.querySelector('#delete-button-container');
+ReactDOM.render(<DeleteButton {...domContainer.dataset} />, domContainer);

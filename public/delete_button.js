@@ -1,3 +1,5 @@
+'use strict';
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14,17 +16,38 @@ var DeleteButton = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (DeleteButton.__proto__ || Object.getPrototypeOf(DeleteButton)).call(this, props));
 
-    _this.state = { state: null };
+    _this.addDelete = function () {
+      _this.setState({ status: 'Delete successful' });
+    };
+
+    _this.state = { status: 'Delete' };
     return _this;
   }
 
   _createClass(DeleteButton, [{
-    key: "render",
+    key: 'componentDidMount',
+
+
+    // lifecyle method
+
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/posts/deletepost/' + this.props.postId, { method: 'POST' }).then(function () {
+        return _this2.setState({
+          status: 'Delete successful'
+        });
+      });
+    }
+  }, {
+    key: 'render',
     value: function render() {
+      var status = this.state.status;
+
       return React.createElement(
-        "button",
-        { "class": "delete-button" },
-        " the BUTTON"
+        'button',
+        { onClick: this.addDelete },
+        status
       );
     }
   }]);
@@ -32,34 +55,8 @@ var DeleteButton = function (_React$Component) {
   return DeleteButton;
 }(React.Component);
 
-document.querySelectorAll(".delete-button-container").forEach(function (domContainer) {
-  ReactDOM.render(React.createElement(DeleteButton, domContainer.dataset), domContainer);
-});
-
-ReactDOM.render(React.createElement(LikeButton, null), domContainer);
-// include respective post inside the state of Delete constructor
-// so that it is stored/remembered there
-// or call it from outside
-
-// when child function of DeleteButton i.e. deletepost/renderDelete is called with onClick/handleClick
-// the state is switched to null
-
-// then connect to database, so deleted from database with 
-
-// no constructor in stoverflow example
+// state data set
 
 
-/*
-
-  Delete: (req, res) => {
-    Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
-      if (err) {
-        console.log(err);
-        res.redirect("back");
-      } else {
-        res.redirect("/posts");
-      }
-    });
-  },
-
-  */
+var domContainer = document.querySelector('#delete-button-container');
+ReactDOM.render(React.createElement(DeleteButton, domContainer.dataset), domContainer);

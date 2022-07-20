@@ -43,6 +43,16 @@ const PostsController = {
       }
     });
   },
+
+  DeleteReact: (req, res) => {
+    Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+      }
+    });
+  },
+
   ViewLikeReact: (req, res) => {
     Post.findOne({ _id: req.params.id }, function (err, post) {
       res.setHeader("Content-Type", "application/json");

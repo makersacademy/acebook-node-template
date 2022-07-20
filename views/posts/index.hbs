@@ -8,8 +8,7 @@
       <small class="datestamp">Created at {{this.createdAt}}</small>
     </tr>
    <form id="delete-button" action="/posts/delete/{{ this.id }}" method="post">
-      <div class="delete-button-container"></div>
-      {{!-- <button class="delete-button">Delete</button> --}}
+      <div id="delete-button-container" data-post-id="{{ this._id }}></div>
     </form>
     <tr>
     <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
@@ -39,3 +38,4 @@
 
 <!-- Load our React component. -->
 <script src="like_button.js"></script>
+<script src="delete_button.js"></script>
