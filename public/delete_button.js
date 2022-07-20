@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -17,35 +17,23 @@ var DeleteButton = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (DeleteButton.__proto__ || Object.getPrototypeOf(DeleteButton)).call(this, props));
 
     _this.addDelete = function () {
-      _this.setState({ status: 'Delete successful' });
+      fetch("/posts/deletepost/" + _this.props.postId, {
+        method: "DELETE"
+      });
+      return _this.setState({ status: "Delete successful" });
     };
 
-    _this.state = { status: 'Delete' };
+    _this.state = { status: "Delete" };
     return _this;
   }
 
   _createClass(DeleteButton, [{
-    key: 'componentDidMount',
-
-
-    // lifecyle method
-
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/posts/deletepost/' + this.props.postId, { method: 'POST' }).then(function () {
-        return _this2.setState({
-          status: 'Delete successful'
-        });
-      });
-    }
-  }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var status = this.state.status;
 
       return React.createElement(
-        'button',
+        "button",
         { onClick: this.addDelete },
         status
       );
@@ -57,6 +45,9 @@ var DeleteButton = function (_React$Component) {
 
 // state data set
 
+// let domContainer = document.querySelector(".delete-button-container");
+// ReactDOM.render(<DeleteButton {...domContainer.dataset} />, domContainer);
 
-var domContainer = document.querySelector('#delete-button-container');
-ReactDOM.render(React.createElement(DeleteButton, domContainer.dataset), domContainer);
+document.querySelectorAll(".delete-button-container").forEach(function (domContainer) {
+  ReactDOM.render(React.createElement(DeleteButton, domContainer.dataset), domContainer);
+});
