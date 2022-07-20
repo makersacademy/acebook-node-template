@@ -3,31 +3,31 @@
   {{#each posts}}
   <div class="post">
   <li class="post-elements">
-    <tr class="post-text">
+    <div class="post-text">
       {{this.message}}, {{this.firstname}}
       <small class="datestamp">Created at {{this.createdAt}}</small>
-    </tr>
+    </div>
    <form id="delete-button" action="/posts/delete/{{ this.id }}" method="post">
       <button class="delete-button">Delete</button>
     </form>
-    <tr>
+    <div>
     <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
       <button class="like-button">Like</button> 
     </form>
       <div class="like-counter">
         {{this.likes}}
       </div>
-    </tr>
+    </div>
     <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
       <input id="comment" type="text" value="" name="commentmessage" class="commentinput">
       <button class="comment-button">Comment</button>
     </form>
     <div class="comment-text">
       {{#each this.comments}}
-        <li><div class="comment-message-text">{{this.commentMessage}}</div>
+      <li><div class="comment-message-text">{{this.commentMessage}}</div>
       {{/each}}
     </div>
-  </li>
+      </li>
   </div>
   {{/each}}
 </ul>
