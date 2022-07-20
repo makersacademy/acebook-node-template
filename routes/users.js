@@ -15,6 +15,6 @@ const sessionChecker = (req, res, next) => {
 router.get("/new", UsersController.New);
 router.post("/", UsersController.Create);
 router.get('/profile/', sessionChecker, UsersController.SelfProfile);
-router.get('/profile/:email', sessionChecker, UsersController.ShowProfile);
+router.post('/profile/', sessionChecker, UsersController.ShowProfile);
 
 module.exports = router;
