@@ -82,3 +82,8 @@ li.each-message {
   background-color: rgb(196, 225, 229);
   display:table
 }
+
+.profile-link {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
