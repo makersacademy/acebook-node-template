@@ -6,24 +6,37 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      console.log(posts);
       posts.reverse(); // reorders posts, so newest post is always at the top of the list
       res.render("posts/index", { posts: posts, session: req.session });
     });
   },
   New: (req, res) => {
-    res.render("posts/new", { session: req.session });
+    console.log(req.params.user);
+    res.render("posts/new", { session: req.session, recipient: req.params.user });
+  },
+  NewWallPost: (req, res) => {
+    res.render("posts/new", { session: req.session, recipient: req.body.recipient });
   },
   Create: (req, res) => {
     const post = new Post(req.body);
     const todaysdate = Date().slice(0, -31); // gets time/date from mongoose
     const user = req.session.user.email;
+    const recipient = req.body.recipient;
+    console.log(req.body.user)
     Object.assign(post, {date: todaysdate}); // adds key/value pair to object
     Object.assign(post, {user: user});
-    post.save((err) => {
+    Object.assign(post, {recipient: recipient});
+    post.save((err, result) => {
       if (err) {
         throw err;
       }
-      res.status(201).redirect("/posts");
+      else if (result) {
+        if (result.recipient !== null) {
+          res.status(201).redirect("/posts");
+        }
+      }
+      
     });
   },
   // implementing a delete function:

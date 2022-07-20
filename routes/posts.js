@@ -7,6 +7,7 @@ router.get("/", PostsController.Index);
 router.post("/", PostsController.Create);
 router.get("/new", PostsController.New);
 router.post("/delete", PostsController.Delete);
+router.post("/new", PostsController.NewWallPost);
 
 router.post('/updateLikes/:id', PostsController.UpdateLikes);
 

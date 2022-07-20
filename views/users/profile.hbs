@@ -17,9 +17,9 @@
         </form> 
         <span id="like-counter">{{this.likes}}</span>
       </div>
-        <form action="/posts/new" method="get">
-          <input name="user" type="hidden" value="{{this.user}}">
-          <button id="write-on-wall"> Write on {{this.user}}'s wall</button>
+        <form action="/posts/new" method="post">
+          <input name="recipient" type="hidden" value="{{this.user}}">
+          <input id="write-on-wall" type="submit" value="Write on {{this.user}}'s wall">
         </form> 
     </div>
     
