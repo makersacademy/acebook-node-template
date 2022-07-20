@@ -10,10 +10,14 @@ describe("Buttons", () => {
         cy.get("#login-button").should("contain", "Log In");
         cy.get("#sign-up-button").should("contain", "Sign Up");
 
+        cy.task('emptyPosts', 'emptyUsers').then(() => {
+
         // sign up
         cy.visit("/users/new");
         cy.get("#email").type("someone@example.com");
         cy.get("#password").type("password");
+        cy.get("#name").type("name");
+        cy.get("#surname").type("surname");
         cy.get("#submit").click();
 
         // sign in
@@ -24,4 +28,5 @@ describe("Buttons", () => {
         
         cy.get("#sign-out-button").should("contain", "Sign Out");
     })
+})
 })

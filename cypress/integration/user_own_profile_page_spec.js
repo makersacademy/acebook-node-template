@@ -1,9 +1,13 @@
 describe("User's Own Profile Page", function() {
   it('goes to the Profile Page', () => {
+
+    cy.task('emptyPosts', 'emptyUsers').then(() => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
+    cy.get("#name").type("name");
+    cy.get("#surname").type("surname");
     cy.get("#submit").click();
 
     // sign in
@@ -18,6 +22,7 @@ describe("User's Own Profile Page", function() {
     cy.get(".title").should("contain", "Profile Page");
     cy.get(".greeting").should('contain', "someone@example.com");
   });
+});
   it('redirects user to sign-in page if user has not logged-in', () => {
     cy.visit("/users/profile");
     cy.url().should("include", "/sessions/new")
@@ -50,7 +55,6 @@ describe("User's Own Profile Page", function() {
       cy.get(".posts").should("contain", "Hello, world!");
       cy.get(".posts").should("contain", "someone@example.com");
     });
-  });
   it('does not show posts by other users', () => {
     cy.task('emptyUsers').then(() => {
       // first user signs up
@@ -96,4 +100,5 @@ describe("User's Own Profile Page", function() {
       cy.get('#view-self-profile').click();
       cy.get(".posts").should('not.contain', 'Testing profile page');
   })
+});
 });
