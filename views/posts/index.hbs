@@ -31,6 +31,18 @@
         <input type="hidden" name="id" value={{this._id}} />
         <input type="submit" value="like" />
       </form>
+
+      <div class="comments">
+        Comments: {{#each comments}} 
+       <li id="post-comment"> {{this}} </li>
+          {{/each}} 
+        <form id="enter-comment" action="/posts/comment" method="post">
+          <input type="text" id="comment" name="comment" value="" />
+          <input type="hidden" name="id" value={{this._id}} />
+          <input type="submit" value="Comment">
+        </form>
+      </div>
+       </li>
     </li>
   {{/each}}
 </ul>

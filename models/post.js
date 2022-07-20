@@ -7,7 +7,7 @@ const PostSchema = new mongoose.Schema({
   message: String,
   likes: Array,
   timestamp: String,
-
+  comments: Array,
 });
 
 const Post = mongoose.model("Post", PostSchema);
