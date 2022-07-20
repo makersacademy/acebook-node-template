@@ -58,13 +58,13 @@ describe("Timeline", () => {
 
   it("Profile page link redirects to profile page", () => {
     // run webhelper to sign up and sign in to acebook
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User1")
 
     // user clicks on link to 'Profile Page'
     cy.contains("Profile Page").click();
 
     // page contains the username
-    cy.url().should("include", "/user/CypressTestUser")
+    cy.url().should("include", "/user/TestUser1")
   })
 });
 
