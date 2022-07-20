@@ -15,8 +15,7 @@ const PostsController = {
   Create: (req, res) => {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
- 
-  
+
     const name = req.session.user.name;
 
     const timePosted = new Date();
@@ -26,7 +25,7 @@ const PostsController = {
       message: req.body.message,
       likes: 0,
       timestamp: timePosted,
-      comments: []
+      comments: [],
     });
 
     post.save((err) => {
@@ -58,12 +57,10 @@ const PostsController = {
     });
   },
   Comment: (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.body.id);
-    
     const comment = req.body.comment;
-    console.log(req.body.comment);
     Post.updateOne({ _id: id }, { $push: { comments: comment } }, (err) => {
       if (err) {
         throw err;
