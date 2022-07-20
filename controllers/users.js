@@ -1,9 +1,9 @@
 const User = require("../models/user");
 const Post = require('../models/post');
+
 // This is for the bcrypt module
 const bcrypt = require ('bcrypt'); 
 const saltRounds = 3; // Salt generates a random string to increase password security
-
 
 const UsersController = {
   New: (req, res) => {
@@ -11,21 +11,23 @@ const UsersController = {
   },
 
   Create: (req, res) => {
+    let hashedPassword = "";
     bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(req.body.password, salt, function(err, hash) {
-        console.log(hash);
-      })
-    })
-    
-    const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        console.log(err);
-        res.status(409).render("users/new", { error: 'User already exists!' });
-      } else {
-      res.status(201).redirect("/posts");
-      }
+      bcrypt.hash(req.body.password, salt, function(err, hashedPassword) {
+        const userTest = new User({email: req.body.email, password: hashedPassword});
+        console.log(userTest);
+        const user = new User(req.body);
+        user.save((err) => {
+          if (err) {
+            console.log(err);
+            res.status(409).render("users/new", { error: 'User already exists!' });
+          } else {
+          res.status(201).redirect("/posts");
+          }
+        });
+      });
     });
+    
   },
   SelfProfile: (req, res) => {
     const accountEmail = req.session.user.email;
