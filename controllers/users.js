@@ -1,5 +1,9 @@
 const User = require("../models/user");
 const Post = require('../models/post');
+// This is for the bcrypt module
+const bcrypt = require ('bcrypt'); 
+const saltRounds = 3; // Salt generates a random string to increase password security
+
 
 const UsersController = {
   New: (req, res) => {
@@ -7,6 +11,12 @@ const UsersController = {
   },
 
   Create: (req, res) => {
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+      bcrypt.hash(req.body.password, salt, function(err, hash) {
+        console.log(hash);
+      })
+    })
+    
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
