@@ -14,12 +14,17 @@ const SessionsController = {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         res.redirect("/sessions/new");
-      } else if (user.password != password) {
-        res.redirect("/sessions/new");
       } else {
-        req.session.user = user;
-        res.redirect("/posts");
-      }
+        bcrypt.compare(password, user.password, function(err, hashComparison) {
+          console.log(hashComparison);
+          if (!hashComparison) {
+            res.redirect("/sessions/new");
+          } else {
+            req.session.user = user;
+            res.redirect("/posts");
+          }
+        }); 
+      }   
     });
   },
 

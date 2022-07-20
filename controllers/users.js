@@ -14,9 +14,8 @@ const UsersController = {
     let hashedPassword = "";
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hashedPassword) {
-        const userTest = new User({email: req.body.email, password: hashedPassword});
-        console.log(userTest);
-        const user = new User(req.body);
+        const user = new User({email: req.body.email, password: hashedPassword});
+        console.log(user);
         user.save((err) => {
           if (err) {
             console.log(err);
