@@ -12,12 +12,8 @@
     </form>
     <div>
     <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
-      <button class="like-button">Like</button> 
+      <div class="like-button-container" data-post-id="{{ this._id }}"></div>
     </form>
-      <div class="like-counter">
-        {{this.likes}}
-      </div>
-    </div>
     <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
       <input type="text" value="" name="commentmessage">
       <button class="comment-button">Comment</button>
@@ -35,3 +31,9 @@
 <form action="/posts/new">
   <input class="new-post-link" type="submit" value="New post">
 </form>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+<!-- Load our React component. -->
+<script src="like_button.js"></script>

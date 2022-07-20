@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color:white;
+  background-color: white;
   padding: 50px;
   font: 17px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -157,19 +157,7 @@ input.new-post-link {
   border: none;
 }
 
-button.delete-button {
-  width: 60px;
-  position:relative;
-  left: 230px;
-  background-color: #3b5998;
-  color: white;
-  font: 15px arial,sans-serif;
-  border-radius: 8px;
-  border: none;
-  text-align: center;
-  font-size: x-small;
-}
-button.like-button {
+button {
   width: 60px;
   position:relative;
   left: 230px;
