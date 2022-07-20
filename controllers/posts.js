@@ -50,8 +50,8 @@ const PostsController = {
       }
       res.redirect("/posts");
     })
-   
-  }
+  },
+  
 };
 
 module.exports = PostsController;

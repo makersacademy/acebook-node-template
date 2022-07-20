@@ -5,7 +5,7 @@ const PostSchema = new mongoose.Schema({
   userId: ObjectId,
   username: String,
   message: String,
-  likes: Number,
+  likes: Array,
   timestamp: String,
 
 });
