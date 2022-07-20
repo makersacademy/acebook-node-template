@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
+const bcrypt = require('bcrypt');
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -92,22 +93,24 @@ describe("User model", () => {
       });
     });
   });
-  it('mocks the bcrypt password',  () => {
-    jest.spyOn(bcrypt, 'hash').mockImplementation((password, saltRounds, cb) => cb(null, hashPassword){
-        const user = new User({email: email, password: hashedPassword});
-        console.log(user);
-        user.save((err) => {
-          if (err) {
-            console.log(err);
-            res.status(409).render("users/new", { error: 'User already exists!' });
-          } else {
-          res.status(201).redirect("/posts");
-          }
+  it('mocks the bcrypt password',  (done) => {
+    const callBackAfterHash = (err, hashedPassword) => {
+      const user = new User({email: 'test@bcrypt.com', password: hashedPassword});
+      console.log(user);
+      user.save((err) => {
+        expect(err).toBeNull();
+  
+        User.find((err, users) => {
+          expect(err).toBeNull();
+          expect(users[0]).toMatchObject({
+            email: 'test@bcrypt.com',
+            password: 'hashedPassword',
+          });
+          done();
         });
-      });  
-
-      
-    })
-  })
+      });
+    }
+    jest.spyOn(bcrypt, 'hash').mockImplementation((password, saltRounds, cb) => cb(null, 'hashedPassword'));  
+    bcrypt.hash('original-password', 3, callBackAfterHash);
+  });
 });
-
