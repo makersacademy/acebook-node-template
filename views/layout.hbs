@@ -24,7 +24,7 @@
       {{!-- removed home button--}}
       {{#if session.user.email }}
         <input type="button" class="navigation-button" id="view-self-profile" value="Profile Page" onclick="location.href='/users/profile'"></input>
-        <input type="button" class="navigation-button" id="view-posts" value="📜 Posts" onclick="location.href='/posts/'"></input>
+        <input type="button" class="navigation-button" id="view-posts" value="📜 Posts" onclick="location.href='/posts'"></input>
         <form action='/sessions?_method=DELETE' method='POST'>
           <input class="navigation-button" id="sign-out-button" type="submit" value="🚪 Sign Out">
         </form>
