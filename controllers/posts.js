@@ -57,7 +57,6 @@ const PostsController = {
     });
   },
   Comment: (req, res) => {
-    console.log(req.body);
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.body.id);
     const comment = req.body.comment;
