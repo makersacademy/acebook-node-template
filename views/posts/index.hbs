@@ -20,7 +20,9 @@
         <input type="submit" value="Delete" />
       </form>
       {{#if this.likes}}
-      <div class="likes">Likes: {{this.likes}}</div>
+      <div class="likes">
+       Likes: {{this.likes.length}}
+        </div>
       {{/if}}
       <form class="like-post" action="/posts/like" method="post">
         <input type="hidden" name="id" value={{this._id}} />

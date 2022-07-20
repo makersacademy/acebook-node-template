@@ -33,16 +33,16 @@ describe("Post model", () => {
     expect(post.username).toEqual("TestUser");
   });
 
-  it("has a like counter", () => {
+  it("takes likes as an array", () => {
     const ObjectId = require("mongodb").ObjectId;
     const id = new ObjectId("123456ABCDEF");
     let post = new Post({
       userId: id,
       username: "TestUser",
       message: "some message",
-      likes: 0,
+      likes: [],
     });
-    expect(post.likes).toEqual(0);
+    expect(post.likes).toBeInstanceOf(Array);
   });
 
   it("can list all posts", (done) => {
@@ -92,4 +92,36 @@ describe("Post model", () => {
     var post = new Post({ timestamp: timePosted + datePosted});
     expect(post.timestamp).toEqual(timePosted + datePosted);
   });
+
+  it("stores the id of the user who likes the post", () => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId("123456ABCDEF");
+    let post = new Post({
+      userId: id,
+      username: "TestUser",
+      message: "some message",
+      likes: [{
+        userId: id,
+        liked: true,
+      }],
+    });
+
+    expect(post.likes[0].userId).toEqual(ObjectId("123456ABCDEF"));
+  })
+
+  it("stores a boolean value if the user has liked the post", () => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId("123456ABCDEF");
+    let post = new Post({
+      userId: id,
+      username: "TestUser",
+      message: "some message",
+      likes: [{
+        userId: id,
+        liked: true,
+      }],
+    });
+
+    expect(post.likes[0].liked).toBe(true);
+  })
 });

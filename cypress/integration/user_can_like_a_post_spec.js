@@ -44,4 +44,5 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.get(".post").should("not.contain", "Likes:");
   });
+
 });
