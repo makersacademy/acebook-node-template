@@ -3,12 +3,16 @@ describe("Timeline", () => {
     const now = new Date();
     // sign up
     cy.visit("/users/new");
+    cy.get("#firstName").type("Chris")
+    cy.get("#lastName").type("Brown")
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
     // sign in
     cy.visit("/sessions/new");
+    cy.get("#firstName").type("Chris")
+    cy.get("#lastName").type("Brown")
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
