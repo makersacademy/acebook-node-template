@@ -21,6 +21,9 @@ h4 {
   padding: 7px;
   font-size: small;
 }
+li.each-message {
+  white-space: pre-wrap;
+}
 
 h5 {  
   background-color: rgb(0, 90, 100);
