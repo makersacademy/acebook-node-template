@@ -13,13 +13,24 @@ h1.title {
 }
 
 
-h4.title {
+h4 {
   background-color: rgb(0, 90, 100);
   color: white;
   font-family: Monaco;
   display:table;
   padding: 7px;
+  font-size: small;
 }
+
+h5 {  
+  background-color: rgb(0, 90, 100);
+  color: white;
+  font-family: Monaco;
+  display:table;
+  padding: 7px;
+  font-size: small;
+}
+
 
 a {
   color: #00B7FF;
