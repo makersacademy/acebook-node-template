@@ -7,20 +7,8 @@ describe("Other user profile page", () => {
   });
 
   it("displays detailed information for other users on their profile page", () => {
-    // sign up, sign in, and make post as different user
-    cy.visit("/users/new");
-    cy.get("#firstName").type("Someone");
-    cy.get("#lastName").type("Else");
-    cy.get("#username").type("AnotherTestUser");
-    cy.get("#email").type("test2@cypress.com");
-    cy.get("#password").type("password123");
-    cy.get("#location").type("London")
-    cy.get("#birthday").type("1996-06-01")
-    cy.get("#submit").click();
-
-    cy.get("#email").type("test2@cypress.com");
-    cy.get("#password").type("password123");
-    cy.get("#submit").click();
+    // use webhelper to sign up and sign in as a different user
+    signUpAndSignIn("Test", "User2")
 
     cy.contains("New post").click();
 
@@ -32,27 +20,19 @@ describe("Other user profile page", () => {
     cy.contains("Sign Out").click();
     
     // use webhelper to sign up and sign in
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User2");
 
     cy.get(".display-profile").submit();
 
     // assert that the page contains detailed info
-    cy.contains("Someone Else")
+    cy.contains("Test User2")
     cy.contains("London")
-    cy.contains("1 June 1996")
+    cy.contains("11 June 1999")
   })
 
-  it.only("displays posts made by other users on their profile page", () => {
-    // sign up, sign in, and make post as different user
-    cy.visit("/users/new");
-    cy.get("#username").type("AnotherTestUser");
-    cy.get("#email").type("test2@cypress.com");
-    cy.get("#password").type("password123");
-    cy.get("#submit").click();
-
-    cy.get("#email").type("test2@cypress.com");
-    cy.get("#password").type("password123");
-    cy.get("#submit").click();
+  it("displays posts made by other users on their profile page", () => {
+    // use webhelper to sign up and sign in as a different user
+    signUpAndSignIn("Test", "User2")
 
     cy.contains("New post").click();
 
@@ -65,7 +45,7 @@ describe("Other user profile page", () => {
     cy.url().should("include", "/");
 
     // use webhelper to sign up and sign in
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User1");
 
     // make another post as new user
     cy.contains("New post").click();
