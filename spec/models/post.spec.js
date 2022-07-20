@@ -123,6 +123,14 @@ describe("Post model", () => {
 
     post.save((err) => {
       expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "some message", user: "someone@example.com", recipient: "newperson@email.com"});
+
+        done();
+      })
     })
   })
-});
+})
