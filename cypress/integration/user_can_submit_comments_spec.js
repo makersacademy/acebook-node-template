@@ -1,6 +1,5 @@
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
-    const now = new Date();
+  it("can submit comments, when signed in, and post had been submitted", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#firstName").type("Chris")
@@ -24,7 +23,13 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
-    cy.get(".posts").should("contain", now.toString().substring(0,10));
+
+    // submit a comment
+    cy.visit("/posts");
+
+    cy.get("#new-comment-form").find('[type="text"]').type("Hi!");
+    cy.get("#new-comment-form").submit();
+
+    cy.get(".posts").should("contain", "Hi!");
   });
 });

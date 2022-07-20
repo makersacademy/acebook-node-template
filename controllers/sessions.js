@@ -1,26 +1,40 @@
 const User = require("../models/user");
+const bcrypt = require("bcrypt");
+
 
 const SessionsController = {
   New: (req, res) => {
     res.render("sessions/new", {});
   },
 
-  Create: (req, res) => {
-    console.log("trying to log in");
-    const email = req.body.email;
-    const password = req.body.password;
+  Error: (req, res) => {
+    res.render("sessions/new/error", {});
+  },
 
-    User.findOne({ email: email }).then((user) => {
-      if (!user) {
-        res.redirect("/sessions/new");
-      } else if (user.password != password) {
-        res.redirect("/sessions/new");
-      } else {
+
+  Create: async (req, res) => {
+    const body = req.body;
+    const user = await User.findOne({ email: body.email });
+    if (user) {
+     
+      const validPassword = await bcrypt.compare(body.password, user.password);
+      if (validPassword) {
+        res.status(200)
         req.session.user = user;
         res.redirect("/posts");
+        
+      } else {
+        res.status(400).redirect("sessions/new/error");
       }
-    });
+    } else {
+      res.status(401).redirect("sessions/new/error");
+    }
+     
+    
+    
   },
+  
+
 
   Destroy: (req, res) => {
     console.log("logging out");

@@ -1,11 +1,11 @@
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
-    const now = new Date();
+  it("can remove like from a post", () => {
+    cy.exec("mongo acebook_test --eval 'db.dropDatabase()'");
     // sign up
     cy.visit("/users/new");
     cy.get("#firstName").type("Chris")
     cy.get("#lastName").type("Brown")
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("a@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
@@ -13,7 +13,7 @@ describe("Timeline", () => {
     cy.visit("/sessions/new");
     cy.get("#firstName").type("Chris")
     cy.get("#lastName").type("Brown")
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("a@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
@@ -24,7 +24,19 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
-    cy.get(".posts").should("contain", now.toString().substring(0,10));
+
+    // like a post
+    cy.visit("/posts");
+
+    cy.get("#like-post").submit();
+
+    cy.get(".posts").should("contain", "Likes: 1");
+
+    // delete like from a post
+    cy.visit("/posts");
+
+    cy.get("#remove-like-post").submit();
+
+    cy.get(".posts").should("not.contain", "Likes: 1");
   });
 });
