@@ -1,5 +1,5 @@
-describe("Authentication", () => {
-  it("A user signs in and is redirected to /posts", () => {
+describe("User's Own Profile Page", function() {
+  it('goes to the Profile Page', () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -12,7 +12,10 @@ describe("Authentication", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    cy.url().should("include", "/posts");
-    cy.contains("a", "New post");
+
+    // visiting profile page and check contents
+    cy.visit("/users/profile");
+    cy.get(".title").should("contain", "Profile Page");
+    cy.get(".greeting").should('contain', "someone@example.com");
   });
 });

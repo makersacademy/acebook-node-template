@@ -1,8 +1,39 @@
-<h1>Timeline</h1>
+<h1 class="title">Post Timeline</h1>
+<a class="new-post-link" href="/posts/new">New post</a>
+
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+  <div class="post-container">
+    <li class="each-message">{{this.message}}<br>{{this.date}}<br>{{this.user}}
+      <form action="/posts/delete" method="post" class="delete" >
+        <input name="_id" type="hidden" value="{{this._id}}">
+        <input style="background-color=transparent" name="delete" type="submit" value ="🗑️">
+      </form>
+    </li>
+    <br>
+    <div class="like-container">
+      <form action="/posts/updateLikes/{{this.id}}" method="post">
+        <button id="like-button">
+          Like
+        </button> <span id="like-counter">{{this.likes.count}}</span>
+      </form>
+    </div>
+  </div>
+  
+  <div class = "comments">
+    <form action="/posts/comment/{{this._id}}" method="get">
+      <button id="comment-button">
+        Comment
+      </button>
+    </form>
+    <h3> Comments: </h3>
+    <div class='comment-container'>
+      <ul class="Comment-List">
+        {{#each this.comments}}
+          <li id="commenting"> {{this}} </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
   {{/each}}
 </ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>
