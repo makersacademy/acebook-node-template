@@ -1,11 +1,23 @@
-<a href='/'>Home</a>
+<div class="main-container text-center">
+
+<a href='/'>Acebook</a>
 
 {{!-- Home button  --}}
 
-<form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
+<div class="container">
+  <div class="row">
+<form class="sign-in-form" id="new-session-form" action="/sessions" method="post">
+<div class="sign-in-wrapper col-lg" >
+  <input class="authentication-input" id="email" type="email" name="email" value="" placeholder="Email">
+  </div>
+  <div class="sign-in-wrapper col-lg" >
+  <input class="authentication-input" id="password" type="password" name="password" value="" placeholder="Password">
+  </div>
+  <div class="sign-in-wrapper col-lg" >
+  <input class="authentication-btn" id="submit" type="submit" value="Submit">
+  </div>
 </form>
+</div>
+</div>
+</div>
+</div>
