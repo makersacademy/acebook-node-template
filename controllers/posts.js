@@ -3,11 +3,11 @@ const Post = require("../models/post");
 const PostsController = {
   Index: (req, res) => {
     Post.find((err, posts) => {
-     
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts.reverse() });
+
+      res.render("posts/index", { posts: posts.reverse(), user: req.session.user });
     });
   },
   New: (req, res) => {

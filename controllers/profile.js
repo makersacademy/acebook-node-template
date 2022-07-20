@@ -28,12 +28,9 @@ const ProfileController = {
   },
 
   OtherUser: (req, res) => {
-    // create mongodb objectId from the userId passed from the post
-    const ObjectId = require("mongodb").ObjectId;
-    const userId = ObjectId(req.body.id);
    
     // find the user's data in the database, return one object that matches
-    User.findOne({ _id: userId }, (err, userData) => {
+    User.findOne({ username: req.params.username }, (err, userData) => {
       if (err) {
         throw err;
       }
@@ -43,7 +40,7 @@ const ProfileController = {
       const dateOfBirth = birthdayData.toLocaleDateString('en-GB', options)
 
       //search for posts made by this user
-      Post.find({ userId: userId }, (err, userPosts) => {
+      Post.find({ userId: userData._id }, (err, userPosts) => {
         if (err) {
           throw err;
         }

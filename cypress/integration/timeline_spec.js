@@ -2,7 +2,6 @@ const signUpAndSignIn = require("./webhelper");
 
 describe("Timeline", () => {
   afterEach(() => {
-    cy.task("dropPosts");
     cy.task("dropUsers");
   });
 
@@ -26,6 +25,9 @@ describe("Timeline", () => {
 
     // assert that the first post on the page is the most recently posted
     cy.get(".posts").first().should("contain", "Second post");
+
+    // use webhelper to drop posts database
+    cy.task("dropPosts")
   });
 
   it("can navigate to other users profile page using the username on the post", () => {
@@ -45,9 +47,24 @@ describe("Timeline", () => {
     // use webhelper to sign up and sign in
     signUpAndSignIn("Test", "User1");
 
-    cy.get(".display-profile").submit();
+    cy.get(".username > a").click();
 
     cy.url().should("include", "/profile/");
     cy.contains("Test User2")
+
+    // use webhelper to drop posts database
+    cy.task("dropPosts")
     })
+
+  it("Profile page link redirects to profile page", () => {
+    // run webhelper to sign up and sign in to acebook
+    signUpAndSignIn();
+
+    // user clicks on link to 'Profile Page'
+    cy.contains("Profile Page").click();
+
+    // page contains the username
+    cy.url().should("include", "/user/CypressTestUser")
+  })
 });
+
