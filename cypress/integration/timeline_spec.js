@@ -56,9 +56,9 @@ describe("Timeline", () => {
     // use webhelper to sign up and sign in
     signUpAndSignIn();
 
-    cy.get(".display-profile").submit();
+    cy.get(".username > a").click();
 
-    cy.url().should("include", "/profile/");
+    cy.url().should("include", "/profile/AnotherTestUser");
     cy.contains("Someone Else")
 
     // use webhelper to drop posts database
@@ -76,3 +76,4 @@ describe("Timeline", () => {
     cy.url().should("include", "/user/CypressTestUser")
   })
 });
+
