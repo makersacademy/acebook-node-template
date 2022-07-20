@@ -1,5 +1,9 @@
 <h1>Timeline</h1>
 
+ <form action="/profile/{{_id}}" method="GET">
+    <input type="submit" value="Profile" />
+  </form>
+
 <ul class="posts">
   {{#each posts}}
   <h3 class="post" id="{{this._id}}">{{this.message}}</h3>
