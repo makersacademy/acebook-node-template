@@ -117,4 +117,12 @@ describe("Post model", () => {
       })
     })
   })
+
+  it('can have a recipient', (done) => {
+    var post = new Post({ message: "some message", user: "someone@example.com", recipient: "newperson@email.com" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+    })
+  })
 });

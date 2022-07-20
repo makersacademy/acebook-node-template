@@ -17,6 +17,10 @@
         </form> 
         <span id="like-counter">{{this.likes}}</span>
       </div>
+        <form action="/posts/new" method="get">
+          <input name="user" type="hidden" value="{{this.user}}">
+          <button id="write-on-wall"> Write on {{this.user}}'s wall</button>
+        </form> 
     </div>
     
     <div class = "comments">
@@ -36,4 +40,8 @@
     </div>
     {{/each}}
   </ul>
+
+  <div id="wall">
+
+  </div>
 </div>

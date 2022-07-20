@@ -8,11 +8,11 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-    user.save((err) => {
+    user.save((err, result) => {
       if (err) {
         console.log(err);
         res.status(409).render("users/new", { error: 'User already exists!' });
-      } else {
+      } else if (result) {
       res.status(201).redirect("/posts");
       }
     });
