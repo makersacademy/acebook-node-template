@@ -12,8 +12,7 @@ describe("Profile Page", () => {
     // user clicks on link to 'Profile Page'
     cy.contains("Profile Page").click();
 
-    // page contains the content 'Profile Page'
-    cy.contains("Profile Page")
+    // page contains the username
     cy.contains("CypressTestUser")
   })
 

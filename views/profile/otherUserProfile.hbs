@@ -1,12 +1,14 @@
+{{!-- displaying full name as title of the page --}}
 <h1 class="fullname">{{user.firstName}} {{user.lastName}}</h1>
 
+{{!-- other detailed info displayed in div --}}
 <div class="user-information-container">
   <p class="username">Username: {{user.username}}</p>
   <p class="location">Location: {{user.location}}</p>
   <p class="birthday">Date of Birth: {{birthday}}</p>
 </div>
 
-
+{{!-- posts only from this user displayed --}}
 <ul class="posts">
   {{#each posts}}
     {{this.timestamp}}
