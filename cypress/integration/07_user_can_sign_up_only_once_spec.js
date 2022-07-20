@@ -8,17 +8,21 @@ describe("Registration", () => {
       cy.visit("/users/new");
       cy.get("#email").type("newsomeone@example.com");
       cy.get("#password").type("password");
+      cy.get("#name").type("name");
+      cy.get("#surname").type("surname");
       cy.get("#submit").click();
 
       // sign up attempt 2
       cy.visit("/users/new");
       cy.get("#email").type("newsomeone@example.com");
       cy.get("#password").type("password");
+      cy.get("#name").type("name");
+      cy.get("#surname").type("surname");
       cy.get("#submit").click();
 
       // there should be a warning
       cy.url().should("include", "/users");
-      cy.get("#error-message").should("contain", "User Already Exists. Please Enter A New Email Address")
+      cy.contains("User Already Exists. Please Enter A New Email Address").should('be.visible')
     });
   });
 });
