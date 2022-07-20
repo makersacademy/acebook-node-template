@@ -11,6 +11,7 @@ describe("User model", () => {
   });
 
   it("has an email address", () => {
+    
     const user = new User({
       email: "someone@example.com",
       password: "password",
@@ -91,4 +92,22 @@ describe("User model", () => {
       });
     });
   });
+  it('mocks the bcrypt password',  () => {
+    jest.spyOn(bcrypt, 'hash').mockImplementation((password, saltRounds, cb) => cb(null, hashPassword){
+        const user = new User({email: email, password: hashedPassword});
+        console.log(user);
+        user.save((err) => {
+          if (err) {
+            console.log(err);
+            res.status(409).render("users/new", { error: 'User already exists!' });
+          } else {
+          res.status(201).redirect("/posts");
+          }
+        });
+      });  
+
+      
+    })
+  })
 });
+

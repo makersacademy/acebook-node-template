@@ -11,22 +11,18 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    let hashedPassword = "";
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(req.body.password, salt, function(err, hashedPassword) {
-        const user = new User({email: req.body.email, password: hashedPassword});
-        console.log(user);
-        user.save((err) => {
-          if (err) {
-            console.log(err);
-            res.status(409).render("users/new", { error: 'User already exists!' });
-          } else {
-          res.status(201).redirect("/posts");
-          }
-        });
+    bcrypt.hash(req.body.password, saltRounds, function(err, hashedPassword) {
+      const user = new User({email: req.body.email, password: hashedPassword});
+      console.log(user);
+      user.save((err) => {
+        if (err) {
+          console.log(err);
+          res.status(409).render("users/new", { error: 'User already exists!' });
+        } else {
+        res.status(201).redirect("/posts");
+        }
       });
-    });
-    
+    });  
   },
   SelfProfile: (req, res) => {
     const accountEmail = req.session.user.email;
