@@ -6,14 +6,17 @@ describe("Timeline", () => {
     cy.contains("Sign up").click();
 
     // sign in
-    
-    cy.get("#email").type("someone@example.com");
+    cy.get("#firstName").type("Chris")
+    cy.get("#lastName").type("Brown")
+    cy.get("#email").type("a@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    cy.contains("Log in")
+    
 
-    cy.get("#email").type("someone@example.com");
+    cy.get("#firstName").type("Chris")
+    cy.get("#lastName").type("Brown")
+    cy.get("#email").type("a@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
     
