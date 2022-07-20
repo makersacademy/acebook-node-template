@@ -39,7 +39,7 @@ Acebook is a Facebook-clone developed whilst on the Makers Academy Bootcamp July
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
 ## Card wall (Trello Planning)
-![Trello Screenshot](./public/images/Trello_screenshot.png))
+![Trello Screenshot](./public/images/Trello_screenshot.png)
 
 (https://trello.com/b/fBi79KiE/eta-trello-board)
 
