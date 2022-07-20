@@ -17,6 +17,7 @@ const UsersController = {
       }
     });
   },
+
   SelfProfile: (req, res) => {
     console.log(req.body)
     const accountEmail = req.session.user.email;
@@ -34,10 +35,11 @@ const UsersController = {
     Post.find({user: req.body.email}, (err, posts) => {
       if (err) {
         throw err;
-      }
+      } else {
       posts.reverse() // reorders posts, so newest post is always at the top of the list
       console.log(posts);
       res.render("users/profile", {posts: posts, email: req.body.email, session: req.session});
+      }
     })
   }
 };
