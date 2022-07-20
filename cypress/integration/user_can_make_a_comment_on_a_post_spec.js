@@ -3,7 +3,7 @@ const signUpAndSignIn = require("./webhelper");
 describe("Timeline", () => {
   afterEach(() => {
     cy.task("dropPosts");
-    cy.task("dropUsers)");
+    cy.task("dropUsers");
   });
 
   it("displays comment text box and comment button ", () => {
@@ -19,9 +19,10 @@ describe("Timeline", () => {
       .type("to try if comments work.");
     cy.get("#new-post-form").submit();
 
-    cy.visit('/posts')
-    cy.get('#comment').type("test comment").submit()
+    cy.visit("/posts");
+    cy.get("#enter-comment").find("#comment").type("test comment");
+    cy.get("#enter-comment").submit();
 
-    cy.get(".comments").should("contain", "test comment" )
+    cy.get("#post-comment").should("contain", "test comment");
   });
 });
