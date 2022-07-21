@@ -93,8 +93,9 @@ describe("User model", () => {
       });
     });
   });
-  it('mocks the bcrypt password',  (done) => {
-    const callBackAfterHash = (err, hashedPassword) => {
+  it('mocks the bcrypt password', (done) => {
+    jest.spyOn(bcrypt, 'hash').mockImplementation((password, saltRounds, cb) => cb(null, 'hashedPassword'));  
+    bcrypt.hash('original-password', 3, function (err, hashedPassword) {
       const user = new User({email: 'test@bcrypt.com', password: hashedPassword});
       console.log(user);
       user.save((err) => {
@@ -106,11 +107,8 @@ describe("User model", () => {
             email: 'test@bcrypt.com',
             password: 'hashedPassword',
           });
-          done();
         });
       });
-    }
-    jest.spyOn(bcrypt, 'hash').mockImplementation((password, saltRounds, cb) => cb(null, 'hashedPassword'));  
-    bcrypt.hash('original-password', 3, callBackAfterHash);
+    });
   });
 });
