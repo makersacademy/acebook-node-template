@@ -1,6 +1,8 @@
 <h1 class="fullname">{{user.firstName}} {{user.lastName}}</h1>
 
 <div class="user-information-container">
+  <h2>Personal Information</h2>
+  <a href="/profile/user/{{user.username}}/editInfo">Edit</a>
   <p class="username">Username: {{user.username}}</p>
   <p class="location">Location: {{user.location}}</p>
   <p class="birthday">Date of Birth: {{birthday}}</p>

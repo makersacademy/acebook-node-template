@@ -1,0 +1,45 @@
+<h1 class="username">User: {{user.username}}</h1>
+
+<form
+  id="edit-info-form"
+  action="/profile/user/{{user.username}}/editInfo"
+  method="post"
+>
+  <h2>Edit Personal Information:</h2>
+  <ul>
+    <li>
+      <label for="firstName">First Name:</label>
+      <input
+        id="firstName"
+        type="text"
+        name="firstName"
+        value={{user.firstName}}
+      />
+    </li>
+
+    <li>
+      <label for="lastName">Last Name:</label>
+      <input
+        id="lastName"
+        type="text"
+        name="lastName"
+        value={{user.lastName}}
+      />
+    </li>
+
+    <li>
+      <label for="location">Location:</label>
+      <input
+        id="location"
+        type="text"
+        name="location"
+        value={{user.location}}
+      />
+    </li>
+
+    <li>
+      <input id="submit" type="submit" value="Submit" />
+    </li>
+  </ul>
+
+</form>

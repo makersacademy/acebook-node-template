@@ -12,9 +12,8 @@ describe("Profile Page", () => {
     // user clicks on link to 'Profile Page'
     cy.contains("Profile Page").click();
 
-    // page contains the content 'Profile Page'
-    cy.contains("Profile Page");
-    cy.contains("CypressTestUser");
+    // page contains the username
+    cy.contains("Test User");
   });
 
   it("displays detailed information (dob, location, full name) about user", () => {
@@ -26,21 +25,13 @@ describe("Profile Page", () => {
 
     // test for information on profile page
     cy.contains("Test User");
-    cy.contains("Cypress");
+    cy.contains("London");
     cy.contains("11 June 1999");
   });
 
   it("Displays posts made by user", () => {
-    // sign up, sign in, and make post as different user
-    cy.visit("/users/new");
-    cy.get("#username").type("AnotherTestUser");
-    cy.get("#email").type("test2@cypress.com");
-    cy.get("#password").type("password123");
-    cy.get("#submit").click();
-
-    cy.get("#email").type("test2@cypress.com");
-    cy.get("#password").type("password123");
-    cy.get("#submit").click();
+    // use webhelper to sign up and sign in as a different user
+    signUpAndSignIn("Test", "User2");
 
     cy.contains("New post").click();
 
@@ -69,5 +60,44 @@ describe("Profile Page", () => {
 
     // use webhelper to drop users and posts collections
     cy.task("dropPosts");
+  });
+
+  it("allows user to update their personal information", () => {
+    // run webhelper to sign up and sign in to acebook
+    signUpAndSignIn("Test", "User");
+
+    // user clicks on link to 'Profile Page'
+    cy.contains("Profile Page").click();
+
+    // test for information on profile page
+    cy.contains("Test User");
+    cy.contains("London");
+    cy.contains("11 June 1999");
+
+    // user clicks on 'Edit Info' button and is taken to edit page
+    cy.get(".user-information-container").contains("Edit").click();
+    cy.url().should("include", "/profile/user/TestUser/editInfo");
+
+    // existing user info is pre-populated into form
+    cy.get("#firstName").should("have.value", "Test");
+    cy.get("#lastName").should("have.value", "User");
+    cy.get("#location").should("have.value", "London");
+
+    // clear fields of all content
+    cy.get("#firstName").clear();
+    cy.get("#lastName").clear();
+    cy.get("#location").clear();
+
+    // user changes personal information and is redirected to their profile page
+    cy.get("#firstName").type("Updated");
+    cy.get("#lastName").type("Name");
+    cy.get("#location").type("Birmingham");
+    cy.get("#submit").click();
+    cy.url().should("include", "/profile/user/TestUser");
+
+    // new personal information is displayed on profile page
+    cy.contains("TestUser");
+    cy.contains("Updated Name");
+    cy.contains("Birmingham");
   });
 });
