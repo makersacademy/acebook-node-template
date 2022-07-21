@@ -14,6 +14,8 @@ describe("User model", () => {
     const user = new User({
       email: "someone@example.com",
       password: "password",
+      name: "name",
+      surname: "surname",
     });
     expect(user.email).toEqual("someone@example.com");
   });
@@ -22,8 +24,30 @@ describe("User model", () => {
     const user = new User({
       email: "someone@example.com",
       password: "password",
+      name: "name",
+      surname: "surname",
     });
     expect(user.password).toEqual("password");
+  });
+
+  it("has a name", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "name",
+      surname: "surname",
+    });
+    expect(user.name).toEqual("name");
+  });
+
+  it("has a name", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "name",
+      surname: "surname",
+    });
+    expect(user.surname).toEqual("surname");
   });
 
   it("can list all users", (done) => {
@@ -38,6 +62,8 @@ describe("User model", () => {
     const user = new User({
       email: "someone@example.com",
       password: "password",
+      name: "name",
+      surname: "surname",
     });
 
     user.save((err) => {
@@ -49,6 +75,8 @@ describe("User model", () => {
         expect(users[0]).toMatchObject({
           email: "someone@example.com",
           password: "password",
+          name: "name",
+          surname: "surname",
         });
         done();
       });
@@ -60,6 +88,8 @@ describe("User model", () => {
     const user1 = new User({
       email: "test@duplicate.com",
       password: "password",
+      name: "name", 
+      surname: "surname",
     });
     user1.save((err) => {
       expect(err).toBeNull();
@@ -68,11 +98,15 @@ describe("User model", () => {
         expect(users[0]).toMatchObject({
           email: "test@duplicate.com",
           password: "password",
+          name: "name",
+          surname: "surname",
         });
         // Creating another user with same email
         const user2 = new User({
           email: "test@duplicate.com",
           password: "password",
+          name: "name",
+          surname: "surname",
         });
   
         // Expecting Mongo Error E11000 -> duplicate entry in a unique key

@@ -18,7 +18,8 @@
       <br>
       <br>
       {{#if session.user.email }}
-      <h4>📧 Account:</h4>{{session.user.email}}
+      <h4>📧 Account: {{session.user.email}}</h4>
+      <h5>Name: {{session.user.name}} {{session.user.surname}}</h5>
       {{/if}}
       <br>
       <br>
