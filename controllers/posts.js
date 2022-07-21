@@ -11,7 +11,9 @@ const PostsController = {
           throw err;  
         }
       res.render("posts/index", { 
-        posts: posts });
+        posts: posts,
+        _id: req.session.user._id
+      });
     });
   },
   New: (req, res) => {
