@@ -59,25 +59,28 @@ const UsersController = {
     console.log(req.session);
     console.log(req.body);
     Post.find({user: req.body.email}, (err, posts) => {
-      if (err) {
-        throw err;
-      } else {
+      if (err) { throw err; } else {
       const userPosts = posts.reverse()
-      posts.forEach((post) => {
+      userPosts.forEach((post) => {
         if (post.user === req.session.user.email) {
           Object.assign(post, {canDelete: true})
         }
-      }) // reorders posts, so newest post is always at the top of the list
+      }) 
+
       Post.find({recipient: req.body.email}, (err, posts) => {
-        console.log(posts);
-        posts.forEach((post) => {
-          if (post.user === req.session.user.email) {
-            Object.assign(post, {canDelete: true})
-          }
-        })
-        const wallPosts = posts.reverse();
-        res.render("users/profile", {posts: userPosts, wallPosts: wallPosts, email: req.body.email, session: req.session});
-      })}
+        if (err) 
+          { throw err
+        } else if (posts) { 
+          console.log(posts);
+          const wallPosts = posts.reverse();
+          wallPosts.forEach((post) => {
+            if (post.user === req.body.email) {
+              Object.assign(post, {canDelete: true})
+            }
+          res.render("users/profile", {posts: userPosts, wallPosts: wallPosts, email: req.body.email, session: req.session});
+          })
+      }})
+      }
     })
   }
 };
