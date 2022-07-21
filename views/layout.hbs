@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:bold' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>{{title}}</title>
   </head>
   <body>
   
     <div class="navigation-menu">
       <div> 
         <a href="/">
-         <img alt="Logo for Acebook" src='/images/acebook_logo_2.png'
+         <img style="padding:10px" alt="Logo for Acebook" src='/images/acebook_logo_2.png'
          width="150" height="145">
         </a>
       </div>
@@ -23,6 +25,7 @@
       {{!-- removed home button--}}
       {{#if session.user.email }}
         <input type="button" class="navigation-button" id="view-self-profile" value="Profile Page" onclick="location.href='/users/profile'"></input>
+        <br>
         <input type="button" class="navigation-button" id="view-posts" value="📜 Posts" onclick="location.href='/posts'"></input>
         <form action='/sessions?_method=DELETE' method='POST'>
           <input class="navigation-button" id="sign-out-button" type="submit" value="🚪 Sign Out">
@@ -32,6 +35,9 @@
         <br>
         <input class="navigation-button" id="sign-up-button" type="submit" onclick="location.href='/users/new'" value="✍️ Sign Up">
       {{/if}}
+      <div> 
+        <p>Powered by<br>Dent, Alimi, Pala,<br>Chan, Saeed & Johnson<p>
+      </div>
     </div>
     <div class="content">
       {{{body}}}
