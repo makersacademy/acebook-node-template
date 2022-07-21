@@ -101,7 +101,7 @@ describe("Profile Page", () => {
     cy.contains("Birmingham");
   });
 
-  it.only("allows user to add profile picture", () => {
+  it("allows user to add profile picture", () => {
     //sign up and sign in
     signUpAndSignIn("Test", "User")
 
