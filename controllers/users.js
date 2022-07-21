@@ -59,27 +59,25 @@ const UsersController = {
     console.log(req.session);
     console.log(req.body);
     Post.find({user: req.body.email}, (err, posts) => {
-      if (err) { throw err; } else {
+      if (err) { 
+        throw err; 
+      } else {
       const userPosts = posts.reverse()
       userPosts.forEach((post) => {
         if (post.user === req.session.user.email) {
           Object.assign(post, {canDelete: true})
         }
-      }) 
 
       Post.find({recipient: req.body.email}, (err, posts) => {
-        if (err) 
-          { throw err
-        } else if (posts) { 
-          console.log(posts);
+        if (err) { 
+          throw err;
+        } else if (posts !== []) { 
           const wallPosts = posts.reverse();
-          wallPosts.forEach((post) => {
-            if (post.user === req.body.email) {
-              Object.assign(post, {canDelete: true})
-            }
           res.render("users/profile", {posts: userPosts, wallPosts: wallPosts, email: req.body.email, session: req.session});
-          })
-      }})
+        }
+      }) 
+    }) 
+      
       }
     })
   }

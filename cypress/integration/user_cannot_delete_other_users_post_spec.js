@@ -87,7 +87,7 @@ describe('delete button',() => {
 
     // click through to the first person's wall
     cy.get('.profile-link').last().click();
-    cy.get('#wall').find('post-container').first().should('contain', 'This is new person on your wall')
+    cy.get('#wall').find('.post-container').first().should('contain', 'This is new person on your wall')
     cy.get('.delete').should('not.exist');
     
   })
