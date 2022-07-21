@@ -11,7 +11,7 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    res.render("posts/new", { session: req.session, recipient: req.params.user });
+    res.render("posts/new", { session: req.session, recipient: null });
   },
   NewWallPost: (req, res) => {
     res.render("posts/new", { session: req.session, recipient: req.body.recipient });

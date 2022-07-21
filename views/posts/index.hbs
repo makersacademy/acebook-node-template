@@ -4,7 +4,7 @@
 <ul class="posts">
   {{#each posts}}
   <div class="post-container">
-    <li class="each-message">{{this.message}}<br>{{this.date}}<br> To {{this.recipient}}
+    <li class="each-message">{{this.message}}<br>{{this.date}}<br> {{#if this.recipient}} To {{this.recipient}} {{/if}}
       <form action="users/profile" method="post" class="profile-link">
         <input name="email" type="hidden" value="{{this.user}}"><input name="id" type="hidden" value="{{this._id}}"><input type="submit" id="{{this.user}}" value="{{this.user}}">
       </form>
