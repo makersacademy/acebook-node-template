@@ -152,4 +152,11 @@ li {
     text-align: left;
   }
 
-  
+  .form-label{
+    width: 350px;
+    display: inline-block;
+    font-size: 22px;
+    padding: 7 10px;
+    
+  }
+
