@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 require("../mongodb_helper");
 var Post = require("../../models/post");
 
-descre("Post model", () => {
+describe("Post model", () => {
   beforeEach((done) => {
     // this clears the posts collection from the database before each test
     mongoose.connection.collections.posts.drop(() => {
