@@ -11,20 +11,28 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    res.render("posts/new", { session: req.session });
+    res.render("posts/new", { session: req.session, recipient: null });
+  },
+  NewWallPost: (req, res) => {
+    res.render("posts/new", { session: req.session, recipient: req.body.recipient });
   },
   Create: (req, res) => {
     const post = new Post(req.body);
     const todaysdate = Date().slice(0, -31); // gets time/date from mongoose
     const user = req.session.user.email;
+    const recipient = req.body.recipient;
+
     Object.assign(post, {date: todaysdate}); // adds key/value pair to object
     Object.assign(post, {user: user});
-    post.save((err) => {
+    Object.assign(post, {recipient: recipient});
+
+    post.save((err, result) => {
       if (err) {
         throw err;
+      } else if (result) {
+          res.status(201).redirect("/posts");
       }
-      res.status(201).redirect("/posts");
-    });
+    })
   },
   // implementing a delete function:
   Delete: (req, res) => {
@@ -40,8 +48,6 @@ const PostsController = {
     var id = req.params.id;
     Post.findById(id, function (err, post) {
       if (err) {throw err;}
-      console.log(post.likes.emails);
-      console.log(req.session.user.email);
       if (!post.likes.emails.includes(req.session.user.email) ) {
         post.likes.count += 1;
         post.likes.emails.push(req.session.user.email);

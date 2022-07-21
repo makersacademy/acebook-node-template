@@ -8,9 +8,10 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-    user.save((err) => {
+    user.save((err, result) => {
       if (err) {
         console.log(err);
+      } else if (result) {
         res.status(409).render("users/new", { 
           error: 'User already exists!', 
           name: req.name, 
@@ -39,10 +40,12 @@ const UsersController = {
       if (err) {
         throw err;
       } else {
-      posts.reverse() // reorders posts, so newest post is always at the top of the list
-      console.log(posts);
-      res.render("users/profile", {posts: posts, email: req.body.email, session: req.session});
-      }
+      const userPosts = posts.reverse() // reorders posts, so newest post is always at the top of the list
+      Post.find({recipient: req.body.email}, (err, posts) => {
+        console.log(posts);
+        const wallPosts = posts.reverse();
+        res.render("users/profile", {posts: userPosts, wallPosts: wallPosts, email: req.body.email, session: req.session});
+      })}
     })
   }
 };
