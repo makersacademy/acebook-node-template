@@ -16,7 +16,6 @@ describe("Profile Page", () => {
     cy.contains("Test User")
   })
 
-
   it("displays detailed information (dob, location, full name) about user", () => {
     // run webhelper to sign up and sign in to acebook
     signUpAndSignIn("Test", "User");
@@ -65,5 +64,43 @@ describe("Profile Page", () => {
     
     // use webhelper to drop users and posts collections
     cy.task("dropPosts");
+  })
+
+  it.only("allows user to update their personal information", () => {
+    // run webhelper to sign up and sign in to acebook
+    signUpAndSignIn("Test", "User");
+
+    // user clicks on link to 'Profile Page'
+    cy.contains("Profile Page").click();
+
+    // test for information on profile page
+    cy.contains("Test User")
+    cy.contains("London")
+    cy.contains("11 June 1999")
+
+    // user clicks on 'Edit Info' button and is taken to edit page
+    cy.get(".user-information-container").contains("Edit").click();
+    cy.url().should("include", "/profile/user/TestUser/editInfo")
+
+    // existing user info is pre-populated into form
+    cy.contains("TestUser")
+    cy.get("#edit-info-form").should("contain", "Test")
+      .and("contain", "User")
+      .and("contain", "London")
+      .and("contain", "11 June 1999")
+    
+    // user changes personal information and is redirected to their profile page
+    cy.get("#firstName").type("Updated");
+    cy.get("#lastName").type("Name")
+    cy.get("#birthday").type("1987-25-06");
+    cy.get("#location").type("Birmingham");
+    cy.get("#submit").click()
+    cy.url().should("include", "/profile/user/TestUser")
+
+    // new personal information is displayed on profile page
+    cy.contains("TestUser")
+    cy.contains("Updated Name")
+    cy.contains("25 June 1987")
+    cy.contains("Birmingham")
   })
 })

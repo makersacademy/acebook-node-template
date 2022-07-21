@@ -53,6 +53,10 @@ const ProfileController = {
       })
       })
     })
+  },
+
+  EditInfoView: (req, res) => {
+    res.render("profile/editInfo")
   }
 }
 
