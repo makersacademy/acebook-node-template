@@ -168,4 +168,11 @@ li {
     font-size: 18px;
   } 
 
+  .form-p {
+    margin: 3 5px;
+    padding: 0 5px;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--primary-color)
+  }
 
