@@ -1,29 +1,31 @@
 <h1>Timeline</h1>
+
 <ul class="posts">
   {{#each posts}}
   <div class="post">
-  <li class="post-elements">
-    <div class="post-text">
-      {{this.message}}, {{this.firstname}}
-      <small class="datestamp">Created at {{this.createdAt}}</small>
-    </div>
-   <form id="delete-button" action="/posts/delete/{{ this.id }}" method="post">
-      <button class="delete-button">Delete</button>
-    </form>
-    <div>
-    <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
+
+    <li class="post-elements">
+      <div class="post-text">
+        {{this.message}}, {{this.firstname}}
+        <div class="datestamp">Created at {{this.createdAt}}</div>
+      </div>
+
+      
+      <div class="delete-button-container" data-post-id="{{ this._id }}"></div>
       <div class="like-button-container" data-post-id="{{ this._id }}"></div>
-    </form>
-    <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
-      <input type="text" value="" name="commentmessage">
-      <button class="comment-button">Comment</button>
-    </form>
-    <div class="comment-text">
+      
+      <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
+        <input type="text" value="" name="commentmessage">
+        <button class="comment-button">Comment</button>
+      </form>
+
+      <div class="comment-text">
       {{#each this.comments}}
       <li><div class="comment-message-text">{{this.commentMessage}}</div>
       {{/each}}
-    </div>
-      </li>
+      </div>
+
+    </li>
   </div>
   {{/each}}
 </ul>
@@ -37,3 +39,4 @@
 
 <!-- Load our React component. -->
 <script src="like_button.js"></script>
+<script src="delete_button.js"></script>

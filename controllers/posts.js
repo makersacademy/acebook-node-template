@@ -33,16 +33,16 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  Delete: (req, res) => {
+
+  DeleteReact: (req, res) => {
     Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
       if (err) {
         console.log(err);
-        res.redirect("back");
       } else {
-        res.redirect("/posts");
       }
     });
   },
+
   ViewLikeReact: (req, res) => {
     Post.findOne({ _id: req.params.id }, function (err, post) {
       res.setHeader("Content-Type", "application/json");
