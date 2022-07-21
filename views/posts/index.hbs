@@ -8,9 +8,11 @@
       <form action="users/profile" method="post" class="profile-link">
         <input name="email" type="hidden" value="{{this.user}}"><input name="id" type="hidden" value="{{this._id}}"><input type="submit" id="{{this.user}}" value="{{this.user}}">
       </form>
+    {{#if this.canDelete}}
       <form action="/posts/delete" method="post" class="delete">
         <input name="_id" type="hidden" value="{{this._id}}"><input style="background-color=transparent" name="delete" type="submit" value ="🗑️">
-        </form>
+      </form>
+    {{/if}}
     </li>
     <br>
     <div class="like-container">

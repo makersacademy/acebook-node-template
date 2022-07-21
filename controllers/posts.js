@@ -7,6 +7,11 @@ const PostsController = {
         throw err;
       }
       posts.reverse(); // reorders posts, so newest post is always at the top of the list
+      posts.forEach((post) => {
+        if (post.user === req.session.user.email) {
+          Object.assign(post, {canDelete: true})
+        }
+      })
       res.render("posts/index", { posts: posts, session: req.session });
     });
   },
