@@ -80,6 +80,7 @@ const PostsController = {
        }
 
        // if there are likes, go through each one and if the user hasn't liked it, like it
+       
       likes.forEach(like => {
           if (!(String(like.userId) == String(likingUserId)) || (String(like.userId) == String(likingUserId) && like.liked == false)) {
               Post.updateOne({ _id: postId }, { $push: { likes: likeData } }, (err) => {
