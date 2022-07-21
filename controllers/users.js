@@ -47,6 +47,11 @@ const UsersController = {
         throw err;
       }
       posts.reverse() // reorders posts, so newest post is always at the top of the list
+      posts.forEach((post) => {
+        if (post.user === req.session.user.email) {
+          Object.assign(post, {canDelete: true})
+        }
+      })
       res.render("users/profile", {posts: posts, email: accountEmail, session: req.session});
     });
   },
@@ -57,9 +62,19 @@ const UsersController = {
       if (err) {
         throw err;
       } else {
-      const userPosts = posts.reverse() // reorders posts, so newest post is always at the top of the list
+      const userPosts = posts.reverse()
+      posts.forEach((post) => {
+        if (post.user === req.session.user.email) {
+          Object.assign(post, {canDelete: true})
+        }
+      }) // reorders posts, so newest post is always at the top of the list
       Post.find({recipient: req.body.email}, (err, posts) => {
         console.log(posts);
+        posts.forEach((post) => {
+          if (post.user === req.session.user.email) {
+            Object.assign(post, {canDelete: true})
+          }
+        })
         const wallPosts = posts.reverse();
         res.render("users/profile", {posts: userPosts, wallPosts: wallPosts, email: req.body.email, session: req.session});
       })}
