@@ -12,7 +12,7 @@ describe("Other user profile page", () => {
 
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Look at my profile");
+    cy.get("#new-post-form").find('#message').type("Look at my profile");
     cy.get("#new-post-form").submit();
 
     cy.contains("Sign Out").click();
@@ -20,7 +20,7 @@ describe("Other user profile page", () => {
     // use webhelper to sign up and sign in
     signUpAndSignIn("Test", "User2");
 
-    cy.get(".username > a").click();
+    cy.get(".username > a").first().click();
 
     // assert that the page contains detailed info
     cy.contains("Test User2");
@@ -34,7 +34,7 @@ describe("Other user profile page", () => {
 
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Show this message");
+    cy.get("#new-post-form").find('#message').type("Show this message");
     cy.get("#new-post-form").submit();
 
     cy.contains("Sign Out").click();
@@ -46,7 +46,7 @@ describe("Other user profile page", () => {
     // make another post as new user
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Do not display");
+    cy.get("#new-post-form").find('#message').type("Do not display");
     cy.get("#new-post-form").submit();
 
     // visit other user's profile page and only see post made by that user
