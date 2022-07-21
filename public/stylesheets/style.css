@@ -125,6 +125,12 @@ li {
     background-color: #9FE2BF;
   }
 
+  .sign-up-btn:hover, .authentication-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+
+  }
+
   .home-link {
     text-decoration: none;
     font-style: var(--body-font);
