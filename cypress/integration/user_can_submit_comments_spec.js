@@ -2,7 +2,7 @@ describe("Timeline", () => {
   it("can submit comments, when signed in, and post had been submitted", () => {
     // sign up
     cy.visit("/users/new");
-    cy.get("#firstName").type("Chris")
+    cy.contains("First name:").type("Chris")
     cy.get("#lastName").type("Brown")
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
@@ -10,9 +10,7 @@ describe("Timeline", () => {
 
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#firstName").type("Chris")
-    cy.get("#lastName").type("Brown")
-    cy.get("#email").type("someone@example.com");
+    cy.contains("Email:").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
