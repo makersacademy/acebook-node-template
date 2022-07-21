@@ -6,7 +6,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log(posts);
       posts.reverse(); // reorders posts, so newest post is always at the top of the list
       res.render("posts/index", { posts: posts, session: req.session });
     });
@@ -22,17 +21,18 @@ const PostsController = {
     const todaysdate = Date().slice(0, -31); // gets time/date from mongoose
     const user = req.session.user.email;
     const recipient = req.body.recipient;
-    console.log(req.body.user)
+
     Object.assign(post, {date: todaysdate}); // adds key/value pair to object
     Object.assign(post, {user: user});
     Object.assign(post, {recipient: recipient});
+
     post.save((err, result) => {
       if (err) {
         throw err;
       } else if (result) {
           res.status(201).redirect("/posts");
       }
-      })
+    })
   },
   // implementing a delete function:
   Delete: (req, res) => {
@@ -48,8 +48,6 @@ const PostsController = {
     var id = req.params.id;
     Post.findById(id, function (err, post) {
       if (err) {throw err;}
-      console.log(post.likes.emails);
-      console.log(req.session.user.email);
       if (!post.likes.emails.includes(req.session.user.email) ) {
         post.likes.count += 1;
         post.likes.emails.push(req.session.user.email);
