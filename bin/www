@@ -27,9 +27,6 @@ mongoose.connect(mongoDbUrl, {
   useUnifiedTopology: true,
 });
 
-// this came from instruction and could possibly be deleted?
-// const uri = process.env.MONGODB_URI;
-
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
