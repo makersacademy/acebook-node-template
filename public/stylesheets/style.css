@@ -13,6 +13,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 15px;
 }
 .homepage-nav {
   margin: 50px 20px;
@@ -53,3 +54,90 @@
 .homepage-link-wrapper {
   padding: 17px;
 }
+
+.container, .sign-up-container {
+  position: relative;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px 10px;
+  margin: 5% auto; 
+  max-width: 500px;
+  text-align: center;
+}
+
+.sign-in-form {
+  border-radius: 2px;
+  margin: 0 auto;
+  max-width: 380px;
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+  display: inline-block;
+
+}
+
+.authentication-input, .authentication-btn {
+  width: 80%;
+  padding: 5px;
+  border: 10px;
+  border-radius: 4px;
+  margin: 15px;
+  display: block;
+  font-size: 17px;
+  line-height: 40px;
+  box-sizing: border-box;
+  background-color: #D8DEEF;
+} 
+
+.authentication-btn {
+  background-color: #9FE2BF;
+}
+
+li {
+  list-style-type: none;
+}
+
+.sign-up-container {
+  max-width: 500px;
+  margin: 2% auto; 
+}
+
+.sign-up-input, .sign-up-btn  {
+    width: 40%;
+    padding: 5px;
+    border: 10px;
+    border-radius: 4px;
+    margin: 10px;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 25px;
+    box-sizing: border-box;
+    background-color: #D8DEEF;
+  } 
+
+  .sign-up-label {
+    padding: 5px;
+    width: 100px;
+  }
+
+  .sign-up-btn {
+    width: 80%;
+    background-color: #9FE2BF;
+  }
+
+  .home-link {
+    text-decoration: none;
+    font-style: var(--body-font);
+    color: var(--primary-color);
+    font-size: 23px;
+  }
+
+  .sign-up-title, h2{
+    color: var(--primary-color);
+    font-size: 40px;
+    margin-top: 25px;
+  }
+
+  .authentication-nav{
+    text-align: left;
+  }
