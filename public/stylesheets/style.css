@@ -120,7 +120,7 @@ li {
     width: 80%;
     background-color: var(--secondary-color);
   }
-
+/* 
   #firstName, #fname-label{
    float: left;
    display: block;
@@ -133,7 +133,7 @@ li {
 
    #firstName, #lastName {
     display: inline-block;
-   }
+   } */
 
   .home-link {
     text-decoration: none;
