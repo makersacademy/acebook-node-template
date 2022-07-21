@@ -1,6 +1,7 @@
 <h2>Users matching search:</h2>
 
   <ul class="users">
+    {{!-- iterating through all users with matching first name --}}
     {{#each users2}}
       <span class="user">
         <img src="{{this.profilePic}}"
@@ -9,6 +10,7 @@
         <br />
       </span>
     {{/each}}
+    {{!-- iterating through all users with matching last name --}}
     {{#each users1}}
       <span class="user">
         <img src="{{this.profilePic}}"
