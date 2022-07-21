@@ -1,47 +1,75 @@
-<a href='/'>Home</a>
+<div class="main-container text-center">
 
-<form id="new-user-form" action="/users" method="post">
-<input type="hidden" name="profilePic" value="https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612" />
-  <ul>
-    <li>
-      <label for="firstName">First Name:</label>
-      <input id="firstName" type="text" name="firstName" value="">
-    </li>
+<div class="authentication-nav">
+  {{!-- <i class="fa-solid fa-house"></i> --}}
+ <a class="home-link" href='/'><i class="fas fa-home"></i> Home</a>
+ </div>
 
-    <li>
-      <label for="lastName">Last Name:</label>
-      <input id="lastName" type="text" name="lastName" value="">
-    </li>
+<h2 class="sign-up-title">Create an Account:</h2>
+<p>It's quick and easy!</p>
 
-    <li>
-      <label for="username">Username:</label>
-      <input id="username" type="text" name="username" value="">
-    </li>
+<div class="sign-up-container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <form id="sign-up-form" action="/users" method="post">
+      <input type="hidden" name="profilePic" value="https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612" />
+        <ul>
+          <div class="sign-up-wrapper col-12 col-lg">
+          <li>
+            <label class="sign-up-label"  id="fname-label" for="firstName">First Name:</label>
+            <input class="sign-up-input" id="firstName" type="text" name="firstName" value="" placeholder="John">
+          </li>
+          </div>
 
-     <li>
-      <label for="birthday">Birthday:</label>
-      <input id="birthday" type="date" name="birthday" value="">
-    </li>
+          <div class="sign-up-wrapper col-12 col-lg">
+          <li>
+            <label class="sign-up-label" id="lname-label" for="lastName">Last Name:</label>
+            <input class="sign-up-input" id="lastName" type="text" name="lastName" value="" placeholder="Doe">
+          </li>
+          </div>
 
-     <li>
-      <label for="location">Location:</label>
-      <input id="location" type="text" name="location" value="">
-    </li>
+          <div class="sign-up-wrapper col-12 col-lg">
+          <li>
+            <label class="sign-up-label" for="username">Username:</label>
+            <input class="sign-up-input" id="username" type="text" name="username" value="" placeholder="JohnDoe">
+          </li>
+          </div>
 
-    <li>
-      <label for="email">Email: </label>
-      <input id="email" type="email" name="email" value="">
-    </li>
+          <div class="sign-up-wrapper col-12 col-lg">
+          <li>
+            <label class="sign-up-label" for="birthday">Birthday:</label>
+            <input class="sign-up-input" id="birthday" type="date" name="birthday" value="">
+          </li>
+          </div>
 
-    <li>
-      <label for="password">Password: </label>
-      <input id="password" type="password" name="password" value="">
-    </li>
+          <div class="sign-up-wrapper col-12 col-lg">
+          <li>
+            <label class="sign-up-label" for="location">Location:</label>
+            <input class="sign-up-input" id="location" type="text" name="location" value="">
+          </li>
+          </div>
 
-    <li>
-      <input id="submit" type="submit" value="Submit">
-    </li>
-  </ul>
-  
-  
-</form>
+          <div class="sign-up-wrapper col-12 col-lg">
+          <li>
+            <label class="sign-up-label" for="email">Email: </label>
+            <input class="sign-up-input" id="email" type="email" name="email" value="" placeholder="John.D@example.com">
+          </li>
+          </div>
+
+          <div class="sign-up-wrapper col-12 col-lg">
+          <li>
+            <label class="sign-up-label" for="password">Password: </label>
+            <input class="sign-up-input" id="password" type="password" name="password" value="">
+          </li>
+          </div>
+
+          <div class="sign-up-wrapper col-12 col-lg">
+          <li>
+            <input class="sign-up-btn" id="submit" type="submit" value="Submit">
+          </li>
+          </div>
+        </ul>
+      </form>
+</div>
+</div>
+</div>
+</div>

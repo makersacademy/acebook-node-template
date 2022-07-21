@@ -1,11 +1,29 @@
-<a href='/'>Home</a>
+<div class="main-container text-center">
 
-{{!-- Home button  --}}
+<div class="authentication-nav">
+  {{!-- <i class="fa-solid fa-house"></i> --}}
+ <a class="home-link" href='/'><i class="fas fa-home"></i> Home</a>
+ </div>
 
-<form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+<h2>Sign in:</h2>
+
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+        <form class="sign-in-form" id="new-session-form" action="/sessions" method="post">
+        <div class="sign-in-wrapper col-12 col-lg">
+          <input class="authentication-input w-100" id="email" type="email" name="email" value="" placeholder="Email Address" required>
+          </div>
+          <div class="sign-in-wrapper col-12">
+          <input class="authentication-input w-100"  id="password" type="password" name="password" value="" placeholder="Password" required>
+          </div>
+          <div class="sign-in-wrapper col-12">
+           <input class="authentication-btn mb-2 w-100" id="submit" type="submit" value="Submit">
+          </div>
+           <p class="mt-4  p-0 text-center"> Don't have an account? <a href="/users/new/" class="sign-up-link text decoration none"> Signup here! </a></p>
+        </div>
+    </div>
+      </form>
+  </div>
+</div>
+</div>
+
