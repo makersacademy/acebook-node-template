@@ -130,7 +130,12 @@ describe("User model", () => {
   it('mocks the bcrypt password', (done) => {
     jest.spyOn(bcrypt, 'hash').mockImplementation((password, saltRounds, cb) => cb(null, 'hashedPassword'));  
     bcrypt.hash('original-password', 3, function (err, hashedPassword) {
-      const user = new User({email: 'test@bcrypt.com', password: hashedPassword});
+      const user = new User({
+        email: 'test@bcrypt.com',
+        password: hashedPassword,
+        name: 'firstName',
+        surname: 'surname'
+      });
       console.log(user);
       user.save((err) => {
         expect(err).toBeNull();
@@ -140,7 +145,10 @@ describe("User model", () => {
           expect(users[0]).toMatchObject({
             email: 'test@bcrypt.com',
             password: 'hashedPassword',
+            name: 'firstName',
+            surname: 'surname'
           });
+          done();
         });
       });
     });
