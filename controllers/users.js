@@ -10,6 +10,22 @@ const UsersController = {
     res.render("users/new", { session: req.session });
   },
 
+  // Create: (req, res) => {
+  //   const user = new User(req.body);
+  //   user.save((err, result) => {
+  //     if (err) {
+  //       console.log(err);
+  //     } else if (result) {
+  //       res.status(409).render("users/new", { 
+  //         error: 'User already exists!', 
+  //         name: req.name, 
+  //         surname: req.surname});
+  //     } else {
+  //     res.status(201).redirect("/posts");
+  //     }
+  //   });
+  // },
+
   Create: (req, res) => {
     bcrypt.hash(req.body.password, saltRounds, function(err, hashedPassword) {
       const user = new User({
@@ -18,17 +34,17 @@ const UsersController = {
         name: req.body.name,
         surname: req.body.surname
       });
-      console.log(user);
-      user.save((err) => {
+      user.save((err, result) => {
         if (err) {
           console.log(err);
-        } else if (result) {
           res.status(409).render("users/new", { 
             error: 'User already exists!', 
             name: req.name, 
             surname: req.surname});
-        } else {
-        res.status(201).redirect("/posts");
+        } else if (result) {
+          res.status(201).redirect("/sessions/new");
+        // } else {
+        //  res.status(201).redirect("/posts"); // Do we need this?
         }
       });
     });  
