@@ -1,14 +1,28 @@
-name: Tests
-
-on: [push]
+name: Jest Unit Tests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+        mongodb-version: ['4.2', '4.4', '5.0']
     steps:
-    - uses: actions/checkout@v1
-    - name: Run Jest
-      uses: stefanoeb/jest-action@1.0.3
-
+      - uses: actions/checkout@v3
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+      - run: npm ci
+      - run: npm run workflow
+    env: 
+      CI: true
