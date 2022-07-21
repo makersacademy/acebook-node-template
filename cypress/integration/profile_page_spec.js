@@ -100,4 +100,25 @@ describe("Profile Page", () => {
     cy.contains("Updated Name");
     cy.contains("Birmingham");
   });
+
+  it.only("allows user to add profile picture", () => {
+    //sign up and sign in
+    signUpAndSignIn("Test", "User")
+
+    // user clicks on link to 'Profile Page'
+    cy.contains("Profile Page").click();
+    
+    // user clicks on 'Edit Info' button and is taken to edit page
+    cy.get(".user-information-container").contains("Edit").click();
+    cy.url().should("include", "/profile/user/TestUser/editInfo");
+    
+    // user adds url of profile picture
+    cy.get("#profile-pic").clear();
+    cy.get("#profile-pic").type("https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612");
+    cy.get("#submit").click();
+    cy.url().should("include", "/profile/user/TestUser");
+
+    // profile pic is displayed on profile page
+    cy.get(".image").find('img').should('have.attr', 'src', "https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612")
+  })
 });

@@ -78,6 +78,7 @@ const ProfileController = {
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           location: req.body.location,
+          profilePic: req.body.profilePic
         },
       },
       (err) => {

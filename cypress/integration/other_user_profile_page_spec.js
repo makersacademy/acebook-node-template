@@ -18,7 +18,7 @@ describe("Other user profile page", () => {
     cy.contains("Sign Out").click();
 
     // use webhelper to sign up and sign in
-    signUpAndSignIn("Test", "User2");
+    signUpAndSignIn("Test", "User1");
 
     cy.get(".username > a").first().click();
 
