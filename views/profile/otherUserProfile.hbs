@@ -1,27 +1,55 @@
-{{!-- displaying full name as title of the page --}}
-<h1 class="fullname">{{user.firstName}} {{user.lastName}}</h1>
-<div class="image">
-<img src={{user.profilePic}}
-  style="width:100px" />
-</div>
+<div class="body-container text-center pb-5">
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/posts">Acebook</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="/posts">Home</a>
+        <a class="nav-link active" href="#">{{user.username}}</a>
+        <a class="nav-link" href="#">Search</a>
+        <form action="/sessions?_method=DELETE" method="POST">
+         <input class="sign-out-nav nav-link" type="submit" value="Sign Out" />
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
 
+{{!-- displaying full name as title of the page --}}
+<div class="profile-picture"><img src={{user.profilePic}} /></div>
+<h1 class="fullname">{{user.firstName}} {{user.lastName}}</h1>
+
+
+<h2 class="heading mt-3">Personal Information</h2>
 {{!-- other detailed info displayed in div --}}
-<div class="user-information-container">
-  <p class="username">Username: {{user.username}}</p>
-  <p class="location">Location: {{user.location}}</p>
-  <p class="birthday">Date of Birth: {{birthday}}</p>
+<div class="user-information-container mt-1">
+  <p class="username info"><strong>Username:</strong> {{user.username}}</p>
+  <p class="location info"><strong>Location:</strong> {{user.location}}</p>
+  <p class="birthday info"><strong>Date of Birth:</strong> {{birthday}}</p>
 </div>
 
 {{!-- posts only from this user displayed --}}
-<ul class="posts">
-  {{#each posts}}
-    {{this.timestamp}}
-    <br />
-    {{this.message}}
-    <br />
-    {{#if this.likes}}
-    <div class="likes">Likes: {{this.likes.length}}</div>
-    {{/if}}
-    <br />
-  {{/each}}
-</ul>
+{{#if posts}}
+<h3 class="profile-heading">Posts</h3>
+  <ul class="posts mt-5">
+    {{#each posts}}
+    <li class="post">
+      <div class="timestamp-wrapper">
+      {{this.timestamp}}
+      </div>
+      <div class="message-wrapper">
+      {{this.message}}
+      </div>
+      <div class="likes-wrapper">
+      {{#if this.likes}}
+      <div class="likes">Likes: {{this.likes.length}}</div>
+      {{/if}}
+      </div>
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}
+</div>
