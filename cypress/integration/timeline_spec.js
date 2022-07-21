@@ -13,14 +13,14 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("First post");
+    cy.get("#new-post-form").find('#message').type("First post");
     cy.get("#new-post-form").submit();
 
     // submit second post
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Second post");
+    cy.get("#new-post-form").find('#message').type("Second post");
     cy.get("#new-post-form").submit();
 
     // assert that the first post on the page is the most recently posted
@@ -37,7 +37,7 @@ describe("Timeline", () => {
     cy.contains("New post").click();
 
     cy.get("#new-post-form")
-      .find('[type="text"]')
+      .find('#message')
       .type("Look at my profile");
     cy.get("#new-post-form").submit();
 
