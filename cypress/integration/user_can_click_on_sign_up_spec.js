@@ -5,12 +5,13 @@ describe("Timeline", () => {
     cy.visit("/");
     cy.contains("Create New Account").click();
 
-    // signing up
+
     cy.contains("First name:").type("Chris")
     cy.get("#lastName").type("Brown")
     cy.get("#email").type("a@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
+
 
     
 
