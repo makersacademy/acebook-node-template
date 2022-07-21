@@ -1,4 +1,10 @@
-<link rel="stylesheet" href="/stylesheets/index.css" />
-
 <h1 class="title">{{title}}</h1>
 <p id="welcome-paragraph">Welcome to {{title}}</p>
+
+<form action="/sessions/new" method="GET">
+  <input type="submit" value="Log in" id="login-button" />
+</form>
+
+<form action="/users/new" method="GET">
+  <input type="submit" value="Create New Account" id="signup-button" />
+</form>

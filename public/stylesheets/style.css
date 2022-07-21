@@ -112,16 +112,30 @@ a {
   width: 90px;
 }
 
-#submit-button:hover {
+.submit-button:hover {
   background-color: #166fe5;
   cursor: pointer;
 }
 
-#new-user-form,
-#new-session-form {
+#new-user-form {
   position: relative;
   background-color: #ffffff;
   height: 350px;
+  width: 400px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  top: 18vh;
+  justify-content: flex-start;
+  padding: 10px 10px 20px 10px;
+  align-items: center;
+  box-shadow: 0 5px 5px 3px gainsboro;
+}
+
+#new-session-form {
+  position: relative;
+  background-color: #ffffff;
+  height: 200px;
   width: 400px;
   border-radius: 10px;
   display: flex;
