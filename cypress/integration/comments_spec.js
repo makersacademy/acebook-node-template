@@ -6,7 +6,27 @@ const signUpAndSignIn = require("./webhelper");
      cy.task("dropUsers");
    });
 
-   it("displays comment text box and comment button ", () => {
+   it("shows no comments when there are no comments to display", () =>{
+     // run webhelper to sign up and sign in to acebook
+     signUpAndSignIn("test", "users");
+
+     cy.visit("/posts");
+     cy.contains("New post").click();
+
+     cy.get("#new-post-form")
+       .find('#message')
+       .type("no comments on this post.");
+     cy.get("#new-post-form").submit();
+
+     cy.visit("/posts")
+     cy.get("#show-comments").submit();
+
+     cy.get(".comments").should("contain", "no comments to see");
+   });
+
+   it("shows a list of previous comments")
+
+   it("submits a comment and it's displayed", () => {
      // run webhelper to sign up and sign in to acebook
      signUpAndSignIn("test", "users");
 

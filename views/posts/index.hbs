@@ -39,12 +39,14 @@
         <input type="submit" value="like" />
       </form>
 
+      <button id="show-comments">show comments</button>
+
       <div class="comments">
         Comments: {{#each comments}} 
        <li id="post-comment"> {{this}} </li>
           {{/each}} 
         <form id="enter-comment" action="/posts/comment" method="post">
-          <input type="text" id="comment" name="comment" value="" />
+          <input type="text" id="comment" name="comment" value="" placeholder="Write a comment here..." />
           <input type="hidden" name="id" value={{this._id}} />
           <input type="submit" value="Comment">
         </form>
