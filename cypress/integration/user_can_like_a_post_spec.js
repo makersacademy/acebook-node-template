@@ -45,4 +45,32 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.get(".post").should("not.contain", "Likes:");
   });
+
+
+  it("post can only be liked once per user", () => {
+    // run webhelper to sign up and sign in to acebook
+    signUpAndSignIn("Test", "User");
+
+    // submit a post
+    cy.visit("/posts");
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form")
+      .find('[type="text"]')
+      .type("I want people to like this post.");
+    cy.get("#new-post-form").submit();
+
+    // like the post
+    cy.visit("/posts");
+    cy.get(".like-post").first().submit();
+
+    // like post again 
+    cy.visit("/posts");
+    cy.get(".like-post").first().submit();
+
+    // assert that the post is showing it has received a like
+    cy.visit("/posts");
+    cy.get(".likes").should("contain", "Likes: 1");
+  });
+
 });

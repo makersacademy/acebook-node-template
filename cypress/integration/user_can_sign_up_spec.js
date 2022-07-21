@@ -22,4 +22,6 @@ describe("Registration", () => {
 
     cy.url().should("include", "/sessions/new");
   });
+
+
 });
