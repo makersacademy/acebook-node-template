@@ -75,7 +75,7 @@ describe("Profile Page", () => {
     cy.contains("11 June 1999");
 
     // user clicks on 'Edit Info' button and is taken to edit page
-    cy.get(".user-information-container").contains("Edit").click();
+    cy.get(".edit-btn").click();
     cy.url().should("include", "/profile/user/TestUser/editInfo");
 
     // existing user info is pre-populated into form
@@ -109,7 +109,7 @@ describe("Profile Page", () => {
     cy.contains("Profile Page").click();
     
     // user clicks on 'Edit Info' button and is taken to edit page
-    cy.get(".user-information-container").contains("Edit").click();
+    cy.get(".edit-btn").click();
     cy.url().should("include", "/profile/user/TestUser/editInfo");
     
     // user adds url of profile picture
@@ -119,6 +119,6 @@ describe("Profile Page", () => {
     cy.url().should("include", "/profile/user/TestUser");
 
     // profile pic is displayed on profile page
-    cy.get(".image").find('img').should('have.attr', 'src', "https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612")
+    cy.get(".profile-picture").find('img').should('have.attr', 'src', "https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612")
   })
 });
