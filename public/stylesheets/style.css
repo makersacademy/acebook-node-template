@@ -140,7 +140,7 @@ li {
 .heading {
   color: #ba8dbc;
   font-family: var(--heading-font);
-  font-size: 40px;
+  font-size: 37px;
   margin: 25px 0;
 }
 
@@ -192,7 +192,7 @@ li {
 
 .body-container {
   background-color: #f7f9ff;
-  position: fixed;
+  position: relative;
   top: 0;
   bottom: 0;
   left: 0;
@@ -244,4 +244,44 @@ margin-bottom: 50px;
 padding: 8px 13px;
 text-decoration: none;
 
+}
+.edit-btn:hover {
+  color: white;
+}
+
+.nav-link:visited {
+  color: white;
+}
+
+.post {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+  box-shadow: 6px 5px 5px #bcc4db;
+  display: block;
+  height: 150px;
+  margin: 30px auto 35px;
+  padding: 20px;
+  width: 450px;
+  text-align: center;
+}
+
+.profile-heading {
+  color: #ba8dbc;
+  font-family: var(--heading-font);
+  font-size: 50px;
+  margin-top: 100px;
+}
+
+.timestamp-wrapper {
+  text-align: right;
+}
+
+.message-wrapper {
+  margin: 25px 0 20px;
+  text-align: center;
+}
+
+.likes-wrapper {
+  text-align: right;
 }

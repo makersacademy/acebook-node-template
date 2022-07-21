@@ -27,19 +27,26 @@
   <p class="location info"><strong>Location:</strong> {{user.location}}</p>
   <p class="birthday info"><strong>Date of Birth:</strong> {{birthday}}</p>
 </div>
-  <a class="edit-btn" href="/profile/user/{{user.username}}/editInfo">Edit</a>
+  <a class="edit-btn mb-5" href="/profile/user/{{user.username}}/editInfo">Edit</a>
 
-
-<ul class="posts">
-  {{#each posts}}
-    {{this.timestamp}}
-    <br />
-    {{this.message}}
-    <br />
-    {{#if this.likes}}
-    <div class="likes">Likes: {{this.likes.length}}</div>
-    {{/if}}
-    <br />
-  {{/each}}
-</ul>
+{{#if posts}}
+<h3 class="profile-heading">Posts</h3>
+  <ul class="posts mt-5">
+    {{#each posts}}
+    <li class="post">
+      <div class="timestamp-wrapper">
+      {{this.timestamp}}
+      </div>
+      <div class="message-wrapper">
+      {{this.message}}
+      </div>
+      <div class="likes-wrapper">
+      {{#if this.likes}}
+      <div class="likes">Likes: {{this.likes.length}}</div>
+      {{/if}}
+      </div>
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}
 </div>
