@@ -57,4 +57,27 @@ describe("Other user profile page", () => {
       expect($post).not.to.include.text("Do not display");
     });
   });
+
+  it("displays profile pic", () => {
+    // use webhelper to sign up and sign in as a different user
+    signUpAndSignIn("Test", "User2");
+
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").find('#message').type("Show this message");
+    cy.get("#new-post-form").submit();
+
+    cy.contains("Sign Out").click();
+    cy.url().should("include", "/");
+
+    // use webhelper to sign up and sign in
+    signUpAndSignIn("Test", "User1");
+
+    // visit other user's profile page and only see post made by that user
+    cy.get(".username > a").last().click();
+
+    // see other user's profile picture on their profile page
+    cy.url().should("include", "/profile/TestUser2")
+    cy.get(".image").find('img').should('have.attr', 'src', "https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612")
+  })
 });
