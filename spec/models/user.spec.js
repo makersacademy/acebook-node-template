@@ -111,4 +111,7 @@ describe("User model", () => {
       });
     });
   });
+  xit('confirms correct password against hashed password through bcrypt', () => {
+    jest.spyOn(bcrypt, 'compare').mockImplementation((inputPassword, saltRounds, cb) => cb(null, 'hashedPassword'));
+  })
 });
