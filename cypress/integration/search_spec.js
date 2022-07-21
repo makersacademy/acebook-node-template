@@ -16,7 +16,7 @@ describe("Search", () => {
     cy.contains("Enter search here")
   })
 
-  it.skip("function returns users that match search", () => {
+  it("function returns users that match search", () => {
     //use webhelper to sign up and sign in as user1, then logout
     signUpAndSignIn("Test", "User1")
     cy.contains("Sign Out").click();
@@ -25,13 +25,17 @@ describe("Search", () => {
     signUpAndSignIn("Test", "User2")
     cy.contains("Sign Out").click();
 
-    //use webhelper to sign up and sign in as user2, then logout
+    //use webhelper to sign up and sign in as user3
     signUpAndSignIn("Test", "User3")
     cy.contains("Search").click()
 
+    //use search form to search for users named 'Test'
+    cy.get("#search-form").find("#search").type("Test")
+    cy.get("#search-form").submit()
 
-
-    //drop posts collection
-    cy.task("dropPosts")
+    //assert that the three Test Users will be displayed on screen
+    cy.contains("TestUser1")
+    cy.contains("TestUser2")
+    cy.contains("TestUser3")
   })
 })

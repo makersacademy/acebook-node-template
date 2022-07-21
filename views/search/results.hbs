@@ -1,0 +1,18 @@
+<h2>Users matching search:</h2>
+
+  <ul class="users">
+    {{#each users2}}
+      <span class="user">
+        <img src="{{this.profilePic}}"
+          style="width:80px" />
+        <a href="/profile/{{this.username}}">{{this.username}}</a>
+      </span>
+    {{/each}}
+    {{#each users1}}
+      <span class="user">
+        <img src="{{this.profilePic}}"
+          style="width:80px" />
+        <a href="/profile/{{this.username}}">{{this.username}}</a>
+      </span>
+    {{/each}}
+  </ul>
