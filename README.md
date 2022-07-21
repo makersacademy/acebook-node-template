@@ -120,7 +120,7 @@ so that integration tests do not interact with the development server.
 
 ## MongoDB Connection Errors?
 
-Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
+Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues:
 
 - Check that MongoDB is installed using `mongo --version`
 - Check that it's running using `brew services list`
