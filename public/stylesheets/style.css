@@ -13,6 +13,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 15px;
 }
 .homepage-nav {
   margin: 50px 20px;
@@ -151,4 +152,6 @@ li {
     margin-top: 25px;
   }
 
- 
+  .sign-up-nav{
+    text-align: left;
+  }
