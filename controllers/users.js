@@ -7,12 +7,24 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-    user.save((err) => {
+
+    User.findOne({username: req.body.username}, (err, existingUser) => {
       if (err) {
         throw err;
       }
-      res.status(201).redirect("/posts");
-    });
+      if (existingUser == null) {
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+          res.status(201).redirect("/posts");
+        });
+      } else {
+        res.redirect("/users/new");
+      }
+     
+    })
+
   },
 };
 
