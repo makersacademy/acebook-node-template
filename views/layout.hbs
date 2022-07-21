@@ -18,10 +18,9 @@
       <br>
       <br>
       {{#if session.user.email }}
-      <h4>📧 Account: {{session.user.email}}</h4>
-      <h5>Name: {{session.user.name}} {{session.user.surname}}</h5>
+      <h5>📧 Account:<br>{{session.user.email}}</h5>
+      <h5>Signed in as:<br>{{session.user.name}} {{session.user.surname}}</h5>
       {{/if}}
-      <br>
       <br>
       {{!-- removed home button--}}
       {{#if session.user.email }}
