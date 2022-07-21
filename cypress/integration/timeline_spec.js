@@ -66,14 +66,5 @@ describe("Timeline", () => {
     // page contains the username
     cy.url().should("include", "/user/TestUser1")
   })
-
-  it.only("can navigate to search page", () => {
-    // run webhelper to sign up and sign in to acebook
-    signUpAndSignIn("Test", "User")
-
-    // user clicks on link to 'Search' and are redirected to search page
-    cy.contains("Search").click();
-    cy.url().should("include", "/search")
-  })
 });
 
