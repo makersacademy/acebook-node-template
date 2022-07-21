@@ -7,7 +7,7 @@ describe("Profile Page", () => {
 
   it("Profile page displays username", () => {
     // run webhelper to sign up and sign in to acebook
-    signUpAndSignIn("Test", "User");
+    signUpAndSignIn();
 
     // user clicks on link to 'Profile Page'
     cy.contains("Profile Page").click();
@@ -18,7 +18,7 @@ describe("Profile Page", () => {
 
   it("displays detailed information (dob, location, full name) about user", () => {
     // run webhelper to sign up and sign in to acebook
-    signUpAndSignIn("Test", "User");
+    signUpAndSignIn();
 
     // user clicks on link to 'Profile Page'
     cy.contains("Profile Page").click();
@@ -42,7 +42,7 @@ describe("Profile Page", () => {
     cy.url().should("include", "/");
 
     // use webhelper to sign up and sign in
-    signUpAndSignIn("Test", "User1");
+    signUpAndSignIn();
 
     // make another post as new user
     cy.contains("New post").click();
