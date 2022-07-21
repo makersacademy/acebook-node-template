@@ -129,15 +129,15 @@ li {
     text-decoration: none;
     font-style: var(--body-font);
     color: var(--primary-color);
-    font-size: 20px;
+    font-size: 23px;
   }
 
-  .sign-up-title {
+  .sign-up-title, h2{
     color: var(--primary-color);
     font-size: 40px;
     margin-top: 25px;
   }
 
-  .sign-up-nav{
+  .authentication-nav{
     text-align: left;
   }
