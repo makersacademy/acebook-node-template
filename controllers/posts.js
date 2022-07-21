@@ -12,7 +12,6 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    console.log(req.params.user);
     res.render("posts/new", { session: req.session, recipient: req.params.user });
   },
   NewWallPost: (req, res) => {
@@ -30,14 +29,10 @@ const PostsController = {
     post.save((err, result) => {
       if (err) {
         throw err;
-      }
-      else if (result) {
-        if (result.recipient !== null) {
+      } else if (result) {
           res.status(201).redirect("/posts");
-        }
       }
-      
-    });
+      })
   },
   // implementing a delete function:
   Delete: (req, res) => {
