@@ -67,17 +67,21 @@ const UsersController = {
         if (post.user === req.session.user.email) {
           Object.assign(post, {canDelete: true})
         }
+      })
 
       Post.find({recipient: req.body.email}, (err, posts) => {
         if (err) { 
           throw err;
         } else if (posts !== []) { 
           const wallPosts = posts.reverse();
+          wallPosts.forEach((post) => {
+            if (post.user === req.session.user.email) {
+              Object.assign(post, {canDelete: true})
+            }
+        })
           res.render("users/profile", {posts: userPosts, wallPosts: wallPosts, email: req.body.email, session: req.session});
         }
       }) 
-    }) 
-      
       }
     })
   }
