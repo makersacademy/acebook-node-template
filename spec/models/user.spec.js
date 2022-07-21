@@ -128,22 +128,28 @@ describe("User model", () => {
     });
   });
   it('mocks the bcrypt password', (done) => {
+    // mocking bcrypt.hash
     jest.spyOn(bcrypt, 'hash').mockImplementation((password, saltRounds, cb) => cb(null, 'hashedPassword'));  
+    
+    // calling the mocked bcrypt.hash
     bcrypt.hash('original-password', 3, function (err, hashedPassword) {
       const user = new User({
-        email: 'test@bcrypt.com',
+        email: 'test2@bcrypt.com',
         password: hashedPassword,
         name: 'firstName',
         surname: 'surname'
       });
       console.log(user);
+
+      // saving user to database
       user.save((err) => {
         expect(err).toBeNull();
-  
+        
+        // User.find is to confirm it is in the 
         User.find((err, users) => {
           expect(err).toBeNull();
           expect(users[0]).toMatchObject({
-            email: 'test@bcrypt.com',
+            email: 'test2@bcrypt.com',
             password: 'hashedPassword',
             name: 'firstName',
             surname: 'surname'
@@ -153,7 +159,47 @@ describe("User model", () => {
       });
     });
   });
-  xit('confirms correct password against hashed password through bcrypt', () => {
-    jest.spyOn(bcrypt, 'compare').mockImplementation((inputPassword, saltRounds, cb) => cb(null, 'hashedPassword'));
-  })
-});
+  it('confirms correct password against hashed password through bcrypt', (done) => {
+    // mocking bcrypt.hash
+    jest.spyOn(bcrypt, 'hash').mockImplementation((password, saltRounds, cb) => cb(null, 'hashedPassword'));
+
+    // calling the mocked bcypt.hash
+    bcrypt.hash('original-password', 3, function (err, hashedPassword) {
+      // creating a user
+      const user = new User({
+        email: 'test@bcrypt.com',
+        password: hashedPassword,
+        name: 'firstName',
+        surname: 'surname'
+      });
+      console.log(user);
+
+      // saving user to database
+      user.save((err) => {
+        expect(err).toBeNull();
+
+        // log in using test@bcrypt.com
+        // searching the user from database using the email, naming the database search return to returnedUser
+        User.findOne({email: 'test@bcrypt.com'}).then((returnedUser) => {
+
+          // mocking bcrypt.compare
+          jest.spyOn(bcrypt, 'compare').mockImplementation((password, hashedPassword, cb) => cb(null, true));
+
+          // calling the mocked bcrypt.compare
+          bcrypt.compare('original-password', returnedUser.password, function (err, hashComparison) {
+            
+            // in real case, we assign the returned User to session
+            // here we expect the returned user to be the user who was trying to log in
+            expect(returnedUser).toMatchObject({
+              email: 'test@bcrypt.com',
+              password: 'hashedPassword',
+              name: 'firstName',
+              surname: 'surname'
+            });
+            done();
+          });
+        });
+      });
+    });
+  });
+})
