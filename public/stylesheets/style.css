@@ -54,7 +54,7 @@
   padding: 17px;
 }
 
-.container {
+.container, .sign-up-container {
   position: relative;
   border-radius: 5px;
   background-color: white;
@@ -82,8 +82,68 @@
   font-size: 17px;
   line-height: 40px;
   box-sizing: border-box;
+  background-color: #D8DEEF;
 } 
 
 .authentication-btn {
   background-color: var(--secondary-color);
 }
+
+li {
+  list-style-type: none;
+}
+
+.sign-up-container {
+  max-width: 500px;
+  margin: 2% auto; 
+}
+
+.sign-up-input, .sign-up-btn  {
+    width: 40%;
+    padding: 5px;
+    border: 10px;
+    border-radius: 4px;
+    margin: 10px;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 25px;
+    box-sizing: border-box;
+    background-color: #D8DEEF;
+  } 
+
+  .sign-up-label {
+    padding: 5px;
+    width: 100px;
+  }
+
+  .sign-up-btn {
+    width: 80%;
+    background-color: var(--secondary-color);
+  }
+
+  #firstName, #fname-label{
+   float: left;
+   display: block;
+  }
+
+  #lastName, #lname-label {
+    float: right;
+    display: block;
+   }
+
+   #firstName, #lastName {
+    display: inline-block;
+   }
+
+  .home-link {
+    text-decoration: none;
+    font-style: var(--body-font);
+    color: var(--primary-color);
+    font-size: 15px;
+  }
+
+  .sign-up-title {
+    color: var(--primary-color);
+    font-size: 40px;
+    margin-top: 25px;
+  }
