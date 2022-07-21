@@ -59,13 +59,45 @@ const PostsController = {
     const ObjectId = require("mongodb").ObjectId;
     const postId = new ObjectId(req.body.id);
     const likingUserId = new ObjectId(req.session.user._id);
-    const like = { userId: likingUserId, liked: true };
-    Post.updateOne({ _id: postId }, { $push: { likes: like } }, (err) => {
+    const likeData = { userId: likingUserId, liked: true };
+
+    //find post based on post id
+      Post.find({_id: postId}, (err, post) => {
       if (err) {
         throw err;
       }
+    
+      // set likes as the likes object of the post
+      const likes = post[0].likes;
+
+      // if there are no likes, like the post
+      if (likes.length == 0) {
+        Post.updateOne({ _id: postId }, { $push: { likes: likeData } }, (err) => {
+          if (err) {
+            throw err;
+          }
+        });
+       }
+
+       // if there are likes, go through each one and if the user hasn't liked it, like it
+      likes.forEach(like => {
+          if (!(String(like.userId) == String(likingUserId)) || (String(like.userId) == String(likingUserId) && like.liked == false)) {
+              Post.updateOne({ _id: postId }, { $push: { likes: likeData } }, (err) => {
+                if (err) {
+                  throw err;
+                }
+              
+              });
+            } 
+        })
+        
+      
       res.redirect("/posts");
+  
     });
+
+
+
   },
   Comment: (req, res) => {
     const ObjectId = require("mongodb").ObjectId;
