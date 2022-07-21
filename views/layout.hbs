@@ -2,12 +2,42 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/css/style.css' />
   </head>
+
+  <ul>
+
+  <li><a><form action="/">
+    <input class="nav-buttons" type="submit" value="Home">
+  </form>
+ </a></li>
+
+  <li><a><form action="/users/new">
+    <input class="nav-buttons" type="submit" value="Sign Up">
+  </form>
+  </a></li>
+
+
+  <li><a><form action="/sessions/new">
+    <input class="nav-buttons" type="submit" value="Posts">
+  </form>
+  </a></li>
+
+  <li><a><form class="home-butt" action="/sessions/new">
+    <input class="nav-buttons" type="submit" value="Login">
+  </form>
+  </a></li>
+
+   <li><a><form action='/sessions?_method=DELETE' method='POST'>
+    <input class="nav-buttons" type="submit" value="Log Out">
+  </form>
+  </a></li>
+
+</ul>
+
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
     {{{body}}}
   </body>
+  
+  
 </html>
