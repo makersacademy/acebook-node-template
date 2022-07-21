@@ -23,6 +23,6 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm ci
-      - run: npm run workflow
+      - run: npm run
     env: 
       CI: true
