@@ -70,6 +70,7 @@ const ProfileController = {
   },
 
   EditInfo: (req, res) => {
+    console.log(req.body)
     // update user info with inputted data from edit info page
     User.updateOne(
       { username: req.params.username },
@@ -78,6 +79,7 @@ const ProfileController = {
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           location: req.body.location,
+          profilePic: req.body.profilePic
         },
       },
       (err) => {

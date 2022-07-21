@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema({
   location: String,
   email: String,
   password: String,
+  profilePic: String
 });
 
 // created a function that hashes the password
