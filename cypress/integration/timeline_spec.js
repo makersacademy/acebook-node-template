@@ -37,7 +37,7 @@ describe("Timeline", () => {
     cy.contains("New post").click();
 
     cy.get("#new-post-form")
-      .find('[type="text"]')
+      .find('#message')
       .type("Look at my profile");
     cy.get("#new-post-form").submit();
 

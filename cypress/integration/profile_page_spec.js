@@ -7,7 +7,7 @@ describe("Profile Page", () => {
 
   it("Profile page displays username", () => {
     // run webhelper to sign up and sign in to acebook
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User");
 
     // user clicks on link to 'Profile Page'
     cy.contains("Profile Page").click();
@@ -18,7 +18,7 @@ describe("Profile Page", () => {
 
   it("displays detailed information (dob, location, full name) about user", () => {
     // run webhelper to sign up and sign in to acebook
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User");
 
     // user clicks on link to 'Profile Page'
     cy.contains("Profile Page").click();
@@ -35,19 +35,19 @@ describe("Profile Page", () => {
 
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Do not display");
+    cy.get("#new-post-form").find('#message').type("Do not display");
     cy.get("#new-post-form").submit();
 
     cy.contains("Sign Out").click();
     cy.url().should("include", "/");
 
     // use webhelper to sign up and sign in
-    signUpAndSignIn();
+    signUpAndSignIn("Test", "User1");
 
     // make another post as new user
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Show this message");
+    cy.get("#new-post-form").find('#message').type("Show this message");
     cy.get("#new-post-form").submit();
 
     // visit profile page and only see post made by current user
