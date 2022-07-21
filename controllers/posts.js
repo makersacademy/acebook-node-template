@@ -34,6 +34,7 @@ const PostsController = {
       likes: [],
       timestamp: `${datePosted} ${timePosted}`,
       image: image,
+      comments: []
     });
 
     post.save((err) => {
@@ -66,6 +67,19 @@ const PostsController = {
       res.redirect("/posts");
     });
   },
+  Comment: (req, res) => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = ObjectId(req.body.id);
+    const comment = req.body.comment;
+    Post.updateOne({ _id: id }, { $push: { comments: comment } }, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/posts")
+    });
+  },
 };
+
+
 
 module.exports = PostsController;

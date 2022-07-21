@@ -8,6 +8,7 @@ const PostSchema = new mongoose.Schema({
   likes: Array,
   timestamp: String,
   image: String,
+  comments: Array,
 });
 
 const Post = mongoose.model("Post", PostSchema);
