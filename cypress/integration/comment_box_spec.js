@@ -1,9 +1,14 @@
 describe("Timeline", function() {
   it("can can view comments on post", function() {
+    
+    cy.task('emptyPosts', 'emptyUsers').then(() => {
+
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
+    cy.get("#name").type("name");
+    cy.get("#surname").type("surname");
     cy.get("#submit").click();
 
     // sign in
@@ -27,5 +32,6 @@ describe("Timeline", function() {
     cy.get(".Comment-List").should("contain", 'This is a comment');
   });
 });
+})
 
 

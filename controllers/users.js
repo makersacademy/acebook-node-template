@@ -11,8 +11,12 @@ const UsersController = {
     user.save((err, result) => {
       if (err) {
         console.log(err);
-        res.status(409).render("users/new", { error: 'User already exists!' });
       } else if (result) {
+        res.status(409).render("users/new", { 
+          error: 'User already exists!', 
+          name: req.name, 
+          surname: req.surname});
+      } else {
       res.status(201).redirect("/posts");
       }
     });
