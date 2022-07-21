@@ -160,3 +160,12 @@ li {
     
   }
 
+.form-input, .form-btn {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    line-height: 50px;
+    font-size: 18px;
+  } 
+
+
