@@ -13,16 +13,27 @@ h1.title {
 }
 
 
-h4.title {
+h4 {
   background-color: rgb(0, 90, 100);
   color: white;
   font-family: Monaco;
   display:table;
   padding: 7px;
+  font-size: small;
 }
 li.each-message {
   white-space: pre-wrap;
 }
+
+h5 {  
+  background-color: rgb(0, 90, 100);
+  color: white;
+  font-family: Monaco;
+  display:table;
+  padding: 7px;
+  font-size: small;
+}
+
 
 a {
   color: #00B7FF;
@@ -81,4 +92,9 @@ li.each-message {
   list-style-type: none;
   background-color: rgb(196, 225, 229);
   display:table
+}
+
+.profile-link {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }

@@ -112,9 +112,25 @@ describe("Post model", () => {
 
         expect(posts[0]).toMatchObject({ message: "some message", user: "someone@example.com" });
 
-        expect(posts[0].user).toEqual("example@example.com");
+        
         done();
       })
     })
   })
-});
+
+  it('can have a recipient', (done) => {
+    var post = new Post({ message: "some message", user: "someone@example.com", recipient: "newperson@email.com" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "some message", user: "someone@example.com", recipient: "newperson@email.com"});
+
+        done();
+      })
+    })
+  })
+})
