@@ -3,13 +3,13 @@
   <p class="error-message">User Already Exists. Please Enter A New Email Address</p>
 {{/if}}
 <form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label><br>
-  <input id="email" type="email" name="email" value=""><br><br>
-  <label for="password">Password: </label><br>
-  <input id="password" type="password" name="password" value=""><br><br>
-  <label for="name">Name: </label><br>
-  <input id="name" type="name" name="name" value=""><br><br>
-  <label for="surname">Surname: </label><br>
-  <input id="surname" type="surname" name="surname" value="">
+  <label for="email">Email: (required)</label><br>
+  <input id="email" type="email" name="email" required value=""><br><br>
+  <label for="password">Password: (required)</label><br>
+  <input id="password" type="password" name="password" required value=""><br><br>
+  <label for="name">Name: (required)</label><br>
+  <input id="name" type="name" name="name" required value=""><br><br>
+  <label for="surname">Surname: (required)</label><br>
+  <input id="surname" type="surname" name="surname" required value="">
   <input class="post-button" id="submit" type="submit" value="Submit">
 </form>
