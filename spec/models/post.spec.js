@@ -132,6 +132,23 @@ describe("Post model", () => {
     expect(post.likes[0].liked).toBe(true);
   });
 
+  it("stores the url of an image if a user submits one", (done) => {
+    let post = new Post({
+      message: "delete this message",
+      image: "www.testimage.com",
+    });
+    post.save((err) => {
+    expect(err).toBeNull();
+       
+    Post.find((err, posts) => {
+    expect(err).toBeNull();
+     expect(posts[0].image).toEqual("www.testimage.com");
+     done();
+       });
+    });
+  });
+
+
   it("has comments", () => {
     const ObjectId = require("mongodb").ObjectId;
     const id = new ObjectId("123456ABCDEF");
@@ -143,11 +160,11 @@ describe("Post model", () => {
     });
 
     post.save(() => (err) => {
-      expect(err).toBeNull();
-
-      Post.find((err, posts) => {
-        expect(err).toBeNull();
-        expect(posts.comments[0].comment).toEqual("this is a comment");
+     expect(err).toBeNull();
+    
+     Post.find((err, posts) => {
+     expect(err).toBeNull();
+     expect(posts.comments[0].comment).toEqual("this is a comment");
       });
     });
   });

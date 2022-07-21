@@ -15,13 +15,20 @@
       <div class="username">
         <a href="/profile/{{this.username}}">{{this.username}}</a>
       </div>
-     
-      <br />
       {{this.message}}
+      <br>
+      {{#if this.image}}
+      <div class="image">
+        <input type="hidden" name="id" value={{this._id}} />
+        <img src={{this.image}}>
+      </div>
+      {{/if}}
+      <br>
       <form class="delete-post" action="/posts/delete" method="post">
         <input type="hidden" name="id" value={{this._id}} />
         <input type="submit" value="Delete" />
       </form>
+
       {{#if this.likes}}
       <div class="likes">
        Likes: {{this.likes.length}}

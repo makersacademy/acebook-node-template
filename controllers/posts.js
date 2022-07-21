@@ -20,6 +20,7 @@ const PostsController = {
     const ObjectId = require("mongodb").ObjectId;
     const id = ObjectId(req.session.user._id);
     const username = req.session.user.username;
+    const image = req.body.imageUrl;
 
     const datePosted = new Date().toLocaleDateString("en-GB");
     const timePosted = new Date().toLocaleTimeString([], {
@@ -32,6 +33,7 @@ const PostsController = {
       message: req.body.message,
       likes: [],
       timestamp: `${datePosted} ${timePosted}`,
+      image: image,
       comments: []
     });
 
