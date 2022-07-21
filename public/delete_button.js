@@ -43,11 +43,6 @@ var DeleteButton = function (_React$Component) {
   return DeleteButton;
 }(React.Component);
 
-// state data set
-
-// let domContainer = document.querySelector(".delete-button-container");
-// ReactDOM.render(<DeleteButton {...domContainer.dataset} />, domContainer);
-
 document.querySelectorAll(".delete-button-container").forEach(function (domContainer) {
   ReactDOM.render(React.createElement(DeleteButton, domContainer.dataset), domContainer);
 });
