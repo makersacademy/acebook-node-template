@@ -1,7 +1,15 @@
+<h1 class="title">Sign up</h1>
+{{#if error }}
+  <p class="error-message">User Already Exists. Please Enter A New Email Address</p>
+{{/if}}
 <form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
+  <label for="email">Email: </label><br>
+  <input id="email" type="email" name="email" value=""><br><br>
+  <label for="password">Password: </label><br>
+  <input id="password" type="password" name="password" value=""><br><br>
+  <label for="name">Name: </label><br>
+  <input id="name" type="name" name="name" value=""><br><br>
+  <label for="surname">Surname: </label><br>
+  <input id="surname" type="surname" name="surname" value="">
+  <input class="post-button" id="submit" type="submit" value="Submit">
 </form>

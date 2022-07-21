@@ -18,3 +18,26 @@
 
 // Alternatively you can use CommonJS syntax:
 require('./commands')
+
+
+// likely want to do this in a support file
+// so it's applied to all spec files
+// cypress/support/index.js
+
+
+// Cypress.on('uncaught:exception', () => {
+//   // returning false here prevents Cypress from
+//   // failing the test
+//   return false
+// })
+
+// var mongoose = require("mongoose");
+
+// beforeEach(async () => {
+//   const collections = await mongoose.connection.db.collections();
+
+//   for (let collection of collections) {
+//        // note: collection.remove() has been depreceated.        
+//        await collection.deleteOne(); 
+//   }
+// });
