@@ -3,28 +3,31 @@ const User = require("../models/user");
 
 const ProfileController = {
   Index: (req, res) => {
-    // creating date of birth in correct format from session data
-    const birthdayData = new Date(req.session.user.birthday)
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const dateOfBirth = birthdayData.toLocaleDateString('en-GB', options)
-    
-    // userId from session data stored as variable to pass to Post.find method
+    // find user data from database, using userId from session
     const ObjectId = require("mongodb").ObjectId;
     const userId = ObjectId(req.session.user._id);
-    
-    // searching database by userId
-    Post.find({ userId: userId }, (err, userPosts) => {
+
+    User.findOne({ _id: userId }, (err, userData) => {
       if (err) {
         throw err;
       }
-      res.render("profile/userProfile", { 
-        posts: userPosts.reverse(),
-        title: "Profile Page",
-        user: req.session.user,
-        birthday: dateOfBirth
-      });
-    }
-    )
+      // find user's posts in database
+      Post.find({ userId: userId }, (err, userPosts) => {
+        if (err) {
+          throw err;
+        }
+        // change birthday into correct format
+        const birthdayData = new Date(userData.birthday)
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const dateOfBirth = birthdayData.toLocaleDateString('en-GB', options)
+
+        res.render("profile/userProfile", { 
+          posts: userPosts.reverse(),
+          user: userData,
+          birthday: dateOfBirth
+        });
+      })
+    })
   },
 
   OtherUser: (req, res) => {
@@ -56,7 +59,34 @@ const ProfileController = {
   },
 
   EditInfoView: (req, res) => {
-    res.render("profile/editInfo")
+    // pass user data into edit info page
+    User.findOne({ username: req.params.username }, (err, userData) => {
+      if (err) {
+        throw err;
+      }
+    res.render("profile/editInfo", {
+      user: userData
+    })
+    })
+  },
+
+  EditInfo: (req, res) => {
+    // update user info with inputted data from edit info page
+    User.updateOne(
+      { username: req.params.username },
+      { 
+        $set: { 
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          location: req.body.location,
+          birthday: req.body.birthday
+        }
+    }, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect(`/profile/user/${req.params.username}`)
+    })
   }
 }
 

@@ -1,1 +1,32 @@
-<h1> Testing </h1>
+<h1 class="username">User: {{user.username}}</h1>
+
+<form id="edit-info-form" action="/profile/user/{{user.username}}/editInfo" method="post">
+  <input type="hidden" name="id" value={{user._id}} />
+  <ul>
+    <li>
+      <label for="firstName">First Name:</label>
+      <input id="firstName" type="text" name="firstName" value="">
+    </li>
+
+    <li>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" type="text" name="lastName" value="">
+    </li>
+
+     <li>
+      <label for="location">Location:</label>
+      <input id="location" type="text" name="location" value="">
+    </li>
+
+     <li>
+      <label for="birthday">Birthday:</label>
+      <input id="birthday" type="date" name="birthday" value="">
+    </li>
+
+    <li>
+      <input id="submit" type="submit" value="Submit">
+    </li>
+  </ul>
+  
+  
+</form>
