@@ -19,10 +19,6 @@ class DeleteButton extends React.Component {
   }
 }
 
-// state data set
-
-// let domContainer = document.querySelector(".delete-button-container");
-// ReactDOM.render(<DeleteButton {...domContainer.dataset} />, domContainer);
 
 document
   .querySelectorAll(".delete-button-container")
