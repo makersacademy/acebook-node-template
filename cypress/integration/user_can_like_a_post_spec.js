@@ -15,7 +15,7 @@ describe("Timeline", () => {
     cy.contains("New post").click();
 
     cy.get("#new-post-form")
-      .find('[type="text"]')
+      .find("#message")
       .type("I want people to like this post.");
     cy.get("#new-post-form").submit();
 
@@ -45,5 +45,4 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.get(".post").should("not.contain", "Likes:");
   });
-
 });

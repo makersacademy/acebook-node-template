@@ -13,12 +13,12 @@ describe("Delete Post", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Delete this post!");
+    cy.get("#new-post-form").find('#message').type("Delete this post!");
     cy.get("#new-post-form").submit();
     cy.get(".posts").should("contain", "Delete this post!");
 
     // delete a post
-    cy.visit("/posts");
+    cy.visit("/posts")
     cy.get(".delete-post").first().submit();
 
     // assert that the page no longer shows the post
