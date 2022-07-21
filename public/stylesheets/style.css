@@ -61,14 +61,17 @@
   padding: 10px 10px;
   margin: 5% auto; 
   max-width: 500px;
+  text-align: center;
 }
 
 .sign-in-form {
   border-radius: 2px;
-  width: 100%;
+  margin: 0 auto;
   max-width: 380px;
   padding: 5px;
   background-color: white;
+  text-align: center;
+  display: inline-block;
 
 }
 
@@ -147,3 +150,5 @@ li {
     font-size: 40px;
     margin-top: 25px;
   }
+
+ 
