@@ -12,7 +12,12 @@ const UsersController = {
 
   Create: (req, res) => {
     bcrypt.hash(req.body.password, saltRounds, function(err, hashedPassword) {
-      const user = new User({email: req.body.email, password: hashedPassword});
+      const user = new User({
+        email: req.body.email,
+        password: hashedPassword,
+        name: req.body.name,
+        surname: req.body.surname
+      });
       console.log(user);
       user.save((err) => {
         if (err) {
