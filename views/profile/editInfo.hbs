@@ -1,55 +1,50 @@
-<h1 class="username">User: {{user.username}}</h1>
+<div class="main-container text-center" id="main">
 
-<form
-  id="edit-info-form"
+<h2 class="username-h2">Hello, {{user.username}}!</h1>
+
+  <h2 id="edit-info-title">Edit Your Personal Information:</h2>
+
+<div class="authentication-container">
+<div class="row d-flex justify-content-center align-items-center">
+<form class="authentication-form"
+id="edit-info-form"
   action="/profile/user/{{user.username}}/editInfo"
-  method="post"
->
-  <h2>Edit Personal Information:</h2>
-  <ul>
-    <li>
-      <label for="firstName">First Name:</label>
-      <input
+  method="post">
+
+      <label class="inline-form-label" for="firstName"> First Name:</label>
+      <input class="inline-form-input"
         id="firstName"
         type="text"
         name="firstName"
         value={{user.firstName}}
-      />
-    </li>
+        />
 
-    <li>
-      <label for="lastName">Last Name:</label>
-      <input
+      <label class="inline-form-label" for="lastName">Last Name:</label>
+      <input class="inline-form-input"
         id="lastName"
         type="text"
         name="lastName"
         value={{user.lastName}}
       />
-    </li>
 
-    <li>
-      <label for="profile-pic">Profile Picture URL:</label>
-      <input
+      <label class="inline-form-label" for="profile-pic">Profile Picture URL:</label>
+      <input class="inline-form-input"
         id="profile-pic"
         type="text"
         name="profilePic"
         value={{user.profilePic}}
       />
-    </li>
 
-    <li>
-      <label for="location">Location:</label>
-      <input
+      <label class="inline-form-label" for="location">Location:</label>
+      <input class="inline-form-input"
         id="location"
         type="text"
         name="location"
         value={{user.location}}
       />
-    </li>
 
-    <li>
-      <input id="submit" type="submit" value="Submit" />
-    </li>
-  </ul>
-
+      <input class="inline-form-btn" id="submit" type="submit" value="Submit" />
 </form>
+</div>
+</div>
+</div>

@@ -82,7 +82,7 @@
 .authentication-input, .authentication-btn, .form-input, .form-btn {
   width: 80%;
   padding: 5px;
-  border: 10px;
+  border: 0px;
   border-radius: 4px;
   margin: 15px;
   display: block;
@@ -119,7 +119,7 @@ li {
   background-color: #D8DEEF;
   } 
 
-.sign-up-label {
+.sign-up-label , .inline-form-label{
   padding: 5px;
   width: 100px;
 }
@@ -290,7 +290,7 @@ text-decoration: none;
   text-align: right;
 }
 
-.sign-up-input, .sign-up-btn {
+.sign-up-input, .sign-up-btn, .inline-form-input, .inline-form-btn {
     width: 50%;
     padding: 5px;
     border: 10px;
@@ -303,13 +303,13 @@ text-decoration: none;
     background-color: #D8DEEF;
   } 
 
-  .sign-up-label {
+  .inline-form-label{
     padding: 5px;
-    width: 120px;
-    font-size: 18px;
+    width: 180px;
+    font-size: 19px;
   }
 
-  .sign-up-btn, .form-btn {
+  .sign-up-btn, .form-btn, .inline-form-btn{
     width: 80%;
     line-height: 30px;
     background-color: #9FE2BF;
@@ -366,5 +366,23 @@ text-decoration: none;
     font-weight: 500;
     color: var(--primary-color)
   }
+  .inline-form-input {
+    width: 52%;
+    line-height: 25px;
 
+  }
+  .inline-form-btn {
+    width: 100%;
+    margin: 10 auto;
+    line-height: 40px;
+    font-size: 18px;
+    border: 0px;
+    border-radius: 4px;
+  }
+  .username-h2{
+    color: var(--tertiary-color)
+  }
 
+  #edit-info-title {
+    font-size: 35px;
+  }
