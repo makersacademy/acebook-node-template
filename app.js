@@ -11,10 +11,21 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+const exphbs  = require('express-handlebars').engine;
+console.log(exphbs);
+
 const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
+
+app.engine('.hbs', exphbs({
+  extname: '.hbs',
+  defaultLayout: 'layout',
+  layoutsDir: 'views',
+  helpers: require('./config/handlebars-helpers') 
+}));
+
 app.set("view engine", "hbs");
 
 app.use(logger("dev"));
