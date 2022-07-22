@@ -122,5 +122,5 @@ so that integration tests do not interact with the development server.
 
 Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips that may resolve such issues:
 
-- Check that MongoDB is installed using `mongo --version`
-- Check that it's running using `brew services list`
+- Check that MongoDB is installed using: `mongo --version`
+- Check that it's running using: `brew services list`
