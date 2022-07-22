@@ -29,9 +29,12 @@ describe("User's Own Profile Page", function() {
   });
   it('can read own post in profile page', () => {
     cy.task('emptyUsers').then(() => {
+      // sign up
       cy.visit("/users/new");
       cy.get("#email").type("someone@example.com");
       cy.get("#password").type("password");
+      cy.get("#name").type("name");
+      cy.get("#surname").type("surname");
       cy.get("#submit").click();
       
       // sign in
@@ -41,8 +44,8 @@ describe("User's Own Profile Page", function() {
       cy.get("#submit").click();
 
       // submit a post
-      cy.visit("/posts");
-      cy.contains("New post").click();
+      // cy.visit("/posts");
+      cy.get(".new-post-link").click();
 
       cy.get("#new-post-form").find('#message').type("Hello, world!");
       cy.get("#new-post-form").submit();
@@ -61,6 +64,8 @@ describe("User's Own Profile Page", function() {
       cy.visit("/users/new");
       cy.get("#email").type("user1@example.com");
       cy.get("#password").type("password");
+      cy.get("#name").type("name");
+      cy.get("#surname").type("surname");
       cy.get("#submit").click();
       
       // first user signs in
@@ -71,7 +76,7 @@ describe("User's Own Profile Page", function() {
 
       // first user submits a post
       cy.visit("/posts");
-      cy.contains("New post").click();
+      cy.get("#new-post-link").click();
       cy.get("#new-post-form").find('#message').type("Testing profile page");
       cy.get("#new-post-form").submit();
       
@@ -87,6 +92,8 @@ describe("User's Own Profile Page", function() {
       cy.visit("/users/new");
       cy.get("#email").type("user2@example.com");
       cy.get("#password").type("password");
+      cy.get("#name").type("name");
+      cy.get("#surname").type("surname");
       cy.get("#submit").click();
 
       // sign in as a second user

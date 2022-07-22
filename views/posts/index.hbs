@@ -1,18 +1,26 @@
-<h1 class="title">Post Timeline</h1>
+<h2 class="title">Post Timeline</h2>
 <a class="new-post-link" href="/posts/new">New post</a>
 
-<ul class="posts">
+<ul class="posts" style="background-color:rgba(255,255,255,0.75); padding: 4%;">
   {{#each posts}}
   <div class="post-container">
-    <li class="each-message">{{this.message}}<br>{{this.date}}<br> {{#if this.recipient}} To {{this.recipient}} {{/if}}
-      <form action="users/profile" method="post" class="profile-link">
+
+    <li class="each-message" style="padding: 4%;">{{this.message}}<br>{{this.date}}<br> {{#if this.recipient}} To {{this.recipient}} {{/if}}
+      <div class="parent">
+        <div class="child">
+          <form action="users/profile" method="post" class="profile-link">
         <input name="email" type="hidden" value="{{this.user}}"><input name="id" type="hidden" value="{{this._id}}"><input type="submit" id="{{this.user}}" value="{{this.user}}">
       </form>
-    {{#if this.canDelete}}
-      <form action="/posts/delete" method="post" class="delete">
-        <input name="_id" type="hidden" value="{{this._id}}"><input style="background-color=transparent" name="delete" type="submit" value ="🗑️">
-      </form>
-    {{/if}}
+        </div>
+        <div class="child">
+          {{#if this.canDelete}}
+          <form action="/posts/delete" method="post" class="delete">
+            <input name="_id" type="hidden" value="{{this._id}}"><input style="background-color=transparent" name="delete" type="submit" value ="🗑️">
+          </form>
+          {{/if}}
+        </div>  
+      </div>
+
     </li>
     <br>
     <div class="like-container">
@@ -30,7 +38,7 @@
         Comment
       </button>
     </form>
-    <h3> Comments: </h3>
+    <h4 style="color: #fff;">Comments: </h4>
     <div class='comment-container'>
       <ul class="Comment-List">
         {{#each this.comments}}
