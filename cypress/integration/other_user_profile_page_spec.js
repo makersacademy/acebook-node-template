@@ -78,6 +78,6 @@ describe("Other user profile page", () => {
 
     // see other user's profile picture on their profile page
     cy.url().should("include", "/profile/TestUser2")
-    cy.get(".image").find('img').should('have.attr', 'src', "https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612")
+    cy.get(".profile-picture").find('img').should('have.attr', 'src', "https://media.istockphoto.com/photos/mr-who-picture-id619400810?s=612x612")
   })
 });
