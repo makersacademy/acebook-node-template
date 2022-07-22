@@ -1,10 +1,12 @@
 # Acebook - ETA Team build
 
 ## Overview
+
 Acebook is a Facebook-clone developed whilst on the Makers Academy Bootcamp July 2022.
+
 - A (full stack) web app that allows users to login to the social media platform
-- Users can interact with other users and profiles by the feed through posts, comments and likes 
-- Build using Test Driven Development and working cohesively as a team 
+- Users can interact with other users and profiles by the feed through posts, comments and likes
+- Build using Test Driven Development and working cohesively as a team
 
 ## Group Collabrators (Alphabetical)
 
@@ -15,8 +17,7 @@ Acebook is a Facebook-clone developed whilst on the Makers Academy Bootcamp July
 - [Raphaella](https://github.com/raphaella-rose)
 - [Naz H](https://github.com/nazhudha)
 
-
-## Features include: 
+## Features include:
 
 - User can sign up
 - User can log in
@@ -28,7 +29,7 @@ Acebook is a Facebook-clone developed whilst on the Makers Academy Bootcamp July
 - User can view their own and other users profile page
 - User's username and timestamp displayed next to their post
 
-## Technologies: 
+## Technologies:
 
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
@@ -39,12 +40,12 @@ Acebook is a Facebook-clone developed whilst on the Makers Academy Bootcamp July
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
 ## Card wall (Trello Planning)
+
 ![Trello Screenshot](./public/images/Trello_screenshot.png)
 
 (https://trello.com/b/fBi79KiE/eta-trello-board)
 
 ## ScreenShots (app)
-
 
 # Setup
 
@@ -119,9 +120,7 @@ so that integration tests do not interact with the development server.
 
 ## MongoDB Connection Errors?
 
-Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
+Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips that may resolve such issues:
 
 - Check that MongoDB is installed using `mongo --version`
 - Check that it's running using `brew services list`
-
-If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
