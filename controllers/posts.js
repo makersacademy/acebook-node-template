@@ -21,6 +21,7 @@ const PostsController = {
     const id = ObjectId(req.session.user._id);
     const username = req.session.user.username;
     const image = req.body.imageUrl;
+    const title = req.body.title;
 
     const datePosted = new Date().toLocaleDateString("en-GB");
     const timePosted = new Date().toLocaleTimeString([], {
@@ -30,6 +31,7 @@ const PostsController = {
     const post = new Post({
       userId: id,
       username: username,
+      title: title,
       message: req.body.message,
       likes: [],
       timestamp: `${datePosted} ${timePosted}`,

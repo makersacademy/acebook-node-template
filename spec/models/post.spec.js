@@ -15,6 +15,11 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("has a title", () => {
+    const post = new Post({ title: "a delicious dish" });
+    expect(post.title).toEqual("a delicious dish");
+  })
+
   it("has a userId", () => {
     const ObjectId = require("mongodb").ObjectId;
     const id = new ObjectId("123456ABCDEF");

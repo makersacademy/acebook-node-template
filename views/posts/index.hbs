@@ -30,9 +30,15 @@
       <div class="username-wrapper">
         <a href="/profile/{{this.username}}">{{this.username}}</a>
       </div>
+
+  <div class="title-wrapper">
+        {{{this.title}}
+      </div>
+      
       <div class="message-wrapper">
         {{this.message}}
       </div>
+
       {{#if this.image}}
       <div class="image">
         <input type="hidden" name="id" value={{this._id}} />
