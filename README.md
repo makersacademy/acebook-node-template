@@ -1,6 +1,26 @@
-# Acebook
+# Acebook - A Better and Non-Intrusive Facebook...or is it?
 
-This is a Node.js template for the Acebook engineering project.
+Welcome to Acebook! We took everything that people liked about Facebook and made our own version without invading your privacy...or are we mining your data? You'll never know, without diving into the source code above.
+
+## Testing
+### esLint, unit and integration tests:
+``` bash
+npm run start:test
+npm test
+```
+
+### Unit tests
+``` bash
+npm run test:unit
+```
+
+### Integration/Cypress tests
+
+``` bash
+npm run test:integration
+```
+
+## Packages and Planning
 
 It uses:
 
@@ -55,7 +75,7 @@ https://trello.com/b/8qXzxZsw/team-sixth-sense
 ### Start
 
 1. Start the server
-   ```
+   ``` 
    npm start
    ```
 2. Browse to [http://localhost:3000](http://localhost:3000)
@@ -72,19 +92,6 @@ npm run start:test
 This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
 so that integration tests do not interact with the development server.
 
-### Test
-
-- Run all tests
-  ```
-  npm test
-  ```
-- Run a check
-  ```bash
-  npm run lint              # linter only
-  npm run test:unit         # unit tests only
-  npm run test:integration  # integration tests only
-  ```
-
 ## MongoDB Connection Errors?
 
 Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
@@ -93,5 +100,3 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Check that it's running using `brew services list`
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
-
-paddys commit

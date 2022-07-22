@@ -5,6 +5,14 @@
   <input type="submit" value="Profile" id="posts-button" />
 </form>
 
+  <form action="/sessions?_method=DELETE" method="POST">
+    <input type="submit" value="Log Out" />
+  </form>
+
+
+
+    
+
 <ul class="posts">
   {{#each posts}}
     <h3 class="post" id="{{this._id}}">{{this.message}}</h3>
