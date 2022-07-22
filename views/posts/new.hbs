@@ -1,9 +1,16 @@
+<div class="main-container text-center">
+
+<h2>What's currently on your mind?</h2>
+
+<div class="form-container">
 <form id="new-post-form" action="/posts" method="post">
-  <label for="message">Enter your post message here: </label><br>
-  <input id="message" type="text" name="message" value=""/><br>
-  <p>Add an image to your post</p>
-  <label for="image-url">Enter your image url here:</label> <br>
-  <input id="image-url" type="text" name="imageUrl" value=""/> <br>
-  <input type="submit" value="Submit" />
+  <label class="form-label" for="message">Enter your post message here: </label><br>
+  <textarea class="form-input" id="message" type="text" name="message" value="" rows="4" cols="70"></textarea><br>
+  <p class="form-p">Add an image to your post</p>
+  <label class="form-label" for="image-url">Enter your image url here:</label> <br>
+  <input class="form-input" id="image-url" type="text" name="imageUrl" value=""/> <br>
+  <input class="form-btn" type="submit" value="Submit" />
 </form>
+</div>
+</div>
 
