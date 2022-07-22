@@ -1,3 +1,21 @@
+
+
+  <form action="/sessions?_method=DELETE" method="POST">
+    <input type="submit" value="Log Out" />
+  </form>
+    
+ <form action="/profile/{{_id}}" method="GET">
+    <input type="submit" value="Profile" />
+  </form>
+
+
+  <form action="/posts" method="GET">
+    <input type="submit" value="Posts" />
+  </form>
+
+
+  
+
 <form id="new-post-form" action="/posts" method="post">
   <label for="message">Message: </label>
   <input id="message" type="text" name="message" value="" />
