@@ -12,7 +12,6 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
 const exphbs  = require('express-handlebars').engine;
-console.log(exphbs);
 
 const app = express();
 
