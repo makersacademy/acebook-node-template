@@ -67,7 +67,7 @@ describe("Profile Page", () => {
     signUpAndSignIn("Test", "User");
 
     // user clicks on link to 'Profile Page'
-    cy.contains("Profile Page").click();
+    cy.get(".navbar").contains("TestUser").click();
 
     // test for information on profile page
     cy.contains("Test User");
@@ -106,7 +106,7 @@ describe("Profile Page", () => {
     signUpAndSignIn("Test", "User")
 
     // user clicks on link to 'Profile Page'
-    cy.contains("Profile Page").click();
+    cy.get(".navbar").contains("TestUser").click();
     
     // user clicks on 'Edit Info' button and is taken to edit page
     cy.get(".edit-btn").click();

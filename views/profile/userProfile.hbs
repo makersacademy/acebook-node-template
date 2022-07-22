@@ -18,35 +18,66 @@
   </div>
 </nav>
 
-<div class="profile-picture"><img src={{user.profilePic}} /></div>
-<h1 class="fullname">{{user.firstName}} {{user.lastName}}</h1>
+<div class="container">
 
-<h2 class="heading mt-3">Personal Information</h2>
-<div class="user-information-container mt-1">
-  <p class="username info"><strong>Username:</strong> {{user.username}}</p>
-  <p class="location info"><strong>Location:</strong> {{user.location}}</p>
-  <p class="birthday info"><strong>Date of Birth:</strong> {{birthday}}</p>
+  <div class="row">
+    <div class="col-6">
+      <div class="profile-picture"><img src={{user.profilePic}} /></div>
+       <h1 class="fullname">{{user.firstName}} {{user.lastName}}</h1>
+        <h2 class="heading mt-3">Personal Information</h2>
+      <div class="user-information-container mt-1">
+        <p class="username info"><strong>Username:</strong> {{user.username}}</p>
+        <p class="location info"><strong>Location:</strong> {{user.location}}</p>
+        <p class="birthday info"><strong>Date of Birth:</strong> {{birthday}}</p>
+        
+    </div>
+    <a class="edit-btn mb-5" href="/profile/user/{{user.username}}/editInfo">Edit</a>
+    </div>
+
+
+      <div class="col-6">
+       {{#if posts}}
+        <h3 class="profile-heading">Posts</h3>
+          <ul class="posts mt-5">
+            {{#each posts}}
+            <li class="post">
+              <div class="timestamp-wrapper">
+              {{this.timestamp}}
+              </div>
+              <div class="message-wrapper">
+              {{this.message}}
+              </div>
+              <div class="likes-wrapper">
+              {{#if this.likes}}
+              <div class="likes">Likes: {{this.likes.length}}</div>
+              {{/if}}
+              </div>
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      </div>
+       
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-6">
+         
+      </div>
+      
+    </div>
+    
+
+  </div>
+  
+
 </div>
-  <a class="edit-btn mb-5" href="/profile/user/{{user.username}}/editInfo">Edit</a>
 
-{{#if posts}}
-<h3 class="profile-heading">Posts</h3>
-  <ul class="posts mt-5">
-    {{#each posts}}
-    <li class="post">
-      <div class="timestamp-wrapper">
-      {{this.timestamp}}
-      </div>
-      <div class="message-wrapper">
-      {{this.message}}
-      </div>
-      <div class="likes-wrapper">
-      {{#if this.likes}}
-      <div class="likes">Likes: {{this.likes.length}}</div>
-      {{/if}}
-      </div>
-      </li>
-    {{/each}}
-  </ul>
-{{/if}}
+
+
+
+
 </div>

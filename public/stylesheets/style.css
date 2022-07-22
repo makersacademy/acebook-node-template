@@ -68,7 +68,7 @@
   box-shadow: 6px 5px 5px #bcc4db;
 }
 
-.authentication-form, form {
+.authentication-form {
   border-radius: 2px;
   margin: 0 auto;
   max-width: 450px;
@@ -253,20 +253,16 @@ text-decoration: none;
   color: white;
 }
 
-.nav-link:visited {
-  color: white;
-}
-
 .post {
   background-color: white;
   border: 1px solid white;
   border-radius: 8px;
   box-shadow: 6px 5px 5px #bcc4db;
   display: block;
-  height: 150px;
+  height: 350px;
   margin: 30px auto 35px;
   padding: 20px;
-  width: 450px;
+  width: 500px;
   text-align: center;
 }
 
@@ -274,7 +270,7 @@ text-decoration: none;
   color: #ba8dbc;
   font-family: var(--heading-font);
   font-size: 50px;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .timestamp-wrapper {

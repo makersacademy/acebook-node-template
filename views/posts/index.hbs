@@ -1,52 +1,74 @@
-{{! log out button }}
-<form action="/sessions?_method=DELETE" method="POST">
-  <input type="submit" value="Sign Out" />
-</form>
+<div class="body-container text-center pb-5">
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Acebook</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
+        <a class="nav-link" href="/profile/user/{{user.username}}">{{user.username}}</a>
+        <a class="nav-link" href="/search">Search</a>
+        <form action="/sessions?_method=DELETE" method="POST">
+         <input class="sign-out-nav nav-link" type="submit" value="Sign Out" />
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
 
-{{! Profile page link}}
-<a href="/profile/user/{{user.username}}">Profile Page</a>
 
-{{!-- Search page link --}}
-<a href="/search">Search</a>
 
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
     <li class="post">
-      {{this.timestamp}}
-      <br />
-      <div class="username">
+      <div class="timestamp-wrapper">
+          {{this.timestamp}}
+      </div>
+      <div class="username-wrapper">
         <a href="/profile/{{this.username}}">{{this.username}}</a>
       </div>
-      {{this.title}} <br>
-      {{this.message}}
-      <br>
+
+  <div class="title-wrapper">
+        {{{this.title}}
+      </div>
+      
+      <div class="message-wrapper">
+        {{this.message}}
+      </div>
+
       {{#if this.image}}
       <div class="image">
         <input type="hidden" name="id" value={{this._id}} />
         <img src={{this.image}}>
       </div>
       {{/if}}
-      <br>
+      
       <form class="delete-post" action="/posts/delete" method="post">
         <input type="hidden" name="id" value={{this._id}} />
         <input type="submit" value="Delete" />
       </form>
 
+      <div class="likes-wrapper">
       {{#if this.likes}}
       <div class="likes">
        Likes: {{this.likes.length}}
         </div>
       {{/if}}
+      </div>
+    
       <form class="like-post" action="/posts/like" method="post">
         <input type="hidden" name="id" value={{this._id}} />
         <input type="submit" value="like" />
       </form>
 
+      {{#if comments}}
       <button id="show-comments" onclick="showComments()">
         show comments
-        </button>
-
+      </button>
+      {{/if}}
       
         <div class="comments d-none">
           <ul>
@@ -70,3 +92,4 @@
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+</div>
