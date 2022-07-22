@@ -20,7 +20,7 @@ describe("Other user profile page", () => {
     // use webhelper to sign up and sign in
     signUpAndSignIn("Test", "User1");
 
-    cy.get(".username > a").first().click();
+    cy.get(".username-wrapper > a").first().click();
 
     // assert that the page contains detailed info
     cy.contains("Test User2");
@@ -50,7 +50,7 @@ describe("Other user profile page", () => {
     cy.get("#new-post-form").submit();
 
     // visit other user's profile page and only see post made by that user
-    cy.get(".username > a").last().click();
+    cy.get(".username-wrapper > a").last().click();
 
     cy.get("ul").should(($post) => {
       expect($post).to.contain("Show this message");
@@ -74,7 +74,7 @@ describe("Other user profile page", () => {
     signUpAndSignIn("Test", "User1");
 
     // visit other user's profile page and only see post made by that user
-    cy.get(".username > a").last().click();
+    cy.get(".username-wrapper > a").last().click();
 
     // see other user's profile picture on their profile page
     cy.url().should("include", "/profile/TestUser2")
