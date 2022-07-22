@@ -253,7 +253,7 @@ text-decoration: none;
   color: white;
 }
 
-.post {
+.post, .match-users {
   background-color: white;
   border: 1px solid white;
   border-radius: 8px;
@@ -355,7 +355,7 @@ text-decoration: none;
     font-size: 18px;
   } 
 
-  .form-p {
+  .form-p, .username-link {
     margin: 3 5px;
     padding: 0 5px;
     font-size: 24px;
@@ -391,3 +391,24 @@ text-decoration: none;
   .search-form-label {
     font-size: 19px;
   }
+
+.match-users {
+    display: block;
+    height: 150px;
+    margin: 30px auto 35px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+  }
+
+  .user-profile-img {
+    height: auto;
+    width: 125px;
+  }
+
+  .username-link {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+  }
+  
