@@ -10,7 +10,7 @@ describe("Search", () => {
     signUpAndSignIn("Test", "User")
 
     // user clicks on link to 'Search' and are redirected to search page
-    cy.contains("Search").click();
+    cy.get(".navbar").contains("Search").click();
     cy.url().should("include", "/search")
 
     cy.contains("Enter search here")
@@ -27,7 +27,7 @@ describe("Search", () => {
 
     //use webhelper to sign up and sign in as user3
     signUpAndSignIn("Test", "User3")
-    cy.contains("Search").click()
+    cy.get(".navbar").contains("Search").click();
 
     //use search form to search for users named 'Test'
     cy.get("#search-form").find("#search").type("Test")
@@ -50,7 +50,7 @@ describe("Search", () => {
 
     //use webhelper to sign up and sign in as user3
     signUpAndSignIn("Test", "User3")
-    cy.contains("Search").click()
+    cy.get(".navbar").contains("Search").click();
 
     //use search form to search for users named 'Test'
     cy.get("#search-form").find("#search").type("Test")
