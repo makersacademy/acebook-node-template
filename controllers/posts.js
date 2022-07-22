@@ -34,28 +34,31 @@ const PostsController = {
     });
   },
 
-  Delete: (req, res) => {
+  DeleteReact: (req, res) => {
     Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
       if (err) {
         console.log(err);
-        res.redirect("back");
       } else {
-        res.redirect("/posts");
       }
     });
   },
 
-  Like: (req, res) => {
+  ViewLikeReact: (req, res) => {
+    Post.findOne({ _id: req.params.id }, function (err, post) {
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify({ id: post._id, likes: post.likes }));
+    });
+  },
+  UpdateLikeReact: (req, res) => {
     Post.findOneAndUpdate({ _id: req.params.id }, { $inc: { likes: 1 } }).exec(
       function (err) {
         if (err) {
           console.log(err);
-          res.redirect("back");
         } else {
-          res.redirect("/posts");
         }
-      });
-    },
+      }
+    );
+  },
 };
 
 module.exports = PostsController;
