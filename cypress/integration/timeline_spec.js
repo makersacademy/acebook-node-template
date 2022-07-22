@@ -47,7 +47,7 @@ describe("Timeline", () => {
     // use webhelper to sign up and sign in
     signUpAndSignIn("Test", "User1");
 
-    cy.get(".username > a").click();
+    cy.get(".username-wrapper > a").click();
 
     cy.url().should("include", "/profile/");
     cy.contains("Test User2")
@@ -61,7 +61,7 @@ describe("Timeline", () => {
     signUpAndSignIn("Test", "User1")
 
     // user clicks on link to 'Profile Page'
-    cy.contains("Profile Page").click();
+    cy.get(".navbar").contains("TestUser1").click();
 
     // page contains the username
     cy.url().should("include", "/user/TestUser1")
