@@ -6,7 +6,7 @@ body {
 }
 
 a {
-  color: #00b7ff;
+  color: #1877f2;
 }
 
 .title {
@@ -88,10 +88,10 @@ a {
 #posts-button {
   background-color: #1877f2;
   color: #ffffff;
-  font-size: 15px;
+  font-size: 11px;
   border-radius: 5px;
   border: none;
-  height: 40px;
+  height: 25px;
   font-weight: bold;
   width: 90px;
 }
@@ -193,4 +193,22 @@ a {
   border: 1px solid blue;
   box-shadow: 0 0 5px #719ece;
   caret-color: blue;
+}
+
+.react-button {
+  background-color: red;
+  color: #ffffff;
+  font-size: 30px;
+  border-radius: 5px;
+  border: none;
+  height: 60px;
+  font-weight: bold;
+  width: 90px;
+}
+
+hr {
+  width: 95%;
+  height: 0.1%;
+  background-color: rgb(194, 193, 193);
+  border: none;
 }

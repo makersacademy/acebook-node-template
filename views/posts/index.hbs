@@ -1,63 +1,115 @@
 <h1>Timeline</h1>
 <div id="react-button-container"></div>
 
- <form action="/profile/{{_id}}" method="GET">
-    <input type="submit" value="Profile" />
-  </form>
+<form action="/profile/{{_id}}" method="GET">
+  <input type="submit" value="Profile" id="posts-button" />
+</form>
 
 <ul class="posts">
   {{#each posts}}
-  <h3 class="post" id="{{this._id}}">{{this.message}}</h3>
-    <a href="/profile/{{this.author._id}}"><h4>{{this.author.firstName}} {{this.author.lastName}}</h4></a>
-   <p id="list" class="posts">{{this.formatDate}}</p> 
+    <h3 class="post" id="{{this._id}}">{{this.message}}</h3>
+    <a href="/profile/{{this.author._id}}"><h4>{{this.author.firstName}}
+        {{this.author.lastName}}</h4></a>
+    <p id="list" class="posts">{{this.formatDate}}</p>
 
-  {{#each comments}}
+    {{#each comments}}
 
+      <li>{{comment}} - {{#if likes}}Likes: {{likes.length}}{{/if}}</li>
+      <form id="like-comment" action="/likes-comment" method="post">
+        <input
+          type="hidden"
+          id="postID"
+          type="text"
+          name="postID"
+          value="{{this._id}}"
+        />
+        <input type="submit" value="Like" id="posts-button" />
+      </form>
+      <form
+        id="remove-like-comment"
+        action="/likes-comment?_method=DELETE"
+        method="post"
+      >
+        <input
+          type="hidden"
+          id="postID"
+          type="text"
+          name="postID"
+          value="{{this._id}}"
+        />
+        <input type="submit" value="Remove Like" id="posts-button" />
+      </form>
+    {{/each}}
 
-  <li>{{comment}} - {{#if likes}}Likes: {{likes.length}}{{/if}}</li>
-  <form id="like-comment" action="/likes-comment" method="post">
-    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
-    <input type="submit" value="Like">
-  </form>
-  <form id="remove-like-comment" action="/likes-comment?_method=DELETE" method="post">
-    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
-    <input type="submit" value="Remove Like">
-  </form>
-  {{/each}}
+    {{#if likes}}
+      Likes:
+      {{likes.length}}
+    {{/if}}
+    <p>
+      <form id="like-post" action="/likes-post" method="post">
+        <input
+          type="hidden"
+          id="postID"
+          type="text"
+          name="postID"
+          value="{{this._id}}"
+        />
+        <input type="submit" value="Like" id="posts-button" />
+      </form>
+      <form
+        id="remove-like-post"
+        action="/likes-post?_method=DELETE"
+        method="post"
+      >
+        <input
+          type="hidden"
+          id="postID"
+          type="text"
+          name="postID"
+          value="{{this._id}}"
+        />
+        <input type="submit" value="Remove Like" id="posts-button" />
+      </form>
 
-  {{#if likes}}
-  Likes: {{likes.length}}
-  {{/if}}
-  <p>
-  <form id="like-post" action="/likes-post" method="post">
-    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
-    <input type="submit" value="Like">
-  </form>
-  <form id="remove-like-post" action="/likes-post?_method=DELETE" method="post">
-    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
-    <input type="submit" value="Remove Like">
-  </form>
+      <form id="new-comment-form" action="/comments" method="post">
+        <label for="comment">Comment: </label>
+        <input id="comment" type="text" name="comment" value="" />
+        <input
+          type="hidden"
+          id="postID"
+          type="text"
+          name="postID"
+          value="{{this._id}}"
+        />
+        <input type="submit" value="Submit" id="posts-button" />
+      </form>
+    </p>
 
-  <form id="new-comment-form" action="/comments" method="post">
-    <label for="comment">Comment: </label>
-    <input id="comment" type="text" name="comment" value="">
-    <input type="hidden" id="postID" type="text" name="postID" value="{{this._id}}">
-    <input type="submit" value="Submit">
-  </form>
-  </p>
-
-  <form id="delete-list-button" action="/posts/delete" method="post">
-    <input type="submit" name="{{this.message}}" value="Delete post">
-    <input type="hidden" name="_id" value={{this.id}}>
-  </form>
-  <br />
-  <br />
+    <form id="delete-list-button" action="/posts/delete" method="post">
+      <input
+        type="submit"
+        name="{{this.message}}"
+        value="Delete post"
+        id="posts-button"
+      />
+      <input type="hidden" name="_id" value={{this.id}} />
+    </form>
+    <br />
+    <br />
   {{/each}}
 </ul>
 
-
 <a class="new-post-link" href="/posts/new">New post</a>
-<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+<hr style="width: 95%" />
+
+<script
+  src="https://unpkg.com/react@18/umd/react.development.js"
+  crossorigin
+></script>
+<script
+  src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  crossorigin
+></script>
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script src="react_button.js"></script>
