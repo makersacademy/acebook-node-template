@@ -93,3 +93,16 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Check that it's running using `brew services list`
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+
+
+## Contributing to this repo 
+
+- Create a new branch
+
+```
+$ git switch -c joe-branch
+$ git add .
+$ git commit -m "amended README"
+$ git push --set-upstream origin joe-branch 
+``` 
+Then do a Pull request, set Reviewers for your PR and then Merge.
