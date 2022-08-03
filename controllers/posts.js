@@ -6,10 +6,11 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
+      posts.reverse 
       res.render("posts/index", { posts: posts });
     });
   },
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
