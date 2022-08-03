@@ -5,9 +5,10 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
+    {{!-- commented out, as log out button only needed in views/posts --}}
+    {{!-- <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
-    </form>
+    </form> --}}
     {{{body}}}
   </body>
 </html>
