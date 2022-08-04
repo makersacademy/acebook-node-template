@@ -8,12 +8,13 @@ const UsersController = {
   Create: (req, res) => {
     const user = new User(req.body);
     console.log(User(req.body))
-    console.log(user)
     user.save((err) => {
       if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
+        console.log("*** Email already exists, redirecting user to users/new ***")
+        //throw err;
+        res.redirect("/users/new");
+      } else { res.status(201).redirect("/posts"); }
+      
     });
   },
 };
