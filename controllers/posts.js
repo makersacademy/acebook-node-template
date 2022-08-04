@@ -8,7 +8,7 @@ const PostsController = {
       }
       posts.reverse()
       res.render("posts/index", { posts: posts });
-      let likes = 1
+  
     });
   },
 
@@ -17,6 +17,9 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.likes = 1
+    
+    post.each
     post.save((err) => {
       if (err) {
         throw err;

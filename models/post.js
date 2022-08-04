@@ -1,11 +1,13 @@
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   message: String,
-  // likes: Number,
+  likes: Number,
 }, 
 
 { timestamps: true });
+
 
 // { like: Number });
 
@@ -16,6 +18,10 @@ const PostSchema = new mongoose.Schema({
 // });
 
 // const happy = mongoose.model("Likes", likeSchema)
+
+
+
+
 const Post = mongoose.model("Post", PostSchema);
 
 module.exports = Post;
