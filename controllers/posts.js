@@ -8,6 +8,7 @@ const PostsController = {
       }
       posts.reverse()
       res.render("posts/index", { posts: posts });
+      let likes = 1
     });
   },
 

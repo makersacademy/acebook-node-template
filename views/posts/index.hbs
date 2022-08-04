@@ -4,8 +4,8 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}} {{this.createdAt}}</li>
-  
+  <li>{{this.message}} {{this.createdAt}} {{this.likes}}</li>
+  <input type="submit" value="Me likey">
   {{/each}}
 </ul>
 
