@@ -17,6 +17,7 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.likes = 1
     post.save((err) => {
       if (err) {
         throw err;
