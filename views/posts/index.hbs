@@ -6,7 +6,7 @@
   {{#each posts}}
   <li>{{this.message}} {{this.createdAt}} {{this.likes}}</li>
  
- <form action=`/posts/${this._id}/likes` method='POST'>
+ <form action=`/posts/${this._id}/likes` method='POST'`>
    <input type="submit" value="Me likey">
   </form>
 
