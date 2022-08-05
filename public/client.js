@@ -1,50 +1,24 @@
+// let likeBtn = document.querySelector(".like__btn");
+// let likeIcon = document.querySelector("#icon"),
+//   count = document.querySelector("#count");
+
+// let clicked = false;
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('http://localhost:3000/posts')
-    .then(resource => resource.json())
-    .then((post) => {
-      addPostToPage(post)
-    })
-  });
-  function addPostToPage(post) {
-
-    const likeCounter = document.querySelector('.likes')
-    likeCounter.innerText =  `${post.likes} likes`
+const likehandler = (event) =>  {
     
-    const likeButton = document.querySelector('.like-button')
+  
+  console.log(event.target.children[0])
+  event.target.children[1].textContent++;
 
-    likeButton.addEventListener('click', function() {
-      likesCounter.innerText = incrementLikes(data)
-      console.log{data};
-    })
-
-  } // above is new logic for the like count display + button
-
-  function incrementLikes(post){
-    let likes = 0
-    fetch(`http://localhost:3000/posts/${post.id}`)
-    .then(resource => resource.json())
-    .then((data) => {
-        likes = data.likes
-        console.log(data);
-    })
-
-    let newLikes = likes + 1
-
-    fetch ('http://localhost:3000/posts/', {
-      method: 'PATCH',
-      headers: {
-          "Content-Type": "application/json",
-          Accept: "application/"
-        },
-        body: JSON.stringify({
-          "likes": newLikes
-        })
-    })
-    let likesText = `${newLikes} likes`
-    return likesText
-
-
-}
-console.log(post);
+  this_.likes
+//     if (!clicked) {
+//     clicked = true;
+//     likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+//     count.textContent++;
+//   } else {
+//     clicked = false;
+//     likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+//     count.textContent--;
+//   }
+};

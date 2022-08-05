@@ -9,15 +9,20 @@
  {{!-- <form action=`/posts/${this._id}/likes` method='POST'`>
    <input type="submit" value="Me likey">
   </form> --}}
-   <script src="/client.js"></script>
+
   
-  <div class="likes-section" 
+  {{!-- <div class="likes-section" 
     <span class="likes">0 likes</span>
     <button class="like-button">*</button>
   </div>
   <script src="/controllers/likes.js"></script>
-
-
+ --}}
+ 
+  <button onclick="likehandler(event)" class="like__btn">
+    <span id="icon"><i class="far fa-thumbs-up"></i></span>
+    <span id="count">0</span> Like
+  </button>
+  <script src="/client.js"></script>
   {{/each}}
 </ul>
 
