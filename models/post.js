@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   message: String,
-  // likes: Number,
+  likes: Number,
 }, 
 
 { timestamps: true });
+
 
 // { like: Number });
 
