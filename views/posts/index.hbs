@@ -55,6 +55,7 @@ li.round3 {
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
+
   <li class="round3">{{this.message}} {{this.createdAt}} {{this.likes}}
 
     <br><button onclick="likehandler(event)" class="like__btn button4">
@@ -64,24 +65,15 @@ li.round3 {
 
   </li>
  
- {{!-- <form action=`/posts/${this._id}/likes` method='POST'`>
-   <input type="submit" value="Me likey">
-  </form> --}}
-
-  
-  {{!-- <div class="likes-section" 
-    <span class="likes">0 likes</span>
-    <button class="like-button">*</button>
-  </div>
-  <script src="/controllers/likes.js"></script>
- --}}
- 
- 
-  {{!-- <button onclick="likehandler(event)" class="like__btn button4">
-    <span id="icon"><i class="far fa-thumbs-up"></i></span>
-    <span id="count">0</span> Like
-  </button> --}}
   <script src="/client.js"></script>
+
+  <li>{{this.message}} {{this.createdAt}} {{this.likes}}</li>
+ 
+ <form action=`/posts/${this._id}/likes` method='POST'`>
+   <input type="submit" value="Me likey">
+  </form>
+
+
   {{/each}}
 </ul>
 
