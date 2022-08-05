@@ -6,8 +6,9 @@ const ClicksController = {
   },
 
   Create: (req, res) => {
+    console.log('hello')
     const click = new Click(req.body);
-    console.log(Click(req.body))
+    console.log('this is it' + click)
     click.save((err) => {
       if (err) {
         return console.log(err)

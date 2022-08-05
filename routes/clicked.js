@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ClicksController = require("../controllers/clicks");
 
-router.post("/", ClicksController.New);
+router.post("/", ClicksController.Create);
 
 
 
