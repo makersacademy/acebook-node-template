@@ -1,16 +1,74 @@
- <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
+{{!-- class="topnav" 
+ "pill-nav"
+ "navbar"--}}
+
+<div class="pill-nav">
+  <a class="active" href="/posts">Acebook</a>
+  <a class="new-post-link" href="/posts/new">New post</a>
+  <a class="split" href="/sessions/new" action='/sessions?_method=DELETE' method='POST'>Log out</a>
+ 
+</div> 
+
+<head>
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button4 {border-radius: 8px;}
+
+
+
+</style>
+</head>
+<body>
+
+<body>
+<head>
+<style>
+li.round2 {
+  border: 2px solid dodgerblue;;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+li.round3 {
+  border: 2px solid dodgerblue;;
+  border-radius: 12px;
+  padding: 5px;
+}
+</style>
+</head>
+</body>
+
+ 
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}} {{this.createdAt}} {{this.likes}}</li>
+
+  <li class="round3">{{this.message}} {{this.createdAt}} {{this.likes}}
+
+    <br><button onclick="likehandler(event)" class="like__btn button4">
+      <span id="icon"><i class="far fa-thumbs-up"></i></span>
+      <span id="count">0</span> Like
+    </button>
+
+  </li>
  
- <form action=`/posts/${this._id}/likes` method='POST'`>
-   <input type="submit" value="Me likey">
-  </form>
+  <script src="/client.js"></script>
 
   {{/each}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+
