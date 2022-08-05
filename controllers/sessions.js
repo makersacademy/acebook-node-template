@@ -28,7 +28,10 @@ const SessionsController = {
       res.clearCookie("user_sid");
     }
     res.redirect("/sessions/new");
-  },
+  }
+
+
+
 };
 
 module.exports = SessionsController;
