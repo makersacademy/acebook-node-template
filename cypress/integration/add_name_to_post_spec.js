@@ -1,7 +1,7 @@
 import { signUp, signIn, submitPost } from "./web_helpers";
 
-describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+describe("Adding a name to a post", () => {
+  it("checks the author of a post", () => {
     // sign up
     signUp();
 
@@ -11,6 +11,6 @@ describe("Timeline", () => {
     // submit a post
     submitPost();
 
-    cy.get(".posts").should("contain", "Example Post from Cypress Testing");
+    cy.get(".posts").should("contain", "Mongo");
   });
 });

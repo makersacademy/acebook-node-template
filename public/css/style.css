@@ -1,0 +1,176 @@
+/* layout page */
+
+.title {
+  background-color: white;
+  color: black;
+  display: block;
+  text-decoration: none;
+}
+
+body {
+  background-color: white;
+  padding: 50px;
+  font: 17px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+p.welcome {
+  color: black;
+}
+
+ul {
+  list-style-type: none;
+  margin: 5;
+  padding: 0;
+  overflow: hidden;
+  background-color:  #3b5998;
+  position:relative; 
+  left:1px; 
+  top:2px
+}
+
+li {
+  float: left;
+}
+
+.invisible {
+  list-style: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  
+}
+
+li b {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  float:right;
+  position:relative; 
+  left:-40px; 
+  top:2px
+}
+
+li a:hover:not(.active) {
+  background-color: lightblue;
+}
+
+input.nav-buttons {
+  background-color: transparent;
+  border: none !important;
+  color: white;
+  font-size: 20px;
+}
+
+/* sign-up form*/
+
+.sign-up-form {
+  font: 10px Helvetica;
+  font-weight: normal;
+}
+
+label {
+  width:170px;
+  display: inline-block;
+}
+
+input.input-box{
+  width: 300px
+}
+
+input.input-submit {
+  width: 200px;
+  position:relative;
+  left: 230px;
+  background-color: #3b5998;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
+}
+
+input.input-submit:hover {
+  width: 200px;
+  position:relative;
+  left: 230px;
+  background-color: lightblue;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
+}
+
+/* sign-in form */
+
+.sign-in-form {
+  /* font-size: 10px; */
+  font: 10px Helvetica;
+  font-weight: normal;
+}
+
+/* posts */
+
+h1.posts {
+  text-align: center;
+  font: 30px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+
+}
+
+ul.posts {
+  list-style-type: none;
+  margin: 5;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 7px;
+
+  position:relative; 
+  left:1px; 
+  top:2px
+}
+
+
+div.post-text {
+  text-align: center;
+  
+  font: 18px "Lucida Grande", Helvetica, Arial;
+  font-weight: bold;
+}
+
+input.new-post-link {
+  width: 200px;
+  position:relative;
+  left: 30px;
+  background-color: #3b5998;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  width: 60px;
+  position:relative;
+  left: 230px;
+  background-color: #3b5998;
+  color: white;
+  font: 15px arial,sans-serif;
+  border-radius: 8px;
+  border: none;
+  font-size: x-small;
+}
+
+div.post {
+  margin: auto;
+  text-align: center;
+
+}

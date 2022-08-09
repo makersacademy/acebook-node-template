@@ -11,10 +11,20 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+const exphbs  = require('express-handlebars').engine;
+
 const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
+
+app.engine('.hbs', exphbs({
+  extname: '.hbs',
+  defaultLayout: 'layout',
+  layoutsDir: 'views',
+  helpers: require('./config/handlebars-helpers') 
+}));
+
 app.set("view engine", "hbs");
 
 app.use(logger("dev"));
@@ -31,7 +41,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000,
+      expires: 3600000,
+      // you will currently be kicked out after 1 hour
     },
   })
 );
@@ -76,3 +87,5 @@ app.use((err, req, res) => {
 });
 
 module.exports = app;
+
+/* set up for flash */

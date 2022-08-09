@@ -1,7 +1,7 @@
 import { signUp, signIn, submitPost } from "./web_helpers";
 
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+  it("can like a post", () => {
     // sign up
     signUp();
 
@@ -10,7 +10,7 @@ describe("Timeline", () => {
 
     // submit a post
     submitPost();
-
-    cy.get(".posts").should("contain", "Example Post from Cypress Testing");
+    cy.get(".like-button").first().click();
+    cy.get(".like-counter").first().should("contain", "1");
   });
 });
