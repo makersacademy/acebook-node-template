@@ -2,25 +2,13 @@ const mongoose = require("mongoose");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
-const userSeeds = require('../users_seeds');
-// const {seedDB} = require('../users_seeds');
 
 describe("User model", () => {
   beforeEach((done) => {
-    console.log("connection established");
-    mongoose.connection.collections.users.drop();
-    // () => {
-    console.log("then is triggered");
-    mongoose.connection.collections.users.insertMany(userSeeds, () => {
+    mongoose.connection.collections.users.drop(() => {
       done();
     });
-    // mongoose.connection.collections.users.insertMany(userSeeds)(() => {
-    //   done();
-    // });
   });
-  // .then((done) => {
-  //   //   // Product.insertMany(userSeeds);
-  // });
 
   it("has a first name and last name", () => {
     const user = new User({
@@ -84,16 +72,14 @@ describe("User model", () => {
   });
 
   it("can list all users", (done) => {
-    console.log(User);
     User.find((err, users) => {
-      console.log(users)
       expect(err).toBeNull();
-      expect(users.length()).toEqual(4);
+      expect(users).toEqual([]);
       done();
     });
   });
 
-  xit("can save a user", (done) => {
+  it("can save a user", (done) => {
     const newUser = new User({
       firstName: "Someone",
       lastName: "Surname",
@@ -109,7 +95,7 @@ describe("User model", () => {
       User.find((err, users) => {
         expect(err).toBeNull();
         //
-        expect(users[4]).toMatchObject({
+        expect(users[0]).toMatchObject({
           firstName: "Someone",
           lastName: "Surname",
           username: "SomeoneSurname",

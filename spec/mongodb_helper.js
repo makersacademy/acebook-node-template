@@ -14,17 +14,6 @@ beforeAll(function (done) {
   });
 });
 
-// beforeEach((done) => {
-//   mongoose.connection.collections.users.drop(() => {
-//     done()
-//   })
-//   .then(() => {
-//     // Product.insertMany(userSeeds);
-//     // mongoose.connection.collections.users.insertMany(userSeeds);
-//   })
-// });
-
-
 afterAll(function (done) {
   mongoose.connection.close(true, function () {
     done();
