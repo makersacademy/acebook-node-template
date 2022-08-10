@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+// sets the session
 const session = require("express-session");
 const methodOverride = require("method-override");
 
@@ -25,10 +26,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
 app.use(
+  // the below is called request body, session view
   session({
-    key: "user_sid",
+    key: "user_sid", // key that will sign cookie
     secret: "super_secret",
-    resave: false,
+    resave: false, // for every request to the server we want to create a new cookie
     saveUninitialized: false,
     cookie: {
       expires: 600000,
