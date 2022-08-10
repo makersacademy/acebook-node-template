@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const date = new Date().toLocaleString();
-
-const CommentSchema = new mongoose.Schema({
-  date: { type: Date, default: date },
-  content: String,
+const CommentSchema = new Schema({
+  comment: { type: String, required: true },
 });
 
 const Comment = mongoose.model('Comment', CommentSchema);
