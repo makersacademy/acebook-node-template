@@ -1,7 +1,12 @@
 <form id="new-user-form" action="/users" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
+  <label for="name">Name: </label>
+  <input id="name" type="text" name="name" value="">
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="">
   <input id="submit" type="submit" value="Submit">
+</form>
+<form action="/sessions/new" method="get">
+    <input type="submit" value="Login"/>
 </form>
