@@ -10,10 +10,10 @@ describe("Post model", () => {
       done();
     });
     mongoose.connection.collections.comments.drop(() => {
-      done();
+    //   done();
     });
     mongoose.connection.collections.posts.drop(() => {
-      done();
+    //   done();
     });
     });
 
@@ -22,5 +22,12 @@ describe("Post model", () => {
       var post = new Post({ user: user._id,message: 'this is  post'});
       console.log(user._id);
       expect(post.user).toEqual(user._id);
+    })
+
+    it('Comment post: matches signed in post', () => {
+        var post = new Post({message: "New Post"});
+        var comment = new Comment({comment:'new comment', post: post._id});
+        console.log(post._id)
+        expect(comment.post).toEqual(post._id)
     })
   });
