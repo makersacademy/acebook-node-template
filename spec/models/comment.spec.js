@@ -14,4 +14,6 @@ describe("Comment model", () => {
     const comment = new Comment({comment: "test comment"});
     expect(comment.comment).toEqual("test comment");
   })
+
+  
 });
