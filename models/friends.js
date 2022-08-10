@@ -9,8 +9,12 @@ const friendsSchema = new Schema({
             0,    //'pending',
             1,    //'friends',
         ]
+    },
+    date: {
+        type: Date,
+        default: () => Date.now(),
     }
-}, { timestamps: true })
+})
 
 const Friends = mongoose.model("Friends", FriendsSchema);
 
