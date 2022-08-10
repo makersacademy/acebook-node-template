@@ -7,13 +7,14 @@ var User = require("../../models/user");
 describe("Post model", () => {
   beforeEach((done) => {
     mongoose.connection.collections.users.drop(() => {
-      done();
+      console.log('Dropped schema Users');
     });
     mongoose.connection.collections.comments.drop(() => {
-    //   done();
+      console.log('Dropped schema Comments');
     });
     mongoose.connection.collections.posts.drop(() => {
-    //   done();
+      console.log('Dropped schema Posts');
+      done();
     });
     });
 
