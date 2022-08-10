@@ -6,7 +6,7 @@ describe("Timeline", () => {
     cy.task("dropUsers");
   });
 
-  it("can submit posts, when signed in, and view them", () => {
+  it("displays comment text box and comment button ", () => {
     // run webhelper to sign up and sign in to acebook
     signUpAndSignIn();
 
@@ -16,14 +16,13 @@ describe("Timeline", () => {
 
     cy.get("#new-post-form")
       .find('[type="text"]')
-      .type("Test message: cypress submit post test!");
+      .type("to try if comments work.");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should(
-      "contain",
-      "Test message: cypress submit post test!"
-    );
-    cy.get(".posts").should("contain", "CypressTestUser");
-    cy.get(".posts").should("contain", "2022");
+    cy.visit("/posts");
+    cy.get("#enter-comment").find("#comment").type("test comment");
+    cy.get("#enter-comment").submit();
+
+    cy.get("#post-comment").should("contain", "test comment");
   });
 });

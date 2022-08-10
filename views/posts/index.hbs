@@ -1,7 +1,42 @@
+<form action="/sessions?_method=DELETE" method="POST">
+  <input type="submit" value="Sign Out" />
+</form>
+
+{{! log out button }}
+
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li>
+    <li class="post">
+      {{this.timestamp}}
+      <br />
+      {{this.username}}
+      <br />
+      {{this.message}}
+      <form class="delete-post" action="/posts/delete" method="post">
+        <input type="hidden" name="id" value={{this._id}} />
+        <input type="submit" value="Delete" />
+      </form>
+      {{#if this.likes}}
+      <div class="likes">Likes: {{this.likes}}</div>
+      {{/if}}
+      <form class="like-post" action="/posts/like" method="post">
+        <input type="hidden" name="id" value={{this._id}} />
+        <input type="submit" value="like" />
+      </form>
+
+      <div class="comments">
+     Comments: {{#each comments}} 
+         <li id="post-comment"> {{this}} </li>
+         {{/each}} 
+      <form id="enter-comment" action="/posts/comment" method="post">
+        <input type="text" id="comment" name="comment" value="" />
+         <input type="hidden" name="id" value={{this._id}} />
+        <input type="submit" value="Comment">
+      </form>
+       </div>
+      </li>
+    </li>
   {{/each}}
 </ul>
 

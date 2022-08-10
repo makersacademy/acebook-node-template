@@ -15,6 +15,36 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("has a userId", () => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId("123456ABCDEF");
+    let post = new Post({ userId: id, message: "some message" });
+    expect(post.userId).toEqual(id);
+  });
+
+  it("has a username", () => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId("123456ABCDEF");
+    let post = new Post({
+      userId: id,
+      username: "TestUser",
+      message: "some message",
+    });
+    expect(post.username).toEqual("TestUser");
+  });
+
+  it("has a like counter", () => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId("123456ABCDEF");
+    let post = new Post({
+      userId: id,
+      username: "TestUser",
+      message: "some message",
+      likes: 0,
+    });
+    expect(post.likes).toEqual(0);
+  });
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();
@@ -34,6 +64,50 @@ describe("Post model", () => {
 
         expect(posts[0]).toMatchObject({ message: "some message" });
         done();
+      });
+    });
+  });
+
+  it("can delete a post", (done) => {
+    let post = new Post({ message: "delete this message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.deleteOne({ message: "delete this message" }, (err) => {
+        expect(err).toBeNull();
+
+        Post.find((err, posts) => {
+          expect(err).toBeNull();
+          expect(posts).toEqual([]);
+          done();
+        });
+      });
+    });
+  });
+
+  it("has a timestamp", () => {
+    const timePosted = new Date();
+    var post = new Post({ timestamp: timePosted });
+    expect(post.timestamp).toEqual(timePosted);
+  });
+
+  it("has comments", () => {
+    const ObjectId = require("mongodb").ObjectId;
+    const id = new ObjectId("123456ABCDEF");
+    let post = new Post({
+      userId: id,
+      username: "TestUser",
+      message: "some message",
+      comments: [{ userId: id, comment: "this is a comment" }],
+    });
+
+    post.save(() => (err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts.comments[0].comment).toEqual("this is a comment");
       });
     });
   });
