@@ -6,6 +6,7 @@ describe("Home page", () => {
 
   it("Navigates to Sign up page from Home", () => {
     cy.visit("/");
+    cy.get("#submit").click();
     cy.url().should("include", "/sessions/new");
   });
 });
