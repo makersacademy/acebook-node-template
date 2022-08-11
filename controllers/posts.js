@@ -1,4 +1,6 @@
 const Post = require('../models/post');
+const session = require('../controllers/sessions');
+
 
 const PostsController = {
   Index: (req, res) => {
@@ -11,7 +13,8 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    res.render('posts/new', {});
+    const user = req.session.user
+    res.render('posts/new', {user:user});
   },
   Create: (req, res) => {
     const post = new Post(req.body);
