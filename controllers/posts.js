@@ -1,4 +1,4 @@
-const Post = require("../models/post");
+const Post = require('../models/post');
 
 const PostsController = {
   Index: (req, res) => {
@@ -7,11 +7,11 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts });
+      res.render('posts/index', { posts: posts });
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render('posts/new', {});
   },
   Create: (req, res) => {
     const post = new Post(req.body);
@@ -19,7 +19,25 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.status(201).redirect("/posts");
+      res.status(201).redirect('/posts');
+    });
+  },
+
+  // Comment: (req, res) => {
+  //   Post.find()
+  // },
+
+  Comment: function (req, res) {
+    Post.find({ _id: req.params._id }, function (err, post) {
+      console.log(err);
+      console.log('///');
+      console.log(post);
+      if (err) {
+        throw err;
+      }
+      res.render('posts/comment', {
+        posts: post,
+      });
     });
   },
 };
