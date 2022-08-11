@@ -1,10 +1,12 @@
 var mongoose = require("mongoose");
-
 require("../mongodb_helper");
 var Post = require("../../models/post");
 var User = require("../../models/user");
 describe("Post model", () => {
   beforeEach((done) => {
+    console.log(
+      "beforeEach Post Model Called AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    );
     mongoose.connection.collections.posts.drop(() => {
       mongoose.connection.collections.users.drop(() => {
         done();
@@ -32,15 +34,8 @@ describe("Post model", () => {
       expect(err).toBeNull();
       User.find((err, users) => {
         expect(err).toBeNull();
-        expect(users[0]).toMatchObject({
-          firstName: "Paris",
-          lastName: "Monson",
-          username: "SomeoneSur",
-          email: "someone2@example.com",
-          password: "password",
-          phoneNumber: "12345678",
-        });
         //Creating a post Object
+
         console.log(users[0].id);
         var post = new Post({ content: "some message", userId: users[0].id });
         post.save((err) => {
