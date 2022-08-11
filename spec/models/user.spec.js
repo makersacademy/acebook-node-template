@@ -46,6 +46,22 @@ describe("User model", () => {
     });
     expect(user.password).toEqual("password");
   });
+  it("has all attributes", () => {
+    const user = new User({
+      firstName: "Harry",
+      lastName: "Thomas",
+      username: "testusername",
+      email: "someone@example.com",
+      password: "password",
+      phoneNumber: "0733704821",
+    });
+    expect(user.firstName).toEqual("Harry");
+    expect(user.lastName).toEqual("Thomas");
+    expect(user.username).toEqual("testusername");
+    expect(user.email).toEqual("someone@example.com");
+    expect(user.password).toEqual("password");
+    expect(user.phoneNumber).toEqual("0733704821");
+  });
 
   it("has a password 2", () => {
     const user = new User({
@@ -80,10 +96,17 @@ describe("User model", () => {
   });
 
   it("can save a user", (done) => {
+
     const newUser = new User({
       firstName: "Someone",
       lastName: "Surname",
       username: "SomeoneSurname",
+// =======
+//     const user = new User({
+//       firstName: "Harry",
+//       lastName: "Thomas",
+//       username: "testusername",
+// >>>>>>> main
       email: "someone@example.com",
       password: "password",
       phoneNumber: "12345678",
@@ -96,9 +119,15 @@ describe("User model", () => {
         expect(err).toBeNull();
         //
         expect(users[0]).toMatchObject({
+// <<<<<<< HEAD
           firstName: "Someone",
           lastName: "Surname",
           username: "SomeoneSurname",
+// =======
+//           firstName: "Harry",
+//           lastName: "Thomas",
+//           username: "testusername",
+// >>>>>>> main
           email: "someone@example.com",
           password: "password",
           phoneNumber: "12345678",

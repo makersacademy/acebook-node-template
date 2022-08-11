@@ -1,0 +1,11 @@
+<h1 class="title">Profile Page</h1>
+<form id="search-form" action="/users/search" method="get">
+  <input type="text" name="search" id="search" />
+  <input id="submit" type="submit" value="Submit" />
+</form>
+<ul class="user_profile">
+  <li id="first-name">{{user.firstName}}</li>
+  <li id="last-name">{{user.lastName}}</li>
+</ul>
+
+<a class="new-post-link" href="/posts/new">New post</a>
