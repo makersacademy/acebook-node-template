@@ -25,6 +25,22 @@ describe("User model", () => {
     });
     expect(user.password).toEqual("password");
   });
+  it("has all attributes", () => {
+    const user = new User({
+      firstName: "Harry",
+      lastName: "Thomas",
+      username: "testusername",
+      email: "someone@example.com",
+      password: "password",
+      phoneNumber: "0733704821",
+    });
+    expect(user.firstName).toEqual("Harry");
+    expect(user.lastName).toEqual("Thomas");
+    expect(user.username).toEqual("testusername");
+    expect(user.email).toEqual("someone@example.com");
+    expect(user.password).toEqual("password");
+    expect(user.phoneNumber).toEqual("0733704821");
+  });
 
   it("can list all users", (done) => {
     User.find((err, users) => {
@@ -36,6 +52,9 @@ describe("User model", () => {
 
   it("can save a user", (done) => {
     const user = new User({
+      firstName: "Harry",
+      lastName: "Thomas",
+      username: "testusername",
       email: "someone@example.com",
       password: "password",
     });
@@ -47,6 +66,9 @@ describe("User model", () => {
         expect(err).toBeNull();
 
         expect(users[0]).toMatchObject({
+          firstName: "Harry",
+          lastName: "Thomas",
+          username: "testusername",
           email: "someone@example.com",
           password: "password",
         });
