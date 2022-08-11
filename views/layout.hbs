@@ -1,12 +1,11 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
+    <form class="logout-button" action="/sessions?_method=DELETE" method="POST">
+      <input type="submit" value="Log Out" />
     </form>
     {{{body}}}
   </body>

@@ -5,6 +5,7 @@ const User = require("../../models/user");
 
 describe("User model", () => {
   beforeEach((done) => {
+    console.log(mongoose.connection.collections);
     mongoose.connection.collections.users.drop(() => {
       done();
     });
@@ -33,7 +34,6 @@ describe("User model", () => {
       email: "someone@example.com",
       password: "password",
       phoneNumber: "0733704821",
-      image: "imageUrl",
     });
     expect(user.firstName).toEqual("Harry");
     expect(user.lastName).toEqual("Thomas");
@@ -41,7 +41,6 @@ describe("User model", () => {
     expect(user.email).toEqual("someone@example.com");
     expect(user.password).toEqual("password");
     expect(user.phoneNumber).toEqual("0733704821");
-    expect(user.image).toEqual("imageUrl");
   });
 
   it("can list all users", (done) => {

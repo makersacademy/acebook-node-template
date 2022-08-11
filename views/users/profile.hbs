@@ -1,4 +1,8 @@
 <h1 class="title">Profile Page</h1>
+<form id="search-form" action="/users/search" method="get">
+  <input type="text" name="search" id="search" />
+  <input id="submit" type="submit" value="Submit" />
+</form>
 <ul class="user_profile">
   <li>{{user.id}}</li>
   <li id="first-name">{{user.firstName}}</li>
