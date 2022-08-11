@@ -10,6 +10,16 @@ describe("User model", () => {
     });
   });
 
+  // unit test written by AE, accepting users name
+  it("store users names", () => {
+    const user = new User({
+      name: "exampleUser",
+      email: "sample@example.com",
+      password: "password",
+    })
+    expect(user.name).toEqual("exampleUser");
+  });
+
   it("has an email address", () => {
     const user = new User({
       email: "someone@example.com",
