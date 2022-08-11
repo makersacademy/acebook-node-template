@@ -4,9 +4,6 @@ var Post = require("../../models/post");
 var User = require("../../models/user");
 describe("Post model", () => {
   beforeEach((done) => {
-    console.log(
-      "beforeEach Post Model Called AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    );
     mongoose.connection.collections.posts.drop(() => {
       mongoose.connection.collections.users.drop(() => {
         done();
