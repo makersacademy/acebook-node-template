@@ -5,7 +5,6 @@ const User = require("../../models/user");
 
 describe("User model", () => {
   beforeEach((done) => {
-    console.log(mongoose.connection.collections);
     mongoose.connection.collections.users.drop(() => {
       done();
     });
