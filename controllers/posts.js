@@ -40,6 +40,23 @@ const PostsController = {
       });
     });
   },
+
+  NewComment: (req, res) => {
+    res.render('posts/comment/new', {});
+  },
+
+  CreateComment: function (req, res) {
+    Post.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { comments: req.body.comments } },
+      function (err, posts) {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect('/posts');
+      }
+    );
+  },
 };
 
 module.exports = PostsController;
