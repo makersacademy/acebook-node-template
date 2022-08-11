@@ -1,20 +1,18 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const PostSchema = new mongoose.Schema(
-  {
-    message: String,
-    userId: Schema.Types.ObjectId,
-    content: String,
-    likes: [Schema.Types.ObjectId],
-    comments: [
-      new mongoose.Schema(
-        { comment: String, userId: Schema.Types.ObjectId },
-        { timestamps: true }
-      ),
-    ],
-  },
-  { timestamps: true }
-);
+const User = require('./user')
+const Schema = require('mongoose').Schema
+
+const PostSchema = new mongoose.Schema({
+  content: { type: String, maxLength: 200, required: true },
+  userId: { type: Schema.Types.ObjectId, ref: 'User' },
+  like: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  comment: new mongoose.Schema({
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    content: { type: String, maxLength: 200 },
+    date: { type: Date, default: () => Date.now() }
+  })
+});
+
 
 const Post = mongoose.model("Post", PostSchema);
 

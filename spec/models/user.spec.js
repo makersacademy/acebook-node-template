@@ -10,18 +10,39 @@ describe("User model", () => {
     });
   });
 
-  it("has an email address", () => {
+  it("has a first name and last name", () => {
     const user = new User({
+      firstName: "Someone",
+      lastName: "Surname",
+      username: "SomeoneSurname",
       email: "someone@example.com",
       password: "password",
+      phoneNumber: "12345678",
+    });
+    expect(user.firstName).toEqual("Someone");
+    expect(user.lastName).toEqual("Surname");
+  });
+
+  it("has an email address", () => {
+    const user = new User({
+      firstName: "Someone",
+      lastName: "Surname",
+      username: "SomeoneSurname",
+      email: "someone@example.com",
+      password: "password",
+      phoneNumber: "12345678",
     });
     expect(user.email).toEqual("someone@example.com");
   });
 
   it("has a password", () => {
     const user = new User({
+      firstName: "Someone",
+      lastName: "Surname",
+      username: "SomeoneSurname",
       email: "someone@example.com",
       password: "password",
+      phoneNumber: "12345678",
     });
     expect(user.password).toEqual("password");
   });
@@ -42,6 +63,30 @@ describe("User model", () => {
     expect(user.phoneNumber).toEqual("0733704821");
   });
 
+  it("has a password 2", () => {
+    const user = new User({
+      firstName: "Someone",
+      lastName: "Surname",
+      username: "SomeoneSurname",
+      email: "someone@example.com",
+      password: "password",
+      phoneNumber: "12345678",
+    });
+    expect(user.password).toEqual("password");
+  });
+
+  it("has a phoneNumber", () => {
+    const user = new User({
+      firstName: "Someone",
+      lastName: "Surname",
+      username: "SomeoneSurname",
+      email: "someone@example.com",
+      password: "password",
+      phoneNumber: "12345678",
+    });
+    expect(user.phoneNumber).toEqual("12345678");
+  });
+
   it("can list all users", (done) => {
     User.find((err, users) => {
       expect(err).toBeNull();
@@ -51,26 +96,41 @@ describe("User model", () => {
   });
 
   it("can save a user", (done) => {
-    const user = new User({
-      firstName: "Harry",
-      lastName: "Thomas",
-      username: "testusername",
+
+    const newUser = new User({
+      firstName: "Someone",
+      lastName: "Surname",
+      username: "SomeoneSurname",
+// =======
+//     const user = new User({
+//       firstName: "Harry",
+//       lastName: "Thomas",
+//       username: "testusername",
+// >>>>>>> main
       email: "someone@example.com",
       password: "password",
+      phoneNumber: "12345678",
     });
 
-    user.save((err) => {
+    newUser.save((err) => {
       expect(err).toBeNull();
 
       User.find((err, users) => {
         expect(err).toBeNull();
-
+        //
         expect(users[0]).toMatchObject({
-          firstName: "Harry",
-          lastName: "Thomas",
-          username: "testusername",
+// <<<<<<< HEAD
+          firstName: "Someone",
+          lastName: "Surname",
+          username: "SomeoneSurname",
+// =======
+//           firstName: "Harry",
+//           lastName: "Thomas",
+//           username: "testusername",
+// >>>>>>> main
           email: "someone@example.com",
           password: "password",
+          phoneNumber: "12345678",
         });
         done();
       });

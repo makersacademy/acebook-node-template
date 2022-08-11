@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+// const userSeeds = require('userSeeds')
 
 beforeAll(function (done) {
   mongoose.connect("mongodb://0.0.0.0/acebook_test", {
