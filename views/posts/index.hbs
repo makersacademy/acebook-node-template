@@ -45,7 +45,7 @@
   <ul class="posts">
     {{#each posts}}
     <li>{{this.message}}
-      <a class="new-comment-link" href="/posts/comment/new">Comment</a>
+      <a class="new-comment-link" href="/posts/comment/{{this._id}}">Comment</a>
     </li>
     {{/each}}
   </ul>
