@@ -23,9 +23,6 @@ const PostsController = {
     });
   },
 
-  // Comment: (req, res) => {
-  //   Post.find()
-  // },
 
   Comment: function (req, res) {
     Post.find({ _id: req.params._id }, function (err, post) {
@@ -41,14 +38,11 @@ const PostsController = {
     });
   },
 
-  NewComment: (req, res) => {
-    res.render('posts/comment/new', {});
-  },
 
   CreateComment: function (req, res) {
     Post.findOneAndUpdate(
-      { _id: req.params.id },
-      { $push: { comments: req.body.comments } },
+      { _id: req.params._id },
+      { $push: { comments: req.body.comment } },
       function (err, posts) {
         if (err) {
           throw err;
