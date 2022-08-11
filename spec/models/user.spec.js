@@ -96,17 +96,10 @@ describe("User model", () => {
   });
 
   it("can save a user", (done) => {
-
     const newUser = new User({
       firstName: "Someone",
       lastName: "Surname",
       username: "SomeoneSurname",
-// =======
-//     const user = new User({
-//       firstName: "Harry",
-//       lastName: "Thomas",
-//       username: "testusername",
-// >>>>>>> main
       email: "someone@example.com",
       password: "password",
       phoneNumber: "12345678",
@@ -117,17 +110,11 @@ describe("User model", () => {
 
       User.find((err, users) => {
         expect(err).toBeNull();
-        //
         expect(users[0]).toMatchObject({
-// <<<<<<< HEAD
           firstName: "Someone",
           lastName: "Surname",
           username: "SomeoneSurname",
-// =======
-//           firstName: "Harry",
-//           lastName: "Thomas",
-//           username: "testusername",
-// >>>>>>> main
+
           email: "someone@example.com",
           password: "password",
           phoneNumber: "12345678",
