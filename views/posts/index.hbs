@@ -44,7 +44,7 @@
 
   <ul class="posts">
     {{#each posts}}
-    <li><p>{{this.message}}</p>{{this.timePosted}}<br>
+    <li><p>{{this.message}}</p>{{this.timePosted}} {{db.users.findOne({_id: this.user},{firstName:1, _id:0})}}</li><br>
       <a class="new-comment-link" href="/posts/comment/{{this._id}}">Comment</a>
     </li>
     {{/each}}

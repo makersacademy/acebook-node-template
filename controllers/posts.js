@@ -8,12 +8,15 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      // const user = req.session.user;
-      res.render('posts/index', { posts: posts.reverse() });
+      // const users = //This is where I am at
+      // console.log(users);
+      res.render('posts/index', { 
+        posts: posts.reverse(),
+      });
     });
   },
   New: (req, res) => {
-    const user = req.session.user
+    const user = req.session.user;
     res.render('posts/new', {user:user});
   },
   Create: (req, res) => {
