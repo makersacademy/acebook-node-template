@@ -1,17 +1,14 @@
-const express = require("express");
-// express is just a library we use, web framework 
-// which allows you to run functions
+const express = require('express');
 const router = express.Router();
 
-const PostsController = require("../controllers/posts");
+const PostsController = require('../controllers/posts');
 
-router.get("/", PostsController.Index);
-// calling method on the post controls, getting info
-router.post("/", PostsController.Create);
-// calling method to give info to the server
-router.get("/new", PostsController.New);
-//  displaying posts which is in the view folder
+router.get('/', PostsController.Index);
+router.post('/', PostsController.Create);
+router.get('/new', PostsController.New);
+
+router.get('/comment/:_id', PostsController.Comment);
+router.post('/:_id/comment', PostsController.CreateComment);
+
 module.exports = router;
 
-
-// so essentially passing in whatever the user types ionto the logic in controller
