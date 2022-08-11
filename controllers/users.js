@@ -5,7 +5,6 @@ const UsersController = {
       if (err) {
         throw err;
       }
-      console.log(req.session.user.id);
       res.render("users/profile", {
         user: user,
         session: req.session,
