@@ -33,13 +33,12 @@
   <body>
     <div class="card">
       <img src="https://wallpaperspeed.id/gallery/wallpaper/20220427/who-are-some-good-anime-characters-for-a-profile-picture,best-anime-characters-for-profile-picture-preview.webp" alt="John" style="width:20%">
-      <h1>John Doe</h1>
-      <p class="title">CEO & Founder, Example</p>
-      <p>Harvard University</p>
-      <a href="#"><i class="fa fa-dribbble"></i></a> 
-      <a href="#"><i class="fa fa-twitter"></i></a> 
-      <a href="#"><i class="fa fa-linkedin"></i></a> 
-      <a href="#"><i class="fa fa-facebook"></i></a> 
+    <ul class="user">
+        <h1>{{user.firstName}} {{user.lastName}}</h1>
+          <li>{{user.email}}</li>
+          <a>{{user._id}}</a>
+   
+    </ul>
     </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>

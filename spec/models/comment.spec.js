@@ -14,4 +14,27 @@ describe("Comment model", () => {
     const comment = new Comment({comment: "test comment"});
     expect(comment.comment).toEqual("test comment");
   })
+
+  it("can list all comments", (done) => {
+    Comment.find((err, comment) => {
+      expect(err).toBeNull();
+      expect(comment).toEqual([]);
+      done();
+    });
+  });
+
+  it("can save a comment", (done) => {
+    var comment = new Comment({ comment: "test comment" });
+
+    comment.save((err) => {
+      expect(err).toBeNull();
+
+      Comment.find((err, comment) => {
+        expect(err).toBeNull();
+
+        expect(comment[0]).toMatchObject({ comment: "test comment" });
+        done();
+      });
+    });
+  });
 });

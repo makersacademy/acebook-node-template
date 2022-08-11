@@ -1,5 +1,4 @@
 const User = require("../models/user");
-
 const UsersController = {
   New: (req, res) => {
     res.render("users/new", {});
@@ -14,10 +13,17 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
-  
   Profile: (req, res) => {
-    res.render("users/profile", {});
-  },
+    if (req.session.user && req.cookies.user_sid) { 
+      const email = req.session.user.email;
+    User.findOne({email: email}, (err, user) => {
+      if (err) {
+        throw err;
+      }
+      res.render("users/profile", {user: user});
+     });
+    }
+   },
 };
 
 module.exports = UsersController;
