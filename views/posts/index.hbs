@@ -44,7 +44,7 @@
 
   <ul class="posts">
     {{#each posts}}
-    <li><p>{{this.message}}</p>{{this.timePosted}} {{db.users.findOne({_id: this.user},{firstName:1, _id:0})}}</li><br>
+    <li><p>{{this.message}}</p>{{this.timePosted}} {{!-- {{dv.users.find({_id: this.user._id},{firstName:1, _id:0})}} --}} </li><br>
       <a class="new-comment-link" href="/posts/comment/{{this._id}}">Comment</a>
     </li>
     {{/each}}
@@ -53,3 +53,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>
+

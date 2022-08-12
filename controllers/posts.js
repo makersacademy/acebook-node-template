@@ -8,8 +8,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      // const users = //This is where I am at
-      // console.log(users);
       res.render('posts/index', { 
         posts: posts.reverse(),
       });
