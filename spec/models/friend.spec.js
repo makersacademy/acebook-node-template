@@ -8,13 +8,15 @@ const Friend = require("../../models/friend");
 describe("Friends model", () => {
   beforeEach((done) => {
     mongoose.connection.collections.users.drop(() => {
-      done();
+      mongoose.connection.collections.friends.drop(() => {
+        done();
+      });
     });
   });
 
-  it("Checks that two users are freinds", (done) => {
+  it("Checks that two users are friends", async () => {
     const user1 = new User({
-      firstName: "Someone1",
+      firstName: "Someone21",
       lastName: "Surname1",
       username: "SomeoneSurname1",
       email: "someone1@example.com",
@@ -30,10 +32,17 @@ describe("Friends model", () => {
       phoneNumber: "12345678",
     });
 
-    const user1Saved = user1.save((err, user) => user).then((user) => user);
-    user1Saved.then((user) => {
-      console.log(user);
-      done();
+    await user1.save();
+    await user2.save();
+    const friend = new Friend({
+      requester: user1.id,
+      recipient: user2.id,
+      status: 1,
     });
+    await friend.save();
+    const foundFriend = await Friend.findById(friend.id);
+    expect(foundFriend.requester.toString()).toEqual(user1.id);
+    expect(foundFriend.recipient.toString()).toEqual(user2.id);
+    expect(foundFriend.status).toEqual(1);
   });
 });
