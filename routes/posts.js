@@ -8,6 +8,7 @@ router.post('/', PostsController.Create);
 router.get('/new', PostsController.New);
 router.post("/delete", PostsController.Delete);
 router.get('/comment/:_id', PostsController.Comment);
+
 router.post('/:_id/comment', PostsController.CreateComment);
 
 module.exports = router;
