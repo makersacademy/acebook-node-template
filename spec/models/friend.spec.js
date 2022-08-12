@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
  
 require("../mongodb_helper");
 // const User = require("../../models/user");
-const Friends = require("../../models/friends");
+const Friends = require("../../models/friend");
  
 describe("Friends model", () => {
  beforeEach((done) => {
