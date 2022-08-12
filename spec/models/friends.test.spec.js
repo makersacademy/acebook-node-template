@@ -12,7 +12,7 @@ describe("Friends model", () => {
     });
   });
 
-  it("Checks that two users are freinds", () => {
+  it("Checks that two users are friends", () => {
 
     const friend = new Friends({ requester: '62f3c3f5b6bbf9712b23f341', recipient: '62f3c3f5b6bbf9712b23f34', status: 1 });
     friend.save().then(() => console.log(friend))
