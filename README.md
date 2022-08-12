@@ -1,8 +1,35 @@
-# Acebook
+# Acebook - ETA Team build
 
-This is a Node.js template for the Acebook engineering project.
+## Overview
 
-It uses:
+Acebook is a Facebook-clone developed whilst on the Makers Academy Bootcamp July 2022.
+
+- A (full stack) web app that allows users to login to the social media platform
+- Users can interact with other users and profiles by the feed through posts, comments and likes
+- Build using Test Driven Development and working cohesively as a team
+
+## Group Collabrators (Alphabetical)
+
+- [Aisha](https://github.com/Aisha-Yusuff)
+- [Daniel](https://github.com/danielotf)
+- [Dave](https://github.com/davekempsell)
+- [Ephron](https://github.com/Ephfullstack)
+- [Raphaella](https://github.com/raphaella-rose)
+- [Naz H](https://github.com/nazhudha)
+
+## Features include:
+
+- User can sign up
+- User can log in
+- User can log out
+- User can create and edit posts (from own profile news feed)
+- User can edit their post
+- User can add and edit comments
+- User can 'like' post and see 'likes' count
+- User can view their own and other users profile page
+- User's username and timestamp displayed next to their post
+
+## Technologies:
 
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
@@ -12,9 +39,15 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
-## Card wall
+## Card wall (Trello Planning)
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+![Trello Screenshot](./public/images/Trello_screenshot.png)
+
+(https://trello.com/b/fBi79KiE/eta-trello-board)
+
+## ScreenShots (app)
+
+# Setup
 
 ## Quickstart
 
@@ -46,7 +79,7 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    brew tap mongodb/brew
    brew install mongodb-community@5.0
    ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
+   _Note:_ If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
 7. Start MongoDB
    ```
    brew services start mongodb-community@5.0
@@ -87,9 +120,7 @@ so that integration tests do not interact with the development server.
 
 ## MongoDB Connection Errors?
 
-Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
+Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips that may resolve such issues:
 
 - Check that MongoDB is installed using `mongo --version`
 - Check that it's running using `brew services list`
-
-If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
