@@ -1,10 +1,12 @@
 <h1 class="title">Profile Page</h1>
+{{!-- it's my page --}}
 {{#if pageOwnerBool}}
 
 <form id="search-form" action="/users/search" method="get">
   <input type="text" name="search" id="search" />
   <input id="submit" type="submit" value="Search" />
 </form>
+<p>It's my page</p>>
 <ul class="user_profile">
   <li id="first-name">{{user.firstName}}</li>
   <li id="last-name">{{user.lastName}}</li>
@@ -12,13 +14,51 @@
 <form action="/posts/new" method="get">
     <input type="submit" value="New post" />
 </form>
-{{else}}
+
+{{!-- it's my friends page --}}
+{{else if friendsBool }}
 <form id="search-form" action="/users/search" method="get">
   <input type="text" name="search" id="search" />
   <input id="submit" type="submit" value="Search" />
 </form>
+<p>{{user.id}}</p>>
+<p>{{session.user._id}}</p>>
 <ul class="user_profile">
   <li id="first-name">{{user.firstName}}</li>
   <li id="last-name">{{user.lastName}}</li>
 </ul>
+
+{{!-- it's a strangers page but the friends request have been made--}}
+{{else if friendRequestedBool }}
+<p>there is a request but we are not friends. Either of use could have sent the request</p>
+
+
+{{!--there is a request. It's their page. I have sent the request--}}
+{{else if theirPageMyRequestBool }}
+<p>there is a request. It's their page. I have sent the request</p>
+
+{{!-- it's a strangers page--}}
+{{else}}
+<p>We don't know each other </p>
+
 {{/if}}
+
+<form action="/posts/" method="get">
+    <input type="submit" value="Back to timeline" />
+</form>
+
+{{!-- 1. stranger - request appears - no record in the data
+
+2. stranger - request sent - record - status 0 
+
+3. friend - record - status 1
+
+4. me - I see the request - similar to point 2 - status 0 - separate page
+
+Alice and Bob:-
+
+Alice sees friend request button.
+Alice presses friend request button and it changes to "pending"
+Once Bob has accepted the friend request, changes to "friends"
+
+i.e. button dynamically changes depending on status of request:- --}}
