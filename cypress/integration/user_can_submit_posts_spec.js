@@ -1,24 +1,30 @@
-describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+const signUpAndSignIn = require("./webhelper");
 
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+describe("Timeline", () => {
+  afterEach(() => {
+    cy.task("dropPosts");
+    cy.task("dropUsers");
+  });
+
+  it("can submit posts, when signed in, and view them", () => {
+    // run webhelper to sign up and sign in to acebook
+    signUpAndSignIn("Test", "User");
 
     // submit a post
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form")
+      .find("#message")
+      .type("Test message: cypress submit post test!");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
+    // assert that the post should contain the content, username, and timestamp
+    cy.get(".posts").should(
+      "contain",
+      "Test message: cypress submit post test!"
+    );
+    cy.get(".posts").should("contain", "TestUser");
+    cy.get(".posts").should("contain", "2022");
   });
 });

@@ -1,0 +1,50 @@
+<div class="main-container text-center" id="main">
+
+<h2 class="username-h2">Hello, {{user.username}}!</h1>
+
+  <h2 id="edit-info-title">Edit Your Personal Information:</h2>
+
+<div class="authentication-container">
+<div class="row d-flex justify-content-center align-items-center">
+<form class="authentication-form"
+id="edit-info-form"
+  action="/profile/user/{{user.username}}/editInfo"
+  method="post">
+
+      <label class="inline-form-label" for="firstName"> First Name:</label>
+      <input class="inline-form-input"
+        id="firstName"
+        type="text"
+        name="firstName"
+        value={{user.firstName}}
+        />
+
+      <label class="inline-form-label" for="lastName">Last Name:</label>
+      <input class="inline-form-input"
+        id="lastName"
+        type="text"
+        name="lastName"
+        value={{user.lastName}}
+      />
+
+      <label class="inline-form-label" for="profile-pic">Profile Picture URL:</label>
+      <input class="inline-form-input"
+        id="profile-pic"
+        type="text"
+        name="profilePic"
+        value={{user.profilePic}}
+      />
+
+      <label class="inline-form-label" for="location">Location:</label>
+      <input class="inline-form-input"
+        id="location"
+        type="text"
+        name="location"
+        value={{user.location}}
+      />
+
+      <input class="inline-form-btn" id="submit" type="submit" value="Submit" />
+</form>
+</div>
+</div>
+</div>
