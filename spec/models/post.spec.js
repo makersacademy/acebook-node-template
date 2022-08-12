@@ -37,4 +37,12 @@ describe("Post model", () => {
       });
     });
   });
+
+  it('has a default time', () => {
+    var post = new Post({ message: 'new post' });
+    var date = new Date().toLocaleDateString();
+
+    expect(post.timePosted).toBeTruthy();
+    expect(post.timePosted).toEqual(expect.stringContaining(date));
+  });
 });

@@ -13,11 +13,13 @@ describe("User model", () => {
   // unit test written by AE, accepting users name
   it("store users names", () => {
     const user = new User({
-      name: "exampleUser",
+      firstName: "firstName",
+      lastName: "lastName",
       email: "sample@example.com",
       password: "password",
     })
-    expect(user.name).toEqual("exampleUser");
+    expect(user.firstName).toEqual("firstName");
+    expect(user.lastName).toEqual("lastName");
   });
 
   it("has an email address", () => {
@@ -34,6 +36,13 @@ describe("User model", () => {
       password: "password",
     });
     expect(user.password).toEqual("password");
+  });
+
+  it("has a description", () => {
+    const user = new User({
+      description: "fun description",
+    });
+    expect(user.description).toEqual("fun description");
   });
 
   it("can list all users", (done) => {
