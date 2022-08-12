@@ -14,7 +14,20 @@
   <h2 class="title">Friend Requests</h2>
   <ul>
     {{#each friends}}
-      <li>{{this.firstName}} {{this.lastName}}</li>
+
+      <li>
+        <form
+          id="search-form"
+          action="/friends/accept/{{this.id}}"
+          method="post"
+        >
+          <input id="submit" type="submit" value="Submit" />
+        </form>
+        {{this.firstName}}
+
+        {{this.lastName}}
+
+      </li>
     {{/each}}
   </ul>
 

@@ -48,17 +48,17 @@ const setupDatabase = async () => {
   const friendship1 = new Friend({
     requester: user1.id,
     recipient: user2.id,
-    status: 1,
+    status: 0,
   });
   const friendship2 = new Friend({
     requester: user3.id,
     recipient: user2.id,
-    status: 1,
+    status: 0,
   });
   const friendship3 = new Friend({
     requester: user3.id,
     recipient: user1.id,
-    status: 1,
+    status: 0,
   });
   await friendship1.save();
   await friendship2.save();

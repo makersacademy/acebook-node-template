@@ -9,8 +9,6 @@ const UsersController = {
         async (friendObject) => await User.findById(friendObject.requester)
       )
     );
-    console.log(user);
-    console.log("friends", friends);
     res.render("users/profile", {
       user: user,
       session: req.session,
