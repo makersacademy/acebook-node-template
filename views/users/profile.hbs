@@ -1,4 +1,3 @@
-
 <h1 class="title">Profile Page</h1>
 <form id="search-form" action="/users/search" method="get">
   <input type="text" name="search" id="search" />
@@ -14,7 +13,9 @@
 <div>
   <h2 class="title">Friend Requests</h2>
   <ul>
-    
+    {{#each friends}}
+      <li>{{this.firstName}} {{this.lastName}}</li>
+    {{/each}}
   </ul>
 
 </div>

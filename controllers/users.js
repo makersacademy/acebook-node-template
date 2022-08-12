@@ -3,11 +3,18 @@ const Friend = require("../models/friend");
 const UsersController = {
   Profile: async (req, res) => {
     const user = await User.findOne({ username: req.params.username });
-    const friends = await Friend.find({ recipient: user.id });
-    console.log(friends);
+    const friendsObject = await Friend.find({ recipient: user.id });
+    const friends = await Promise.all(
+      friendsObject.map(
+        async (friendObject) => await User.findById(friendObject.requester)
+      )
+    );
+    console.log(user);
+    console.log("friends", friends);
     res.render("users/profile", {
       user: user,
       session: req.session,
+      friends: friends,
     });
   },
 
