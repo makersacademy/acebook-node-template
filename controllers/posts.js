@@ -9,7 +9,6 @@ const PostsController = {
       res.render("posts/index", { 
         posts: posts, 
         session: req.session,
-        username: req.session.user.username,
       });
     });
   },
