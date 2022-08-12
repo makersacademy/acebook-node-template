@@ -1,10 +1,11 @@
 const Post = require('../models/post');
 const session = require('../controllers/sessions');
+const User = require('../models/user');
 
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find().populate('user').exec((err, posts) => {
       if (err) {
         throw err;
       }
@@ -39,6 +40,8 @@ const PostsController = {
       }
     );
   },
+
+
 };
 
 module.exports = PostsController;

@@ -31,6 +31,18 @@ const SessionsController = {
     }
     res.redirect("/sessions/new");
   },
+
+  NameFinder: (req, res) => {
+    if (req.session.user && req.cookies.user_sid) { 
+      const id = req.session.user._id;
+    User.findOne({id: id}, (err, user) => {
+      if (err) {
+        throw err;
+      }
+      res.render("users/profile", {user: user});
+     });
+    }
+   },
   
 };
 

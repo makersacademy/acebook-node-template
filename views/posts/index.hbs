@@ -44,7 +44,7 @@
 
   <ul class="posts">
     {{#each posts}}
-    <li><p>{{this.message}}</p>{{this.timePosted}}<br>
+    <li><p>{{this.message}}</p>{{this.user.firstName}} {{this.user.lastName}}-{{this.timePosted}}<br>
       {{#each this.comments}}
         <p>{{this}}</p>
       {{/each}}
