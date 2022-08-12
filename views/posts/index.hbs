@@ -44,8 +44,16 @@
 
   <ul class="posts">
     {{#each posts}}
-    <li><p>{{this.message}}</p>{{this.timePosted}} {{!-- {{dv.users.find({_id: this.user._id},{firstName:1, _id:0})}} --}} </li><br>
-      <a class="new-comment-link" href="/posts/comment/{{this._id}}">Comment</a>
+    <li><p>{{this.message}}</p>{{this.timePosted}}<br>
+      {{#each this.comments}}
+        <p>{{this}}</p>
+      {{/each}}
+       <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
+          <label for="comment">Comment: </label>
+          <input id="comment" type="text" name="comment" value="">
+          <input type="submit" value="Submit">
+        </form>
+        <br>
     </li>
     {{/each}}
   </ul>
