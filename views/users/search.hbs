@@ -1,7 +1,8 @@
 <h1>Search</h1>
 <ul class="search">
   {{#each users}}
-    <li>{{this.firstName}}</li>
-    <li>{{this.lasttName}}</li>
+  <li>{{this.firstName}}</li>
+  <li>{{this.lasttName}}</li>
+  <button id="request-button" value={{this.id}}>Send friend request</button>
   {{/each}}
 </ul>
