@@ -1,14 +1,13 @@
 const User = require("../models/user");
+const Friend = require("../models/friend");
 const UsersController = {
-  Profile: (req, res) => {
-    User.findOne({ username: req.params.username }, (err, user) => {
-      if (err) {
-        throw err;
-      }
-      res.render("users/profile", {
-        user: user,
-        session: req.session,
-      });
+  Profile: async (req, res) => {
+    const user = await User.findOne({ username: req.params.username });
+    const friends = await Friend.find({ recipient: user.id });
+    console.log(friends);
+    res.render("users/profile", {
+      user: user,
+      session: req.session,
     });
   },
 

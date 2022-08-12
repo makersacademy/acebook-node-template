@@ -6,8 +6,9 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { 
-        posts: posts, 
+      console.log(req.session);
+      res.render("posts/index", {
+        posts: posts,
         session: req.session,
       });
     });
