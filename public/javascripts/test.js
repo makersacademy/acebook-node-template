@@ -1,5 +1,5 @@
 console.log('Client-side code running');
-// const FriendsController = require("../controllers/friends");
+
 
 window.onload = function () {
     const button = document.querySelector('#request-button')
@@ -7,7 +7,6 @@ window.onload = function () {
 
     button.addEventListener('click', function () {
         console.log('button was clicked');
-        // FriendsControlller.Add
         fetch('/friends', { method: 'POST', content: button_value })
             .then(function (response) {
                 if (response.ok) {
