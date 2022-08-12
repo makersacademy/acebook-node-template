@@ -44,7 +44,7 @@
 
   <ul class="posts">
     {{#each posts}}
-    <li><p>{{this.message}}</p>{{this.timePosted}}<br>
+    <li><p>{{this.message}}</p>{{this.user.firstName}} {{this.user.lastName}}- {{this.timePosted}}<br>
       {{#each this.comments}}
         <p>{{this}}</p>
       {{/each}}
@@ -61,3 +61,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>
+
