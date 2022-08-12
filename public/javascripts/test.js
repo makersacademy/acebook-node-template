@@ -7,7 +7,16 @@ window.onload = function () {
 
     button.addEventListener('click', function () {
         console.log('button was clicked');
-        fetch('/friends', { method: 'POST', content: button_value })
+        console.log(`BUTTON VALUE: ${button.value}`)
+
+        options = {
+            method: "POST",
+            body: JSON.stringify({ content: button_value }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+        fetch('/friends', options)
             .then(function (response) {
                 if (response.ok) {
                     console.log('Click was recorded');
@@ -19,4 +28,5 @@ window.onload = function () {
                 console.log(error);
             });
     });
+
 }
