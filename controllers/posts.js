@@ -1,6 +1,6 @@
 const Post = require('../models/post');
-const session = require('../controllers/sessions');
-const User = require('../models/user');
+// const session = require('../controllers/sessions');
+// const User = require('../models/user');
 
 
 const PostsController = {
