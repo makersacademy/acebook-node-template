@@ -36,7 +36,7 @@ const PostsController = {
       $push: { comment: [{ author: user, content: comment_content }] }
     };
 
-    Post.updateOne({ _id: post_id }, update, { new: true, useFindAndModify: false }, (error, data) => {
+    Post.findOneAndUpdate({ _id: post_id }, update, { new: true, useFindAndModify: false }, (error, data) => {
       if (error) {
         console.log(err);
       } else {
