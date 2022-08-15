@@ -9,8 +9,10 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      const user = req.session.user;
       res.render('posts/index', { 
         posts: posts.reverse(),
+        user: user,
       });
     });
   },
@@ -29,9 +31,10 @@ const PostsController = {
   },
 
   CreateComment: function (req, res) {
+    const user = req.session.user;
     Post.findOneAndUpdate(
       { _id: req.params._id },
-      { $push: { comments: {message: req.body.comment, author: req.session.user.firstName} } },
+      { $push: { comments: {message: req.body.comment, author: user.firstName} } },
       function (err) {
         if (err) {
           throw err;

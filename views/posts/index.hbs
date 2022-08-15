@@ -46,8 +46,7 @@
     {{#each posts}}
     <li><p>{{this.message}}</p>{{this.user.firstName}} {{this.user.lastName}}- {{this.timePosted}}<br>
       {{#each this.comments}}
-        <p>{{this.author}}</p>
-        <p>{{this.message}}</p>
+        <p>{{this.author}}- {{this.message}}</p>
       {{/each}}
        <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
           <label for="comment">Comment: </label>
