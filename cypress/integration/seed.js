@@ -3,17 +3,17 @@ const Friend = require("../../models/friend");
 const mongoose = require("mongoose");
 
 const setupDatabase = async () => {
-  await mongoose
-    .connect("mongodb://0.0.0.0/acebook", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => {
-      console.log("connection established!");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // await mongoose
+  //   .connect("mongodb://0.0.0.0/acebook", {
+  //     useNewUrlParser: true,
+  //     useUnifiedTopology: true,
+  //   })
+  //   .then(() => {
+  //     console.log("connection established!");
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
   await mongoose.connection.collections.users.drop();
   await mongoose.connection.collections.friends.drop();
 
@@ -63,7 +63,7 @@ const setupDatabase = async () => {
   await friendship1.save();
   await friendship2.save();
   await friendship3.save();
-  await mongoose.connection.close();
+  // await mongoose.connection.close();
 };
 
-setupDatabase();
+module.exports = setupDatabase;
