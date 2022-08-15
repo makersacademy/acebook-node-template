@@ -13,6 +13,7 @@ const PostsController = {
   New: (req, res) => {
     res.render('posts/new', {});
   },
+
   Create: (req, res) => {
     const post = new Post(req.body);
     post.save((err) => {
@@ -27,6 +28,32 @@ const PostsController = {
     Post.findOneAndUpdate(
       { _id: req.params._id },
       { $push: { comments: req.body.comment } },
+      function (err) {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect('/posts');
+      }
+    );
+  },
+
+  Like: function (req, res) {
+    Post.findOneAndUpdate(
+      { _id: req.params._id },
+      { $inc: { likes: 1 } },
+      function (err) {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect('/posts');
+      }
+    );
+  },
+
+  Unlike: function (req, res) {
+    Post.findOneAndUpdate(
+      { _id: req.params._id },
+      { $inc: { likes: -1 } },
       function (err) {
         if (err) {
           throw err;
