@@ -2,7 +2,6 @@ const session = require("express-session");
 const User = require("../models/user");
 const Friend = require("../models/friend");
 const UsersController = {
-<<<<<<< HEAD
   Profile: async (req, res) => {
     const user = await User.findOne({ username: req.params.username });
     const friendsObject = await Friend.find({ recipient: user.id });
@@ -15,18 +14,6 @@ const UsersController = {
       user: user,
       session: req.session,
       friends: friends,
-=======
-  Profile: (req, res) => {
-    User.findOne({ username: req.params.username }, (err, user) => {
-      if (err) {
-        throw err;
-      }
-      res.render("users/profile", {
-        user: user,
-        session: req.session,
-        pageOwnerBool: user.username === req.session.user.username,
-      });
->>>>>>> main
     });
   },
 
