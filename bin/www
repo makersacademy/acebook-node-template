@@ -20,7 +20,7 @@ app.set("port", port);
  * Connect to MongoDB
  **/
 
-var mongoDbUrl = process.env.MONGODB_URL || "mongodb+srv://acebook.g2d2kr5.mongodb.net/Acebook?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority";
+var mongoDbUrl = process.env.MONGODB_URL || "mongodb+srv://SharedUser:Milton@acebook.g2d2kr5.mongodb.net/Acebook?retryWrites=true&w=majority";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
