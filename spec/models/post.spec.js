@@ -17,7 +17,7 @@ describe("Post model", () => {
   });
   // Paris
 
-  it("can save post with valid User Id", (done) => {
+  it("can save post with valid User Id", async () => {
     // Make and save a User
     const user = new User({
       firstName: "Paris",
@@ -27,49 +27,28 @@ describe("Post model", () => {
       password: "password",
       phoneNumber: "12345678",
     });
-    user.save((err) => {
-      expect(err).toBeNull();
-      User.find((err, users) => {
-        expect(err).toBeNull();
-        //Creating a post Object
+    await user.save();
+    const users = await User.find((err) => expect(err).toBeNull());
+    const post = new Post({ content: "some message", userId: users[0].id });
+    await post.save();
 
-        console.log(users[0].id);
-        var post = new Post({ content: "some message", userId: users[0].id });
-        post.save((err) => {
-          expect(err).toBeNull();
-
-          Post.find((err, posts) => {
-            if (err) {
-              throw err;
-            }
-            expect(posts[0].userId).toEqual(users[0]._id);
-          });
-        });
-        done();
-      });
-    });
+    const posts = await Post.find((err) => expect(err).toBeNull());
+    expect(posts[0].userId).toEqual(users[0]._id);
   });
 
-  it("can list all posts", (done) => {
-    Post.find((err, posts) => {
+  it("can list all posts", async () => {
+    await Post.find((err, posts) => {
       expect(err).toBeNull();
       expect(posts).toEqual([]);
-      done();
     });
   });
 
-  it("can save a post", (done) => {
+  it("can save a post", async () => {
     var post = new Post({ content: "some message" });
-
-    post.save((err) => {
+    await post.save();
+    await Post.find((err, posts) => {
       expect(err).toBeNull();
-
-      Post.find((err, posts) => {
-        expect(err).toBeNull();
-
-        expect(posts[0]).toMatchObject({ content: "some message" });
-        done();
-      });
+      expect(posts[0]).toMatchObject({ content: "some message" });
     });
   });
 });
