@@ -18,7 +18,7 @@ const UsersController = {
           status: "1",
           $or: 
             [ {requester: user.id, recipient: req.session.user._id},
-            {recipient: req.session.user._id, requester: user.id} ],
+            {requester: req.session.user._id, recipient: user.id} ],
           }),
 
         // there is a request but we are not friends. Either of use could have sent the request
@@ -26,7 +26,21 @@ const UsersController = {
           status: "0",
           $or: 
           [ {requester: user.id, recipient: req.session.user._id},
-            {recipient: req.session.user._id, requester: user.id} ],
+            {requester: req.session.user._id, recipient: user.id} ],
+          }),
+
+        // there is a request. I have sent the request  
+        // I invited Ahmed, I'm going to his page. This is what I see
+        myRequestBool: await Friends.find( {
+          status: "0",
+          requester: req.session.user._id, recipient: user.id,
+        }),
+
+        // A method for friends requests page
+        // there is a request. They have sent the request
+        theirRequestBool: await Friends.find( {
+          status: "0",
+          requester: user.id, recipient: req.session.user._id,
           }),
         });
       });
@@ -66,11 +80,5 @@ const UsersController = {
       },
     };
     
-    // // A method for friends requests page
-    // there is a request. It's my page. They have sent the request
-    // myPageTheirRequestBool: await Friends.find( {
-    //   status: "0",
-    //   recipient: req.session.user._id, requester: user.id,
-    //   }),
 
   module.exports = UsersController;
