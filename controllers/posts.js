@@ -45,11 +45,11 @@ const PostsController = {
   },
   
   Delete: (req, res) => {
-    Post.deleteOne({ _id: id }, (err) => {
+    Post.deleteOne(req.body, (err) => {
       if (err) {
         throw err;
       }
-      res.redirect(`/profile/user/${username}`);
+      res.redirect("/posts");
     });
   },
   
