@@ -5,12 +5,16 @@
   <!-- Add a like button -->
   {{/each}}
 </ul>
-{{! <form action='/sessions?_method=DELETE' method='POST'>
-  <input type="submit" value="Log Out">
-</form> }}
-<form id="search-form" action="/users/search" method="get">
-  <input type="text" name="search" id="search" />
-  <input id="submit" type="submit" value="Submit" />
+
+<form action="/users/profile/{{session.user.username}}" method="get">
+    <input type="submit" value="My profile" />
 </form>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<form id="search-form" action="/users/search" method="get">
+  <input type="text" name="search" id="search" />
+  <input id="submit" type="submit" value="Search" />
+</form>
+
+<form action="/posts/new" method="get">
+    <input type="submit" value="New post" />
+</form>

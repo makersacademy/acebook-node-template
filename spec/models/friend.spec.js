@@ -46,3 +46,4 @@ describe("Friends model", () => {
     expect(foundFriend.status).toEqual(1);
   });
 });
+

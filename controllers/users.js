@@ -1,3 +1,4 @@
+const session = require("express-session");
 const User = require("../models/user");
 const UsersController = {
   Profile: (req, res) => {
@@ -8,6 +9,7 @@ const UsersController = {
       res.render("users/profile", {
         user: user,
         session: req.session,
+        pageOwnerBool: user.username === req.session.user.username,
       });
     });
   },
