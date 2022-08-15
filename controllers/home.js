@@ -10,6 +10,7 @@ const HomeController = {
   },
   SearchIndex: (req, res) => {
     res.render('search/index');
+    // renders a new search index page
   }
 };
 
