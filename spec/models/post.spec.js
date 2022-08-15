@@ -15,7 +15,6 @@ describe("Post model", () => {
     var post = new Post({ content: "some message" });
     expect(post.content).toEqual("some message");
   });
-  // Paris
 
   it("can save post with valid User Id", async () => {
     // Make and save a User
@@ -28,27 +27,23 @@ describe("Post model", () => {
       phoneNumber: "12345678",
     });
     await user.save();
-    const users = await User.find((err) => expect(err).toBeNull());
+    const users = await User.find();
     const post = new Post({ content: "some message", userId: users[0].id });
     await post.save();
 
-    const posts = await Post.find((err) => expect(err).toBeNull());
+    const posts = await Post.find();
     expect(posts[0].userId).toEqual(users[0]._id);
   });
 
   it("can list all posts", async () => {
-    await Post.find((err, posts) => {
-      expect(err).toBeNull();
-      expect(posts).toEqual([]);
-    });
+    const posts = await Post.find();
+    expect(posts).toEqual([]);
   });
 
   it("can save a post", async () => {
     var post = new Post({ content: "some message" });
     await post.save();
-    await Post.find((err, posts) => {
-      expect(err).toBeNull();
-      expect(posts[0]).toMatchObject({ content: "some message" });
-    });
+    const posts = await Post.find();
+    expect(posts[0]).toMatchObject({ content: "some message" });
   });
 });
