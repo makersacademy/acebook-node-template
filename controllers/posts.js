@@ -31,7 +31,7 @@ const PostsController = {
   CreateComment: function (req, res) {
     Post.findOneAndUpdate(
       { _id: req.params._id },
-      { $push: { comments: req.body.comment } },
+      { $push: { comments: {message: req.body.comment, author: req.session.user.firstName} } },
       function (err) {
         if (err) {
           throw err;
