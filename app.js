@@ -11,13 +11,13 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const app = express();
 
-const dbURI= 'mongodb+srv://SharedUser:Milton@acebook.g2d2kr5.mongodb.net/Acebook?retryWrites=true&w=majority';
-mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
-  .then((result) => app.listen(3000))
-  .catch((err)=> consolee.log(err));
+// const dbURI= 'mongodb+srv://SharedUser:Milton@acebook.g2d2kr5.mongodb.net/Acebook?retryWrites=true&w=majority';
+// mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+//   .then((result) => app.listen(3000))
+//   .catch((err)=> consolee.log(err));
 
 
 // view engine setup
