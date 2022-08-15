@@ -18,8 +18,6 @@ const FriendsController = {
     res.status(201).redirect("/");
   },
   Accept: async (req, res) => {
-    console.log("helllooooooo");
-    console.log(req.params);
     const requesterObject = new ObjectId(req.params.id);
     await Friend.findByIdAndUpdate(
       { requester: requesterObject },
