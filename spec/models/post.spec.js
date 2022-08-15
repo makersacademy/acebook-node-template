@@ -34,21 +34,50 @@ describe("Post model", () => {
 
         expect(posts[0]).toMatchObject({ message: "some message" });
         done();
-      });it("can delete a post", (done) => {
-        let post = new Post({ message: "delete this message" });
-    
-        post.save((err) => {
+      });
+    });
+  });
+
+  it("can save a post with a comment", (done) => {
+    var post = new Post({ message: "some post", comments: [{ 
+      message: "some comment",
+      author: "name"
+    }]});
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0].message).toEqual( "some post" );
+        expect(posts[0].comments[0]).toMatchObject({ 
+          message: "some comment",
+          author: "name"
+        });
+        done();
+      });
+    });
+  });
+  
+  it("can delete a post", (done) => {
+    let post = new Post({ message: "delete this message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts[0]).toMatchObject({ message: "delete this message" });
+      });
+
+      Post.deleteOne({ message: "delete this message" }, (err) => {
+        expect(err).toBeNull();
+
+        Post.find((err, posts) => {
           expect(err).toBeNull();
-    
-          Post.deleteOne({ message: "delete this message" }, (err) => {
-            expect(err).toBeNull();
-    
-            Post.find((err, posts) => {
-              expect(err).toBeNull();
-              expect(posts).toEqual([]);
-              done();
-            });
-          });
+          expect(posts).toEqual([]);
+          done();
         });
       });
     });
