@@ -10,7 +10,6 @@ describe("User model", () => {
     });
   });
 
-  // unit test written by AE, accepting users name
   it("store users names", () => {
     const user = new User({
       firstName: "firstName",
