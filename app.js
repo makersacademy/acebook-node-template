@@ -11,6 +11,13 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+const mongoose = require('mongoose');
+
+const dbURI= 'mongodb+srv://SharedUser:Milton@acebook.g2d2kr5.mongodb.net/Acebook?retryWrites=true&w=majority';
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+  .then((result) => console.log('Connected to db'))
+  .catch((err)=> consolee.log(err))
+
 const app = express();
 
 // view engine setup
