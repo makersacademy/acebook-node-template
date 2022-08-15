@@ -1,15 +1,18 @@
 <h1 class="title">Profile Page</h1>
+{{! it's my page }}
+{{#if pageOwnerBool}}
 
-<form id="search-form" action="/users/search" method="get">
-  <input type="text" name="search" id="search" />
-  <input id="submit" type="submit" value="Search" />
-</form>
-<ul class="user_profile">
-  <li id="first-name">{{user.firstName}}</li>
-  <li id="last-name">{{user.lastName}}</li>
-</ul>
+  <form id="search-form" action="/users/search" method="get">
+    <input type="text" name="search" id="search" />
+    <input id="submit" type="submit" value="Search" />
+  </form>
+  <p>It's my page</p>>
+  <ul class="user_profile">
+    <li id="first-name">{{user.firstName}}</li>
+    <li id="last-name">{{user.lastName}}</li>
+  </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+  {{!-- <a class="new-post-link" href="/posts/new">New post</a>
 
 <div>
   <h2 class="title">Friend Requests</h2>
@@ -49,4 +52,34 @@
       </li>
     {{/each}}
   </ul>
-</div>
+</div> --}}
+  <form action="/posts/new" method="get">
+    <input type="submit" value="New post" />
+  </form>
+
+  {{! it's my friends page }}
+{{else if friendsBool}}
+  <p>We are friends.</p>
+
+  {{! it's a strangers page but the friends request have been made}}
+{{else if friendRequestedBool}}
+  <p>there is a request but we are not friends. Either of us could have sent the
+    request</p>
+
+  {{!there is a request. It's their page. I have sent the request}}
+{{else if myRequestBool}}
+  <p>there is a request. I have sent the request</p>
+
+  {{!there is a request. They have sent the request}}
+{{else if theirRequestBool}}
+  <p>there is a request. They have sent the request</p>
+
+  {{! it's a strangers page}}
+{{else}}
+  <p>We don't know each other. No request. </p>
+
+{{/if}}
+
+<form action="/posts/" method="get">
+  <input type="submit" value="Back to timeline" />
+</form>
