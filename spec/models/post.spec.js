@@ -34,7 +34,25 @@ describe("Post model", () => {
 
         expect(posts[0]).toMatchObject({ message: "some message" });
         done();
+      });it("can delete a post", (done) => {
+        let post = new Post({ message: "delete this message" });
+    
+        post.save((err) => {
+          expect(err).toBeNull();
+    
+          Post.deleteOne({ message: "delete this message" }, (err) => {
+            expect(err).toBeNull();
+    
+            Post.find((err, posts) => {
+              expect(err).toBeNull();
+              expect(posts).toEqual([]);
+              done();
+            });
+          });
+        });
       });
     });
   });
+
+
 });

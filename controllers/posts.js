@@ -43,8 +43,16 @@ const PostsController = {
       }
     );
   },
-
-
+  
+  Delete: (req, res) => {
+    Post.deleteOne({ _id: id }, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect(`/profile/user/${username}`);
+    });
+  },
+  
 };
 
 module.exports = PostsController;
