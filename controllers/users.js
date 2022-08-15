@@ -4,7 +4,7 @@ const Friends = require("../models/friend");
 
 const UsersController = {
   Profile: (req, res) => {
-    User.findOne({ username: req.params.username }, async (err, user) => {
+    User.findOne({ username: req.params.username }, (err, user) => {
       if (err) {
         throw err;
       }
