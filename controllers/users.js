@@ -4,15 +4,30 @@ const Friend = require("../models/friend");
 const UsersController = {
   Profile: async (req, res) => {
     const user = await User.findOne({ username: req.params.username });
-    const friendsObject = await Friend.find({ recipient: user.id });
-    const friends = await Promise.all(
-      friendsObject.map(
-        async (friendObject) => await User.findById(friendObject.requester)
+    const requestsObject = await Friend.find({ recipient: user.id, status: 0 });
+    const friendsObject = await Friend.find({
+      $or: [
+        { recipient: user.id, status: 1 },
+        { requester: user.id, status: 1 },
+      ],
+    });
+    //Gets all friend Requests
+    const requests = await Promise.all(
+      requestsObject.map(
+        async (requestsObject) => await User.findById(requestsObject.requester)
       )
     );
+    // Gets all current Friends
+    const friends = await Promise.all(
+      friendsObject.map(
+        async (friendsObject) => await User.findById(friendsObject.requester)
+      )
+    );
+    console.log(friends);
     res.render("users/profile", {
       user: user,
       session: req.session,
+      requests: requests,
       friends: friends,
     });
   },

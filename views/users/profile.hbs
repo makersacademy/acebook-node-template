@@ -1,5 +1,4 @@
 <h1 class="title">Profile Page</h1>
-{{#if pageOwnerBool}}
 
 <form id="search-form" action="/users/search" method="get">
   <input type="text" name="search" id="search" />
@@ -15,7 +14,7 @@
 <div>
   <h2 class="title">Friend Requests</h2>
   <ul>
-    {{#each friends}}
+    {{#each requests}}
 
       <li>
         <form
@@ -23,7 +22,7 @@
           action="/friends/accept/{{this.id}}"
           method="post"
         >
-          <input id="submit" type="submit" value="Submit" />
+          <input id="submit" type="submit" value="Accept" />
         </form>
         {{this.firstName}}
 
@@ -32,5 +31,22 @@
       </li>
     {{/each}}
   </ul>
+</div>
 
+<div>
+  <h2 class="title">Friends</h2>
+  <ul>
+    {{#each friends}}
+
+      <li>
+        <form id="unfriend" action="/friends/accept/{{this.id}}" method="post">
+          <input id="submit" type="submit" value="Unfriend" />
+        </form>
+        {{this.firstName}}
+
+        {{this.lastName}}
+
+      </li>
+    {{/each}}
+  </ul>
 </div>

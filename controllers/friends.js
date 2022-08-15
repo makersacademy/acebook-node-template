@@ -18,11 +18,8 @@ const FriendsController = {
     res.status(201).redirect("/");
   },
   Accept: async (req, res) => {
-    const requesterObject = new ObjectId(req.params.id);
-    await Friend.findByIdAndUpdate(
-      { requester: requesterObject },
-      { status: 1 }
-    );
+    console.log("Accept method called on controller:", req.params.id);
+    await Friend.findOneAndUpdate({ requester: req.params.id }, { status: 1 });
     res.status(201).redirect(`/users/profile/${req.session.user.username}`);
   },
 };
