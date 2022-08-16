@@ -10,8 +10,7 @@
           data-bs-target='#navbarNav'
           aria-controls='navbarNav'
           aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
+          aria-label='Toggle navigation'>
           <span class='navbar-toggler-icon'></span>
         </button>
         <div class='collapse navbar-collapse' id='navbarNav'>
@@ -20,8 +19,7 @@
               <a
                 class='nav-link active'
                 aria-current='page'
-                href='/posts'
-              >Home</a>
+                href='/posts'>Home</a>
             </li>
             <li class='nav-item'>
               <a class='nav-link' href='/users/profile'>Profile</a>
@@ -42,7 +40,7 @@
       rel='stylesheet'
       integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx'
       crossorigin='anonymous'
-    />
+      />
     <h1>Timeline</h1>
     <br />
   </head>
@@ -50,33 +48,46 @@
 
     <ul class='posts'>
       {{#each posts}}
-        <li>
-          <p>{{this.timePosted}}<br />{{this.message}}</p>
-          <p>Likes: {{this.likes.count}}</p>
-          <div>
-            <form
-              action='/posts/like/{{this._id}}'
-              method='post'
-              id='like-form'
-            >
-              <button id='like-btn' type='submit'>Like</button>
-            </form>
-          </div>
-
-          {{#each this.comments}}
-            <p>{{this}}</p>
-          {{/each}}
+      <li>
+        <p>{{this.timePosted}}<br />{{this.message}}</p>
+        <p>Likes: {{this.likes.count}}</p>
+        <div>
+          <style>
+            
+            .like-btn {
+              cursor: pointer;
+              border: transparent;
+              background-color: transparent;
+              height: 50px;
+              width: 200px;
+              color: #3498db;
+              font-size: 1.5em;
+              box-shadow: 0;
+            }
+          </style>
           <form
-            id='new-comment-form'
-            action='/posts/{{this._id}}/comment'
+            action='/posts/like/{{this._id}}'
             method='post'
-          >
-            <label for='comment'>Comment: </label>
-            <input id='comment' type='text' name='comment' value='' />
-            <input type='submit' value='Submit' />
+            id='like-form'>
+            <button class='like-btn' id='like-btn' type='submit'><img
+                src="https://img.icons8.com/office/30/000000/filled-like--v1.png"
+                /></button>
           </form>
-          <br />
-        </li>
+        </div>
+
+        {{#each this.comments}}
+        <p>{{this}}</p>
+        {{/each}}
+        <form
+          id='new-comment-form'
+          action='/posts/{{this._id}}/comment'
+          method='post'>
+          <label for='comment'>Comment: </label>
+          <input id='comment' type='text' name='comment' value='' />
+          <input type='submit' value='Submit' />
+        </form>
+        <br />
+      </li>
       {{/each}}
     </ul>
     <a class='new-post-link' href='/posts/new'>New post</a>
@@ -84,7 +95,6 @@
   <script
     src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js'
     integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa'
-    crossorigin='anonymous'
-  >
+    crossorigin='anonymous'>
   </script>
 </html>
