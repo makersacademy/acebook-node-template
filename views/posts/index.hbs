@@ -10,8 +10,7 @@
           data-bs-target='#navbarNav'
           aria-controls='navbarNav'
           aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
+          aria-label='Toggle navigation'>
           <span class='navbar-toggler-icon'></span>
         </button>
         <div class='collapse navbar-collapse' id='navbarNav'>
@@ -20,8 +19,7 @@
               <a
                 class='nav-link active'
                 aria-current='page'
-                href='/posts'
-              >Home</a>
+                href='/posts'>Home</a>
             </li>
             <li class='nav-item'>
               <a class='nav-link' href='/users/profile'>Profile</a>
@@ -42,7 +40,7 @@
       rel='stylesheet'
       integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx'
       crossorigin='anonymous'
-    />
+      />
     <h1>Timeline</h1>
     <br />
   </head>
@@ -50,28 +48,59 @@
 
     <ul class='posts'>
       {{#each posts}}
-        <li>
-          <p>{{this.timePosted}}<br />{{this.message}}</p>
-          <p>Likes: {{this.likes}}</p>
+      <li>
+        <p>{{this.timePosted}}<br />{{this.message}}</p>
+        <p>Likes: {{this.likes}}</p>
 
-          <form action='/posts/{{this._id}}/like' method='post' id='like-form'>
-            <button id='like-btn' type='submit' for='like-form'>Like</button>
+        <div>
+
+          <form action='/posts/likes/{{this._id}}' method='post' id='like-form'>
+            <button id='like-btn' type='submit'>Like</button>
           </form>
 
-          {{#each this.comments}}
-            <p>{{this}}</p>
-          {{/each}}
-          <form
-            id='new-comment-form'
-            action='/posts/{{this._id}}/comment'
-            method='post'
-          >
-            <label for='comment'>Comment: </label>
-            <input id='comment' type='text' name='comment' value='' />
-            <input type='submit' value='Submit' />
-          </form>
-          <br />
-        </li>
+          {{!-- <form action='/posts/{{this._id}}/unlike' method='post'
+            id='unlike-form'>
+            <button id='unlike-btn' type='submit' onClick={toggleLiked()}>Unlike</button>
+          </form> --}}
+
+          {{!-- <script>
+              
+              // let liked = false;
+              function toggleLiked() {
+                if (!liked) {
+                  document.getElementById('like-btn').style.display = 'none';
+                  document.getElementById('unlike-btn').style.display = 'block';
+                  
+                }
+                else {
+                  document.getElementById('like-btn').style.display = 'block';
+                  document.getElementById('unlike-btn').style.display = 'none';
+                }
+              }
+              
+            </script>
+          --}}
+        </div>
+
+
+        {{!-- <form action='/posts/{{this._id}}/like' method='post'
+          id='like-form'>
+          <button id='like-btn' type='submit'>Like</button>
+        </form> --}}
+
+        {{#each this.comments}}
+        <p>{{this}}</p>
+        {{/each}}
+        <form
+          id='new-comment-form'
+          action='/posts/{{this._id}}/comment'
+          method='post'>
+          <label for='comment'>Comment: </label>
+          <input id='comment' type='text' name='comment' value='' />
+          <input type='submit' value='Submit' />
+        </form>
+        <br />
+      </li>
       {{/each}}
     </ul>
     <a class='new-post-link' href='/posts/new'>New post</a>
@@ -79,7 +108,6 @@
   <script
     src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js'
     integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa'
-    crossorigin='anonymous'
-  >
+    crossorigin='anonymous'>
   </script>
 </html>
