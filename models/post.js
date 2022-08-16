@@ -5,7 +5,10 @@ const PostSchema = new Schema({
   message: {type: String, required: true},
   user: {type: Schema.Types.ObjectId, ref: 'User', required: false},
   likes: {type: Number, required: false},
-  comments: { type: Array, default: [] },
+  comments: [{ 
+    message: {type: String},
+    author: {type: String},
+  }],
   timePosted: {type: String, default: function() {
     const date = new Date();
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
