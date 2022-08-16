@@ -14,7 +14,9 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", {
+      session: req.session
+    });
   },
   Create: (req, res) => {
     const post = new Post(req.body);

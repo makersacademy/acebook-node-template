@@ -1,3 +1,12 @@
+/* html {
+  background-color: blanchedalmond;
+} */
+
+/* .whole-page {
+  background-color: blanchedalmond;
+  padding-bottom: 100px;
+} */
+
 body {
   padding: 10px;
   font: 14px "Poppins", Helvetica, Arial, sans-serif;
@@ -18,21 +27,23 @@ li {
 
 .navbar navbar-expand-xxl navbar-light bg-warning {
   justify-content: right;
-
+  background-color: #cde1ff;
+  width: 100%;
 }
 
 .navbar-brand {
   padding-left: 10px;
+  font-size: 40px;
 }
 
-/* .posts {
-  border: 2px;
-  border-style: solid;
+.posts {
+  
+  
   padding-bottom: 20px;
-  border-color: #FFC107;
   text-align: left;
+  margin-right: 40px;
 
-} */
+}
 
 .nav-button {
   background-color: #FFC107; /* Green */
@@ -50,13 +61,31 @@ li {
 }
 
 .single-post {
-  border: #0958CA;
+  border: #cde1ff;
   border-style: groove;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 10px;
   margin: 5px;
+  border-radius: 10px;
 }
 
-.post-title {
-  font-size: large;
+.post-content {
+  font-size: 20px;
+  text-align: center;
+}
+
+.timeline-title {
+  text-align: center;
+}
+
+.like-container {
+  display: inline-block;
+  /* text-align: left; */
+}
+
+.comment-container {
+  display: inline-block;
+  /* margin-right:100px; */
+  /* text-align: right; */
 }

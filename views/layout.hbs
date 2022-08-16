@@ -10,11 +10,11 @@
   <script type="text/javascript" src="/javascripts/comment.js"> </script>
 </head>
 
-<body>
-
+<body style="background-color:blanchedalmond;">
+<div class="whole-page">
   <div class="container">
   <div  class="header clearfix">
-    <nav class="navbar navbar-expand-xxl navbar-light bg-warning">
+    <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #FFEBCD">
        <a class="navbar-brand" href="/">♠️Acebook📖</a>
        <ul id="navbarMenu" class="nav nav-pills">
                   {{#if session}}
@@ -25,7 +25,7 @@
            <a class="nav-link" href="/users/profile/{{session.user.username}}">Profile</a>
          </li>
          <li id="accountNav" class="nav-item">
-           <a class="nav-link" href="/users/friends">Friends</a>
+           <a class="nav-link" href="/friends">Friends</a>
          </li>
          <li id="logoutNav" class="nav-item">
            <a class="nav-link" href="/sessions/new"><form class="logout-button" action="/sessions?_method=DELETE" method="POST">
@@ -43,8 +43,9 @@
        </ul>
     </nav>
   </div>
+  <hr />
   {{{body}}}
-  
+</div>
 </body>
 
 </html>
