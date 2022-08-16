@@ -45,12 +45,13 @@ const PostsController = {
     );
   },
 
-  Delete: ("/posts/:id", function(req, res) {
+  Delete: ("/posts/:id", (req, res) => {
     const query = { _id: req.params._id, user: req.session.user }
 
     Post.remove(query, (err) => {
-      if (err) return console.log(err)
-      console.log(req.body)
+      if (err) {
+        throw err;
+      }
       res.redirect('/posts')
     })
   })
