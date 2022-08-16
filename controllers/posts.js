@@ -26,12 +26,10 @@ const PostsController = {
     });
   },
   AddComment: (req, res) => {
-    console.log("The add controller works!");
 
     const post_id = req.body.post_id;
     const comment_content = req.body.content;
     const user = req.session.user._id;
-    console.log("Post id", post_id, "comment body", comment_content, "user id", user);
     const update = {
       $push: { comment: [{ author: user, content: comment_content }] }
     };
@@ -45,12 +43,6 @@ const PostsController = {
     })
     res.status(201).redirect("/posts");
 
-    // (err) => {
-    //   if (err) {
-    //     console.log(err);
-    //     throw err;
-    //   }
-    //   res.status(201).redirect("/posts"); 
   }
 };
 
