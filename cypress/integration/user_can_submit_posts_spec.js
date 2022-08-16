@@ -21,13 +21,7 @@ describe("Timeline", () => {
 
     cy.get(".posts").should("contain", "Hello, world!");
 
-    // post has a date and time
-    // cy.clock(Date.UTC(30/7/22), ['Date'])
-
-    // cy.get(".posts").should("contain", "Hello, world!");
-    // cy.get(".posts").should("contain", "30/7/22 11:49:35");
-
-    // add a comment to a post 
+    // add a comment to the post 
     cy.get("#new-comment-form").find('[type="text"]').type("Example comment!");
     cy.get("#new-comment-form").submit();
 
