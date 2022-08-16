@@ -110,7 +110,7 @@ const UsersController = {
         if (err) {
           throw err;
         }
-        res.render("users/search", { users: users });
+        res.render("users/search", { users: users, session: req.session});
       }
     );
   },

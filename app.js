@@ -60,8 +60,8 @@ const sessionChecker = (req, res, next) => {
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
-app.use("/friends", friendsRouter);
+app.use("/users", sessionChecker, usersRouter);
+app.use("/friends", sessionChecker, friendsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

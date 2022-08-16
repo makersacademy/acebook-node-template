@@ -1,8 +1,78 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px;
+  font: 14px "Poppins", Helvetica, Arial, sans-serif;
+  background-color: blanchedalmond;
 }
 
 a {
   color: #00B7FF;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+.navbar navbar-expand-xxl navbar-light bg-warning {
+  justify-content: right;
+  background-color: #cde1ff;
+  width: 100%;
+}
+
+.navbar-brand {
+  padding-left: 10px;
+  font-size: 40px;
+}
+
+.posts {
+  
+  
+  padding-bottom: 20px;
+  text-align: left;
+  margin-right: 40px;
+
+}
+
+.nav-button {
+  background-color: #FFC107; 
+  color: #0958CA;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-item {
+  padding-top: 5px;
+}
+
+.single-post {
+  border: #cde1ff;
+  border-style: groove;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.post-content {
+  font-size: 20px;
+  text-align: center;
+}
+
+.timeline-title {
+  text-align: center;
+}
+
+.like-container {
+  display: inline-block;
+  
+}
+
+.comment-container {
+  display: inline-block;
+  
 }

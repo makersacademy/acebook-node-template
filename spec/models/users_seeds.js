@@ -1,16 +1,17 @@
 const User = require("../../models/user");
 const mongoose = require("mongoose");
 
-// mongoose.connect("mongodb://0.0.0.0/acebook_test", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// })
-//     .then(() => {
-//         console.log("connection established!");
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     });
+mongoose
+  .connect("mongodb://0.0.0.0/acebook_test", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("connection established!");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const userSeeds = [
   {
@@ -52,8 +53,8 @@ const seedDB = async () => {
   await User.insertMany(userSeeds);
 };
 
-// seedDB().then(() => {
-//     mongoose.connection.close();
-// });
+seedDB().then(() => {
+  mongoose.connection.close();
+});
 
 module.exports = userSeeds;

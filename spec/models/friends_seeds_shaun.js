@@ -129,30 +129,12 @@ const setupDatabase = async () => {
     recipient: user6.id,
     status: 1,
   });
-  const friendship6 = new Friend({
-    requester: user1.id,
-    recipient: user7.id,
-    status: 1,
-  });
-  const friendship7 = new Friend({
-    requester: user1.id,
-    recipient: user8.id,
-    status: 1,
-  });
-  const friendship8 = new Friend({
-    requester: user1.id,
-    recipient: user9.id,
-    status: 1,
-  });
 
   await friendship1.save();
   await friendship2.save();
   await friendship3.save();
   await friendship4.save();
   await friendship5.save();
-  await friendship6.save();
-  await friendship7.save();
-  await friendship8.save();
 
   await mongoose.connection.close();
 };
