@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const session = require('../controllers/sessions');
+const { isRetryableWriteError } = require('mongodb/lib/core/error');
 const User = require('../models/user');
 
 
@@ -43,16 +44,17 @@ const PostsController = {
       }
     );
   },
-  
-  Delete: (req, res) => {
-    Post.deleteOne({ _id: id }, (err) => {
+
+  Delete: ("/posts/:id", (req, res) => {
+    const query = { _id: req.params._id, user: req.session.user }
+
+    Post.remove(query, (err) => {
       if (err) {
         throw err;
       }
-      res.redirect(`/profile/user/${username}`);
-    });
-  },
-  
+      res.redirect('/posts')
+    })
+  })
 };
 
 module.exports = PostsController;

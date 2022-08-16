@@ -1,9 +1,7 @@
-describe("Authentication", () => {
-  it("A user signs in and is redirected to /posts", () => {
+describe("Sign out", () => {
+  it("can sign out from account once signed in", () => {
     // sign up
     cy.visit("/users/new");
-    cy.get('#firstName').type('firstName');
-    cy.get('#lastName').type('lastName');
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
@@ -14,7 +12,14 @@ describe("Authentication", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    cy.url().should("include", "/posts");
-    cy.contains("a", "New post");
+    // sign out
+    cy.visit("/posts");
+    cy.contains("Timeline");
+
+    cy.get("#Logout").find('[value="Logout"]');
+    cy.get("#submit").click();
+
+    cy.url().should("include", "/sessions/new");
+    cy.contains("Don't have an account? Sign Up");
   });
 });
