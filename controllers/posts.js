@@ -7,7 +7,9 @@ const PostsController = {
         throw err;
       }
 
-      res.render('posts/index', { posts: posts.reverse() });
+      const user = req.session.user;
+
+      res.render('posts/index', { posts: posts.reverse(), user: user });
     });
   },
   New: (req, res) => {
