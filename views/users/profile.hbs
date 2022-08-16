@@ -17,50 +17,6 @@
   </form>
   <a class="new-post-link" href="/posts/new">New post</a>
 
-  <div>
-    <h2 class="title">Friend Requests</h2>
-    <ul>
-      {{#each requests}}
-
-        <li>
-          <form
-            id="accept-friend"
-            action="/friends/accept/{{this.id}}"
-            method="post"
-          >
-            <input id="submit" type="submit" value="Accept" />
-          </form>
-          {{this.firstName}}
-
-          {{this.lastName}}
-
-        </li>
-      {{/each}}
-    </ul>
-  </div>
-
-  <div>
-    <h2 class="title">Friends</h2>
-    <ul>
-      {{#each friends}}
-
-        <li>
-          <form
-            id="unfriend"
-            action="/friends/accept/{{this.id}}"
-            method="post"
-          >
-            <input id="submit" type="submit" value="Unfriend" />
-          </form>
-          {{this.firstName}}
-
-          {{this.lastName}}
-
-        </li>
-      {{/each}}
-    </ul>
-  </div>
-
   {{! it's my friends page }}
 {{else if friendsBool}}
   <p>We are friends.</p>
