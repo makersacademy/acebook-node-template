@@ -15,4 +15,3 @@ router.post('/:_id/comment', PostsController.CreateComment);
 
 
 module.exports = router;
-
