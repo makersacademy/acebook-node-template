@@ -59,24 +59,28 @@ const upload = multer({ storage: storage });
 
 // Step 7 - the GET request handler that provides the HTML UI
 
-app.get('/image', async (req, res) => {
-  const img = await imgModel.find({ userId: req.session.user._id });
-  console.log("img object", img)
-  res.render('users/image-test', { img: img });
+app.get('/image', (req, res) => {
+  imgModel.find({}, (err, items) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('An error occurred', err);
+    }
+    else {
+      res.render('/image-test', { items: items });
+    }
+  });
 });
 
 
 app.post('/image', upload.single('image'), (req, res, next) => {
-  console.log("req file print", req.file)
-  const obj = {
-    userId: req.session.user._id,
+
+  var obj = {
     name: req.body.name,
     desc: req.body.desc,
-    imgPath: path.join(__dirname + '/uploads/' + req.file.filename),
-    profile: true,
-    // data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-    // contentType: 'image/png'
-
+    img: {
+      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      contentType: 'image/png'
+    }
   }
   imgModel.create(obj, (err, item) => {
     if (err) {
@@ -84,7 +88,7 @@ app.post('/image', upload.single('image'), (req, res, next) => {
     }
     else {
       // item.save();
-      res.redirect('/image');
+      res.redirect('/image-test');
     }
   });
 });

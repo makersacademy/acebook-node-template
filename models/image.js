@@ -13,13 +13,15 @@ const Schema = require("mongoose").Schema;
 //     }
 // });
 
-const imageSchema = new mongoose.Schema({
-    userId: { type: Schema.Types.ObjectId, ref: "User" },
+var imageSchema = new mongoose.Schema({
     name: String,
     desc: String,
-    imgPath: String,
-    profile: Boolean,
-})
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    }
+});
 
 //Image is a model which has a schema imageSchema
 

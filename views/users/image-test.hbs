@@ -35,11 +35,12 @@
 
     <h1>Uploaded Images</h1>
     <div>
-        {{#each img}}
+        {{#each items}}
         <div>
-            {{log this.imgPath}}
+
             <div>
-                <img src={{this.imgPath}}>
+                <img src="data:image/{{this.img.contentType}};base64,
+                     {{this.img.data.toString('base64')}}">
                 <div>
                     <h5>
                         {{this.name}}
