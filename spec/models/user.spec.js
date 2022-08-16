@@ -86,10 +86,8 @@ describe("User model", () => {
     expect(user.phoneNumber).toEqual("12345678");
   });
 
-  it("can list all users", () => {
-    User.find((err, users) => {
-      expect(err).toBeNull();
-      expect(users).toEqual([]);
-    });
+  it("can list all users", async () => {
+    const users = await User.find({});
+    expect(users).toEqual([]);
   });
 });
