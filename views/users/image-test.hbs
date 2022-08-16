@@ -1,60 +1,72 @@
-<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Uploading</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>To Upload Image on mongoDB</h1>
-    <hr>
+    <hr />
     <div>
-        <form action="/image" method="POST" enctype="multipart/form-data">
-            <div>
-                <label for="name">Image Title</label>
-                <input type="text" id="name" placeholder="Name" value="" name="name" required>
-            </div>
-            <div>
-                <label for="desc">Image Description</label>
-                <textarea id="desc" name="desc" value="" rows="2" placeholder="Description" required>
-				</textarea>
-            </div>
-            <div>
-                <label for="image">Upload Image</label>
-                <input type="file" id="image" name="image" value="" required>
-            </div>
-            <div>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
+      <form action="/image" method="POST" enctype="multipart/form-data">
+        <div>
+          <label for="name">Image Title</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Name"
+            value=""
+            name="name"
+            required
+          />
+        </div>
+        <div>
+          <label for="desc">Image Description</label>
+          <textarea
+            id="desc"
+            name="desc"
+            value=""
+            rows="2"
+            placeholder="Description"
+            required
+          >
+          </textarea>
+        </div>
+        <div>
+          <label for="image">Upload Image</label>
+          <input type="file" id="image" name="image" value="" required />
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </div>
 
-    <hr>
+    <hr />
 
     <h1>Uploaded Images</h1>
     <div>
-        {{#each items}}
+      <div>
+        {{#each imagesObject}}
         <div>
+          <img src="data:{{this.img.contentType}};base64, {{this.img.data}}" />
 
-            <div>
-                <img src="data:image/{{this.img.contentType}};base64,
-                     {{this.img.data.toString('base64')}}">
-                <div>
-                    <h5>
-                        {{this.name}}
-                    </h5>
+          <div>
+            <h5>
+              {{this.name}}
+            </h5>
 
-                    <p>
-                        {{this.desc}}
-                    </p>
+            <p>
+              {{this.desc}}
+            </p>
 
-                </div>
-            </div>
+          </div>
+          {{/each}}
         </div>
-        {{/each}}
+      </div>
     </div>
-</body>
+  </body>
 
 </html>

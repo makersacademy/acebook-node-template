@@ -12,8 +12,11 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const friendsRouter = require("./routes/friends");
-
+const imageRouter = require("./routes/images");
+const upload = require("./models/upload");
+const imgModel = require("./models/image");
 const app = express();
+const fs = require("fs");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -39,62 +42,31 @@ app.use(
   })
 );
 
-<<<<<<< HEAD
+// app.get("/image", async (req, res) => {
+//   const imagesObject = await imgModel.find({});
+//   res.render("users/image-test", {
+//     imagesObject: imagesObject,
+//   });
+// });
 
-// --------IMAGE FUNCTIONALITY START--------------
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads')
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now() + ".png")
-  }
-});
-
-const upload = multer({ storage: storage });
-
-// Step 7 - the GET request handler that provides the HTML UI
-
-app.get('/image', (req, res) => {
-  imgModel.find({}, (err, items) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send('An error occurred', err);
-    }
-    else {
-      res.render('/image-test', { items: items });
-    }
-  });
-});
-
-
-app.post('/image', upload.single('image'), (req, res, next) => {
-
-  var obj = {
-    name: req.body.name,
-    desc: req.body.desc,
-    img: {
-      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-      contentType: 'image/png'
-    }
-  }
-  imgModel.create(obj, (err, item) => {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      // item.save();
-      res.redirect('/image-test');
-    }
-  });
-});
+// app.post("/image", upload.single("image"), async (req, res) => {
+//   //upload.single("id of the element on the hbs")
+//   const uploadedFile = path.join(__dirname + "/uploads/" + req.file.filename);
+//   const image = new imgModel({
+//     name: req.body.name,
+//     desc: req.body.desc,
+//     img: {
+//       data: fs.readFileSync(uploadedFile, "base64"),
+//       contentType: req.file.mimetype,
+//     },
+//   });
+//   await image.save();
+//   fs.rm(uploadedFile, () => {});
+//   res.redirect("/image");
+// });
 
 // --------IMAGE FUNCTIONALITY END--------------
 
-
-=======
->>>>>>> parent of cb4b363 (testing image functionality)
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
@@ -118,6 +90,7 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/friends", friendsRouter);
+app.use("/image", imageRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
