@@ -64,14 +64,17 @@
         <li><p>{{this.message}}</p>{{this.user.firstName}}
           {{this.user.lastName}}
           {{this.timePosted}}<br />
+          <form id="delete-post-form" action="/posts/{{this._id}}/delete" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="delete">
+          </form>
           {{#each this.comments}}
             <p>{{this.author}}- {{this.message}}</p>
           {{/each}}
           <form
             id='new-comment-form'
             action='/posts/{{this._id}}/comment'
-            method='post'
-          >
+            method='post'>
             <label for='comment'>Comment: </label>
             <input id='comment' type='text' name='comment' value='' />
             <input type='submit' value='Submit' />
