@@ -17,7 +17,10 @@ describe("Profile Page", () => {
     cy.get("#submit").click();
 
     cy.url().should("include", "/posts");
-    cy.contains("a", "New post");
+
+    cy.get("#new-post-form").within(() => {
+      cy.get("input").should("have.value", "New Post");
+    });
 
     // profile page
     cy.visit("users/profile/randomname");
