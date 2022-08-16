@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const fs = require('fs');
 // sets the session
 const session = require("express-session");
 const methodOverride = require("method-override");
@@ -12,6 +13,9 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const friendsRouter = require("./routes/friends");
+const imgModel = require('./models/image');
+
+const multer = require('multer');
 
 const app = express();
 
@@ -38,6 +42,55 @@ app.use(
     },
   })
 );
+
+
+// --------IMAGE FUNCTIONALITY START--------------
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now() + ".png")
+  }
+});
+
+const upload = multer({ storage: storage });
+
+// Step 7 - the GET request handler that provides the HTML UI
+
+app.get('/image', async (req, res) => {
+  const img = await imgModel.find({ userId: req.session.user._id });
+  console.log("img object", img)
+  res.render('users/image-test', { img: img });
+});
+
+
+app.post('/image', upload.single('image'), (req, res, next) => {
+  console.log("req file print", req.file)
+  const obj = {
+    userId: req.session.user._id,
+    name: req.body.name,
+    desc: req.body.desc,
+    imgPath: path.join(__dirname + '/uploads/' + req.file.filename),
+    profile: true,
+    // data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+    // contentType: 'image/png'
+
+  }
+  imgModel.create(obj, (err, item) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      // item.save();
+      res.redirect('/image');
+    }
+  });
+});
+
+// --------IMAGE FUNCTIONALITY END--------------
+
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {

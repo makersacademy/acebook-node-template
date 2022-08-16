@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploading</title>
+</head>
+
+<body>
+    <h1>To Upload Image on mongoDB</h1>
+    <hr>
+    <div>
+        <form action="/image" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="name">Image Title</label>
+                <input type="text" id="name" placeholder="Name" value="" name="name" required>
+            </div>
+            <div>
+                <label for="desc">Image Description</label>
+                <textarea id="desc" name="desc" value="" rows="2" placeholder="Description" required>
+				</textarea>
+            </div>
+            <div>
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" value="" required>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <h1>Uploaded Images</h1>
+    <div>
+        {{#each img}}
+        <div>
+            {{log this.imgPath}}
+            <div>
+                <img src={{this.imgPath}}>
+                <div>
+                    <h5>
+                        {{this.name}}
+                    </h5>
+
+                    <p>
+                        {{this.desc}}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</body>
+
+</html>
