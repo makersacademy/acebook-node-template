@@ -1,25 +1,29 @@
-const signUpAndSignIn = (firstName, lastName) => {
-  // sign up
-  cy.visit("/users/new");
+const signUpAndSignIn = require("./webhelper");
 
-  cy.get("#firstName").type(firstName);
-  cy.get("#lastName").type(lastName);
+describe("Delete Post", () => {
+  afterEach(() => {
+    cy.task("dropPosts");
+    cy.task("dropUsers");
+  });
 
-  cy.get("#username").type(`${firstName}${lastName}`);
+  it("A user can delete a post when they're signed in", () => {
+    signUpAndSignIn("Test", "User");
 
-  cy.get("#birthday").type("1996-08-24");
-  cy.get("#location").type("London");
+    // submit a post
+    cy.visit("/posts");
+    cy.contains("Post a new recipe").click();
 
-  cy.get("#email").type(`${firstName}${lastName}@cypress.com`);
-  cy.get("#password").type("password");
+    cy.get("#new-post-form").find('#message').type("Delete this post!");
+    cy.get("#new-post-form").submit();
+    cy.get(".posts").should("contain", "Delete this post!");
+    
+    // go to profile page
+    cy.get(".navbar").contains("TestUser").click();
+    // delete a post
+    cy.get(".post").first(".container").contains("#delete-post-form").submit();
 
-  cy.get("#submit").click();
-
-  // sign in
-  cy.visit("/sessions/new");
-  cy.get("#email").type(`${firstName}${lastName}@cypress.com`);
-  cy.get("#password").type("password");
-  cy.get("#submit").click();
-}
-
-module.exports = signUpAndSignIn
+    // assert that the page no longer shows the post
+    cy.visit("/posts");
+    cy.get(".posts").should("not.contain", "Delete this post!");
+  });
+});
