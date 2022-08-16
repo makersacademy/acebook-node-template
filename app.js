@@ -13,10 +13,7 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const friendsRouter = require("./routes/friends");
 const imageRouter = require("./routes/images");
-const upload = require("./models/upload");
-const imgModel = require("./models/image");
 const app = express();
-const fs = require("fs");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -41,31 +38,6 @@ app.use(
     },
   })
 );
-
-// app.get("/image", async (req, res) => {
-//   const imagesObject = await imgModel.find({});
-//   res.render("users/image-test", {
-//     imagesObject: imagesObject,
-//   });
-// });
-
-// app.post("/image", upload.single("image"), async (req, res) => {
-//   //upload.single("id of the element on the hbs")
-//   const uploadedFile = path.join(__dirname + "/uploads/" + req.file.filename);
-//   const image = new imgModel({
-//     name: req.body.name,
-//     desc: req.body.desc,
-//     img: {
-//       data: fs.readFileSync(uploadedFile, "base64"),
-//       contentType: req.file.mimetype,
-//     },
-//   });
-//   await image.save();
-//   fs.rm(uploadedFile, () => {});
-//   res.redirect("/image");
-// });
-
-// --------IMAGE FUNCTIONALITY END--------------
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {

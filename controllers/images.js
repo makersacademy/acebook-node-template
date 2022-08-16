@@ -1,16 +1,16 @@
 const fs = require("fs");
 const Image = require("../models/image");
 const path = require("path");
+
 const ImageController = {
   Index: async (req, res) => {
     const images = await Image.find({});
-    res.render("users/image-test", {
+    res.render("images/index", {
       images: images,
     });
   },
 
   Add: async (req, res) => {
-    console.log(req.file);
     const uploadedFile = path.join(
       path.resolve(__dirname, "..") + "/uploads/" + req.file.filename
     );
@@ -24,7 +24,7 @@ const ImageController = {
     });
 
     await image.save();
-    // await fs.rm(uploadedFile, () => {});
+    await fs.rm(uploadedFile, () => {});
     res.redirect("/image");
   },
 };
