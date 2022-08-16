@@ -24,7 +24,7 @@ const ImageController = {
     });
 
     await image.save();
-    await fs.rm(uploadedFile, () => {});
+    fs.rm(uploadedFile, () => {});
     res.redirect("/image");
   },
 };
