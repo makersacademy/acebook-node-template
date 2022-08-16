@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
     <nav class='navbar navbar-expand-lg bg-light'>
       <div class='container-fluid'>
@@ -75,7 +74,7 @@
           </div>
 
           {{#each this.comments}}
-            <p>{{this}}</p>
+            <p>{{this.author}} - {{this.message}}</p>
           {{/each}}
           <form
             id='new-comment-form'
