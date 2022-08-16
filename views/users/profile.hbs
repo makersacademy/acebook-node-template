@@ -1,80 +1,57 @@
 <h1 class="title">Profile Page</h1>
 
+<form id="search-form" action="/users/search" method="get">
+  <input type="text" name="search" id="search" />
+  <input id="submit" type="submit" value="Search" />
+</form>
 {{#if pageOwnerBool}}
-
-  <form id="search-form" action="/users/search" method="get">
-    <input type="text" name="search" id="search" />
-    <input id="submit" type="submit" value="Search" />
-  </form>
   <p>It's my page</p>>
-  <ul class="user_profile">
-    <li id="first-name">{{user.firstName}}</li>
-    <li id="last-name">{{user.lastName}}</li>
-  </ul>
-
-  <form action="/posts/new" method="get">
-    <input type="submit" value="New post" />
-  </form>
-  <a class="new-post-link" href="/posts/new">New post</a>
-
-  {{! it's my friends page }}
 {{else if friendsBool}}
   <p>We are friends.</p>
-  <form id="search-form" action="/users/search" method="get">
-    <input type="text" name="search" id="search" />
-    <input id="submit" type="submit" value="Search" />
-  </form>
-  <p>It's my page</p>>
-  <ul class="user_profile">
-    <li id="first-name">{{user.firstName}}</li>
-    <li id="last-name">{{user.lastName}}</li>
-  </ul>
 
-  <form action="/posts/new" method="get">
-    <input type="submit" value="New post" />
-  </form>
-  <a class="new-post-link" href="/posts/new">New post</a>
-
-  <div>
-    <h2 class="title">Friends</h2>
-    <ul>
-      {{#each friends}}
-
-        <li>
-          <form
-            id="unfriend"
-            action="/friends/accept/{{this.id}}"
-            method="post"
-          >
-            <input id="submit" type="submit" value="Unfriend" />
-          </form>
-          {{this.firstName}}
-
-          {{this.lastName}}
-
-        </li>
-      {{/each}}
-    </ul>
-  </div>
-
-  {{! it's a strangers page but the friends request have been made}}
-{{else if friendRequestedBool}}
-  <p>there is a request but we are not friends. Either of us could have sent the
-    request</p>
-
-  {{!there is a request. It's their page. I have sent the request}}
 {{else if myRequestBool}}
   <p>there is a request. I have sent the request</p>
-
-  {{!there is a request. They have sent the request}}
 {{else if theirRequestBool}}
   <p>there is a request. They have sent the request</p>
-
-  {{! it's a strangers page}}
 {{else}}
   <p>We don't know each other. No request. </p>
-
 {{/if}}
+
+<ul class="user_profile">
+  <li id="first-name">{{user.firstName}}</li>
+  <li id="last-name">{{user.lastName}}</li>
+</ul>
+
+<form action="/posts/new" method="get">
+  <input type="submit" value="New post" />
+</form>
+<a class="new-post-link" href="/posts/new">New post</a>
+
+<div>
+  <h2 class="title">Friends</h2>
+  <ul>
+    {{#if pageOwnerBool}}
+      {{#each friends}}
+        <li>
+
+          <form id="unfriend" action="/friends/accept/" method="post">
+            <input id="unfriend-button" type="submit" value="Unfriend" />
+          </form>
+
+          {{this.firstName}}
+          {{this.lastName}}
+        </li>
+      {{/each}}
+    {{else}}
+      {{#each friends}}
+        <li>
+          {{this.firstName}}
+          {{this.lastName}}
+        </li>
+      {{/each}}
+    {{/if}}
+  </ul>
+</div>
 
 <form action="/posts/" method="get">
   <input type="submit" value="Back to timeline" />
