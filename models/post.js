@@ -9,7 +9,10 @@ const PostSchema = new Schema({
     emails: { type: Array },
     icon: { type: String, default: 'fa-regular fa-heart' },
   },
-  comments: { type: Array, default: [] },
+  comments: [{ 
+    message: {type: String},
+    author: {type: String},
+  }],
   timePosted: {
     type: String,
     default: function () {

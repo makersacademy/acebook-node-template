@@ -1,19 +1,24 @@
 const Post = require('../models/post');
+const session = require('../controllers/sessions');
+const User = require('../models/user');
+
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find().populate('user').exec((err, posts) => {
       if (err) {
         throw err;
       }
-
       const user = req.session.user;
-
-      res.render('posts/index', { posts: posts.reverse(), user: user });
+      res.render('posts/index', { 
+        posts: posts.reverse(),
+        user: user,
+      });
     });
   },
   New: (req, res) => {
-    res.render('posts/new', {});
+    const user = req.session.user;
+    res.render('posts/new', {user:user});
   },
 
   Create: (req, res) => {
@@ -27,9 +32,10 @@ const PostsController = {
   },
 
   CreateComment: function (req, res) {
+    const user = req.session.user;
     Post.findOneAndUpdate(
       { _id: req.params._id },
-      { $push: { comments: req.body.comment } },
+      { $push: { comments: {message: req.body.comment, author: user.firstName} } },
       function (err) {
         if (err) {
           throw err;
@@ -38,6 +44,16 @@ const PostsController = {
       }
     );
   },
+  
+  Delete: (req, res) => {
+    Post.deleteOne({ _id: id }, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect(`/profile/user/${username}`);
+    });
+  },
+  
 
   ToggleLike: function (req, res) {
     const id = req.params._id;
