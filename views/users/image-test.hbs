@@ -1,5 +1,6 @@
 <html lang="en">
-
+{{!-- https://jc-log.medium.com/easily-store-videos-on-your-express-server-using-multer-a7c3a2b0a5f1
+https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/ --}}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,7 +50,7 @@
     <h1>Uploaded Images</h1>
     <div>
       <div>
-        {{#each imagesObject}}
+        {{#each images}}
         <div>
           <img src="data:{{this.img.contentType}};base64, {{this.img.data}}" />
 

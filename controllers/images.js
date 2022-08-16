@@ -3,9 +3,9 @@ const Image = require("../models/image");
 const path = require("path");
 const ImageController = {
   Index: async (req, res) => {
-    const imagesObject = await Image.find({});
+    const images = await Image.find({});
     res.render("users/image-test", {
-      imagesObject: imagesObject,
+      images: images,
     });
   },
 
