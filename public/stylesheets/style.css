@@ -6,3 +6,39 @@ body {
 a {
   color: #00B7FF;
 }
+
+ul {
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+.navbar navbar-expand-xxl navbar-light bg-warning {
+  justify-content: right;
+
+}
+
+.navbar-brand {
+  padding-left: 10px;
+}
+
+.posts {
+  
+}
+
+.nav-button {
+  background-color: #FFC107; /* Green */
+  border: none;
+  color: #0958CA;
+  /* padding: 10px 20px; */
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
+}
+
+.nav-item {
+  padding-top: 5px;
+}

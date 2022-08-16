@@ -1,49 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <script type="text/javascript" src="/javascripts/comment.js"> </script>
-
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-</head>
-
 <body>
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Acebook</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-
-
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Timeline</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Friends</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
   <h1>Timeline</h1>
-  <ul class="posts">
+  
+  <ul class="posts"> 
     {{#each posts}}
+    
     <li>{{this.content}}</li>
     <li>{{this.like.length}}</li>
     <span>
@@ -53,24 +14,19 @@
     </span>
 
     <li>
-      <input type="text" name="commment" id={{this.id}} />
+    <input type="t --}}ext" name="commment" id={{this.id}} />
       <button id={{this.id}} class="submit-comment" type="submit" value={{this.id}}>add comment</button>
     </li>
 
+  
     <!-- Add a like button -->
 
     {{/each}}
   </ul>
 
-  <form action="/users/profile/{{session.user.username}}" method="get">
-    <input type="submit" value="My profile" />
-  </form>
+ 
 
-  <form id="search-form" action="/users/search" method="get">
-    <input type="text" name="search" id="search" />
-    <input id="submit" type="submit" value="Search" />
-  </form>
+
 
 <form id="new-post-form" action="/posts/new" method="get">
     <input type="submit" value="New Post" />
-</form>

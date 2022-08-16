@@ -31,6 +31,7 @@ const PostsController = {
     const post_id = req.body.post_id;
     const comment_content = req.body.content;
     const user = req.session.user._id;
+    // const user = req.session.user.username;
     const update = {
       $push: { comment: [{ author: user, content: comment_content }] }
     };
