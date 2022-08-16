@@ -15,7 +15,6 @@
   <form action="/posts/new" method="get">
     <input type="submit" value="New post" />
   </form>
-  <a class="new-post-link" href="/posts/new">New post</a>
 
   {{! it's my friends page }}
 {{else if friendsBool}}
@@ -75,7 +74,3 @@
   <p>We don't know each other. No request. </p>
 
 {{/if}}
-
-<form action="/posts/" method="get">
-  <input type="submit" value="Back to timeline" />
-</form>

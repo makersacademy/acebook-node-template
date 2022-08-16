@@ -14,7 +14,9 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", {
+      session: req.session
+    });
   },
   Create: (req, res) => {
     const post = new Post(req.body);
@@ -30,6 +32,7 @@ const PostsController = {
     const post_id = req.body.post_id;
     const comment_content = req.body.content;
     const user = req.session.user._id;
+    // const user = req.session.user.username;
     const update = {
       $push: { comment: [{ author: user, content: comment_content }] },
     };
