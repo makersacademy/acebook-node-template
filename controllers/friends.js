@@ -1,5 +1,4 @@
 const Friend = require("../models/friend");
-const ObjectId = require("mongodb").ObjectId;
 const FriendsController = {
   Add: (req, res) => {
     console.log("controller is working!");

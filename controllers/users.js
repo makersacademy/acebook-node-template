@@ -1,4 +1,3 @@
-const session = require("express-session");
 const User = require("../models/user");
 const Friend = require("../models/friend");
 
