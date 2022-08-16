@@ -3,7 +3,6 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const fs = require('fs');
 // sets the session
 const session = require("express-session");
 const methodOverride = require("method-override");
@@ -13,9 +12,6 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const friendsRouter = require("./routes/friends");
-const imgModel = require('./models/image');
-
-const multer = require('multer');
 
 const app = express();
 
@@ -43,6 +39,7 @@ app.use(
   })
 );
 
+<<<<<<< HEAD
 
 // --------IMAGE FUNCTIONALITY START--------------
 
@@ -96,6 +93,8 @@ app.post('/image', upload.single('image'), (req, res, next) => {
 // --------IMAGE FUNCTIONALITY END--------------
 
 
+=======
+>>>>>>> parent of cb4b363 (testing image functionality)
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
