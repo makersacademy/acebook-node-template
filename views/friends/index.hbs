@@ -1,0 +1,54 @@
+<div>
+  <h2 class="title">Friend Requests</h2>
+  <ul>
+    {{#each requestsToMe}}
+
+      <li>
+        <form
+          id="accept-friend"
+          action="/friends/accept/{{this.id}}"
+          method="post"
+        >
+          <input id="submit" type="submit" value="Accept" />
+        </form>
+        <a href="users/profile/{{this.username}}">{{this.firstName}}
+          {{this.lastName}}</a>
+
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div>
+  <h2 class="title">Friends</h2>
+  <ul>
+    {{#each friends}}
+
+      <li>
+        <form
+          id="unfriend"
+          action="/friends/unfriend/{{this.id}}"
+          method="post"
+        >
+          <input id="submit" type="submit" value="Unfriend" />
+        </form>
+        <a href="users/profile/{{this.username}}">{{this.firstName}}
+          {{this.lastName}}</a>
+
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div>
+  <h2 class="title">Friend Requests You've Sent</h2>
+  <ul>
+    {{#each requestsFromMe}}
+
+      <li>
+        <a href="users/profile/{{this.username}}">{{this.firstName}}
+          {{this.lastName}}</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

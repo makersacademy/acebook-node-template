@@ -1,15 +1,18 @@
-const session = require("express-session");
 const User = require("../models/user");
 const Friend = require("../models/friend");
 
 const UsersController = {
   Profile: async (req, res) => {
-    const user = await User.findOne({ username: req.params.username });
-    const requestsObject = await Friend.find({ recipient: user.id, status: 0 });
+    const profile_user = await User.findOne({ username: req.params.username });
+    const user = req.session.user;
+    const requestsObject = await Friend.find({
+      recipient: profile_user.id,
+      status: 0,
+    });
     const friendsObject = await Friend.find({
       $or: [
-        { recipient: user.id, status: 1 },
-        { requester: user.id, status: 1 },
+        { recipient: profile_user.id, status: 1 },
+        { requester: profile_user.id, status: 1 },
       ],
     });
     //Gets all friend Requests
@@ -21,7 +24,7 @@ const UsersController = {
     // Gets all current Friends
     const friends = await Promise.all(
       friendsObject.map(async (friendObject) => {
-        if (friendObject.recipient == req.session.user._id) {
+        if (friendObject.recipient == user._id) {
           const user = await User.findById(friendObject.requester);
           return user;
         } else {
@@ -34,35 +37,34 @@ const UsersController = {
     const friendsBool = await Friend.find({
       status: "1",
       $or: [
-        { requester: user.id, recipient: req.session.user._id },
-        { requester: req.session.user._id, recipient: user.id },
+        { requester: profile_user.id, recipient: user._id },
+        { requester: user._id, recipient: profile_user.id },
       ],
     });
     // there is a request but we are not friends. Either of use could have sent the request
     const friendRequestedBool = await Friend.find({
       status: "0",
       $or: [
-        { requester: user.id, recipient: req.session.user._id },
-        { requester: req.session.user._id, recipient: user.id },
+        { requester: profile_user.id, recipient: user._id },
+        { requester: user._id, recipient: profile_user.id },
       ],
     });
     // there is a request. I have sent the request
     const myRequestBool = await Friend.find({
       status: "0",
-      requester: req.session.user._id,
-      recipient: user.id,
+      requester: user._id,
+      recipient: profile_user.id,
     });
     // there is a request. They have sent the request
     const theirRequestBool = await Friend.find({
       status: "0",
-      requester: user.id,
-      recipient: req.session.user._id,
+      requester: profile_user.id,
+      recipient: user._id,
     });
-
     res.render("users/profile", {
-      user: user,
+      user: profile_user,
       session: req.session,
-      pageOwnerBool: user.username === req.session.user.username,
+      pageOwnerBool: profile_user.username === user.username,
       friends: friends,
       requests: requests,
       friendsBool: friendsBool,
