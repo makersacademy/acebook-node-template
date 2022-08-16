@@ -8,7 +8,7 @@ window.onload = function () {
     console.log("button was clicked");
     console.log(`BUTTON VALUE: ${button.value}`);
 
-    options = {
+    const options = {
       method: "POST",
       body: JSON.stringify({ content: button_value }),
       headers: {
