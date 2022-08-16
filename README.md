@@ -46,7 +46,7 @@ https://trello.com/b/UFztmCXp/milton-acebook
    brew tap mongodb/brew
    brew install mongodb-community@5.0
    ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
+   _Note:_ If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
 7. Start MongoDB
    ```
    brew services start mongodb-community@5.0
