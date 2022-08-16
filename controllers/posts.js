@@ -1,7 +1,4 @@
 const Post = require('../models/post');
-const session = require('../controllers/sessions');
-const User = require('../models/user');
-
 
 const PostsController = {
   Index: (req, res) => {
@@ -44,15 +41,17 @@ const PostsController = {
       }
     );
   },
-  
-  Delete: (req, res) => {
-    Post.deleteOne({ _id: id }, (err) => {
+
+  Delete: ("/posts/:id", (req, res) => {
+    const query = { _id: req.params._id, user: req.session.user }
+
+    Post.remove(query, (err) => {
       if (err) {
         throw err;
       }
       res.redirect(`/profile/user/${username}`);
     });
-  },
+  }),
   
 
   ToggleLike: function (req, res) {

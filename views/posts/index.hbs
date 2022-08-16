@@ -14,21 +14,20 @@
         >
           <span class='navbar-toggler-icon'></span>
         </button>
-        <div class='collapse navbar-collapse' id='navbarNav'>
-          <ul class='navbar-nav'>
-            <li class='nav-item'>
-              <a
-                class='nav-link active'
-                aria-current='page'
-                href='/posts'
-              >Home</a>
-            </li>
-            <li class='nav-item'>
-              <a class='nav-link' href='/users/profile'>Profile</a>
-            </li>
-            <li class='nav-item'>
-              <form action='/sessions?_method=DELETE' method='POST'>
-                <input type='submit' value='Logout' />
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+           <li class="nav-item">
+             <a class="nav-link active" aria-current="page" href="/posts">Home</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="/users/profile">Profile</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="/search">Search</a>
+           </li>
+           <li class="nav-item">
+             <form action='/sessions?_method=DELETE' method='POST'>
+                <input type="submit" value="Logout"/>
               </form>
             </li>
           </ul>
@@ -73,14 +72,17 @@
             </form>
           </div>
 
+          <form id="delete-post-form" action="/posts/{{this._id}}/delete" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="delete">
+          </form>
           {{#each this.comments}}
             <p>{{this.author}} - {{this.message}}</p>
           {{/each}}
           <form
             id='new-comment-form'
             action='/posts/{{this._id}}/comment'
-            method='post'
-          >
+            method='post'>
             <label for='comment'>Comment: </label>
             <input id='comment' type='text' name='comment' value='' />
             <input type='submit' value='Submit' />
