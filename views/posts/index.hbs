@@ -4,23 +4,23 @@
   
   <ul class="posts"> 
     {{#each posts}}
-    
-    <li>{{this.content}}</li>
+    <div class="single-post">
+    <li class="post-title">{{this.content}}</li>
     <li>{{this.like.length}}</li>
     <span>
       <form id="like-form" action="/" method="POST">
-        <input id="submit" type="submit" value="Add Like" />
-      </form>
+        <input id="submit" type="submit" value="👍" />
+      </form> 
     </span>
 
     <li>
-    <input type="text" name="commment" id={{this.id}} />
-      <button id={{this.id}} class="submit-comment" type="submit" value={{this.id}}>add comment</button>
+    <input type="text" name="commment" id={{this.id}} placeholder="add comment here!"/>
+      <button id={{this.id}} class="submit-comment" type="submit" value={{this.id}} >💬</button>
     </li>
 
   
     <!-- Add a like button -->
-
+    </div>
     {{/each}}
   </ul>
 
