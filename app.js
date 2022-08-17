@@ -11,6 +11,7 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+const uri = process.env.MONGODB_URI;
 // const mongoose = require('mongoose');
 const app = express();
 
