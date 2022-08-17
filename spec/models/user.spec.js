@@ -86,7 +86,7 @@ describe("User model", () => {
     expect(user.phoneNumber).toEqual("12345678");
   });
 
-  it("can list all users", (done) => {
+  it("can list all users", async () => {
     const user = new User({
       firstName: "Someone",
       lastName: "Surname",
@@ -96,14 +96,8 @@ describe("User model", () => {
       phoneNumber: "12345678",
     });
 
-    user.save((err) => {
-      expect(err).toBeNull();
-
-      User.find((err, users) => {
-        expect(err).toBeNull();
-        expect(users[0]).toMatchObject(user);
-      });
-    });
-    done();
+    await user.save();
+    const users = await User.find({});
+    expect(users[0]._id.valueOf()).toEqual(user._id.valueOf());
   });
 });
