@@ -1,21 +1,23 @@
-const Post = require('../models/post');
+const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find().populate('user').exec((err, posts) => {
-      if (err) {
-        throw err;
-      }
-      const user = req.session.user;
-      res.render('posts/index', { 
-        posts: posts.reverse(),
-        user: user,
+    Post.find()
+      .populate("user")
+      .exec((err, posts) => {
+        if (err) {
+          throw err;
+        }
+        const user = req.session.user;
+        res.render("posts/index", {
+          posts: posts.reverse(),
+          user: user,
+        });
       });
-    });
   },
   New: (req, res) => {
     const user = req.session.user;
-    res.render('posts/new', {user:user});
+    res.render("posts/new", { user: user });
   },
 
   Create: (req, res) => {
@@ -24,7 +26,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.status(201).redirect('/posts');
+      res.status(201).redirect("/posts");
     });
   },
 
@@ -32,27 +34,32 @@ const PostsController = {
     const user = req.session.user;
     Post.findOneAndUpdate(
       { _id: req.params._id },
-      { $push: { comments: {message: req.body.comment, author: user.firstName} } },
+      {
+        $push: {
+          comments: { message: req.body.comment, author: user.firstName },
+        },
+      },
       function (err) {
         if (err) {
           throw err;
         }
-        res.status(201).redirect('/posts');
+        res.status(201).redirect("/posts");
       }
     );
   },
 
-  Delete: ("/posts/:id", (req, res) => {
-    const query = { _id: req.params._id, user: req.session.user }
+  Delete:
+    ("/posts/:id",
+    (req, res) => {
+      const query = { _id: req.params._id, user: req.session.user };
 
-    Post.remove(query, (err) => {
-      if (err) {
-        throw err;
-      }
-      res.redirect(`/profile/user/${username}`);
-    });
-  }),
-  
+      Post.remove(query, (err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    }),
 
   ToggleLike: function (req, res) {
     const id = req.params._id;
@@ -63,11 +70,11 @@ const PostsController = {
       }
       if (!post.likes.emails.includes(req.session.user.email)) {
         post.likes.count += 1;
-        post.likes.icon = 'fa-solid fa-heart';
+        post.likes.icon = "fa-solid fa-heart";
         post.likes.emails.push(req.session.user.email);
       } else if (post.likes.emails.includes(req.session.user.email)) {
         post.likes.count -= 1;
-        post.likes.icon = 'fa-regular fa-heart';
+        post.likes.icon = "fa-regular fa-heart";
         const emailIndex = post.likes.emails.indexOf(req.session.user.emails);
         post.likes.emails.splice(emailIndex, 1);
       }
@@ -76,7 +83,7 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        res.status(201).redirect('/posts');
+        res.status(201).redirect("/posts");
       });
     });
   },
