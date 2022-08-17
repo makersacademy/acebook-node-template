@@ -5,7 +5,11 @@
   <ul class="posts">
     {{#each posts}}
     <div class="single-post">
-      <li class="post-content">{{this.content}} by {{this.name}}</li>
+
+      <li class="post-content">
+        <h5>{{this.username}}</h5>
+        {{this.content}}
+      </li>
 
       <div class="like-container">
         <button class="add-like" type="submit" value={{this.id}}>{{this.like.length}} 👍</button>
@@ -17,7 +21,7 @@
         </li>
       </div>
       <div>
-        <button onclick="showComments()">Show comments</button>
+        <button onclick="showComments()">Show/Hide comments</button>
       </div>
       <script>
         function showComments() {
@@ -30,15 +34,17 @@
         }
       </script>
 
-      <div id="allComments" style="display:none;">
-        {{#each this.comment}}
-        <p>{{this.content}}</p>
-        <p>{{this.author}}</p>
-        <p>{{this.date}}</p>
-        {{/each}}
-      </div>
+      <div id="allComments"></div>
+      {{#each this.comment}}
 
+      <h6>{{this.username}}</h6>
+      <p>{{this.content}}<br>
+
+        {{this.date}}</p>
+      <hr>
+      {{/each}}
     </div>
+
     {{/each}}
   </ul>
 </div>
