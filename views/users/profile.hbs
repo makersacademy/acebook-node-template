@@ -1,11 +1,6 @@
 <h1 class="title">Profile Page</h1>
 
 {{#if pageOwnerBool}}
-
-  <form id="search-form" action="/users/search" method="get">
-    <input type="text" name="search" id="search" />
-    <input id="submit" type="submit" value="Search" />
-  </form>
   <p>It's my page</p>>
   <ul class="user_profile">
     <li id="first-name">{{user.firstName}}</li>
@@ -19,10 +14,6 @@
   {{! it's my friends page }}
 {{else if friendsBool}}
   <p>We are friends.</p>
-  <form id="search-form" action="/users/search" method="get">
-    <input type="text" name="search" id="search" />
-    <input id="submit" type="submit" value="Search" />
-  </form>
   <p>It's my page</p>>
   <ul class="user_profile">
     <li id="first-name">{{user.firstName}}</li>

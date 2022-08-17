@@ -87,25 +87,6 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
-
-  Search: (req, res) => {
-    User.find(
-      {
-        $or: [
-          { firstName: { $regex: req.query.search, $options: "i" } },
-          { lastName: { $regex: req.query.search, $options: "i" } },
-          // { email: { $regex: req.query.search, $options: "i" } },
-          { username: { $regex: req.query.search, $options: "i" } },
-        ],
-      },
-      function (err, users) {
-        if (err) {
-          throw err;
-        }
-        res.render("users/search", { users: users, session: req.session});
-      }
-    );
-  },
 };
 
 module.exports = UsersController;
