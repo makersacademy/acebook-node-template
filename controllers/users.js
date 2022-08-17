@@ -9,12 +9,15 @@ const UsersController = {
       recipient: profile_user.id,
       status: 0,
     });
-    const friendsObject = await Friend.find({
+    const allFriendsObject = await Friend.find({
       $or: [
         { recipient: profile_user.id, status: 1 },
         { requester: profile_user.id, status: 1 },
       ],
     });
+    const friendsObject = allFriendsObject
+      .sort((a, b) => a.date - b.date)
+      .slice(0, 6);
     //Gets all friend Requests
     const requests = await Promise.all(
       requestsObject.map(
@@ -24,7 +27,7 @@ const UsersController = {
     // Gets all current Friends
     const friends = await Promise.all(
       friendsObject.map(async (friendObject) => {
-        if (friendObject.recipient == user._id) {
+        if (friendObject.recipient.valueOf() == profile_user._id.valueOf()) {
           const user = await User.findById(friendObject.requester);
           return user;
         } else {
@@ -33,6 +36,9 @@ const UsersController = {
         }
       })
     );
+
+    // I'm the owner of the page
+    const pageOwnerBool = profile_user.username == user.username;
     // we are friends - tbc need to test with the button
     const friendsBool = await Friend.find({
       status: "1",
@@ -55,16 +61,18 @@ const UsersController = {
       requester: user._id,
       recipient: profile_user.id,
     });
+
     // there is a request. They have sent the request
     const theirRequestBool = await Friend.find({
       status: "0",
       requester: profile_user.id,
       recipient: user._id,
     });
+
     res.render("users/profile", {
       user: profile_user,
       session: req.session,
-      pageOwnerBool: profile_user.username === user.username,
+      pageOwnerBool: pageOwnerBool,
       friends: friends,
       requests: requests,
       friendsBool: friendsBool,

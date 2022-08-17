@@ -15,7 +15,7 @@ const PostsController = {
   },
   New: (req, res) => {
     res.render("posts/new", {
-      session: req.session
+      session: req.session,
     });
   },
   Create: (req, res) => {
