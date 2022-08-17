@@ -6,7 +6,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log(req.session);
       res.render("posts/index", {
         posts: posts,
         session: req.session,
@@ -15,7 +14,7 @@ const PostsController = {
   },
   New: (req, res) => {
     res.render("posts/new", {
-      session: req.session
+      session: req.session,
     });
   },
   Create: (req, res) => {

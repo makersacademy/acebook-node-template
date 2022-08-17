@@ -1,27 +1,37 @@
 <div class="whole page">
 
   <h1 class="timeline-title">My Timeline</h1>
-  
-  <ul class="posts"> 
+
+  <ul class="posts">
     {{#each posts}}
-    <div class="single-post">
-    <li class="post-content">{{this.content}}</li>
-    
-    <div class="like-container" >
-    <li>{{this.like.length}}</li>
-      <form id="like-form" action="/" method="POST">
-        <input id="submit" type="submit" value="👍" />
-      </form> 
-    </div>
-    <div class="comment-container">
-    <li>
-    <input type="text" name="commment" id={{this.id}} placeholder="add comment here!"/>
-      <button id={{this.id}} class="submit-comment" type="submit" value={{this.id}} >💬</button>
-    </li>
-    </div>
-  
-    <!-- Add a like button -->
-    </div>
+      <div class="single-post">
+        <li class="post-content">{{this.content}}</li>
+
+        <div class="like-container">
+          <li>{{this.like.length}}</li>
+          <form id="like-form" action="/" method="POST">
+            <input id="submit" type="submit" value="👍" />
+          </form>
+        </div>
+        <div class="comment-container">
+          <li>
+            <input
+              type="text"
+              name="commment"
+              id={{this.id}}
+              placeholder="add comment here!"
+            />
+            <button
+              id={{this.id}}
+              class="submit-comment"
+              type="submit"
+              value={{this.id}}
+            >💬</button>
+          </li>
+        </div>
+
+        <!-- Add a like button -->
+      </div>
     {{/each}}
   </ul>
 </div>
