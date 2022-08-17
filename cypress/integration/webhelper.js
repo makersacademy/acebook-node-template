@@ -5,8 +5,6 @@ const signUpAndSignIn = (firstName, lastName) => {
   cy.get("#firstName").type(firstName);
   cy.get("#lastName").type(lastName);
 
-  cy.get("#username").type(`${firstName}${lastName}`);
-
   cy.get("#birthday").type("1990-08-24");
   cy.get("#location").type("London");
 
@@ -20,6 +18,6 @@ const signUpAndSignIn = (firstName, lastName) => {
   cy.get("#email").type(`${firstName}${lastName}@cypress.com`);
   cy.get("#password").type("password");
   cy.get("#submit").click();
-}
+};
 
-module.exports = signUpAndSignIn
+module.exports = signUpAndSignIn;
