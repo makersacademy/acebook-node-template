@@ -1,7 +1,6 @@
 const signUpAndSignIn = (firstName, lastName) => {
   // sign up
   cy.visit("/users/new");
-
   cy.get("#firstName").type(firstName);
   cy.get("#lastName").type(lastName);
 

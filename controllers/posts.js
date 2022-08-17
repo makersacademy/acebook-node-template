@@ -57,7 +57,7 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        res.redirect("/posts");
+        res.status(201).redirect("/posts");
       });
     }),
 
