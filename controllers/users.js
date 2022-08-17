@@ -1,6 +1,9 @@
 const User = require("../models/user");
 const Friend = require("../models/friend");
+
+const Image = require("../models/image");
 const { validationResult } = require('express-validator');
+
 
 const UsersController = {
   Profile: async (req, res) => {
@@ -70,7 +73,12 @@ const UsersController = {
       recipient: user._id,
     });
 
+    // Find by page username
+    const profile_pic = await Image.find({ user: profile_user.id });
+
+
     res.render("users/profile", {
+      profile_pic: profile_pic,
       user: profile_user,
       session: req.session,
       pageOwnerBool: pageOwnerBool,
@@ -117,7 +125,7 @@ const UsersController = {
         if (err) {
           throw err;
         }
-        res.render("users/search", { users: users, session: req.session});
+        res.render("users/search", { users: users, session: req.session });
       }
     );
   },
