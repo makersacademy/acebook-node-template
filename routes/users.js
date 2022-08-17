@@ -8,4 +8,5 @@ router.get("/new", UsersController.New);
 router.post("/", UsersController.Create);
 router.get("/profile", UsersController.Profile);
 router.get('/search', HomeController.SearchIndex);
+router.post('/search', HomeController.Search);
 module.exports = router;

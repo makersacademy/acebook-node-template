@@ -9,6 +9,7 @@ router.post('/', PostsController.Create);
 router.get('/new', PostsController.New);
 router.post("/delete", PostsController.Delete);
 router.get('/search', HomeController.SearchIndex);
+router.post('/search', HomeController.Search);
 router.post('/:_id/comment', PostsController.CreateComment);
 
 
