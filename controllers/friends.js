@@ -1,24 +1,24 @@
 const Friend = require("../models/friend");
-const User = require("../models/user");
+const { User } = require("../models/user");
 const FriendsController = {
   Add: async (req, res) => {
-
-    const existingFriends = await Friend.find({ $or : [
-      {requester: req.session.user._id,
-      recipient: req.body.content},
-      {requester: req.body.content,
-        recipient: req.session.user._id},
-    ]})
-
-    const friendNonExistent = existingFriends.length==0
-
-    if(friendNonExistent){
-    const friendship = new Friend({
-      requester: req.session.user._id,
-      recipient: req.body.content,
-      status: 0,
+    const existingFriends = await Friend.find({
+      $or: [
+        { requester: req.session.user._id, recipient: req.body.content },
+        { requester: req.body.content, recipient: req.session.user._id },
+      ],
     });
-    await friendship.save();}
+
+    const friendNonExistent = existingFriends.length == 0;
+
+    if (friendNonExistent) {
+      const friendship = new Friend({
+        requester: req.session.user._id,
+        recipient: req.body.content,
+        status: 0,
+      });
+      await friendship.save();
+    }
     res.status(201).redirect("/");
   },
 
@@ -98,18 +98,17 @@ const FriendsController = {
   },
   Search: async (req, res) => {
     let users;
-    if (req.query.search.length!=0){
-      users = await User.find(
-        {
-          $or: [
-            { firstName: { $regex: req.query.search, $options: "i" } },
-            { lastName: { $regex: req.query.search, $options: "i" } },
-            // { email: { $regex: req.query.search, $options: "i" } },
-            { username: { $regex: req.query.search, $options: "i" } },
-          ],
-        },
-    )}
-    res.render("friends/search", { users: users, session: req.session});
+    if (req.query.search.length != 0) {
+      users = await User.find({
+        $or: [
+          { firstName: { $regex: req.query.search, $options: "i" } },
+          { lastName: { $regex: req.query.search, $options: "i" } },
+          // { email: { $regex: req.query.search, $options: "i" } },
+          { username: { $regex: req.query.search, $options: "i" } },
+        ],
+      });
+    }
+    res.render("friends/search", { users: users, session: req.session });
   },
 };
 module.exports = FriendsController;

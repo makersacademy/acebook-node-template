@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const { User } = require("../models/user");
 const Friend = require("../models/friend");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -110,7 +110,6 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
-
 
   Search: (req, res) => {
     User.find(

@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const { User } = require("../models/user");
 const bcrypt = require("bcrypt");
 const SessionsController = {
   New: (req, res) => {

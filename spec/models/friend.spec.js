@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
-
 require("../mongodb_helper");
-const User = require("../../models/user");
+const mongoose = require("mongoose");
+const { User } = require("../../models/user");
 const Friend = require("../../models/friend");
 
 describe("Friends model", () => {
