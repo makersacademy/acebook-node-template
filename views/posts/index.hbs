@@ -51,11 +51,11 @@
 
     <ul class='posts'>
       {{#each posts}}
-      <li>
-        <p>{{this.timePosted}}<br />{{this.message}}</p>
-        <p>Likes: {{this.likes.count}}</p>
-        <div>
-          <style>
+        <li>
+          <p>{{this.timePosted}}<br />{{this.user.firstName}} {{this.user.lastName}} - {{this.message}}</p>
+          <p>Likes: {{this.likes.count}}</p>
+          <div>
+            <style>
               #like-btn { cursor: pointer; border: transparent;
               background-color: transparent; height: 24px; width: 24px; color:
               #e68496; font-size: 1.5em; box-shadow: 0; }
