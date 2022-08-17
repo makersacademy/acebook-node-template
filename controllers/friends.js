@@ -23,6 +23,25 @@ const FriendsController = {
     res.status(201).redirect(`/users/profile/${req.session.user.username}`);
   },
 
+  Delete: async (req, res) => {
+    await Friend.findOneAndDelete({
+      $or: [
+        {
+          recipient: req.session.user._id,
+          requester: req.params.id,
+          status: 1,
+        },
+        {
+          recipient: req.params.id,
+          requester: req.session.user._id,
+          status: 1,
+        },
+      ],
+    });
+
+    res.status(201).redirect(`/friends`);
+  },
+
   Index: async (req, res) => {
     const user = req.session.user;
     const requestsToMeObjects = await Friend.find({
