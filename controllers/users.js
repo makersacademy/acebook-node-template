@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Post = require('../models/post');
 const UsersController = {
   New: (req, res) => {
     res.render("users/new", {});
@@ -6,6 +7,7 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
+    
     user.save((err) => {
       if (err) {
         throw err;

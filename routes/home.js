@@ -5,6 +5,7 @@ const HomeController = require("../controllers/home");
 
 router.get("/", HomeController.Index);
 router.get('/search', HomeController.SearchIndex);
+router.post('/search', HomeController.Search);
 router.get("/", HomeController.Login);
 
 
