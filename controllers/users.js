@@ -63,7 +63,6 @@ const UsersController = {
       recipient: user._id,
     });
     // Find by page username
-    console.log("This is the profile user id", profile_user.id);
     const profile_pic = await Image.find({ user: profile_user.id });
 
     res.render("users/profile", {
