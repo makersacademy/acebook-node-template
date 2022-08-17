@@ -53,7 +53,7 @@
     <ul class='posts'>
       {{#each posts}}
         <li>
-          <p>{{this.timePosted}}<br />{{this.message}}</p>
+          <p>{{this.timePosted}}<br />{{this.user.firstName}} {{this.user.lastName}} - {{this.message}}</p>
           <p>Likes: {{this.likes.count}}</p>
           <div>
             <style>
