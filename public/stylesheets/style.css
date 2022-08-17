@@ -16,7 +16,8 @@ li {
   list-style: none;
 }
 
-.navbar navbar-expand-xxl navbar-light bg-warning {
+.navbar navbar-expand-xl navbar-light {
+  display: inline block;
   justify-content: right;
   background-color: #cde1ff;
   width: 100%;
@@ -24,7 +25,7 @@ li {
 
 .navbar-brand {
   padding-left: 10px;
-  font-size: 40px;
+  font-size: 50px;
 }
 
 .posts {
@@ -46,6 +47,7 @@ li {
 
 .nav-item {
   padding-top: 5px;
+  float: right;
 }
 
 .single-post {
