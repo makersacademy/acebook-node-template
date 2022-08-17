@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Friend = require("../models/friend");
-
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 const UsersController = {
   Profile: async (req, res) => {
     const profile_user = await User.findOne({ username: req.params.username });
@@ -78,14 +79,11 @@ const UsersController = {
     res.render("users/new", {});
   },
 
-  Create: (req, res) => {
+  Create: async (req, res) => {
     const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
+    user.password = await bcrypt.hash(user.password, saltRounds);
+    await user.save();
+    res.status(201).redirect("/posts");
   },
 
   Search: (req, res) => {
@@ -102,7 +100,7 @@ const UsersController = {
         if (err) {
           throw err;
         }
-        res.render("users/search", { users: users, session: req.session});
+        res.render("users/search", { users: users, session: req.session });
       }
     );
   },
