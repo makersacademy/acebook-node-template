@@ -1,14 +1,3 @@
-{{!-- <h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>
-<a class="new-post-link" href="/users/profile">Profile</a> --}}
-
-
 <html lang='en'>
   <head>
     <nav class='navbar navbar-expand-lg bg-light'>
@@ -53,16 +42,36 @@
       integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx'
       crossorigin='anonymous'
     />
-    <h1>Timeline</h1>
-    <br />
+    <link
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css'
+      rel='stylesheet'
+    />
   </head>
   <body>
+    <h1>Timeline</h1>
 
     <ul class='posts'>
       {{#each posts}}
-        <li><p>{{this.message}}</p>{{this.user.firstName}}
-          {{this.user.lastName}}
-          {{this.timePosted}}<br />
+        <li>
+          <p>{{this.timePosted}}<br />{{this.message}}</p>
+          <p>Likes: {{this.likes.count}}</p>
+          <div>
+            <style>
+              #like-btn { cursor: pointer; border: transparent;
+              background-color: transparent; height: 24px; width: 24px; color:
+              #e68496; font-size: 1.5em; box-shadow: 0; }
+            </style>
+            <form
+              action='/posts/like/{{this._id}}'
+              method='post'
+              id='like-form'
+            >
+              <button id='like-btn' type='submit'>
+                <i class='{{this.likes.icon}}' id='heart-icon'></i>
+              </button>
+            </form>
+          </div>
+
           <form id="delete-post-form" action="/posts/{{this._id}}/delete" method="POST">
               <input type="hidden" name="_method" value="DELETE">
               <input type="submit" value="delete">
@@ -83,10 +92,11 @@
       {{/each}}
     </ul>
     <a class='new-post-link' href='/posts/new'>New post</a>
-    <script
-      src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js'
-      integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa'
-      crossorigin='anonymous'
-    ></script>
   </body>
+  <script
+    src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js'
+    integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa'
+    crossorigin='anonymous'
+  >
+  </script>
 </html>

@@ -1,8 +1,4 @@
 const Post = require('../models/post');
-const session = require('../controllers/sessions');
-const { isRetryableWriteError } = require('mongodb/lib/core/error');
-const User = require('../models/user');
-
 
 const PostsController = {
   Index: (req, res) => {
@@ -21,6 +17,7 @@ const PostsController = {
     const user = req.session.user;
     res.render('posts/new', {user:user});
   },
+
   Create: (req, res) => {
     const post = new Post(req.body);
     post.save((err) => {
@@ -52,9 +49,37 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.redirect('/posts')
-    })
-  })
+      res.redirect(`/profile/user/${username}`);
+    });
+  }),
+  
+
+  ToggleLike: function (req, res) {
+    const id = req.params._id;
+
+    Post.findById(id, function (err, post) {
+      if (err) {
+        throw err;
+      }
+      if (!post.likes.emails.includes(req.session.user.email)) {
+        post.likes.count += 1;
+        post.likes.icon = 'fa-solid fa-heart';
+        post.likes.emails.push(req.session.user.email);
+      } else if (post.likes.emails.includes(req.session.user.email)) {
+        post.likes.count -= 1;
+        post.likes.icon = 'fa-regular fa-heart';
+        const emailIndex = post.likes.emails.indexOf(req.session.user.emails);
+        post.likes.emails.splice(emailIndex, 1);
+      }
+
+      post.save(function (err) {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect('/posts');
+      });
+    });
+  },
 };
 
 module.exports = PostsController;
