@@ -47,26 +47,24 @@ const setupDatabase = async () => {
   user3.password = await bcrypt.hash(user3.password, saltRounds);
 
   await user1.save();
-  await user2.save();
   await user3.save();
+
+  await user2.save();
+
   const friendship1 = new Friend({
     requester: user1.id,
     recipient: user2.id,
-    status: 0,
+    status: 1,
   });
   const friendship2 = new Friend({
-    requester: user3.id,
-    recipient: user2.id,
-    status: 0,
+    requester: user1.id,
+    recipient: user3.id,
+    status: 1,
   });
-  const friendship3 = new Friend({
-    requester: user3.id,
-    recipient: user1.id,
-    status: 0,
-  });
+
   await friendship1.save();
   await friendship2.save();
-  await friendship3.save();
+
   await mongoose.connection.close();
 };
 
