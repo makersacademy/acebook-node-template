@@ -10,20 +10,20 @@ const UsersController = {
       if (err) {
         throw err;
       }
-      res.status(201).redirect("/posts");
+      res.status(201).redirect("sessions/new");
     });
   },
   Profile: (req, res) => {
-    if (req.session.user && req.cookies.user_sid) { 
+    if (req.session.user) {
       const email = req.session.user.email;
-    User.findOne({email: email}, (err, user) => {
-      if (err) {
-        throw err;
-      }
-      res.render("users/profile", {user: user});
-     });
+      User.findOne({ email: email }, (err, user) => {
+        if (err) {
+          throw err;
+        }
+        res.render("users/profile", { user: user });
+      });
     }
-   },
+  },
 };
 
 module.exports = UsersController;
