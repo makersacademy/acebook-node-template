@@ -1,19 +1,25 @@
+{{#if errors }}
+  <div class="alert">
+      {{#each errors }}
+            <p class="error-message">{{ this.msg }}</p>
+      {{/each}}
+  </div>
+{{/if}}
+
 <form id="new-user-form" action="/users" method="post">
-  <label for="firstName">First Name</label>
-  <input id="firstName" type="text" name="firstName" value="" />
-  <label for="lastName">Last Name</label>
-  <input id="lastName" type="text" name="lastName" value="" />
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" value="" />
-  <label for="phoneNumber">Phone Number</label>
-  <input type="tel" id="phoneNumber" name="phoneNumber" required />
+  <label for="firstName">First Name:</label>
+  <input id="firstName" type="text" name="firstName" value="" placeholder="John" required="true" />
+  <label for="lastName">Last Name:</label>
+  <input id="lastName" type="text" name="lastName" value="" placeholder="Smith" required="true"/>
+  <label for="username">Username:</label>
+  <input id="username" type="text" name="username" value="" placeholder="john123" required="true"/>
   <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="" />
+  <input id="email" type="email" name="email" value="" placeholder="johnsmith@email.com" required="true"/>
+  <label for="phoneNumber">Mobile Phone Number:</label>
+  <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+447777777777"/>
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="" />
+  <input id="password" type="password" name="password" value="" placeholder="myPassword1!" required="true"/>
+  <label for="password">Confirm password: </label>
+  <input id="confirmPassword" type="password" name="confirmPassword" value="" placeholder="confirm your password" required="true"/>
   <input id="submit" type="submit" value="Submit" />
 </form>
-
-{{!-- UK phone number regex --}}
-{{!-- ^(?:0|\+?44)(?:\d\s?){9,10}$ --}}
-{{!-- >>>>>>> main --}}
