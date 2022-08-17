@@ -106,11 +106,14 @@
 
   {{! it's a strangers page}}
 {{else}}
-  <p>We don't know each other. No request. </p>
+
+  <button id="request-button" value={{user.id}}>Send friend request!</button>
+  <script type="text/javascript" src="/javascripts/friendship.js"> </script>
+ 
+<p>We don't know each other. No request. </p>
   {{#each profile_pic}}
   <div>
     <img src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:150px;width:260px;" />
   <div>
     {{/each}}
-
 {{/if}}

@@ -7,7 +7,7 @@ window.onload = function () {
   button.addEventListener("click", function () {
     console.log("button was clicked");
     console.log(`BUTTON VALUE: ${button.value}`);
-
+    button.style.display = 'none';
     const options = {
       method: "POST",
       body: JSON.stringify({ content: button_value }),

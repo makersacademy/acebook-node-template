@@ -1,17 +1,24 @@
 const Friend = require("../models/friend");
 const User = require("../models/user");
 const FriendsController = {
-  Add: (req, res) => {
+  Add: async (req, res) => {
+
+    const existingFriends = await Friend.find({ $or : [
+      {requester: req.session.user._id,
+      recipient: req.body.content},
+      {requester: req.body.content,
+        recipient: req.session.user._id},
+    ]})
+
+    const friendNonExistent = existingFriends.length==0
+
+    if(friendNonExistent){
     const friendship = new Friend({
       requester: req.session.user._id,
       recipient: req.body.content,
       status: 0,
     });
-    friendship.save((err) => {
-      if (err) {
-        throw err;
-      }
-    });
+    await friendship.save();}
     res.status(201).redirect("/");
   },
 
