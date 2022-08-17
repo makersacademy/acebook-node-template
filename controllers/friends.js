@@ -24,15 +24,20 @@ const FriendsController = {
   },
 
   Delete: async (req, res) => {
-    await Friend.findOneAndDelete(
-      { recipient: req.session.user._id, requester: req.params.id },
-      { status: 1 }
-    );
-
-    await Friend.findOneAndDelete(
-      { recipient: req.params.id, requester: req.session.user._id},
-      { status: 1 }
-    );
+    await Friend.findOneAndDelete({
+      $or: [
+        {
+          recipient: req.session.user._id,
+          requester: req.params.id,
+          status: 1,
+        },
+        {
+          recipient: req.params.id,
+          requester: req.session.user._id,
+          status: 1,
+        },
+      ],
+    });
 
     res.status(201).redirect(`/friends`);
   },
