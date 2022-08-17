@@ -4,34 +4,47 @@
 
   <ul class="posts">
     {{#each posts}}
-      <div class="single-post">
-        <li class="post-content">{{this.content}}</li>
+    <div class="single-post">
 
-        <div class="like-container">
-          <li>{{this.like.length}}</li>
-          <form id="like-form" action="/" method="POST">
-            <input id="submit" type="submit" value="👍" />
-          </form>
-        </div>
-        <div class="comment-container">
-          <li>
-            <input
-              type="text"
-              name="commment"
-              id={{this.id}}
-              placeholder="add comment here!"
-            />
-            <button
-              id={{this.id}}
-              class="submit-comment"
-              type="submit"
-              value={{this.id}}
-            >💬</button>
-          </li>
-        </div>
+      <li class="post-content">
+        <h5>{{this.username}}</h5>
+        {{this.content}}
+      </li>
 
-        <!-- Add a like button -->
+      <div class="like-container">
+        <button class="add-like" type="submit" value={{this.id}}>{{this.like.length}} 👍</button>
       </div>
+      <div class="comment-container">
+        <li>
+          <input type="text" name="commment" id={{this.id}} placeholder="add comment here!" />
+          <button id={{this.id}} class="submit-comment" type="submit" value={{this.id}}>💬</button>
+        </li>
+      </div>
+      <div>
+        <button onclick="showComments()">Show/Hide comments</button>
+      </div>
+      <script>
+        function showComments() {
+          var x = document.getElementById("allComments");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+      </script>
+
+      <div id="allComments"></div>
+      {{#each this.comment}}
+
+      <h6>{{this.username}}</h6>
+      <p>{{this.content}}<br>
+
+        {{this.date}}</p>
+      <hr>
+      {{/each}}
+    </div>
+
     {{/each}}
   </ul>
 </div>
