@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Friend = require("../models/friend");
+const { validationResult } = require('express-validator');
 
 const UsersController = {
   Profile: async (req, res) => {
@@ -79,10 +80,16 @@ const UsersController = {
   },
 
   Create: (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.render("users/new", { errors: errors.array() });
+      return;
+    } 
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
-        throw err;
+        res.status(500).redirect("users/new");
       }
       res.status(201).redirect("/posts");
     });
