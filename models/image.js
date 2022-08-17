@@ -1,8 +1,12 @@
 // Step 3 - this is the code for ./models.js
 
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var ImageSchema = new mongoose.Schema({
+const ImageSchema = new mongoose.Schema({
+  user: {
+    type: String,
+    unique: true,
+  },
   name: String,
   desc: String,
   img: {
@@ -11,5 +15,5 @@ var ImageSchema = new mongoose.Schema({
   },
 });
 
-const Image = new mongoose.model("Image", ImageSchema);
+const Image = mongoose.model("Image", ImageSchema);
 module.exports = Image;

@@ -28,8 +28,6 @@ li {
 }
 
 .posts {
-  
-  
   padding-bottom: 20px;
   text-align: left;
   margin-right: 40px;
@@ -69,10 +67,23 @@ li {
 
 .like-container {
   display: inline-block;
-  
+}
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
 }
 
 .comment-container {
   display: inline-block;
-  
 }
+
+/* The alert message box - new user page */
+.alert {
+  padding: 1px;
+  background-color: #F5F5F5;
+  color: black;
+  margin-bottom: 20px;
+  border:2px solid Tomato;
+} 
