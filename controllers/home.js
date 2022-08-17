@@ -1,4 +1,5 @@
 const res = require("express/lib/response");
+const User = require("../models/user");
 
 const HomeController = {
   Index: (req, res) => {

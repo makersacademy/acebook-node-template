@@ -1,1 +1,23 @@
-<h2 class="title-h2">Search for other users:</h2>
+<h2 class="title-h2">User Matches Found:</h2>
+
+<ul>
+    {{!-- iterating through all users with matching first name --}}
+    {{#each users2}}
+      <span class="user">
+        <img class="user-profile-img" src="{{this.profilePic}}"
+          style="width:80px" />
+        <a class="username-link" href="/profile/{{this.username}}">{{this.username}}</a>
+        <br />
+      </span>
+    {{/each}}
+    {{!-- iterating through all users with matching last name --}}
+      {{#each users1}}
+      <span class="user">
+        <img class="user-profile-img" src="{{this.profilePic}}"
+          style="width:80px" />
+        <a class="username-link" href="/profile/{{this.username}}">{{this.username}}</a>
+        <br />
+      </span>
+    {{/each}}
+    </div>
+  </ul>
