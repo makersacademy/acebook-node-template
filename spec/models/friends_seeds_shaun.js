@@ -1,7 +1,8 @@
 const User = require("../../models/user");
 const Friend = require("../../models/friend");
 const mongoose = require("mongoose");
-
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 const setupDatabase = async () => {
   await mongoose
     .connect("mongodb://0.0.0.0/acebook", {
@@ -25,7 +26,7 @@ const setupDatabase = async () => {
     password: "testpassword1",
     phoneNumber: "12345678910",
   });
-  await setTimeout(() => {}, 10000);
+  user1.password = await bcrypt.hash(user1.password, saltRounds);
   const user2 = new User({
     firstName: "TestFirstName2",
     lastName: "TestSurname2",
@@ -34,76 +35,22 @@ const setupDatabase = async () => {
     password: "testpassword2",
     phoneNumber: "12345678910",
   });
-  await setTimeout(() => {}, 10000);
+  user2.password = await bcrypt.hash(user2.password, saltRounds);
   const user3 = new User({
     firstName: "TestFirstName3",
     lastName: "TestSurname3",
     username: "testusername3",
     email: "test3@test.com",
     password: "testpassword3",
-    phoneNumber: "12345678910",
+    phoneNumber: "13345678910",
   });
-  await setTimeout(() => {}, 10000);
-  const user4 = new User({
-    firstName: "TestFirstName4",
-    lastName: "TestSurname4",
-    username: "testusername4",
-    email: "test4@test.com",
-    password: "testpassword4",
-    phoneNumber: "12345678910",
-  });
-  const user5 = new User({
-    firstName: "TestFirstName5",
-    lastName: "TestSurname5",
-    username: "testusername5",
-    email: "test5@test.com",
-    password: "testpassword5",
-    phoneNumber: "12345678910",
-  });
-  const user6 = new User({
-    firstName: "TestFirstName6",
-    lastName: "TestSurname6",
-    username: "testusername6",
-    email: "test6@test.com",
-    password: "testpassword6",
-    phoneNumber: "12345678910",
-  });
-  const user7 = new User({
-    firstName: "TestFirstName7",
-    lastName: "TestSurname7",
-    username: "testusername7",
-    email: "test7@test.com",
-    password: "testpassword7",
-    phoneNumber: "12345678910",
-  });
-  const user8 = new User({
-    firstName: "TestFirstName8",
-    lastName: "TestSurname8",
-    username: "testusername8",
-    email: "test8@test.com",
-    password: "testpassword8",
-    phoneNumber: "12345678910",
-  });
-  const user9 = new User({
-    firstName: "TestFirstName9",
-    lastName: "TestSurname9",
-    username: "testusername9",
-    email: "test9@test.com",
-    password: "testpassword9",
-    phoneNumber: "12345678910",
-  });
+  user3.password = await bcrypt.hash(user3.password, saltRounds);
 
   await user1.save();
   await user3.save();
 
   await user2.save();
-  await user5.save();
-  await user4.save();
 
-  await user6.save();
-  await user7.save();
-  await user8.save();
-  await user9.save();
   const friendship1 = new Friend({
     requester: user1.id,
     recipient: user2.id,
@@ -114,27 +61,9 @@ const setupDatabase = async () => {
     recipient: user3.id,
     status: 1,
   });
-  const friendship3 = new Friend({
-    requester: user1.id,
-    recipient: user4.id,
-    status: 1,
-  });
-  const friendship4 = new Friend({
-    requester: user1.id,
-    recipient: user5.id,
-    status: 1,
-  });
-  const friendship5 = new Friend({
-    requester: user1.id,
-    recipient: user6.id,
-    status: 1,
-  });
 
   await friendship1.save();
   await friendship2.save();
-  await friendship3.save();
-  await friendship4.save();
-  await friendship5.save();
 
   await mongoose.connection.close();
 };
