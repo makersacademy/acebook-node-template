@@ -1,5 +1,5 @@
 const Friend = require("../models/friend");
-const { User } = require("../models/user");
+const User = require("../models/user");
 const FriendsController = {
   Add: async (req, res) => {
     const existingFriends = await Friend.find({
