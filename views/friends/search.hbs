@@ -1,0 +1,12 @@
+<h1>Search</h1>
+<ul class="search">
+  {{#each users}}
+  <li>{{this.firstName}}</li>
+  <li>{{this.lastName}}</li>
+  <form action="/users/profile/{{this.username}}" method="get">
+    <input type="submit" value="profile: {{this.firstName}}" />
+</form>
+  <button id="request-button" value={{this.id}}>Send friend request</button>
+  <script type="text/javascript" src="/javascripts/friendship.js"> </script>
+  {{/each}}
+</ul>

@@ -110,23 +110,7 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
-  // await user.save();
 
-  // Create: (req, res) => {
-  //   const errors = validationResult(req);
-
-  //   if (!errors.isEmpty()) {
-  //     res.render("users/new", { errors: errors.array() });
-  //     return;
-  //   }
-  //   const user = new User(req.body);
-  //   user.save((err) => {
-  //     if (err) {
-  //       res.status(500).redirect("users/new");
-  //     }
-  //     res.status(201).redirect("/posts");
-  //   });
-  // },
 
   Search: (req, res) => {
     User.find(

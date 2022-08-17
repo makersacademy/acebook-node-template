@@ -89,5 +89,20 @@ const FriendsController = {
       requestsFromMe: requestsFromMe,
     });
   },
+  Search: async (req, res) => {
+    let users;
+    if (req.query.search.length!=0){
+      users = await User.find(
+        {
+          $or: [
+            { firstName: { $regex: req.query.search, $options: "i" } },
+            { lastName: { $regex: req.query.search, $options: "i" } },
+            // { email: { $regex: req.query.search, $options: "i" } },
+            { username: { $regex: req.query.search, $options: "i" } },
+          ],
+        },
+    )}
+    res.render("friends/search", { users: users, session: req.session});
+  },
 };
 module.exports = FriendsController;
