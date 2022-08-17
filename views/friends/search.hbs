@@ -2,7 +2,7 @@
 <ul class="search">
   {{#each users}}
   <li>{{this.firstName}}</li>
-  <li>{{this.lasttName}}</li>
+  <li>{{this.lastName}}</li>
   <form action="/users/profile/{{this.username}}" method="get">
     <input type="submit" value="profile: {{this.firstName}}" />
 </form>
