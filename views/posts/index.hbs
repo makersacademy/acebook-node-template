@@ -71,11 +71,13 @@
               </button>
             </form>
           </div>
-
+        
+          {{#if_equal this.user.firstName this.session.user.firstName}} 
           <form id="delete-post-form" action="/posts/{{this._id}}/delete" method="POST">
               <input type="hidden" name="_method" value="DELETE">
               <input type="submit" value="delete">
           </form>
+          {{/if_equal}}
           {{#each this.comments}}
             <p>{{this.author}} - {{this.message}}</p>
           {{/each}}
