@@ -16,7 +16,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/posts">Home</a>
+              <a class="nav-link active" aria-current="page"
+                href="/posts">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/users/profile">Profile</a>
@@ -25,7 +26,8 @@
               <a class="nav-link" href="/search">Search</a>
             </li>
             <li class="nav-item">
-              <form action='/sessions?_method=DELETE' method='POST'>
+              <form action='/sessions?_method=DELETE'
+                method='POST'>
                 <input type="submit" value="Logout" />
               </form>
             </li>
@@ -51,11 +53,19 @@
 
     <ul class='posts'>
       {{#each posts}}
-        <li>
-          <p>{{this.timePosted}}<br />{{this.user.firstName}} {{this.user.lastName}} - {{this.message}}</p>
-          <p>Likes: {{this.likes.count}}</p>
-          <div>
-            <style>
+      <li>
+        <form id="search-form" action="/search" method="POST">
+          <input class="inline-form-input" id="firstName" type="hidden"
+            name="firstName"
+            value={{this.user.firstName}} />
+          <input class="search-form-btn" type="submit"
+            value='{{this.user.firstName}} {{this.user.lastName}}'/>
+        </form>
+        <p>{{this.message}}</p>
+
+        <p>Likes: {{this.likes.count}}</p>
+        <div>
+          <style>
               #like-btn { cursor: pointer; border: transparent;
               background-color: transparent; height: 24px; width: 24px; color:
               #e68496; font-size: 1.5em; box-shadow: 0; }
