@@ -125,7 +125,6 @@ const FriendsController = {
         return { user: userObject, picture: image, notFriends: isNotFriends };
       })
     );
-
     res.render("friends/search", {
       users: searchUsers,
       session: req.session,
