@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { body } = require("express-validator");
 const Image = require("../models/image");
+const Post = require("../models/post");
 const { validationResult } = require("express-validator");
 const path = require("path");
 const fs = require("fs");
@@ -15,10 +16,6 @@ const UsersController = {
         username: req.params.username,
       });
       const user = req.session.user;
-      const requestsObject = await Friend.find({
-        recipient: profile_user.id,
-        status: 0,
-      });
       const allFriendsObject = await Friend.find({
         $or: [
           { recipient: profile_user.id, status: 1 },
@@ -28,13 +25,7 @@ const UsersController = {
       const friendsObject = allFriendsObject
         .sort((a, b) => a.date - b.date)
         .slice(0, 6);
-      //Gets all friend Requests
-      const requests = await Promise.all(
-        requestsObject.map(
-          async (requestsObject) =>
-            await User.findById(requestsObject.requester)
-        )
-      );
+
       // Gets all current Friends
       const friends = await Promise.all(
         friendsObject.map(async (friendObject) => {
@@ -47,6 +38,8 @@ const UsersController = {
           }
         })
       );
+      const postObjects = await Post.find({ userId: profile_user.id });
+      const posts = postObjects.sort((a, b) => b.date - a.date);
 
       // I m the owner of the page
 
@@ -61,13 +54,7 @@ const UsersController = {
         ],
       });
       // there is a request but we are not friends. Either of use could have sent the request
-      const friendRequestedBool = await Friend.find({
-        status: "0",
-        $or: [
-          { requester: profile_user.id, recipient: user._id },
-          { requester: user._id, recipient: profile_user.id },
-        ],
-      });
+
       // there is a request. I have sent the request
       const myRequestBool = await Friend.find({
         status: "0",
@@ -91,9 +78,8 @@ const UsersController = {
         session: req.session,
         pageOwnerBool: pageOwnerBool,
         friends: friends,
-        requests: requests,
+        posts: posts,
         friendsBool: friendsBool,
-        friendRequestedBool: friendRequestedBool,
         myRequestBool: myRequestBool,
         theirRequestBool: theirRequestBool,
       });
