@@ -50,8 +50,7 @@ const PostsController = {
     );
   },
 
-  Delete:
-    ("/posts/:id", (req, res) => {
+  Delete: ("/posts/:id", (req, res) => {
       const query = { _id: req.params._id, user: req.session.user };
 
       Post.remove(query, (err) => {
