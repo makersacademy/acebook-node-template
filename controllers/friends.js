@@ -117,7 +117,6 @@ const FriendsController = {
     });
 
     const profile_pics = await Image.find({ user: { $in: user_ids } });
-    console.log(profile_pics);
     res.render("friends/search", {
       users: users,
       session: req.session,
