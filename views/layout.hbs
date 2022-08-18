@@ -10,26 +10,26 @@
   <script type="text/javascript" src="/javascripts/comment.js"> </script>
 </head>
 
-<body style="background-color:blanchedalmond;">
+<body style="background-color:#E6E5EA">
 <div class="whole-page">
   <div class="container">
   <div  class="header clearfix">
-    <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #FFEBCD">
-       <a class="navbar-brand" href="/">♠️Acebook📖</a>
+    <nav class="navbar navbar-expand-xxl navbar-light  w-100" style="background-color: #E6E5EA" >
+       <a class="navbar-brand" href="/"><h1>♠️ Acebook 📖</h1></a>
        <ul id="navbarMenu" class="nav nav-pills">
                   {{#if session}}
          <li id="dashboardNav" class="nav-item">
-           <a class="nav-link" href="/posts">Timeline</a>
+           <a class="nav-link" href="/posts">🏠 Timeline</a>
          </li>
          <li id="accountNav" class="nav-item">
-           <a class="nav-link" href="/users/profile/{{session.user.username}}">Profile</a>
+           <a class="nav-link" href="/users/profile/{{session.user.username}}"> 👤 Profile</a>
          </li>
          <li id="accountNav" class="nav-item">
-           <a class="nav-link" href="/friends">Friends</a>
+           <a class="nav-link" href="/friends">👥 Friends</a>
          </li>
          <li id="logoutNav" class="nav-item">
            <a class="nav-link" href="/sessions/new"><form class="logout-button" action="/sessions?_method=DELETE" method="POST">
-          <input class= "nav-button" type="submit" value="Log Out" />
+          <input class= "nav-button" type="submit" value=" ✖️ Log Out" />
   </form></a>
          </li>
                     {{else}}

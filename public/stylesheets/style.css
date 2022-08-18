@@ -1,7 +1,18 @@
+/* global styling */
 body {
   padding: 10px;
   font: 14px "Poppins", Helvetica, Arial, sans-serif;
-  background-color: blanchedalmond;
+  background-color: #E6E5EA;
+}
+/* .whole-page {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+} */
+
+h1{
+  color: #0958CA;
+
 }
 
 a {
@@ -14,17 +25,69 @@ ul {
 
 li {
   list-style: none;
+  
 }
 
-.navbar navbar-expand-xxl navbar-light bg-warning {
+/* homepage styling */
+#homepage-hero{
+  background-image: url('../images/sunset-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}
+
+/* Login page styling */
+#session-hero {
+  background-image: url('../images/sunrise-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}
+
+/* #signup-hero{
+  background-image: url('../images/sunset-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+} */
+
+#new-user-form{
+  background-color: aliceblue;
+  
+}
+
+/* navbar/layout styling */
+.navbar navbar-expand-xxl navbar-light w-100{
+  display: inline block;
   justify-content: right;
-  background-color: #cde1ff;
+  background-color: #b6d5ff;
   width: 100%;
 }
 
 .navbar-brand {
   padding-left: 10px;
-  font-size: 40px;
+  font-size: 50px;
 }
 
 .posts {
@@ -35,16 +98,20 @@ li {
 }
 
 .nav-button {
-  background-color: #FFC107; 
+  background-color: #E6E5EA; 
   color: #0958CA;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
+  border: none;
 }
 
 .nav-item {
   padding-top: 5px;
+  float: right;
 }
+
+/* timeline styling */
 
 .single-post {
   border: #cde1ff;
@@ -54,6 +121,7 @@ li {
   padding-left: 10px;
   margin: 5px;
   border-radius: 10px;
+  background-color: whitesmoke;
 }
 
 .post-content {
@@ -87,3 +155,30 @@ img {
   margin-bottom: 20px;
   border:2px solid Tomato;
 } 
+
+/* friends page css */
+
+.column-container d-flex flex-wrap {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  background-color: #ddd;
+  
+}
+
+#friends-container{
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.col-6 .d-md-flex {
+ background-color: #E6E5EA;
+}
+
+h5, h4 {
+  color: #0958CA;
+ 
+}
+
