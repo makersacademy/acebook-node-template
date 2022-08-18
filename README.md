@@ -6,7 +6,6 @@ Here is our second group project for the Makers Academy bootcamp where we made a
 
 Check it out here: https://milton-acebook.herokuapp.com/
 
-The DB is Mongo DB and is hosted on Atlas, while the app is hosted on Heroku.
 
 It uses:
 
@@ -17,6 +16,8 @@ It uses:
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
+- [Atlas](https://www.mongodb.com/atlas/database) for hosting the database remotely.
+- [Heroku](www.heroku.com) for hosting the app remotely.
 
 ## Card wall
 
