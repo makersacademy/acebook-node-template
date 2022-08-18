@@ -49,11 +49,15 @@
 
         <h2 class="title-h2">User Matches Found:</h2>
         <ul class='userData1'>
-            <li><p>{{user.lastName}} {{user.firstName}}</p>
-                <p>{{user.email}}</p>
+            <form id="search-form" action="/search/profile" method="POST">
+                <label class="search-form-label" for="firstName">Enter their
+                    name here:</label>
+                <p>{{user.lastName}}
+                    {{user.firstName}}</p>
 
-            </li>
-
+                <input class="search-form-btn" type="submit" value="Submit
+                    Search" />
+            </form>
         </ul>
 
     </body>
