@@ -115,8 +115,7 @@ const UsersController = {
       await user.save();
       // Finding user id so I can set default picture to user
       const users = await User.find({ username: username });
-      console.log("This is found users", users);
-      console.log("This is found users[0].id", users[0].id);
+     
       const image = new Image({
         user: users[0].id,
         img: {
