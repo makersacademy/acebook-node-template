@@ -44,7 +44,7 @@ const UsersController = {
       })
     );
 
-    // I'm the owner of the page
+    // I m the owner of the page
     const pageOwnerBool = profile_user.username == user.username;
     // we are friends - tbc need to test with the button
     const friendsBool = await Friend.find({
