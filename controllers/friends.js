@@ -121,7 +121,8 @@ const FriendsController = {
             { recipient: user._id, requester: userObject.id },
           ],
         });
-        const isNotFriends = friendsFound.length == 0;
+        const isNotFriends =
+          friendsFound.length == 0 && userObject.id != user._id;
         return { user: userObject, picture: image, notFriends: isNotFriends };
       })
     );
