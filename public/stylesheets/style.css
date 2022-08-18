@@ -43,6 +43,39 @@ li {
   color: white;
 }
 
+/* Login page styling */
+#session-hero {
+  background-image: url('../images/sunrise-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}
+
+/* #signup-hero{
+  background-image: url('../images/sunset-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+} */
+
+#new-user-form{
+  background-color: aliceblue;
+  
+}
 
 /* navbar/layout styling */
 .navbar navbar-expand-xxl navbar-light w-100{
@@ -130,7 +163,14 @@ img {
   justify-content: center;
   align-items: center;
   display:flex;
-  ;
+  background-color: #ddd;
+  
+}
+
+#friends-container{
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .col-6 .d-md-flex {
