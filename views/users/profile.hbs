@@ -1,9 +1,11 @@
+
+<div id="profile-pic-container">
 <h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
 
 
 {{#each profile_pic}}
-  <div>
-    <img id="profile-pic" src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:150px;width:260px;" />
+  
+    <img id="profile-pic" src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:auto;width:260px;" />
   <div>
 {{/each}}
 
@@ -13,7 +15,8 @@
   <form action="/image" method="POST" enctype="multipart/form-data">
   <div>
       <label for="image">Upload Profile Picture</label>
-      <input type="file" id="image" name="image" value="" required />
+      </br>
+      <input class= "input-button" type="file" id="image" name="image" value="" required />
     </div>
     <div>
       <button type="submit">Submit!</button>
@@ -21,19 +24,30 @@
   </form>
 
   <form action="/posts/new" method="get">
-    <input type="submit" value="New post" />
+    <input class= "input-button" type="submit" value="New post" />
   </form>
   <div>
+</div>
+<div id ="profile-friends-container">
     <h2 class="title">{{user.firstName}}'s Friends</h2>
-    <ul>
-      {{#each friends}}
-        <li>
+    <div  class = "row">
+      
+        
+        {{#each friends}}
+         <div id="profile-friends-card" class = "col-3">
+         <li>
+          
           {{this.firstName}}
           {{this.lastName}}
-        </li>
+          
+          </li>
+         </div>
       {{/each}}
-    </ul>
+     
+    
+    </div>
   </div>
+
   {{! it's my friends page }}
 {{else if friendsBool}}
   <p>You and {{user.firstName}} are friends!</p>

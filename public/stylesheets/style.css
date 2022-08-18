@@ -4,28 +4,49 @@ body {
   font: 14px "Poppins", Helvetica, Arial, sans-serif;
   background-color: #E6E5EA;
 }
-/* .whole-page {
+.whole-page {
   display: block;
   text-align: center;
   margin: 0 auto;
-} */
+}
 
-h1{
+h1, h2{
   color: #0958CA;
 
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+  color: inherit;
 }
 
 ul {
   list-style: none;
+  text-align: left;
 }
 
 li {
   list-style: none;
   
+}
+.input-button{
+  background-color: rgb(148, 209, 245);
+  border-radius: 10px;
+  max-width: 250px;
+  margin: 5px;
+  padding: 8px;
+
+}
+
+button {
+ 
+  background-color: rgb(148, 209, 245);
+ 
+  margin: 2px;
+  color: rgb(63, 60, 60);
+ 
+
 }
 
 /* homepage styling */
@@ -173,12 +194,42 @@ img {
   padding: 20px;
 }
 
-.col-6 .d-md-flex {
- background-color: #E6E5EA;
+.col-4{
+  border: #00B7FF;
+  border: 1px;
+  border-style: groove;
+  border-radius: 10px;
+  padding-top: 5px;
+  background-color: #A3B2C9;
+  box-shadow: inset;
+ 
+
 }
 
 h5, h4 {
   color: #0958CA;
  
 }
+
+/* profile page */
+#profile-pic-container{
+  background-color: #A3B2C9;
+  text-align: left;
+  padding-left: 10px;
+  border-radius: 10px;
+
+}
+
+#profile-friends-container{
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius:10px;
+}
+
+#profile-friends-card{
+  background-color:#A3B2C9;
+  border-radius: 5px;
+}
+
 
