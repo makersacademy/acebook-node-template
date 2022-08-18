@@ -1,4 +1,5 @@
 const res = require("express/lib/response");
+const User = require("../models/user");
 
 const HomeController = {
   Index: (req, res) => {
@@ -9,9 +10,21 @@ const HomeController = {
     // when I call login, I want a return the sessions/new page
   },
   SearchIndex: (req, res) => {
-    res.render('search/index');
+    res.render("search/index");
     // renders a new search index page
-  }
+  },
+  Search: (req, res) => {
+    // returning all users whose first name matches the search word
+    const firstName = req.body.firstName;
+    console.log(firstName);
+    User.findOne({ firstName: firstName }, (err, user) => {
+      if (err) {
+        throw err;
+      }
+      console.log(user);
+      res.render("search/profile", { user: user });
+    });
+  },
 };
 
 // method to go to homepage
