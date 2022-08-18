@@ -1,7 +1,6 @@
-<h1 class="title">Profile Page</h1>
+<h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
 
 {{#if pageOwnerBool}}
-  <p>It's my page</p>
     {{#each profile_pic}}
   <div>
     <img id="profile-pic" src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:150px;width:260px;" />
@@ -14,14 +13,9 @@
       <input type="file" id="image" name="image" value="" required />
     </div>
     <div>
-      <button type="submit">Submit</button>
+      <button type="submit">Submit!</button>
     </div>
   </form>
-
-  <ul class="user_profile">
-    <li id="first-name">{{user.firstName}}</li>
-    <li id="last-name">{{user.lastName}}</li>
-  </ul>
 
   <form action="/posts/new" method="get">
     <input type="submit" value="New post" />
@@ -29,8 +23,7 @@
 
   {{! it's my friends page }}
 {{else if friendsBool}}
-  <p>We are friends.</p>
-  <p>It's my page</p>>
+  <p>You and {{user.firstName}} are friends!</p>
 
   {{#each profile_pic}}
   <div>
@@ -38,33 +31,13 @@
   <div>
   {{/each}}
 
-  <ul class="user_profile">
-    <li id="first-name">{{user.firstName}}</li>
-    <li id="last-name">{{user.lastName}}</li>
-  </ul>
-
-  <form action="/posts/new" method="get">
-    <input type="submit" value="New post" />
-  </form>
-  <a class="new-post-link" href="/posts/new">New post</a>
-
   <div>
-    <h2 class="title">Friends</h2>
+    <h2 class="title">{{user.firstName}}'s Friends</h2>
     <ul>
       {{#each friends}}
-
         <li>
-          <form
-            id="unfriend"
-            action="/friends/accept/{{this.id}}"
-            method="post"
-          >
-            <input id="submit" type="submit" value="Unfriend" />
-          </form>
           {{this.firstName}}
-
           {{this.lastName}}
-
         </li>
       {{/each}}
     </ul>
