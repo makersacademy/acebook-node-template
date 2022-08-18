@@ -2,9 +2,10 @@
     <input type="text" name="search" id="search" />
     <input id="submit" type="submit" value="Search for a friend!" />
   </form>
-
-<div>
-  <h2 class="title">Friend Requests</h2>
+<div class="column-container d-flex flex-wrap">
+<div class="row row-cols-3">
+<div class="col-6 .d-md-flex">
+  <h5 class="title">Friend Requests</h5>
   <ul>
     {{#each requestsToMe}}
 
@@ -23,9 +24,20 @@
     {{/each}}
   </ul>
 </div>
+<div class="col-6 .d-md-flex">
+  <h5 class="title">Friend Requests You've Sent</h5>
+  <ul>
+    {{#each requestsFromMe}}
 
-<div>
-  <h2 class="title">Friends</h2>
+      <li>
+        <a href="users/profile/{{this.username}}">{{this.firstName}}
+          {{this.lastName}}</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>
+<div class="col-12 .d-md-flex">
+  <h5 class="title">Friends</h5>
   <ul>
     {{#each friends}}
 
@@ -45,15 +57,6 @@
   </ul>
 </div>
 
-<div>
-  <h2 class="title">Friend Requests You've Sent</h2>
-  <ul>
-    {{#each requestsFromMe}}
 
-      <li>
-        <a href="users/profile/{{this.username}}">{{this.firstName}}
-          {{this.lastName}}</a>
-      </li>
-    {{/each}}
-  </ul>
+</div>
 </div>
