@@ -3,6 +3,7 @@ const Friend = require("../../models/friend");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+
 const setupDatabase = async () => {
   await mongoose
     .connect("mongodb://0.0.0.0/acebook", {
@@ -46,19 +47,9 @@ const setupDatabase = async () => {
   });
   user3.password = await bcrypt.hash(user3.password, saltRounds);
 
-  const user4 = new User({
-    firstName: "TestFirstName4",
-    lastName: "TestSurname4",
-    username: "testusername4",
-    email: "test4@test.com",
-    password: "testpassword4",
-    phoneNumber: "12345678910",
-  });
-
   await user1.save();
   await user3.save();
   await user2.save();
-
 
   const friendship1 = new Friend({
     requester: user1.id,

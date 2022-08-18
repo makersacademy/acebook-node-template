@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
 require("../mongodb_helper");
-var Post = require("../../models/post");
-var User = require("../../models/user");
+const mongoose = require("mongoose");
+const Post = require("../../models/post");
+const User = require("../../models/user");
 describe("Post model", () => {
   beforeEach((done) => {
     mongoose.connection.collections.posts.drop(() => {
