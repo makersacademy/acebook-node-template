@@ -34,6 +34,18 @@ UserSchema.pre("save", function (next) {
   }
 });
 
+// created a method that compares the password in the db and the password in the req.body
+UserSchema.methods.comparePassword = function (password, callback) {
+  bcrypt.compare(password, this.password, function (error, isMatch) {
+    if (error) {
+      return callback(error);
+    } else {
+      callback(null, isMatch);
+    }
+  });
+};
+
+
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
