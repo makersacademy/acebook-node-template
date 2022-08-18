@@ -99,9 +99,10 @@ const FriendsController = {
     });
   },
   Search: async (req, res) => {
-    let users;
+    let searchUsers;
+    const user = req.session.user;
     if (req.query.search.length != 0) {
-      users = await User.find({
+      searchUsers = await User.find({
         $or: [
           { firstName: { $regex: req.query.search, $options: "i" } },
           { lastName: { $regex: req.query.search, $options: "i" } },
@@ -110,17 +111,24 @@ const FriendsController = {
         ],
       });
     }
-    // Finding User profile pics
-    const user_ids = [];
-    users.forEach((user) => {
-      user_ids.push(user._id);
-    });
 
-    const profile_pics = await Image.find({ user: { $in: user_ids } });
+    const usersAndPicsAndFriends = await Promise.all(
+      searchUsers.map(async (userObject) => {
+        const image = await Image.findOne({ user: userObject._id });
+        const friendsFound = await Friend.find({
+          $or: [
+            { recipient: userObject.id, requester: user._id },
+            { recipient: user._id, requester: userObject.id },
+          ],
+        });
+        const isNotFriends = friendsFound.length == 0;
+        return { user: userObject, picture: image, notFriends: isNotFriends };
+      })
+    );
     res.render("friends/search", {
-      users: users,
+      users: searchUsers,
       session: req.session,
-      profile_pics: profile_pics,
+      usersAndPicsAndFriends: usersAndPicsAndFriends,
     });
   },
 };
