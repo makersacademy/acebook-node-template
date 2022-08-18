@@ -10,15 +10,14 @@ describe("User model", () => {
     });
   });
 
+  
   it("store users names", () => {
     const user = new User({
-      firstName: "firstName",
-      lastName: "lastName",
+      name: "exampleUser",
       email: "sample@example.com",
       password: "password",
     })
-    expect(user.firstName).toEqual("firstName");
-    expect(user.lastName).toEqual("lastName");
+    expect(user.name).toEqual("exampleUser");
   });
 
   it("has an email address", () => {
@@ -35,13 +34,6 @@ describe("User model", () => {
       password: "password",
     });
     expect(user.password).toEqual("password");
-  });
-
-  it("has a description", () => {
-    const user = new User({
-      description: "fun description",
-    });
-    expect(user.description).toEqual("fun description");
   });
 
   it("can list all users", (done) => {
@@ -68,6 +60,28 @@ describe("User model", () => {
           email: "someone@example.com",
           password: "password",
         });
+        done();
+      });
+    });
+  });
+
+  it("can hash a user's password", (done) => {
+    const user = new User({
+      firstName: "Test",
+      lastName: "User",
+      username: "testUser",
+      birthday: new Date("1999-06-11"),
+      location: "London",
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    user.save((err) => {
+      expect(err).toBeNull();
+
+      User.find((err, users) => {
+        expect(err).toBeNull();
+        expect(users[0].password).not.toMatch("password");
         done();
       });
     });
