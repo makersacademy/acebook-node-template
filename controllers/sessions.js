@@ -10,15 +10,16 @@ const SessionsController = {
     const email = req.body.email;
     const password = req.body.password;
     const user = await User.findOne({ email: email });
-    const passwordCorrect = await bcrypt.compare(password, user.password);
-    console.log(passwordCorrect);
     if (!user) {
       res.redirect("/sessions/new");
-    } else if (!passwordCorrect) {
-      res.redirect("/sessions/new");
     } else {
-      req.session.user = user;
-      res.redirect("/posts");
+      const passwordCorrect = await bcrypt.compare(password, user.password);
+      if (!passwordCorrect) {
+        res.redirect("/sessions/new");
+      } else {
+        req.session.user = user;
+        res.redirect("/posts");
+      }
     }
   },
 
