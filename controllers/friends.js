@@ -1,5 +1,7 @@
 const Friend = require("../models/friend");
 const User = require("../models/user");
+const Image = require("../models/image");
+
 const FriendsController = {
   Add: async (req, res) => {
     const existingFriends = await Friend.find({
@@ -97,9 +99,10 @@ const FriendsController = {
     });
   },
   Search: async (req, res) => {
-    let users;
+    let searchUsers;
+    const user = req.session.user;
     if (req.query.search.length != 0) {
-      users = await User.find({
+      searchUsers = await User.find({
         $or: [
           { firstName: { $regex: req.query.search, $options: "i" } },
           { lastName: { $regex: req.query.search, $options: "i" } },
@@ -108,7 +111,25 @@ const FriendsController = {
         ],
       });
     }
-    res.render("friends/search", { users: users, session: req.session });
+
+    const usersAndPicsAndFriends = await Promise.all(
+      searchUsers.map(async (userObject) => {
+        const image = await Image.findOne({ user: userObject._id });
+        const friendsFound = await Friend.find({
+          $or: [
+            { recipient: userObject.id, requester: user._id },
+            { recipient: user._id, requester: userObject.id },
+          ],
+        });
+        const isNotFriends = friendsFound.length == 0;
+        return { user: userObject, picture: image, notFriends: isNotFriends };
+      })
+    );
+    res.render("friends/search", {
+      users: searchUsers,
+      session: req.session,
+      usersAndPicsAndFriends: usersAndPicsAndFriends,
+    });
   },
 };
 module.exports = FriendsController;
