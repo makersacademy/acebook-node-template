@@ -5,6 +5,8 @@ const saltRounds = 10;
 const { body } = require("express-validator");
 const Image = require("../models/image");
 const { validationResult } = require("express-validator");
+const path = require("path");
+const fs = require("fs");
 
 const UsersController = {
   Profile: async (req, res) => {
@@ -103,12 +105,30 @@ const UsersController = {
       res.render("users/new", { errors: errors.array() });
       return;
     }
-    user.save((err) => {
-      if (err) {
-        res.status(500).redirect("users/new");
-      }
+
+    // Need to set default profile picture
+    const defaultImage = path.join(
+      path.resolve(__dirname, "..") + "/uploads/" + "image-1660819625599"
+    );
+    const username = user.username;
+    try {
+      await user.save();
+      // Finding user id so I can set default picture to user
+      const users = await User.find({ username: username });
+     
+      const image = new Image({
+        user: users[0].id,
+        img: {
+          data: fs.readFileSync(defaultImage, "base64"),
+          contentType: "image/png",
+        },
+      });
+      await image.save();
       res.status(201).redirect("/posts");
-    });
+    } catch (err) {
+      console.log("Error", err);
+      res.status(500).redirect("users/new");
+    }
   },
 
   Search: (req, res) => {

@@ -1,5 +1,7 @@
 const Friend = require("../models/friend");
 const User = require("../models/user");
+const Image = require("../models/image");
+
 const FriendsController = {
   Add: async (req, res) => {
     const existingFriends = await Friend.find({
@@ -108,7 +110,18 @@ const FriendsController = {
         ],
       });
     }
-    res.render("friends/search", { users: users, session: req.session });
+    // Finding User profile pics
+    const user_ids = [];
+    users.forEach((user) => {
+      user_ids.push(user._id);
+    });
+
+    const profile_pics = await Image.find({ user: { $in: user_ids } });
+    res.render("friends/search", {
+      users: users,
+      session: req.session,
+      profile_pics: profile_pics,
+    });
   },
 };
 module.exports = FriendsController;
