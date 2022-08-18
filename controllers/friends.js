@@ -113,7 +113,6 @@ const FriendsController = {
     // Finding User profile pics
     const user_ids = [];
     users.forEach((user) => {
-      console.log(user._id);
       user_ids.push(user._id);
     });
 
