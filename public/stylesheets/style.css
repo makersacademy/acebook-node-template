@@ -1,13 +1,14 @@
+/* global styling */
 body {
   padding: 10px;
   font: 14px "Poppins", Helvetica, Arial, sans-serif;
   background-color: #E6E5EA;
 }
-.whole-page {
+/* .whole-page {
   display: block;
   text-align: center;
   margin: 0 auto;
-}
+} */
 
 h1{
   color: #0958CA;
@@ -27,6 +28,23 @@ li {
   
 }
 
+/* homepage styling */
+#homepage-hero{
+  background-image: url('../images/sunset-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}
+
+
+/* navbar/layout styling */
 .navbar navbar-expand-xxl navbar-light w-100{
   display: inline block;
   justify-content: right;
@@ -59,6 +77,8 @@ li {
   padding-top: 5px;
   float: right;
 }
+
+/* timeline styling */
 
 .single-post {
   border: #cde1ff;
@@ -117,7 +137,8 @@ img {
  background-color: #E6E5EA;
 }
 
-h5 {
+h5, h4 {
   color: #0958CA;
  
 }
+
