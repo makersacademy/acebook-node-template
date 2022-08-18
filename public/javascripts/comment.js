@@ -43,11 +43,19 @@ window.onload = function () {
         headers: { "Content-Type": "application/json" },
       };
 
-      fetch("posts/like", options)
+      fetch("https://api.chucknorris.io/jokes/random")
         .then(function (response) {
           if (response.ok) {
-            console.log("like was recoreded!");
-            return;
+            let postId;
+            let likes;
+            response.json((response) => {
+              console.log('RESPONSE:', response);
+              // postId = response.id;
+              // likes = response.likes;
+            });
+            // console.log("postUd", postId)
+            // document.querySelector(`#like-${postId}`).innerHTML(`${likes}  👍`);
+            return
           }
           throw new Error("Like Request failed.");
         })

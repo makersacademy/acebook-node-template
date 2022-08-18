@@ -64,6 +64,8 @@ const PostsController = {
       $push: { like: [{ likeAuthor: user }] },
     };
 
+    let dataresponse;
+
     Post.findOneAndUpdate(
       { _id: post_id },
       update,
@@ -73,10 +75,16 @@ const PostsController = {
           console.log(error);
         } else {
           console.log(data);
+          dataresponse = data;
+          // console.log("post updated", data);
         }
       }
     );
-    res.status(201).redirect("/posts");
+    console.log("no of likes", dataresponse.like.length);
+    res.json({ id: 123, likes: dataresponse.like.length })
+
+    //res.status(301).redirect("/posts" );
+
   },
 
 };
