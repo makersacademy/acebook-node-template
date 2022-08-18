@@ -74,14 +74,14 @@ const PostsController = {
         if (error) {
           console.log(error);
         } else {
-          console.log(data);
-          dataresponse = data;
-          // console.log("post updated", data);
+          console.log("DATA LIKE LENGTH ", data.like.length);
+          res.json({ post: post_id, likes: data.like.length })
+          // dataresponse = data;
+          // console.log("post updated", dataresponse);
         }
       }
     );
-    console.log("no of likes", dataresponse.like.length);
-    res.json({ id: 123, likes: dataresponse.like.length })
+    //res.json({ id: 123, likes: dataresponse.like.length })
 
     //res.status(301).redirect("/posts" );
 
