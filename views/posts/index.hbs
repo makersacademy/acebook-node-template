@@ -10,6 +10,7 @@
         <h5>{{this.username}}</h5>
         {{this.content}}
       </li>
+      <p>{{this.date}}</p>
 
       <div class="like-container">
         <button class="add-like" type="submit" value={{this.id}}>{{this.like.length}} 👍</button>
@@ -21,11 +22,12 @@
         </li>
       </div>
       <div>
-        <button onclick="showComments()">Show/Hide comments</button>
+        <button onclick="showComments('comments{{this.id}}')">Show/Hide comments</button>
       </div>
+
       <script>
-        function showComments() {
-          var x = document.getElementById("allComments");
+        function showComments(id) {
+          const x = document.getElementById(id);
           if (x.style.display === "none") {
             x.style.display = "block";
           } else {
@@ -34,15 +36,15 @@
         }
       </script>
 
-      <div id="allComments"></div>
-      {{#each this.comment}}
+      <div class="allComments" style="display: none;" id="comments{{this.id}}">
+        {{#each this.comment}}
+        <h6>{{this.username}}</h6>
+        <p>{{this.content}}<br>
 
-      <h6>{{this.username}}</h6>
-      <p>{{this.content}}<br>
-
-        {{this.date}}</p>
-      <hr>
-      {{/each}}
+          {{this.date}}</p>
+        <hr>
+        {{/each}}
+      </div>
     </div>
 
     {{/each}}
