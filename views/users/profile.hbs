@@ -1,12 +1,23 @@
 <h1 class="title">Profile Page</h1>
 
 {{#if pageOwnerBool}}
+  <p>It's my page</p>
+    {{#each profile_pic}}
+  <div>
+    <img id="profile-pic" src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:150px;width:260px;" />
+  <div>
+    {{/each}}
 
-  <form id="search-form" action="/users/search" method="get">
-    <input type="text" name="search" id="search" />
-    <input id="submit" type="submit" value="Search" />
+  <form action="/image" method="POST" enctype="multipart/form-data">
+  <div>
+      <label for="image">Upload Profile Picture</label>
+      <input type="file" id="image" name="image" value="" required />
+    </div>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
   </form>
-  <p>It's my page</p>>
+
   <ul class="user_profile">
     <li id="first-name">{{user.firstName}}</li>
     <li id="last-name">{{user.lastName}}</li>
@@ -19,11 +30,14 @@
   {{! it's my friends page }}
 {{else if friendsBool}}
   <p>We are friends.</p>
-  <form id="search-form" action="/users/search" method="get">
-    <input type="text" name="search" id="search" />
-    <input id="submit" type="submit" value="Search" />
-  </form>
   <p>It's my page</p>>
+
+  {{#each profile_pic}}
+  <div>
+    <img src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:150px;width:260px;"/>
+  <div>
+  {{/each}}
+
   <ul class="user_profile">
     <li id="first-name">{{user.firstName}}</li>
     <li id="last-name">{{user.lastName}}</li>
@@ -60,17 +74,40 @@
 {{else if friendRequestedBool}}
   <p>there is a request but we are not friends. Either of us could have sent the
     request</p>
+    {{#each profile_pic}}
+  <div>
+    <img src="data:{{this.img.contentType}};base64, {{this.img.data}}"  style="height:150px;width:260px;" />
+  <div>
+    {{/each}}
 
   {{!there is a request. It's their page. I have sent the request}}
 {{else if myRequestBool}}
   <p>there is a request. I have sent the request</p>
+  {{#each profile_pic}}
+  <div>
+    <img src="data:{{this.img.contentType}};base64, {{this.img.data}}" />
+  <div>
+    {{/each}}
 
   {{!there is a request. They have sent the request}}
 {{else if theirRequestBool}}
   <p>there is a request. They have sent the request</p>
+  {{#each profile_pic}}
+  <div>
+    <img src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:150px;width:260px;" />
+  <div>
+    {{/each}}
 
   {{! it's a strangers page}}
 {{else}}
-  <p>We don't know each other. No request. </p>
 
+  <button id="request-button" value={{user.id}}>Send friend request!</button>
+  <script type="text/javascript" src="/javascripts/friendship.js"> </script>
+ 
+<p>We don't know each other. No request. </p>
+  {{#each profile_pic}}
+  <div>
+    <img src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:150px;width:260px;" />
+  <div>
+    {{/each}}
 {{/if}}

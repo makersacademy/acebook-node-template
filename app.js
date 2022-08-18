@@ -12,7 +12,7 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const friendsRouter = require("./routes/friends");
-
+const imageRouter = require("./routes/images");
 const app = express();
 
 // view engine setup
@@ -60,8 +60,11 @@ const sessionChecker = (req, res, next) => {
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
+
 app.use("/users", usersRouter);
-app.use("/friends", friendsRouter);
+app.use("/friends", sessionChecker, friendsRouter);
+
+app.use("/image", sessionChecker, imageRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

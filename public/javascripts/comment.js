@@ -23,6 +23,40 @@ window.onload = function () {
         .catch(function (error) {
           console.log(error);
         });
+
+      input.value = '';
     });
   });
+
+
+  // LIKE FUNCITONALITY START
+
+  [...document.querySelectorAll(".add-like")].forEach(function (button) {
+    button.addEventListener("click", function () {
+      const button_value = button.getAttribute("value");
+      // const input = document.getElementById(button_value);
+      console.log("BUTTON VALUE", button_value)
+
+      const options = {
+        method: "POST",
+        body: JSON.stringify({ post_id: button_value }),
+        headers: { "Content-Type": "application/json" },
+      };
+
+      fetch("posts/like", options)
+        .then(function (response) {
+          if (response.ok) {
+            console.log("like was recoreded!");
+            return;
+          }
+          throw new Error("Like Request failed.");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    });
+  });
+
+  // LIKE FUNCTIONALITY END
+
 };

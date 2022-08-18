@@ -1,17 +1,24 @@
 const Friend = require("../models/friend");
 const User = require("../models/user");
 const FriendsController = {
-  Add: (req, res) => {
-    const friendship = new Friend({
-      requester: req.session.user._id,
-      recipient: req.body.content,
-      status: 0,
+  Add: async (req, res) => {
+    const existingFriends = await Friend.find({
+      $or: [
+        { requester: req.session.user._id, recipient: req.body.content },
+        { requester: req.body.content, recipient: req.session.user._id },
+      ],
     });
-    friendship.save((err) => {
-      if (err) {
-        throw err;
-      }
-    });
+
+    const friendNonExistent = existingFriends.length == 0;
+
+    if (friendNonExistent) {
+      const friendship = new Friend({
+        requester: req.session.user._id,
+        recipient: req.body.content,
+        status: 0,
+      });
+      await friendship.save();
+    }
     res.status(201).redirect("/");
   },
 
@@ -21,6 +28,25 @@ const FriendsController = {
       { status: 1 }
     );
     res.status(201).redirect(`/users/profile/${req.session.user.username}`);
+  },
+
+  Delete: async (req, res) => {
+    await Friend.findOneAndDelete({
+      $or: [
+        {
+          recipient: req.session.user._id,
+          requester: req.params.id,
+          status: 1,
+        },
+        {
+          recipient: req.params.id,
+          requester: req.session.user._id,
+          status: 1,
+        },
+      ],
+    });
+
+    res.status(201).redirect(`/friends`);
   },
 
   Index: async (req, res) => {
@@ -69,6 +95,20 @@ const FriendsController = {
       requestsToMe: requestsToMe,
       requestsFromMe: requestsFromMe,
     });
+  },
+  Search: async (req, res) => {
+    let users;
+    if (req.query.search.length != 0) {
+      users = await User.find({
+        $or: [
+          { firstName: { $regex: req.query.search, $options: "i" } },
+          { lastName: { $regex: req.query.search, $options: "i" } },
+          // { email: { $regex: req.query.search, $options: "i" } },
+          { username: { $regex: req.query.search, $options: "i" } },
+        ],
+      });
+    }
+    res.render("friends/search", { users: users, session: req.session });
   },
 };
 module.exports = FriendsController;

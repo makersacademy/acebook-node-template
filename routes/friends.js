@@ -7,4 +7,9 @@ router.post("/", FriendsController.Add);
 router.post("/accept/:id", FriendsController.Accept);
 router.get("/", FriendsController.Index);
 
+router.get("/search", FriendsController.Search);
+
+router.post("/unfriend/:id", FriendsController.Delete)
+
+
 module.exports = router;
