@@ -1,6 +1,6 @@
   <form id="search-form" action="/friends/search" method="get">
-    <input type="text" name="search" id="search" />
-    <input id="submit" type="submit" value="Search for a friend!" />
+    <input type="text" name="search" id="search" placeholder="Search for a friend!"/>
+    <input class = "input-button" id="submit" type="submit" value="🔍" />
   </form>
 <h4>Friend Requests</h4>
 <hr/>
@@ -17,7 +17,7 @@
           action="/friends/unfriend/{{this.id}}"
           method="post"
         >
-          <input id="submit" type="submit" value="Unfriend" />
+          <input class = "input-button"  id="submit" type="submit" value="Unfriend" />
         </form>
         <a href="users/profile/{{this.username}}">{{this.firstName}}
           {{this.lastName}}</a>

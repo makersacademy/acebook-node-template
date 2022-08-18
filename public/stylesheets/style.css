@@ -35,7 +35,9 @@ li {
   border-radius: 10px;
   max-width: 250px;
   margin: 5px;
-  padding: 8px;
+  padding: 6px;
+  color: #0958CA;
+  font-weight:bold;
 
 }
 
@@ -44,7 +46,8 @@ button {
   background-color: rgb(148, 209, 245);
  
   margin: 2px;
-  color: rgb(63, 60, 60);
+  color: #0958CA;
+  font-weight: bold;
  
 
 }
