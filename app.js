@@ -13,7 +13,17 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const friendsRouter = require("./routes/friends");
 const imageRouter = require("./routes/images");
+const uri = process.env.MONGODB_URI;
+// const mongoose = require("mongoose");
 const app = express();
+
+// const MONGODB_URI ="mongodb+srv://admin:admin1$Acebook@acebook.si1ussd.mongodb.net/?retryWrites=true&w=majority";
+// mongoose.connect(MONGODB_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+//     .then((result) => app.listen(3000))
+//     .catch((err) => console.log(err));    
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
