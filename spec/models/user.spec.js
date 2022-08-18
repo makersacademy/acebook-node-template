@@ -13,11 +13,13 @@ describe("User model", () => {
   
   it("store users names", () => {
     const user = new User({
-      name: "exampleUser",
+      firstName: "Example",
+      lastName: "User",
       email: "sample@example.com",
       password: "password",
     })
-    expect(user.name).toEqual("exampleUser");
+    expect(user.firstName).toEqual("Example");
+    expect(user.lastName).toEqual("User");
   });
 
   it("has an email address", () => {
