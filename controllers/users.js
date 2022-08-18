@@ -11,71 +11,82 @@ const fs = require("fs");
 
 const UsersController = {
   Profile: async (req, res) => {
-    const profile_user = await User.findOne({ username: req.params.username });
-    const user = req.session.user;
-    const allFriendsObject = await Friend.find({
-      $or: [
-        { recipient: profile_user.id, status: 1 },
-        { requester: profile_user.id, status: 1 },
-      ],
-    });
-    const friendsObject = allFriendsObject
-      .sort((a, b) => a.date - b.date)
-      .slice(0, 6);
+    try {
+      const profile_user = await User.findOne({
+        username: req.params.username,
+      });
+      const user = req.session.user;
+      const allFriendsObject = await Friend.find({
+        $or: [
+          { recipient: profile_user.id, status: 1 },
+          { requester: profile_user.id, status: 1 },
+        ],
+      });
+      const friendsObject = allFriendsObject
+        .sort((a, b) => a.date - b.date)
+        .slice(0, 6);
 
-    // Gets all current Friends
-    const friends = await Promise.all(
-      friendsObject.map(async (friendObject) => {
-        if (friendObject.recipient.valueOf() == profile_user._id.valueOf()) {
-          const user = await User.findById(friendObject.requester);
-          return user;
-        } else {
-          const user = await User.findById(friendObject.recipient);
-          return user;
-        }
-      })
-    );
+      // Gets all current Friends
+      const friends = await Promise.all(
+        friendsObject.map(async (friendObject) => {
+          if (friendObject.recipient.valueOf() == profile_user._id.valueOf()) {
+            const user = await User.findById(friendObject.requester);
+            return user;
+          } else {
+            const user = await User.findById(friendObject.recipient);
+            return user;
+          }
+        })
+      );
+      const postObjects = await Post.find({ userId: profile_user.id });
+      const posts = postObjects.sort((a, b) => b.date - a.date);
 
-    const postObjects = await Post.find({ userId: profile_user.id });
-    const posts = postObjects.sort((a, b) => b.date - a.date);
+      // I m the owner of the page
 
-    // I'm the owner of the page
-    const pageOwnerBool = profile_user.username == user.username;
-    // we are friends - tbc need to test with the button
-    const friendsBool = await Friend.find({
-      status: "1",
-      $or: [
-        { requester: profile_user.id, recipient: user._id },
-        { requester: user._id, recipient: profile_user.id },
-      ],
-    });
-    // there is a request. I have sent the request
-    const myRequestBool = await Friend.find({
-      status: "0",
-      requester: user._id,
-      recipient: profile_user.id,
-    });
+      const pageOwnerBool = profile_user.username == user.username;
 
-    // there is a request. They have sent the request
-    const theirRequestBool = await Friend.find({
-      status: "0",
-      requester: profile_user.id,
-      recipient: user._id,
-    });
+      // we are friends - tbc need to test with the button
+      const friendsBool = await Friend.find({
+        status: "1",
+        $or: [
+          { requester: profile_user.id, recipient: user._id },
+          { requester: user._id, recipient: profile_user.id },
+        ],
+      });
+      // there is a request but we are not friends. Either of use could have sent the request
 
-    // Find by page username
-    const profile_pic = await Image.findOne({ user: profile_user.id });
+      // there is a request. I have sent the request
+      const myRequestBool = await Friend.find({
+        status: "0",
+        requester: user._id,
+        recipient: profile_user.id,
+      });
 
-    res.render("users/profile", {
-      profile_pic: profile_pic,
-      user: profile_user,
-      pageOwnerBool: pageOwnerBool,
-      friends: friends,
-      posts: posts,
-      friendsBool: friendsBool,
-      myRequestBool: myRequestBool,
-      theirRequestBool: theirRequestBool,
-    });
+      // there is a request. They have sent the request
+      const theirRequestBool = await Friend.find({
+        status: "0",
+        requester: profile_user.id,
+        recipient: user._id,
+      });
+
+      // Find by page username
+      const profile_pic = await Image.find({ user: profile_user.id });
+
+      res.render("users/profile", {
+        profile_pic: profile_pic,
+        user: profile_user,
+        session: req.session,
+        pageOwnerBool: pageOwnerBool,
+        friends: friends,
+        posts: posts,
+        friendsBool: friendsBool,
+        myRequestBool: myRequestBool,
+        theirRequestBool: theirRequestBool,
+      });
+    } catch (err) {
+      console.error("Error:", err);
+      res.status(201).redirect("../../sessions/new");
+    }
   },
 
   New: (req, res) => {
