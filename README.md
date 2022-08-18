@@ -6,8 +6,15 @@ Here is our second group project for the Makers Academy bootcamp where we made a
 
 Check it out here: https://milton-acebook.herokuapp.com/
 
+## Meet the team!
+- https://github.com/delphiine
+- https://github.com/karolina-codes
+- https://github.com/Agabov123
+- https://github.com/taybenca
+- https://github.com/aeghosa
+- https://github.com/Joseph-ER
 
-It uses:
+## It uses:
 
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
