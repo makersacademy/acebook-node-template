@@ -16,6 +16,8 @@
     "node": ">=18.1.0"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.0",
     "cookie-parser": "~1.4.4",
     "cookie-session": "^2.0.0",
