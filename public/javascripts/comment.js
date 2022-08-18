@@ -23,6 +23,8 @@ window.onload = function () {
         .catch(function (error) {
           console.log(error);
         });
+
+      input.value = '';
     });
   });
 
