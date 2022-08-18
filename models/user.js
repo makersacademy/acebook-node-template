@@ -8,6 +8,7 @@ const UserSchema = new Schema({
   lastName: { type: String, required: true },
   description: { type: String, required: false },
   photo: { type: Buffer, required: false },
+  post: { type: Schema.Types.ObjectId, ref: "Post", required: false },
 });
 
 const User = mongoose.model("User", UserSchema);

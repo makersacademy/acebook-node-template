@@ -11,18 +11,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-           <li class="nav-item">
-             <a class="nav-link active" aria-current="page" href="/posts">Home</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link" href="/users/profile">Profile</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link" href="/search">Search</a>
-           </li>
-           <li class="nav-item">
-             <form action='/sessions?_method=DELETE' method='POST'>
-                <input type="submit" value="Logout"/>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/posts">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/search">Search</a>
+            </li>
+            <li class="nav-item">
+              <form action='/sessions?_method=DELETE' method='POST'>
+                <input type="submit" value="Logout" />
               </form>
             </li>
           </ul>
@@ -49,6 +49,38 @@
           <li>{{user.email}}</li>
           <a>{{user._id}}</a>
 
+        </ul>
+      </div>
+      <div>
+        <ul class='posts'>
+          {{#each posts}}
+          <li>
+            <p>{{this.timePosted}}<br />{{this.user.firstName}}
+              {{this.user.lastName}} - {{this.message}}</p>
+            <p>Likes: {{this.likes.count}}</p>
+            <div>
+              <style>
+              #like-btn { cursor: pointer; border: transparent;
+              background-color: transparent; height: 24px; width: 24px; color:
+              #e68496; font-size: 1.5em; box-shadow: 0; }
+            </style>
+              <form
+                action='/posts/like/{{this._id}}'
+                method='post'
+                id='like-form'>
+                <button id='like-btn' type='submit'>
+                  <i class='{{this.likes.icon}}' id='heart-icon'></i>
+                </button>
+              </form>
+            </div>
+
+            <form id="delete-post-form" action="/posts/{{this._id}}/delete"
+              method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="delete">
+            </form>
+          </li>
+          {{/each}}
         </ul>
       </div>
       <script

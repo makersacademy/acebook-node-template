@@ -51,30 +51,12 @@
 
     <ul class='posts'>
       {{#each posts}}
-        <li>
-          <p>{{this.timePosted}}<br />{{this.user.firstName}} {{this.user.lastName}} - {{this.message}}</p>
-          <p>Likes: {{this.likes.count}}</p>
-          <div>
-            <style>
-              #like-btn { cursor: pointer; border: transparent;
-              background-color: transparent; height: 24px; width: 24px; color:
-              #e68496; font-size: 1.5em; box-shadow: 0; }
-            </style>
-          <form
-            action='/posts/like/{{this._id}}'
-            method='post'
-            id='like-form'>
-            <button id='like-btn' type='submit'>
-              <i class='{{this.likes.icon}}' id='heart-icon'></i>
-            </button>
-          </form>
+      <li>
+        <p>{{this.timePosted}}<br />{{this.user.firstName}}
+          {{this.user.lastName}} - {{this.message}}</p>
+        <p>Likes: {{this.likes.count}}</p>
+        <div>
         </div>
-
-        <form id="delete-post-form" action="/posts/{{this._id}}/delete"
-          method="POST">
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="delete">
-        </form>
         {{#each this.comments}}
         <p>{{this.author}} - {{this.message}}</p>
         {{/each}}
