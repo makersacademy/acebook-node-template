@@ -10,6 +10,17 @@ describe("User model", () => {
     });
   });
 
+  it("store users names", () => {
+    const user = new User({
+      firstName: "firstName",
+      lastName: "lastName",
+      email: "sample@example.com",
+      password: "password",
+    })
+    expect(user.firstName).toEqual("firstName");
+    expect(user.lastName).toEqual("lastName");
+  });
+
   it("has an email address", () => {
     const user = new User({
       email: "someone@example.com",
@@ -24,6 +35,13 @@ describe("User model", () => {
       password: "password",
     });
     expect(user.password).toEqual("password");
+  });
+
+  it("has a description", () => {
+    const user = new User({
+      description: "fun description",
+    });
+    expect(user.description).toEqual("fun description");
   });
 
   it("can list all users", (done) => {

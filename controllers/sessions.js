@@ -1,6 +1,6 @@
 const User = require("../models/user");
-
 const SessionsController = {
+  
   New: (req, res) => {
     res.render("sessions/new", {});
   },
@@ -20,7 +20,9 @@ const SessionsController = {
         res.redirect("/posts");
       }
     });
+    return email;
   },
+
 
   Destroy: (req, res) => {
     console.log("logging out");
@@ -29,6 +31,7 @@ const SessionsController = {
     }
     res.redirect("/sessions/new");
   },
+  
 };
 
 module.exports = SessionsController;
