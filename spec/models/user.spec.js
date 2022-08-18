@@ -67,11 +67,6 @@ describe("User model", () => {
 
   it("can hash a user's password", (done) => {
     const user = new User({
-      firstName: "Test",
-      lastName: "User",
-      username: "testUser",
-      birthday: new Date("1999-06-11"),
-      location: "London",
       email: "someone@example.com",
       password: "password",
     });
