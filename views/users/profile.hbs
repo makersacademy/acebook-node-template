@@ -2,7 +2,8 @@
   <head>
     <nav class='navbar navbar-expand-lg bg-light'>
       <div class='container-fluid'>
-        <a class='navbar-brand' href='#'>AceBook</a>
+        <img src='/images/acebook.jpg' alt="John"
+          style="width:50px;height:50px;" />
         <button
           class='navbar-toggler'
           type='button'
@@ -10,8 +11,7 @@
           data-bs-target='#navbarNav'
           aria-controls='navbarNav'
           aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
+          aria-label='Toggle navigation'>
           <span class='navbar-toggler-icon'></span>
         </button>
         <div class='collapse navbar-collapse' id='navbarNav'>
@@ -20,8 +20,7 @@
               <a
                 class='nav-link active'
                 aria-current='page'
-                href='/posts'
-              >Home</a>
+                href='/posts'>Home</a>
             </li>
             <li class='nav-item'>
               <a class='nav-link' href='/users/profile'>Profile</a>
@@ -45,7 +44,7 @@
       rel='stylesheet'
       integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx'
       crossorigin='anonymous'
-    />
+      />
     <h1>Profile</h1>
     <br />
   </head>
@@ -55,7 +54,7 @@
         src='https://wallpaperspeed.id/gallery/wallpaper/20220427/who-are-some-good-anime-characters-for-a-profile-picture,best-anime-characters-for-profile-picture-preview.webp'
         alt='John'
         style='width:20%'
-      />
+        />
       <ul class='user'>
         <h1>{{user.firstName}} {{user.lastName}}</h1>
         <li>{{user.email}}</li>
@@ -64,45 +63,42 @@
     <div>
       <ul class='posts'>
         {{#each posts}}
-          <li>
-            <p>{{this.timePosted}}<br />{{this.user.firstName}}
-              {{this.user.lastName}}
-              -
-              {{this.message}}</p>
-            <p>Likes: {{this.likes.count}}</p>
-            <div>
-              <style>
+        <li>
+          <p>{{this.timePosted}}<br />{{this.user.firstName}}
+            {{this.user.lastName}}
+            -
+            {{this.message}}</p>
+          <p>Likes: {{this.likes.count}}</p>
+          <div>
+            <style>
                 #like-btn { cursor: pointer; border: transparent;
                 background-color: transparent; height: 24px; width: 24px; color:
                 #e68496; font-size: 1.5em; box-shadow: 0; }
               </style>
-              <form
-                action='/posts/like/{{this._id}}'
-                method='post'
-                id='like-form'
-              >
-                <button id='like-btn' type='submit'>
-                  <i class='{{this.likes.icon}}' id='heart-icon'></i>
-                </button>
-              </form>
-            </div>
-
             <form
-              id='delete-post-form'
-              action='/posts/{{this._id}}/delete'
-              method='POST'
-            >
-              <input type='hidden' name='_method' value='DELETE' />
-              <input type='submit' value='delete' />
+              action='/posts/like/{{this._id}}'
+              method='post'
+              id='like-form'>
+              <button id='like-btn' type='submit'>
+                <i class='{{this.likes.icon}}' id='heart-icon'></i>
+              </button>
             </form>
-          </li>
+          </div>
+
+          <form
+            id='delete-post-form'
+            action='/posts/{{this._id}}/delete'
+            method='POST'>
+            <input type='hidden' name='_method' value='DELETE' />
+            <input type='submit' value='delete' />
+          </form>
+        </li>
         {{/each}}
       </ul>
     </div>
     <script
       src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js'
       integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa'
-      crossorigin='anonymous'
-    ></script>
+      crossorigin='anonymous'></script>
   </body>
 </html>
