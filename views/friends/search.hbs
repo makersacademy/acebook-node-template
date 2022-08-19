@@ -1,3 +1,4 @@
+<div id="search-results-container">
 <h1>Search</h1>
 <ul class="search">
   {{#each usersAndPicsAndFriends}}
@@ -7,12 +8,13 @@
   <li>{{this.user.firstName}}</li>
   <li>{{this.user.lastName}}</li>
   <form action="/users/profile/{{this.user.username}}" method="get">
-    <input type="submit" value="profile: {{this.user.firstName}}" />
+    <input class="btn btn-primary request-button" type="submit" value="profile: {{this.user.firstName}}" />
 
 </form>
   {{#if this.notFriends}}
-  <button class="request-button" value={{this.user.id}}>Send friend request</button>
+  <button class="btn btn-primary request-button" value={{this.user.id}}>Send friend request</button>
   <script type="text/javascript" src="/javascripts/friendship.js"> </script>
   {{/if }}
   {{/each}}
 </ul>
+</div>

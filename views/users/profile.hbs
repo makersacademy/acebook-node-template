@@ -11,17 +11,19 @@
 
   <form action="/image" method="POST" enctype="multipart/form-data">
   <div>
-      <label for="image">Upload Profile Picture</label>
+      <label for="image">⬇️Upload Profile Picture⬇️</label>
       </br>
-      <input class= "input-button" type="file" id="image" name="image" value="" required />
+      <input class="btn btn-primary" type="file" id="image" name="image" value="" required />
     </div>
     <div>
-      <button type="submit">Upload!</button>
+      <br />
+      <button class="btn btn-primary" type="submit">Upload!</button>
+      <br />
     </div>
   </form>
 
   <form action="/posts/new" method="get">
-    <input class= "input-button" type="submit" value="New post" />
+    <input class="btn btn-primary" type="submit" value="New post" />
   </form>
   <div>
 </div>
@@ -36,6 +38,7 @@
 <a href={{this.user.username}}/>
     {{this.user.firstName}} {{this.user.lastName}}
     <img id="profile-pic" src="data:{{this.picture.contentType}};base64, {{this.picture.img.data}}" style="height:auto;width:50px;" /></a>
+
           </li>
          </div>
       {{/each}}
@@ -66,11 +69,13 @@
     <ul>
       {{#each friends}}
         <li>
+
 <li> 
 
 <a href={{this.user.username}}/>
     {{this.user.firstName}} {{this.user.lastName}}
     <img id="profile-pic" src="data:{{this.picture.contentType}};base64, {{this.picture.img.data}}" style="height:auto;width:50px;" /></a>
+
         </li>
       {{/each}}
     </ul>
