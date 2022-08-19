@@ -10,6 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const hbs = require('hbs');
 
 const uri = process.env.MONGODB_URI;
 // const mongoose = require('mongoose');
@@ -24,6 +25,15 @@ const app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+
+// costum if_equal helper
+hbs.registerHelper('if_equal', function(a, b, opts) {
+  if (a == b) {
+      return opts.fn(this)
+  } else {
+      return opts.inverse(this)
+  }
+});
 
 app.use(logger("dev"));
 app.use(express.json());

@@ -11,10 +11,12 @@ const PostsController = {
         const user = req.session.user;
         res.render("posts/index", {
           posts: posts.reverse(),
+          session: req.session.user,
           user: user,
         });
       });
   },
+
   New: (req, res) => {
     const user = req.session.user;
     res.render("posts/new", { user: user });
@@ -48,9 +50,7 @@ const PostsController = {
     );
   },
 
-  Delete:
-    ("/posts/:id",
-    (req, res) => {
+  Delete: ("/posts/:id", (req, res) => {
       const query = { _id: req.params._id, user: req.session.user };
 
       Post.remove(query, (err) => {
