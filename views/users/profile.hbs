@@ -9,7 +9,6 @@
 
 {{#if pageOwnerBool}}
 
-
   <form action="/image" method="POST" enctype="multipart/form-data">
   <div>
       <label for="image">Upload Profile Picture</label>
@@ -40,6 +39,7 @@
 
   {{/each}}
   </ul>
+  <script type="text/javascript" src="/javascripts/upload_limit.js"></script>
   {{! it's my friends page }}
 {{else if friendsBool}}
   <p>You and {{user.firstName}} are friends!</p>
