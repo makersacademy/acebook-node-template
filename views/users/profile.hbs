@@ -1,12 +1,13 @@
 
 <div id="profile-pic-container">
-<h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
-  <div>
-    <img id="profile-pic" src="data:{{profile_pic.img.contentType}};base64, {{profile_pic.img.data}}" style="height:auto;width:260px;" />
-  <div>
+  <h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
+
+    <div>
+      <img id="profile-pic" src="data:{{profile_pic.img.contentType}};base64, {{profile_pic.img.data}}" style="height:auto;width:260px;" />
+    <div>
 
 
-{{#if pageOwnerBool}}
+    {{#if pageOwnerBool}}
 
   <form action="/image" method="POST" enctype="multipart/form-data">
   <div>
@@ -24,6 +25,7 @@
   </form>
   <div>
 </div>
+
 <div id ="profile-friends-container">
     <h2 class="title">{{user.firstName}}'s Friends</h2>
     <div  class = "row"> 
@@ -37,6 +39,8 @@
       {{/each}}
     </div>
   </div>
+</div>
+
 <div class="profile-posts-container">
   <h2 >{{user.firstName}}'s Posts </h2>
   <ul>
@@ -82,3 +86,4 @@
  
 <p>You and {{user.firstName}} are not friends yet!</p>
 {{/if}}
+</div>

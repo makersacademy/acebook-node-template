@@ -38,10 +38,9 @@
 
       <div class="allComments" style="display: none;" id="comments{{this.id}}">
         {{#each this.comment}}
-        <h6>{{this.username}}</h6>
-        <p>{{this.content}}<br>
-
-          {{this.date}}</p>
+        <h6>{{this.username}} commented: </h6>
+        <p>{{this.content}}</p>
+         <p class="post-date">{{this.date}}</p>
         <hr>
         {{/each}}
       </div>

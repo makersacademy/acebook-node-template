@@ -231,8 +231,9 @@ h5, h4 {
 }
 
 #profile-friends-card{
-  background-color:#A3B2C9;
+  background-color:#E6E5EA;
   border-radius: 10px;
+  font-size: large;
 }
 
 .profile-posts-container {
@@ -245,9 +246,10 @@ h5, h4 {
 }
 
 .profile-posts {
-  background-color:#A3B2C9;
+  background-color:#E6E5EA;
   padding: 5px;
   border-radius: 10px;
+  font-size: larger;
 }
 
 .post-date {
