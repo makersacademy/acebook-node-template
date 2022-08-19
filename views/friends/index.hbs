@@ -1,67 +1,81 @@
+
   <form id="search-form" action="/friends/search" method="get">
     <input type="text" name="search" id="search" placeholder="Search for a friend!"/>
     <input class="btn btn-primary" id="submit" type="submit" value="🔍" />
   </form>
 <h4>Friend Requests</h4>
-<hr/>
-<div id= "friends-container" class="container">
-<div class="row">
-  <div class="col-4">
-  <h5 class="title">Friends</h5>
-  <ul>
-    {{#each friends}}
+<hr />
+<div id="friends-container" class="container">
+  <div class="row">
+    <div class="col-4">
+      <h5 class="title">Friends</h5>
+      <ul>
+        {{#each friendsAndPics}}
+          <li>
+            <form
+              id="unfriend"
+              action="/friends/unfriend/{{this.user.id}}"
+              method="post"
+            >
+              <input
+                class="btn btn-primary"
+                id="submit"
+                type="submit"
+                value="Unfriend"
+              />
+            </form>
+            <a
+              href="users/profile/{{this.user.username}}"
+            >{{this.user.firstName}}
+              {{this.user.lastName}}  <div>
+    <img id="profile-pic" src="data:{{this.picture.contentType}};base64, {{this.picture.img.data}}" style="height:auto;width:50px;" />
+  <div></a>
 
-      <li>
-        <a href="users/profile/{{this.username}}">{{this.firstName}}
-          {{this.lastName}}</a>
-        <form
-          id="unfriend"
-          action="/friends/unfriend/{{this.id}}"
-          method="post"
-        >
-          <input class="btn btn-primary"  id="submit" type="submit" value="Unfriend" />
-        </form>
-        
+          </li>
+        {{/each}}
+      </ul>
+    </div>
 
-      </li>
-    {{/each}}
-  </ul>
-</div>
+    <div class="col-4">
+      <h5 class="title">Requests To You</h5>
+      <ul>
+        {{#each requestsToMeAndPics}}
 
-<div class="col-4">
-  <h5 class="title">Requests To You</h5>
-  <ul>
-    {{#each requestsToMe}}
+          <li>
+            <form
+              id="accept-friend"
+              action="/friends/accept/{{this.user.id}}"
+              method="post"
+            >
+              <input id="submit" type="submit" value="Accept" />
+            </form>
+           <a
+              href="users/profile/{{this.user.username}}"
+            >{{this.user.firstName}}
+              {{this.user.lastName}}  <div>
+    <img id="profile-pic" src="data:{{this.picture.contentType}};base64, {{this.picture.img.data}}" style="height:auto;width:50px;" />
+  <div></a>
 
-      <li>
-        <form
-          id="accept-friend"
-          action="/friends/accept/{{this.id}}"
-          method="post"
-        >
-          <input id="submit" type="submit" value="Accept" />
-        </form>
-        <a href="users/profile/{{this.username}}">{{this.firstName}}
-          {{this.lastName}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-4">
+      <h5 class="title">Requests by you</h5>
+      <ul>
+        {{#each requestsFromMeAndPics}}
 
-      </li>
-    {{/each}}
-  </ul>
-</div>
-<div class="col-4">
-  <h5 class="title">Requests by you</h5>
-  <ul>
-    {{#each requestsFromMe}}
+          <li>
+           <a
+              href="users/profile/{{this.user.username}}"
+            >{{this.user.firstName}}
+              {{this.user.lastName}}  <div>
+    <img id="profile-pic" src="data:{{this.picture.contentType}};base64, {{this.picture.img.data}}" style="height:auto;width:50px;" />
+  <div></a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
 
-      <li>
-        <a href="users/profile/{{this.username}}">{{this.firstName}}
-          {{this.lastName}}</a>
-      </li>
-    {{/each}}
-  </ul>
-</div>
-
-
-
-</div>
+  </div>
 </div>

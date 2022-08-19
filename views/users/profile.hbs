@@ -34,8 +34,7 @@
         {{#each friends}}
          <div id="profile-friends-card" class = "col-3">
          <li> 
-          {{this.firstName}}
-          {{this.lastName}}
+          <a href="../../users/profile/{{this.username}}">{{this.firstName}} {{this.lastName}}</a>
           </li>
          </div>
       {{/each}}
@@ -66,8 +65,7 @@
     <ul>
       {{#each friends}}
         <li>
-          {{this.firstName}}
-          {{this.lastName}}
+          <a href="../../users/profile/{{this.username}}">{{this.firstName}} {{this.lastName}}</a>
         </li>
       {{/each}}
     </ul>
