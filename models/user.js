@@ -10,6 +10,7 @@ const UserSchema = new Schema({
   lastName: { type: String, required: true },
   description: { type: String, required: false },
   photo: { type: Buffer, required: false },
+  post: { type: Schema.Types.ObjectId, ref: "Post", required: false },
 });
 
 // created a function that hashes the password
