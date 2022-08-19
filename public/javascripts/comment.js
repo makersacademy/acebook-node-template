@@ -44,19 +44,14 @@ window.onload = function () {
       };
 
       fetch("posts/like", options)
-        .then(function (response) {
-          if (response.ok) {
-            console.log("like was recoreded!");
-            return;
-          }
-          throw new Error("Like Request failed.");
-        })
-        .catch(function (error) {
-          console.log(error);
+        .then((response) =>
+          response.json())
+        .then(({ likes }) => {
+          document.getElementById('like-' + button_value).innerHTML = likes + " 👍"
         });
+
     });
   });
-
   // LIKE FUNCTIONALITY END
 
-};
+}
