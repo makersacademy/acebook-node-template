@@ -3,11 +3,16 @@
 <h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
 
 
+
 {{#each profile_pic}}
   
-    <img id="profile-pic" src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:auto;width:260px;" />
+
+
   <div>
-{{/each}}
+    <img id="profile-pic" src="data:{{profile_pic.img.contentType}};base64, {{profile_pic.img.data}}" style="height:autopx;width:260px;" />
+
+  <div>
+
 
 {{#if pageOwnerBool}}
 
@@ -47,6 +52,13 @@
     
     </div>
   </div>
+
+  <ul>
+  {{#each posts}}
+    <li>{{this.content}} {{this.date}}</li>
+
+  {{/each}}
+  </ul>
 
   {{! it's my friends page }}
 {{else if friendsBool}}

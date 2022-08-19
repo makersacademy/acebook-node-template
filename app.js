@@ -13,6 +13,8 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const friendsRouter = require("./routes/friends");
 const imageRouter = require("./routes/images");
+// const uri = process.env.MONGODB_URI;
+
 const app = express();
 
 // view engine setup
