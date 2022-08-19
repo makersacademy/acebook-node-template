@@ -28,8 +28,17 @@ const PostsController = {
       );
       const posts = allPostsObjects.flat().sort((a, b) => b.date - a.date);
 
+      const postsToDisplay = await Promise.all(
+         posts.map( post => {
+         const dateFormatted = `${post.date.getHours()}:${post.date.getMinutes()}, ${post.date.toDateString()}`;
+         console.log('data: ' + dateFormatted);
+         return { content: post.content,  date: dateFormatted, }
+        })
+      )
+
       res.render("posts/index", {
-        posts: posts,
+        // posts: posts,
+        posts: postsToDisplay,
         session: req.session,
       });
     } catch (error) {
@@ -106,7 +115,7 @@ const PostsController = {
           console.log(error);
         } else {
           console.log("DATA LIKE LENGTH ", data.like.length);
-          res.json({ post: post_id, likes: data.like.length })
+          res.json({ post: post_id, likes: data.like.length });
           // dataresponse = data;
           // console.log("post updated", dataresponse);
         }
@@ -115,7 +124,6 @@ const PostsController = {
     //res.json({ id: 123, likes: dataresponse.like.length })
 
     //res.status(301).redirect("/posts" );
-
   },
 };
 
