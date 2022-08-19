@@ -34,6 +34,7 @@ const PostsController = {
       });
     } catch (error) {
       console.log(error);
+      res.status(201).redirect("../");
     }
   },
   New: (req, res) => {
@@ -106,7 +107,7 @@ const PostsController = {
           console.log(error);
         } else {
           console.log("DATA LIKE LENGTH ", data.like.length);
-          res.json({ post: post_id, likes: data.like.length })
+          res.json({ post: post_id, likes: data.like.length });
           // dataresponse = data;
           // console.log("post updated", dataresponse);
         }
@@ -115,7 +116,6 @@ const PostsController = {
     //res.json({ id: 123, likes: dataresponse.like.length })
 
     //res.status(301).redirect("/posts" );
-
   },
 };
 
