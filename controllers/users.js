@@ -39,10 +39,14 @@ const UsersController = {
         })
       );
       const postObjects = await Post.find({ userId: profile_user.id });
-      const posts = postObjects.sort((a, b) => b.date - a.date);
 
-      // I m the owner of the page
-
+      const postsToDisplay = await Promise.all(
+         postObjects.sort(async (a, b) => b.date - a.date).map( post => {
+         const dateFormatted = `${post.date.getHours()}:${post.date.getMinutes()}, ${post.date.toDateString()}`;
+         return { content: post.content,  date: dateFormatted, }
+        })
+      )
+  
       const pageOwnerBool = profile_user.username == user.username;
 
       // we are friends - tbc need to test with the button
@@ -78,7 +82,7 @@ const UsersController = {
         session: req.session,
         pageOwnerBool: pageOwnerBool,
         friends: friends,
-        posts: posts,
+        posts: postsToDisplay,
         friendsBool: friendsBool,
         myRequestBool: myRequestBool,
         theirRequestBool: theirRequestBool,
