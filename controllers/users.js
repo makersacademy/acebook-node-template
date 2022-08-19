@@ -154,21 +154,30 @@ const UsersController = {
 const UserValidation = [
   body("firstName")
     .isAlpha()
+    .withMessage(
+      "Your first name must contain letters only."
+    )
     .isLength({ min: 2, max: 20 })
     .withMessage(
-      "Your first name must contain letters only and be 2 to 20 characters long."
+      "Your first name be 2 to 20 characters long."
     ),
   body("lastName")
     .isAlpha()
+    .withMessage(
+      "Your last name must contain letters only."
+    )
     .isLength({ min: 2, max: 20 })
     .withMessage(
-      "Your last name must contain letters only and be 2 to 20 characters long."
+      "Your last name must be 2 to 20 characters long."
     ),
   body("username")
     .isAlphanumeric()
+    .withMessage(
+      "Your username must contain letters and digits only."
+    )
     .isLength({ min: 5, max: 20 })
     .withMessage(
-      "Your username must contain letters and digits only and be 5 to 20 characters long."
+      "Your username must be 5 to 20 characters long."
     ),
   body("username").custom(async (value) => {
     const users = await User.find({ username: value });
@@ -187,6 +196,9 @@ const UserValidation = [
   body("password")
     .not()
     .isEmpty()
+    .withMessage(
+      "Please enter your password."
+    )
     .isStrongPassword()
     .withMessage(
       "Your password must contain at least 1 uppercase letter, 1 symbol and 1 digit, and must longer than 8 characters."
