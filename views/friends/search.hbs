@@ -1,12 +1,18 @@
 <h1>Search</h1>
 <ul class="search">
-  {{#each users}}
-  <li>{{this.firstName}}</li>
-  <li>{{this.lastName}}</li>
-  <form action="/users/profile/{{this.username}}" method="get">
-    <input type="submit" value="profile: {{this.firstName}}" />
+  {{#each usersAndPicsAndFriends}}
+  <div>
+    <img id="profile-pic" src="data:{{this.picture.contentType}};base64, {{this.picture.img.data}}" style="height:150px;width:260px;" />
+  <div>
+  <li>{{this.user.firstName}}</li>
+  <li>{{this.user.lastName}}</li>
+  <form action="/users/profile/{{this.user.username}}" method="get">
+    <input type="submit" value="profile: {{this.user.firstName}}" />
+
 </form>
-  <button id="request-button" value={{this.id}}>Send friend request</button>
+  {{#if this.notFriends}}
+  <button class="request-button" value={{this.user.id}}>Send friend request</button>
   <script type="text/javascript" src="/javascripts/friendship.js"> </script>
+  {{/if }}
   {{/each}}
 </ul>
