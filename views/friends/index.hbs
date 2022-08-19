@@ -1,12 +1,8 @@
-<form id="search-form" action="/friends/search" method="get">
-  <input
-    type="text"
-    name="search"
-    id="search"
-    placeholder="Search for a friend!"
-  />
-  <input class="input-button" id="submit" type="submit" value="🔍" />
-</form>
+
+  <form id="search-form" action="/friends/search" method="get">
+    <input type="text" name="search" id="search" placeholder="Search for a friend!"/>
+    <input class="btn btn-primary" id="submit" type="submit" value="🔍" />
+  </form>
 <h4>Friend Requests</h4>
 <hr />
 <div id="friends-container" class="container">
@@ -15,7 +11,6 @@
       <h5 class="title">Friends</h5>
       <ul>
         {{#each friendsAndPics}}
-
           <li>
             <form
               id="unfriend"
@@ -23,7 +18,7 @@
               method="post"
             >
               <input
-                class="input-button"
+                class="btn btn-primary"
                 id="submit"
                 type="submit"
                 value="Unfriend"
