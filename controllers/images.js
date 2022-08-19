@@ -4,7 +4,7 @@ const path = require("path");
 
 const ImageController = {
   Index: async (req, res) => {
-    const images = await Image.find({});
+    const images = await Image.findOne({});
     res.render("images/index", {
       images: images,
     });

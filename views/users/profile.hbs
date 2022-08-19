@@ -2,15 +2,13 @@
 <div id="profile-pic-container">
 <h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
 
-
-{{#each profile_pic}}
-  
-    <img id="profile-pic" src="data:{{this.img.contentType}};base64, {{this.img.data}}" style="height:auto;width:260px;" />
   <div>
-{{/each}}
+    <img id="profile-pic" src="data:{{profile_pic.img.contentType}};base64, {{profile_pic.img.data}}" style="height:auto;width:260px;" />
+
+  <div>
+
 
 {{#if pageOwnerBool}}
-
 
   <form action="/image" method="POST" enctype="multipart/form-data">
   <div>
@@ -47,6 +45,14 @@
     
     </div>
   </div>
+
+  <ul>
+  {{#each posts}}
+    <li>{{this.content}} {{this.date}}</li>
+
+  {{/each}}
+  </ul>
+  <script type="text/javascript" src="/javascripts/upload_limit.js"></script>
 
   {{! it's my friends page }}
 {{else if friendsBool}}
