@@ -21,15 +21,8 @@ const HomeController = {
       if (err) {
         throw err;
       }
-      // returning all users whose last name matches the search word
-      // User.find({ lastName: req.body.search }, (err, userData2) => {
-      //   if (err) {
-      //     throw err;
-      //   }
-      // passing both lists of users to the view
       console.log(user);
-      res.render("search/results", { user: user });
-      // })
+      res.render("search/profile", { user: user });
     });
   },
 };
