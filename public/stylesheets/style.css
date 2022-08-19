@@ -151,6 +151,10 @@ button {
 .post-content {
   font-size: 20px;
   text-align: center;
+  background-color: #A3B2C9;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 5px;
 }
 
 .timeline-title {

@@ -8,6 +8,7 @@
 
       <li class="post-content">
         <h5>{{this.username}}</h5>
+        
         {{this.content}}
       </li>
       <p class="post-date">{{this.date}}</p>
@@ -24,7 +25,7 @@
       <div>
         <button onclick="showComments('comments{{this.id}}')">Show/Hide comments</button>
       </div>
-
+      
       <script>
         function showComments(id) {
           const x = document.getElementById(id);
@@ -35,8 +36,10 @@
           }
         }
       </script>
-
+      
+      
       <div class="allComments" style="display: none;" id="comments{{this.id}}">
+         <hr />
         {{#each this.comment}}
         <h6>{{this.username}} commented: </h6>
         <p>{{this.content}}</p>
