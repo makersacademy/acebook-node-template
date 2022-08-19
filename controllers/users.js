@@ -70,7 +70,7 @@ const UsersController = {
       });
 
       // Find by page username
-      const profile_pic = await Image.find({ user: profile_user.id });
+      const profile_pic = await Image.findOne({ user: profile_user.id });
 
       res.render("users/profile", {
         profile_pic: profile_pic,
