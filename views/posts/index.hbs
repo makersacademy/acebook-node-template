@@ -1,8 +1,52 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+<div class="whole page">
 
-<a class="new-post-link" href="/posts/new">New post</a>
+  <h1 class="timeline-title">My Timeline</h1>
+
+  <ul class="posts">
+    {{#each posts}}
+    <div class="single-post">
+
+      <li class="post-content">
+        <h5>{{this.username}}</h5>
+        {{this.content}}
+      </li>
+      <p>{{this.date}}</p>
+
+      <div class="like-container">
+        <button class="add-like" type="submit" value={{this.id}}>{{this.like.length}} 👍</button>
+      </div>
+      <div class="comment-container">
+        <li>
+          <input type="text" name="commment" id={{this.id}} placeholder="add comment here!" />
+          <button id={{this.id}} class="submit-comment" type="submit" value={{this.id}}>💬</button>
+        </li>
+      </div>
+      <div>
+        <button onclick="showComments('comments{{this.id}}')">Show/Hide comments</button>
+      </div>
+
+      <script>
+        function showComments(id) {
+          const x = document.getElementById(id);
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+      </script>
+
+      <div class="allComments" style="display: none;" id="comments{{this.id}}">
+        {{#each this.comment}}
+        <h6>{{this.username}}</h6>
+        <p>{{this.content}}<br>
+
+          {{this.date}}</p>
+        <hr>
+        {{/each}}
+      </div>
+    </div>
+
+    {{/each}}
+  </ul>
+</div>

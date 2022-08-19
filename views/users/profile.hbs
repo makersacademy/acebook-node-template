@@ -1,0 +1,73 @@
+<h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
+
+
+
+  <div>
+    <img id="profile-pic" src="data:{{profile_pic.img.contentType}};base64, {{profile_pic.img.data}}" style="height:150px;width:260px;" />
+  <div>
+
+
+{{#if pageOwnerBool}}
+
+
+  <form action="/image" method="POST" enctype="multipart/form-data">
+  <div>
+      <label for="image">Upload Profile Picture</label>
+      <input type="file" id="image" name="image" value="" required />
+    </div>
+    <div>
+      <button type="submit">Submit!</button>
+    </div>
+  </form>
+
+  <form action="/posts/new" method="get">
+    <input type="submit" value="New post" />
+  </form>
+  <div>
+    <h2 class="title">{{user.firstName}}'s Friends</h2>
+    <ul>
+      {{#each friends}}
+        <li>
+          {{this.firstName}}
+          {{this.lastName}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+  <ul>
+  {{#each posts}}
+    <li>{{this.content}} {{this.date}}</li>
+
+  {{/each}}
+  </ul>
+  {{! it's my friends page }}
+{{else if friendsBool}}
+  <p>You and {{user.firstName}} are friends!</p>
+
+  <div>
+    <h2 class="title">{{user.firstName}}'s Friends</h2>
+    <ul>
+      {{#each friends}}
+        <li>
+          {{this.firstName}}
+          {{this.lastName}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{!there is a request. It's their page. I have sent the request}}
+{{else if myRequestBool}}
+  <p>I have sent {{user.firstName}} a friend request!</p>
+
+  {{!there is a request. They have sent the request}}
+{{else if theirRequestBool}}
+  <p>{{user.firstName}} has sent you a friend request!</p>
+
+  {{! it's a strangers page}}
+{{else}}
+
+  <button id="request-button" value={{user.id}}>Send friend request!</button>
+  <script type="text/javascript" src="/javascripts/friendship.js"> </script>
+ 
+<p>You and {{user.firstName}} are not friends yet!</p>
+{{/if}}
