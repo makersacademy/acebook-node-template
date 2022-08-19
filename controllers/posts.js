@@ -43,6 +43,7 @@ const PostsController = {
       });
     } catch (error) {
       console.log(error);
+      res.status(201).redirect("../");
     }
   },
   New: (req, res) => {

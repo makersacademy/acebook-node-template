@@ -1,7 +1,8 @@
 <div class="whole page">
 
   <h1 class="timeline-title">My Timeline</h1>
-
+  {{#if posts}}
+    
   <ul class="posts">
     {{#each posts}}
     <div class="single-post">
@@ -48,4 +49,13 @@
 
     {{/each}}
   </ul>
+  {{else}}
+  <br>
+  <br>
+  <br>
+  <br>
+  <h2>Only your friends posts are displayed here. To search for some people you may know click the 'Friends' button at the top of this page and send them a request. </h2>
+  <br>
+  <h2>If you already have some friends and they have accepted your request, tell them to make a post! </h2>
+  {{/if}}
 </div>
