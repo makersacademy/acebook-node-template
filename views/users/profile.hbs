@@ -1,44 +1,60 @@
-<h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
+
+<div id="profile-pic-container">
+  <h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
+
+    <div>
+      <img id="profile-pic" src="data:{{profile_pic.img.contentType}};base64, {{profile_pic.img.data}}" style="height:auto;width:260px;" />
+    <div>
 
 
-
-  <div>
-    <img id="profile-pic" src="data:{{profile_pic.img.contentType}};base64, {{profile_pic.img.data}}" style="height:150px;width:260px;" />
-  <div>
-
-
-{{#if pageOwnerBool}}
-
+    {{#if pageOwnerBool}}
 
   <form action="/image" method="POST" enctype="multipart/form-data">
   <div>
       <label for="image">Upload Profile Picture</label>
-      <input type="file" id="image" name="image" value="" required />
+      </br>
+      <input class= "input-button" type="file" id="image" name="image" value="" required />
     </div>
     <div>
-      <button type="submit">Submit!</button>
+      <button type="submit">Upload!</button>
     </div>
   </form>
 
   <form action="/posts/new" method="get">
-    <input type="submit" value="New post" />
+    <input class= "input-button" type="submit" value="New post" />
   </form>
   <div>
+</div>
+
+<div id ="profile-friends-container">
     <h2 class="title">{{user.firstName}}'s Friends</h2>
-    <ul>
-      {{#each friends}}
-        <li>
+    <div  class = "row"> 
+        {{#each friends}}
+         <div id="profile-friends-card" class = "col-3">
+         <li> 
           {{this.firstName}}
           {{this.lastName}}
-        </li>
+          </li>
+         </div>
       {{/each}}
-    </ul>
+    </div>
   </div>
+</div>
+
+<div class="profile-posts-container">
+  <h2 >{{user.firstName}}'s Posts </h2>
   <ul>
   {{#each posts}}
-    <li>{{this.content}} {{this.date}}</li>
+    <div class="profile-posts">
+    <li>{{this.content}}</li> 
+    <li class="post-date">{{this.date}}</li>
+    </div>
   {{/each}}
   </ul>
+</div>
+  <script type="text/javascript" src="/javascripts/upload_limit.js"></script>
+
+
   {{! it's my friends page }}
 {{else if friendsBool}}
   <p>You and {{user.firstName}} are friends!</p>
@@ -70,3 +86,4 @@
  
 <p>You and {{user.firstName}} are not friends yet!</p>
 {{/if}}
+</div>

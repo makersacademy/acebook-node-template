@@ -10,10 +10,10 @@
         <h5>{{this.username}}</h5>
         {{this.content}}
       </li>
-      <p>{{this.date}}</p>
+      <p class="post-date">{{this.date}}</p>
 
       <div class="like-container">
-        <button class="add-like" type="submit" value={{this.id}}>{{this.like.length}} 👍</button>
+        <button id="like-{{this.id}}" class="add-like" type="submit" value={{this.id}}>{{this.like.length}} 👍</button>
       </div>
       <div class="comment-container">
         <li>
@@ -38,10 +38,9 @@
 
       <div class="allComments" style="display: none;" id="comments{{this.id}}">
         {{#each this.comment}}
-        <h6>{{this.username}}</h6>
-        <p>{{this.content}}<br>
-
-          {{this.date}}</p>
+        <h6>{{this.username}} commented: </h6>
+        <p>{{this.content}}</p>
+         <p class="post-date">{{this.date}}</p>
         <hr>
         {{/each}}
       </div>
