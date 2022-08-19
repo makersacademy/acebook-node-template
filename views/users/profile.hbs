@@ -1,19 +1,8 @@
 
 <div id="profile-pic-container">
 <h1 class="title"> {{user.firstName}} {{user.lastName}}</h1>
-
-
-
-
-
-
-  
-
-
   <div>
     <img id="profile-pic" src="data:{{profile_pic.img.contentType}};base64, {{profile_pic.img.data}}" style="height:auto;width:260px;" />
-
-
   <div>
 
 
@@ -26,7 +15,7 @@
       <input class= "input-button" type="file" id="image" name="image" value="" required />
     </div>
     <div>
-      <button type="submit">Submit!</button>
+      <button type="submit">Upload!</button>
     </div>
   </form>
 
@@ -37,31 +26,28 @@
 </div>
 <div id ="profile-friends-container">
     <h2 class="title">{{user.firstName}}'s Friends</h2>
-    <div  class = "row">
-      
-        
+    <div  class = "row"> 
         {{#each friends}}
          <div id="profile-friends-card" class = "col-3">
-         <li>
-          
+         <li> 
           {{this.firstName}}
           {{this.lastName}}
-          
           </li>
          </div>
       {{/each}}
-     
-    
     </div>
   </div>
-
+<div class="profile-posts-container">
+  <h2 >{{user.firstName}}'s Posts </h2>
   <ul>
   {{#each posts}}
-    <li>{{this.content}} {{this.date}}</li>
-
+    <div class="profile-posts">
+    <li>{{this.content}}</li> 
+    <li class="post-date">{{this.date}}</li>
+    </div>
   {{/each}}
   </ul>
-
+</div>
   <script type="text/javascript" src="/javascripts/upload_limit.js"></script>
 
 
