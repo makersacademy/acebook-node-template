@@ -94,7 +94,7 @@ button {
   text-align: center;
   padding: 0 20px;
   color: white;
-} */
+}  */
 
 #new-user-form{
   background-color: aliceblue;
@@ -217,9 +217,9 @@ h5, h4 {
 /* profile page */
 #profile-pic-container{
   background-color: #A3B2C9;
-  text-align: left;
-  padding-left: 10px;
   border-radius: 10px;
+  min-height:fit-content;
+  padding-bottom: 20px;
 
 }
 
@@ -231,8 +231,29 @@ h5, h4 {
 }
 
 #profile-friends-card{
-  background-color:#A3B2C9;
-  border-radius: 5px;
+  background-color:#E6E5EA;
+  border-radius: 10px;
+  font-size: large;
+}
+
+.profile-posts-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  margin-bottom: 10px;
+  
+}
+
+.profile-posts {
+  background-color:#E6E5EA;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: larger;
+}
+
+.post-date {
+  font-size: small;
 }
 
 
