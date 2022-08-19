@@ -1,9 +1,10 @@
 <div class="whole page">
 
   <h1 class="timeline-title">My Timeline</h1>
-
+  {{#if posts}}
+    
   <ul class="posts">
-    {{#each allPostsAndPics}}
+    {{#each posts}}
       <div class="single-post">
 
         <li class="post-content">
@@ -15,7 +16,7 @@
   <div></a></h5>
           {{this.post.content}}
         </li>
-        <p class="post-date">{{this.post.date}}</p>
+        <p class="post-date">{{this.date}}</p>
 
         <div class="like-container">
           <button
@@ -60,7 +61,7 @@
           {{#each this.post.comment}}
             <h6>{{this.post.username}} commented: </h6>
             <p>{{this.post.content}}</p>
-            <p class="post-date">{{this.post.date}}</p>
+            <p class="post-date">{{this.date}}</p>
             <hr />
           {{/each}}
         </div>
@@ -68,4 +69,13 @@
 
     {{/each}}
   </ul>
+  {{else}}
+  <br>
+  <br>
+  <br>
+  <br>
+  <h2>Only your friends posts are displayed here. To search for some people you may know click the 'Friends' button at the top of this page and send them a request. </h2>
+  <br>
+  <h2>If you already have some friends and they have accepted your request, tell them to make a post! </h2>
+  {{/if}}
 </div>

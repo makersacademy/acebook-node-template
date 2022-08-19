@@ -29,21 +29,24 @@ const PostsController = {
       );
 
       const posts = allPostsObjects.flat().sort((a, b) => b.date - a.date);
-      const allPostsAndPics = await Promise.all(
-        posts.map(async (postObject) => {
-          const image = await Image.findOne({ user: postObject.userId });
 
-          return { post: postObject, picture: image };
+      const postsToDisplay = await Promise.all(
+        posts.map(async (post) => {
+          const image = await Image.findOne({ user: post.userId });
+          const dateFormatted = `${post.date.getHours()}:${post.date.getMinutes()}, ${post.date.toDateString()}`;
+          console.log("data: " + dateFormatted);
+          return { post: post, date: dateFormatted, picture: image };
         })
       );
 
       res.render("posts/index", {
-        posts: posts,
-        allPostsAndPics: allPostsAndPics,
+        // posts: posts,
+        posts: postsToDisplay,
         session: req.session,
       });
     } catch (error) {
       console.log(error);
+      res.status(201).redirect("../");
     }
   },
   New: (req, res) => {
