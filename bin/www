@@ -10,6 +10,12 @@ var http = require("http");
 var mongoose = require("mongoose");
 
 /**
+ * make javascript heapsize larger
+ */
+
+process.env.NODE_OPTIONS = "--max_old_space_size=4096";
+
+/**
  * Get port from environment and store in Express.
  */
 
