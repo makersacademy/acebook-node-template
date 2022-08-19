@@ -59,8 +59,8 @@
           id="comments{{this.post.id}}"
         >
           {{#each this.post.comment}}
-            <h6>{{this.post.username}} commented: </h6>
-            <p>{{this.post.content}}</p>
+            <h6>{{this.username}} commented: </h6>
+            <p>{{this.content}}</p>
             <p class="post-date">{{this.date}}</p>
             <hr />
           {{/each}}
