@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Friends = require("../models/friend");
+const Image = require("../models/image");
 const PostsController = {
   Index: async (req, res) => {
     //finds all posts:
@@ -26,15 +27,17 @@ const PostsController = {
           }
         })
       );
+
       const posts = allPostsObjects.flat().sort((a, b) => b.date - a.date);
 
       const postsToDisplay = await Promise.all(
-         posts.map( post => {
-         const dateFormatted = `${post.date.getHours()}:${post.date.getMinutes()}, ${post.date.toDateString()}`;
-         console.log('data: ' + dateFormatted);
-         return { content: post.content,  date: dateFormatted, }
+        posts.map(async (post) => {
+          const image = await Image.findOne({ user: post.userId });
+          const dateFormatted = `${post.date.getHours()}:${post.date.getMinutes()}, ${post.date.toDateString()}`;
+          console.log("data: " + dateFormatted);
+          return { post: post, date: dateFormatted, picture: image };
         })
-      )
+      );
 
       res.render("posts/index", {
         // posts: posts,

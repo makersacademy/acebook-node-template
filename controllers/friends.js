@@ -73,10 +73,24 @@ const FriendsController = {
         async (requestObject) => await User.findById(requestObject.requester)
       )
     );
+    const requestsToMeAndPics = await Promise.all(
+      requestsToMe.map(async (userObject) => {
+        const image = await Image.findOne({ user: userObject._id });
+
+        return { user: userObject, picture: image };
+      })
+    );
     const requestsFromMe = await Promise.all(
       requestsFromMeObject.map(
         async (requestObject) => await User.findById(requestObject.recipient)
       )
+    );
+    const requestsFromMeAndPics = await Promise.all(
+      requestsFromMe.map(async (userObject) => {
+        const image = await Image.findOne({ user: userObject._id });
+
+        return { user: userObject, picture: image };
+      })
     );
     // Gets all current Friends
     const friends = await Promise.all(
@@ -90,12 +104,19 @@ const FriendsController = {
         }
       })
     );
+    const friendsAndPics = await Promise.all(
+      friends.map(async (userObject) => {
+        const image = await Image.findOne({ user: userObject._id });
+
+        return { user: userObject, picture: image };
+      })
+    );
     res.render("friends/index", {
       user: user,
+      friendsAndPics: friendsAndPics,
       session: req.session,
-      friends: friends,
-      requestsToMe: requestsToMe,
-      requestsFromMe: requestsFromMe,
+      requestsToMeAndPics: requestsToMeAndPics,
+      requestsFromMeAndPics: requestsFromMeAndPics,
     });
   },
   Search: async (req, res) => {
