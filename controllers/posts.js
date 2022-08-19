@@ -93,14 +93,14 @@ const PostsController = {
     const liked = post.like.map((like) => like.likeAuthor).includes(user_id);
     let updated_post;
     if (!liked) {
+      likes.push({ likeAuthor: user_id });
       updated_post = await Post.findOneAndUpdate(
         { _id: post_id },
-        { $push: { like: [{ likeAuthor: user_id }] } },
+        { like: likes },
         { new: true, useFindAndModify: false }
       );
     } else {
       likes.splice(likes.map((like) => like.likeAuthor).indexOf(user_id), 1);
-
       updated_post = await Post.findOneAndUpdate(
         { _id: post_id },
         { like: likes },
