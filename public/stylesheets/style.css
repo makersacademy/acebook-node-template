@@ -261,3 +261,10 @@ h5, h4 {
 }
 
 
+
+#search-results-container {
+  background-color: #A3B2C9!important;
+  padding: 5px;
+  border-radius: 10px;
+}
+

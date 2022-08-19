@@ -14,16 +14,17 @@
       <p class="post-date">{{this.date}}</p>
 
       <div class="like-container">
-        <button id="like-{{this.id}}" class="add-like" type="submit" value={{this.id}}>{{this.like.length}} 👍</button>
+        <button class="btn btn-primary" id="like-{{this.id}}" class="add-like" type="submit" value={{this.id}}>{{this.like.length}} 👍</button>
       </div>
       <div class="comment-container">
         <li>
           <input type="text" name="commment" id={{this.id}} placeholder="add comment here!" />
-          <button id={{this.id}} class="submit-comment" type="submit" value={{this.id}}>💬</button>
+          <button id={{this.id}} class="submit-comment btn btn-primary" type="submit" value={{this.id}}>💬</button>
         </li>
       </div>
       <div>
-        <button onclick="showComments('comments{{this.id}}')">Show/Hide comments</button>
+        <br/>
+        <button class="btn btn-secondary" onclick="showComments('comments{{this.id}}')">Show/Hide comments</button>
       </div>
       
       <script>

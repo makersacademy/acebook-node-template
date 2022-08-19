@@ -1,6 +1,6 @@
   <form id="search-form" action="/friends/search" method="get">
     <input type="text" name="search" id="search" placeholder="Search for a friend!"/>
-    <input class = "input-button" id="submit" type="submit" value="🔍" />
+    <input class="btn btn-primary" id="submit" type="submit" value="🔍" />
   </form>
 <h4>Friend Requests</h4>
 <hr/>
@@ -12,15 +12,16 @@
     {{#each friends}}
 
       <li>
+        <a href="users/profile/{{this.username}}">{{this.firstName}}
+          {{this.lastName}}</a>
         <form
           id="unfriend"
           action="/friends/unfriend/{{this.id}}"
           method="post"
         >
-          <input class = "input-button"  id="submit" type="submit" value="Unfriend" />
+          <input class="btn btn-primary"  id="submit" type="submit" value="Unfriend" />
         </form>
-        <a href="users/profile/{{this.username}}">{{this.firstName}}
-          {{this.lastName}}</a>
+        
 
       </li>
     {{/each}}
