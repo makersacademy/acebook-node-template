@@ -51,18 +51,14 @@
 
     <ul class='posts'>
       {{#each posts}}
-
-        <p>{{this.timePosted}}<br />{{this.user.firstName}}
-          {{this.user.lastName}} - {{this.message}}</p>
-        <p>Likes: {{this.likes.count}}</p>
-        <div>
-
+      <li>
         <form id="search-form" action="/search" method="POST">
           <input class="inline-form-input" id="firstName" type="hidden"
             name="firstName"
             value={{this.user.firstName}} />
           <input class="search-form-btn" type="submit"
             value='{{this.user.firstName}} {{this.user.lastName}}'/>
+        {{this.timePosted}}
         </form>
         <p>{{this.message}}</p>
 
@@ -82,6 +78,7 @@
             </button>
           </form>
         </div>
+        </li>
 
           {{#if_equal this.user.firstName @root.user.firstName}} 
         <form id="delete-post-form" action="/posts/{{this._id}}/delete"
