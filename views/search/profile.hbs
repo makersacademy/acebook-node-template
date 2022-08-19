@@ -1,49 +1,147 @@
-<!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">AceBook</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarNav" aria-controls="navbarNav"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+    <nav class='navbar navbar-expand-lg bg-light'>
+      <div class='container-fluid'>
+        <a class='navbar-brand' href='#'>AceBook</a>
+        <button
+          class='navbar-toggler'
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#navbarNav'
+          aria-controls='navbarNav'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
+          <span class='navbar-toggler-icon'></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/posts">Home</a>
+        <div class='collapse navbar-collapse' id='navbarNav'>
+          <ul class='navbar-nav'>
+            <li class='nav-item'>
+              <a
+                class='nav-link active'
+                aria-current='page'
+                href='/posts'
+              >Home</a>
             </li>
-
+            <li class='nav-item'>
+              <a class='nav-link' href='/users/profile'>Profile</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='/search'>Search</a>
+            </li>
+            <li class='nav-item'>
+              <form action='/sessions?_method=DELETE' method='POST'>
+                <input type='submit' value='Logout' />
+              </form>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-      crossorigin="anonymous">
+      href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css'
+      rel='stylesheet'
+      integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx'
+      crossorigin='anonymous'/>
+    <link
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css'
+      rel='stylesheet'/>
+    
     <h1>Profile</h1>
-    <br/>
-    </head>
-    <body>
-      <div class="card">
-        <img
-          src="https://wallpaperspeed.id/gallery/wallpaper/20220427/who-are-some-good-anime-characters-for-a-profile-picture,best-anime-characters-for-profile-picture-preview.webp"
-          alt="John" style="width:20%">
-        <ul class="user">
-          <h1>{{user.firstName}} {{user.lastName}}</h1>
-          <li>{{user.email}}</li>
-          <a>{{user._id}}</a>
-
+    <br />
+  </head>
+  <body>
+    <div class='card'>
+    <div class="container">
+    <div class="row align-items-center vh-200">
+    <div class="col-10 mx-auto">
+    <div class="card-body d-flex flex-column align-items-center">
+      <img
+        src='https://wallpaperspeed.id/gallery/wallpaper/20220427/who-are-some-good-anime-characters-for-a-profile-picture,best-anime-characters-for-profile-picture-preview.webp'
+        alt='John'
+        style='width:20%'
+      />
+      <ul class='user'>
+        <h1>{{user.firstName}} {{user.lastName}}</h1>
+        <li>{{user.email}}</li>
+      </ul>
+    </div>
+    <div>
+      <ul class='posts'>
+        <ul class="list-group list-group-flush">
+          <h6>Your Posts</h5>
         </ul>
+        {{#each posts}}
+      <div class='posts' style="width:75%">
+      <div class="container" style="padding:15px"/>
+      <div class="row align-items-center vh-200">
+      <div class="col-60 mx-auto">
+      <div class="card shadow border">
+      <div class="card-body d-flex flex-column align-items-center">
+        <form id="search-form" action="/search" method="POST">
+          <input class="inline-form-input" id="firstName" type="hidden"
+            name="firstName"
+            value={{this.user.firstName}} />
+          <input class="btn btn-link" type="submit"
+            value='{{this.user.firstName}} {{this.user.lastName}}'/>
+        {{this.timePosted}}
+        </form>
+        <h3>{{this.message}}</h3>
+
+        <p>Likes: {{this.likes.count}}</p>
+        <div>
+          <style>
+              #like-btn { cursor: pointer; border: transparent;
+              background-color: transparent; height: 24px; width: 24px; color:
+              #e68496; font-size: 1.5em; box-shadow: 0; }
+            </style>
+          <form
+            action='/posts/like/{{this._id}}'
+            method='post'
+            id='like-form'>
+            <button id='like-btn' type='submit'>
+              <i class='{{this.likes.icon}}' id='heart-icon'></i>
+            </button>
+          </form>
+        </div>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          {{#each this.comments}}
+          <li class="list-group-item">{{this.author}} - {{this.message}}</li>
+          {{/each}}
+        </ul>
+        
+        <div class="list-group list-group-flush">
+        <div style="margin-left:15px; margin-top:5px">  
+        <form
+          id='new-comment-form'
+          action='/posts/{{this._id}}/comment'
+          method='post'>
+          <label for='comment'>Comment: </label>
+          <input id='comment' type='text' name='comment' value='' />
+          <input type='submit' class="btn btn-outline-primary" value='Submit' />
+        </form>
+        <br/>
+        </div>
+        </div>  
       </div>
-      <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-    </body>
-  </html>
+      </div>
+      </div>
+      </div> 
+      </div> 
+      {{/each}}
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script
+      src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js'
+      integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa'
+      crossorigin='anonymous'
+    ></script>
+  </body>
+</html>
