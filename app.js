@@ -3,19 +3,37 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const session = require("express-session");
+const session = require("cookie-session");
 const methodOverride = require("method-override");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const hbs = require('hbs');
 
+const uri = process.env.MONGODB_URI;
+// const mongoose = require('mongoose');
 const app = express();
+
+// const dbURI= 'mongodb+srv://SharedUser:Milton@acebook.g2d2kr5.mongodb.net/Acebook?retryWrites=true&w=majority';
+// mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+//   .then((result) => app.listen(3000))
+//   .catch((err)=> consolee.log(err));
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+
+// costum if_equal helper
+hbs.registerHelper('if_equal', function(a, b, opts) {
+  if (a == b) {
+      return opts.fn(this)
+  } else {
+      return opts.inverse(this)
+  }
+});
 
 app.use(logger("dev"));
 app.use(express.json());

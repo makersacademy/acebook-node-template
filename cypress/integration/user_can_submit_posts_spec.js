@@ -20,5 +20,11 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+
+    // add a comment to the post 
+    cy.get("#new-comment-form").find('[type="text"]').type("Example comment!");
+    cy.get("#new-comment-form").submit();
+
+    cy.get(".posts").should("contain", "Example comment!");
   });
 });

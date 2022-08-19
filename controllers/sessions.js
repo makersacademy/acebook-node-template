@@ -1,6 +1,7 @@
 const User = require("../models/user");
-
+const bcrypt = require('bcrypt');
 const SessionsController = {
+  
   New: (req, res) => {
     res.render("sessions/new", {});
   },
@@ -13,14 +14,16 @@ const SessionsController = {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         res.redirect("/sessions/new");
-      } else if (user.password != password) {
+      } else if (user.password!= password) {
         res.redirect("/sessions/new");
       } else {
         req.session.user = user;
         res.redirect("/posts");
       }
     });
+    return email;
   },
+
 
   Destroy: (req, res) => {
     console.log("logging out");
@@ -29,6 +32,7 @@ const SessionsController = {
     }
     res.redirect("/sessions/new");
   },
+  
 };
 
 module.exports = SessionsController;
