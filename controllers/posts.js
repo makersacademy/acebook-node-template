@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Friends = require("../models/friend");
+const Image = require("../models/image");
 const PostsController = {
   Index: async (req, res) => {
     //finds all posts:
@@ -28,9 +29,17 @@ const PostsController = {
       );
 
       const posts = allPostsObjects.flat().sort((a, b) => b.date - a.date);
+      const allPostsAndPics = await Promise.all(
+        posts.map(async (postObject) => {
+          const image = await Image.findOne({ user: postObject.userId });
+
+          return { post: postObject, picture: image };
+        })
+      );
 
       res.render("posts/index", {
         posts: posts,
+        allPostsAndPics: allPostsAndPics,
         session: req.session,
       });
     } catch (error) {
