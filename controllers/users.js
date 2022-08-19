@@ -31,22 +31,26 @@ const UsersController = {
         friendsObject.map(async (friendObject) => {
           if (friendObject.recipient.valueOf() == profile_user._id.valueOf()) {
             const user = await User.findById(friendObject.requester);
-            return user;
+            const image = await Image.findOne({ user: user._id });
+            return { user: user, picture: image };
           } else {
             const user = await User.findById(friendObject.recipient);
-            return user;
+            const image = await Image.findOne({ user: user._id });
+            return { user: user, picture: image };
           }
         })
       );
       const postObjects = await Post.find({ userId: profile_user.id });
 
       const postsToDisplay = await Promise.all(
-         postObjects.sort(async (a, b) => b.date - a.date).map( post => {
-         const dateFormatted = `${post.date.getHours()}:${post.date.getMinutes()}, ${post.date.toDateString()}`;
-         return { content: post.content,  date: dateFormatted, }
-        })
-      )
-  
+        postObjects
+          .sort(async (a, b) => b.date - a.date)
+          .map((post) => {
+            const dateFormatted = `${post.date.getHours()}:${post.date.getMinutes()}, ${post.date.toDateString()}`;
+            return { content: post.content, date: dateFormatted };
+          })
+      );
+
       const pageOwnerBool = profile_user.username == user.username;
 
       // we are friends - tbc need to test with the button
@@ -154,31 +158,19 @@ const UsersController = {
 const UserValidation = [
   body("firstName")
     .isAlpha()
-    .withMessage(
-      "Your first name must contain letters only."
-    )
+    .withMessage("Your first name must contain letters only.")
     .isLength({ min: 2, max: 20 })
-    .withMessage(
-      "Your first name be 2 to 20 characters long."
-    ),
+    .withMessage("Your first name be 2 to 20 characters long."),
   body("lastName")
     .isAlpha()
-    .withMessage(
-      "Your last name must contain letters only."
-    )
+    .withMessage("Your last name must contain letters only.")
     .isLength({ min: 2, max: 20 })
-    .withMessage(
-      "Your last name must be 2 to 20 characters long."
-    ),
+    .withMessage("Your last name must be 2 to 20 characters long."),
   body("username")
     .isAlphanumeric()
-    .withMessage(
-      "Your username must contain letters and digits only."
-    )
+    .withMessage("Your username must contain letters and digits only.")
     .isLength({ min: 5, max: 20 })
-    .withMessage(
-      "Your username must be 5 to 20 characters long."
-    ),
+    .withMessage("Your username must be 5 to 20 characters long."),
   body("username").custom(async (value) => {
     const users = await User.find({ username: value });
     if (users.length > 0) {
@@ -196,9 +188,7 @@ const UserValidation = [
   body("password")
     .not()
     .isEmpty()
-    .withMessage(
-      "Please enter your password."
-    )
+    .withMessage("Please enter your password.")
     .isStrongPassword()
     .withMessage(
       "Your password must contain at least 1 uppercase letter, 1 symbol and 1 digit, and must longer than 8 characters."

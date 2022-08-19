@@ -32,8 +32,10 @@
         {{#each friends}}
          <div id="profile-friends-card" class = "col-3">
          <li> 
-          {{this.firstName}}
-          {{this.lastName}}
+
+<a href={{this.user.username}}/>
+    {{this.user.firstName}} {{this.user.lastName}}
+    <img id="profile-pic" src="data:{{this.picture.contentType}};base64, {{this.picture.img.data}}" style="height:auto;width:50px;" /></a>
           </li>
          </div>
       {{/each}}
@@ -64,8 +66,11 @@
     <ul>
       {{#each friends}}
         <li>
-          {{this.firstName}}
-          {{this.lastName}}
+<li> 
+
+<a href={{this.user.username}}/>
+    {{this.user.firstName}} {{this.user.lastName}}
+    <img id="profile-pic" src="data:{{this.picture.contentType}};base64, {{this.picture.img.data}}" style="height:auto;width:50px;" /></a>
         </li>
       {{/each}}
     </ul>
