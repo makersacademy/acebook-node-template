@@ -5,15 +5,37 @@ var Post = require("../../models/post");
 
 describe("Post model", () => {
   beforeEach((done) => {
+    // this clears the posts collection from the database before each test
     mongoose.connection.collections.posts.drop(() => {
       done();
     });
   });
 
-  it("has a message", () => {
+  it("post has a message", () => {
     var post = new Post({ message: "some message" });
     expect(post.message).toEqual("some message");
   });
+
+
+  it("has a message with multiple lines", () => {
+    var post = new Post({ message: 'This is the first line.\r\n' + 'This is the second line.\r\n' });
+    expect(post.message).toEqual('This is the first line.\r\n' + 'This is the second line.\r\n');
+  });
+
+  it("post has a date", () => {
+    var post = new Post({ date: Date().slice(0, -31)});
+    expect(post.date).toEqual( Date().slice(0, -31) );
+  });
+
+  it("has a likes count of 0 when the post is created", () => {
+    var post = new Post({ message: "some message" });
+    expect(post.likes.count).toEqual(0);
+  });
+
+  it('has an empty array of likers when the post is created', () => {
+    var post = new Post({ message: "a new message without like"});
+    expect(post.likes.emails.toObject()).toEqual([]);
+  })
 
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
@@ -37,4 +59,78 @@ describe("Post model", () => {
       });
     });
   });
-});
+
+  it('can delete a post', (done) => {
+    var post = new Post({ message: "some message" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.deleteOne({ message: "some message" }, (err, result) => {
+        expect(err).toBeNull();
+       })
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts).toEqual([]);
+        done();
+      })
+    });
+  })
+  it('can write a comment', function(done) {
+    const post = new Post({message: 'some message'});
+
+    post.save(function(err) {
+      expect(err).toBeNull();
+
+      Post.updateOne(
+          {'message': 'some message'},
+          {$set: {'comments': 'amazing'}},
+          function(err) {
+            expect(err).toBeNull();
+
+        Post.find(function(err, posts) {
+          expect(err).toBeNull();
+
+          expect(posts[0].toObject()).toMatchObject({
+            message: 'some message',
+            comments: ['amazing']
+          });
+          done();
+        });
+      });
+    });
+  });
+  it('has a user', (done) => {
+    var post = new Post({ message: "some message", user: "someone@example.com" });
+    
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "some message", user: "someone@example.com" });
+
+        
+        done();
+      })
+    })
+  })
+
+  it('can have a recipient', (done) => {
+    var post = new Post({ message: "some message", user: "someone@example.com", recipient: "newperson@email.com" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "some message", user: "someone@example.com", recipient: "newperson@email.com"});
+
+        done();
+      })
+    })
+  })
+})
