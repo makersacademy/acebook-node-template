@@ -1,3 +1,4 @@
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -8,8 +9,13 @@ const methodOverride = require("method-override");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
+const profileRouter = require("./routes/profile");
+const commentsRouter = require("./routes/comments");
+const likesPostRouter = require("./routes/likes-post");
+const likesCommentRouter = require("./routes/likes-comment");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const UsersController = require("./controllers/users");
 
 const app = express();
 
@@ -54,10 +60,15 @@ const sessionChecker = (req, res, next) => {
 };
 
 // route setup
+app.use("/users", usersRouter);
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
+app.use("/profile", profileRouter);
+app.use("/comments", commentsRouter);
+app.use("/likes-post", likesPostRouter);
+app.use("/likes-comment", likesCommentRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -74,5 +85,8 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
+
 
 module.exports = app;

@@ -1,7 +1,12 @@
+
 const mongoose = require("mongoose");
+
+
 
 require("../mongodb_helper");
 const User = require("../../models/user");
+const UsersController = require("../../controllers/users");
+const { redirect } = require("express/lib/response");
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -47,11 +52,35 @@ describe("User model", () => {
         expect(err).toBeNull();
 
         expect(users[0]).toMatchObject({
-          email: "someone@example.com",
-          password: "password",
+          "email": "someone@example.com",
+          "password": "password",
         });
         done();
       });
     });
   });
+  xit('Registering users work as expected', async () => {
+      const user = {
+      body: {
+      email: 'a@test.com',
+      password: 'password',
+      },
+      }; 
+     const res = {
+        status: () => { 
+    
+        },  
+      }
+         
+      const result = await UsersController.Create(user, res)
+        expect(result).toMatchObject({
+        user: {
+            "password": expect.anything(),
+            "email": 'a@test.com'
+        }
+        
+      });
+      done()
+    })
 });
+
