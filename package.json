@@ -24,9 +24,9 @@
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
     "mongodb": "^3.4.1",
-    "mongoose": "^5.8.11",
-    "morgan": "~1.9.1",
-    "nodemon": "^2.0.15"
+    "mongoose": "^6.0.0",
+    "mongoose-unique-validator": "^3.1.0",
+    "morgan": "~1.9.1"
   },
   "devDependencies": {
     "cypress": "^9.5.1",
@@ -34,7 +34,8 @@
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.19"
   },
   "nodemonConfig": {
     "ext": "js,hbs"

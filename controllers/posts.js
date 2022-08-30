@@ -6,15 +6,19 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
+      posts.reverse()
       res.render("posts/index", { posts: posts });
+  
     });
   },
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+
+    post.each
     post.save((err) => {
       if (err) {
         throw err;

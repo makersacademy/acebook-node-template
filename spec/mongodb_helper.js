@@ -18,3 +18,6 @@ afterAll(function (done) {
     done();
   });
 });
+
+
+// deleteMany() to clear out data in between tests, rather than dropDatabase(). This ensures that you delete all documents, without clearing out database-level configuration, like indexes and collations. deleteMany() is also much faster than dropDatabase().

@@ -1,5 +1,8 @@
+ <form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out">
+    </form>
 <form id="new-post-form" action="/posts" method="post">
   <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
+  <input id="message" type="text" name="message" value="" required>
   <input type="submit" value="Submit">
 </form>
