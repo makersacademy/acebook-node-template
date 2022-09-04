@@ -1,8 +1,81 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+<div class="whole page">
 
-<a class="new-post-link" href="/posts/new">New post</a>
+  <h1 class="timeline-title">My Timeline</h1>
+  {{#if posts}}
+    
+  <ul class="posts">
+    {{#each posts}}
+      <div class="single-post">
+
+        <li class="post-content">
+
+          <h5>          <a
+              href="users/profile/{{this.post.username}}"
+               <div>
+    <img id="profile-pic" src="data:{{this.post.picture.contentType}};base64, {{this.picture.img.data}}" style="height:auto;width:50px;" />
+  <div></a></h5>
+          {{this.post.content}}
+        </li>
+        <p class="post-date">{{this.date}}</p>
+
+        <div class="like-container">
+          <button
+            id="like-{{this.post.id}}"
+            class="add-like"
+            type="submit"
+            value={{this.post.id}}
+          >{{this.post.like.length}} 👍</button>
+        </div>
+        <div class="comment-container">
+          <li>
+            <input
+              type="text"
+              name="commment"
+              id={{this.post.id}}
+              placeholder="add comment here!"
+            />
+            <button
+              id={{this.post.id}}
+              class="submit-comment"
+              type="submit"
+              value={{this.post.id}}
+            >💬</button>
+          </li>
+        </div>
+        <div>
+          <button onclick="showComments('comments{{this.post.id}}')">Show/Hide
+            comments</button>
+        </div>
+
+        <script>
+          function showComments(id) { const x = document.getElementById(id); if
+          (x.style.display === "none") { x.style.display = "block"; } else {
+          x.style.display = "none"; } }
+        </script>
+
+        <div
+          class="allComments"
+          style="display: none;"
+          id="comments{{this.post.id}}"
+        >
+          {{#each this.post.comment}}
+            <h6>{{this.username}} commented: </h6>
+            <p>{{this.content}}</p>
+            <p class="post-date">{{this.date}}</p>
+            <hr />
+          {{/each}}
+        </div>
+      </div>
+
+    {{/each}}
+  </ul>
+  {{else}}
+  <br>
+  <br>
+  <br>
+  <br>
+  <h2>Only your friends posts are displayed here. To search for some people you may know click the 'Friends' button at the top of this page and send them a request. </h2>
+  <br>
+  <h2>If you already have some friends and they have accepted your request, tell them to make a post! </h2>
+  {{/if}}
+</div>

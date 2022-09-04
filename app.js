@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+// sets the session
 const session = require("express-session");
 const methodOverride = require("method-override");
 
@@ -10,6 +11,9 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const friendsRouter = require("./routes/friends");
+const imageRouter = require("./routes/images");
+// const uri = process.env.MONGODB_URI;
 
 const app = express();
 
@@ -25,10 +29,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
 app.use(
+  // the below is called request body, session view
   session({
-    key: "user_sid",
+    key: "user_sid", // key that will sign cookie
     secret: "super_secret",
-    resave: false,
+    resave: false, // for every request to the server we want to create a new cookie
     saveUninitialized: false,
     cookie: {
       expires: 600000,
@@ -57,7 +62,11 @@ const sessionChecker = (req, res, next) => {
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
+
 app.use("/users", usersRouter);
+app.use("/friends", sessionChecker, friendsRouter);
+
+app.use("/image", sessionChecker, imageRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
