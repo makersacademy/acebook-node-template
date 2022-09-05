@@ -1,5 +1,7 @@
 # Acebook
 
+[Link to Trello board](https://trello.com/b/kypjXwKu/project-acebook)
+
 This is a Node.js template for the Acebook engineering project.
 
 It uses:
