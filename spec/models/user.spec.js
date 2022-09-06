@@ -54,4 +54,14 @@ describe("User model", () => {
       });
     });
   });
+
+  it("has a password", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      friends: ['friend1@gmail.com', 'friend2@gmail.com']
+    });
+    expect(user.friends.length).toEqual(2);
+    expect(user.friends[0]).toEqual('friend1@gmail.com');
+  });
 });
