@@ -1,4 +1,9 @@
 describe("Timeline", () => {
+  it('redirects to home page if user goes to /posts when logged out', () => {
+    cy.visit("/posts");
+    cy.url().should("match", /.+\/$/)
+  });
+
   it("can submit posts, when signed in, and view them", () => {
     // sign up
     cy.visit("/users/new");

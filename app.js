@@ -61,7 +61,7 @@ const redirHome = (req, res, next) => {
 // redirect '/posts' to 'sessions/new' if not logged in
 const redirPosts = (req, res, next) => {
   if (!loggedIn(req)) {
-    res.redirect("/sessions/new");
+    res.redirect("/");
   } else {
     next();
   }
