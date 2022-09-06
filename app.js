@@ -53,11 +53,21 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+// redirect '/' to '/posts' for logged-in users
+const homeToPost = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.redirect("/posts");
+  } else {
+    next();
+  }
+};
+
 // route setup
-app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/", homeToPost, homeRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
