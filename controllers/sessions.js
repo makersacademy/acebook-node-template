@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("home/index", {});
   },
 
   Create: (req, res) => {
@@ -12,9 +12,12 @@ const SessionsController = {
 
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        res.redirect("/sessions/new");
+        // res.redirect("/")
+        res.render("home/index", { error: "Incorrect credentials" })
       } else if (user.password != password) {
-        res.redirect("/sessions/new");
+        console.log("Error")
+        // res.redirect("/");
+        res.render("home/index", { error: "Incorrect credentials" })
       } else {
         req.session.user = user;
         res.redirect("/posts");
