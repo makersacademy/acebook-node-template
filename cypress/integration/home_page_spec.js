@@ -1,10 +1,10 @@
 describe("Home page", () => {
-  it("goes to homepage if user is not logged in" , () =>{
+  it("goes to homepage if user is not logged in", () => {
     cy.visit("/");
     cy.get(".title").should("contain", "Acebook");
   })
 
-  it("goes to posts page if user is logged in",  () => {
+  it("goes to posts page if user is logged in", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -19,7 +19,6 @@ describe("Home page", () => {
 
     //visit homepage when signed in
     cy.visit("/");
-    // cy.location('/').should('eq', '/posts')
-    cy.get(".new-post-link").should("contain", "New post");
+    cy.url().should('include', '/posts')
   })
 });
