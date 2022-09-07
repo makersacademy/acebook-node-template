@@ -7,10 +7,10 @@ describe("Timeline", () => {
     cy.get("#submit").click();
 
     // sign in
-    cy.visit("/sessions/new");
+    cy.visit("/");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#login").click();
 
     // submit a post
     cy.visit("/posts");
