@@ -6,8 +6,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts, title: "Acebook" });
     });
   },
   New: (req, res) => {
@@ -15,13 +14,25 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
-    post.save((err) => {
-      if (err) {
-        throw err;
-      }
-
-      res.status(201).redirect("/posts");
-    });
+    if (post.message == "") {
+      Post.find((err, posts) => {
+        if (err) {
+          throw err;
+        }
+        res.render("posts/index", {
+          posts: posts,
+          title: "Acebook",
+          blank: "Please enter a message",
+        });
+      });
+    } else {
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    }
   },
 };
 
