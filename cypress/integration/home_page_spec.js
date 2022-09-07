@@ -2,6 +2,7 @@ describe("Home page", () => {
   it("goes to homepage if user is not logged in", () => {
     cy.visit("/");
     cy.get(".title").should("contain", "Acebook");
+    cy.contains("h1", "Log in");
   })
 
   it("goes to posts page if user is logged in", () => {
