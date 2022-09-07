@@ -10,15 +10,9 @@ describe("Home page", () => {
     cy.contains("h1", "Log in");
   })
 
-  it("goes to posts page if user is logged in", () => {
-    // sign up & then log out
+  it(" '/' redirects to '/posts' if user is logged in", () => {
+    // sign up + log in
     cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-    cy.get("#logout").click();
-
-    // sign in
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
