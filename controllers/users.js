@@ -12,11 +12,11 @@ const UsersController = {
     User.findOne({ email: user.email }).then((found) => {
       if (found) {
         console.log(`User ${found.email} already exists!`);
-        // res.redirect("/");
+        res.redirect("/");
 
         // temp ***
-        req.session.user = found;
-        res.status(201).redirect("/posts");
+        // req.session.user = found;
+        // res.status(201).redirect("/posts");
 
       } else {
         user.save((err) => {
