@@ -1,4 +1,9 @@
 describe("Registration", () => {
+  // beforeEach((done) => {
+  //   cy.task('dropUsers');
+  //   done();
+  // })
+
   it("A user signs up and is redirected to posts", () => {
     // sign up
     cy.visit("/users/new");
@@ -27,21 +32,21 @@ describe("Registration", () => {
     cy.url().should('include', '/posts')
   })
 
-  // it("redirects to '/' if user already exists", () => {
-  //   // sign up
-  //   cy.visit("/users/new");
-  //   cy.get("#email").type("person@example.com");
-  //   cy.get("#password").type("password");
-  //   cy.get("#submit").click();
+  it("redirects to '/' if user already exists", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#email").type("person@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
 
-  //   // log out
-  //   cy.get("#logout").click();
+    // log out
+    cy.get("#logout").click();
 
-  //   // sign up again
-  //   cy.visit("/users/new");
-  //   cy.get("#email").type("person@example.com");
-  //   // cy.get("#password").type("password");
-  //   cy.get("#submit").click();
-  //   cy.url().should("match", /.+\/$/)
-  // })
+    // sign up again
+    cy.visit("/users/new");
+    cy.get("#email").type("person@example.com");
+    // cy.get("#password").type("password");
+    cy.get("#submit").click();
+    cy.url().should("match", /.+\/$/)
+  })
 });
