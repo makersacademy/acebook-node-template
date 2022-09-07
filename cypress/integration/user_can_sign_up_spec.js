@@ -6,6 +6,6 @@ describe("Registration", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    cy.url().should("include", "/sessions/new");
+    cy.url().should("include", "/posts");
   });
 });
