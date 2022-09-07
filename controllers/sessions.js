@@ -1,10 +1,6 @@
 const User = require("../models/user");
 
 const SessionsController = {
-  // New: (req, res) => {
-  //   res.render("sessions/new", {});
-  // },
-
   Create: (req, res) => {
     console.log("trying to log in");
     const email = req.body.email;
