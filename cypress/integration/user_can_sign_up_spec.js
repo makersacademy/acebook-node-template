@@ -20,12 +20,6 @@ describe("Registration", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
     // visit sign up page when signed in
     cy.visit("/users/new");
     cy.url().should('include', '/posts')
