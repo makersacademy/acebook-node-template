@@ -49,14 +49,6 @@ const loggedIn = (req) => {
   return (req.session.user && req.cookies.user_sid)
 }
 
-// redirect '/' to '/posts' if logged in
-const redirHome = (req, res, next) => {
-  if (loggedIn(req) && req.path == '/') {
-    res.redirect("/posts");
-  } else {
-    next();
-  }
-}
 
 // redirect '/posts' to 'sessions/new' if not logged in
 const redirPosts = (req, res, next) => {
@@ -67,10 +59,28 @@ const redirPosts = (req, res, next) => {
   }
 }
 
+// redirect '/users/new' to '/posts' if logged in
+const redirUsers = (req, res, next) => {
+  if (loggedIn(req) && req.path == '/new') {
+    res.redirect("/posts");
+  } else {
+    next();
+  }
+}
+
+// redirect '/' to '/posts' if logged in
+const redirHome = (req, res, next) => {
+  if (loggedIn(req) && req.path == '/') {
+    res.redirect("/posts");
+  } else {
+    next();
+  }
+}
+
 // route setup
 app.use("/posts", redirPosts, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
+app.use("/users", redirUsers, usersRouter);
 app.use("/", redirHome, homeRouter);
 
 // catch 404 and forward to error handler
