@@ -10,12 +10,9 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-<<<<<<< HEAD
 const friendsRouter = require("./routes/friends");
-=======
 const profilesRouter = require("./routes/profiles");
 
->>>>>>> origin/main
 const app = express();
 
 // view engine setup
