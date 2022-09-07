@@ -1,10 +1,8 @@
 describe("Registration", () => {
-  it("A user signs up and is redirected to sign in", () => {
+  it("A user signs up and is redirected to sign up", () => {
     // Go to sign up page
     cy.visit("/");
-    cy.get("#new-user").click();
-    cy.url().should("include", "/users/new");
-    cy.contains("Sign up").click();
+    cy.contains("Sign up here").click();
 
     // sign up
     cy.visit("/users/new");
