@@ -10,7 +10,7 @@ describe("Home page", () => {
     cy.contains("h1", "Log in");
   })
 
-  it.only("goes to posts page if user is logged in", () => {
+  it("goes to posts page if user is logged in", () => {
     // sign up & then log out
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -23,7 +23,7 @@ describe("Home page", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    //visit homepage when signed in
+    // visit homepage when signed in
     cy.visit("/");
     cy.url().should('include', '/posts')
   })
