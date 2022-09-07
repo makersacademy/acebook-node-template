@@ -33,6 +33,7 @@ describe("Deauthentication", () => {
     cy.get("#submit").click();
 
     // log out
+
     cy.get("#logout").click();
     cy.get(".title").should("contain", "Acebook");
     // regex to match path of [any number of any characters] folowed by [/]

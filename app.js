@@ -60,8 +60,8 @@ app.use((req, res, next) => {
 
 // check for logged in users
 const loggedIn = (req) => {
-  return (req.session.user && req.cookies.user_sid)
-}
+  return req.session.user && req.cookies.user_sid;
+};
 
 // redirect '/posts' to '/' if not logged in
 const redirPosts = (req, res, next) => {
@@ -72,23 +72,25 @@ const redirPosts = (req, res, next) => {
   }
 }
 
+
 // redirect '/users/new' to '/posts' if logged in
 const redirUsers = (req, res, next) => {
-  if (loggedIn(req) && req.path == '/new') {
+  if (loggedIn(req) && req.path == "/new") {
     res.redirect("/posts");
   } else {
     next();
   }
-}
+};
 
 // redirect '/' to '/posts' if logged in
 const redirHome = (req, res, next) => {
-  if (loggedIn(req) && req.path == '/') {
+  if (loggedIn(req) && req.path == "/") {
     res.redirect("/posts");
   } else {
     next();
   }
-}
+};
+
 
 // route setup
 // app.use("/posts", signUpChecker, postsRouter)
@@ -115,3 +117,4 @@ app.use((err, req, res) => {
 });
 
 module.exports = app;
+
