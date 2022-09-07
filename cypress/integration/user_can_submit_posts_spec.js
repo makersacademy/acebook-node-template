@@ -26,20 +26,18 @@ describe("Timeline", () => {
     cy.get(".posts").should("contain", "Hello, world!");
   });
 
-  // it("Unable to submit a blank post", () => {
-  //   // sign up
-  //   cy.visit("/users/new");
-  //   cy.get("#email").type("someone@example.com");
-  //   cy.get("#password").type("password");
-  //   cy.get("#submit").click();
+  it("Unable to submit a blank post", () => {
+    // sign up + log in
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
 
-  //   // submit a post
-  //   cy.url().should("include", "/posts");
+    // submit a blank post
+    cy.get("#submit").click();
 
-  //   cy.get("#new-post-form").find('[type="text"]');
-  //   cy.get("#new-post-form").submit();
-
-  //   // cy.get("li").should("be.null");
-  //   // cy.get("li").should("have.length", 0);
-  // });
+    cy.contains("div", "Please enter a message")
+    // cy.get("li").should("be.null");
+    // cy.get("li").should("have.length", 0);
+  });
 });
