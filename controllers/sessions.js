@@ -12,12 +12,12 @@ const SessionsController = {
 
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        // res.redirect("/")
         res.render("home/index", { error: "Incorrect credentials" })
+        // res.redirect("/")
       } else if (user.password != password) {
         console.log("Error")
-        // res.redirect("/");
         res.render("home/index", { error: "Incorrect credentials" })
+        // res.redirect("/");
       } else {
         req.session.user = user;
         res.redirect("/posts");

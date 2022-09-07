@@ -7,7 +7,7 @@ describe("Deauthentication", () => {
     cy.get("#submit").click();
 
     // sign in
-    cy.visit("/sessions/new");
+    cy.visit("/");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
@@ -20,5 +20,6 @@ describe("Deauthentication", () => {
     cy.get("#logout").click();
 
     cy.get(".title").should("contain", "Acebook");
+    cy.url().should("include", "/");
   });
 });
