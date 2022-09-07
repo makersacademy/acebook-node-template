@@ -1,19 +1,24 @@
 describe("Home page", () => {
+  beforeEach(() => {
+    cy.task('dropUsers');
+    cy.task('dropPosts');
+  })
+
   it("goes to homepage if user is not logged in", () => {
     cy.visit("/");
     cy.get(".title").should("contain", "Acebook");
     cy.contains("h1", "Log in");
   })
 
-  it("goes to posts page if user is logged in", () => {
-    // sign up
+  it.only("goes to posts page if user is logged in", () => {
+    // sign up & then log out
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
+    cy.get("#logout").click();
 
     // sign in
-    cy.visit("/");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
