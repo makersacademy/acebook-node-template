@@ -28,10 +28,10 @@ describe("Profile page", () => {
     // });
 
     // sign in
-    cy.visit("/sessions/new");
+    cy.visit("/");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#login").click();
 
     cy.visit("/profiles/someone");
     cy.get("#profile-header").should("contain", "someone's profile");
