@@ -22,19 +22,20 @@ mongoose.connect("mongodb://0.0.0.0/acebook_test", {
 
 module.exports = async (on) => {
   const db = await mongoose.connection;
-  const posts = db.collection("posts");
+  // const posts = db.collection("posts");
   const users = db.collection("users");
+  // on("task", {
+  //   async dropPosts() {
+  //     await posts.drop();
+  //     return null;
+  //   },
+  // }),
+
   on("task", {
-    async dropPosts() {
-      await posts.drop();
+    async dropUsers() {
+      await users.drop();
       return null;
     },
-  }),
-    on("task", {
-      async dropUsers() {
-        await users.drop();
-        return null;
-      },
-    });
+  });
 };
 
