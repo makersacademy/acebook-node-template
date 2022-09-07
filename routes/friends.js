@@ -3,9 +3,6 @@ const router = express.Router();
 
 const FriendsController = require("../controllers/friends");
 
-router.post(
-  "/requests/:friendUsername/:currentUsername",
-  FriendsController.Create
-);
+router.put("/requests/new/:friendUsername", FriendsController.Create);
 
 module.exports = router;

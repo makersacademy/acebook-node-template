@@ -1,16 +1,28 @@
-const Friend = require("../models/friend");
+// const Friend = require("../models/friend");
+const User = require("../models/user");
 
 const FriendsController = {
   Create: (req, res) => {
     const friendUsername = req.params.friendUsername;
-    const currentUsername = req.params.currentUsername;
+    const currentUser = req.session.user;
+    const newFriendList = currentUser.friends.concat(friendUsername);
+    console.log(newFriendList);
 
-    user.save((err) => {
-      if (err) {
-        throw err;
+    // update currentUser's friend list
+    User.updateOne(
+      { username: currentUser.username },
+      { friends: newFriendList },
+      (err) => {
+        // do something if there's an error?
+        if (err) {
+          console.log(err);
+        } else {
+          req.session.user.friends = newFriendList;
+          // res.redirect("/profiles/" + friendUsername);
+          res.send("hello");
+        }
       }
-      res.status(201).redirect("/posts");
-    });
+    );
   },
 };
 

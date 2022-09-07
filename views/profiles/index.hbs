@@ -1,8 +1,15 @@
 <h1 id="profile-header">{{profileUsername}}'s profile</h1>
 <form
   id="friend-request"
-  action="/friend/request/new/{{profileUsername}}/{{currentUsername}}"
-  method="POST"
+  action="/friends/requests/new/{{profileUsername}}"
+  method="PUT"
 >
-  <input type="submit" value="Add Friend" />
+  <input id="add-friend-button" type="submit" value="Add Friend" />
+
 </form>
+<ul class="friends">
+  Friends:
+  {{#each friends}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
