@@ -115,4 +115,24 @@ describe("User model", () => {
     });
     expect(user.last_name).toEqual("one");
   });
+
+  it("Should add a user to the friends list.", () => {
+    const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
+      email: "someone@example.com",
+      password: "password",
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+    });
+
+    user.save((err) => {
+      expect(err).toBeNull();
+      User.find((err, users) => {
+        expect(err).toBeNull();
+        const newFriendList = users[0].push("friend3");
+        User.updateOne({ username: "someone" }, {friends = newFriendList})
+      });
+    });
+  });
 });
