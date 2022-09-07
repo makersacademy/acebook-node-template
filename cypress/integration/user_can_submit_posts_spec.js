@@ -19,11 +19,10 @@ describe("Timeline", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.contains("Whats on your mind?")
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
-    cy.get("#new-post-form").submit();
-
+    cy.get("#message").type("Hello, world!");
+    cy.get("#submit").click();
     cy.get(".posts").should("contain", "Hello, world!");
   });
 
