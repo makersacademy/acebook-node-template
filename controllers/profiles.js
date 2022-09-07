@@ -1,10 +1,15 @@
-const User = require("../models/user");
+// const User = require("../models/user");
 
-const ProfilePageController = {
+const ProfilePage = {
   Index: (req, res) => {
-    res.render("profile/index", {});
+    let currentUsername = null;
+    if (req.session.user) currentUsername = req.session.user.username;
+    res.render("profiles/index", {
+      profileUsername: req.params.username,
+      currentUsername: currentUsername,
+    });
   },
-  
+
   // code to be added to friends controller
   //  AddFriend: (req, res) => {
   //   const user = req.session.user;
@@ -14,8 +19,6 @@ const ProfilePageController = {
   //     user.save()
   //   })
   //   res.redirect()
-
-  },
 };
 
-module.exports = ProfilePageController;
+module.exports = ProfilePage;
