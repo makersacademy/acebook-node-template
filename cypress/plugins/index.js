@@ -26,9 +26,15 @@ mongoose.connect("mongodb://0.0.0.0/acebook_test", {
 module.exports = async (on) => {
   const db = await mongoose.connection;
   const users = db.collection("users");
+
   on("task", {
     async dropUsers() {
-      await users.drop();
+      const numUsers = await users.countDocuments()
+      if (numUsers > 0) {
+        await users.drop();
+      } else {
+        console.log('No User collections to drop!')
+      }
       return null;
     }
   });
