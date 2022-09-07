@@ -13,11 +13,6 @@ const UsersController = {
       if (found) {
         console.log(`User ${found.email} already exists!`);
         res.redirect("/");
-
-        // temp ***
-        // req.session.user = found;
-        // res.status(201).redirect("/posts");
-
       } else {
         user.save((err) => {
           if (err) {

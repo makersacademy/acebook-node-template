@@ -45,8 +45,8 @@ describe("Registration", () => {
     // sign up again
     cy.visit("/users/new");
     cy.get("#email").type("person@example.com");
-    // cy.get("#password").type("password");
     cy.get("#submit").click();
+    // regex to match path of [any number of any characters] folowed by [/]
     cy.url().should("match", /.+\/$/)
   })
 });
