@@ -44,27 +44,67 @@ app.use((req, res, next) => {
   next();
 });
 
-
-const signUpChecker = (req, res, next) => {
-  next()
-}
+// const signUpChecker = (req, res, next) => {
+//   next()
+// }
 
 // middleware function to check for logged-in users
-const sessionChecker = (req, res, next) => {
-  if (!req.session.user && !req.cookies.user_sid) {
+// const sessionChecker = (req, res, next) => {
+//   if (!req.session.user && !req.cookies.user_sid) {
+//     res.redirect("/");
+//   } else {
+//     next();
+//   }
+// }
+
+// check for logged in users
+const loggedIn = (req) => {
+  return req.session.user && req.cookies.user_sid;
+};
+
+// redirect '/posts' to '/' if not logged in
+const redirPosts = (req, res, next) => {
+  if (!loggedIn(req)) {
     res.redirect("/");
   } else {
     next();
   }
 };
 
+// redirect '/users/new' to '/posts' if logged in
+const redirUsers = (req, res, next) => {
+  if (loggedIn(req) && req.path == "/new") {
+    res.redirect("/posts");
+  } else {
+    next();
+  }
+};
+
+// redirect '/' to '/posts' if logged in
+const redirHome = (req, res, next) => {
+  if (loggedIn(req) && req.path == "/") {
+    res.redirect("/posts");
+  } else {
+    next();
+  }
+};
+
+// redirect '/' to '/posts' for logged-in users
+const homeToPost = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.redirect("/posts");
+  } else {
+    next();
+  }
+};
 
 // route setup
-app.use("/", homeRouter);
-app.use("/posts", signUpChecker, postsRouter)
-app.use("/posts", sessionChecker, postsRouter);
+// app.use("/posts", signUpChecker, postsRouter)
+// app.use("/posts", sessionChecker, postsRouter);
+app.use("/posts", redirPosts, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
+app.use("/users", redirUsers, usersRouter);
+app.use("/", redirHome, homeRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -83,3 +123,4 @@ app.use((err, req, res) => {
 });
 
 module.exports = app;
+
