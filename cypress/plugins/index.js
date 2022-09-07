@@ -11,11 +11,13 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+
+
 var mongoose = require("mongoose");
 
 mongoose.connect("mongodb://0.0.0.0/acebook_test", {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 });
 
 module.exports = async (on) => {
@@ -35,3 +37,4 @@ module.exports = async (on) => {
       },
     });
 };
+

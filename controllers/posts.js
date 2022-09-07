@@ -6,9 +6,11 @@ const PostsController = {
       if (err) {
         throw err;
       }
+
       res.render("posts/index", { posts: posts, title: "Acebook" });
     });
   },
+  
   New: (req, res) => {
     res.render("posts/new", {});
   },
