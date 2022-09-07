@@ -14,12 +14,6 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
-
-  Profile: (req, res) => {
-    // code goes here!
-    console.log("this has worked");
-    res.send(req.params.userId);
-  },
 };
 
 module.exports = UsersController;
