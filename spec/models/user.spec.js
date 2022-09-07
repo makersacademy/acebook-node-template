@@ -12,16 +12,24 @@ describe("User model", () => {
 
   it("has an email address", () => {
     const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
       email: "someone@example.com",
       password: "password",
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
     });
     expect(user.email).toEqual("someone@example.com");
   });
 
   it("has a password", () => {
     const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
       email: "someone@example.com",
       password: "password",
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
     });
     expect(user.password).toEqual("password");
   });
@@ -36,8 +44,12 @@ describe("User model", () => {
 
   it("can save a user", (done) => {
     const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
       email: "someone@example.com",
       password: "password",
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
     });
 
     user.save((err) => {
@@ -55,13 +67,52 @@ describe("User model", () => {
     });
   });
 
-  it("has a password", () => {
+  it("has a friends list", () => {
     const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ['friend1@gmail.com', 'friend2@gmail.com']
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
     });
     expect(user.friends.length).toEqual(2);
-    expect(user.friends[0]).toEqual('friend1@gmail.com');
+    expect(user.friends[0]).toEqual("friend1@gmail.com");
+  });
+
+  it("has a username", () => {
+    const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
+      email: "someone@example.com",
+      password: "password",
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+    });
+    expect(user.username).toEqual("someone");
+  });
+
+  it("has a first name", () => {
+    const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
+      email: "someone@example.com",
+      password: "password",
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+    });
+    expect(user.first_name).toEqual("some");
+  });
+
+  it("has a last name", () => {
+    const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
+      email: "someone@example.com",
+      password: "password",
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+    });
+    expect(user.last_name).toEqual("one");
   });
 });
