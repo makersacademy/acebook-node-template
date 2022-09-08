@@ -1,6 +1,7 @@
 describe("Registration", () => {
   beforeEach(() => {
     cy.task('dropUsers');
+    cy.task('dropPosts');
   })
 
   it("A user signs up and is redirected to posts", () => {
@@ -9,7 +10,6 @@ describe("Registration", () => {
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-
     cy.url().should("include", "/posts");
   });
 

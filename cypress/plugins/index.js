@@ -24,18 +24,25 @@ module.exports = async (on) => {
   const db = await mongoose.connection;
   // const posts = db.collection("posts");
   const users = db.collection("users");
-  // on("task", {
-  //   async dropPosts() {
-  //     await posts.drop();
-  //     return null;
-  //   },
-  // }),
+  const posts = db.collection("posts");
 
   on("task", {
     async dropUsers() {
-      await users.drop();
+      const numUsers = await users.countDocuments();
+      if (numUsers > 0) {
+        await users.drop();
+      } else {
+        console.log('No User collections to drop!');
+      }
+      return null;
+    }, async dropPosts() {
+      const numPosts = await posts.countDocuments();
+      if (numPosts > 0) {
+        await posts.drop();
+      } else {
+        console.log('No Post collections to drop!')
+      }
       return null;
     },
   });
-};
-
+}
