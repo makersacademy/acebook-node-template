@@ -12,3 +12,30 @@
 
 <p>{{error}}</p>
 <a href="/users/new">Signup</a>
+
+
+<div class="homepage-outermost">
+  <div class="homepage-outer">
+    <div class="homepage-container-left">
+      <img src ="images/facebook_logo.svg" alt="">
+      <p>Acebook helps you connect and share <br>with the people in your life.</p>
+    </div>
+
+    <div class ="container">
+      <form action='/sessions' method='POST'>
+        <input type="email" name="email" id="user_email" placeholder=" Email address">
+        <input type="password" name="password" id="user_password" placeholder=" Password">
+        <input type="submit" id="login_submit_btn"  value="Log In">
+
+        {{!-- <a href="#" id="forgot_pass"> Forgotten password?</a> --}}
+        <div class="forgotten"></div>
+        </form>
+        <form action="/users/new" method="get">
+        <button id="register_acc">Create New Account</button>
+      </form>
+      <br>
+      {{!-- <p><b>Create a Page</b> for a celebrity, brand.</b></p> --}}
+    </div>
+
+  </div>
+</div>
