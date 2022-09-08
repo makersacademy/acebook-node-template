@@ -1,5 +1,11 @@
 describe("Authentication", () => {
   it("A user signs in and is redirected to /posts", () => {
+    // delete all table entries
+    cy.request("DELETE", "http://localhost:3030/admin/reset", {
+      user: "admin",
+      password: "password",
+    });
+
     // sign up
     cy.visit("/users/new");
     cy.get("#first-name").type("some");

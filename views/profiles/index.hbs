@@ -1,8 +1,15 @@
 <h1 id="profile-header">{{profileUsername}}'s profile</h1>
-<form
-  id="friend-request"
-  action="/friend/request/new/{{profileUsername}}/{{currentUsername}}"
-  method="POST"
->
-  <input type="submit" value="Add Friend" />
-</form>
+
+<button id="add-friend-button">Add friend</button>
+
+<script type="text/javascript">
+  document.querySelector("#add-friend-button").addEventListener('click', () => {
+  fetch("{{fetchUrl}}", {method: 'PUT'}) })
+</script>
+
+<ul class="friends-list">
+  Friends:
+  {{#each friends}}
+    <li class="friend-username">{{this}}</li>
+  {{/each}}
+</ul>
