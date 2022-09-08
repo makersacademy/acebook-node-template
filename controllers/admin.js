@@ -3,6 +3,20 @@
 const mongoose = require("mongoose");
 
 const AdminController = {
+  Index: (req, res) => {
+    let postsCount, usersCount;
+    mongoose.connection.collections.posts.count().then((result) => {
+      postsCount = result;
+      mongoose.connection.collections.users.count().then((result) => {
+        usersCount = result;
+        res.render("admin/index", {
+          postsCount: postsCount,
+          usersCount: usersCount,
+        });
+      });
+    });
+  },
+
   Destroy: (req, res) => {
     console.log(req.body);
     if (req.body.user === "admin" && req.body.password === "password") {
