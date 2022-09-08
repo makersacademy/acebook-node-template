@@ -1,11 +1,18 @@
 <form id="new-user-form" action="/users" method="post">
-  <h1>Sign up</h1> 
+  <h1>Sign up</h1>
   <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
+  <input id="email" type="email" name="email" value="" placeholder="email required">
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <label for="firstName">First name: </label>
-  <input id="firstName" type="firstName" name="firstName" value="">
+  <input id="password" type="password" name="password" value="" placeholder="password required">
+  <label for="firstName" >First name: </label>
+  <input id="firstName" type="firstName" name="firstName" value="" placeholder="first name required">
+<br>
+  <label for="surname">surname: </label>
+  <input id="surname" type="surname" name="surname" value="">
+  <label for="profilePic">Drag your profile pic url here: </label>
+  <input id="profilePic" type="profilePic" name="profilePic" value="">
   <input id="submit" type="submit" value="Submit">
 </form>
+<div id="error">{{error}}</div>
+<br>
 <a href="/">Sign in</a>

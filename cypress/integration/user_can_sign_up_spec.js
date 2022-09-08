@@ -27,6 +27,30 @@ describe("Registration", () => {
     cy.url().should("include", "/posts");
   });
 
+  it("is unable to signup without a email", () => {
+    cy.visit("/users/new");
+    cy.get("#password").type("password");
+    cy.get("#firstName").type("someone");
+    cy.get("#submit").click();
+    cy.get("#error").should("contain", "Please enter the required details");
+  });
+
+  it("is unable to signup without a firstname", () => {
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    cy.get("#error").should("contain", "Please enter the required details");
+  });
+
+  it("is unable to signup without a password", () => {
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#firstName").type("someone");
+    cy.get("#submit").click();
+    cy.get("#error").should("contain", "Please enter the required details");
+  });
+
   it("redirects to '/' if user already exists", () => {
     // sign up
     cy.visit("/users/new");
@@ -41,7 +65,10 @@ describe("Registration", () => {
     // sign up again
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#firstName").type("someone");
     cy.get("#submit").click();
+
     // regex to match path of [any number of any characters] folowed by [/]
     cy.url().should("match", /.+\/$/);
   });

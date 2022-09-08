@@ -6,25 +6,33 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
+    // check if the required details are submitted
+    if (
+      req.body.firstName == "" ||
+      req.body.password == "" ||
+      req.body.email == ""
+    ) {
+      res.render("users/new", { error: "Please enter the required details" });
+    } else {
+      const user = new User(req.body);
 
-    // check if user exists before creating
-    User.findOne({ email: user.email }).then((found) => {
-      if (found) {
-        console.log(`User ${found.email} already exists!`);
-        res.redirect("/");
-      } else {
-        user.save((err) => {
-          if (err) {
-            throw err;
-          }
-
-          // log in automatically after signup
-          req.session.user = user;
-          res.status(201).redirect("/posts");
-        });
-      }
-    });
+      // check if user exists before creating
+      User.findOne({ email: user.email }).then((found) => {
+        if (found) {
+          console.log(`User ${found.email} already exists!`);
+          res.redirect("/");
+        } else {
+          user.save((err) => {
+            if (err) {
+              throw err;
+            }
+            // log in automatically after signup
+            req.session.user = user;
+            res.status(201).redirect("/posts");
+          });
+        }
+      });
+    }
   },
 };
 module.exports = UsersController;
