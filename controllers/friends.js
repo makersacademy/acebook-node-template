@@ -16,6 +16,7 @@ const FriendsController = {
           console.log(err);
         } else {
           req.session.user.friends = newFriendList;
+          console.log("/profiles/" + friendUsername)
           res.redirect("/profiles/" + friendUsername);
         }
       }
