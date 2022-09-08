@@ -10,6 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const profileRouter = require("./routes/profile");
 
 const app = express();
 
@@ -44,7 +45,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // const signUpChecker = (req, res, next) => {
 //   next()
 // }
@@ -70,8 +70,7 @@ const redirPosts = (req, res, next) => {
   } else {
     next();
   }
-}
-
+};
 
 // redirect '/users/new' to '/posts' if logged in
 const redirUsers = (req, res, next) => {
@@ -91,7 +90,6 @@ const redirHome = (req, res, next) => {
   }
 };
 
-
 // route setup
 // app.use("/posts", signUpChecker, postsRouter)
 // app.use("/posts", sessionChecker, postsRouter);
@@ -99,6 +97,7 @@ app.use("/posts", redirPosts, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", redirUsers, usersRouter);
 app.use("/", redirHome, homeRouter);
+app.use("/profile", profileRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -117,4 +116,3 @@ app.use((err, req, res) => {
 });
 
 module.exports = app;
-
