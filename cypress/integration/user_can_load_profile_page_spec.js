@@ -1,5 +1,11 @@
 describe("Profile page", () => {
   it("A user can load a profile page", () => {
+    // delete all table entries
+    cy.request("DELETE", "http://localhost:3030/admin/reset", {
+      user: "admin",
+      password: "password",
+    });
+
     // sign up
     cy.visit("/users/new");
     cy.get("#first-name").type("some");

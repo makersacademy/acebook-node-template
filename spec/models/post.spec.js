@@ -7,7 +7,9 @@ const User = require("../../models/user");
 describe("Post model", () => {
   beforeEach((done) => {
     mongoose.connection.collections.posts.drop(() => {
-      done();
+      mongoose.connection.collections.users.drop(() => {
+        done();
+      });
     });
   });
 
