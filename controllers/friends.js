@@ -2,6 +2,7 @@ const User = require("../models/user");
 
 const FriendsController = {
   Create: (req, res) => {
+    console.log("put request made");
     const friendUsername = req.params.friendUsername;
     const currentUser = req.session.user;
     const newFriendList = currentUser.friends.concat(friendUsername);
@@ -16,7 +17,9 @@ const FriendsController = {
           console.log(err);
         } else {
           req.session.user.friends = newFriendList;
-          res.redirect("/profiles/" + friendUsername);
+          console.log("user added to friends list");
+          console.log(req.session.user);
+          res.redirect(303, "/profiles/" + friendUsername);
         }
       }
     );
