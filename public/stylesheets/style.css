@@ -1,8 +1,49 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0 0 50px 0;
 }
 
 a {
-  color: #00B7FF;
+  color: #007dfa;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007dfa;
+  height: 8rem;
+  padding: 0 2rem;
+}
+
+.navbar-button-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 2rem;
+  align-items: center;
+}
+
+.logout-button {
+  border: none;
+  margin-left: 5rem;
+}
+
+.logout-button-input {
+  border: none;
+  background-color: #007dfa;
+  color: white;
+}
+
+.profile-button-input {
+  border: none;
+  background-color: #007dfa;
+  color: white;
+}
+
+.title {
+  font-size: 4rem;
+  color: white;
+}
+.margin-remover {
+  margin: 0;
 }
