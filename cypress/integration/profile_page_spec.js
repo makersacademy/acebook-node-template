@@ -1,11 +1,11 @@
-describe("Authentication", () => {
+describe("Profile page", () => {
   beforeEach(() => {
     cy.task("dropUsers");
     cy.task("dropPosts");
   });
 
-  it("A user cannot sign in due to incorrect credentials", () => {
-    // sign up & log out
+  it("goes to profile page if user is logged in", () => {
+    // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
@@ -16,10 +16,13 @@ describe("Authentication", () => {
     // sign in
     cy.visit("/");
     cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("123");
+    cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    cy.url().should("include", "/");
-    cy.contains("p", "Incorrect credentials");
+    //profile
+    cy.visit("/profile");
+
+    cy.get(".title").should("contain", "Acebook");
+    cy.get("p").should("contain", "someone");
   });
 });
