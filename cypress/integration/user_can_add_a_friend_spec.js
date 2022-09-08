@@ -1,11 +1,11 @@
-describe("Profile page", () => {
+describe("Friends", () => {
   it("A user can add a friend", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#username").type("billy");
     cy.get("#email").type("billy@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#signup").click();
     cy.get("#logout-button").click();
 
     // sign up
@@ -13,7 +13,7 @@ describe("Profile page", () => {
     cy.get("#username").type("simon");
     cy.get("#email").type("simon@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#signup").click();
 
     // sign in
     cy.visit("/");
@@ -21,8 +21,12 @@ describe("Profile page", () => {
     cy.get("#password").type("password");
     cy.get("#login").click();
 
-    cy.visit("/profiles/simon");
-    cy.get("#add-friend-button").click();
-    // cy.visit("/profiles/billy");
+    // making PUT request to add friend
+    cy.request("PUT", "/friends/requests/new/simon");
+
+    // visiting profile to check friend is added
+    cy.visit("/profiles/billy");
+    cy.get("#profile-header").contains("billy's profile");
+    cy.get(".friend-username").contains("simon");
   });
 });

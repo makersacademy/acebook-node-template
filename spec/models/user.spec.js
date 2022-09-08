@@ -145,29 +145,4 @@ describe("User model", () => {
       });
     });
   });
-  // test TBC below to add user to Friends List without masses of code
-  // it("Should add a user to the friends list list with a method.", (done) => {
-  //   const user = new User({
-  //     username: "someoneelse",
-  //     first_name: "some",
-  //     last_name: "one",
-  //     email: "someone@example.com",
-  //     password: "password",
-  //     friends: ["friend1@gmail.com", "friend2@gmail.com"],
-  //   });
-  //   user.save((err) => {
-  //     expect(err).toBeNull();
-  //     User.find((err, user) => {
-  //       console.log(user[0].friends);
-  //       user[0].addUserToFriendsList(function(err, "friend3", (result) => {
-  //         console.log(result);
-  //         User.find((err, user) => {
-  //           console.log(user);
-  //           done();
-  //         });
-  //       });
-  //       done();
-  //     });
-  //   });
-  // });
 });
