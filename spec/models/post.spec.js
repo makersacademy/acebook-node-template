@@ -1,7 +1,9 @@
 var mongoose = require("mongoose");
 
 require("../mongodb_helper");
-var Post = require("../../models/post");
+var myModule = require("../../models/post");
+var Post = myModule.Post;
+var Comment = myModule.Comment;
 var User = require("../../models/user");
 
 describe("Post model", () => {
@@ -44,6 +46,7 @@ describe("Post model", () => {
     var user = new User({
       email: "joebloggs@aol.com",
       password: "password",
+      firstname: "joe",
     });
 
     // make a new post with message and user
@@ -85,5 +88,25 @@ describe("Post model", () => {
         "Post validation failed: likes: Path `likes` (-1) is less than minimum allowed value (0).";
       expect(err.message).toEqual(errorMsg);
     });
+  });
+
+  it("should add a comment on a post", async () => {
+    // var user = new User({
+    //   email: "joebloggs@aol.com",
+    //   password: "password",
+    //   firstname: "joe",
+    // });
+    // // create a new post with message
+    // var post = new Post({
+    //   message: "some message",
+    // });
+    // // await post.save();
+    // // add a comment to the post
+    var new_comment = new Comment({
+      comment: [{ message: "test message" }],
+    });
+
+    console.log(new_comment.comment[0].message);
+    // check to see the comment
   });
 });
