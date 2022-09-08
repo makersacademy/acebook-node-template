@@ -1,5 +1,11 @@
 describe("Registration", () => {
   it("A user signs up and is redirected to sign up", () => {
+    // delete all table entries
+    cy.request("DELETE", "http://localhost:3030/admin/reset", {
+      user: "admin",
+      password: "password",
+    });
+
     // Go to sign up page
     cy.visit("/");
     cy.contains("Sign up here").click();

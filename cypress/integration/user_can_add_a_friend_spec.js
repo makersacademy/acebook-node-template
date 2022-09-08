@@ -1,5 +1,11 @@
 describe("Friends", () => {
   it("A user can add a friend", () => {
+    // delete all table entries
+    cy.request("DELETE", "http://localhost:3030/admin/reset", {
+      user: "admin",
+      password: "password",
+    });
+
     // sign up
     cy.visit("/users/new");
     cy.get("#username").type("billy");

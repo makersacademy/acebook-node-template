@@ -1,5 +1,11 @@
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
+    // delete all table entries
+    cy.request("DELETE", "http://localhost:3030/admin/reset", {
+      user: "admin",
+      password: "password",
+    });
+
     // sign up
     cy.visit("/users/new");
     cy.get("#first-name").type("some");

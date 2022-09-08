@@ -1,5 +1,12 @@
 describe("Admin", () => {
   it("An admin can erase tables", () => {
+    // delete all table entries
+    cy.request("DELETE", "http://localhost:3030/admin/reset", {
+      user: "admin",
+      password: "password",
+    });
+
+    // checking db is empty
     cy.visit("/admin");
     cy.get("#posts-count").contains("#Posts = 0");
     cy.get("#users-count").contains("#Users = 0");
