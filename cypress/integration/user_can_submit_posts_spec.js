@@ -1,8 +1,8 @@
 describe("Timeline", () => {
   beforeEach(() => {
-    cy.task('dropUsers');
-    cy.task('dropPosts');
-  })
+    cy.task("dropUsers");
+    cy.task("dropPosts");
+  });
 
   it("redirects to home page if user goes to /posts when logged out", () => {
     cy.visit("/posts");
@@ -15,11 +15,12 @@ describe("Timeline", () => {
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
+    cy.get("#firstName").type("someone");
     cy.get("#submit").click();
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("Whats on your mind?")
+    cy.contains("Whats on your mind?");
 
     cy.get("#message").type("Hello, world!");
     cy.get("#submit").click();
@@ -31,12 +32,13 @@ describe("Timeline", () => {
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
+    cy.get("#firstName").type("someone");
     cy.get("#submit").click();
 
     // submit a blank post
     cy.get("#submit").click();
 
-    cy.contains("div", "Please enter a message")
+    cy.contains("div", "Please enter a message");
     // cy.get("li").should("be.null");
     // cy.get("li").should("have.length", 0);
   });

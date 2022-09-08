@@ -97,7 +97,7 @@ app.use("/posts", redirPosts, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", redirUsers, usersRouter);
 app.use("/", redirHome, homeRouter);
-app.use("/profile", profileRouter);
+app.use("/profile", redirPosts, profileRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
