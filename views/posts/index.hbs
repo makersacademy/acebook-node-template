@@ -2,7 +2,10 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
+  <li>{{this.username}}</li>
+  <li>{{this.time_posted}}</li>
   {{/each}}
 </ul>
+
 
 <a class="new-post-link" href="/posts/new">New post</a>
