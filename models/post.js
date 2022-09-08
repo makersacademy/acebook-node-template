@@ -23,13 +23,8 @@ const PostSchema = new mongoose.Schema({
 });
 
 const CommentSchema = new mongoose.Schema({
-  comment: [
-    {
-      // postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-      message: { type: String, maxLength: 200 },
-      // date: { type: Date, default: () => Date.now() },
-    },
-  ],
+  // postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  message: { type: String, maxLength: 200 },
 });
 
 const Comment = mongoose.model("Comment", CommentSchema);

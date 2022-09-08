@@ -90,23 +90,54 @@ describe("Post model", () => {
     });
   });
 
-  it("should add a comment on a post", async () => {
-    // var user = new User({
-    //   email: "joebloggs@aol.com",
-    //   password: "password",
-    //   firstname: "joe",
-    // });
-    // // create a new post with message
-    // var post = new Post({
-    //   message: "some message",
-    // });
-    // // await post.save();
-    // // add a comment to the post
+  it("make a a comment", async () => {
+    //create a new comment
     var new_comment = new Comment({
-      comment: [{ message: "test message" }],
+      message: "test message",
     });
 
-    console.log(new_comment.comment[0].message);
     // check to see the comment
+    expect(new_comment.message).toEqual("test message");
+  });
+
+  it("Add one comment to a post", async () => {
+    // make a post with "message"
+    var post = new Post({
+      message: "some message",
+    });
+    await post.save();
+
+    //create a new comment
+    var new_comment = new Comment({
+      message: "test message",
+    });
+
+    // add comment to post
+    post.comments.push(new_comment);
+    await post.save();
+    expect(post.comments[0].message).toEqual("test message");
+  });
+
+  it("Add two comments to a post", async () => {
+    // make a post with "message"
+    var post = new Post({
+      message: "some message",
+    });
+    await post.save();
+
+    //create a new comments
+    var commentOne = new Comment({
+      message: "test message",
+    });
+
+    var commentTwo = new Comment({
+      message: "second test message",
+    });
+
+    // add comment to post
+    post.comments.push(commentOne);
+    post.comments.push(commentTwo);
+    await post.save();
+    expect(post.comments[1].message).toEqual("second test message");
   });
 });
