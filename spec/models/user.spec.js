@@ -17,7 +17,7 @@ describe("User model", () => {
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
     expect(user.email).toEqual("someone@example.com");
   });
@@ -29,7 +29,7 @@ describe("User model", () => {
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
     expect(user.password).toEqual("password");
   });
@@ -49,7 +49,7 @@ describe("User model", () => {
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
 
     user.save((err) => {
@@ -67,19 +67,6 @@ describe("User model", () => {
     });
   });
 
-  it("has a friends list", () => {
-    const user = new User({
-      username: "someone",
-      first_name: "some",
-      last_name: "one",
-      email: "someone@example.com",
-      password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
-    });
-    expect(user.friends.length).toEqual(2);
-    expect(user.friends[0]).toEqual("friend1@gmail.com");
-  });
-
   it("has a username", () => {
     const user = new User({
       username: "someone",
@@ -87,7 +74,7 @@ describe("User model", () => {
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
     expect(user.username).toEqual("someone");
   });
@@ -99,7 +86,7 @@ describe("User model", () => {
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
     expect(user.first_name).toEqual("some");
   });
@@ -111,37 +98,59 @@ describe("User model", () => {
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
     expect(user.last_name).toEqual("one");
   });
 
-  it("Should add a user to the friends list.", (done) => {
-    const user = new User({
-      username: "someoneelse",
+  it("should add a user to the friends list and see that friend's details", (done) => {
+    const user1 = new User({
+      username: "someone",
       first_name: "some",
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
 
-    user.save((err) => {
+    // saving user1
+    user1.save((err) => {
       expect(err).toBeNull();
-      User.find({ username: "someoneelse" }, (err, user) => {
+
+      // finding user1 and getting their id
+      User.find((err, users) => {
         expect(err).toBeNull();
-        const newFriendList = user[0].friends.concat("friend3");
-        User.updateOne(
-          { username: "someoneelse" },
-          { friends: newFriendList },
-          () => {
-            User.find({ username: "someoneelse" }, (err, user) => {
+
+        console.log(users[0]);
+        const user1Id = users[0]._id;
+        console.log(user1Id);
+
+        // creating user2 with user1's id in friends list
+        const user2 = new User({
+          username: "otherperson",
+          first_name: "some",
+          last_name: "one",
+          email: "other@person.com",
+          password: "password",
+          friends: [user1Id],
+        });
+
+        // saving user2
+        user2.save((err) => {
+          expect(err).toBeNull();
+
+          // finding user2
+          User.findOne({ username: "otherperson" })
+            .populate("friends")
+            .exec((err, foundUser) => {
               expect(err).toBeNull();
-              expect(user[0].friends[2]).toBe("friend3");
+
+              // expecting user1's details to be populated in user2 object
+              console.log(foundUser);
+              expect(foundUser.friends[0].username).toEqual("someone");
               done();
             });
-          }
-        );
+        });
       });
     });
   });
