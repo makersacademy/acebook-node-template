@@ -12,7 +12,6 @@ describe("Friends", () => {
     cy.get("#email").type("billy@example.com");
     cy.get("#password").type("password");
     cy.get("#signup").click();
-    cy.get("#logout-button").click();
 
     // sign up
     cy.visit("/users/new");

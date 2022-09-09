@@ -18,7 +18,6 @@ const FriendsController = {
         } else {
           req.session.user.friends = newFriendList;
           console.log("user added to friends list");
-          console.log(req.session.user);
           res.redirect(303, "/profiles/" + friendUsername);
         }
       }
