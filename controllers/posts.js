@@ -1,4 +1,4 @@
-const Post = require("../models/post");
+const Post = require("../models/post").Post;
 
 const PostsController = {
   Index: (req, res) => {
