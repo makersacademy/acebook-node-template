@@ -2,6 +2,7 @@ const User = require("../models/user");
 
 const ProfilePage = {
   Index: (req, res) => {
+    console.log("this page has been refreshed");
     const profileUsername = req.params.username;
     User.find({ username: profileUsername }, (err, user) => {
       if (err) {
