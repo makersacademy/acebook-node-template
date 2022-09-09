@@ -121,9 +121,7 @@ describe("User model", () => {
       User.find((err, users) => {
         expect(err).toBeNull();
 
-        console.log(users[0]);
         const user1Id = users[0]._id;
-        console.log(user1Id);
 
         // creating user2 with user1's id in friends list
         const user2 = new User({
@@ -146,7 +144,6 @@ describe("User model", () => {
               expect(err).toBeNull();
 
               // expecting user1's details to be populated in user2 object
-              console.log(foundUser);
               expect(foundUser.friends[0].username).toEqual("someone");
               done();
             });
