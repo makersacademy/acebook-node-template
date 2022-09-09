@@ -25,4 +25,16 @@ describe("Profile page", () => {
     cy.get(".title").should("contain", "Acebook");
     cy.get("p").should("contain", "someone");
   });
+
+  it("returns to posts when link is clicked",()=>{
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#firstName").type("someone");
+    cy.get("#submit").click();
+    cy.visit("/profile");
+    cy.get("a").contains("Back to posts").click()
+    cy.url().should("include", "/posts");
+  })
 });
