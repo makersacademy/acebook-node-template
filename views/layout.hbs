@@ -1,12 +1,43 @@
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+
   </head>
+
   <body>
-    <form action="/sessions?_method=DELETE" method="POST">
-      <input id="logout-button" type="submit" value="Log Out" />
-    </form>
+
+    {{!--                           nav bar                            --}}
+    <div class="navbar-container">
+      <a href="/"><div class="logo">
+        <img src="/images/slug-mascot.png" width="70" height="70" alt="slug-mascot-logo" />
+      </div></a>
+
+      <a href="/">
+        <h1 class="title">
+          Acebook
+        <h1/>
+      <a/>
+
+      <div class="navbar-button-container">
+        <div class="profile-button">
+            <form  class="margin-remover" action="/profiles/:username" method="GET">
+            <input class="profile-button-input" type="submit" value="Profile" />
+        </div>
+
+        <div class="logout-button">
+          <form action="/sessions?_method=DELETE" method="POST">
+            <input class="logout-button-input" type="submit" value="Log Out" />
+          </form>
+        </div>
+      </div>
+
+    </div>
+  {{!--                           end nav bar                            --}}
+  
     {{{body}}}
+
   </body>
 </html>
