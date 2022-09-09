@@ -1,7 +1,5 @@
 const Post = require("../models/post");
 
-
-
 const PostsController = {
   Index: (req, res) => {
     const friends = req.session.user.friends

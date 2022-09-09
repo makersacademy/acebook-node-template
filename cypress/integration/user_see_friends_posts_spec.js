@@ -43,7 +43,7 @@ describe("Post feed", () => {
 
     // make a new post as enemy
     cy.visit("/posts/new");
-    cy.get("#message").type("this post should not appear");s
+    cy.get("#message").type("this post should not appear");
     cy.get("#submit-post").click();
 
     // sign up user 2.0
@@ -73,7 +73,5 @@ describe("Post feed", () => {
     cy.get(".posts").contains("this is a friend's post");
     cy.get(".posts").contains("someone");
     cy.get(".posts").contains(time);
-    cy.get(".posts").to.have.lengthOf(1);
   });
 });
-
