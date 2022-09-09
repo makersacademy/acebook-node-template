@@ -93,11 +93,11 @@ describe("Post model", () => {
   it("make a a comment", async () => {
     //create a new comment
     var new_comment = new Comment({
-      message: "test message",
+      comment: "test message",
     });
 
     // check to see the comment
-    expect(new_comment.message).toEqual("test message");
+    expect(new_comment.comment).toEqual("test message");
   });
 
   it("Add one comment to a post", async () => {
@@ -109,13 +109,13 @@ describe("Post model", () => {
 
     //create a new comment
     var new_comment = new Comment({
-      message: "test message",
+      comment: "test message",
     });
 
     // add comment to post
     post.comments.push(new_comment);
     await post.save();
-    expect(post.comments[0].message).toEqual("test message");
+    expect(post.comments[0].comment).toEqual("test message");
   });
 
   it("Add two comments to a post", async () => {
@@ -127,17 +127,17 @@ describe("Post model", () => {
 
     //create a new comments
     var commentOne = new Comment({
-      message: "test message",
+      comment: "test message",
     });
 
     var commentTwo = new Comment({
-      message: "second test message",
+      comment: "second test message",
     });
 
     // add comment to post
     post.comments.push(commentOne);
     post.comments.push(commentTwo);
     await post.save();
-    expect(post.comments[1].message).toEqual("second test message");
+    expect(post.comments[1].comment).toEqual("second test message");
   });
 });

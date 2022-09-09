@@ -4,7 +4,6 @@ const PostSchema = new mongoose.Schema({
   message: {
     type: { String, maxLength: 200 },
   },
-
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -24,7 +23,7 @@ const PostSchema = new mongoose.Schema({
 
 const CommentSchema = new mongoose.Schema({
   // postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  message: { type: String, maxLength: 200 },
+  comment: { type: String, maxLength: 200 },
 });
 
 const Comment = mongoose.model("Comment", CommentSchema);
