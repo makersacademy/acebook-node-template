@@ -4,29 +4,32 @@ const PostSchema = new mongoose.Schema({
   message: {
     type: { String, maxLength: 200 },
   },
+
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  likes: {
-    type: Number,
-    min: 0,
-    default: 0,
-  },
+
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Comment",
     },
   ],
+
+  createdAt: {
+    type: Date,
+    default: () => Date.now(),
+  },
 });
 
-const CommentSchema = new mongoose.Schema({
-  // postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  comment: { type: String, maxLength: 200 },
-});
-
-const Comment = mongoose.model("Comment", CommentSchema);
 const Post = mongoose.model("Post", PostSchema);
 
-module.exports = { Post, Comment };
+module.exports = Post;
