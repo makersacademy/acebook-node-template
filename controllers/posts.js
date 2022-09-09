@@ -27,17 +27,10 @@ const PostsController = {
     const time = today.getFullYear() + '/' +(today.getMonth()+1) + '/' + today.getDate() +' ' + today.getHours() + ":" + today.getMinutes();
     console.log(time)
     const post = new Post({
-<<<<<<< HEAD
         message: req.body.message,
         user_id: req.session.user._id,
-        username: req.session.user.username,
         time_posted: time
       });
-=======
-      message: req.body.message,
-      user_id: req.session.user._id,
-    });
->>>>>>> origin/main
     post.save((err) => {
       if (err) {
         throw err;
