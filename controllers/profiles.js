@@ -8,6 +8,7 @@ const ProfilePage = {
       if (err) {
         console.log(err);
       } else {
+        console.log(user[0])
         res.render("profiles/index", {
           profileUsername: profileUsername,
           friends: user[0].friends,
