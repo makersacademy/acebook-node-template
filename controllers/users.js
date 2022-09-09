@@ -14,7 +14,13 @@ const UsersController = {
     ) {
       res.render("users/new", { error: "Please enter the required details" });
     } else {
-      const user = new User(req.body);
+      
+      const defaultCheck = req.body
+      if(defaultCheck.profilePic == ""){
+        delete defaultCheck.profilePic
+      }
+      
+      const user = new User(defaultCheck);
 
       // check if user exists before creating
       User.findOne({ email: user.email }).then((found) => {
@@ -35,4 +41,5 @@ const UsersController = {
     }
   },
 };
+
 module.exports = UsersController;
