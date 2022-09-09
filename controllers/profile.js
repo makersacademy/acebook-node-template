@@ -7,7 +7,6 @@ const ProfileController = {
       name: req.session.user["firstName"],
       url: req.session.user["profilePic"],
     });
-    console.log(req.session.user);
   },
 };
 

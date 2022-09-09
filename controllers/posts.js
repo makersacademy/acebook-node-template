@@ -6,9 +6,8 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
       res.render("posts/index", {
-        posts: posts,
+        posts: posts.reverse(),
         title: "Acebook",
         name: req.session.user["firstName"],
       });
@@ -26,10 +25,11 @@ const PostsController = {
           throw err;
         }
         res.render("posts/index", {
-          posts: posts,
+          posts: posts.reverse(),
           title: "Acebook",
           blank: "Please enter a message",
         });
+        
       });
     } else {
       post.save((err) => {
