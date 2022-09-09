@@ -43,7 +43,7 @@ describe("Post feed", () => {
 
     // make a new post as enemy
     cy.visit("/posts/new");
-    cy.get("#message").type("this post should not appear");
+    cy.get("#message").type("this post should not appear");s
     cy.get("#submit-post").click();
 
     // sign up user 2.0
