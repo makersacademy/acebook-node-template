@@ -2,10 +2,10 @@ const Post = require("../models/post");
 
 const PostsController = {
   Like: async (req, res) => {
-    const postID = req.body.post
-    const result = await Post.find({ _id: postID });
-    const post = result[0]
-    post.likes.push(req.body.user);
+    const postID = req.body.post;
+    const userID = req.session.user._id;
+    const post = await Post.findOne({ _id: postID });
+    post.likes.push(userID);
     await post.save();
     res.status(201).redirect("/posts");
   },
