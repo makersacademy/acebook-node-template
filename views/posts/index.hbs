@@ -12,6 +12,7 @@
 
 <form id="new-post-form" action="/posts" method="post">
   <label for="message">Whats on your mind? </label>
+  <input type="hidden" name="user" value="{{userID}}">
   <input id="message" type="text" name="message" value="">
   <input id="submit" type="submit" value="Submit">
 </form>
@@ -23,16 +24,17 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
- 
+
   <form action="/posts/like" method="post">
-    <label for="message">{{this.user}}</label>
-    <input type="hidden" value="{{this._id}}"/>
-    <input type="submit" value="like"/>
+    <input type="hidden" name="post" value="{{this._id}}">
+    <label for="like">Likes: {{this.likes.length}}</label>
+    <input type="submit" value="like">
   </form>
 
-  <a href="/profile"><h4>{{this.firstName}} {{this.surname}}</h4> </a>
+  <a href="/profile">
+    <h4>{{this.firstName}} {{this.surname}}</h4>
+  </a>
   {{/each}}
 
 
 </ul>
-
