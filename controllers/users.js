@@ -8,9 +8,9 @@ const UsersController = {
   Create: (req, res) => {
     // check if the required details are submitted
     if (
-      req.body.firstName == "" ||
+      req.body.email == "" ||
       req.body.password == "" ||
-      req.body.email == ""
+      req.body.firstName == ""
     ) {
       res.render("users/new", { error: "Please enter the required details" });
     } else {

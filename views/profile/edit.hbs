@@ -1,0 +1,34 @@
+<h1 class="title">{{title}}</h1>
+
+<form action='/sessions?_method=DELETE' method='POST'>
+  <input id="logout" type="submit" value="Log out">
+</form>
+
+<p>Welcome {{firstName}}</p>
+
+<img src="{{{url}}}" width="200px" 
+     height="auto"/> 
+<br>
+
+<form id="update-user-email" action="/profile" method="post">
+  <h3>Email</h3>
+  <p>Current: {{email}}<p>
+  <label for="email">New:</label>
+  <input id="email" type="email" name="email" value="">
+  <input id="submit-email" type="submit" value="Submit">
+</form>
+
+ {{!-- <br>
+  <p>New password</p>
+  <p>Current: {{email}}<p>
+  <label for="password">*******</label>
+  <input id="password" type="password" name="password" value="">
+  <br>
+  <label for="firstName">{{firstName}}</label>
+  <input id="firstName" type="firstName" name="firstName" value="">
+  <br>
+  <label for="lastName">{{lastName}}</label>
+  <input id="lastName" type="lastName" name="lastName" value="">
+  <br> --}}
+
+<a href="/posts">Back to posts</a>
