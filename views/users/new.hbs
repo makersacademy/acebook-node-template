@@ -1,26 +1,25 @@
+<div class="homepage-outermost">
+  <div class="container">
 
-<div class ="homepage-outermost">
-  <div class ="container">
     <Head>
 
       <link rel="stylesheet" href="/stylesheets/style.css">
     </Head>
 
-      <form id="new-user-form" action="/users" method="post">
-        <h1>Sign up</h1>
-<br>
-        <input id="firstName" type="text" name="firstName" value="" placeholder=" First Name">
-<br>
-        <input id="surName" type="text" name="surName" value="" placeholder=" Surname">
-<br>
-        <input id="email" type="email" name="email" value="" placeholder=" Email">
-<br>
-        <input id="password" type="password" name="password" value="" placeholder=" Password">
-<br>
-        <input id="submit" type="submit" value="Submit">
-<br>
-        <a href="/">Sign in</a>
-      </form>
+    <form id="new-user-form" action="/users" method="post">
+      <h1>Sign up</h1>
+      <br>
+      <input id="firstName" type="text" name="firstName" value="" placeholder=" First Name" required>
+      <br>
+      <input id="surName" type="text" name="surName" value="" placeholder=" Surname" required>
+      <br>
+      <input id="email" type="email" name="email" value="" placeholder=" Email" required>
+      <br>
+      <input id="password" type="password" name="password" value="" placeholder=" Password" required>
+      <br>
+      <input id="submit" type="submit" value="Submit">
+      <br>
+      <a href="/">Sign in</a>
+    </form>
   </div>
 </div>
-
