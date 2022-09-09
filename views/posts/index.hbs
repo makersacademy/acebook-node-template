@@ -9,6 +9,7 @@
 <p>Welcome {{name}}</p>
 <br>
 
+
 <form id="new-post-form" action="/posts" method="post">
   <label for="message">Whats on your mind? </label>
   <input id="message" type="text" name="message" value="">
@@ -18,8 +19,20 @@
 <div id="blank-message">{{blank}}</div>
 
 <h1>Timeline</h1>
+
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li>
+ 
+  <form action="/posts/like" method="post">
+    <label for="message">{{this.user}}</label>
+    <input type="hidden" value="{{this._id}}"/>
+    <input type="submit" value="like"/>
+  </form>
+
+  <a href="/profile"><h4>{{this.firstName}} {{this.surname}}</h4> </a>
   {{/each}}
+
+
 </ul>
+
