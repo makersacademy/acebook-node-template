@@ -5,7 +5,15 @@ const PostsController = {
     const postID = req.body.post;
     const userID = req.session.user._id;
     const post = await Post.findOne({ _id: postID });
-    post.likes.push(userID);
+
+    const userAlreadyLiked = post.likes.includes(userID);
+    if (userAlreadyLiked) {
+      const index = post.likes.indexOf(userID)
+      post.likes.splice(index, 1)
+    } else {
+      post.likes.push(userID);
+    }
+
     await post.save();
     res.status(201).redirect("/posts");
   },
