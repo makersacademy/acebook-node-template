@@ -1,14 +1,21 @@
-console.log('layout.js')
+console.log('layout.js');
 
-const likeEl = document.querySelector("#like-event")
+// this script makes the like button fetch '/posts/like' 
+// without being embedded in a form
 
-if (likeEl) {
-  likeEl.addEventListener('click', () => {
-    liked()
+document.querySelectorAll(".like").forEach((button) => {
+  button.addEventListener('click', () => {
+    liked(button.value);
+  });
+})
+
+function liked(postID) {
+  const data = { post: postID }
+  fetch("/posts/like", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
   })
-}
-
-const liked = () => {
-  console.log(document.session)
-  console.log('liked')
+    // refresh number of likes on like button
+    .then(() => { location.reload() });
 }

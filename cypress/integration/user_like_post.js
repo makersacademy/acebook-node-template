@@ -38,6 +38,7 @@ describe("Timeline", () => {
 
     //like and unlike the post
     cy.get(".like").click();
+    cy.contains("1 likes");
     cy.get(".like").click();
     cy.contains("0 likes");
   });
@@ -57,6 +58,7 @@ describe("Timeline", () => {
 
     // like the post and log out
     cy.get(".like").click();
+    cy.contains("1 likes")
     cy.get("#logout").click();
 
     // create 2nd user

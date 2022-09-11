@@ -25,9 +25,13 @@
   {{#each posts}}
   <li>{{this.message}}</li>
 
-  <form action="/posts/like" method="post">
-    <button class="like" type="submit" name="post" value="{{this._id}}">{{this.likes.length}} likes</button>
-  </form>
+  {{!-- button on form does not need layout.js --}}
+  {{!-- <form action="/posts/like" method="post"> --}}
+    {{!-- <button class="like" type="submit" name="post" value="{{this._id}}">{{this.likes.length}} likes</button> --}}
+    {{!-- </form> --}}
+
+  {{!-- layout.js sends fetch to /posts/like from this button --}}
+  <button class="like" type="submit" value="{{this._id}}">{{this.likes.length}} likes</button>
 
   <a href="/profile">
     <h4>{{this.firstName}} {{this.surname}}</h4>
