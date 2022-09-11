@@ -18,12 +18,12 @@ describe("Timeline", () => {
     cy.get("#submit").click();
 
     //like the post
-    cy.contains("Likes: 0");
+    cy.contains("0 likes");
     cy.get(".like").click();
-    cy.contains("Likes: 1")
+    cy.contains("1 likes")
   });
 
-  it("click like twice (from one user) should fisrt like, then unlike the post", () => {
+  it("click like twice (from one user) should first like, then unlike the post", () => {
     // sign up + log in
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -39,7 +39,7 @@ describe("Timeline", () => {
     //like and unlike the post
     cy.get(".like").click();
     cy.get(".like").click();
-    cy.contains("Likes: 0");
+    cy.contains("0 likes");
   });
 
   it("get two likes from two users", () => {
@@ -68,6 +68,6 @@ describe("Timeline", () => {
 
     // second user likes the post
     cy.get(".like").click();
-    cy.contains("Likes: 2")
+    cy.contains("2 likes")
   });
 })

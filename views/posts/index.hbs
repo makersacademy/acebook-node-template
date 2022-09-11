@@ -26,9 +26,7 @@
   <li>{{this.message}}</li>
 
   <form action="/posts/like" method="post">
-    <input type="hidden" name="post" value="{{this._id}}">
-    <label for="like">Likes: {{this.likes.length}}</label>
-    <input class="like" type="submit" value="like">
+    <button class="like" type="submit" name="post" value="{{this._id}}">{{this.likes.length}} likes</button>
   </form>
 
   <a href="/profile">
