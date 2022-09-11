@@ -10,12 +10,11 @@ document.querySelectorAll(".like").forEach((button) => {
 })
 
 function liked(postID) {
-  const data = { post: postID }
   fetch("/posts/like", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify({ post: postID })
   })
     // refresh number of likes on like button
-    .then(() => { location.reload() });
+    .then(() => { window.location.reload() })
 }
