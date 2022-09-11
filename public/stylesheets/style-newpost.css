@@ -1,0 +1,134 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+
+}
+
+::selection{
+background: #81ecec;
+}
+
+::-webkit-scrollbar{
+width: 3px;
+
+}
+
+::-webkit-scrollbar-track{
+  border: 4px solid transparent;
+  background: transparent;
+  background-clip: content-box;
+
+}
+::-webkit-scrollbar-thumb{
+  background: #a1a1a1;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  border-radius: 5px;
+  background: #a1a1a1;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #2980b9;
+}
+
+.container .box .image img{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #1abc9c;
+}
+.box{
+  width: 380px;
+  height: 100px;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 2px solid #1abc9c;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+}
+
+.box .image{
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.box .main{
+  position: absolute;
+  top: 46%;
+  padding-left: 90px;
+
+}
+
+.box .main textarea{
+  width: 200px;
+  height: 28px;
+  padding: 5px 10px;
+  outline: none;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  resize: none;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.box .main textarea:focus{
+  position: absolute;
+  width: 500px;
+  height: 200px;
+  bottom: -100%;
+  right: -40%;
+  padding-top: 20px;
+  font-size: 15px;
+}
+
+.box .main textarea:focus ~ button{
+  bottom: 110px;
+  left: 310px;
+}
+.box .main i{
+  padding-right: 5px;
+
+}
+
+.box .main span{
+  padding: 5px 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.box .main span:hover{
+  background: #ddd;
+  border-radius: 8px;
+}
+
+.box .main button{
+  position: relative;
+  bottom: 17px;
+  width: 50px;
+  height: 28px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: #3498db;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.box .main button:hover{
+  background: #3498db;
+}
+
+.box .main textarea:focus ~ button{
+  background: #3498db;
+  opacity: 0.6;
+}

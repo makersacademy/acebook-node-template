@@ -1,9 +1,9 @@
-{{!-- <div class ="homepage-outermost">
-  <div class ="container">
+{{!-- <div class="homepage-outermost">
+  <div class="container">
     <h1 class="title">{{title}}</h1>
 
-    <form action='/sessions?_method=DELETE' method='POST' >
-          <input id="logout" type="submit" value="Log out">
+    <form action='/sessions?_method=DELETE' method='POST'>
+      <input id="logout" type="submit" value="Log out">
 
     </form>
 
@@ -20,27 +20,33 @@
 
     <div id="blank message">{{blank}}
 
-    <h1>Timeline</h1>
-    <ul class="posts">
-      {{#each posts}}
-      <li>{{this.message}}</li>
-      {{/each}}
-    </ul>
+      <h1>Timeline</h1>
+      <ul class="posts">
+        {{#each posts}}
+        <li>{{this.message}}</li>
+        {{/each}}
+      </ul>
     </div>
 
   </div>
 </div> --}}
+<nav class="nav">
+  <a href="/profile">Profile</a>
+  <a class="a" href="/">Home</a>
+  <a class="a" href="/posts">Posts</a>
+  <a class="a" href="/">Log Out</a>
 
+</nav>
 <div class="logout">
-  <form action='/sessions?_method=DELETE' method='POST'>
-  <input id="logout_post" type="submit" value="Log out">
-  </form>
+  {{!-- <form action='/sessions?_method=DELETE' method='POST'>
+    <input id="logout_post" type="submit" value="Log out">
+  </form> --}}
 
-<a href="/profile">Profile</a>
 
-  <div class ="homepage-outermost">
 
-    <div class ="container">
+  <div class="homepage-outermost">
+
+    <div class="container">
 
       <h1 class="title">{{title}}</h1>
 
@@ -53,22 +59,24 @@
       <form id="new-post-form" action="/posts" method="post">
         {{!-- <label for="message">Whats on your mind? </label> --}}
         <input id="message" type="text" name="message" value="" placeholder=" Whats on your mind?">
+
         <input id="submit" type="submit" value="POST">
 
-      <div id="blank-message">{{blank}}</div>
+        <div id="blank-message">{{blank}}</div>
       </form>
 
       <br>
-      {{!-- <form class="container_post">
-      <div >
-      <h1>Timeline</h1>
-      <br>
-      <ul class="posts">
-        {{#each posts}}
-        <li>{{this.message}}</li>
-        {{/each}}
-      </div>
-      </form> --}}
+      {{!-- <form class="container_post"> --}}
+        {{!-- <div>
+          <h1>Timeline</h1>
+          <br>
+          <ul class="posts">
+            {{#each posts}}
+            <li>{{this.message}}</li>
+            {{/each}}
+        </div> --}}
+      </form>
     </div>
   </div>
 </div>
+
