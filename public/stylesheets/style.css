@@ -1,8 +1,270 @@
+/* global styling */
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px;
+  font: 14px "Poppins", Helvetica, Arial, sans-serif;
+  background-color: #E6E5EA;
+}
+.whole-page {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1, h2{
+  color: #0958CA;
+
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+  color: inherit;
 }
+
+ul {
+  list-style: none;
+  text-align: left;
+}
+
+li {
+  list-style: none;
+  
+}
+.input-button{
+  background-color: rgb(148, 209, 245);
+  border-radius: 10px;
+  max-width: 250px;
+  margin: 5px;
+  padding: 6px;
+  color: #0958CA;
+  font-weight:bold;
+
+}
+
+button {
+ 
+  background-color: rgb(148, 209, 245);
+ 
+  margin: 2px;
+  color: #0958CA;
+  font-weight: bold;
+ 
+
+}
+
+/* homepage styling */
+#homepage-hero{
+  background-image: url('../images/sunset-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}
+
+/* Login page styling */
+#session-hero {
+  background-image: url('../images/sunrise-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}
+
+/* #signup-hero{
+  background-image: url('../images/sunset-friends.jpg');
+  background-size: cover; 
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}  */
+
+#new-user-form{
+  background-color: aliceblue;
+  
+}
+
+/* navbar/layout styling */
+.navbar navbar-expand-xxl navbar-light w-100{
+  display: inline block;
+  justify-content: right;
+  background-color: #b6d5ff;
+  width: 100%;
+}
+
+.navbar-brand {
+  padding-left: 10px;
+  font-size: 50px;
+}
+
+.posts {
+  padding-bottom: 20px;
+  text-align: left;
+  margin-right: 40px;
+
+}
+
+.nav-button {
+  background-color: #E6E5EA; 
+  color: #0958CA;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+}
+
+.nav-item {
+  padding-top: 5px;
+  float: right;
+}
+
+/* timeline styling */
+
+.single-post {
+  border: #cde1ff;
+  border-style: groove;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+}
+
+.post-content {
+  font-size: 20px;
+  text-align: center;
+  background-color: #A3B2C9;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.timeline-title {
+  text-align: center;
+}
+
+.like-container {
+  display: inline-block;
+}
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+}
+
+.comment-container {
+  display: inline-block;
+}
+
+/* The alert message box - new user page */
+.alert {
+  padding: 1px;
+  background-color: #F5F5F5;
+  color: black;
+  margin-bottom: 20px;
+  border:2px solid Tomato;
+} 
+
+/* friends page css */
+
+.column-container d-flex flex-wrap {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  background-color: #ddd;
+  
+}
+
+#friends-container{
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.col-4{
+  border: #00B7FF;
+  border: 1px;
+  border-style: groove;
+  border-radius: 10px;
+  padding-top: 5px;
+  background-color: #A3B2C9;
+  box-shadow: inset;
+ 
+
+}
+
+h5, h4 {
+  color: #0958CA;
+ 
+}
+
+/* profile page */
+#profile-pic-container{
+  background-color: #A3B2C9;
+  border-radius: 10px;
+  min-height:fit-content;
+  padding-bottom: 20px;
+
+}
+
+#profile-friends-container{
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius:10px;
+}
+
+#profile-friends-card{
+  background-color:#E6E5EA;
+  border-radius: 10px;
+  font-size: large;
+}
+
+.profile-posts-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  margin-bottom: 10px;
+  
+}
+
+.profile-posts {
+  background-color:#E6E5EA;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: larger;
+}
+
+.post-date {
+  font-size: small;
+}
+
+
+
+#search-results-container {
+  background-color: #A3B2C9!important;
+  padding: 5px;
+  border-radius: 10px;
+}
+

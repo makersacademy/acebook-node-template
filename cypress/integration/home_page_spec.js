@@ -1,3 +1,5 @@
+// const mongoosey = require("mongoose");
+
 describe("Home page", () => {
   it("has a title", () => {
     cy.visit("/");
