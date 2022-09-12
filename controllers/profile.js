@@ -27,27 +27,16 @@ const ProfileController = {
 
     let newDetails = req.body
     let currentUser = req.session.user
-  
+    
     const existingUser = await User.findOne({email: currentUser.email})
 
-    if(newDetails.email != ""){
-      existingUser.email = newDetails.email
-    }
-    if(newDetails.password != ""){
-      existingUser.password = newDetails.password
-    }
+    const keys = ["email", "password", "firstName", "lastName", "profilePic"]
 
-    if(newDetails.firstName != ""){
-      existingUser.firstName = newDetails.firstName
-    }
-
-    if(newDetails.lastName != ""){
-      existingUser.lastName = newDetails.lastName
-    }
-
-    if(newDetails.profilePic != ""){
-    existingUser.profilePic = newDetails.profilePic
-    } 
+    keys.forEach((key)=> {
+      if(newDetails[key] != ""){
+        existingUser[key] = newDetails[key]
+      }
+      })
 
     req.session.user = existingUser
     await existingUser.save()

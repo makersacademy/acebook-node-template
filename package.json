@@ -38,7 +38,8 @@
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
     "jest": "^27.5.1",
-    "mockingoose": "^2.15.2"
+    "mockingoose": "^2.15.2",
+    "prettier": "2.7.1"
   },
   "nodemonConfig": {
     "ext": "js,hbs"
