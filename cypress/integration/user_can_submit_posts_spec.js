@@ -14,14 +14,13 @@ describe("Timeline", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("Whats on your mind?");
-
+    cy.get('#message').invoke('attr', 'placeholder').should("contain", " Whats on your mind?")
     cy.get("#message").type("Hello, world!");
     cy.get("#submit").click();
     cy.get(".posts").should("contain", "Hello, world!");
   });
 
-  it.only("Unable to submit a blank post", () => {
+  it("Unable to submit a blank post", () => {
     // sign up + log in
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -31,10 +30,6 @@ describe("Timeline", () => {
 
     // submit a blank post
     cy.get("#submit").click();
-
-    // cy.get('#message').should("have.value placeholder", " Whats on your mind?  Please enter a message")
-    cy.get('#message').should("contain", " Whats on your mind?  Please enter a message")
-    // cy.contains("div", "Please enter a message");
-
+    cy.get('#message').invoke('attr', 'placeholder').should("contain", " Whats on your mind?  Please enter a message")
   });
 });
