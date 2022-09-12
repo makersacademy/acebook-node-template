@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
 
-  surname: {
+  surName: {
     type: String,
     default: "",
   },

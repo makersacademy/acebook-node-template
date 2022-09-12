@@ -4,11 +4,11 @@ describe("Home page", () => {
     cy.task("dropPosts");
   });
 
-  it.only("goes to homepage if user is not logged in", () => {
+  it("goes to homepage if user is not logged in", () => {
     cy.visit("/");
     cy.contains("p", "Acebook helps you connect and share")
-    // cy.get(".title").should("contain", "Acebook");
-    cy.contains("input", "Log in");
+    cy.get('#login_submit_btn').should("have.value", "Log In")
+    cy.get('#login_submit_btn').should("exist")
   });
 
   it(" '/' redirects to '/posts' if user is logged in", () => {
