@@ -2,14 +2,16 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    const friends = req.session.user.friends;
+    const friends = [req.session.user._id, ...req.session.user.friends];
 
     Post
       .find({ user_id: { $in: friends }})
       .populate('user_id')
       .exec((err, posts) => {
         if (err){
-          return handleError(err)
+          // do something if there's an error
+          console.log("PostsPage.index error with Post.find");
+          console.log(err);
         } else {
           res.render("posts/index", { posts: posts.reverse() });
         }

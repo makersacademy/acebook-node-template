@@ -33,6 +33,7 @@ describe("Admin", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
+    cy.visit("/posts")
     cy.get(".posts").should("contain", "Hello, world!");
 
     // checking admin page reflects update in database
