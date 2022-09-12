@@ -4,12 +4,6 @@ describe("Timeline", () => {
     cy.task("dropPosts");
   });
 
-  it("redirects to home page if user goes to /posts when logged out", () => {
-    cy.visit("/posts");
-    // regex to match path of [any number of any characters] folowed by [/]
-    cy.url().should("match", /.+\/$/);
-  });
-
   it("can submit posts, when signed in, and view them", () => {
     // sign up + log in
     cy.visit("/users/new");

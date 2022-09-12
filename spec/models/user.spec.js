@@ -37,23 +37,23 @@ describe("User model", () => {
     expect(user.firstName).toEqual("someone");
   });
 
-  it("Doesn't require a surname", () => {
+  it("Doesn't require a lastName", () => {
     const user = new User({
       email: "someone@example.com",
       password: "password",
       firstName: "someone",
     });
-    expect(user.surname).toEqual("");
+    expect(user.lastName).toEqual("");
   });
 
-  it("has a surname", () => {
+  it("has a lastName", () => {
     const user = new User({
       email: "someone@example.com",
       password: "password",
       firstName: "someone",
-      surname: "else",
+      lastName: "else",
     });
-    expect(user.surname).toEqual("else");
+    expect(user.lastName).toEqual("else");
   });
 
   it("returns default profile pic", () => {
@@ -61,7 +61,7 @@ describe("User model", () => {
       email: "someone@example.com",
       password: "password",
       firstName: "someone",
-      surname: "else",
+      lastName: "else",
     });
     expect(user.profilePic).toEqual(
       "https://live.staticflickr.com/8005/7124089493_53ae788cb3_b.jpg"
@@ -73,7 +73,7 @@ describe("User model", () => {
       email: "someone@example.com",
       password: "password",
       firstName: "someone",
-      surname: "else",
+      lastName: "else",
       profilePic:
         "https://i.natgeofe.com/n/45efb1f8-42db-49b2-b270-4265f760572b/00000157-aebf-d279-a1ff-eebf0ff70002_4x3.jpg",
     });
