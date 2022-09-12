@@ -92,4 +92,31 @@ describe("Post model", () => {
       });
     });
   });
+
+  it.only("deletes a post", (done) => {
+    const post = new Post({ message: "some message" });
+
+    // save Post
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      // find id of saved post
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        // delete post
+        Post.deleteOne({ _id: posts[0]._id }, (err, result) => {
+          expect(err).toBeNull();
+          expect(result).toMatchObject({ n: 1, ok: 1, deletedCount: 1 });
+
+          // check post is deleted
+          Post.findOne({ _id: posts[0]._id }, (err, post) => {
+            expect(err).toBeNull();
+            expect(post).toBeNull();
+            done();
+          });
+        });
+      });
+    });
+  });
 });

@@ -26,6 +26,10 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+
+  Destroy: (req, res) => {
+    const postId = req.params.postId;
+  },
 };
 
 module.exports = PostsController;
