@@ -145,4 +145,24 @@ describe("User model", () => {
       });
     });
   });
+
+  it.only("returns an empty array if user not found", (done) => {
+    const user = new User({
+      username: "someoneelse",
+      first_name: "some",
+      last_name: "one",
+      email: "someone@example.com",
+      password: "password",
+      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+    });
+
+    user.save((err) => {
+      expect(err).toBeNull();
+      User.findOne({ username: "otheruser" }, (err, user) => {
+        expect(err).toBeNull();
+        expect(user).toBeNull();
+        done();
+      });
+    });
+  });
 });
