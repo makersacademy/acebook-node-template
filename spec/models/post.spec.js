@@ -48,7 +48,7 @@ describe("Post model", () => {
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
 
     let userId;
