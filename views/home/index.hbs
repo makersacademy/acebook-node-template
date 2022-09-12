@@ -28,10 +28,15 @@
           <input type="email" name="email" id="user_email" placeholder=" Email address" required>
           <input type="password" name="password" id="user_password" placeholder=" Password" required>
           <input type="submit" id="login_submit_btn" value="Log In">
+          
+          
 
           <a href="#" id="forgot_pass"> Forgotten password?</a>
           <div class="forgotten"></div>
         </form>
+
+        <p>{{error}}</p>
+        
         <form action="/users/new" method="get">
           <button id="register_acc">Create New Account</button>
         </form>
