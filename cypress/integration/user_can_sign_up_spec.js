@@ -32,7 +32,8 @@ describe("Registration", () => {
     cy.get("#password").type("password");
     cy.get("#firstName").type("someone");
     cy.get("#submit").click();
-    cy.get("#error").should("contain", "Please enter the required details");
+    cy.get('input:invalid').should('have.length', 1)
+    // cy.get("#error").should("contain", "Please enter the required details");
   });
 
   it("is unable to signup without a firstname", () => {
@@ -40,7 +41,8 @@ describe("Registration", () => {
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-    cy.get("#error").should("contain", "Please enter the required details");
+    cy.get('input:invalid').should('have.length', 1)
+    // cy.get("#error").should("contain", "Please enter the required details");
   });
 
   it("is unable to signup without a password", () => {
@@ -48,7 +50,8 @@ describe("Registration", () => {
     cy.get("#email").type("someone@example.com");
     cy.get("#firstName").type("someone");
     cy.get("#submit").click();
-    cy.get("#error").should("contain", "Please enter the required details");
+    cy.get('input:invalid').should('have.length', 1)
+    // cy.get("#error").should("contain", "Please enter the required details");
   });
 
   it("redirects to '/' if user already exists", () => {
