@@ -17,6 +17,7 @@ const PostsController = {
   New: (req, res) => {
     res.render("posts/new", {});
   },
+
   Create: (req, res) => {
     const post = new Post(req.body);
     if (post.message == "") {
@@ -28,8 +29,9 @@ const PostsController = {
           posts: posts.reverse(),
           title: "Acebook",
           blank: "Please enter a message",
+          name: req.session.user["firstName"]
         });
-        
+
       });
     } else {
       post.save((err) => {
