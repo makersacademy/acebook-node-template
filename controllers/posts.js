@@ -9,7 +9,7 @@ const PostsController = {
       res.render("posts/index", {
         posts: posts.reverse(),
         title: "Acebook",
-        name: req.session.user["firstName"],
+        firstName: req.session.user["firstName"],
       });
     });
   },
@@ -29,7 +29,7 @@ const PostsController = {
           posts: posts.reverse(),
           title: "Acebook",
           blank: "Please enter a message",
-          name: req.session.user["firstName"]
+          firstName: req.session.user["firstName"]
         });
 
       });

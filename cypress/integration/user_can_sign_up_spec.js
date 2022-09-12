@@ -45,7 +45,7 @@ describe("Registration", () => {
     // cy.get("#error").should("contain", "Please enter the required details");
   });
 
-  it.only("is unable to signup without a password", () => {
+  it("is unable to signup without a password", () => {
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#firstName").type("someone");
