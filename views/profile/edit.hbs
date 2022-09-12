@@ -10,25 +10,29 @@
      height="auto"/> 
 <br>
 
-<form id="update-user-email" action="/profile" method="post">
+<form id="update-user" action="/profile/edit" method="post">
   <h3>Email</h3>
   <p>Current: {{email}}<p>
   <label for="email">New:</label>
   <input id="email" type="email" name="email" value="">
-  <input id="submit-email" type="submit" value="Submit">
+  <h3>Password</h3>
+  <p>Current: {{password}}<p>
+  <label for="password">New:</label>
+  <input id="password" type="password" name="password" value="">
+  <h3>First Name</h3>
+  <p>Current: {{firstName}}<p>
+  <label for="firstName">New:</label>
+  <input id="firstName" type="firstName" name="firstName" value="">
+  <h3>Last Name</h3>
+  <p>Current: {{lastName}}<p>
+  <label for="lastName">New:</label>
+  <input id="lastName" type="lastName" name="lastName" value="">
+  <h3>Profile Pic</h3>
+  <p>Current: {{profilePic}}<p>
+  <label for="profilePic">New:</label>
+  <input id="profilePic" type="profilePic" name="profilePic" value="">
+  <br>
+  <input id="submit" type="submit" value="Submit">
 </form>
 
- {{!-- <br>
-  <p>New password</p>
-  <p>Current: {{email}}<p>
-  <label for="password">*******</label>
-  <input id="password" type="password" name="password" value="">
-  <br>
-  <label for="firstName">{{firstName}}</label>
-  <input id="firstName" type="firstName" name="firstName" value="">
-  <br>
-  <label for="lastName">{{lastName}}</label>
-  <input id="lastName" type="lastName" name="lastName" value="">
-  <br> --}}
-
-<a href="/posts">Back to posts</a>
+<a href="/profile">Back to profile</a>
