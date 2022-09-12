@@ -21,7 +21,7 @@ describe("Timeline", () => {
     cy.get(".posts").should("contain", "Hello, world!");
   });
 
-  it("Unable to submit a blank post", () => {
+  it.only("Unable to submit a blank post", () => {
     // sign up + log in
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -32,8 +32,9 @@ describe("Timeline", () => {
     // submit a blank post
     cy.get("#submit").click();
 
-    cy.contains("div", "Please enter a message");
-    // cy.get("li").should("be.null");
-    // cy.get("li").should("have.length", 0);
+    // cy.get('#message').should("have.value placeholder", " Whats on your mind?  Please enter a message")
+    cy.get('#message').should("contain", " Whats on your mind?  Please enter a message")
+    // cy.contains("div", "Please enter a message");
+
   });
 });
