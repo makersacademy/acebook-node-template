@@ -32,10 +32,9 @@ const PostsController = {
     });
   },
 
-  New: (req, res) => {
-    res.render("posts/new", {});
-  },
-
+  // New: (req, res) => {
+  //   res.render("posts/new", {});
+  // },
   Create: (req, res) => {
     const post = new Post(req.body);
     if (post.message == "") {

@@ -11,8 +11,6 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-
-
 var mongoose = require("mongoose");
 
 mongoose.connect("mongodb://0.0.0.0/acebook_test", {
@@ -22,7 +20,6 @@ mongoose.connect("mongodb://0.0.0.0/acebook_test", {
 
 module.exports = async (on) => {
   const db = await mongoose.connection;
-  // const posts = db.collection("posts");
   const users = db.collection("users");
   const posts = db.collection("posts");
 
