@@ -39,11 +39,22 @@ describe("Posts feed", () => {
       today.getMinutes();
     cy.get("#submit-post").click();
 
-    // post appears in feed with info
-    cy.visit("/posts");
-    cy.get(".posts").contains("this is a post");
-    cy.get(".posts").contains("someone");
-    cy.get(".posts").contains(time);
+    //sign out
+    cy.get(".logout-button-input").click();
+
+    //sign in as someone else
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#username").type("billy");
+    cy.get("#email").type("billy@example.com");
+    cy.get("#password").type("password");
+    cy.get("#signup").click();
+
+    // sign in
+    cy.visit("/");
+    cy.get("#email").type("billy@example.com");
+    cy.get("#password").type("password");
+    cy.get("#login").click();
 
     // make request to delete post
     cy.request("GET", "http://localhost:3030/admin/posts").then((response) => {
@@ -51,9 +62,9 @@ describe("Posts feed", () => {
       cy.request(
         "DELETE",
         `http://localhost:3030/posts/delete/${response.body[0]._id}`
-      );
-      cy.visit("/admin");
-      cy.get("#posts-count").contains("#Posts = 0");
+      ).then((response) => {
+        expect(response.body).to.eq("User IDs do not match");
+      });
     });
   });
 });

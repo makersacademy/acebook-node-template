@@ -50,15 +50,18 @@ const PostsController = {
 
   Destroy: (req, res) => {
     const postId = req.params.postId;
+    console.log("delete request made");
     Post.findOne({ _id: postId }, (err, post) => {
       if (err) {
         // do something if error
         throw err;
       } else if (!post) {
         // do something if post doesn't exist
-      } else if (post.user_id !== req.session.user._id) {
+      } else if (post.user_id.toString() !== req.session.user._id) {
         // do something if right post but wrong user
+        res.send("User IDs do not match");
       } else {
+        console.log("this is supposed to be deleting");
         // do something if post exists and right user
         Post.deleteOne({ _id: postId }, (err, result) => {
           if (err) {

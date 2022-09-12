@@ -1,4 +1,4 @@
-// const Post = require("../models/post");
+const Post = require("../models/post");
 // const User = require("../models/user");
 const mongoose = require("mongoose");
 
@@ -21,6 +21,19 @@ const AdminController = {
         });
       });
     });
+  },
+
+  Posts: (req, res) => {
+    // if (req.body.user === "admin" && req.body.password === "password") {
+    Post.find((err, posts) => {
+      if (err) {
+        // do something if error
+        throw err;
+      } else {
+        res.send(posts);
+      }
+    });
+    // }
   },
 
   Destroy: (req, res) => {

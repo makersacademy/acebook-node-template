@@ -1,15 +1,10 @@
 describe("Admin", () => {
-  it("An admin can erase tables", () => {
+  it("An admin can see all posts", () => {
     // delete all table entries
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
       password: "password",
     });
-
-    // checking db is empty
-    cy.visit("/admin");
-    cy.get("#posts-count").contains("#Posts = 0");
-    cy.get("#users-count").contains("#Users = 0");
 
     // sign up
     cy.visit("/users/new");
@@ -36,9 +31,10 @@ describe("Admin", () => {
     cy.visit("/posts");
     cy.get(".posts").should("contain", "Hello, world!");
 
-    // checking admin page reflects update in database
-    cy.visit("/admin");
-    cy.get("#posts-count").contains("#Posts = 1");
-    cy.get("#users-count").contains("#Users = 1");
+    // checking admin page has all posts
+    cy.request("GET", "http://localhost:3030/admin/posts").then((response) => {
+      // Object.keys(response).forEach((key) => cy.log(key))
+      expect(response.body[0].message).to.eq("Hello, world!");
+    });
   });
 });
