@@ -1,14 +1,56 @@
-<h1 class="title">{{title}}</h1>
+{{!-- <h1 class="title">{{title}}</h1>
 <p>Welcome to {{title}}</p>
-<h1>Log in</h1>
+<h1>Log in</h1> --}}
 
-<form id="new-session-form" action="/sessions" method="post">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+
+  <div class="homepage-outermost">
+    <div class="homepage-outer">
+      <div class="homepage-container-left">
+        <img src="images/acebook_logo.svg" alt="">
+        <p>Acebook helps you connect and share <br>with the people in your life.</p>
+      </div>
+
+      <div class="container">
+        <form action='/sessions' method='POST'>
+          <input type="email" name="email" id="user_email" placeholder=" Email address" required>
+          <input type="password" name="password" id="user_password" placeholder=" Password" required>
+          <input type="submit" id="login_submit_btn" value="Log In">
+
+          <a href="#" id="forgot_pass"> Forgotten password?</a>
+          <div class="forgotten"></div>
+        </form>
+        <form action="/users/new" method="get">
+          <button id="register_acc">Create New Account</button>
+        </form>
+        <br>
+        <p><b>Create a Page</b> for a celebrity, brand.</b></p>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>
+{{!-- <form id="new-session-form" action="/sessions" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="">
   <input id="submit" type="submit" value="Submit">
-</form>
+</form> --}}
 
-<p>{{error}}</p>
-<a href="/users/new">Signup</a>
+{{!-- <p>{{error}}</p>
+<a href="/users/new">Signup</a> --}}

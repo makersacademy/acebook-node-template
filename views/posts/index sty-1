@@ -1,0 +1,54 @@
+<div class="logout">
+  <form action='/sessions?_method=DELETE' method='POST'>
+    <input id="logout_post" type="submit" value="Log out">
+  </form>
+
+  <a href="/profile">Profile</a>
+
+
+  {{!-- <h1 class="title">{{title}}</h1> --}}
+
+  {{!-- <a href="/profile">Profile</a> --}}
+  {{!-- <p id="Welcome">Welcome {{name}}</p> --}}
+
+  <div class="homepage-outermost">
+    <div class="container">
+
+      <div class="split right">
+        <div class="centered">
+
+
+          <form id="new-post-form" action="/posts" method="post">
+            {{!-- <label for="message">Whats on your mind? </label> --}}
+            <input id="message" type="text" name="message" value="" placeholder=" Whats on your mind?">
+            <input id="submit" type="submit" value="POST">
+
+            <div id="blank-message">{{blank}}</div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="split left">
+
+      <img href="http://localhost:3030/" class="post_logo" src="images/acebook_logo.svg" alt="">
+      <p id="welcome">Welcome {{name}}</p>
+
+      <div class="centered">
+
+        <form class="container_post">
+          <div>
+            <h1>Timeline</h1>
+            <br>
+            <ul class="posts">
+              {{#each posts}}
+              <li>{{this.message}}</li>
+              {{/each}}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
