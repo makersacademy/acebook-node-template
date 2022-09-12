@@ -6,22 +6,41 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", {
+        posts: posts.reverse(),
+        title: "Acebook",
+        firstName: req.session.user["firstName"],
+      });
     });
   },
-  New: (req, res) => {
-    res.render("posts/new", {});
-  },
+
+  // New: (req, res) => {
+  //   res.render("posts/new", {});
+  // },
+
   Create: (req, res) => {
     const post = new Post(req.body);
-    post.save((err) => {
-      if (err) {
-        throw err;
-      }
+    if (post.message == "") {
+      Post.find((err, posts) => {
+        if (err) {
+          throw err;
+        }
+        res.render("posts/index", {
+          posts: posts.reverse(),
+          title: "Acebook",
+          blank: "Please enter a message",
+          firstName: req.session.user["firstName"]
+        });
 
-      res.status(201).redirect("/posts");
-    });
+      });
+    } else {
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    }
   },
 };
 

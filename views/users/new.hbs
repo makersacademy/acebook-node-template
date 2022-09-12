@@ -1,7 +1,23 @@
-<form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+<div class="homepage-outermost">
+  <div class="container">
+    <form id="new-user-form" action="/users" method="post">
+      <h1>Sign up</h1>
+      <br>
+      <input id="firstName" type="text" name="firstName" value="" placeholder=" First Name" required>
+      <br>
+      <input id="lastName" type="text" name="lastName" value="" placeholder=" Last Name">
+      <br>
+      <input id="email" type="email" name="email" value="" placeholder=" Email" required>
+      <br>
+      <input id="password" type="password" name="password" value="" placeholder=" Password" required>
+      <br>
+      <input id="profilePic" type="profilePic" name="profilePic" value="" placeholder="Drag your profile pic url here">
+      <br>
+      <input id="submit" type="submit" value="Submit">
+      <br>
+    </form>
+    <div id="error">{{error}}</div>
+    <br>
+    <a href="/">Sign in</a>
+  </div>
+</div>
