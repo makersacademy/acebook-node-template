@@ -93,7 +93,7 @@ describe("Post model", () => {
     });
   });
 
-  it.only("deletes a post", (done) => {
+  it("deletes a post", (done) => {
     const post = new Post({ message: "some message" });
 
     // save Post
@@ -117,6 +117,14 @@ describe("Post model", () => {
           });
         });
       });
+    });
+  });
+
+  it("returns an object when trying to delete a post that doesn't exist", (done) => {
+    Post.deleteOne({ message: "some message" }, (err, result) => {
+      expect(err).toBeNull();
+      expect(result).toMatchObject({ n: 0, ok: 1, deletedCount: 0 });
+      done();
     });
   });
 });
