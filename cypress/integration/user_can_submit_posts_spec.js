@@ -17,7 +17,7 @@ describe("Timeline", () => {
     cy.get('#message').invoke('attr', 'placeholder').should("contain", " Whats on your mind?")
     cy.get("#message").type("Hello, world!");
     cy.get("#submit").click();
-    cy.get(".posts").should("contain", "Hello, world!");
+    cy.get("#post_bottom").should("contain", "Hello, world!");
   });
 
   it("Unable to submit a blank post", () => {
