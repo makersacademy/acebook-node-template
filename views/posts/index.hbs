@@ -46,9 +46,9 @@
       </div>
       <span class="material-icons"> forum </span>
       <span class="material-icons"> notifications_active </span>
-      <span class="material-icons">
+      
         <form action='/sessions?_method=DELETE' method='POST'>
-          <input id="logout" type="submit" value="Log out">
+          <button id="logout" type="submit"><span class="material-icons">logout</span></button>
         </form>
       </span>
     </div>
@@ -214,13 +214,52 @@
 
 
       {{!-- <ul class="posts"> --}}
-        <div class="posts">
+        {{!-- <div class="posts">
           {{#each posts}}
           <li>{{this.message}}</li>
           {{/each}}
-        </div>
+        </div> --}}
         {{!--
       </ul> --}}
+
+      <!-- post starts -->
+      {{#each posts}}
+      <div class="post">
+        <div class="post__top">
+          <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
+          <div class="post__topInfo">
+            <h3>{{this._id}}</h3> <!-- Need to link post to user firstname  -->
+            <p>{{this.createdAt}}</p>
+          </div>
+        </div>
+
+        <div class="post__bottom">
+          <p>{{this.message}}</p>
+        </div>
+
+        <div class="post__image">
+          {{!-- <img src={{}} alt="" /> --}}
+        </div>
+
+        <div class="post__options">
+          <div class="post__option">
+            <span class="material-icons"> thumb_up </span>
+            <p>Like</p>
+          </div>
+
+          <div class="post__option">
+            <span class="material-icons"> chat_bubble_outline </span>
+            <p>Comment</p>
+          </div>
+
+          <div class="post__option">
+            <span class="material-icons"> near_me </span>
+            <p>Share</p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <!-- post ends -->
 
       <!-- post starts -->
       <div class="post">

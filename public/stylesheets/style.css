@@ -88,6 +88,7 @@ a {
   font-weight: 700;
   padding: 0px;
   width: 100%;
+  cursor: pointer;
 }
 
 #forgot_pass{
@@ -107,6 +108,7 @@ a {
 } */
 
 #register_acc{
+  cursor: pointer;
   background-color: #42b72a;
   font-size: 17px;
   color: white;
@@ -126,6 +128,7 @@ a {
   font-weight: 700;
   padding: 0px;
   width: 100%;
+  cursor: pointer;
 }
 
 #logout_post{
@@ -147,6 +150,11 @@ a {
   right: 15px;
   width: 5%;
   font-weight: 700;
+}
+
+#logout {
+  background: transparent;
+  border: none;
 }
 
 #message{
