@@ -152,14 +152,14 @@ describe("User model", () => {
     });
   });
 
-  it.only("returns an empty array if user not found", (done) => {
+  it("returns null if user not found", (done) => {
     const user = new User({
       username: "someoneelse",
       first_name: "some",
       last_name: "one",
       email: "someone@example.com",
       password: "password",
-      friends: ["friend1@gmail.com", "friend2@gmail.com"],
+      friends: [],
     });
 
     user.save((err) => {

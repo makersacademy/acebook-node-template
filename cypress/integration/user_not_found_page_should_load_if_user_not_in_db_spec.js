@@ -1,5 +1,5 @@
 describe("User Not Found Page", () => {
-  it("loads a user not found page if user doesn't exist", () => {
+  it("loads a user not found page if user doesn't exist in users collection", () => {
     // delete all table entries
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
@@ -21,10 +21,10 @@ describe("User Not Found Page", () => {
 
     // loading profile that doesn't exist
     cy.visit("/profiles/simon");
-    cy.get("#user-not-found").contains("This user doesn't exist!");
+    cy.get("#header").contains("This user doesn't exist!");
 
     // return to posts page
     cy.get("#return-button").click();
-    cy.url().contains("/posts");
+    cy.url().should("includes", "/posts");
   });
 });
