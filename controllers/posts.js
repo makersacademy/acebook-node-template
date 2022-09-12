@@ -26,7 +26,7 @@ const PostsController = {
       res.render("posts/index", {
         posts: posts.reverse(),
         title: "Acebook",
-        name: req.session.user.firstName,
+        firstName: req.session.user.firstName,
         userID: req.session.user._id
       });
     });
