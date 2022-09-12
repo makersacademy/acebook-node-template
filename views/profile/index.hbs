@@ -4,10 +4,22 @@
 <form action='/sessions?_method=DELETE' method='POST'>
   <input id="logout" type="submit" value="Log out">
 </form>
-<p>Welcome {{name}}</p>
 
+<p>Welcome {{firstName}}</p>
+
+<<<<<<< HEAD
 <img src="{{{url}}}" width="200px" height="auto" />
 
+=======
+<img src="{{{url}}}" width="200px" 
+     height="auto"/> 
+>>>>>>> 3d602be014ce80ecf1156160621ce5eb444a7bf3
 <br>
 
+<div>First name: {{firstName}}</div>
+<div>Last name: {{lastName}}</div>
+<div>Email: {{email}}</div>
+<div>Password: {{password}}</div>
+<a id="edit-page" href="/profile/edit">Edit your details</a></div>
+<br>
 <a href="/posts">Back to posts</a>
