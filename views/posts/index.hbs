@@ -14,7 +14,7 @@
   <!-- header starts -->
   <div class="header">
     <div class="header__left">
-      <img src="images/acebook_logo.svg" alt=""/>
+      <img src="images/acebook_logo.svg" alt="" />
       <div class="header__input">
         <span class="material-icons"> search </span>
         <input type="text" placeholder="Search Acebook" />
@@ -46,7 +46,11 @@
       </div>
       <span class="material-icons"> forum </span>
       <span class="material-icons"> notifications_active </span>
-      <span class="material-icons"> <a href="/sessions?_method=DELETE">logout</a></span>
+      <span class="material-icons">
+        <form action='/sessions?_method=DELETE' method='POST'>
+          <input id="logout" type="submit" value="Log out">
+        </form>
+      </span>
     </div>
   </div>
   <!-- header ends -->
