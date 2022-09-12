@@ -5,18 +5,11 @@ describe("Profile page", () => {
   });
 
   it("goes to profile page if user is logged in", () => {
-    // sign up
+    // sign up + sign in 
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#firstName").type("someone");
-    cy.get("#submit").click();
-    cy.get("#logout").click();
-
-    // sign in
-    cy.visit("/");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
     cy.get("#submit").click();
 
     //profile
@@ -26,7 +19,7 @@ describe("Profile page", () => {
     cy.get("p").should("contain", "someone");
   });
 
-  it("returns to posts when link is clicked",()=>{
+  it("returns to posts when link is clicked", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
