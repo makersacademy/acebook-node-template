@@ -4,29 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Acebook</title>
-    <link rel="stylesheet" href="/style.css"/>
+    <link rel="stylesheet" href="/style.css"/> 
   </head>
 <body>
 
 
-  
-  <h1 class="title">{{title}}</h1>
-  <p>Welcome to {{title}}</p>
+  <div class="signup-container" >
+    <p class="homepage-title">Welcome to {{title}}</p>
 
-  <form id="new-session-form" action="/sessions" method="POST">
-    <div class="login-form">
-      <input id="email" type="email" name="email" value="" placeholder="Email" />
+    <form id="new-session-form" action="/sessions" method="POST">
+      <div class="login-form">
+        <input id="email" type="email" name="email" value="" placeholder="Email" />
+      </div>
+      <div class="login-form">
+        <input id="password" type="password" name="password" value="" placeholder="Password" />
+      </div>
+
+      <input id="login" type="submit" value="Login" />
+    </form>
+
+    <div id="new-user">
+      <p>Don't have an account?</p>
+      <a class="signup-button" href="/users/new">Sign up here</a>
     </div>
-    <div class="login-form">
-      <input id="password" type="password" name="password" value="" placeholder="Password" />
-    </div>
-
-    <input id="login" type="submit" value="Login" />
-  </form>
-
-  <div id="new-user">
-    <p>Don't have an account?</p>
-    <a href="/users/new">Sign up here</a>
   </div>
 </body>
 
