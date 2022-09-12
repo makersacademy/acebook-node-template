@@ -2,25 +2,18 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    const friends = req.session.user.friends
-    let array_of_posts = []
+    const friends = req.session.user.friends;
 
-    for(const e of friends){
-      Post.
-        find({ user_id: e}).
-        populate('user_id').
-        exec(function (err, post) {
-          if (err){
-            return handleError(err)
-          }else{
-            array_of_posts.push(post);
-          }
-        });
-      }
-
-      setTimeout(()=>{
-        res.render("posts/index", { posts: array_of_posts.flat().reverse() });
-      },1000)
+    Post
+      .find({ user_id: { $in: friends }})
+      .populate('user_id')
+      .exec((err, posts) => {
+        if (err){
+          return handleError(err)
+        } else {
+          res.render("posts/index", { posts: posts.reverse() });
+        }
+      });
   },
   
   New: (req, res) => {
