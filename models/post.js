@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema({
   user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   username: String,
   time_posted: String,
+  likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
 });
 
 const Post = mongoose.model("Post", PostSchema);
