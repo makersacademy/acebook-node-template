@@ -10,7 +10,7 @@
 
   <div class="header__middle">
     <div class="header__option active">
-      <span class="material-icons"> home </span>
+      <a href="/posts"><span class="material-icons"> home </span></a>
     </div>
   </div>
   <div class="header__right">
@@ -27,21 +27,23 @@
   </div>
 </div>
 
-<div class="profile_imgContainer">
-  <img src="{{{url}}}" width="200px" height="auto" />
-  <div class="profile_info">
+<div class="post">
+  <div class="profile_img">
+  <img src="{{{url}}}" width="300" height="300" />
+  </div>
+  <div class="post__bottom">
   <ul>
-    <h4>Account details</h4>
     <li>First name: {{firstName}}</li>
     <li>Last name: {{lastName}}</li>
     <li>Email: {{email}}</li>
     <li>Password: {{password}}</li>
   </ul>
   </div>
-
   <div class="profile_edit_details">
-  <a id="edit-page" href="/profile/edit">Edit your details</a>
-  <a href="/posts">Back to posts</a>
+    <a id="edit-page" href="/profile/edit">Edit your details</a>
+  </div>
 </div>
+
+
 
 <br>

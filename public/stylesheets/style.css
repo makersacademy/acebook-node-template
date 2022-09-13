@@ -42,23 +42,45 @@ a {
 
 /* profile */
 
-.profile_imgContainer {
+.profile_img {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 40px;
+  padding-left: 20px;
+}
+
+.profile_img > img {
+  border-radius: 40%;
+}
+
+.profile_img_edit {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 40px;
+  padding-left: 20px;
 }
+
+.profile_img_edit > img {
+  border-radius: 40%;
+}
+
 
 .profile_info {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   list-style-type: none;
   padding-bottom: 30px;
 }
 
 .profile_edit_details{
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  padding-bottom: 60px;
+  padding-left: 30px;
 }
+
 .update_user_outermost{
     width: 100%;
     height: 730px;
@@ -424,7 +446,7 @@ body {
 }
 
 .feed {
-  flex: 1;
+  flex: 0.7;
   padding: 30px 100px;
   display: flex;
   flex-direction: column;
@@ -434,7 +456,7 @@ body {
 
 .sidebar {
   padding: 25px 10px;
-  flex: 0.33;
+  flex: 0.17;
 }
 
 /* message sender */
