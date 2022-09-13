@@ -37,8 +37,6 @@ const AdminController = {
   },
 
   Destroy: (req, res) => {
-    console.log(req.body);
-
     // when logged in as an admin
     if (req.body.user === "admin" && req.body.password === "password") {
       // checking if posts in db exist
