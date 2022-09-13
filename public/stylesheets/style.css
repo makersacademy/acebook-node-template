@@ -1,6 +1,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   padding: 0 0 50px 0;
+  margin: 0 0 0 0;
 }
 
 a {
@@ -12,7 +13,7 @@ a {
   justify-content: space-between;
   align-items: center;
   background-color: #007dfa;
-  height: 8rem;
+  height: 12rem;
   padding: 0 2rem;
 }
 
@@ -32,18 +33,100 @@ a {
   border: none;
   background-color: #007dfa;
   color: white;
+  font-size: 2rem;
 }
 
 .profile-button-input {
   border: none;
   background-color: #007dfa;
   color: white;
+  font-size: 2rem;
 }
 
 .title {
   font-size: 4rem;
   color: white;
+  margin-bottom: 0;
 }
 .margin-remover {
   margin: 0;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.search-bar {
+  width: 42rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  flex-direction: column;
+  margin-left: -242px;
+  margin-top: -13rem;
+}
+
+.magnifying-glass {
+  border: none;
+  background: none;
+}
+
+.homepage-title {
+  font-size: 2rem;
+}
+
+input#email {
+  margin: 0rem 0rem 1rem 0rem;
+}
+
+input#password {
+  margin-bottom: 1rem;
+}
+
+#new-user {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signup-button {
+  font-size: 1rem;
+}
+
+#new-session-form {
+  display: flex;
+  justify-content: cemter;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  flex-direction: column;
+  margin-left: -242px;
+  margin-top: -32rem;
+}
+
+.friends-list {
+  padding: 0;
+  margin-left: 0;
 }

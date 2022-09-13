@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
-
   </head>
 
   <body>
@@ -12,14 +11,20 @@
     {{!--                           nav bar                            --}}
     <div class="navbar-container">
       <a href="/"><div class="logo">
-        <img src="/images/slug-mascot.png" width="70" height="70" alt="slug-mascot-logo" />
+        <img src="/images/simple-slug.png" width="70" height="70" alt="slug-mascot-logo" />
       </div></a>
 
-      <a href="/">
-        <h1 class="title">
-          Acebook
-        <h1/>
-      <a/>
+     <div class="search-container">
+        <a href="/">
+          <h1 class="title">
+            Acebook
+          <h1/>
+        <a/>
+        <form action="/profiles/" method="POST">
+          <input id="search" name="searchBar" value="" class="search-bar" type="text" placeholder="Search for friends"/>
+          <button type="submit" class="magnifying-glass"><img src="/images/magnifying-glass.png" width="24" height="24" alt="magnifying-glass"/></button>
+        </form>
+     </div>
 
       <div class="navbar-button-container">
         <div class="profile-button">
@@ -29,7 +34,7 @@
         </div>
 
         <div class="logout-button">
-          <form action="/sessions?_method=DELETE" method="POST">
+          <form class="margin-remover" action="/sessions?_method=DELETE" method="POST">
             <input class="logout-button-input" type="submit" value="Log Out">
           </form>
         </div>
