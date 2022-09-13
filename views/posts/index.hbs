@@ -6,9 +6,18 @@
   <li>{{this.message}}</li>
   <li>{{this.user_id.username}}</li>
   <li>{{this.time_posted}}</li>
+  
+  <div class = "likes">
+    <p>{{this.numberOfLikes}} likes</p>
+    <button id="like-button">Like</button>
+
+    <script type="text/javascript">
+      document.querySelector("#like-button").addEventListener('click', () => {
+      fetch( "/likes/new/" + "{{this._id}}", {method: 'PUT'}) })
+    </script>
+  </div>
 </ul>
 </div>
 {{/each}}
-
 
 <a class="new-post-link" href="/posts/new">New post</a>
