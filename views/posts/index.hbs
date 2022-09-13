@@ -15,12 +15,17 @@
           id="post-delete-button-{{this._id}}"
         >Delete Post</button>
 
-        {{!-- <script type="text/javascript">
+        <script type="text/javascript">
           document.querySelector("#post-delete-button-{{this._id}}").addEventListener("click",
-          () => { fetch("/delete/{{this._id}}", {method: "DELETE"})
-          .then(response=> response.json()).then(result=>{ if (result.ok) }) })
-
-        </script> --}}
+          () => { fetch("/posts/delete/{{this._id}}", {method: "DELETE"})
+          .then(response=> response.json()).then(result => { if (result.ok &&
+          result.ok === 1 && result.deletedCount === 1) { const postDivEl =
+          document.querySelector("#post-div-container-{{this._id}}")
+          postDivEl.childNodes.forEach((node) => node.remove())
+          postDivEl.append( Object.assign( document.createElement("p"), { id:
+          "post-delete-message-{{this._id}}", class: "post-delete-message" } ) )
+          } }) } )
+        </script>
 
         {{!--         
         <form action="/posts/delete/{{this._id}}?_method=DELETE" method="POST">
