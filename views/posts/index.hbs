@@ -25,18 +25,18 @@
       <span class="material-icons"> supervised_user_circle </span>
     </div>
   </div>
-
   <div class="header__right">
     <div class="header__info">
       <img class="user__avatar" src="images/img/Makers.png" alt="" />
       <h4><a href="/profile">Welcome {{firstName}}</a></h4>
+
     </div>
     <span class="material-icons"> forum </span>
     <span class="material-icons"> notifications_active </span>
     <span class="material-icons">
       <form action='/sessions?_method=DELETE' method='POST'>
-        <input id="logout" type="submit" value="Log out">
-      </form>
+          <button id="logout" type="submit"><span class="material-icons">logout</span></button>
+        </form>
     </span>
   </div>
 </div>
@@ -200,32 +200,64 @@
     <!-- message sender ends -->
 
 
-    {{!-- <ul class="posts"> --}}
-      <div class="posts">
-        {{#each posts}}
-        <li>{{this.message}}</li>
+      {{!-- <ul class="posts"> --}}
+        {{!-- <div class="posts">
+          {{#each posts}}
+          <li>{{this.message}}</li>
+          {{/each}}
+        </div> --}}
+        {{!--
+      </ul> --}}
 
-        {{!-- button on form does not need layout.js --}}
-        {{!-- <form action="/posts/like" method="post"> --}}
-          {{!-- <button class="like" type="submit" name="post" value="{{this._id}}">{{this.likes.length}}
-            likes</button> --}}
-          {{!-- </form> --}}
+      <!-- post starts -->
+      {{#each posts}}
+      <div class="post">
+        <div class="post__top">
+          <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
+          <div class="post__topInfo">
+            <h3>{{this._id}}</h3> <!-- Need to link post to user firstname  -->
+            <p>{{this.createdAt}}</p>
+          </div>
+        </div>
 
-        {{!-- layout.js sends fetch to /posts/like from this button --}}
-        <button class="like" type="submit" value="{{this._id}}">{{this.likes.length}} likes</button>
+        <div class="post__bottom">
+          <p>{{this.message}}</p>
+        </div>
 
-        {{/each}}
+        <div class="post__image">
+          {{!-- <img src={{}} alt="" /> --}}
+        </div>
+
+        <div class="post__options">
+          <div class="post__option">
+            <span class="material-icons"> thumb_up </span>
+            <p>Like</p>
+            <button class="like" type="submit" value="{{this._id}}">{{this.likes.length}} likes</button>
+
+          </div>
+
+          <div class="post__option">
+            <span class="material-icons"> chat_bubble_outline </span>
+            <p>Comment</p>
+          </div>
+
+          <div class="post__option">
+            <span class="material-icons"> near_me </span>
+            <p>Share</p>
+          </div>
+        </div>
       </div>
-      {{!--
-    </ul> --}}
+      {{/each}}
+      <!-- post ends -->
 
-    <!-- post starts -->
-    <div class="post">
-      <div class="post__top">
-        <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
-        <div class="post__topInfo">
-          <h3>The Axylotls</h3>
-          <p>25 April at 20:30</p>
+      <!-- post starts -->
+      <div class="post">
+        <div class="post__top">
+          <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
+          <div class="post__topInfo">
+            <h3>The Axylotls</h3>
+            <p>25 April at 20:30</p>
+          </div>
         </div>
       </div>
 
