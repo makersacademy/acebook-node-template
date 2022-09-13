@@ -13,9 +13,9 @@
       <a href="/"><div class="logo">
         <img src="/images/simple-slug.png" width="70" height="70" alt="slug-mascot-logo" />
       </div></a>
-  {{#if user}}
+
      <div class="search-container">
-        <a href="/profiles/{{user}}">
+        <a href="/posts">
           <h1 class="title">
             Acebook
           <h1/>
@@ -25,18 +25,6 @@
           <button type="submit" class="magnifying-glass"><img src="/images/magnifying-glass.png" width="24" height="24" alt="magnifying-glass"/></button>
         </form>
      </div>
-  {{else}}
-  <div class="search-container">
-    <a href="/">
-      <h1 class="title">
-        Acebook
-        <h1 />
-        <a />
-        <input class="search-bar" type="text" placeholder="Search for friends" />
-        <button type="submit" class="magnifying-glass"><img src="/images/magnifying-glass.png" width="24" height="24"
-            alt="magnifying-glass" /></button>
-  </div>
-  {{/if}}
 
       <div class="navbar-button-container">
         <div class="profile-button">

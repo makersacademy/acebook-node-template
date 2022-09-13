@@ -1,14 +1,17 @@
-<h1>Timeline</h1>
+<div class="posts-container">
+  <h1>Timeline</h1>
 
-<div class = "posts">
-  {{#each posts}}
-<ul>
-  <li>{{this.message}}</li>
-  <li>{{this.user_id.username}}</li>
-  <li>{{this.time_posted}}</li>
-</ul>
+  <div class = "posts">
+    {{#each posts}}
+  <ul>
+    <li>{{this.message}}</li>
+    <li>{{this.user_id.username}}</li>
+    <li>{{this.time_posted}}</li>
+  </ul>
+  </div>
+  {{/each}}
+
+
+  <a class="new-post-link" href="/posts/new">New post</a>
+
 </div>
-{{/each}}
-
-
-<a class="new-post-link" href="/posts/new">New post</a>
