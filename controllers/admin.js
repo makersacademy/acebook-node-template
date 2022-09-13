@@ -24,16 +24,16 @@ const AdminController = {
   },
 
   Posts: (req, res) => {
-    // if (req.body.user === "admin" && req.body.password === "password") {
-    Post.find((err, posts) => {
-      if (err) {
-        // do something if error
-        throw err;
-      } else {
-        res.send(posts);
-      }
-    });
-    // }
+    if (req.body.user === "admin" && req.body.password === "password") {
+      Post.find((err, posts) => {
+        if (err) {
+          // do something if error
+          throw err;
+        } else {
+          res.send(posts);
+        }
+      });
+    }
   },
 
   Destroy: (req, res) => {

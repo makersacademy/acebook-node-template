@@ -32,7 +32,10 @@ describe("Admin", () => {
     cy.get(".posts").should("contain", "Hello, world!");
 
     // checking admin page has all posts
-    cy.request("GET", "http://localhost:3030/admin/posts").then((response) => {
+    cy.request("GET", "http://localhost:3030/admin/posts", {
+      user: "admin",
+      password: "password",
+    }).then((response) => {
       // Object.keys(response).forEach((key) => cy.log(key))
       expect(response.body[0].message).to.eq("Hello, world!");
     });

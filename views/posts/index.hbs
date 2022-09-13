@@ -2,7 +2,7 @@
 
 <div class="posts">
   {{#each posts}}
-    <div>
+    <div class="post-div-container" id="post-div-container-{{this._id}}">
       <ul>
         <li>{{this.message}}</li>
         <li>{{this.user_id.username}}</li>
@@ -10,7 +10,19 @@
       </ul>
       <div class="post-delete-div" id="post-delete-div-{{this._id}}">
         {{! replace this form with a button & event listener }}
+        <button
+          class="post-delete-button"
+          id="post-delete-button-{{this._id}}"
+        >Delete Post</button>
 
+        {{!-- <script type="text/javascript">
+          document.querySelector("#post-delete-button-{{this._id}}").addEventListener("click",
+          () => { fetch("/delete/{{this._id}}", {method: "DELETE"})
+          .then(response=> response.json()).then(result=>{ if (result.ok) }) })
+
+        </script> --}}
+
+        {{!--         
         <form action="/posts/delete/{{this._id}}?_method=DELETE" method="POST">
           <input
             class="post-delete-button"
@@ -18,7 +30,7 @@
             type="submit"
             value="Delete Post"
           />
-        </form>
+        </form> --}}
 
         {{! display "this post deleted" message }}
       </div>

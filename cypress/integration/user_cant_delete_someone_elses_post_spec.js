@@ -46,8 +46,10 @@ describe("Posts feed", () => {
     cy.get("#login").click();
 
     // make request to delete post
-    cy.request("GET", "http://localhost:3030/admin/posts").then((response) => {
-      // Object.keys(response).forEach((key) => cy.log(key))
+    cy.request("GET", "http://localhost:3030/admin/posts", {
+      user: "admin",
+      password: "password",
+    }).then((response) => {
       cy.request(
         "DELETE",
         `http://localhost:3030/posts/delete/${response.body[0]._id}`

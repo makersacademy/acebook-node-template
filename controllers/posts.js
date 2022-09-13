@@ -69,7 +69,7 @@ const PostsController = {
             throw err;
           } else {
             console.log(`Post ${postId} deleted`);
-            res.send(result);
+            res.send(JSON.stringify(result));
           }
         });
       }
