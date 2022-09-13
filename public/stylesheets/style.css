@@ -72,13 +72,11 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  min-height: 100vh;
   flex-direction: column;
   margin-left: -242px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  margin-top: -13rem;
 }
 
 .magnifying-glass {
