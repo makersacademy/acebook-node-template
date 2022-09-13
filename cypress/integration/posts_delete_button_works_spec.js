@@ -47,6 +47,6 @@ describe("Posts feed", () => {
 
     // click delete button on post
     cy.get(".post-delete-button").click();
-    cy.get();
+    //
   });
 });

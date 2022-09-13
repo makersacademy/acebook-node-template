@@ -1,23 +1,29 @@
 <h1>Timeline</h1>
 
-<div class = "posts">
+<div class="posts">
   {{#each posts}}
-  <ul>
-    <li>{{this.message}}</li>
-    <li>{{this.user_id.username}}</li>
-    <li>{{this.time_posted}}</li>
-  </ul>
-  <div class="post-delete-div" id="post-delete-div-{{this._id}}">
-    {{!-- replace this form with a button & event listener --}}
+    <div>
+      <ul>
+        <li>{{this.message}}</li>
+        <li>{{this.user_id.username}}</li>
+        <li>{{this.time_posted}}</li>
+      </ul>
+      <div class="post-delete-div" id="post-delete-div-{{this._id}}">
+        {{! replace this form with a button & event listener }}
 
-    <form action="/posts/delete/{{this._id}}?_method=DELETE" method="POST">
-      <input class="post-delete-button" id="post-delete-button-{{this._id}}" type="submit" value="Delete Post">
-    </form>
+        <form action="/posts/delete/{{this._id}}?_method=DELETE" method="POST">
+          <input
+            class="post-delete-button"
+            id="post-delete-button-{{this._id}}"
+            type="submit"
+            value="Delete Post"
+          />
+        </form>
 
-    {{!-- display "this post deleted" message --}}
-  </div>
+        {{! display "this post deleted" message }}
+      </div>
+    </div>
+  {{/each}}
 </div>
-{{/each}}
-
 
 <a class="new-post-link" href="/posts/new">New post</a>
