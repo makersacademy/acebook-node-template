@@ -1,19 +1,50 @@
-<h1 class="title">{{title}}</h1>
+<!-- header starts -->
+<div class="header">
+  <div class="header__left">
+    <img src="images/acebook_logo.svg" alt="" />
+    <div class="header__input">
+      <span class="material-icons"> search </span>
+      <input type="text" placeholder="Search Acebook" />
+    </div>
+  </div>
 
-<form action='/sessions?_method=DELETE' method='POST'>
-  <input id="logout" type="submit" value="Log out">
-</form>
+  <div class="header__middle">
+    <div class="header__option active">
+      <span class="material-icons"> home </span>
+    </div>
+  </div>
+  <div class="header__right">
+    <div class="header__info">
+      <img class="user__avatar" src="images/img/Makers.png" alt="" />
+      <h4><a href="/profile">Welcome {{firstName}}</a></h4>
+    </div>
 
-<p>Welcome {{firstName}}</p>
+    <span class="material-icons">
+      <form action='/sessions?_method=DELETE' method='POST'>
+          <button id="logout" type="submit"><span class="material-icons">logout</span></button>
+        </form>
+    </span>
+  </div>
+</div>
 
-<img src="{{{url}}}" width="200px" height="auto" />
+<div class="profile_imgContainer">
+  <img src="{{{url}}}" width="200px" height="auto" />
+</div>
 
-<br>
+<div class="profile_info">
+  <ul>
+    <h4>Account details</h4>
+    <br>
+    <li>First name: {{firstName}}</li>
+    <li>Last name: {{lastName}}</li>
+    <li>Email: {{email}}</li>
+    <li>Password: {{password}}</li>
+  </ul>
+</div>
 
-<div>First name: {{firstName}}</div>
-<div>Last name: {{lastName}}</div>
-<div>Email: {{email}}</div>
-<div>Password: {{password}}</div>
-<a id="edit-page" href="/profile/edit">Edit your details</a></div>
+<div class="profile_edit_details">
+<a id="edit-page" href="/profile/edit">Edit your details</a>
+</div>
+
 <br>
 <a href="/posts">Back to posts</a>

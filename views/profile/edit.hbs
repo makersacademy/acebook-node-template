@@ -1,3 +1,32 @@
+<!-- header starts -->
+<div class="header">
+  <div class="header__left">
+    <img src="images/acebook_logo.svg" alt="" />
+    <div class="header__input">
+      <span class="material-icons"> search </span>
+      <input type="text" placeholder="Search Acebook" />
+    </div>
+  </div>
+
+  <div class="header__middle">
+    <div class="header__option active">
+      <span class="material-icons"> home </span>
+    </div>
+  </div>
+  <div class="header__right">
+    <div class="header__info">
+      <img class="user__avatar" src="images/img/Makers.png"  alt="" />
+      <h4><a href="/profile">Welcome {{firstName}}</a></h4>
+    </div>
+
+    <span class="material-icons">
+      <form action='/sessions?_method=DELETE' method='POST'>
+          <button id="logout" type="submit"><span class="material-icons">logout</span></button>
+        </form>
+    </span>
+  </div>
+</div>
+
 <h1 class="title">{{title}}</h1>
 
 <form action='/sessions?_method=DELETE' method='POST'>
@@ -10,29 +39,35 @@
      height="auto"/> 
 <br>
 
-<form id="update-user" action="/profile/edit" method="post">
-  <h3>Email</h3>
-  <p>Current: {{email}}<p>
-  <label for="email">New:</label>
-  <input id="email" type="email" name="email" value="">
-  <h3>Password</h3>
-  <p>Current: {{password}}<p>
-  <label for="password">New:</label>
-  <input id="password" type="password" name="password" value="">
-  <h3>First Name</h3>
-  <p>Current: {{firstName}}<p>
-  <label for="firstName">New:</label>
-  <input id="firstName" type="firstName" name="firstName" value="">
-  <h3>Last Name</h3>
-  <p>Current: {{lastName}}<p>
-  <label for="lastName">New:</label>
-  <input id="lastName" type="lastName" name="lastName" value="">
-  <h3>Profile Pic</h3>
-  <p>Current: {{profilePic}}<p>
-  <label for="profilePic">New:</label>
-  <input id="profilePic" type="profilePic" name="profilePic" value="">
-  <br>
-  <input id="submit" type="submit" value="Submit">
-</form>
+<div class="update-user-outermost">
+  <form id="update-user" action="/profile/edit" method="post">
+    <h3>Email</h3>
+    <p>Current: {{email}}<p>
+    <label for="email">New:</label>
+    <input id="email" type="email" name="email" value="">
+    <br>
+    <h3>Password</h3>
+    <p>Current: {{password}}<p>
+    <label for="password">New:</label>
+    <input id="password" type="password" name="password" value="">
+    <br>
+    <h3>First Name</h3>
+    <p>Current: {{firstName}}<p>
+    <label for="firstName">New:</label>
+    <input id="firstName" type="firstName" name="firstName" value="">
+    <br>
+    <h3>Last Name</h3>
+    <p>Current: {{lastName}}<p>
+    <label for="lastName">New:</label>
+    <input id="lastName" type="lastName" name="lastName" value="">
+    <br>
+    <h3>Profile Pic</h3>
+    <p>Current: {{profilePic}}<p>
+    <label for="profilePic">New:</label>
+    <input id="profilePic" type="profilePic" name="profilePic" value="">
+    <br>
+    <input id="submit" type="submit" value="Submit">
+  </form>
+</div>
 
 <a href="/profile">Back to profile</a>

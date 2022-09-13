@@ -24,13 +24,13 @@ a {
 }
 
 .homepage-outer{
-
   width: 75%;
   height: 500px;
   /* border: 1px solid white; */
   display: flex;
   justify-content: space-evenly;
 }
+
 .homepage-container-left{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 500;
@@ -38,6 +38,26 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/* profile */
+
+.profile_imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile_info {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+  padding-bottom: 30px;
+}
+
+.profile_edit_details{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .homepage-container-left img{
@@ -93,7 +113,7 @@ a {
 
 #forgot_pass{
   color: #1877f2  ;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-decoration: none;
   padding-top: 10px;
 }
@@ -202,12 +222,13 @@ a {
 li{
   background-color: var(--color-canvas-default);
   border-color:var(--color-border-default);
-  border-style: ridge;
+  /* border-style: ridge; */
   border-width: 3px;
   border-radius: 5px;
   margin: 10px;
   width: auto;
   height:50px;
+  list-style: none;
 }
 
 

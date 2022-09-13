@@ -18,6 +18,6 @@ describe("Posts page", () => {
     cy.get("#firstName").type("someone");
     cy.get("#submit").click();
 
-    cy.contains("a", "Welcome someone")
-  })
+    cy.contains("a", "Welcome someone");
+  });
 });

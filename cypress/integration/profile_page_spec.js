@@ -5,7 +5,7 @@ describe("Profile page", () => {
   });
 
   it("goes to profile page if user is logged in", () => {
-    // sign up + sign in 
+    // sign up + sign in
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
@@ -14,9 +14,7 @@ describe("Profile page", () => {
 
     //profile
     cy.visit("/profile");
-
-    cy.get(".title").should("contain", "Acebook");
-    cy.get("p").should("contain", "someone");
+    cy.get("h4").should("contain", "someone");
   });
 
   it("returns to posts when link is clicked", () => {
@@ -27,7 +25,7 @@ describe("Profile page", () => {
     cy.get("#firstName").type("someone");
     cy.get("#submit").click();
     cy.visit("/profile");
-    cy.get("a").contains("Back to posts").click()
+    cy.get("a").contains("Back to posts").click();
     cy.url().should("include", "/posts");
-  })
+  });
 });
