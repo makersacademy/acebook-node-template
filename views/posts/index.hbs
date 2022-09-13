@@ -178,6 +178,10 @@
           {{!-- <div id="blank-message!">{{blank}}</div> --}}
         </form>
 
+        <form method="post" action="posts/upload" enctype="multipart/form-data">
+          <input type="file" name="image"><br>
+          <button type="submit" name="upload">Upload</button>
+        </form>
       </div>
 
       <div class="messageSender__bottom">
@@ -225,10 +229,6 @@
       </div>
 
       <div class="post__image">
-        <form method="post" action="posts/upload" enctype="multipart/form-data">
-          <input type="file" name="image"><br>
-          <button type="submit" name="upload">Upload</button>
-        </form>
         {{!-- <img src={{}} alt="" /> --}}
       </div>
 

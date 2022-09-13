@@ -6,7 +6,7 @@ const PostsController = {
   Upload: async (req, res) => {
     await console.log('post');
 
-    const imagePath = path.join(__dirname, '/public/images');
+    const imagePath = path.join(__dirname, '../public/images');
     const fileUpload = new Resize(imagePath);
     if (!req.file) {
       res.status(401).json({ error: 'Please provide an image' });
