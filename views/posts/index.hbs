@@ -16,28 +16,23 @@
         >Delete Post</button>
 
         <script type="text/javascript">
-          document.querySelector("#post-delete-button-{{this._id}}").addEventListener("click",
-          () => { fetch("/posts/delete/{{this._id}}", {method: "DELETE"})
-          .then(response=> response.json()).then(result => { if (result.ok &&
-          result.ok === 1 && result.deletedCount === 1) { const postDivEl =
-          document.querySelector("#post-div-container-{{this._id}}")
-          postDivEl.childNodes.forEach((node) => node.remove())
-          postDivEl.append( Object.assign( document.createElement("p"), { id:
-          "post-delete-message-{{this._id}}", class: "post-delete-message" } ) )
-          } }) } )
+          document.querySelector("#post-delete-button-{{this._id}}")
+            .addEventListener("click", () => {
+              fetch("/posts/delete/{{this._id}}", {method: "DELETE"})
+                .then(response=> response.json()).then(result => {
+                  if (result.ok && result.ok === 1 && result.deletedCount === 1) {
+                    const postDivEl = document.querySelector("#post-div-container-{{this._id}}")
+                    const postDivElChildren = postDivEl.getElementsByTagName('*')
+                    for (let i = 0; i < postDivElChildren.length; i ++) {
+                      postDivElChildren[i].remove()
+                    }
+                    postDivEl.append(Object.assign(document.createElement("p"), {
+                      className: "post-delete-message",
+                      id: "post-delete-message-{{this._id}}", 
+                      textContent: "This post has been deleted"
+
+            } ) ) } }) } )
         </script>
-
-        {{!--         
-        <form action="/posts/delete/{{this._id}}?_method=DELETE" method="POST">
-          <input
-            class="post-delete-button"
-            id="post-delete-button-{{this._id}}"
-            type="submit"
-            value="Delete Post"
-          />
-        </form> --}}
-
-        {{! display "this post deleted" message }}
       </div>
     </div>
   {{/each}}
