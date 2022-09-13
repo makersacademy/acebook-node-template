@@ -1,6 +1,23 @@
 const Post = require("../models/post");
 
 const PostsController = {
+  Like: async (req, res) => {
+    const postID = req.body.post;
+    const userID = req.session.user._id;
+    const post = await Post.findOne({ _id: postID });
+
+    const userAlreadyLiked = post.likes.includes(userID);
+    if (userAlreadyLiked) {
+      const index = post.likes.indexOf(userID)
+      post.likes.splice(index, 1)
+    } else {
+      post.likes.push(userID);
+    }
+
+    await post.save();
+    res.status(201).redirect("/posts");
+  },
+
   Index: (req, res) => {
     Post.find((err, posts) => {
       if (err) {
@@ -9,7 +26,8 @@ const PostsController = {
       res.render("posts/index", {
         posts: posts.reverse(),
         title: "Acebook",
-        firstName: req.session.user["firstName"],
+        firstName: req.session.user.firstName,
+        userID: req.session.user._id
       });
     });
   },
@@ -31,7 +49,6 @@ const PostsController = {
           blank: "Please enter a message",
           firstName: req.session.user["firstName"]
         });
-
       });
     } else {
       post.save((err) => {
