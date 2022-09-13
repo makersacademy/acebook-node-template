@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 
 const PostsController = {
   Like: async (req, res) => {
@@ -18,6 +19,33 @@ const PostsController = {
     res.status(201).redirect("/posts");
   },
 
+  // Comment: async (req, res) => {
+  //   const post_id = req.body.postID;
+
+  //   const comment = new Comment({
+  //     postID: post_id,
+  //     postedBy: req.session.user._id,
+  //     comment: req.body.comment
+  //   });
+
+  //   console.log(comment)
+  //   comment.save(async (err) => {
+  //     if (err) {
+  //       throw err;
+  //     }
+  //     const postID = { _id: postID };
+  //     const addComment = {$push: {comments: {message: req.body.comment, user: req.session.user }}};
+      
+  //     console.log(comment)
+  //     await Post.findOneAndUpdate(postID, addComment, {new: true, useFindAndModify: false}, (err) => {
+  //       if (err) {
+  //         throw err;
+  //       }
+  //       res.status(201).redirect("/posts"); 
+  //     })
+  //   })
+  // },
+
   Index: (req, res) => {
     Post.find((err, posts) => {
       if (err) {
@@ -27,7 +55,8 @@ const PostsController = {
         posts: posts.reverse(),
         title: "Acebook",
         firstName: req.session.user.firstName,
-        userID: req.session.user._id
+        userID: req.session.user._id,
+        comments: posts.comments
       });
     });
   },
@@ -60,5 +89,6 @@ const PostsController = {
     }
   },
 };
+
 
 module.exports = PostsController;
