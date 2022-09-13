@@ -1,0 +1,19 @@
+<h1 class="title">{{title}}</h1>
+
+<form action='/sessions?_method=DELETE' method='POST'>
+  <input id="logout" type="submit" value="Log out">
+</form>
+
+<p>Welcome {{firstName}}</p>
+
+<img src="{{{url}}}" width="200px" height="auto" />
+
+<br>
+
+<div>First name: {{firstName}}</div>
+<div>Last name: {{lastName}}</div>
+<div>Email: {{email}}</div>
+<div>Password: {{password}}</div>
+<a id="edit-page" href="/profile/edit">Edit your details</a></div>
+<br>
+<a href="/posts">Back to posts</a>
