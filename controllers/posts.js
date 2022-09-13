@@ -2,7 +2,8 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    const friends = [req.session.user._id, ...req.session.user.friends];
+    const currentUserId = req.session.user._id;
+    const friends = [currentUserId, ...req.session.user.friends];
 
     Post.find({ user_id: { $in: friends } })
       .populate("user_id")
@@ -12,7 +13,22 @@ const PostsController = {
           console.log("PostsPage.index error with Post.find");
           console.log(err);
         } else {
-          res.render("posts/index", { posts: posts.reverse() });
+          //   posts = posts.map((post) => {
+          // //   return { post: post, isUser: true };
+          // // });
+          // posts.map(post => {
+          //   {
+          //     post: post,
+          //   isUser = true // logic to see if the post user id = current user id
+          // }
+          // })
+          // this.post.message
+          // this.post.time
+          // {{if isUser}}
+          res.render("posts/index", {
+            posts: posts.reverse(),
+            currentUserId: currentUserId,
+          });
         }
       });
   },

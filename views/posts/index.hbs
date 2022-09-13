@@ -8,6 +8,7 @@
         <li>{{this.user_id.username}}</li>
         <li>{{this.time_posted}}</li>
       </ul>
+      {{!-- {{#ifIdsMatch this.user_id._id currentUserId}} --}}
       <div class="post-delete-div" id="post-delete-div-{{this._id}}">
         <button
           class="post-delete-button"
@@ -15,6 +16,7 @@
           onclick="deletePostOnClick('{{this._id}}')"
         >Delete Post</button>
       </div>
+      {{!-- {{/ifIdsMatch}} --}}
     </div>
   {{/each}}
 </div>

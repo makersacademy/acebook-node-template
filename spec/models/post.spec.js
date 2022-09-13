@@ -177,4 +177,23 @@ describe("Post model", () => {
       done();
     });
   });
+
+  it("it checks that found posts can be mapped into objects with new attributes", (done) => {
+    const post = new Post({ message: "some message" });
+
+    // save Post
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      // find id of saved post
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        posts = posts.map((post) => {
+          return { post: post, isUser: true };
+        });
+        expect(posts[0].isUser).toEqual(true);
+        done();
+      });
+    });
+  });
 });
