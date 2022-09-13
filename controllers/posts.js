@@ -1,3 +1,4 @@
+const Image = require("../models/image")
 const Post = require("../models/post");
 const Resize = require("../middleware/resize");
 const path = require('path');
@@ -12,7 +13,34 @@ const PostsController = {
       res.status(401).json({ error: 'Please provide an image' });
     }
     const filename = await fileUpload.save(req.file.buffer);
+
+    //new stuff to save to db
+    // need to make this obj more sophisticated
+    const obj = {
+      name: 'my pic',
+      desc: 'a test pic',
+      img: {
+        data: req.file.buffer,
+        contentType: 'image/png'
+      }
+    }
+
+    Image.create(obj, (err, item) => {
+      console.log(obj)
+      if (err) {
+        console.log(err);
+      } else {
+        item.save((err) => {
+          if (err) {
+            throw err;
+          }
+        })
+      }
+    })
+
+    // will do something better than this
     return res.status(200).json({ name: filename });
+
   },
 
   Like: async (req, res) => {
