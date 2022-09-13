@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <br><br><title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
-    {{{body}}}
+  
+    <div class="navigation-menu">
+      <div> 
+        <a href="/">
+         <img alt="Logo for Acebook" src='/images/acebook_logo_2.png'
+         width="150" height="145">
+        </a>
+      </div>
+      <br>
+      <br>
+      {{#if session.user.email }}
+      <h4>📧 Account: {{session.user.email}}</h4>
+      <h5>Name: {{session.user.name}} {{session.user.surname}}</h5>
+      {{/if}}
+      <br>
+      <br>
+      {{!-- removed home button--}}
+      {{#if session.user.email }}
+        <input type="button" class="navigation-button" id="view-self-profile" value="Profile Page" onclick="location.href='/users/profile'"></input>
+        <input type="button" class="navigation-button" id="view-posts" value="📜 Posts" onclick="location.href='/posts'"></input>
+        <form action='/sessions?_method=DELETE' method='POST'>
+          <input class="navigation-button" id="sign-out-button" type="submit" value="🚪 Sign Out">
+        </form>
+      {{else}}
+        <input class="navigation-button" id="login-button" type="submit" onclick="location.href='/sessions/new'" value="🔑 Log In">
+        <br>
+        <input class="navigation-button" id="sign-up-button" type="submit" onclick="location.href='/users/new'" value="✍️ Sign Up">
+      {{/if}}
+    </div>
+    <div class="content">
+      {{{body}}}
+    </div>
   </body>
 </html>

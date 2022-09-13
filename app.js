@@ -53,6 +53,15 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+//informing hbs whether the user has logged in
+const loginCheck = (req, res) => {
+  if (!req.session.user && !req.cookies.user_sid) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
