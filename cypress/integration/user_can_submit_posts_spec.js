@@ -14,8 +14,7 @@ describe("Timeline", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("Whats on your mind?");
-
+    cy.get('#message').invoke('attr', 'placeholder').should("contain", " Whats on your mind?")
     cy.get("#message").type("Hello, world!");
     cy.get("#submit").click();
     cy.get(".posts").should("contain", "Hello, world!");
@@ -31,9 +30,6 @@ describe("Timeline", () => {
 
     // submit a blank post
     cy.get("#submit").click();
-
-    cy.contains("div", "Please enter a message");
-    // cy.get("li").should("be.null");
-    // cy.get("li").should("have.length", 0);
+    cy.get('#message').invoke('attr', 'placeholder').should("contain", " Whats on your mind?  Please enter a message")
   });
 });

@@ -6,8 +6,9 @@ describe("Home page", () => {
 
   it("goes to homepage if user is not logged in", () => {
     cy.visit("/");
-    cy.get(".title").should("contain", "Acebook");
-    cy.contains("h1", "Log in");
+    cy.contains("p", "Acebook helps you connect and share")
+    cy.get('#login_submit_btn').should("have.value", "Log In")
+    cy.get('#login_submit_btn').should("exist")
   });
 
   it(" '/' redirects to '/posts' if user is logged in", () => {
