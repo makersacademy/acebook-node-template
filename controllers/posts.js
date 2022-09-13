@@ -5,22 +5,23 @@ const PostsController = {
     const postID = req.body.post;
     const userID = req.session.user._id;
     const post = await Post.findOne({ _id: postID });
+    let liked = false;
 
     const userAlreadyLiked = post.likes.includes(userID);
     if (userAlreadyLiked) {
       const index = post.likes.indexOf(userID)
       post.likes.splice(index, 1)
+
+      liked = true
+      
     } else {
       post.likes.push(userID);
+      liked = false
     }
-    
-    await post.save();
-    // res.status(201).redirect("/posts");
-    res.send({postID: postID, userID: userID})
-  },
 
-  // class like - change class if user has liked to userLiked
-  // css .userLike :blue
+    await post.save();
+    res.send({liked: liked, userID: userID})
+  },
 
   Index: (req, res) => {
     Post.find((err, posts) => {
@@ -36,10 +37,6 @@ const PostsController = {
     });
   },
 
-  // New: (req, res) => {
-  //   res.render("posts/new", {});
-  // },
-
   Create: (req, res) => {
     const post = new Post(req.body);
     if (post.message == "") {
@@ -48,6 +45,7 @@ const PostsController = {
           throw err;
         }
         res.render("posts/index", {
+          usersLikedPosts: 0,
           posts: posts.reverse(),
           title: "Acebook",
           blank: "Please enter a message",
