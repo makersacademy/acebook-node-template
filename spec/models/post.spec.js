@@ -92,4 +92,55 @@ describe("Post model", () => {
       });
     });
   });
+
+  it('adds a like to the post database', (done) => {
+    // creates new user
+    const user = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
+      email: "someone@example.com",
+      password: "password",
+      friends: [],
+    });
+
+    let userId;
+
+    // saves user to table
+    user.save((err) => {
+      expect(err).toBeNull();
+
+      // finds user in table
+      User.find((err, user) => {
+        expect(err).toBeNull();
+        userId = user[0]._id;
+        expect(userId).toBeTruthy();
+
+        // create post with a like incl. user_id
+        const post = new Post({
+          message: "some message",
+          likes: [userId],
+        });
+
+        // save post
+        post.save((err) => {
+          expect(err).toBeNull();
+
+          // find saved post
+          Post.find((err, posts) => {
+            expect(err).toBeNull();
+            expect(posts[0].message).toEqual("some message");
+            expect(posts[0].likes[0]).toEqual(userId);
+
+            // find user using ID from saved like in post
+            User.find({ _id: userId }, (err, user) => {
+              expect(err).toBeNull();
+              expect(user[0].username).toEqual("someone");
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
 });
