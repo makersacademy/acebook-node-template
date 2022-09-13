@@ -5,6 +5,9 @@ const LikesController = {
     userId = req.session.user._id;
     postId = req.params.postId
 
+    console.log("this post is being liked")
+    console.log(postId);
+
     Post.findOneAndUpdate(
       { _id: postId },
       { $addToSet: { likes: userId } },
@@ -16,9 +19,7 @@ const LikesController = {
           console.log(`A like from ${userId} is added to ${postId}`)
           const numberOfLikes = post.likes.length;
 
-          res.send("posts/index", {
-            counter: numberOfLikes
-          });
+          res.send(JSON.stringify({ counter: numberOfLikes }));
         };
       });
   },

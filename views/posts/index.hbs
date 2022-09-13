@@ -6,18 +6,21 @@
   <li>{{this.message}}</li>
   <li>{{this.user_id.username}}</li>
   <li>{{this.time_posted}}</li>
+  {{!-- <li>{{this.likes.length}}</li> --}}
   
   <div class = "likes">
-    <p>{{this.numberOfLikes}} likes</p>
-    <button id="like-button">Like</button>
+    <div class="post-like-counter" id="counter-{{this._id}}">{{this.likes.length}}</div>
+    <button class="like-button" id="button-{{this._id}}">Like</button>
 
     <script type="text/javascript">
-      document.querySelector("#like-button").addEventListener('click', () => {
-      fetch( "/likes/new/" + "{{this._id}}", {method: 'PUT'}) })
+      document.getElementById("button-{{this._id}}").addEventListener('click', () => {
+      fetch( "/likes/new/" + "{{this._id}}", {method: 'PUT'})
+        .then(response => response.json())
+        .then(result => document.getElementById("counter-{{this._id}}").textContent = result.counter) })
     </script>
   </div>
 </ul>
-</div>
+</div> 
 {{/each}}
 
 <a class="new-post-link" href="/posts/new">New post</a>
