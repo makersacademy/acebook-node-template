@@ -11,9 +11,19 @@ body {
   background-color: #f0f2f5;
 }
 
+.like {
+  padding-left: 10px;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  color: gray;
+  cursor: pointer;
+}
+
 a {
   color: #00B7FF;
 }
+
 .homepage-outermost{
 
   width: 100%;

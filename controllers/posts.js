@@ -13,10 +13,14 @@ const PostsController = {
     } else {
       post.likes.push(userID);
     }
-
+    
     await post.save();
-    res.status(201).redirect("/posts");
+    // res.status(201).redirect("/posts");
+    res.send({postID: postID, userID: userID})
   },
+
+  // class like - change class if user has liked to userLiked
+  // css .userLike :blue
 
   Index: (req, res) => {
     Post.find((err, posts) => {

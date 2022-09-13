@@ -1,3 +1,5 @@
+
+
 <!-- header starts -->
 <div class="header">
   <div class="header__left">
@@ -161,10 +163,8 @@
 
       <div class="post__options">
         <div class="post__option">
-          <span class="material-icons"> thumb_up </span>
-          <p>Like</p>
-          <button class="like" type="submit" value="{{this._id}}">{{this.likes.length}} likes</button>
-
+          <p id="like{{this._id}}">{{this.likes.length}}</p>
+          <button class="like" type="submit" value="{{this._id}}"> <span class="material-icons"> thumb_up </span></button>
         </div>
 
         <div class="post__option">
@@ -175,6 +175,7 @@
       </div>
     </div>
     {{/each}}
+
       
       <!-- post ends -->
   </div>
