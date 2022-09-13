@@ -2,7 +2,10 @@ const User = require("../models/user");
 
 const ProfilePage = {
   Index: (req, res) => {
-    const profileUsername = req.params.username;
+    let profileUsername = req.params.username;
+    if (!profileUsername) {
+      profileUsername = req.body.searchBar;
+    }
     // find user model belonging to profile
     User.findOne({ username: profileUsername })
       .populate("friends")
@@ -17,9 +20,7 @@ const ProfilePage = {
             res.render("profiles/userNotFound");
           } else {
             console.log(`${profileUsername}'s profile has been loaded`);
-            const friendsListWithUsernames = user.friends.map(
-              (friend) => friend.username
-            );
+            const friendsListWithUsernames = user.friends.map((friend) => friend.username);
             res.render("profiles/index", {
               profileUsername: profileUsername,
               friends: friendsListWithUsernames,

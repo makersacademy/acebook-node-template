@@ -1,15 +1,17 @@
-<h1 id="profile-header">{{profileUsername}}'s profile</h1>
+<div class="profile-container">
+  <h1 id="profile-header">{{profileUsername}}'s profile</h1>
 
-<button id="add-friend-button">Add friend</button>
+  <button id="add-friend-button">Add friend</button>
 
-<script type="text/javascript">
-  document.querySelector("#add-friend-button").addEventListener('click', () => {
-  fetch("{{fetchUrl}}", {method: 'PUT'}) })
-</script>
+  <script type="text/javascript">
+    document.querySelector("#add-friend-button").addEventListener('click', () => { fetch("{{fetchUrl}}", {method:
+    'PUT'}) })
+  </script>
 
-<ul class="friends-list">
-  Friends:
-  {{#each friends}}
-    <li class="friend-username">{{this}}</li>
-  {{/each}}
-</ul>
+  <ul class="friends-list">
+    Friends:
+    {{#each friends}}
+      <li class="friend-username">{{this}}</li>
+    {{/each}}
+  </ul>
+</div>
