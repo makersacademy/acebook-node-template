@@ -26,20 +26,13 @@
     </span>
   </div>
 </div>
-
-<h1 class="title">{{title}}</h1>
-
-<form action='/sessions?_method=DELETE' method='POST'>
-  <input id="logout" type="submit" value="Log out">
-</form>
-
-<p>Welcome {{firstName}}</p>
-
+<br>
 <img src="{{{url}}}" width="200px" 
      height="auto"/> 
 <br>
 
-<div class="update-user-outermost">
+<div class="homepage-outermost">
+<div class="container">
   <form id="update-user" action="/profile/edit" method="post">
     <h3>Email</h3>
     <p>Current: {{email}}<p>
@@ -68,6 +61,7 @@
     <br>
     <input id="submit" type="submit" value="Submit">
   </form>
+</div>
 </div>
 
 <a href="/profile">Back to profile</a>
