@@ -6,11 +6,12 @@
   <li>{{this.message}}</li>
   <li>{{this.user_id.username}}</li>
   <li>{{this.time_posted}}</li>
-  {{!-- <li>{{this.likes.length}}</li> --}}
   
   <div class = "likes">
     <div class="post-like-counter" id="counter-{{this._id}}">{{this.likes.length}}</div>
-    <button class="like-button" id="button-{{this._id}}">Like</button>
+    <button class="like-button" id="button-{{this._id}}">
+      <img src="/images/thumbs-up.png" width="20" height="20" alt="thumbs-up-button" />
+    </button>
 
     <script type="text/javascript">
       document.getElementById("button-{{this._id}}").addEventListener('click', () => {
@@ -24,3 +25,5 @@
 {{/each}}
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+
