@@ -20,8 +20,10 @@
             Acebook
           <h1/>
         <a/>
-        <input class="search-bar" type="text" placeholder="Search for friends" />
-        <button type="submit" class="magnifying-glass"><img src="/images/magnifying-glass.png" width="24" height="24" alt="magnifying-glass" /></button>
+        <form action="/profiles/" method="POST">
+          <input id="search" name="searchBar" value="" class="search-bar" type="text" placeholder="Search for friends"/>
+          <button type="submit" class="magnifying-glass"><img src="/images/magnifying-glass.png" width="24" height="24" alt="magnifying-glass"/></button>
+        </form>
      </div>
   {{else}}
   <div class="search-container">
