@@ -13,21 +13,34 @@ const PostsController = {
       post.likes.splice(index, 1)
 
       liked = true
-      
+
     } else {
       post.likes.push(userID);
       liked = false
     }
 
     await post.save();
-    res.send({liked: liked, userID: userID})
+    res.send({ liked: liked, userID: userID })
   },
 
   Index: (req, res) => {
+    const userID = req.session.user._id;
+
     Post.find((err, posts) => {
       if (err) {
         throw err;
       }
+
+      // get blue colour onto button when on homepage
+      // by bodging colour into each post
+      posts.forEach((post) => {
+        if (post.likes.includes(userID) == true) {
+          post._doc.color = "#1877f2"
+        } else {
+          post._doc.color = "gray"
+        }
+      })
+
       res.render("posts/index", {
         posts: posts.reverse(),
         title: "Acebook",

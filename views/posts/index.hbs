@@ -1,5 +1,3 @@
-
-
 <!-- header starts -->
 <div class="header">
   <div class="header__left">
@@ -14,7 +12,7 @@
     <div class="header__option active">
       <span class="material-icons"> home </span>
     </div>
- 
+
   </div>
   <div class="header__right">
     <div class="header__info">
@@ -24,8 +22,8 @@
     </div>
     <span class="material-icons">
       <form action='/sessions?_method=DELETE' method='POST'>
-          <button id="logout" type="submit"><span class="material-icons">logout</span></button>
-        </form>
+        <button id="logout" type="submit"><span class="material-icons">logout</span></button>
+      </form>
     </span>
   </div>
 </div>
@@ -137,7 +135,7 @@
 
           {{!-- <div id="blank-message!">{{blank}}</div> --}}
         </form>
-      
+
       </div>
     </div>
     <!-- message sender ends -->
@@ -164,7 +162,10 @@
       <div class="post__options">
         <div class="post__option">
           <p id="like{{this._id}}">{{this.likes.length}}</p>
-          <button id="button{{this._id}}" class="like" type="submit" value="{{this._id}}"> <span class="material-icons"> thumb_up </span></button>
+          <button id="button{{this._id}}" class="like" type="submit" value="{{this._id}}"
+            style="color:{{this._doc.color}}">
+            <span class="material-icons">thumb_up </span>
+          </button>
         </div>
 
         <div class="post__option">
@@ -176,9 +177,7 @@
     </div>
     {{/each}}
 
-      
-      <!-- post ends -->
+
+    <!-- post ends -->
   </div>
 </div>
-
-
