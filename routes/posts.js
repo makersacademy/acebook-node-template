@@ -1,12 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const multer = require('multer')
-const upload = multer({
-  limits: {
-    filesize: 4 * 1024 * 1024,
-  }
-})
+const upload = require("../middleware/multer")
 
 const PostsController = require("../controllers/posts");
 

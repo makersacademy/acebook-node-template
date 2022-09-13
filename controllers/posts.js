@@ -1,12 +1,12 @@
 const Post = require("../models/post");
-const Resize = require("../image/resize");
+const Resize = require("../middleware/resize");
 const path = require('path');
 
 const PostsController = {
   Upload: async (req, res) => {
     await console.log('post');
 
-    const imagePath = path.join(__dirname, '../public/images');
+    const imagePath = path.join(__dirname, '../uploads');
     const fileUpload = new Resize(imagePath);
     if (!req.file) {
       res.status(401).json({ error: 'Please provide an image' });
