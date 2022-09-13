@@ -9,33 +9,14 @@
         <li>{{this.time_posted}}</li>
       </ul>
       <div class="post-delete-div" id="post-delete-div-{{this._id}}">
-        {{! replace this form with a button & event listener }}
         <button
           class="post-delete-button"
           id="post-delete-button-{{this._id}}"
+          onclick="deletePostOnClick('{{this._id}}')"
         >Delete Post</button>
-
-        <script type="text/javascript">
-          document.querySelector("#post-delete-button-{{this._id}}")
-            .addEventListener("click", () => {
-              fetch("/posts/delete/{{this._id}}", {method: "DELETE"})
-                .then(response=> response.json()).then(result => {
-                  if (result.ok && result.ok === 1 && result.deletedCount === 1) {
-                    const postDivEl = document.querySelector("#post-div-container-{{this._id}}")
-                    const postDivElChildren = postDivEl.getElementsByTagName('*')
-                    for (let i = 0; i < postDivElChildren.length; i ++) {
-                      postDivElChildren[i].remove()
-                    }
-                    postDivEl.append(Object.assign(document.createElement("p"), {
-                      className: "post-delete-message",
-                      id: "post-delete-message-{{this._id}}", 
-                      textContent: "This post has been deleted"
-
-            } ) ) } }) } )
-        </script>
       </div>
     </div>
   {{/each}}
 </div>
-
+<script src="/javascripts/posts/index.js"></script>
 <a class="new-post-link" href="/posts/new">New post</a>

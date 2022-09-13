@@ -1,5 +1,5 @@
-describe("Posts feed", () => {
-  it("posts contain message, creator's username and timestamp", () => {
+describe("Delete request", () => {
+  it("It deletes a post via a request", () => {
     // clearing db
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
@@ -26,6 +26,12 @@ describe("Posts feed", () => {
     // make a new post
     cy.visit("/posts/new");
     cy.get("#message").type("this is a post");
+
+    cy.get("#submit-post").click();
+
+    // this variable helps check that the post being created has the correct time (eg. current time)
+    // when this test runs close to the minute it can fail because the variable and post have
+    // two different times due to the delay of the request
     const today = new Date();
     const time =
       today.getFullYear() +
@@ -37,7 +43,6 @@ describe("Posts feed", () => {
       today.getHours() +
       ":" +
       today.getMinutes();
-    cy.get("#submit-post").click();
 
     // post appears in feed with info
     cy.visit("/posts");

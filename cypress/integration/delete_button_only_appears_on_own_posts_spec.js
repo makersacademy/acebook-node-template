@@ -1,5 +1,5 @@
 describe("Delete Button", () => {
-  it("User cannot request to delete someone else's posts", () => {
+  it("delete button only appears on your own posts", () => {
     // clearing db
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
@@ -45,17 +45,13 @@ describe("Delete Button", () => {
     cy.get("#password").type("password");
     cy.get("#login").click();
 
-    // make request to delete post
-    cy.request("GET", "http://localhost:3030/admin/posts", {
-      user: "admin",
-      password: "password",
-    }).then((response) => {
-      cy.request(
-        "DELETE",
-        `http://localhost:3030/posts/delete/${response.body[0]._id}`
-      ).then((response) => {
-        expect(response.body).to.eq("User IDs do not match");
-      });
-    });
+    // clicking add friend button
+    cy.visit("/profiles/someone");
+    cy.get("#add-friend-button").click();
+
+    //
+    cy.visit("/posts");
+    cy.get(".posts").contains("this is a post");
+    cy.get(".post-delete-button").should("not.exist");
   });
 });
