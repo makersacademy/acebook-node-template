@@ -1,6 +1,11 @@
 const Post = require("../models/post");
 
+
 const PostsController = {
+  Upload: async (req, res) => {
+    await console.log('post');
+  },
+
   Like: async (req, res) => {
     const postID = req.body.post;
     const userID = req.session.user._id;

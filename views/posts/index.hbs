@@ -35,8 +35,8 @@
     <span class="material-icons"> notifications_active </span>
     <span class="material-icons">
       <form action='/sessions?_method=DELETE' method='POST'>
-          <button id="logout" type="submit"><span class="material-icons">logout</span></button>
-        </form>
+        <button id="logout" type="submit"><span class="material-icons">logout</span></button>
+      </form>
     </span>
   </div>
 </div>
@@ -200,79 +200,44 @@
     <!-- message sender ends -->
 
 
-      {{!-- <ul class="posts"> --}}
-        {{!-- <div class="posts">
-          {{#each posts}}
-          <li>{{this.message}}</li>
-          {{/each}}
-        </div> --}}
-        {{!--
-      </ul> --}}
+    {{!-- <ul class="posts"> --}}
+      {{!-- <div class="posts">
+        {{#each posts}}
+        <li>{{this.message}}</li>
+        {{/each}}
+      </div> --}}
+      {{!--
+    </ul> --}}
 
-      <!-- post starts -->
-      {{#each posts}}
-      <div class="post">
-        <div class="post__top">
-          <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
-          <div class="post__topInfo">
-            <h3>{{this._id}}</h3> <!-- Need to link post to user firstname  -->
-            <p>{{this.createdAt}}</p>
-          </div>
-        </div>
-
-        <div class="post__bottom">
-          <p>{{this.message}}</p>
-        </div>
-
-        <div class="post__image">
-          {{!-- <img src={{}} alt="" /> --}}
-        </div>
-
-        <div class="post__options">
-          <div class="post__option">
-            <span class="material-icons"> thumb_up </span>
-            <p>Like</p>
-            <button class="like" type="submit" value="{{this._id}}">{{this.likes.length}} likes</button>
-
-          </div>
-
-          <div class="post__option">
-            <span class="material-icons"> chat_bubble_outline </span>
-            <p>Comment</p>
-          </div>
-
-          <div class="post__option">
-            <span class="material-icons"> near_me </span>
-            <p>Share</p>
-          </div>
-        </div>
-      </div>
-      {{/each}}
-      <!-- post ends -->
-
-      <!-- post starts -->
-      <div class="post">
-        <div class="post__top">
-          <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
-          <div class="post__topInfo">
-            <h3>The Axylotls</h3>
-            <p>25 April at 20:30</p>
-          </div>
+    <!-- post starts -->
+    {{#each posts}}
+    <div class="post">
+      <div class="post__top">
+        <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
+        <div class="post__topInfo">
+          <h3>{{this._id}}</h3> <!-- Need to link post to user firstname  -->
+          <p>{{this.createdAt}}</p>
         </div>
       </div>
 
       <div class="post__bottom">
-        <p>Rest In Peace QUEEN</p>
+        <p>{{this.message}}</p>
       </div>
 
       <div class="post__image">
-        <img src="images/img/QUEEN.webp" alt="" />
+        <form method="post" action="posts/upload" enctype="multipart/form-data">
+          <input type="file" name="image"><br>
+          <button type="submit" name="upload">Upload</button>
+        </form>
+        {{!-- <img src={{}} alt="" /> --}}
       </div>
 
       <div class="post__options">
         <div class="post__option">
           <span class="material-icons"> thumb_up </span>
           <p>Like</p>
+          <button class="like" type="submit" value="{{this._id}}">{{this.likes.length}} likes</button>
+
         </div>
 
         <div class="post__option">
@@ -286,6 +251,7 @@
         </div>
       </div>
     </div>
+    {{/each}}
     <!-- post ends -->
 
     <!-- post starts -->
@@ -297,78 +263,116 @@
           <p>25 April at 20:30</p>
         </div>
       </div>
-
-      <div class="post__bottom">
-        <p>Post Without Image</p>
-      </div>
-
-      <div class="post__options">
-        <div class="post__option">
-          <span class="material-icons"> thumb_up </span>
-          <p>Like</p>
-        </div>
-
-        <div class="post__option">
-          <span class="material-icons"> chat_bubble_outline </span>
-          <p>Comment</p>
-        </div>
-
-        <div class="post__option">
-          <span class="material-icons"> near_me </span>
-          <p>Share</p>
-        </div>
-      </div>
     </div>
-    <!-- post ends -->
 
-    <!-- post starts -->
-    <div class="post">
-      <div class="post__top">
-        <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
-        <div class="post__topInfo">
-          <h3>The Axylotls</h3>
-          <p>25 April at 20:30</p>
-        </div>
-      </div>
-
-      <div class="post__bottom">
-        <p>Travel destination</p>
-      </div>
-
-      <div class="post__image">
-        <img src="images/img/post-1.jpg" alt="" />
-      </div>
-
-      <div class="post__options">
-        <div class="post__option">
-          <span class="material-icons"> thumb_up </span>
-          <p>Like</p>
-        </div>
-
-        <div class="post__option">
-          <span class="material-icons"> chat_bubble_outline </span>
-          <p>Comment</p>
-        </div>
-
-        <div class="post__option">
-          <span class="material-icons"> near_me </span>
-          <p>Share</p>
-        </div>
-      </div>
+    <div class="post__bottom">
+      <p>Rest In Peace QUEEN</p>
     </div>
-    <!-- post ends -->
-  </div>
-  <!-- feed ends -->
 
-  <div style="flex: 0.33" class="widgets">
-    <div class="fb-page" data-href="https://www.facebook.com/facebook/" data-tabs="timeline" data-width="500"
-      data-height="1000" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
-      data-show-facepile="true">
-      <blockquote cite="https://www.facebook.com/facebook/" class="fb-xfbml-parse-ignore">
-        <a href="https://www.facebook.com/facebook/"></a>
-      </blockquote>
+    <div class="post__image">
+      <img src="images/img/QUEEN.webp" alt="" />
+    </div>
+
+    <div class="post__options">
+      <div class="post__option">
+        <span class="material-icons"> thumb_up </span>
+        <p>Like</p>
+      </div>
+
+      <div class="post__option">
+        <span class="material-icons"> chat_bubble_outline </span>
+        <p>Comment</p>
+      </div>
+
+      <div class="post__option">
+        <span class="material-icons"> near_me </span>
+        <p>Share</p>
+      </div>
     </div>
   </div>
+  <!-- post ends -->
+
+  <!-- post starts -->
+  <div class="post">
+    <div class="post__top">
+      <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
+      <div class="post__topInfo">
+        <h3>The Axylotls</h3>
+        <p>25 April at 20:30</p>
+      </div>
+    </div>
+
+    <div class="post__bottom">
+      <p>Post Without Image</p>
+    </div>
+
+    <div class="post__options">
+      <div class="post__option">
+        <span class="material-icons"> thumb_up </span>
+        <p>Like</p>
+      </div>
+
+      <div class="post__option">
+        <span class="material-icons"> chat_bubble_outline </span>
+        <p>Comment</p>
+      </div>
+
+      <div class="post__option">
+        <span class="material-icons"> near_me </span>
+        <p>Share</p>
+      </div>
+    </div>
+  </div>
+  <!-- post ends -->
+
+  <!-- post starts -->
+  <div class="post">
+    <div class="post__top">
+      <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
+      <div class="post__topInfo">
+        <h3>The Axylotls</h3>
+        <p>25 April at 20:30</p>
+      </div>
+    </div>
+
+    <div class="post__bottom">
+      <p>Travel destination</p>
+    </div>
+
+    <div class="post__image">
+      <img src="images/img/post-1.jpg" alt="" />
+    </div>
+
+    <div class="post__options">
+      <div class="post__option">
+        <span class="material-icons"> thumb_up </span>
+        <p>Like</p>
+      </div>
+
+      <div class="post__option">
+        <span class="material-icons"> chat_bubble_outline </span>
+        <p>Comment</p>
+      </div>
+
+      <div class="post__option">
+        <span class="material-icons"> near_me </span>
+        <p>Share</p>
+      </div>
+    </div>
+  </div>
+  <!-- post ends -->
+</div>
+<!-- feed ends -->
+
+<div style="flex: 0.33" class="widgets">
+  <div class="fb-page" data-href="https://www.facebook.com/facebook/" data-tabs="timeline" data-width="500"
+    data-height="1000" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+    data-show-facepile="true">
+    <blockquote cite="https://www.facebook.com/facebook/" class="fb-xfbml-parse-ignore">
+      <a href="https://www.facebook.com/facebook/"></a>
+    </blockquote>
+  </div>
+</div>
 </div>
 <!-- main body ends -->
 
