@@ -123,7 +123,7 @@ input#password {
   min-height: 100vh;
   flex-direction: column;
   margin-left: -242px;
-  margin-top: -32rem;
+  margin-top: -20%;
 }
 
 .friends-list {
@@ -132,6 +132,9 @@ input#password {
 }
 
 .posts-container {
+}
+
+.post-feed-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,4 +143,18 @@ input#password {
   flex-direction: column;
   margin-left: -242px;
   margin-top: -25%;
+  margin-top: -15rem;
+}
+
+.likes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  padding: 0 2rem;
+}
+
+.like-button {
+  background-color: transparent;
+  border-color: transparent;
 }
