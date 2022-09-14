@@ -2,7 +2,9 @@ const Comment = require("../models/comment");
 
 const CommentsController = {
   Index: (req, res) => {
-    const friends = [req.session.user._id, ...req.session.user.friends];
+    const postId = req.params.postId;
+    console.log("helloooo");
+    console.log(postId);
 
     Comment
       .find((err, comments) => {
@@ -11,7 +13,8 @@ const CommentsController = {
           console.log("CommentsPage.index error with Comment.find");
           console.log(err);
         } else {
-          res.render("comments/index", { comments: comments.reverse() });
+          console.log(comments);
+          res.render("comments/index", { comments: comments.reverse(), postId: postId });
         }
       });
   },
@@ -24,6 +27,7 @@ const CommentsController = {
     const comment = new Comment({
         message: req.body.message,
         user_id: req.session.user._id,
+        post_id: postId,
         time_posted: time
       });
     comment.save((err) => {
