@@ -1,6 +1,6 @@
-describe("Posts feed", () => {
-  it("posts contain message, creator's username and timestamp", () => {
-    // clearing db
+describe("Admin", () => {
+  it("An admin can see all posts", () => {
+    // delete all table entries
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
       password: "password",
@@ -20,24 +20,24 @@ describe("Posts feed", () => {
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#login").click();
-    cy.visit("/");
-    cy.get(".title").should("contain", "Acebook");
 
-    // make a new post
-    cy.visit("/posts/new");
-    cy.get("#message").type("this is a post");
-    cy.get("#submit-post").click();
+    // creates a post
+    cy.visit("/posts");
+    cy.contains("New post").click();
 
-    // getting variable for time from the post entry
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").submit();
+
+    cy.visit("/posts");
+    cy.get(".posts").should("contain", "Hello, world!");
+
+    // checking admin page has all posts
     cy.request("GET", "http://localhost:3030/admin/posts", {
       user: "admin",
       password: "password",
     }).then((response) => {
-      // post appears in feed with info
-      cy.visit("/posts");
-      cy.get(".posts").contains("this is a post");
-      cy.get(".posts").contains("someone");
-      cy.get(".posts").contains(response.body[0].time_posted);
+      // Object.keys(response).forEach((key) => cy.log(key))
+      expect(response.body[0].message).to.eq("Hello, world!");
     });
   });
 });

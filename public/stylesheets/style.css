@@ -123,12 +123,15 @@ input#password {
   min-height: 100vh;
   flex-direction: column;
   margin-left: -242px;
-  margin-top: -32rem;
+  margin-top: -20%;
 }
 
 .friends-list {
   padding: 0;
   margin-left: 0;
+}
+
+.posts-container {
 }
 
 .post-feed-container {
@@ -139,6 +142,7 @@ input#password {
   min-height: 100vh;
   flex-direction: column;
   margin-left: -242px;
+  margin-top: -25%;
   margin-top: -15rem;
 }
 
@@ -153,6 +157,4 @@ input#password {
 .like-button {
   background-color: transparent;
   border-color: transparent;
-  
-
 }

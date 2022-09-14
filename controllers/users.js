@@ -6,7 +6,6 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    console.log(req.body);
     console.log("Attempting to sign up new user");
     const newUserUsername = req.body.username;
     const newUserEmail = req.body.email;

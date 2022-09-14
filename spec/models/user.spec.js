@@ -57,7 +57,6 @@ describe("User model", () => {
 
       User.find((err, users) => {
         expect(err).toBeNull();
-
         expect(users[0].email).toEqual("someone@example.com");
         expect(users[0].password).toEqual("password");
         done();

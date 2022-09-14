@@ -93,6 +93,33 @@ describe("Post model", () => {
     });
   });
 
+  it("deletes a post", (done) => {
+    const post = new Post({ message: "some message" });
+
+    // save Post
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      // find id of saved post
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        // delete post
+        Post.deleteOne({ _id: posts[0]._id }, (err, result) => {
+          expect(err).toBeNull();
+          expect(result).toMatchObject({ n: 1, ok: 1, deletedCount: 1 });
+
+          // check post is deleted
+          Post.findOne({ _id: posts[0]._id }, (err, post) => {
+            expect(err).toBeNull();
+            expect(post).toBeNull();
+            done();
+          });
+        });
+      });
+    });
+  });
+
   it("adds a like to the post database", (done) => {
     // creates new user
     const user = new User({
@@ -140,6 +167,51 @@ describe("Post model", () => {
             });
           });
         });
+      });
+    });
+  });
+
+  it("returns an object when trying to delete a post that doesn't exist", (done) => {
+    Post.deleteOne({ message: "some message" }, (err, result) => {
+      expect(err).toBeNull();
+      expect(result).toMatchObject({ n: 0, ok: 1, deletedCount: 0 });
+      done();
+    });
+  });
+
+  it("it checks that found posts can be mapped into objects with new attributes", (done) => {
+    const post = new Post({ message: "some message" });
+
+    // save Post
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      // find id of saved post
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        posts = posts.map((post) => {
+          return { post: post, isUser: true };
+        });
+        expect(posts[0].isUser).toEqual(true);
+        done();
+      });
+    });
+  });
+
+  it("adds a key:value pair to the ._doc value in the MongoDB object", (done) => {
+    const post = new Post({ message: "some message" });
+
+    // save Post
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      // find id of saved post
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        // checking that logic can be written to the newKey
+        posts.forEach((post) => (post._doc.newKey = 1 + 1 === 2));
+        expect(posts[0]._doc.newKey).toBe(true);
+        done();
       });
     });
   });
