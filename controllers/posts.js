@@ -27,10 +27,10 @@ const PostsController = {
         throw err;
       }
 
-      // from https://dpwdec.github.io/2020/06/17/store-images-in-mongodb
       posts.forEach((post) => {
         if (post.img.data) {
-          // convert the data into base64
+          // from https://dpwdec.github.io/2020/06/17/store-images-in-mongodb
+          // convert image data into base64
           post.img.data = post.img.data.toString('base64');
           return post.toObject();
         }
@@ -47,30 +47,20 @@ const PostsController = {
 
   Create: async (req, res) => {
     const message = req.body.message;
-    const obj = {
-      message: message
-    }
-
-    // if image is uploaded
-    if (req.file) {
-      // save resized image to '/uploads'
-      const imagePath = path.join(__dirname, '../uploads');
-      const fileUpload = new Resize(imagePath);
-      const filename = await fileUpload.save(req.file.buffer);
-
-      // load resized image
-      const data = fs.readFileSync(path.join(__dirname + '/../uploads/' + filename));
-      obj.img = {
-        data: data,
-        contentType: req.file.mimetype
-      }
-    }
 
     if (message == "") {
       Post.find((err, posts) => {
         if (err) {
           throw err;
         }
+
+        posts.forEach((post) => {
+          if (post.img.data) {
+            post.img.data = post.img.data.toString('base64');
+            return post.toObject();
+          }
+        })
+
         res.render("posts/index", {
           posts: posts.reverse(),
           title: "Acebook",
@@ -79,9 +69,29 @@ const PostsController = {
         });
       });
     } else {
+      const obj = {
+        message: message
+      }
+
+      if (req.file) {
+        // save resized image to '/uploads'
+        const imagePath = path.join(__dirname, '../uploads');
+        const fileUpload = new Resize(imagePath);
+        const filename = await fileUpload.save(req.file.buffer);
+
+        // load resized image
+        const data = fs.readFileSync(path.join(imagePath, filename));
+
+        obj.img = {
+          data: data,
+          contentType: req.file.mimetype
+        }
+      }
+
+      // create post
       Post.create(obj, (err, post) => {
         if (err) {
-          console.log(err);
+          throw err;
         } else {
           post.save((err) => {
             if (err) {
