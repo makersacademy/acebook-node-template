@@ -1,13 +1,12 @@
 const Comment = require("../models/comment");
+const Post = require("../models/post");
 
 const CommentsController = {
   Index: (req, res) => {
     const postId = req.params.postId;
-    console.log("helloooo");
-    console.log(postId);
 
     Comment
-      .find({ post_id: postId})
+      .find({ post_id: postId })
       .populate("post_id")
       .exec((err, comments) => {
         if (err){
@@ -15,8 +14,13 @@ const CommentsController = {
           console.log("CommentsPage.index error with Comment.find");
           console.log(err);
         } else {
-          console.log(comments);
-          res.render("comments/index", { comments: comments.reverse(), postId: postId });
+          Post.findOne({ _id: postId },
+            (err, post) => {
+              if (err) {
+                console.log(err);
+              } else {
+                res.render("comments/index", { comments: comments.reverse(), post: post });
+          }});
         }
       });
   },

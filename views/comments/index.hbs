@@ -2,7 +2,7 @@
   <h1>Comments</h1>
 
   <div class="comments">
-    {{post}}
+    {{post.message}}
     {{#each comments}}
     <ul>
       <li>{{this.message}}</li>
@@ -28,7 +28,7 @@
   {{/each}}
   </div>
 
-    <form id="new-comment-form" action="/comments/{{postId}}" , method="POST">
+    <form id="new-comment-form" action="/comments/{{post._id}}" , method="POST">
       <input id="message" type="text" name="message" value="" placeholder="e.g. Hello!">
       <input id="submit-comment" type="submit" value="Submit">
     </form>
