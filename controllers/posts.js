@@ -67,12 +67,12 @@ const PostsController = {
         throw err;
       }
 
-      // posts.forEach((post) => {
-      //   if (post.img.data) {
-      //     post.img.data = post.img.data.toString('base64');
-      //     return post.toObject();
-      //   }
-      // })
+      posts.forEach((post) => {
+        if (post.img.data) {
+          post.img.data = post.img.data.toString('base64');
+          return post.toObject();
+        }
+      })
 
       // posts = posts.map((post) => {
       // post.img.data = post.img.data.toString('base64');
@@ -80,7 +80,9 @@ const PostsController = {
       // })
 
       posts.forEach((post) => {
-        console.log(post)
+        if (post.img.data) {
+          console.log(post)
+        }
       })
 
       res.render("posts/index", {
@@ -103,7 +105,7 @@ const PostsController = {
       const data = fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename));
       obj.img = {
         data: data,
-        contentType: 'image/png'
+        contentType: req.file.mimetype
       }
     }
 
