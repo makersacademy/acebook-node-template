@@ -2,16 +2,13 @@ const Comment = require("../models/comment");
 
 const CommentsController = {
   Index: (req, res) => {
-    console.log("Comment page works!");
     const friends = [req.session.user._id, ...req.session.user.friends];
 
     Comment
-      .find({ user_id: { $in: friends }})
-      .populate('user_id')
-      .exec((err, comments) => {
+      .find((err, comments) => {
         if (err){
           // do something if there's an error
-          console.log("PostsPage.index error with Post.find");
+          console.log("CommentsPage.index error with Comment.find");
           console.log(err);
         } else {
           res.render("comments/index", { comments: comments.reverse() });
@@ -20,6 +17,7 @@ const CommentsController = {
   },
 
   Create: (req, res) => {
+    const postId = req.params.postId;
     const today = new Date();
     const time = today.getFullYear() + '/' +(today.getMonth()+1) + '/' + today.getDate() +' ' + today.getHours() + ":" + today.getMinutes();
     console.log(time)
