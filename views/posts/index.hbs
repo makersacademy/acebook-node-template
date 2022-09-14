@@ -258,7 +258,8 @@
           <div class="comment__bottom">{{this.comment}}</div>
         {{/each}}
           
-        <form id="new-comment-form" action="/posts" method="post">
+        <form id="new-comment-form" action="/comments" method="post">
+          <input type="hidden" id="postID" name="postID" value={{this._id}}>
           <input id="comment" type="text" name="comment" value="" placeholder="Leave a comment here">
           <input id="submit-comment" type="submit" value="COMMENT">
         </form>

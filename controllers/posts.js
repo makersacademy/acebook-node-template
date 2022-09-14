@@ -46,24 +46,27 @@ const PostsController = {
   //   })
   // },
 
-  Index: (req, res) => {
-    Post.find((err, posts) => {
+  Index: async (req, res) => {
+    Post.find()
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user_id",
+      },
+    })
+      .exec((err, posts) => {
       if (err) {
         throw err;
       }
+      
       res.render("posts/index", {
         posts: posts.reverse(),
         title: "Acebook",
         firstName: req.session.user.firstName,
-        userID: req.session.user._id,
-        comments: posts.comments
+        userID: req.session.user._id
       });
     });
   },
-
-  // New: (req, res) => {
-  //   res.render("posts/new", {});
-  // },
 
   Create: (req, res) => {
     const post = new Post(req.body);
