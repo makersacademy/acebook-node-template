@@ -1,9 +1,8 @@
 <div class="comments-feed-container">
-  <h1>Commentssss?</h1>
-
-  {{postId}}
+  <h1>Comments</h1>
 
   <div class="comments">
+    {{post}}
     {{#each comments}}
     <ul>
       <li>{{this.message}}</li>
@@ -29,7 +28,7 @@
   {{/each}}
   </div>
 
-    <form id="new-comment-form" action="/comments/" + "{{postId}}" , method="POST">
+    <form id="new-comment-form" action="/comments/{{postId}}" , method="POST">
       <input id="message" type="text" name="message" value="" placeholder="e.g. Hello!">
       <input id="submit-comment" type="submit" value="Submit">
     </form>

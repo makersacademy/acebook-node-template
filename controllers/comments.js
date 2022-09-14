@@ -7,7 +7,9 @@ const CommentsController = {
     console.log(postId);
 
     Comment
-      .find((err, comments) => {
+      .find({ post_id: postId})
+      .populate("post_id")
+      .exec((err, comments) => {
         if (err){
           // do something if there's an error
           console.log("CommentsPage.index error with Comment.find");
@@ -23,7 +25,7 @@ const CommentsController = {
     const postId = req.params.postId;
     const today = new Date();
     const time = today.getFullYear() + '/' +(today.getMonth()+1) + '/' + today.getDate() +' ' + today.getHours() + ":" + today.getMinutes();
-    console.log(time)
+
     const comment = new Comment({
         message: req.body.message,
         user_id: req.session.user._id,
@@ -35,7 +37,7 @@ const CommentsController = {
         throw err;
       }
 
-      res.status(201).redirect("/comments/:postId");
+      res.redirect("/comments/" + postId);
     });
   },
 };
