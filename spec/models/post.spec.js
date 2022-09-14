@@ -93,7 +93,7 @@ describe("Post model", () => {
     });
   });
 
-  it('adds a like to the post database', (done) => {
+  it("adds a like to the post database", (done) => {
     // creates new user
     const user = new User({
       username: "someone",
@@ -113,13 +113,13 @@ describe("Post model", () => {
       // finds user in table
       User.find((err, user) => {
         expect(err).toBeNull();
-        userId = user[0]._id;
+        // userId = user[0]._id;
         expect(userId).toBeTruthy();
 
         // create post with a like incl. user_id
         const post = new Post({
           message: "some message",
-          likes: [userId],
+          likes: [user[0]._id],
         });
 
         // save post
