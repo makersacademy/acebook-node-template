@@ -32,13 +32,11 @@ describe("Comments", () => {
 
     // comment on a user's post
     cy.visit("/posts");
-    cy.get('#comment').invoke('attr', 'placeholder').should("contain", "Comment here")
-    cy.get("#new-comment-form").find('[type="text"]').type("Goodbye!");
-    cy.get("#new-comment-form").submit();
-    // cy.get("#comment").type("Goodbye!");
-    // cy.get("#submit-comment").click();
-    cy.get(".comment__bottom").should("contain", "Goodbye! - newperson");
-    // cy.get(".comment__bottom").should("contain", "newperson");
+    cy.get('.comment').invoke('attr', 'placeholder').should("contain", "Comment here")
+    cy.get(".comment").type("Goodbye!");
+    cy.get(".submit-comment").click();
+    cy.get(".comment__bottom").should("contain", "Goodbye! - newperson newsurname");
+    
   });
 
   // it("Unable to submit a blank comment", () => {

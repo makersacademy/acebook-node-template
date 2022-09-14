@@ -259,10 +259,10 @@
           <p>{{this.date}}</p>
         {{/each}}
           
-        <form id="new-comment-form" action="/comments" method="post">
+        <form class="new-comment-form" action="/comments" method="post">
           <input type="hidden" id="postID" name="postID" value={{this._id}}>
-          <input id="comment" type="text" name="comment" value="" placeholder="Comment here">
-          <input id="submit-comment" type="submit" value="COMMENT">
+          <input class="comment" type="text" name="comment" value="" placeholder="Comment here">
+          <input class="submit-comment" type="submit" value="COMMENT">
         </form>
       {{/each}}
       <!-- post ends -->
