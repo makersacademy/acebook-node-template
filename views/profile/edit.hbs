@@ -1,38 +1,61 @@
-<h1 class="title">{{title}}</h1>
+<!-- header starts -->
+<div class="header">
+  <div class="header__left">
+    <img src="images/acebook_logo.svg" alt="" />
+    <div class="header__input">
+      <span class="material-icons"> search </span>
+      <input type="text" placeholder="Search Acebook" />
+    </div>
+  </div>
 
-<form action='/sessions?_method=DELETE' method='POST'>
-  <input id="logout" type="submit" value="Log out">
-</form>
+  <div class="header__middle">
+    <div class="header__option active">
+      <a href="/posts"><span class="material-icons"> home </span></a>
+    </div>
+  </div>
+  <div class="header__right">
+    <div class="header__info">
+      <img class="user__avatar" src="images/img/Makers.png"  alt="" />
+      <h4><a href="/profile">Welcome {{firstName}}</a></h4>
+    </div>
 
-<p>Welcome {{firstName}}</p>
+    <span class="material-icons">
+      <form action='/sessions?_method=DELETE' method='POST'>
+          <button id="logout" type="submit"><span class="material-icons">logout</span></button>
+        </form>
+    </span>
+  </div>
+</div>
+<div class="post">
+  <div class="profile_img_edit">
+  <img src="{{{url}}}" width="300" height="300" />
+  </div>
 
-<img src="{{{url}}}" width="200px" 
-    height="auto"/> 
-<br>
+<div class="homepage-outermost">
+<div class="container">
+  <form id="update-user" action="/profile/edit" method="post">
+    <h3>Email</h3>
+    <p>Current: {{email}}<p>
+    <input id="email" type="email" name="email" value="">
+    <br>
+    <h3>Password</h3>
+    <p>Current: {{password}}<p>
+    <input id="password" type="password" name="password" value="">
+    <br>
+    <h3>First Name</h3>
+    <p>Current: {{firstName}}<p>
+    <input id="firstName" type="firstName" name="firstName" value="">
+    <br>
+    <h3>Last Name</h3>
+    <p>Current: {{lastName}}<p>
+    <input id="lastName" type="lastName" name="lastName" value="">
+    <br>
+    <h3>Profile Pic</h3>
+    <p>Current: {{profilePic}}<p>
+    <input id="profilePic" type="profilePic" name="profilePic" value="">
+    <br>
+    <input id="submit" type="submit" value="Submit">
+  </form>
+</div>
+</div>
 
-<form id="update-user" action="/profile/edit" method="post">
-  <h3>Email</h3>
-  <p>Current: {{email}}<p>
-  <label for="email">New:</label>
-  <input id="email" type="email" name="email" value="">
-  <h3>Password</h3>
-  <p>Current: {{password}}<p>
-  <label for="password">New:</label>
-  <input id="password" type="password" name="password" value="">
-  <h3>First Name</h3>
-  <p>Current: {{firstName}}<p>
-  <label for="firstName">New:</label>
-  <input id="firstName" type="firstName" name="firstName" value="">
-  <h3>Last Name</h3>
-  <p>Current: {{lastName}}<p>
-  <label for="lastName">New:</label>
-  <input id="lastName" type="lastName" name="lastName" value="">
-  <h3>Profile Pic</h3>
-  <p>Current: {{profilePic}}<p>
-  <label for="profilePic">New:</label>
-  <input id="profilePic" type="profilePic" name="profilePic" value="">
-  <br>
-  <input id="submit" type="submit" value="Submit">
-</form>
-
-<a href="/profile">Back to profile</a>
