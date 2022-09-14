@@ -130,3 +130,29 @@ input#password {
   padding: 0;
   margin-left: 0;
 }
+
+.post-feed-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  flex-direction: column;
+  margin-left: -242px;
+  margin-top: -15rem;
+}
+
+.likes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  padding: 0 2rem;
+}
+
+.like-button {
+  background-color: transparent;
+  border-color: transparent;
+  
+
+}
