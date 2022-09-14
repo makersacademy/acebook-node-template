@@ -32,7 +32,7 @@ describe("Timeline", () => {
     cy.get("#submit").click();
     cy.get('#message').invoke('attr', 'placeholder').should("contain", " Whats on your mind?  Please enter a message")
   });
-  
+
   it("Displays the name of user on a post",()=>{
       // sign up + log in
       cy.visit("/users/new");

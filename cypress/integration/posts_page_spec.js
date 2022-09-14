@@ -20,4 +20,16 @@ describe("Posts page", () => {
 
     cy.contains("a", "Welcome someone");
   });
+
+  it("Can log out by clicking on logout icon on nav bar", ()=>{
+    // sign up + log in
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#firstName").type("someone");
+    cy.get("#submit").click();
+
+    cy.get('#logout').click();
+    cy.url().should("match", /.+\/$/);
+  })
 });

@@ -28,4 +28,17 @@ describe("Profile page", () => {
     cy.get('#home_icon').click();
     cy.url().should("include", "/posts");
   });
+
+  it("Can log out by clicking on logout icon on nav bar", ()=>{
+    // sign up + log in
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#firstName").type("someone");
+    cy.get("#submit").click();
+
+    cy.visit("/profile")
+    cy.get('#logout').click();
+    cy.url().should("match", /.+\/$/);
+  })
 });
