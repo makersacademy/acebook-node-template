@@ -5,7 +5,6 @@ const HomeController = {
       username = req.session.user.username;
       console.log(username);
     }
-    console.log(username);
     res.render("home/index", { title: "Acebook", user: username });
   },
 };
