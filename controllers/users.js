@@ -6,31 +6,42 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
+    console.log("Attempting to sign up new user");
+    const newUserUsername = req.body.username;
+    const newUserEmail = req.body.email;
 
+    // see if username or email match any existing users
     User.find(
-      { $or: [{ username: req.body.username }, { email: req.body.email }] },
+      { $or: [{ username: newUserUsername }, { email: newUserEmail }] },
       (err, result) => {
         if (err) {
+          // do something if err
           throw err;
         } else if (result.length) {
-          let userNameExists = false;
+          // return an object for relevant error messages in DOM if they match
+          let usernameExists = false;
           let emailExists = false;
-          if (result.filter((user) => user.username).length)
-            userNameExists = true;
-          if (result.filter((user) => user.email).length) emailExists = true;
+          if (result.filter((user) => user.username === newUserUsername).length)
+            usernameExists = true;
+          if (result.filter((user) => user.email === newUserEmail).length)
+            emailExists = true;
           res.send(
             JSON.stringify({
-              usernameExists: usernameExists,
-              emailExists: emailExists,
+              content: {
+                usernameExists: usernameExists,
+                emailExists: emailExists,
+              },
             })
           );
         } else {
+          // create a new user if username and email are unique
+          const user = new User(req.body);
           user.save((err) => {
             if (err) {
               throw err;
             }
-            res.status(201).redirect("/posts");
+            // redirect to login
+            res.status(201).redirect("/");
           });
         }
       }
