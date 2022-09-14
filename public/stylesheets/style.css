@@ -150,12 +150,13 @@ input#password {
 
 .post {
   /* background-color: #d0e7ff; */
-  padding: 1rem;
+  padding: 2rem;
   border: #007dfa;
   border-style: solid;
-  border-width: 1px;
+  border-width: 1.5px;
   border-radius: 30px;
   margin-bottom: 20px;
+  width: 16rem;
 }
 
 .likes-container {
@@ -169,6 +170,20 @@ input#password {
 .like-button {
   background-color: transparent;
   border-color: transparent;
+  background-image: url('/images/thumbs-up.png');
+  background-size: 16px;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+  margin-left: -55px;
+}
+
+.like-button:hover {
+  background-image: url('/images/thumbs-up-blue.png');
+}
+
+.liked-true {
+  background-image: url('/images/thumbs-up-blue.png');
 }
 
 .new-comment-link {
