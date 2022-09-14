@@ -13,8 +13,18 @@ const UsersController = {
       (err, result) => {
         if (err) {
           throw err;
-        } else if (result.length > 0) {
-          // do something
+        } else if (result.length) {
+          let userNameExists = false;
+          let emailExists = false;
+          if (result.filter((user) => user.username).length)
+            userNameExists = true;
+          if (result.filter((user) => user.email).length) emailExists = true;
+          res.send(
+            JSON.stringify({
+              usernameExists: usernameExists,
+              emailExists: emailExists,
+            })
+          );
         } else {
           user.save((err) => {
             if (err) {
