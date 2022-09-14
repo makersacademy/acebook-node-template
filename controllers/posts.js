@@ -13,18 +13,12 @@ const PostsController = {
           console.log("PostsPage.index error with Post.find");
           console.log(err);
         } else {
-          //   posts = posts.map((post) => {
-          // //   return { post: post, isUser: true };
-          // // });
-          // posts.map(post => {
-          //   {
-          //     post: post,
-          //   isUser = true // logic to see if the post user id = current user id
-          // }
-          // })
-          // this.post.message
-          // this.post.time
-          // {{if isUser}}
+          console.log("loading posts");
+          posts.forEach(
+            (post) =>
+              (post._doc.belongsToCurrentUser =
+                post.user_id._id.toString() === currentUserId)
+          );
           res.render("posts/index", {
             posts: posts.reverse(),
             currentUserId: currentUserId,
