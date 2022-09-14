@@ -1,17 +1,19 @@
 const Image = require("../models/image")
 const Post = require("../models/post");
 const Resize = require("../middleware/resize");
+const fs = require('fs')
 const path = require('path');
+// require('dotenv/config')
 
 const PostsController = {
   Upload: async (req, res) => {
-    await console.log('post');
-
     const imagePath = path.join(__dirname, '../uploads');
     const fileUpload = new Resize(imagePath);
     if (!req.file) {
       res.status(401).json({ error: 'Please provide an image' });
     }
+
+    // saves a resized image to '/uploads'
     const filename = await fileUpload.save(req.file.buffer);
 
     //new stuff to save to db
@@ -26,7 +28,6 @@ const PostsController = {
     }
 
     Image.create(obj, (err, item) => {
-      console.log(obj)
       if (err) {
         console.log(err);
       } else {
@@ -74,13 +75,22 @@ const PostsController = {
     });
   },
 
-  // New: (req, res) => {
-  //   res.render("posts/new", {});
-  // },
-
   Create: (req, res) => {
-    const post = new Post(req.body);
-    if (post.message == "") {
+    // const post = new Post(req.body);
+
+    const message = req.body.message
+    const img = {
+      data: fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)),
+      contentType: 'image/png'
+    }
+
+    const obj = {
+      message: message,
+      img: img
+    }
+
+    // if (post.message == "") {
+    if (message == "") {
       Post.find((err, posts) => {
         if (err) {
           throw err;
@@ -93,12 +103,22 @@ const PostsController = {
         });
       });
     } else {
-      post.save((err) => {
+
+      // new stuff
+      Post.create(obj, (err, post) => {
         if (err) {
-          throw err;
+          console.log(err);
+        } else {
+
+          // original stuff
+          post.save((err) => {
+            if (err) {
+              throw err;
+            }
+            res.status(201).redirect("/posts");
+          });
         }
-        res.status(201).redirect("/posts");
-      });
+      })
     }
   },
 };
