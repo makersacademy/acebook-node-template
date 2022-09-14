@@ -1,17 +1,41 @@
-<div class="profile-container">
-  <h1 id="profile-header">{{profileUsername}}'s profile</h1>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-  <button id="add-friend-button">Add friend</button>
+<body>
+  <div class="profile-container">
+    <div class="circular-portrait">
+      <img id="myImg" src="#" />
+    </div>
+    <br />
+    <div>
+      <form action="/profiles/image" action="POST">
+        <input class="picture-text" id="image" type="file" />
+      </form>
+    </div>
 
-  <script type="text/javascript">
-    document.querySelector("#add-friend-button").addEventListener('click', () => { fetch("{{fetchUrl}}", {method:
-    'PUT'}) })
-  </script>
+    <h1 id="profile-header">{{profileUsername}}'s profile</h1>
 
-  <ul class="friends-list">
-    Friends:
-    {{#each friends}}
-      <li class="friend-username">{{this}}</li>
-    {{/each}}
-  </ul>
-</div>
+    <button id="add-friend-button">Add friend</button>
+
+    <script type="text/javascript">
+      document.querySelector("#add-friend-button").addEventListener('click', () => { fetch("{{fetchUrl}}", {method:
+      'PUT'}) })
+      {{! spacing  }}
+      window.addEventListener('load', function () {
+      document.querySelector('input[type="file"]').addEventListener('change', function () { if (this.files &&
+      this.files[0]) { var img = document.querySelector('#myImg'); img.onload = () => { URL.revokeObjectURL(img.src); }
+      img.src = URL.createObjectURL(this.files[0]); } }); });
+    </script>
+
+    <ul class="friends-list">
+      Friends:.
+      {{#each friends}}
+        <li class="friend-username">{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</body>

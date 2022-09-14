@@ -3,9 +3,6 @@ const User = require("../models/user");
 const ProfilePage = {
   Index: (req, res) => {
     let profileUsername = req.params.username;
-    if (!profileUsername) {
-      profileUsername = req.body.searchBar;
-    }
     // find user model belonging to profile
     User.findOne({ username: profileUsername })
       .populate("friends")
@@ -29,6 +26,10 @@ const ProfilePage = {
           }
         }
       });
+  },
+  Find: (req, res) => {
+    const profileUsername = req.body.searchBar;
+    res.redirect(`/profiles/${profileUsername}`);
   },
 };
 

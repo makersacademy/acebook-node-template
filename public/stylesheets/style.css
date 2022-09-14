@@ -123,7 +123,7 @@ input#password {
   min-height: 100vh;
   flex-direction: column;
   margin-left: -242px;
-  margin-top: -20%;
+  margin-top: -10%;
 }
 
 .friends-list {
@@ -157,4 +157,28 @@ input#password {
 .like-button {
   background-color: transparent;
   border-color: transparent;
+}
+
+/* #myImg {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+} */
+
+.picture-text {
+  color: white;
+  font-size: 11px;
+}
+
+.circular-portrait {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.circular-portrait img {
+  width: 150px;
+  height: auto;
 }
