@@ -68,7 +68,9 @@ const PostsController = {
           firstName: req.session.user["firstName"]
         });
       });
+
     } else {
+
       const obj = {
         message: message
       }
@@ -77,7 +79,8 @@ const PostsController = {
         // save resized image to '/uploads'
         const imagePath = path.join(__dirname, '../uploads');
         const fileUpload = new Resize(imagePath);
-        const filename = await fileUpload.save(req.file.buffer);
+        // const filename = await fileUpload.save(req.file.buffer);
+        const filename = await fileUpload.save(req.file);
 
         // load resized image
         const data = fs.readFileSync(path.join(imagePath, filename));
