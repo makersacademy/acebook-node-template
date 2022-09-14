@@ -255,12 +255,13 @@
       </div>
       
         {{#each this.comments}}
-          <div class="comment__bottom">{{this.comment}}</div>
+          <div class="comment__bottom">{{this.comment}} - {{this.postedBy.firstName}} {{this.postedBy.lastName}}</div>
+          <p>{{this.date}}</p>
         {{/each}}
           
         <form id="new-comment-form" action="/comments" method="post">
           <input type="hidden" id="postID" name="postID" value={{this._id}}>
-          <input id="comment" type="text" name="comment" value="" placeholder="Leave a comment here">
+          <input id="comment" type="text" name="comment" value="" placeholder="Comment here">
           <input id="submit-comment" type="submit" value="COMMENT">
         </form>
       {{/each}}

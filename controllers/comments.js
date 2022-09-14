@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const User = require("../models/user");
 
 const CommentsController = {
 
@@ -12,18 +13,18 @@ const CommentsController = {
       comment: req.body.comment
     });
 
-    console.log("I AM HERE")
-    console.log(comment)
     comment.save(async (err) => {
       if (err) {
         throw err;
       }
-      const filter = { _id: post_id };
-      const update = {$push: {comments: comment._id }};
+      // const user = await User.findById(comment.postedBy);
+      // const firstName = user.firstName;
+
+    //   const filter = { _id: post_id };
+    //   const update = {$push: {comments: comment._id //firstName: firstName
+    // }};
       
-      console.log("NOW I AM HERE")
-      console.log(update)
-      await Post.findOneAndUpdate(filter, update)
+    //   await Post.findOneAndUpdate(filter, update)
       res.status(201).redirect("/posts"); 
     })
   }
