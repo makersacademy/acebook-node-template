@@ -7,11 +7,12 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-    console.log(req.body);
+    console.log("New user form submitted");
     user.save((err) => {
       if (err) {
         throw err;
       }
+      console.log("New user entry created");
       res.status(201).redirect("/posts");
     });
   },
