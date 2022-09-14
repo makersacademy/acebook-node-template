@@ -131,19 +131,31 @@ input#password {
   margin-left: 0;
 }
 
-.posts-container {
-}
-
 .post-feed-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  min-height: 100vh;
+  /* text-align: center; */
+  /* min-height: 100vh; */
   flex-direction: column;
   margin-left: -242px;
   margin-top: -25%;
-  margin-top: -15rem;
+  margin-top: 2rem;
+}
+
+.post-div-container {
+  margin-left: -30px;
+  margin-bottom: -10px
+}
+
+.post {
+  /* background-color: #d0e7ff; */
+  padding: 1rem;
+  border: #007dfa;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 30px;
+  margin-bottom: 20px;
 }
 
 .likes-container {
@@ -151,10 +163,14 @@ input#password {
   justify-content: space-between;
   align-items: center;
   height: 2rem;
-  padding: 0 2rem;
+  /* padding: 0 5rem; */
 }
 
 .like-button {
   background-color: transparent;
   border-color: transparent;
+}
+
+.new-comment-link {
+  margin-left: 50px;
 }

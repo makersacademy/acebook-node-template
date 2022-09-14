@@ -12,12 +12,14 @@
 
     <div class="posts">
       {{#each posts}}
+      <div class="post">
         <div class="post-div-container" id="post-div-container-{{this._id}}">
           <ul>
             <li>{{this.message}}</li>
             <li>{{this.user_id.username}}</li>
             <li>{{this.time_posted}}</li>
           </ul>
+        </div>
 
           <div class="likes-container">
             <div
@@ -40,9 +42,9 @@
               document.getElementById("counter-{{this._id}}").textContent =
               result.counter) })
             </script>
+          
+            <a class="new-comment-link" href="/comments/{{this._id}}">Write a comment</a>
           </div>
-
-          <a class="new-comment-link" href="/comments/{{this._id}}">Write a comment</a>
 
           {{#if this._doc.belongsToCurrentUser}}
             <div class="post-delete-div" id="post-delete-div-{{this._id}}">
@@ -53,8 +55,7 @@
               >Delete Post</button>
             </div>
           {{/if}}
-        </div>
-
+      </div>
       {{/each}}
     </div>
   </div>
