@@ -135,7 +135,6 @@
 
           {{!-- <div id="blank-message!">{{blank}}</div> --}}
         </form>
-
       </div>
     </div>
     <!-- message sender ends -->
@@ -173,6 +172,16 @@
           <p>Comment</p>
         </div>
 
+        {{#each this.comments}}
+          <div class="comment__bottom">{{this.comment}} - {{this.postedBy.firstName}} {{this.postedBy.lastName}}</div>
+          <p>{{this.date}}</p>
+        {{/each}}
+          
+        <form class="new-comment-form" action="/comments" method="post">
+          <input type="hidden" id="postID" name="postID" value={{this._id}}>
+          <input class="comment" type="text" name="comment" value="" placeholder="Comment here">
+          <input class="submit-comment" type="submit" value="COMMENT">
+        </form>
       </div>
     </div>
     {{/each}}

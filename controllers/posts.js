@@ -1,5 +1,4 @@
 const Post = require("../models/post");
-// const User = require("../models/user")
 
 const PostsController = {
   Like: async (req, res) => {
@@ -26,10 +25,16 @@ const PostsController = {
 
   Index: (req, res) => {
     const userID = req.session.user._id;
-
-    Post.find().
-    populate('user').
-    exec((err, posts) => {
+    
+    Post.find()
+    .populate("user")
+    .populate([{
+      path: "comments",
+      populate: {
+        path: "postedBy"
+      }
+    }])
+    .exec((err, posts) => {
       if (err) {
         throw err;
       }
@@ -51,7 +56,7 @@ const PostsController = {
     });
   },
 
-  Create: async (req, res) => {
+  Create: (req, res) => {
     const post = new Post({
       message: req.body.message,
       user: req.session.user._id
@@ -80,5 +85,6 @@ const PostsController = {
     }
   },
 }
+
 
 module.exports = PostsController;
