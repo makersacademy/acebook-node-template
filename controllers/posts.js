@@ -27,14 +27,8 @@ const PostsController = {
         throw err;
       }
 
-      posts.forEach((post) => {
-        if (post.img.data) {
-          // from https://dpwdec.github.io/2020/06/17/store-images-in-mongodb
-          // convert image data into base64
-          post.img.data = post.img.data.toString('base64');
-          return post.toObject();
-        }
-      })
+      // convert image data into base64
+      convertImage(posts)
 
       res.render("posts/index", {
         posts: posts.reverse(),
@@ -54,12 +48,8 @@ const PostsController = {
           throw err;
         }
 
-        posts.forEach((post) => {
-          if (post.img.data) {
-            post.img.data = post.img.data.toString('base64');
-            return post.toObject();
-          }
-        })
+        // convert image data into base64
+        convertImage(posts)
 
         res.render("posts/index", {
           posts: posts.reverse(),
@@ -71,15 +61,12 @@ const PostsController = {
 
     } else {
 
-      const obj = {
-        message: message
-      }
+      const obj = { message: message };
 
       if (req.file) {
-        // save resized image to '/uploads'
+        // save image
         const imagePath = path.join(__dirname, '../uploads');
         const fileUpload = new Resize(imagePath);
-        // const filename = await fileUpload.save(req.file.buffer);
         const filename = await fileUpload.save(req.file);
 
         // load resized image
@@ -88,7 +75,7 @@ const PostsController = {
         obj.img = {
           data: data,
           contentType: req.file.mimetype
-        }
+        };
       }
 
       // create post
@@ -107,5 +94,15 @@ const PostsController = {
     }
   },
 };
+
+// from https://dpwdec.github.io/2020/06/17/store-images-in-mongodb
+function convertImage(posts) {
+  posts.forEach((post) => {
+    if (post.img.data) {
+      post.img.data = post.img.data.toString('base64');
+      return post.toObject();
+    }
+  })
+}
 
 module.exports = PostsController;
