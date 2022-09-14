@@ -76,25 +76,22 @@ const PostsController = {
   },
 
   Create: (req, res) => {
-    // const post = new Post(req.body);
+    const message = req.body.message;
 
-    const message = req.body.message
-    // const img = {
-    //   data: req.file.buffer,
-    //   contentType: 'image/png'
-    // }
-
-    const img = {
-      data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
-      contentType: 'image/png'
+    // if image is not uploaded
+    let data = null;
+    if (req.file) {
+      data = fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename))
     }
 
     const obj = {
       message: message,
-      img: img
+      img: {
+        data: data,
+        contentType: 'image/png'
+      }
     }
 
-    // if (post.message == "") {
     if (message == "") {
       Post.find((err, posts) => {
         if (err) {
@@ -108,14 +105,10 @@ const PostsController = {
         });
       });
     } else {
-
-      // new stuff
       Post.create(obj, (err, post) => {
         if (err) {
           console.log(err);
         } else {
-
-          // original stuff
           post.save((err) => {
             if (err) {
               throw err;
