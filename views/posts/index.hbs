@@ -10,6 +10,7 @@
         <li>{{this.user_id.username}}</li>
         <li>{{this.time_posted}}</li>
       </ul>
+
       <div class = "likes-container">
         <div class="post-like-counter" id="counter-{{this._id}}">{{this.likes.length}}</div>
         <button class="like-button" id="button-{{this._id}}">
@@ -23,15 +24,18 @@
             .then(result => document.getElementById("counter-{{this._id}}").textContent = result.counter) })
         </script>
       </div>
-
-      <div class="post-delete-div" id="post-delete-div-{{this._id}}">
-        <button
-          class="post-delete-button"
-          id="post-delete-button-{{this._id}}"
-          onclick="deletePostOnClick('{{this._id}}')"
-        >Delete Post</button>
-      </div>
+      
+      {{#if this._doc.belongsToCurrentUser}}
+        <div class="post-delete-div" id="post-delete-div-{{this._id}}">
+          <button
+            class="post-delete-button"
+            id="post-delete-button-{{this._id}}"
+            onclick="deletePostOnClick('{{this._id}}')"
+          >Delete Post</button>
+        </div>
+      {{/if}}
     </div>
+    
   {{/each}}
 </div>
 <script src="/javascripts/posts/index.js"></script>

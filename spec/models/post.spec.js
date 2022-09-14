@@ -197,54 +197,20 @@ describe("Post model", () => {
     });
   });
 
-  it("gives the ._doc.belongsToUserID a true value when UserId and Post._id match and false when they don't", (done) => {
-    const user = new User({
-      username: "someone",
-      first_name: "some",
-      last_name: "one",
-      email: "someone@example.com",
-      password: "password",
-      friends: [],
-    });
+  it("adds a key:value pair to the ._doc value in the MongoDB object", (done) => {
+    const post = new Post({ message: "some message" });
 
-    let userId;
-
-    // saves user to table
-    user.save((err) => {
+    // save Post
+    post.save((err) => {
       expect(err).toBeNull();
 
-      // finds user in table
-      User.find((err, user) => {
+      // find id of saved post
+      Post.find((err, posts) => {
         expect(err).toBeNull();
-        userId = user[0]._id;
-        expect(userId).toBeTruthy();
-
-        // create post with user's id
-        const post = new Post({
-          message: "some message",
-          user_id: userId,
-        });
-
-        // save post
-        post.save((err) => {
-          expect(err).toBeNull();
-
-          // find saved post
-          Post.find((err, posts) => {
-            expect(err).toBeNull();
-            expect(posts[0]).toMatchObject({
-              message: "some message",
-              user_id: userId,
-            });
-
-            // find user using ID from saved post
-            User.find({ _id: userId }, (err, user) => {
-              expect(err).toBeNull();
-              expect(user[0].username).toEqual("someone");
-              done();
-            });
-          });
-        });
+        // checking that logic can be written to the newKey
+        posts.forEach((post) => (post._doc.newKey = 1 + 1 === 2));
+        expect(posts[0]._doc.newKey).toBe(true);
+        done();
       });
     });
   });

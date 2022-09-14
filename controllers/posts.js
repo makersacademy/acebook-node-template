@@ -3,9 +3,10 @@ const Post = require("../models/post");
 const PostsController = {
   Index: (req, res) => {
     const currentUserId = req.session.user._id;
-    const friends = [currentUserId, ...req.session.user.friends];
 
-    Post.find({ user_id: { $in: friends } })
+    Post.find({
+      user_id: { $in: [currentUserId, ...req.session.user.friends] },
+    })
       .populate("user_id")
       .exec((err, posts) => {
         if (err) {
@@ -14,15 +15,14 @@ const PostsController = {
           console.log(err);
         } else {
           console.log("loading posts");
+
+          // give each post a key giving true if the post was created by the current user
           posts.forEach(
             (post) =>
               (post._doc.belongsToCurrentUser =
                 post.user_id._id.toString() === currentUserId)
           );
-          res.render("posts/index", {
-            posts: posts.reverse(),
-            currentUserId: currentUserId,
-          });
+          res.render("posts/index", { posts: posts.reverse() });
         }
       });
   },
