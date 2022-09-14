@@ -79,8 +79,13 @@ const PostsController = {
     // const post = new Post(req.body);
 
     const message = req.body.message
+    // const img = {
+    //   data: req.file.buffer,
+    //   contentType: 'image/png'
+    // }
+
     const img = {
-      data: fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)),
+      data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
       contentType: 'image/png'
     }
 

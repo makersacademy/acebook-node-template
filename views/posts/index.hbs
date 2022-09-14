@@ -170,19 +170,18 @@
       <div class="messageSender__top">
         <img class="user__avatar" src="images/img/Makers.png" alt="" />
 
-        <form id="new-post-form" action="/posts" method="post">
-          {{!-- <label for="message">Whats on your mind? </label> --}}
+        {{!-- FORM MODIFIED FOR IMAGE --}}
+        <form id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
+          <input type="file" name="image" accept="image/*"><br>
           <input id="message" type="text" name="message" value="" placeholder=" Whats on your mind?  {{blank}}">
           <input id="submit" type="submit" value="POST">
-
-          {{!-- <div id="blank-message!">{{blank}}</div> --}}
         </form>
 
         {{!-- EXPERIMENTAL UPLOAD --}}
-        <form method="post" action="posts/upload" enctype="multipart/form-data">
-          <input type="file" name="image"><br>
-          <button type="submit" name="upload">Upload</button>
-        </form>
+        {{!-- <form method="post" action="posts/upload" enctype="multipart/form-data"> --}}
+          {{!-- <input type="file" name="image"><br> --}}
+          {{!-- <button type="submit" name="upload">Upload</button> --}}
+          {{!-- </form> --}}
       </div>
 
       <div class="messageSender__bottom">
