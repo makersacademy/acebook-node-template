@@ -18,7 +18,7 @@ describe("Deauthentication", () => {
     // check we're on the homepage
     // regex to match path of [any number of any characters] folowed by [/]
     cy.url().should("match", /.+\/$/);
-    cy.contains("p", "Acebook helps you connect and share")
+    cy.contains("p", "acebook helps axolotyls meet in the pond")
     cy.get('#login_submit_btn').should("have.value", "Log In")
   });
 });

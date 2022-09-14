@@ -25,7 +25,7 @@ describe("Profile page", () => {
     cy.get("#firstName").type("someone");
     cy.get("#submit").click();
     cy.visit("/profile");
-    cy.get("a").contains("Back to posts").click();
+    cy.get('#home_icon').click();
     cy.url().should("include", "/posts");
   });
 });

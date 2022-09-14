@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+// const User = require("../models/user")
 
 const PostsController = {
   Like: async (req, res) => {
@@ -26,13 +27,13 @@ const PostsController = {
   Index: (req, res) => {
     const userID = req.session.user._id;
 
-    Post.find((err, posts) => {
+    Post.find().
+    populate('user').
+    exec((err, posts) => {
       if (err) {
         throw err;
       }
 
-      // get blue colour onto button when on homepage
-      // by bodging colour into each post
       posts.forEach((post) => {
         if (post.likes.includes(userID) == true) {
           post._doc.color = "#1877f2"
@@ -40,7 +41,7 @@ const PostsController = {
           post._doc.color = "gray"
         }
       })
-
+      
       res.render("posts/index", {
         posts: posts.reverse(),
         title: "Acebook",
@@ -50,19 +51,23 @@ const PostsController = {
     });
   },
 
-  Create: (req, res) => {
-    const post = new Post(req.body);
+  Create: async (req, res) => {
+    const post = new Post({
+      message: req.body.message,
+      user: req.session.user._id
+    });
+
     if (post.message == "") {
       Post.find((err, posts) => {
         if (err) {
           throw err;
         }
+        console.log(posts)
         res.render("posts/index", {
-          usersLikedPosts: 0,
           posts: posts.reverse(),
           title: "Acebook",
           blank: "Please enter a message",
-          firstName: req.session.user["firstName"]
+          firstName: req.session.user.firstName
         });
       });
     } else {
@@ -74,6 +79,6 @@ const PostsController = {
       });
     }
   },
-};
+}
 
 module.exports = PostsController;
