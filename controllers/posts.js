@@ -1,49 +1,9 @@
-const Image = require("../models/image")
 const Post = require("../models/post");
 const Resize = require("../middleware/resize");
 const fs = require('fs')
 const path = require('path');
-// require('dotenv/config')
 
 const PostsController = {
-  Upload: async (req, res) => {
-    const imagePath = path.join(__dirname, '../uploads');
-    const fileUpload = new Resize(imagePath);
-    if (!req.file) {
-      res.status(401).json({ error: 'Please provide an image' });
-    }
-
-    // saves a resized image to '/uploads'
-    const filename = await fileUpload.save(req.file.buffer);
-
-    //new stuff to save to db
-    // need to make this obj more sophisticated
-    const obj = {
-      name: 'my pic',
-      desc: 'a test pic',
-      img: {
-        data: req.file.buffer,
-        contentType: 'image/png'
-      }
-    }
-
-    Image.create(obj, (err, item) => {
-      if (err) {
-        console.log(err);
-      } else {
-        item.save((err) => {
-          if (err) {
-            throw err;
-          }
-        })
-      }
-    })
-
-    // will do something better than this
-    return res.status(200).json({ name: filename });
-
-  },
-
   Like: async (req, res) => {
     const postID = req.body.post;
     const userID = req.session.user._id;
@@ -67,8 +27,10 @@ const PostsController = {
         throw err;
       }
 
+      // from https://dpwdec.github.io/2020/06/17/store-images-in-mongodb
       posts.forEach((post) => {
         if (post.img.data) {
+          // convert the data into base64
           post.img.data = post.img.data.toString('base64');
           return post.toObject();
         }
