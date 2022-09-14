@@ -66,6 +66,23 @@ const PostsController = {
       if (err) {
         throw err;
       }
+
+      // posts.forEach((post) => {
+      //   if (post.img.data) {
+      //     post.img.data = post.img.data.toString('base64');
+      //     return post.toObject();
+      //   }
+      // })
+
+      // posts = posts.map((post) => {
+      // post.img.data = post.img.data.toString('base64');
+      // return post.toObject();
+      // })
+
+      posts.forEach((post) => {
+        console.log(post)
+      })
+
       res.render("posts/index", {
         posts: posts.reverse(),
         title: "Acebook",
