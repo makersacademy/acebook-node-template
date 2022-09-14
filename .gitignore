@@ -64,5 +64,5 @@ typings/
 cypress/screenshots
 cypress/videos
 
-#uploaded images
+# uploaded images
 uploads/

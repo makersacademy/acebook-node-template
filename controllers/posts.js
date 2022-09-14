@@ -77,16 +77,14 @@ const PostsController = {
 
   Create: (req, res) => {
     const message = req.body.message;
-
-    // if image is not uploaded
-    let data = null;
-    if (req.file) {
-      data = fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename))
+    const obj = {
+      message: message
     }
 
-    const obj = {
-      message: message,
-      img: {
+    // if image is uploaded
+    if (req.file) {
+      const data = fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename));
+      obj.img = {
         data: data,
         contentType: 'image/png'
       }
