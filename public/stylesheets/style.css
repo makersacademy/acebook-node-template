@@ -8,6 +8,10 @@ a {
   color: #007dfa;
 }
 
+h1 {
+  font-size: 30px;
+}
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -156,7 +160,7 @@ input#password {
   border-width: 1.5px;
   border-radius: 30px;
   margin-bottom: 20px;
-  width: 16rem;
+  width: 20rem;
 }
 
 .likes-container {
@@ -175,7 +179,7 @@ input#password {
   background-repeat: no-repeat;
   height: 20px;
   width: 20px;
-  margin-left: -55px;
+  margin-left: -120px;
 }
 
 .like-button:hover {
@@ -188,4 +192,21 @@ input#password {
 
 .new-comment-link {
   margin-left: 50px;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: -10px;
+}
+
+.message {
+  font-size: 18px ;
+  margin-bottom: 10px;
+}
+.time {
+  color: lightgray;
+}
+
+.username {
+  margin-bottom: 10px;
 }

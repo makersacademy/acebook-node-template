@@ -15,9 +15,9 @@
       <div class="post">
         <div class="post-div-container" id="post-div-container-{{this._id}}">
           <ul>
-            <li>{{this.message}}</li>
-            <li>{{this.user_id.username}}</li>
-            <li>{{this.time_posted}}</li>
+            <li class="username">@{{this.user_id.username}}</li>
+            <li class="message">{{this.message}}</li>
+            <li class="time">{{this.time_posted}}</li>
           </ul>
         </div>
 
@@ -27,14 +27,6 @@
               id="counter-{{this._id}}"
             >{{this.likes.length}}</div>
             <button class="like-button liked-{{this._doc.likedByCurrentUser}}" id="button-{{this._id}}">
-              {{!-- <img
-                src="/images/thumbs-up.png"
-                onMouseOver="this.src='/images/thumbs-up-blue.png';" 
-                onmouseout="this.src='/images/thumbs-up.png';"
-                width="20"
-                height="20"
-                alt="thumbs-up-button"
-              /> --}}
             </button>
 
             <script type="text/javascript">
