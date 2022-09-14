@@ -171,4 +171,46 @@ describe("User model", () => {
       });
     });
   });
+
+  it("returns two users if either match username or email", (done) => {
+    const user1 = new User({
+      username: "someone",
+      first_name: "some",
+      last_name: "one",
+      email: "someone@example.com",
+      password: "password",
+      friends: [],
+    });
+
+    const user2 = new User({
+      username: "someoneelse",
+      first_name: "other",
+      last_name: "person",
+      email: "someoneelse@example.com",
+      password: "password",
+      friends: [],
+    });
+
+    user1.save((err) => {
+      expect(err).toBeNull();
+
+      user2.save((err) => {
+        expect(err).toBeNull();
+
+        User.find(
+          {
+            $or: [
+              { username: "someone" },
+              { email: "someoneelse@example.com" },
+            ],
+          },
+          (err, users) => {
+            expect(err).toBeNull();
+            expect(users.length).toBe(2);
+            done();
+          }
+        );
+      });
+    });
+  });
 });

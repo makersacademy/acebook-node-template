@@ -2,10 +2,10 @@ const Post = require("../models/post");
 
 const LikesController = {
   Create: (req, res) => {
-    userId = req.session.user._id;
-    postId = req.params.postId
+    const userId = req.session.user._id;
+    const postId = req.params.postId;
 
-    console.log("this post is being liked")
+    console.log("this post is being liked");
     console.log(postId);
 
     Post.findOneAndUpdate(
@@ -13,15 +13,16 @@ const LikesController = {
       { $addToSet: { likes: userId } },
       { new: true },
       (err, post) => {
-        if(err) {
+        if (err) {
           console.log(err);
         } else {
-          console.log(`A like from ${userId} is added to ${postId}`)
+          console.log(`A like from ${userId} is added to ${postId}`);
           const numberOfLikes = post.likes.length;
 
           res.send(JSON.stringify({ counter: numberOfLikes }));
-        };
-      });
+        }
+      }
+    );
   },
 };
 
