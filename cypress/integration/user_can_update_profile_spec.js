@@ -51,7 +51,7 @@ describe("Editing", () => {
     cy.contains("div", "Password: ***********");
     cy.contains("div", "First name: someoneelse");
     cy.contains("div", "Last name: somelastname");
-    cy.get('img').should('have.attr', 'src', 'http://c.files.bbci.co.uk/8512/production/_123166043_photo07-02-2022124525.jpg')
+    cy.get('#profile_pic').should('have.attr', 'src', 'http://c.files.bbci.co.uk/8512/production/_123166043_photo07-02-2022124525.jpg')
 
   })
 })
