@@ -36,13 +36,13 @@ const UsersController = {
           );
         } else {
           // create a new user if username and email are unique
+          // console.log("they are unique");
           const user = new User(req.body);
           user.save((err) => {
             if (err) {
               throw err;
             }
-            // redirect to login
-            res.status(201).redirect("/");
+            res.send(JSON.stringify({ ok: true }));
           });
         }
       }

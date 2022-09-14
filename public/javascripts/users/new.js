@@ -13,30 +13,37 @@ function submitNewUserForm() {
   })
     .then((response) => response.json())
     .then((result) => {
-      let message;
-      if (result.content.usernameExists && !result.content.emailExists) {
-        message = "This username is already being used.";
-      } else if (!result.content.usernameExists && result.content.emailExists) {
-        message = "This email is already being used.";
-      } else {
-        message = "Other users are already using this username and email.";
-      }
+      if (result.content) {
+        let message;
+        if (result.content.usernameExists && !result.content.emailExists) {
+          message = "This username is already being used.";
+        } else if (
+          !result.content.usernameExists &&
+          result.content.emailExists
+        ) {
+          message = "This email is already being used.";
+        } else {
+          message = "Other users are already using this username and email.";
+        }
 
-      if (document.querySelector("div#sign-up-error-div"))
-        document.querySelector("div#sign-up-error-div").remove();
-      const signUpErrorDivEl = Object.assign(document.createElement("div"), {
-        id: "sign-up-error-div",
-      });
-      signUpErrorDivEl.append(
-        Object.assign(document.createElement("p"), {
-          textContent: message,
-        })
-      );
-      signUpErrorDivEl.append(
-        Object.assign(document.createElement("p"), {
-          textContent: "Emails and usernames must be unique.",
-        })
-      );
-      document.querySelector("#new-user-form-div").append(signUpErrorDivEl);
+        if (document.querySelector("div#sign-up-error-div"))
+          document.querySelector("div#sign-up-error-div").remove();
+        const signUpErrorDivEl = Object.assign(document.createElement("div"), {
+          id: "sign-up-error-div",
+        });
+        signUpErrorDivEl.append(
+          Object.assign(document.createElement("p"), {
+            textContent: message,
+          })
+        );
+        signUpErrorDivEl.append(
+          Object.assign(document.createElement("p"), {
+            textContent: "Emails and usernames must be unique.",
+          })
+        );
+        document.querySelector("#new-user-form-div").append(signUpErrorDivEl);
+      } else if (result.ok) {
+        window.location.assign("/");
+      }
     });
 }
