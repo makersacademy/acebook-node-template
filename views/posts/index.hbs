@@ -22,6 +22,8 @@
         .then(response => response.json())
         .then(result => document.getElementById("counter-{{this._id}}").textContent = result.counter) })
     </script>
+
+    <a class="new-comment-link" href="/comments/{{this._id}}">Write a comment</a>
   </div>
 </ul>
 </div> 
