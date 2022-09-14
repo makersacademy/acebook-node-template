@@ -6,13 +6,39 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        throw err;
+    // check if the required details are submitted
+    if (
+      req.body.email == "" ||
+      req.body.password == "" ||
+      req.body.firstName == ""
+    ) {
+      res.render("users/new", { error: "Please enter the required details" });
+    } else {
+      
+      const defaultCheck = req.body
+      if(defaultCheck.profilePic == ""){
+        delete defaultCheck.profilePic
       }
-      res.status(201).redirect("/posts");
-    });
+      
+      const user = new User(defaultCheck);
+
+      // check if user exists before creating
+      User.findOne({ email: user.email }).then((found) => {
+        if (found) {
+          console.log(`User ${found.email} already exists!`);
+          res.redirect("/");
+        } else {
+          user.save((err) => {
+            if (err) {
+              throw err;
+            }
+            // log in automatically after signup
+            req.session.user = user;
+            res.status(201).redirect("/posts");
+          });
+        }
+      });
+    }
   },
 };
 
