@@ -74,17 +74,6 @@ const PostsController = {
         }
       })
 
-      // posts = posts.map((post) => {
-      // post.img.data = post.img.data.toString('base64');
-      // return post.toObject();
-      // })
-
-      posts.forEach((post) => {
-        if (post.img.data) {
-          console.log(post)
-        }
-      })
-
       res.render("posts/index", {
         posts: posts.reverse(),
         title: "Acebook",
@@ -94,7 +83,7 @@ const PostsController = {
     });
   },
 
-  Create: (req, res) => {
+  Create: async (req, res) => {
     const message = req.body.message;
     const obj = {
       message: message
@@ -102,7 +91,13 @@ const PostsController = {
 
     // if image is uploaded
     if (req.file) {
-      const data = fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename));
+      // save resized image to '/uploads'
+      const imagePath = path.join(__dirname, '../uploads');
+      const fileUpload = new Resize(imagePath);
+      const filename = await fileUpload.save(req.file.buffer);
+
+      // load resized image
+      const data = fs.readFileSync(path.join(__dirname + '/../uploads/' + filename));
       obj.img = {
         data: data,
         contentType: req.file.mimetype
