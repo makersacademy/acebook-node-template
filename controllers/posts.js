@@ -8,35 +8,59 @@ const PostsController = {
     const postID = req.body.post;
     const userID = req.session.user._id;
     const post = await Post.findOne({ _id: postID });
+    let liked = false;
 
     const userAlreadyLiked = post.likes.includes(userID);
     if (userAlreadyLiked) {
       const index = post.likes.indexOf(userID)
       post.likes.splice(index, 1)
+
+      liked = true
+
     } else {
       post.likes.push(userID);
+      liked = false
     }
 
     await post.save();
-    res.status(201).redirect("/posts");
+    res.send({ liked: liked, userID: userID })
   },
 
   Index: (req, res) => {
-    Post.find((err, posts) => {
-      if (err) {
-        throw err;
-      }
+    const userID = req.session.user._id;
 
-      // convert image data into base64
-      convertImage(posts)
+    Post.find()
+      .populate("user")
+      .populate([{
+        path: "comments",
+        populate: {
+          path: "postedBy"
+        }
+      }])
+      .exec((err, posts) => {
+        if (err) {
+          throw err;
+        }
 
-      res.render("posts/index", {
-        posts: posts.reverse(),
-        title: "Acebook",
-        firstName: req.session.user.firstName,
-        userID: req.session.user._id
+        posts.forEach((post) => {
+          if (post.likes.includes(userID) == true) {
+            post._doc.color = "#1877f2"
+          } else {
+            post._doc.color = "gray"
+          }
+        })
+
+
+        // convert image data into base64
+        convertImage(posts)
+
+        res.render("posts/index", {
+          posts: posts.reverse(),
+          title: "Acebook",
+          firstName: req.session.user.firstName,
+          userID: req.session.user._id
+        });
       });
-    });
   },
 
   Create: async (req, res) => {
@@ -55,13 +79,16 @@ const PostsController = {
           posts: posts.reverse(),
           title: "Acebook",
           blank: "Please enter a message",
-          firstName: req.session.user["firstName"]
+          firstName: req.session.user.firstName
         });
       });
 
     } else {
 
-      const obj = { message: message };
+      const obj = {
+        message: message,
+        user: req.session.user._id
+      };
 
       if (req.file) {
         // save image
@@ -93,7 +120,8 @@ const PostsController = {
       })
     }
   },
-};
+}
+
 
 // from https://dpwdec.github.io/2020/06/17/store-images-in-mongodb
 function convertImage(posts) {

@@ -12,18 +12,7 @@
     <div class="header__option active">
       <span class="material-icons"> home </span>
     </div>
-    <div class="header__option">
-      <span class="material-icons"> flag </span>
-    </div>
-    <div class="header__option">
-      <span class="material-icons"> subscriptions </span>
-    </div>
-    <div class="header__option">
-      <span class="material-icons"> storefront </span>
-    </div>
-    <div class="header__option">
-      <span class="material-icons"> supervised_user_circle </span>
-    </div>
+
   </div>
   <div class="header__right">
     <div class="header__info">
@@ -31,8 +20,6 @@
       <h4><a href="/profile">Welcome {{firstName}}</a></h4>
 
     </div>
-    <span class="material-icons"> forum </span>
-    <span class="material-icons"> notifications_active </span>
     <span class="material-icons">
       <form action='/sessions?_method=DELETE' method='POST'>
         <button id="logout" type="submit"><span class="material-icons">logout</span></button>
@@ -53,39 +40,10 @@
     </div>
 
     <div class="sidebarRow">
-      <span class="material-icons"> local_hospital </span>
-      <h4>Covid - 19 Information Center</h4>
-    </div>
-
-    <div class="sidebarRow">
-      <span class="material-icons"> emoji_flags </span>
-      <h4>Pages</h4>
-    </div>
-
-    <div class="sidebarRow">
       <span class="material-icons"> people </span>
       <h4>People</h4>
     </div>
 
-    <div class="sidebarRow">
-      <span class="material-icons"> chat </span>
-      <h4>Messenger</h4>
-    </div>
-
-    <div class="sidebarRow">
-      <span class="material-icons"> storefront </span>
-      <h4>Marketplace</h4>
-    </div>
-
-    <div class="sidebarRow">
-      <span class="material-icons"> video_library </span>
-      <h4>Videos</h4>
-    </div>
-
-    <div class="sidebarRow">
-      <span class="material-icons"> expand_more </span>
-      <h4>More</h4>
-    </div>
   </div>
   <!-- sidebar ends -->
 
@@ -176,42 +134,9 @@
           <input id="message" type="text" name="message" value="" placeholder=" Whats on your mind?  {{blank}}">
           <input id="submit" type="submit" value="POST">
         </form>
-
-        {{!-- EXPERIMENTAL UPLOAD --}}
-        {{!-- <form method="post" action="posts/upload" enctype="multipart/form-data"> --}}
-          {{!-- <input type="file" name="image"><br> --}}
-          {{!-- <button type="submit" name="upload">Upload</button> --}}
-          {{!-- </form> --}}
-      </div>
-
-      <div class="messageSender__bottom">
-        <div class="messageSender__option">
-          <span style="color: red" class="material-icons"> videocam </span>
-          <h3>Live</h3>
-        </div>
-
-        <div class="messageSender__option">
-          <span style="color: green" class="material-icons"> photo_library </span>
-          <h3>Photo</h3>
-        </div>
-
-        <div class="messageSender__option">
-          <span style="color: orange" class="material-icons"> insert_emoticon </span>
-          <h3>Feeling</h3>
-        </div>
       </div>
     </div>
     <!-- message sender ends -->
-
-
-    {{!-- <ul class="posts"> --}}
-      {{!-- <div class="posts">
-        {{#each posts}}
-        <li>{{this.message}}</li>
-        {{/each}}
-      </div> --}}
-      {{!--
-    </ul> --}}
 
     <!-- post starts -->
     {{#each posts}}
@@ -219,7 +144,9 @@
       <div class="post__top">
         <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
         <div class="post__topInfo">
-          <h3>{{this._id}}</h3> <!-- Need to link post to user firstname  -->
+          <a id="post_name" href="/profile">
+            <h3>{{this.user.firstName}}</h3>
+          </a> <!-- Need to link post to user firstname  -->
           <p>{{this.createdAt}}</p>
         </div>
       </div>
@@ -234,10 +161,11 @@
 
       <div class="post__options">
         <div class="post__option">
-          <span class="material-icons"> thumb_up </span>
-          <p>Like</p>
-          <button class="like" type="submit" value="{{this._id}}">{{this.likes.length}} likes</button>
-
+          <p id="like{{this._id}}">{{this.likes.length}}</p>
+          <button id="button{{this._id}}" class="like" type="submit" value="{{this._id}}"
+            style="color:{{this._doc.color}}">
+            <span class="material-icons">thumb_up </span>
+          </button>
         </div>
 
         <div class="post__option">
@@ -245,135 +173,21 @@
           <p>Comment</p>
         </div>
 
-        <div class="post__option">
-          <span class="material-icons"> near_me </span>
-          <p>Share</p>
-        </div>
+        {{#each this.comments}}
+        <div class="comment__bottom">{{this.comment}} - {{this.postedBy.firstName}} {{this.postedBy.lastName}}</div>
+        <p>{{this.date}}</p>
+        {{/each}}
+
+        <form class="new-comment-form" action="/comments" method="post">
+          <input type="hidden" id="postID" name="postID" value={{this._id}}>
+          <input class="comment" type="text" name="comment" value="" placeholder="Comment here">
+          <input class="submit-comment" type="submit" value="COMMENT">
+        </form>
       </div>
     </div>
     {{/each}}
+
+
     <!-- post ends -->
-
-    <!-- post starts -->
-    <div class="post">
-      <div class="post__top">
-        <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
-        <div class="post__topInfo">
-          <h3>The Axylotls</h3>
-          <p>25 April at 20:30</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="post__bottom">
-      <p>Rest In Peace QUEEN</p>
-    </div>
-
-    <div class="post__image">
-      <img src="images/img/QUEEN.webp" alt="" />
-    </div>
-
-    <div class="post__options">
-      <div class="post__option">
-        <span class="material-icons"> thumb_up </span>
-        <p>Like</p>
-      </div>
-
-      <div class="post__option">
-        <span class="material-icons"> chat_bubble_outline </span>
-        <p>Comment</p>
-      </div>
-
-      <div class="post__option">
-        <span class="material-icons"> near_me </span>
-        <p>Share</p>
-      </div>
-    </div>
-  </div>
-  <!-- post ends -->
-
-  <!-- post starts -->
-  <div class="post">
-    <div class="post__top">
-      <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
-      <div class="post__topInfo">
-        <h3>The Axylotls</h3>
-        <p>25 April at 20:30</p>
-      </div>
-    </div>
-
-    <div class="post__bottom">
-      <p>Post Without Image</p>
-    </div>
-
-    <div class="post__options">
-      <div class="post__option">
-        <span class="material-icons"> thumb_up </span>
-        <p>Like</p>
-      </div>
-
-      <div class="post__option">
-        <span class="material-icons"> chat_bubble_outline </span>
-        <p>Comment</p>
-      </div>
-
-      <div class="post__option">
-        <span class="material-icons"> near_me </span>
-        <p>Share</p>
-      </div>
-    </div>
-  </div>
-  <!-- post ends -->
-
-  <!-- post starts -->
-  <div class="post">
-    <div class="post__top">
-      <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
-      <div class="post__topInfo">
-        <h3>The Axylotls</h3>
-        <p>25 April at 20:30</p>
-      </div>
-    </div>
-
-    <div class="post__bottom">
-      <p>Travel destination</p>
-    </div>
-
-    <div class="post__image">
-      <img src="images/img/post-1.jpg" alt="" />
-    </div>
-
-    <div class="post__options">
-      <div class="post__option">
-        <span class="material-icons"> thumb_up </span>
-        <p>Like</p>
-      </div>
-
-      <div class="post__option">
-        <span class="material-icons"> chat_bubble_outline </span>
-        <p>Comment</p>
-      </div>
-
-      <div class="post__option">
-        <span class="material-icons"> near_me </span>
-        <p>Share</p>
-      </div>
-    </div>
-  </div>
-  <!-- post ends -->
-</div>
-<!-- feed ends -->
-
-<div style="flex: 0.33" class="widgets">
-  <div class="fb-page" data-href="https://www.facebook.com/facebook/" data-tabs="timeline" data-width="500"
-    data-height="1000" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
-    data-show-facepile="true">
-    <blockquote cite="https://www.facebook.com/facebook/" class="fb-xfbml-parse-ignore">
-      <a href="https://www.facebook.com/facebook/"></a>
-    </blockquote>
   </div>
 </div>
-</div>
-<!-- main body ends -->
-
-<div id="fb-root"></div>

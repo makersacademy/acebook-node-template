@@ -4,6 +4,7 @@ const PostsController = require("../controllers/posts");
 const upload = require("../middleware/multer")
 
 router.post("/like", PostsController.Like);
+// router.post("/comment", PostsController.Comment);
 router.get("/", PostsController.Index);
 router.post("/", upload.single('image'), PostsController.Create);
 

@@ -1,20 +1,40 @@
-console.log('layout.js');
-
 // this script makes the like button fetch '/posts/like' 
 // without being embedded in a form
 
 document.querySelectorAll(".like").forEach((button) => {
   button.addEventListener('click', () => {
     liked(button.value);
+   
   });
 })
 
 function liked(postID) {
+  let button = document.querySelector(`#button${postID}`)
+
   fetch("/posts/like", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ post: postID })
   })
-    // refresh number of likes on like button
-    .then(() => { window.location.reload() })
+    .then((res) => res.json())
+    .then((res) => {
+      if(res.liked === false){
+        likeIncrement(button)
+      }else{
+        likeDecrement(button)
+      }
+    }
+    );
+}
+
+const likeIncrement = (button) => {
+  let likeCount = document.querySelector(`#like${button.value}`)
+  likeCount.textContent = parseInt(likeCount.textContent) + 1
+  button.style.color = "#1877f2"
+}
+
+const likeDecrement = (button) => {
+  let likeCount = document.querySelector(`#like${button.value}`)
+  likeCount.textContent = parseInt(likeCount.textContent) - 1
+  button.style.color = "gray"
 }
