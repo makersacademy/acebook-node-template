@@ -26,7 +26,6 @@ const ProfilePage = {
 					} else {
 						console.log(`${profileUsername}'s profile has been loaded`);
 						const ownProfile = req.session.user.username === profileUsername;
-						console.log(req.session.user.friends);
 						const isAFriend = req.session.user.friends.includes(
 							user._id.toString()
 						);

@@ -28,9 +28,6 @@ const FriendsController = {
 							console.log(
 								`${friendUsername} added to ${currentUser.username} friends list`
 							);
-
-							// redirect back to friendUser's profile
-							// res.redirect(303, `/profiles/${friendUsername}`);
 							res.send(JSON.stringify({ newFriendAdded: true }));
 						}
 					}

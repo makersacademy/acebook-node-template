@@ -26,16 +26,9 @@
               class="post-like-counter"
               id="counter-{{this._id}}"
             >{{this.likes.length}}</div>
-            <button class="post-like-button liked-{{this._doc.likedByCurrentUser}}" id="button-{{this._id}}">
+            <button class="post-like-button liked-{{this._doc.likedByCurrentUser}}"
+            id="button-{{this._id}}" onclick="likePostOnClick('{{this._id}}')">
             </button>
-
-            <script type="text/javascript">
-              document.getElementById("button-{{this._id}}").addEventListener('click',
-              () => { fetch( "/likes/new/" + "{{this._id}}", {method: 'PUT'})
-              .then(response => response.json()) .then(result =>
-              document.getElementById("counter-{{this._id}}").textContent =
-              result.counter) })
-            </script>
           
             <a class="new-comment-link" href="/comments/{{this._id}}">Write a comment</a>
           </div>
