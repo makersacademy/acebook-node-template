@@ -47,10 +47,9 @@ const likeDecrement = (button) => {
 
 function hideComment() {
   let commentHide = document.querySelectorAll(".messageSender__top_comment");
-  console.log(commentHide)
+  console.log(commentHide);
 
   for (let i = 0; i < commentHide.length; i++) {
-    
     console.log(commentHide[i]);
 
     commentHide[i].classList.toggle("hide");

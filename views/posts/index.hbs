@@ -242,7 +242,7 @@
             </button>
           </div>
 
-          {{!-- Comments section starts here --}}
+          {{! Comments section starts here }}
 
           <div class="messageSender">
             <div class="messageSender__top">
@@ -263,13 +263,23 @@
                   value=""
                   placeholder=" Leave a comment."
                 />
-                <input id="submit" type="submit" value="COMMENT" />
+                <input
+                  class="submit_comment"
+                  id="submit"
+                  type="submit"
+                  value="COMMENT"
+                />
 
               </form>
 
+              <button class="hide_show" type="submit"><span
+                  class="material-icons"
+                >
+                  comment
+                </span></button>
+
             </div>
           </div>
-          <button class="hide_show" type="submit">SHOW</button>
         </div>
 
         {{#each this.comments}}
@@ -281,12 +291,12 @@
               <h4>{{this.postedBy.firstName}} {{this.postedBy.lastName}}</h4>
               <p>{{this.date}}</p>
             </div>
-            <p>{{this.comment}}</p>
+            <p class="new_comment">{{this.comment}}</p>
           </div>
         {{/each}}
       </div>
 
-      {{!-- Comments section ends here --}}
+      {{! Comments section ends here }}
 
     {{/each}}
 
