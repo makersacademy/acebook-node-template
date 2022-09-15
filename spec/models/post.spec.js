@@ -119,6 +119,7 @@ describe("Post model", () => {
       });
     });
   });
+
   it("adds a like to the post database", (done) => {
     // creates new user
     const user = new User({
@@ -145,7 +146,7 @@ describe("Post model", () => {
         // create post with a like incl. user_id
         const post = new Post({
           message: "some message",
-          likes: [userId],
+          likes: [user[0]._id],
         });
 
         // save post

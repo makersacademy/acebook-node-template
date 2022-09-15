@@ -1,49 +1,60 @@
-<form id="new-user-form" action="/users" method="POST">
-  <div class="signup-form">
-    <input 
-      id="first-name" 
-      type="text" 
-      name="first_name" 
-      value="" 
-      placeholder="First name" />
-  </div>
-  
-  <div class="signup-form">
-    <input 
-      id="last-name"
-      type="text" 
-      name="last_name" 
-      value="" 
-      placeholder="Last name" />
-  </div>
+<div id="new-user-form-div">
+  <form
+    id="new-user-form"
+    action="javascript:void(0);"
+    onsubmit="submitNewUserForm()"
+  >
+    <div class="signup-form">
+      <input
+        id="first-name"
+        type="text"
+        name="first_name"
+        value=""
+        placeholder="First name"
+      />
+    </div>
 
-  <div class="signup-form">
-    <input 
-      id="username" 
-      type="text" 
-      name="username" 
-      value="" 
-      placeholder="Username" />
-  </div>
+    <div class="signup-form">
+      <input
+        id="last-name"
+        type="text"
+        name="last_name"
+        value=""
+        placeholder="Last name"
+      />
+    </div>
 
-  <div class="signup-form">
-    <input
-      id="email"
-      type="email"
-      name="email"
-      value=""
-      placeholder="Email"/>
-  </div>
-  
-  <div class="signup-form">
-    <input
-      id="password"
-      type="password"
-      name="password"
-      value=""
-      placeholder="Password" />
-  </div>
+    <div class="signup-form">
+      <input
+        id="username"
+        type="text"
+        name="username"
+        value=""
+        placeholder="Username"
+      />
+    </div>
 
-  <input 
-    id="signup" type="submit" value="Sign up">
-</form>
+    <div class="signup-form">
+      <input
+        id="email"
+        type="email"
+        name="email"
+        value=""
+        placeholder="Email"
+      />
+    </div>
+
+    <div class="signup-form">
+      <input
+        id="password"
+        type="password"
+        name="password"
+        value=""
+        placeholder="Password"
+      />
+    </div>
+
+    <input id="signup" type="submit" value="Sign up" />
+  </form>
+  <script src="/javascripts/users/new.js"></script>
+</div>
