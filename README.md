@@ -82,10 +82,11 @@ so that integration tests do not interact with the development server.
   ```
 - Run a check
   ```bash
-  npm run lint              # linter only
-  npm run test:unit         # unit tests only
-  jest -i                   # unit test running NOT in parallel
-  npm run test:integration  # integration tests only
+  npm run lint                                           # linter only
+  npm run test:unit                                      # unit tests only
+  jest -i                                                # unit test running NOT in parallel
+  npm run test:integration                               # integration tests only
+  npx cypress run --spec <PATH TO CYPRESS TEST FILE>     # only one integration test
   ```
 
 ## MongoDB Connection Errors?
