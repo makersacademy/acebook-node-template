@@ -181,7 +181,7 @@ input#password {
   background-repeat: no-repeat;
   height: 20px;
   width: 20px;
-  margin-left: -120px;
+  margin-left: -96px;
   cursor: pointer;
 }
 
@@ -193,8 +193,18 @@ input#password {
   background-image: url('/images/thumbs-up-blue.png');
 }
 
-.new-comment-link {
-  margin-left: 50px;
+#comment_image {
+  height: 15px;
+  width: 15px;
+  margin-bottom: -3px;
+}
+
+.comment-counter {
+  margin-left: -50px;
+}
+
+.post-delete-button {
+  margin-top: 10px;
 }
 
 li {

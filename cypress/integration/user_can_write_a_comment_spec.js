@@ -29,6 +29,7 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".comment-counter").contains("0");
 
     // submit a comment
     cy.contains("Write a comment").click();
@@ -37,5 +38,9 @@ describe("Timeline", () => {
     cy.get("#new-comment-form").submit();
 
     cy.get(".comments").should("contain", "Hello, someone!");
+
+    // check if comment count is shown on post on timeline page
+    cy.visit("/posts");
+    cy.get(".comment-counter").contains("1");
   });
 });
