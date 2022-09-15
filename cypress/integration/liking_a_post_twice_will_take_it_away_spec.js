@@ -34,13 +34,13 @@ describe("Likes", () => {
     cy.get(".post-like-counter").contains(0);
 
     // making PUT request to like a post
-    cy.get(".like-button").click();
+    cy.get(".post-like-button").click();
 
     // like is registered on post
     cy.get(".post-like-counter").contains(1);
 
     // pressing like button again
-    cy.get(".like-button").click();
+    cy.get(".post-like-button").click();
 
     // like is taken away
     cy.get(".post-like-counter").contains(0);
