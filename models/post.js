@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema({
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   time_posted: String,
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  comments_counter: { type: Number, default: 0 },
 });
 
 const Post = mongoose.model("Post", PostSchema);

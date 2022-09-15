@@ -78,7 +78,7 @@ so that integration tests do not interact with the development server.
 
 - Run all tests
   ```
-  npm test_
+  npm test
   ```
 - Run a check
   ```bash
