@@ -11,11 +11,8 @@
   {{! when styling, the div can take up the space it usually does, whether the button is displayed or not }}
   <div id="friend-button-status-div">
     {{#if displayAddFriendButton}}
-      <button id="add-friend-button">Add friend</button>
-      <script type="text/javascript">
-        document.querySelector("#add-friend-button").addEventListener('click',
-        () => { fetch("{{fetchUrl}}", {method: 'PUT'}) })
-      </script>
+      <button id="add-friend-button" onclick="addFriend()">Add friend</button>
+
     {{else if isAFriend}}
       <p id="current-friend-message">friends ✔️</p>
     {{/if}}
