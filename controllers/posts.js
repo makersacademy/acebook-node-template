@@ -50,7 +50,6 @@ const PostsController = {
           }
         })
 
-
         // convert image data into base64
         convertImage(posts)
 
@@ -122,8 +121,7 @@ const PostsController = {
   },
 }
 
-
-// from https://dpwdec.github.io/2020/06/17/store-images-in-mongodb
+// idea from https://dpwdec.github.io/2020/06/17/store-images-in-mongodb
 function convertImage(posts) {
   posts.forEach((post) => {
     if (post.img.data) {
