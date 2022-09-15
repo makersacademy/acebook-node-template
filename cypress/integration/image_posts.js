@@ -25,16 +25,17 @@ describe("Timeline", () => {
     cy.get("#message").type("I have an image for you!");
 
     //test image
-    const fixtureFile = 'tulips.jpeg';
-    cy.get('[data-cy="file-input"]').attachFile(fixtureFile);
-
-
-
-    cy.get("#submit").click()
+    cy.get("input[type=file]").selectFile('cypress/fixtures/tulips.jpeg')
+    cy.get("#submit").click();
 
     // check the image is 275 x 183px
-    // check image size is 8.6kB
-  })
+    cy.get("[data-test=image]")
+      .should("be.visible")
+      .should(([img]) => {
+        expect(img.naturalWidth).to.equal(275);
+        expect(img.naturalHeight).to.equal(183);
+      });
+  });
 });
 
 
