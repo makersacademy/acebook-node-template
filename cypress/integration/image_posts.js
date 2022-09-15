@@ -40,8 +40,7 @@ describe("Timeline", () => {
     cy.get("#message").type("I have a large image for you!");
     cy.get("input[type=file]").selectFile('cypress/fixtures/magnolia.png')
     cy.get("#submit").click()
-    cy.contains("Payload Too Large")
-
+    cy.contains("pre", "Payload Too Large")
   })
 
 });
