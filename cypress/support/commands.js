@@ -25,3 +25,33 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 import 'cypress-file-upload';
+
+// cy.get("[data-test=image]")
+
+Cypress.Commands.add(
+  "isFixtureImage",
+  {
+    prevSubject: true
+  },
+  (subject, fixtureImage) => {
+    cy.wrap(subject)
+      .should(([img]) => {
+        expect(img.complete).to.be.true;
+      })
+      .then(([img]) => {
+        cy.fixture(fixtureImage).then(content => {
+          let fixtureImage = new Image();
+          fixtureImage.src = `data:image/jpeg;base64,${content}`;
+          return new Promise(resolve => {
+            fixtureImage.onload = () => {
+              expect(img.naturalWidth).to.equal(fixtureImage.naturalWidth);
+              expect(img.naturalHeight).to.equal(fixtureImage.naturalHeight);
+              resolve();
+            };
+          });
+        });
+      });
+  }
+)
+
+
