@@ -1,11 +1,9 @@
-const mongoose = require("mongoose");
-
 require("../mongodb_helper");
 const User = require("../../models/user");
 
 describe("User model", () => {
   beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
+    User.deleteMany(() => {
       done();
     });
   });
