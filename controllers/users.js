@@ -6,14 +6,20 @@ const UsersController = {
   },
 
   Create: (req, res) => {
+    console.log("Attempting to sign up new user");
     const user = new User(req.body);
-    console.log("New user form submitted");
     user.save((err) => {
       if (err) {
-        throw err;
+        // err is thrown if username or email match existing user entries
+        console.log(err.keyPattern);
+        res.send(
+          JSON.stringify({
+            credentialsExist: true,
+          })
+        );
+      } else {
+        res.send(JSON.stringify({ ok: true }));
       }
-      console.log("New user entry created");
-      res.status(201).redirect("/posts");
     });
   },
 };

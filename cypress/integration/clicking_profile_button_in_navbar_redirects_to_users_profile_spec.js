@@ -24,6 +24,6 @@ describe("Navbar profile button", () => {
     cy.get(".title").should("contain", "Acebook");
 
     cy.get("input.profile-button-input").click();
-    cy.url().contains("/profiles/someone");
+    cy.url().should("includes", "/profiles/someone");
   });
 });
