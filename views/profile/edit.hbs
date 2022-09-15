@@ -28,12 +28,12 @@
 </div>
 <div class="post">
   <div class="profile_img_edit">
-  <img src="{{{url}}}" width="300" height="300" />
+  <img id="profile_pic" src="data:;base64, {{profilePic.data}}" alt=""/>
   </div>
 
 <div class="homepage-outermost">
 <div class="container">
-  <form id="update-user" action="/profile/edit" method="post">
+  <form id="update-user" action="/profile/edit" method="post" enctype="multipart/form-data">
     <h3>Email</h3>
     <p>Current: {{email}}<p>
     <input id="email" type="email" name="email" value="">
@@ -51,8 +51,9 @@
     <input id="lastName" type="lastName" name="lastName" value="">
     <br>
     <h3>Profile Pic</h3>
-    <p>Current: {{profilePic}}<p>
-    <input id="profilePic" type="profilePic" name="profilePic" value="">
+    <p>Upload new profile pic here:</p>
+    <input type="file" name="image" accept="image/*"><br>
+    {{!-- <input id="profilePic" type="profilePic" name="profilePic" value=""> --}}
     <br>
     <input id="submit" type="submit" value="Submit">
   </form>

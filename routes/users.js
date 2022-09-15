@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-
+const upload = require("../middleware/multer");
 const UsersController = require("../controllers/users");
 
 router.get("/new", UsersController.New);
-router.post("/", UsersController.Create);
+router.post("/", upload.single("image"), UsersController.Create);
 
 module.exports = router;
