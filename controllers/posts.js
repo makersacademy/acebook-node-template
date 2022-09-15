@@ -45,6 +45,13 @@ const PostsController = {
         }
 
         posts.forEach((post) => {
+          console.log(post.user);
+          if (post.user.profilePic.data) {
+            post.user.profilePic.data =
+              post.user.profilePic.data.toString("base64");
+            // return post.toObject();
+          }
+
           if (post.likes.includes(user._id) == true) {
             post._doc.color = "#1877f2";
           } else {
