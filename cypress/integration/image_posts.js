@@ -38,9 +38,9 @@ describe("Timeline", () => {
   it.only("wont upload a 7MB image", () => {
     cy.visit("/posts");
     cy.get("#message").type("I have a large image for you!");
-
+    cy.get("input[type=file]").selectFile('cypress/fixtures/magnolia.png')
     cy.get("#submit").click()
-    cy.contains("MulterError: File too large");
+    cy.contains("Payload Too Large")
 
   })
 
