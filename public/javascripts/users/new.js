@@ -13,19 +13,7 @@ function submitNewUserForm() {
   })
     .then((response) => response.json())
     .then((result) => {
-      if (result.content) {
-        let message;
-        if (result.content.usernameExists && !result.content.emailExists) {
-          message = "This username is already being used.";
-        } else if (
-          !result.content.usernameExists &&
-          result.content.emailExists
-        ) {
-          message = "This email is already being used.";
-        } else {
-          message = "Other users are already using this username and email.";
-        }
-
+      if (result.credentialsExist) {
         if (document.querySelector("div#sign-up-error-div"))
           document.querySelector("div#sign-up-error-div").remove();
         const signUpErrorDivEl = Object.assign(document.createElement("div"), {
@@ -33,7 +21,7 @@ function submitNewUserForm() {
         });
         signUpErrorDivEl.append(
           Object.assign(document.createElement("p"), {
-            textContent: message,
+            textContent: "This username or email is already being used.",
           })
         );
         signUpErrorDivEl.append(

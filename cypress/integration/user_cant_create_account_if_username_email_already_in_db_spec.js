@@ -5,6 +5,7 @@ describe("Sign up validation", () => {
       user: "admin",
       password: "password",
     });
+    setTimeout(() => {}, 200);
   });
   it("user can't create a new account if username already exists in db", () => {
     // sign up
@@ -21,7 +22,7 @@ describe("Sign up validation", () => {
     cy.get("#password").type("password");
     cy.get("#signup").click();
     cy.get("#sign-up-error-div").contains(
-      "This username is already being used."
+      "This username or email is already being used."
     );
     cy.get("#sign-up-error-div").contains(
       "Emails and usernames must be unique."
@@ -42,7 +43,9 @@ describe("Sign up validation", () => {
     cy.get("#email").type("billy@example.com");
     cy.get("#password").type("password");
     cy.get("#signup").click();
-    cy.get("#sign-up-error-div").contains("This email is already being used.");
+    cy.get("#sign-up-error-div").contains(
+      "This username or email is already being used."
+    );
     cy.get("#sign-up-error-div").contains(
       "Emails and usernames must be unique."
     );
@@ -62,7 +65,7 @@ describe("Sign up validation", () => {
     cy.get("#password").type("password");
     cy.get("#signup").click();
     cy.get("#sign-up-error-div").contains(
-      "Other users are already using this username and email."
+      "This username or email is already being used."
     );
     cy.get("#sign-up-error-div").contains(
       "Emails and usernames must be unique."
@@ -83,7 +86,7 @@ describe("Sign up validation", () => {
     cy.get("#password").type("password");
     cy.get("#signup").click();
     cy.get("#sign-up-error-div").contains(
-      "Other users are already using this username and email."
+      "This username or email is already being used."
     );
     cy.get("#sign-up-error-div").contains(
       "Emails and usernames must be unique."
