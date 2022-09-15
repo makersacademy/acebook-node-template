@@ -8,17 +8,21 @@ const CommentsController = {
     Comment
       .find({ post_id: postId })
       .populate("post_id")
+      .populate("user_id")
       .exec((err, comments) => {
         if (err){
           // do something if there's an error
           console.log("CommentsPage.index error with Comment.find");
           console.log(err);
         } else {
-          Post.findOne({ _id: postId },
-            (err, post) => {
+          Post
+            .findOne({ _id: postId })
+            .populate("user_id")
+            .exec((err, post) => {
               if (err) {
                 console.log(err);
               } else {
+                console.log(comments);
                 res.render("comments/index", { comments: comments.reverse(), post: post });
           }});
         }
