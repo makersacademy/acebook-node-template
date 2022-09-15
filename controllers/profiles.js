@@ -1,8 +1,13 @@
 const User = require("../models/user");
 
 const ProfilePage = {
+  LoadFromProfileButton: (req, res) => {
+    res.redirect(`/profiles/${req.session.user.username}`);
+  },
+
   Index: (req, res) => {
     let profileUsername = req.params.username;
+
     if (!profileUsername) {
       profileUsername = req.body.searchBar;
     }
@@ -20,9 +25,16 @@ const ProfilePage = {
             res.render("profiles/userNotFound");
           } else {
             console.log(`${profileUsername}'s profile has been loaded`);
-            const friendsListWithUsernames = user.friends.map((friend) => friend.username);
+            let profileFirstname = user.first_name;
+            let profileLastname = user.last_name;
+
+            const friendsListWithUsernames = user.friends.map(
+              (friend) => friend.username
+            );
             res.render("profiles/index", {
               profileUsername: profileUsername,
+              profileFirstname: profileFirstname,
+              profileLastname: profileLastname,
               friends: friendsListWithUsernames,
               fetchUrl: "/friends/requests/new/" + profileUsername,
             });

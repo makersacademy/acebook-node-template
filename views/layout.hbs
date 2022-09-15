@@ -27,8 +27,9 @@
      </div>
 
       <div class="navbar-button-container">
+        {{#if loggedIn}}
         <div class="profile-button">
-            <form  class="margin-remover" action="/profiles/:username" method="GET">
+            <form  class="margin-remover" action="/profiles/" method="GET">
               <input class="profile-button-input" type="submit" value="Profile">
             </form>
         </div>
@@ -38,6 +39,7 @@
             <input class="logout-button-input" type="submit" value="Log Out">
           </form>
         </div>
+        {{/if}}
       </div>
 
     </div>
