@@ -53,7 +53,7 @@ const PostsController = {
           }
 
           if (post.likes.includes(user._id) == true) {
-            post._doc.color = "#1877f2";
+            post._doc.color = "#F47983";
           } else {
             post._doc.color = "gray";
           }
