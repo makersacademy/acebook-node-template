@@ -1,5 +1,11 @@
 describe("Post feed", () => {
   it("A user can see their friends posts in reverse chronological order", () => {
+    // delete all table entries
+    cy.request("DELETE", "http://localhost:3030/admin/reset", {
+      user: "admin",
+      password: "password",
+    });
+
     // sign up user 1.0
     cy.visit("/users/new");
     cy.get("#first-name").type("some");

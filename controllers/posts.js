@@ -18,9 +18,10 @@ const PostsController = {
 
           // give each post a key giving true if the post was created by the current user
           posts.forEach(
-            (post) =>
-              (post._doc.belongsToCurrentUser =
-                post.user_id._id.toString() === currentUserId)
+            (post) => {
+              (post._doc.belongsToCurrentUser = post.user_id._id.toString() === currentUserId);
+              post._doc.likedByCurrentUser = post.likes.includes(currentUserId);
+            }
           );
           res.render("posts/index", { posts: posts.reverse() });
         }

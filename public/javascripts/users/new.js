@@ -1,5 +1,6 @@
 function submitNewUserForm() {
   // creates new object out of form data to submit in fetch request body
+  console.log("I am inside the submitNewUserForm");
   const formDataObj = {};
   new FormData(document.forms["new-user-form"]).forEach(
     (value, key) => (formDataObj[key] = value)

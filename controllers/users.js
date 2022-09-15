@@ -18,6 +18,7 @@ const UsersController = {
           })
         );
       } else {
+        console.log("I am being signed up YAY");
         res.send(JSON.stringify({ ok: true }));
       }
     });

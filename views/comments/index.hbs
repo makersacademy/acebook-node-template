@@ -6,14 +6,23 @@
 </head>
 <body>
 
-  <div class="post-feed-container">
-    <h1>Timeline</h1>
-    <a class="new-post-link" href="/posts/new">New post</a>
+  <div class="comments-feed-container">
+    <a class="return-to-timeline" href="/posts">Return to timeline</a>
 
-    <div class="posts">
-      {{#each posts}}
-      <div class="post">
-        <div class="post-div-container" id="post-div-container-{{this._id}}">
+    <h1>{{post.user_id.first_name}}'s post</h1>
+
+    <div class="post-parent">
+      <ul class="post-parent-content">
+        <li class="username">@{{post.user_id.username}}</li>
+        <li class="message">{{post.message}}</li>
+        <li class="time">{{post.time_posted}}</li>
+      </ul>
+    </div>
+
+    <div class="comments">
+      {{#each comments}}
+      <div class="comment">
+        <div class="comment-div-container" id="comment-div-container-{{this._id}}">
           <ul>
             <li class="username">@{{this.user_id.username}}</li>
             <li class="message">{{this.message}}</li>
@@ -21,12 +30,12 @@
           </ul>
         </div>
 
-          <div class="post-likes-container">
+          <div class="comment-likes-container">
             <div
-              class="post-like-counter"
+              class="comment-like-counter"
               id="counter-{{this._id}}"
             >{{this.likes.length}}</div>
-            <button class="post-like-button liked-{{this._doc.likedByCurrentUser}}" id="button-{{this._id}}">
+            <button class="comment-like-button liked-{{this._doc.likedByCurrentUser}}" id="button-{{this._id}}">
             </button>
 
             <script type="text/javascript">
@@ -36,21 +45,14 @@
               document.getElementById("counter-{{this._id}}").textContent =
               result.counter) })
             </script>
-          
-            <a class="new-comment-link" href="/comments/{{this._id}}">Write a comment</a>
           </div>
-
-          {{#if this._doc.belongsToCurrentUser}}
-            <div class="post-delete-div" id="post-delete-div-{{this._id}}">
-              <button
-                class="post-delete-button"
-                id="post-delete-button-{{this._id}}"
-                onclick="deletePostOnClick('{{this._id}}')"
-              >Delete Post</button>
-            </div>
-          {{/if}}
       </div>
       {{/each}}
+
+      <form id="new-comment-form" action="/comments/{{post._id}}" , method="POST">
+        <textarea id="form-comment" type="text" name="message" value="" placeholder="e.g. Hello!"></textarea>
+        <br><input id="submit-comment" type="submit" value="Submit comment">
+      </form>
     </div>
   </div>
   <script src="/javascripts/posts/index.js"></script>

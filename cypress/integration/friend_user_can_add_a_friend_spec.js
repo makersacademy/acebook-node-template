@@ -13,6 +13,8 @@ describe("Friends", () => {
     cy.get("#password").type("password");
     cy.get("#signup").click();
 
+    cy.get(".homepage-title").contains("Welcome to Acebook");
+
     // sign up
     cy.visit("/users/new");
     cy.get("#username").type("simon");
