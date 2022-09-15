@@ -14,6 +14,7 @@ describe("Sign up validation", () => {
 		cy.get("#email").type("billy@example.com");
 		cy.get("#password").type("password");
 		cy.get("#signup").click();
+		cy.get(".homepage-title").contains("Welcome to Acebook");
 
 		// sign up again
 		cy.visit("/users/new");
@@ -36,6 +37,7 @@ describe("Sign up validation", () => {
 		cy.get("#email").type("billy@example.com");
 		cy.get("#password").type("password");
 		cy.get("#signup").click();
+		cy.get(".homepage-title").contains("Welcome to Acebook");
 
 		// sign up again
 		cy.visit("/users/new");
@@ -58,6 +60,7 @@ describe("Sign up validation", () => {
 		cy.get("#email").type("billy@example.com");
 		cy.get("#password").type("password");
 		cy.get("#signup").click();
+		cy.get(".homepage-title").contains("Welcome to Acebook");
 
 		cy.visit("/users/new");
 		cy.get("#username").type("billy");
@@ -79,6 +82,8 @@ describe("Sign up validation", () => {
 		cy.get("#email").type("billy@example.com");
 		cy.get("#password").type("password");
 		cy.get("#signup").click();
+		cy.get(".homepage-title").contains("Welcome to Acebook");
+
 		// sign up with existing details
 		cy.visit("/users/new");
 		cy.get("#username").type("billy");

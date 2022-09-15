@@ -1,15 +1,26 @@
 <div class="profile-container">
-  <h1 id="profile-header">{{profileUsername}}'s profile <br> <br> 
-    <div class="full-name-card" id="full-name"> {{profileFirstname}} {{profileLastname}} </div>
-</h1>
+  <h1 id="profile-header">{{profileUsername}}'s profile
+    <br />
+    <br />
+    <div class="full-name-card" id="full-name">
+      {{profileFirstname}}
+      {{profileLastname}}
+    </div>
+  </h1>
 
+  {{! when styling, keep the div and pad as desired, whether the button is displayed or not }}
+  <div id="friend-button-status-div">
+    {{#if displayAddFriendButton}}
+      <button id="add-friend-button" 
 
-  <button id="add-friend-button">Add friend</button>
+      onclick="addFriend('{{fetchUrl}}')"
+      >
+        Add friend</button>
 
-  <script type="text/javascript">
-    document.querySelector("#add-friend-button").addEventListener('click', () => { fetch("{{fetchUrl}}", {method:
-    'PUT'}) })
-  </script>
+    {{else if isAFriend}}
+      <p id="current-friend-message">friends ✔️</p>
+    {{/if}}
+  </div>
 
   <ul class="friends-list">
     Friends:
@@ -18,3 +29,4 @@
     {{/each}}
   </ul>
 </div>
+<script src="/javascripts/profiles/index.js"></script>

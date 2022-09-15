@@ -20,7 +20,6 @@ const CommentsController = {
 							if (err) {
 								console.log(err);
 							} else {
-								console.log(comments);
 								res.render("comments/index", {
 									comments: comments.reverse(),
 									post: post,
