@@ -27,7 +27,7 @@ const ProfilePage = {
             console.log(`${profileUsername}'s profile has been loaded`);
             let profileFirstname = user.first_name;
             let profileLastname = user.last_name;
-
+            console.log(user.friends)
             const friendsListWithUsernames = user.friends.map(
               (friend) => friend.username
             );
