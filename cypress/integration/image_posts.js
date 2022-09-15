@@ -35,12 +35,20 @@ describe("Timeline", () => {
     cy.get("[data-test=image]").isFixtureImage("tulips.png")
   });
 
-  it.only("wont upload a 7MB image", () => {
+  it("wont upload a 7MB image", () => {
     cy.visit("/posts");
     cy.get("#message").type("I have a large image for you!");
     cy.get("input[type=file]").selectFile('cypress/fixtures/magnolia.png')
     cy.get("#submit").click()
     cy.contains("pre", "Payload Too Large")
+  })
+
+  it.only("doesn't allow non images", () => {
+    cy.visit("/posts");
+    cy.get("#message").type("I have a pdf for you!");
+    cy.get("input[type=file]").selectFile('cypress/fixtures/git-cheat-sheet-education.pdf')
+    cy.get("#submit").click()
+    cy.contains("error")
   })
 
 });
