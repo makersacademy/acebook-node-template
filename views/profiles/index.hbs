@@ -11,7 +11,8 @@
   {{! when styling, the div can take up the space it usually does, whether the button is displayed or not }}
   <div id="friend-button-status-div">
     {{#if displayAddFriendButton}}
-      <button id="add-friend-button" onclick="addFriend()">Add friend</button>
+      <button id="add-friend-button" onclick="addFriend('{{fetchurl}}')">Add
+        friend</button>
 
     {{else if isAFriend}}
       <p id="current-friend-message">friends ✔️</p>

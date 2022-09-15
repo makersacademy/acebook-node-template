@@ -31,7 +31,7 @@ const FriendsController = {
 
               // redirect back to friendUser's profile
               // res.redirect(303, `/profiles/${friendUsername}`);
-              res.send;
+              res.send(JSON.stringify({ newFriendAdded: true }));
             }
           }
         );
