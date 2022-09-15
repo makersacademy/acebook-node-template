@@ -537,10 +537,6 @@ body {
   border-radius: 20px;
 }
 
-.messageSender__top_comment {
-  
-}
-
 .messageSender__top_comment > p {
   padding-top: 20px;
   border-bottom: 1px solid #eff2f5;

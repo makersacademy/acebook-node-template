@@ -12,11 +12,10 @@ const CommentsController = {
     });
 
     if (comment.comment === "") {
-      Comment.find((err, comments) => {
+      Comment.find((err) => {
         if (err) {
           throw err;
         }
-        console.log(comments);
         res.redirect("/posts");
       });
     } else {
