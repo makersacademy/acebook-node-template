@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const fileSizeLimitErrorHandler = (err, req, res, next) => {
   if (err) {
-    res.send(413)
+    res.sendStatus(413)
   } else {
     next()
   }
