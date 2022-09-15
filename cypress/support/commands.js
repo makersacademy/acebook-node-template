@@ -41,7 +41,7 @@ Cypress.Commands.add(
       .then(([img]) => {
         cy.fixture(fixtureImage).then(content => {
           let fixtureImage = new Image();
-          fixtureImage.src = `data:image/jpeg;base64,${content}`;
+          fixtureImage.src = `data:;base64,${content}`;
           return new Promise(resolve => {
             fixtureImage.onload = () => {
               expect(img.naturalWidth).to.equal(fixtureImage.naturalWidth);

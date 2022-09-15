@@ -11,46 +11,28 @@ describe("Timeline", () => {
     cy.get("#submit").click();
   });
 
-  it("can submit posts, when signed in, and view them", () => {
-    // submit a post
+  it("uploads a jpeg image", () => {
     cy.visit("/posts");
-    cy.get('#message').invoke('attr', 'placeholder').should("contain", " Whats on your mind?")
-    cy.get("#message").type("Hello, world!");
-    cy.get("#submit").click();
-    cy.get(".post__bottom").should("contain", "Hello, world!");
-  });
-
-  it.only("uploads an image", () => {
-    cy.visit("/posts");
-    cy.get("#message").type("I have an image for you!");
+    cy.get("#message").type("I have a jpeg image for you!");
 
     //test image
     cy.get("input[type=file]").selectFile('cypress/fixtures/tulips.jpeg')
     cy.get("#submit").click();
 
-    // check the image is 275 x 183px
+    // check web image size matches test image size
     cy.get("[data-test=image]").isFixtureImage("tulips.jpeg")
-    // .should(([img]) => {
-    // expect(img.complete).to.be.true;
-    // })
-    // .should("be.visible")
-    // .should(([img]) => {
-    // expect(img.naturalWidth).to.equal(275);
-    // expect(img.naturalHeight).to.equal(183);
-    // })
-    // .then(([img]) => {
-    // cy.fixture("tulips.jpeg").then(content => {
-    // let fixtureImage = new Image();
-    // fixtureImage.src = `data:image/jpeg;base64,${content}`;
-    // return new Promise(resolve => {
-    // fixtureImage.onload = () => {
-    // expect(img.naturalWidth).to.equal(fixtureImage.naturalWidth);
-    // expect(img.naturalHeight).to.equal(fixtureImage.naturalHeight);
-    // resolve();
-    // };
-    // });
-    // });
-    // });
+  });
+
+  it.only("uploads a png image", () => {
+    cy.visit("/posts");
+    cy.get("#message").type("I have a png image for you!");
+
+    //test image
+    cy.get("input[type=file]").selectFile('cypress/fixtures/tulips.png')
+    cy.get("#submit").click();
+
+    // check web image size matches test image size
+    cy.get("[data-test=image]").isFixtureImage("tulips.png")
   });
 });
 
