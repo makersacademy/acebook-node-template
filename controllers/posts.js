@@ -66,41 +66,12 @@ const PostsController = {
     const message = req.body.message;
 
     if (message == "") {
-      Post.find((err, posts) => {
-        if (err) {
-          throw err;
-        }
-
-        // convert image data into base64
-        convertImage(posts)
-
-        res.render("posts/index", {
-          posts: posts.reverse(),
-          title: "Acebook",
-          blank: "Please enter a message",
-          firstName: req.session.user.firstName
-        });
-      });
-
-    } else if (req.file && req.file.mimetype.split("/")[0] != "image") {
-      Post.find((err, posts) => {
-        if (err) {
-          throw err;
-        }
-
-        // convert image data into base64
-        convertImage(posts)
-
-        res.render("posts/index", {
-          posts: posts.reverse(),
-          title: "Acebook",
-          blank: "Invalid image file",
-          firstName: req.session.user.firstName
-        });
-      });
-
-    } else {
-
+      renderPosts(req, res, "Please enter a message")
+    }
+    else if (req.file && req.file.mimetype.split("/")[0] != "image") {
+      renderPosts(req, res, "Invalid image file")
+    }
+    else {
       const obj = {
         message: message,
         user: req.session.user._id
@@ -146,6 +117,40 @@ function convertImage(posts) {
       return post.toObject();
     }
   })
+}
+
+function renderPosts(req, res, message) {
+  Post.find()
+    .populate("user")
+    .populate([{
+      path: "comments",
+      populate: {
+        path: "postedBy"
+      }
+    }])
+    .exec((err, posts) => {
+      if (err) {
+        throw err;
+      }
+
+      posts.forEach((post) => {
+        if (post.likes.includes(req.session.user._id) == true) {
+          post._doc.color = "#1877f2"
+        } else {
+          post._doc.color = "gray"
+        }
+      })
+
+      // convert image data into base64
+      convertImage(posts)
+
+      res.render("posts/index", {
+        posts: posts.reverse(),
+        title: "Acebook",
+        blank: message,
+        firstName: req.session.user.firstName
+      });
+    });
 }
 
 module.exports = PostsController;
