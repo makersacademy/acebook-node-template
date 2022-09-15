@@ -44,20 +44,29 @@ const CommentsController = {
 			":" +
 			today.getMinutes();
 
-		const comment = new Comment({
-			message: req.body.message,
-			user_id: req.session.user._id,
-			post_id: postId,
-			time_posted: time,
-		});
-		comment.save((err) => {
-			if (err) {
-				throw err;
-			}
+    const comment = new Comment({
+        message: req.body.message,
+        user_id: req.session.user._id,
+        post_id: postId,
+        time_posted: time
+      });
 
-			res.redirect("/comments/" + postId);
-		});
-	},
+    comment.save((err) => {
+      if (err) {
+        throw err;
+      } else {
+      Post
+        .findByIdAndUpdate({ _id: postId}, {$inc: { comments_counter: 1} })
+        .exec((err) => {         
+            if(err) {
+              throw err;
+            }
+          });
+
+        res.redirect("/comments/" + postId);
+      }
+    });
+  },
 };
 
 module.exports = CommentsController;

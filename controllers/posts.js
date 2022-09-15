@@ -15,7 +15,7 @@ const PostsController = {
           console.log(err);
         } else {
           console.log("loading posts");
-
+          console.log(posts.comments_counter);
           // give each post a key giving true if the post was created by the current user
           posts.forEach(
             (post) => {
