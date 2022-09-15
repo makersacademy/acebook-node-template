@@ -33,7 +33,7 @@ describe("Add Friend button status", () => {
     // clicking add friend button so that "friends ✔️" appears
     cy.visit("/profiles/simon");
     cy.get("#add-friend-button").click();
-    cy.visit("/profiles/simon");
+    // cy.visit("/profiles/simon");
     cy.get("#add-friend-button").should("not.exist");
     cy.get("#current-friend-message").should("contain", "friends ✔️");
 
