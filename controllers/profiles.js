@@ -25,18 +25,24 @@ const ProfilePage = {
             res.render("profiles/userNotFound");
           } else {
             console.log(`${profileUsername}'s profile has been loaded`);
-            let profileFirstname = user.first_name;
-            let profileLastname = user.last_name;
+            const ownProfile = req.session.user.username === profileUsername;
+            console.log(req.session.user.friends);
+            const isAFriend = req.session.user.friends.includes(
+              user._id.toString()
+            );
+            console.log(isAFriend);
 
             const friendsListWithUsernames = user.friends.map(
               (friend) => friend.username
             );
             res.render("profiles/index", {
               profileUsername: profileUsername,
-              profileFirstname: profileFirstname,
-              profileLastname: profileLastname,
+              profileFirstname: user.first_name,
+              profileLastname: user.last_name,
               friends: friendsListWithUsernames,
               fetchUrl: "/friends/requests/new/" + profileUsername,
+              displayAddFriendButton: !ownProfile && !isAFriend,
+              isAFriend: isAFriend,
             });
           }
         }

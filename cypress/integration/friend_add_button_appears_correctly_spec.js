@@ -30,13 +30,14 @@ describe("Add Friend button status", () => {
     // visit friend and doesnt not appear, friends! appears
     // visit own profile, does not appear
 
-    // clicking add friend button
+    // clicking add friend button so that "friends ✔️" appears
     cy.visit("/profiles/simon");
     cy.get("#add-friend-button").click();
     cy.visit("/profiles/simon");
+    cy.get("#add-friend-button").should("not.exist");
     cy.get("#current-friend-message").should("contain", "friends ✔️");
 
-    // visiting profile to check friend is added
+    // visiting own profile to add buttons disappears, and "friends ✔️" does not appear
     cy.visit("/profiles/billy");
     cy.get("#profile-header").contains("billy's profile");
     cy.get("#add-friend-button").should("not.exist");

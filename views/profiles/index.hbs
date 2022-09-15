@@ -12,15 +12,14 @@
   <div id="friend-button-status-div">
     {{#if displayAddFriendButton}}
       <button id="add-friend-button">Add friend</button>
-    {{else if currentUserIsFriend}}
+      <script type="text/javascript">
+        document.querySelector("#add-friend-button").addEventListener('click',
+        () => { fetch("{{fetchUrl}}", {method: 'PUT'}) })
+      </script>
+    {{else if isAFriend}}
       <p id="current-friend-message">friends ✔️</p>
     {{/if}}
   </div>
-
-  <script type="text/javascript">
-    document.querySelector("#add-friend-button").addEventListener('click', () =>
-    { fetch("{{fetchUrl}}", {method: 'PUT'}) })
-  </script>
 
   <ul class="friends-list">
     Friends:
