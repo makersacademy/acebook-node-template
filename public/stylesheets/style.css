@@ -15,9 +15,9 @@ a {
   background-color: #007dfa;
   height: 12rem;
   padding: 0 2rem;
-  position: fixed;
+  /* position: fixed;
   top: 0;
-  width: -webkit-fill-available;
+  width: -webkit-fill-available; */
 }
 
 .navbar-button-container {
