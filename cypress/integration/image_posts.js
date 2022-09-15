@@ -30,10 +30,26 @@ describe("Timeline", () => {
 
     // check the image is 275 x 183px
     cy.get("[data-test=image]")
-      .should("be.visible")
       .should(([img]) => {
-        expect(img.naturalWidth).to.equal(275);
-        expect(img.naturalHeight).to.equal(183);
+        expect(img.complete).to.be.true;
+      })
+      // .should("be.visible")
+      // .should(([img]) => {
+      // expect(img.naturalWidth).to.equal(275);
+      // expect(img.naturalHeight).to.equal(183);
+      // })
+      .then(([img]) => {
+        cy.fixture("tulips.jpeg").then(content => {
+          let fixtureImage = new Image();
+          fixtureImage.src = `data:image/jpeg;base64,${content}`;
+          return new Promise(resolve => {
+            fixtureImage.onload = () => {
+              expect(img.naturalWidth).to.equal(fixtureImage.naturalWidth);
+              expect(img.naturalHeight).to.equal(fixtureImage.naturalHeight);
+              resolve();
+            };
+          });
+        });
       });
   });
 });
