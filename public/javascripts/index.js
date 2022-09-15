@@ -1,44 +1,29 @@
-// posts
-function deletePostOnClick(id) {
-  fetch(`/posts/delete/${id}`, { method: "DELETE" })
+function deleteOnClick(path, id) {
+  fetch(`/${path}s/delete/${id}`, { method: "DELETE" })
     .then((response) => response.json())
     .then((result) => {
       if (result.ok && result.ok === 1 && result.deletedCount === 1) {
-        const postDivEl = document.querySelector(`#post-div-container-${id}`);
-        const postDivElChildren = postDivEl.getElementsByTagName("*");
-        for (let i = 0; i < postDivElChildren.length; i++) {
-          postDivElChildren[i].remove();
+        const containerDivEl = document.querySelector(
+          `#${path}-div-container-${id}`
+        );
+        const containerDivElChildren = containerDivEl.getElementsByTagName("*");
+        for (let i = 0; i < containerDivElChildren.length; i++) {
+          containerDivElChildren[i].remove();
         }
-        postDivEl.append(
+        containerDivEl.append(
           Object.assign(document.createElement("p"), {
-            className: "post-delete-message",
-            id: `post-delete-message-${id}`,
-            textContent: "This post has been deleted",
+            className: `${path}-delete-message`,
+            id: `${path}-delete-message-${id}`,
+            textContent: `This ${path} has been deleted`,
           })
         );
       }
     });
 }
 
-function likePostOnClick(id) {
-  fetch(`/likes/new/posts/${id}`, { method: "PUT" })
-    .then((response) => response.json())
-    .then((result) => {
-      document.getElementById(`counter-${id}`).textContent = result.counter;
-      let likedButtonState = "false"; // // if currently blue, make white
-      const likeButtonEl = document.getElementById(`button-${id}`);
-      if (likeButtonEl.className.split(" ")[1] === "liked-false")
-        // if currently white, make blue
-        likedButtonState = "true";
-      likeButtonEl.className = `post-like-button liked-${likedButtonState}`;
-    });
-}
-
-// comments
-
-function likeCommentOnClick(id) {
+function likeOnClick(path, id) {
   console.log(id.toString());
-  fetch(`/likes/new/comments/${id}`, { method: "PUT" })
+  fetch(`/likes/new/${path}s/${id}`, { method: "PUT" })
     .then((response) => response.json())
     .then((result) => {
       document.getElementById(`counter-${id}`).textContent = result.counter;
@@ -47,7 +32,7 @@ function likeCommentOnClick(id) {
       if (likeButtonEl.className.split(" ")[1] === "liked-false")
         // if currently white, make blue
         likedButtonState = "true";
-      likeButtonEl.className = `comment-like-button liked-${likedButtonState}`;
+      likeButtonEl.className = `${path}-like-button liked-${likedButtonState}`;
     });
 }
 

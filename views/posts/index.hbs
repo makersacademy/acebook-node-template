@@ -12,7 +12,7 @@
 
     <div class="posts">
       {{#each posts}}
-        <div class="post">
+        <div class="post" id="post-{{this._id}}">
           <div class="post-div-container" id="post-div-container-{{this._id}}">
             <ul>
               <li class="username">@{{this.user_id.username}}</li>
@@ -29,7 +29,7 @@
             <button
               class="post-like-button liked-{{this._doc.likedByCurrentUser}}"
               id="button-{{this._id}}"
-              onclick="likePostOnClick('{{this._id}}')"
+              onclick="likeOnClick('post', '{{this._id}}')"
             >
             </button>
 
@@ -47,7 +47,7 @@
               <button
                 class="post-delete-button"
                 id="post-delete-button-{{this._id}}"
-                onclick="deletePostOnClick('{{this._id}}')"
+                onclick="deleteOnClick('post', '{{this._id}}')"
               >Delete Post</button>
             </div>
           {{/if}}

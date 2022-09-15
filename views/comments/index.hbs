@@ -21,7 +21,7 @@
 
     <div class="comments">
       {{#each comments}}
-        <div class="comment">
+        <div class="comment" id="comment-{{this._id}}">
           <div
             class="comment-div-container"
             id="comment-div-container-{{this._id}}"
@@ -41,11 +41,23 @@
             <button
               class="comment-like-button liked-{{this._doc.likedByCurrentUser}}"
               id="button-{{this._id}}"
-              onclick="likeCommentOnClick('{{this._id}}')"
+              onclick="likeOnClick('comment', '{{this._id}}')"
             >
             </button>
-
           </div>
+          {{#if this._doc.belongsToCurrentUser}}
+            <div
+              class="comment-delete-div"
+              id="comment-delete-div-{{this._id}}"
+            >
+              <button
+                class="comment-delete-button"
+                id="comment-delete-button-{{this._id}}"
+                onclick="deleteOnClick('comment', '{{this._id}}')"
+              >Delete comment</button>
+            </div>
+          {{/if}}
+
         </div>
       {{/each}}
 

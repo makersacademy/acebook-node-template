@@ -17,12 +17,11 @@ const PostsController = {
           console.log("loading posts");
           console.log(posts.comments_counter);
           // give each post a key giving true if the post was created by the current user
-          posts.forEach(
-            (post) => {
-              (post._doc.belongsToCurrentUser = post.user_id._id.toString() === currentUserId);
-              post._doc.likedByCurrentUser = post.likes.includes(currentUserId);
-            }
-          );
+          posts.forEach((post) => {
+            post._doc.belongsToCurrentUser =
+              post.user_id._id.toString() === currentUserId;
+            post._doc.likedByCurrentUser = post.likes.includes(currentUserId);
+          });
           res.render("posts/index", { posts: posts.reverse() });
         }
       });
@@ -61,7 +60,7 @@ const PostsController = {
 
   Destroy: (req, res) => {
     const postId = req.params.postId;
-    console.log("delete request made");
+    console.log("delete post request made");
     Post.findOne({ _id: postId }, (err, post) => {
       if (err) {
         // do something if error
