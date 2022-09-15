@@ -12,25 +12,29 @@
 
     <div class="posts">
       {{#each posts}}
-      <div class="post">
-        <div class="post-div-container" id="post-div-container-{{this._id}}">
-          <ul>
-            <li class="username">@{{this.user_id.username}}</li>
-            <li class="message">{{this.message}}</li>
-            <li class="time">{{this.time_posted}}</li>
-          </ul>
-        </div>
+        <div class="post">
+          <div class="post-div-container" id="post-div-container-{{this._id}}">
+            <ul>
+              <li class="username">@{{this.user_id.username}}</li>
+              <li class="message">{{this.message}}</li>
+              <li class="time">{{this.time_posted}}</li>
+            </ul>
+          </div>
 
           <div class="post-likes-container">
             <div
               class="post-like-counter"
               id="counter-{{this._id}}"
             >{{this.likes.length}}</div>
-            <button class="post-like-button liked-{{this._doc.likedByCurrentUser}}"
-            id="button-{{this._id}}" onclick="likePostOnClick('{{this._id}}')">
+            <button
+              class="post-like-button liked-{{this._doc.likedByCurrentUser}}"
+              id="button-{{this._id}}"
+              onclick="likePostOnClick('{{this._id}}')"
+            >
             </button>
-          
-            <a class="new-comment-link" href="/comments/{{this._id}}">Write a comment</a>
+
+            <a class="new-comment-link" href="/comments/{{this._id}}">Write a
+              comment</a>
           </div>
 
           {{#if this._doc.belongsToCurrentUser}}
@@ -42,9 +46,9 @@
               >Delete Post</button>
             </div>
           {{/if}}
-      </div>
+        </div>
       {{/each}}
     </div>
   </div>
-  <script src="/javascripts/posts/index.js"></script>
+  {{! <script src="/javascripts/posts/index.js"></script> }}
 </body>

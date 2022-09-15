@@ -21,36 +21,44 @@
 
     <div class="comments">
       {{#each comments}}
-      <div class="comment">
-        <div class="comment-div-container" id="comment-div-container-{{this._id}}">
-          <ul>
-            <li class="username">@{{this.user_id.username}}</li>
-            <li class="message">{{this.message}}</li>
-            <li class="time">{{this.time_posted}}</li>
-          </ul>
-        </div>
+        <div class="comment">
+          <div
+            class="comment-div-container"
+            id="comment-div-container-{{this._id}}"
+          >
+            <ul>
+              <li class="username">@{{this.user_id.username}}</li>
+              <li class="message">{{this.message}}</li>
+              <li class="time">{{this.time_posted}}</li>
+            </ul>
+          </div>
 
           <div class="comment-likes-container">
             <div
               class="comment-like-counter"
               id="counter-{{this._id}}"
             >{{this.likes.length}}</div>
-            <button class="comment-like-button liked-{{this._doc.likedByCurrentUser}}" id="button-{{this._id}}"
-            onclick="likeCommentOnClick('{{this._id}}')" 
-            
+            <button
+              class="comment-like-button liked-{{this._doc.likedByCurrentUser}}"
+              id="button-{{this._id}}"
+              onclick="likeCommentOnClick('{{this._id}}')"
             >
             </button>
 
           </div>
-      </div>
+        </div>
       {{/each}}
 
-      <form id="new-comment-form" action="/comments/{{post._id}}" , method="POST">
-        <textarea id="form-comment" type="text" name="message" value="" placeholder="e.g. Hello!"></textarea>
-        <br><input id="submit-comment" type="submit" value="Submit comment">
+      <form id="new-comment-form" action="/comments/{{post._id}}" method="POST">
+        <textarea
+          id="form-comment"
+          type="text"
+          name="message"
+          value=""
+          placeholder="e.g. Hello!"
+        ></textarea>
+        <br /><input id="submit-comment" type="submit" value="Submit comment" />
       </form>
     </div>
   </div>
-  <script src="/javascripts/comments/index.js"></script>
-  
 </body>

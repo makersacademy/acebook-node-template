@@ -20,7 +20,7 @@ function deletePostOnClick(id) {
 }
 
 function likePostOnClick(id) {
-	fetch(`/likes/new/${id}`, { method: "PUT" })
+	fetch(`/likes/new/posts/${id}`, { method: "PUT" })
 		.then((response) => response.json())
 		.then((result) => {
 			document.getElementById(`counter-${id}`).textContent = result.counter;
