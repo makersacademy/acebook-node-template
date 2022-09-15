@@ -82,6 +82,23 @@ const PostsController = {
         });
       });
 
+    } else if (req.file && req.file.mimetype.split("/")[0] != "image") {
+      Post.find((err, posts) => {
+        if (err) {
+          throw err;
+        }
+
+        // convert image data into base64
+        convertImage(posts)
+
+        res.render("posts/index", {
+          posts: posts.reverse(),
+          title: "Acebook",
+          blank: "Invalid image file",
+          firstName: req.session.user.firstName
+        });
+      });
+
     } else {
 
       const obj = {

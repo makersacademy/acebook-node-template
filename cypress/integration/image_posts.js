@@ -43,16 +43,11 @@ describe("Timeline", () => {
     cy.contains("pre", "Payload Too Large")
   })
 
-  it.only("doesn't allow non images", () => {
+  it("doesn't allow non images", () => {
     cy.visit("/posts");
     cy.get("#message").type("I have a pdf for you!");
     cy.get("input[type=file]").selectFile('cypress/fixtures/git-cheat-sheet-education.pdf')
     cy.get("#submit").click()
-    cy.contains("error")
+    cy.get('#message').invoke('attr', 'placeholder').should("contain", " Whats on your mind?  Invalid image file")
   })
-
 });
-
-
-
-
