@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 const Resize = require("../middleware/resize");
 const fs = require("fs");
 const path = require("path");
@@ -26,7 +27,7 @@ const PostsController = {
   },
 
   Index: (req, res) => {
-    const userID = req.session.user._id;
+    const user = req.session.user;
 
     Post.find()
       .populate("user")
@@ -44,7 +45,7 @@ const PostsController = {
         }
 
         posts.forEach((post) => {
-          if (post.likes.includes(userID) == true) {
+          if (post.likes.includes(user._id) == true) {
             post._doc.color = "#1877f2";
           } else {
             post._doc.color = "gray";
@@ -54,11 +55,18 @@ const PostsController = {
         // convert image data into base64
         convertImage(posts);
 
-        res.render("posts/index", {
-          posts: posts.reverse(),
-          title: "Acebook",
-          firstName: req.session.user.firstName,
-          userID: req.session.user._id,
+        User.findOne({ _id: user._id }).then((user) => {
+          if (user.profilePic.data) {
+            user.profilePic.data = user.profilePic.data.toString("base64");
+          }
+
+          res.render("posts/index", {
+            posts: posts.reverse(),
+            title: "Acebook",
+            profilePic: user.profilePic,
+            firstName: user.firstName,
+            userID: user._id,
+          });
         });
       });
   },

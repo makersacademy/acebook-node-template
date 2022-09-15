@@ -21,9 +21,9 @@ const ProfileController = {
   },
 
   Edit: (req, res) => {
-    console.log("profile/edit POST", req.body);
-
     User.findOne({ _id: req.session.user._id }).then((user) => {
+      console.log("profpic data", user.profilePic.data);
+
       if (user.profilePic.data) {
         user.profilePic.data = user.profilePic.data.toString("base64");
       }
