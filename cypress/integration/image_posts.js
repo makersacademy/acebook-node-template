@@ -23,7 +23,7 @@ describe("Timeline", () => {
     cy.get("[data-test=image]").isFixtureImage("tulips.jpeg")
   });
 
-  it.only("uploads a png image", () => {
+  it("uploads a png image", () => {
     cy.visit("/posts");
     cy.get("#message").type("I have a png image for you!");
 
@@ -34,6 +34,16 @@ describe("Timeline", () => {
     // check web image size matches test image size
     cy.get("[data-test=image]").isFixtureImage("tulips.png")
   });
+
+  it.only("wont upload a 7MB image", () => {
+    cy.visit("/posts");
+    cy.get("#message").type("I have a large image for you!");
+
+    cy.get("#submit").click()
+    cy.contains("MulterError: File too large");
+
+  })
+
 });
 
 
