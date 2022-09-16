@@ -64,11 +64,14 @@ const PostsController = {
 
   Create: async (req, res) => {
     const message = req.body.message;
+    // sharp supported mimetypes
+    const sharpTypes = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/avif", "image/tiff", "image/svg"]
 
     if (message == "") {
       renderPosts(req, res, "Please enter a message")
     }
-    else if (req.file && req.file.mimetype.split("/")[0] != "image") {
+    // else if (req.file && req.file.mimetype.split("/")[0] != "image") {
+    else if (req.file && !sharpTypes.includes(req.file.mimetype)) {
       renderPosts(req, res, "Invalid image file")
     }
     else {
