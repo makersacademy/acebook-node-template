@@ -1,11 +1,14 @@
 const User = require("../models/user");
+const Resize = require("../middleware/resize");
+const fs = require("fs");
+const path = require("path");
 
 const UsersController = {
   New: (req, res) => {
     res.render("users/new", {});
   },
 
-  Create: (req, res) => {
+  Create: async (req, res) => {
     // check if the required details are submitted
     if (
       req.body.email == "" ||
@@ -14,13 +17,36 @@ const UsersController = {
     ) {
       res.render("users/new", { error: "Please enter the required details" });
     } else {
-      
-      const defaultCheck = req.body
-      if(defaultCheck.profilePic == ""){
-        delete defaultCheck.profilePic
+      // const defaultCheck = req.body;
+      // if (defaultCheck.profilePic == "") {
+      //   delete defaultCheck.profilePic;
+      // }
+
+      // const user = new User(defaultCheck);
+
+      const obj = {
+        email: req.body.email,
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+      };
+
+      if (req.file) {
+        // save image
+        const imagePath = path.join(__dirname, "../uploads");
+        const fileUpload = new Resize(imagePath);
+        const filename = await fileUpload.save(req.file);
+
+        // load resized image
+        const data = fs.readFileSync(path.join(imagePath, filename));
+
+        obj.profilePic = {
+          data: data,
+          contentType: req.file.mimetype,
+        };
       }
-      
-      const user = new User(defaultCheck);
+
+      const user = new User(obj);
 
       // check if user exists before creating
       User.findOne({ email: user.email }).then((found) => {

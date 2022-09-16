@@ -36,7 +36,7 @@ function liked(postID) {
 const likeIncrement = (button) => {
   let likeCount = document.querySelector(`#like${button.value}`);
   likeCount.textContent = parseInt(likeCount.textContent) + 1;
-  button.style.color = "#1877f2";
+  button.style.color = "#F47983";
 };
 
 const likeDecrement = (button) => {

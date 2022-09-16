@@ -28,6 +28,11 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now(),
   },
+
+  img: {
+    data: Buffer,
+    contentType: String
+  }
 });
 
 const Post = mongoose.model("Post", PostSchema);

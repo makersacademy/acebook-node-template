@@ -1,10 +1,10 @@
 const express = require("express");
+const upload = require("../middleware/multer").upload;
 const router = express.Router();
-
 const ProfileController = require("../controllers/profile");
 
 router.get("/", ProfileController.Index);
-router.get('/edit', ProfileController.Edit)
-router.post('/edit', ProfileController.EditUser)
+router.get("/edit", ProfileController.Edit);
+router.post("/edit", upload.single("image"), ProfileController.EditUser);
 
 module.exports = router;
