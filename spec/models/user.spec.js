@@ -56,6 +56,7 @@ describe("User model", () => {
     expect(user.lastName).toEqual("else");
   });
 
+  // not currently working
   xit("returns default profile pic", () => {
     const user = new User({
       email: "someone@example.com",
@@ -68,6 +69,7 @@ describe("User model", () => {
     );
   });
 
+  // not currently working
   xit("can change profile pic", () => {
     const user = new User({
       email: "someone@example.com",
