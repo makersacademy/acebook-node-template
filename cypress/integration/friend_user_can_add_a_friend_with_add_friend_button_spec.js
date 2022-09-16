@@ -9,6 +9,8 @@ describe("Friends", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#username").type("billy");
+    cy.get("#first-name").type("billy");
+    cy.get("#last-name").type("bob");
     cy.get("#email").type("billy@example.com");
     cy.get("#password").type("password");
     cy.get("#signup").click();
@@ -18,6 +20,8 @@ describe("Friends", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#username").type("simon");
+    cy.get("#first-name").type("simon");
+    cy.get("#last-name").type("jones");
     cy.get("#email").type("simon@example.com");
     cy.get("#password").type("password");
     cy.get("#signup").click();
