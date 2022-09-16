@@ -26,8 +26,6 @@
 
 import 'cypress-file-upload';
 
-// cy.get("[data-test=image]")
-
 Cypress.Commands.add(
   "isFixtureImage",
   {
