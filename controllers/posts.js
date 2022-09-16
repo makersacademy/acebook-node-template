@@ -27,55 +27,7 @@ const PostsController = {
   },
 
   Index: (req, res) => {
-    const user = req.session.user;
-
-    Post.find()
-      .populate("user")
-      .populate([
-        {
-          path: "comments",
-          populate: {
-            path: "postedBy",
-          },
-        },
-      ])
-      .exec((err, posts) => {
-        if (err) {
-          throw err;
-        }
-
-        posts.forEach((post) => {
-          console.log(post.user);
-          if (post.user.profilePic.data) {
-            post.user.profilePic.data =
-              post.user.profilePic.data.toString("base64");
-            // return post.toObject();
-          }
-
-          if (post.likes.includes(user._id) == true) {
-            post._doc.color = "#F47983";
-          } else {
-            post._doc.color = "gray";
-          }
-        });
-
-        // convert image data into base64
-        convertImage(posts);
-
-        User.findOne({ _id: user._id }).then((user) => {
-          if (user.profilePic.data) {
-            user.profilePic.data = user.profilePic.data.toString("base64");
-          }
-
-          res.render("posts/index", {
-            posts: posts.reverse(),
-            title: "Acebook",
-            profilePic: user.profilePic,
-            firstName: user.firstName,
-            userID: user._id,
-          });
-        });
-      });
+    renderPosts(req, res, "")
   },
 
   Create: async (req, res) => {
@@ -140,18 +92,25 @@ function convertImage(posts) {
 function renderPosts(req, res, message) {
   Post.find()
     .populate("user")
-    .populate([{
-      path: "comments",
-      populate: {
-        path: "postedBy"
+    .populate([
+      {
+        path: "comments",
+        populate: {
+          path: "postedBy"
+        }
       }
-    }])
+    ])
     .exec((err, posts) => {
       if (err) {
         throw err;
       }
 
       posts.forEach((post) => {
+        if (post.user.profilePic.data) {
+          post.user.profilePic.data =
+            post.user.profilePic.data.toString("base64");
+        }
+
         if (post.likes.includes(req.session.user._id) == true) {
           post._doc.color = "#1877f2"
         } else {
@@ -162,11 +121,19 @@ function renderPosts(req, res, message) {
       // convert image data into base64
       convertImage(posts)
 
-      res.render("posts/index", {
-        posts: posts.reverse(),
-        title: "Acebook",
-        blank: message,
-        firstName: req.session.user.firstName
+      User.findOne({ _id: req.session.user._id }).then((user) => {
+        if (user.profilePic.data) {
+          user.profilePic.data = user.profilePic.data.toString("base64");
+        }
+
+        res.render("posts/index", {
+          posts: posts.reverse(),
+          title: "Acebook",
+          blank: message,
+          profilePic: user.profilePic,
+          firstName: user.firstName,
+          userID: user._id
+        });
       });
     });
 }
