@@ -17,13 +17,6 @@ const UsersController = {
     ) {
       res.render("users/new", { error: "Please enter the required details" });
     } else {
-      // const defaultCheck = req.body;
-      // if (defaultCheck.profilePic == "") {
-      //   delete defaultCheck.profilePic;
-      // }
-
-      // const user = new User(defaultCheck);
-
       const obj = {
         email: req.body.email,
         password: req.body.password,

@@ -27,21 +27,27 @@ const PostsController = {
   },
 
   Index: (req, res) => {
-    renderPosts(req, res, "")
+    renderPosts(req, res, " What's on your mind?");
   },
 
   Create: async (req, res) => {
-    const message = req.body.message;
+    let message = req.body.message;
     // sharp supported mimetypes
-    const sharpTypes = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/avif", "image/tiff", "image/svg"]
+    const sharpTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "image/gif",
+      "image/avif",
+      "image/tiff",
+      "image/svg",
+    ];
 
     if (message == "") {
-      renderPosts(req, res, "Please enter a message")
-    }
-    else if (req.file && !sharpTypes.includes(req.file.mimetype)) {
-      renderPosts(req, res, "Invalid image file")
-    }
-    else {
+      renderPosts(req, res, " Please enter a message");
+    } else if (req.file && !sharpTypes.includes(req.file.mimetype)) {
+      renderPosts(req, res, " Invalid image file");
+    } else {
       const obj = {
         message: message,
         user: req.session.user._id,
@@ -96,9 +102,9 @@ function renderPosts(req, res, message) {
       {
         path: "comments",
         populate: {
-          path: "postedBy"
-        }
-      }
+          path: "postedBy",
+        },
+      },
     ])
     .exec((err, posts) => {
       if (err) {
@@ -112,14 +118,14 @@ function renderPosts(req, res, message) {
         }
 
         if (post.likes.includes(req.session.user._id) == true) {
-          post._doc.color = "#1877f2"
+          post._doc.color = "#1877f2";
         } else {
-          post._doc.color = "gray"
+          post._doc.color = "gray";
         }
-      })
+      });
 
       // convert image data into base64
-      convertImage(posts)
+      convertImage(posts);
 
       User.findOne({ _id: req.session.user._id }).then((user) => {
         if (user.profilePic.data) {
@@ -129,10 +135,10 @@ function renderPosts(req, res, message) {
         res.render("posts/index", {
           posts: posts.reverse(),
           title: "Acebook",
-          blank: message,
+          placeholderMessage: message,
           profilePic: user.profilePic,
           firstName: user.firstName,
-          userID: user._id
+          userID: user._id,
         });
       });
     });
