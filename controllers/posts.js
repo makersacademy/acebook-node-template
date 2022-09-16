@@ -27,11 +27,11 @@ const PostsController = {
   },
 
   Index: (req, res) => {
-    renderPosts(req, res, "");
+    renderPosts(req, res, " What's on your mind?");
   },
 
   Create: async (req, res) => {
-    const message = req.body.message;
+    let message = req.body.message;
     // sharp supported mimetypes
     const sharpTypes = [
       "image/jpeg",
@@ -136,7 +136,7 @@ function renderPosts(req, res, message) {
         res.render("posts/index", {
           posts: posts.reverse(),
           title: "Acebook",
-          blank: message,
+          placeholderMessage: message,
           profilePic: user.profilePic,
           firstName: user.firstName,
           userID: user._id,
