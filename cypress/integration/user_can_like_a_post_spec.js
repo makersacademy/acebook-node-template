@@ -35,7 +35,7 @@ describe("Likes", () => {
 
     // making PUT request to like a post
     // cy.request("PUT", "/likes/new");
-    cy.get(".like-button").click();
+    cy.get(".post-like-button").click();
 
     // like is registered on post
     cy.get(".post-like-counter").contains(1);

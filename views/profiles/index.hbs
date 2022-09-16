@@ -4,10 +4,8 @@
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
-
-<body>
-  <div class="profile-container">
-    <div class="circular-portrait">
+<div class="profile-container">
+      <div class="circular-portrait">
       <img id="myImg" src={{url}} />
     </div>
     <br />
@@ -17,41 +15,31 @@
         <input type="submit" value="upload" />
        </form>
     </div>
+  <h1 id="profile-header">{{profileUsername}}'s profile
+    <br />
+    <br />
+    <div class="full-name-card" id="full-name">
+      {{profileFirstname}}
+      {{profileLastname}}
+    </div>
+  </h1>
 
-    <h1 id="profile-header">{{profileUsername}}'s profile</h1>
+  {{! when styling, keep the div and pad as desired, whether the button is displayed or not }}
+  <div id="friend-button-status-div">
+    {{#if displayAddFriendButton}}
 
-    <button id="add-friend-button">Add friend</button>
+      <button id="add-friend-button" onclick="addFriend('{{fetchUrl}}')">
+        Add friend</button>
 
-    <script type="text/javascript">
-      {{!-- document.querySelector("#add-friend-button").addEventListener('click', () => { fetch("{{fetchUrl}}", {method:
-      'PUT'}) })
-      {{! spacing  }}
-      window.addEventListener('load', function () {
-      document.querySelector('input[type="file"]').addEventListener('change', function () { if (this.files &&
-      this.files[0]) { var img = document.querySelector('#myImg'); img.onload = () => { URL.revokeObjectURL(img.src); }
-      img.src = URL.createObjectURL(this.files[0]); 
-       fetch('/profiles/image', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({files: img.src   })
-     });}
-    
-    }); 
-  }); --}}
-
-
-
-    
-    </script>
-
-    <ul class="friends-list">
-      Friends:.
-      {{#each friends}}
-        <li class="friend-username">{{this}}</li>
-      {{/each}}
-    </ul>
+    {{else if isAFriend}}
+      <p id="current-friend-message">friends ✔️</p>
+    {{/if}}
   </div>
-</body>
+
+  <ul class="friends-list">
+    Friends:
+    {{#each friends}}
+      <li class="friend-username">{{this}}</li>
+    {{/each}}
+  </ul>
+</div>

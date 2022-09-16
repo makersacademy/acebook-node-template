@@ -1,5 +1,5 @@
-describe("Admin", () => {
-  it("An admin can erase tables", () => {
+describe("Timeline", () => {
+  it("can submit posts, when signed in, and view them", () => {
     // delete all table entries
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
@@ -21,24 +21,26 @@ describe("Admin", () => {
     cy.get("#password").type("password");
     cy.get("#login").click();
 
-    // creates post
+    // submit a post
     cy.visit("/posts");
     cy.contains("New post").click();
 
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").contains("Hello, world!");
+    cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".comment-counter").contains("0");
 
-    // delete all table entries
-    cy.request("DELETE", "http://localhost:3030/admin/reset", {
-      user: "admin",
-      password: "password",
-    });
+    // submit a comment
+    cy.contains("Write a comment").click();
 
-    // checking db is empty
-    cy.visit("/admin");
-    cy.get("#posts-count").contains("#Posts = 0");
-    cy.get("#users-count").contains("#Users = 0");
+    cy.get("#new-comment-form").find('[type="text"]').type("Hello, someone!");
+    cy.get("#new-comment-form").submit();
+
+    cy.get(".comments").should("contain", "Hello, someone!");
+
+    // check if comment count is shown on post on timeline page
+    cy.visit("/posts");
+    cy.get(".comment-counter").contains("1");
   });
 });

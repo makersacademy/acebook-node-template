@@ -85,6 +85,7 @@ so that integration tests do not interact with the development server.
   npm run lint              # linter only
   npm run test:unit         # unit tests only
   npm run test:integration  # integration tests only
+  npx cypress run --spec <FILE PATH> # one integration test only
   ```
 
 ## MongoDB Connection Errors?

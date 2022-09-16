@@ -1,5 +1,5 @@
-describe("Posts feed", () => {
-  it("posts contain message, creator's username and timestamp", () => {
+describe("Delete posts button", () => {
+  it("this deletes a post when clicking on it", () => {
     // clearing db
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
@@ -28,16 +28,9 @@ describe("Posts feed", () => {
     cy.get("#message").type("this is a post");
     cy.get("#submit-post").click();
 
-    // getting variable for time from the post entry
-    cy.request("GET", "http://localhost:3030/admin/posts", {
-      user: "admin",
-      password: "password",
-    }).then((response) => {
-      // post appears in feed with info
-      cy.visit("/posts");
-      cy.get(".posts").contains("this is a post");
-      cy.get(".posts").contains("someone");
-      cy.get(".posts").contains(response.body[0].time_posted);
-    });
+    // click delete button on post
+    cy.get(".post-delete-button").click();
+    cy.get(".post").get("ul").should("not.exist");
+    cy.get(".post-delete-message").contains("This post has been deleted");
   });
 });

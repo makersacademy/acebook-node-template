@@ -1,13 +1,11 @@
-var mongoose = require("mongoose");
-
 require("../mongodb_helper");
-var Comment = require("../../models/comment");
+const Comment = require("../../models/comment");
 const User = require("../../models/user");
 
 describe("Comments model", () => {
   beforeEach((done) => {
-    mongoose.connection.collections.comments.drop(() => {
-      mongoose.connection.collections.users.drop(() => {
+    Comment.deleteMany(() => {
+      User.deleteMany(() => {
         done();
       });
     });
@@ -18,7 +16,7 @@ describe("Comments model", () => {
     expect(comment.message).toEqual("some message");
   });
 
-  it("can list all posts", (done) => {
+  it("can list all comments", (done) => {
     Comment.find((err, comments) => {
       expect(err).toBeNull();
       expect(comments).toEqual([]);
@@ -93,7 +91,7 @@ describe("Comments model", () => {
     });
   });
 
-  it('adds a like to the comment database', (done) => {
+  it("adds a like to the comment database", (done) => {
     // creates new user
     const user = new User({
       username: "someone",

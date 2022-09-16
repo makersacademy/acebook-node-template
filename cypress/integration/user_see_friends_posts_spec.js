@@ -1,5 +1,11 @@
 describe("Post feed", () => {
   it("A user can see their friends posts in reverse chronological order", () => {
+    // delete all table entries
+    cy.request("DELETE", "http://localhost:3030/admin/reset", {
+      user: "admin",
+      password: "password",
+    });
+
     // sign up user 1.0
     cy.visit("/users/new");
     cy.get("#first-name").type("some");
@@ -21,7 +27,16 @@ describe("Post feed", () => {
     cy.visit("/posts/new");
     cy.get("#message").type("this is a friend's post");
     const today = new Date();
-    const time = today.getFullYear() + '/' +(today.getMonth()+1) + '/' + today.getDate() +' ' + today.getHours() + ":" + today.getMinutes();
+    const time =
+      today.getFullYear() +
+      "/" +
+      (today.getMonth() + 1) +
+      "/" +
+      today.getDate() +
+      " " +
+      today.getHours() +
+      ":" +
+      today.getMinutes();
     cy.get("#submit-post").click();
 
     // sign up enemy
@@ -36,6 +51,7 @@ describe("Post feed", () => {
     // sign in as enemy
     cy.visit("/");
     cy.get("#email").type("enemy@example.com");
+    ``;
     cy.get("#password").type("password");
     cy.get("#login").click();
     cy.visit("/");
@@ -50,14 +66,14 @@ describe("Post feed", () => {
     cy.visit("/users/new");
     cy.get("#first-name").type("some");
     cy.get("#last-name").type("one");
-    cy.get("#username").type("someone");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#username").type("someoneelse");
+    cy.get("#email").type("someoneelse@example.com");
     cy.get("#password").type("password");
     cy.get("#signup").click();
 
     // sign in as user 2.0
     cy.visit("/");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someoneelse@example.com");
     cy.get("#password").type("password");
     cy.get("#login").click();
     cy.visit("/");

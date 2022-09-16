@@ -1,0 +1,95 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+
+  <div class="comments-feed-container">
+    <a class="return-to-timeline" href="/posts">Return to timeline</a>
+
+    <h1>{{post.user_id.first_name}}'s post</h1>
+
+    <div class="post-parent">
+      <ul class="post-parent-content">
+        <li
+          class="username post-parent-username"
+          onclick="location.href=`/profiles/{{this.user_id.username}}`"
+          style="cursor:pointer;"
+        >@{{post.user_id.username}}</li>
+        <li class="message">{{post.message}}</li>
+        <li class="time">{{post.time_posted}}</li>
+      </ul>
+    </div>
+
+    <div class="comments">
+      {{#each comments}}
+
+        <div class="comment" id="comment-{{this._id}}">
+
+          <div
+            class="comment-div-container"
+            id="comment-div-container-{{this._id}}"
+          >
+            <ul>
+
+              <li
+                class="username comment-username"
+                onclick="location.href=`/profiles/{{this.user_id.username}}`"
+                style="cursor:pointer;"
+              >@{{this.user_id.username}}</li>
+
+              <li class="message">{{this.message}}</li>
+              <li class="time">{{this.time_posted}}</li>
+            </ul>
+          </div>
+
+          <div class="comment-likes-container">
+            <div
+              class="comment-like-counter"
+              id="counter-{{this._id}}"
+            >{{this.likes.length}}</div>
+            <button
+              class="comment-like-button liked-{{this._doc.likedByCurrentUser}}"
+              id="button-{{this._id}}"
+              onclick="likeOnClick('comment', '{{this._id}}')"
+            >
+            </button>
+          </div>
+
+          {{#if this._doc.belongsToCurrentUser}}
+            <div
+              class="comment-delete-div"
+              id="comment-delete-div-{{this._id}}"
+            >
+              <button
+                class="comment-delete-button"
+                id="comment-delete-button-{{this._id}}"
+                onclick="deleteOnClick('comment', '{{this._id}}')"
+              >Delete comment</button>
+            </div>
+          {{/if}}
+
+        </div>
+      {{/each}}
+
+      <form
+        id="new-comment-form"
+        action="/comments/{{post._id}}"
+        ,
+        method="POST"
+      >
+
+        <textarea
+          id="form-comment"
+          type="text"
+          name="message"
+          value=""
+          placeholder="e.g. Hello!"
+        ></textarea>
+        <br /><input id="submit-comment" type="submit" value="Submit comment" />
+      </form>
+    </div>
+  </div>
+</body>

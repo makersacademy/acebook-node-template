@@ -1,5 +1,5 @@
-describe("Posts feed", () => {
-  it("posts contain message, creator's username and timestamp", () => {
+describe("Delete request", () => {
+  it("It deletes a post via a request", () => {
     // clearing db
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
@@ -28,16 +28,17 @@ describe("Posts feed", () => {
     cy.get("#message").type("this is a post");
     cy.get("#submit-post").click();
 
-    // getting variable for time from the post entry
+    // make request to delete post
     cy.request("GET", "http://localhost:3030/admin/posts", {
       user: "admin",
       password: "password",
     }).then((response) => {
-      // post appears in feed with info
-      cy.visit("/posts");
-      cy.get(".posts").contains("this is a post");
-      cy.get(".posts").contains("someone");
-      cy.get(".posts").contains(response.body[0].time_posted);
+      cy.request(
+        "DELETE",
+        `http://localhost:3030/posts/delete/${response.body[0]._id}`
+      );
+      cy.visit("/admin");
+      cy.get("#posts-count").contains("#Posts = 0");
     });
   });
 });

@@ -1,5 +1,7 @@
-// const Post = require("../models/post");
-// const User = require("../models/user");
+const Post = require("../models/post");
+const User = require("../models/user");
+const Comment = require("../models/user");
+
 const mongoose = require("mongoose");
 
 const AdminController = {
@@ -23,19 +25,27 @@ const AdminController = {
     });
   },
 
+  Posts: (req, res) => {
+    if (req.body.user === "admin" && req.body.password === "password") {
+      Post.find((err, posts) => {
+        if (err) {
+          // do something if error
+          throw err;
+        } else {
+          res.send(posts);
+        }
+      });
+    }
+  },
+
   Destroy: (req, res) => {
     // when logged in as an admin
     if (req.body.user === "admin" && req.body.password === "password") {
-      // checking if posts in db exist
-      mongoose.connection.collections.posts.count().then((result) => {
-        if (result > 0) mongoose.connection.collections.posts.drop();
-
-        // checking if users in db exist
-        mongoose.connection.collections.users.count().then((result) => {
-          if (result > 0) mongoose.connection.collections.users.drop();
-
-          console.log("all tables erased");
-          res.send();
+      User.deleteMany(() => {
+        Post.deleteMany(() => {
+          Comment.deleteMany(() => {
+            res.send();
+          });
         });
       });
     } else {

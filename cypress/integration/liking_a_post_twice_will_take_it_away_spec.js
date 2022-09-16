@@ -1,6 +1,6 @@
-describe("Posts feed", () => {
-  it("posts contain message, creator's username and timestamp", () => {
-    // clearing db
+describe("Likes", () => {
+  it("A user can like a post", () => {
+    // delete all table entries
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
       password: "password",
@@ -28,16 +28,21 @@ describe("Posts feed", () => {
     cy.get("#message").type("this is a post");
     cy.get("#submit-post").click();
 
-    // getting variable for time from the post entry
-    cy.request("GET", "http://localhost:3030/admin/posts", {
-      user: "admin",
-      password: "password",
-    }).then((response) => {
-      // post appears in feed with info
-      cy.visit("/posts");
-      cy.get(".posts").contains("this is a post");
-      cy.get(".posts").contains("someone");
-      cy.get(".posts").contains(response.body[0].time_posted);
-    });
+    // see post in feed
+    cy.visit("/posts");
+    cy.get(".posts").contains("this is a post");
+    cy.get(".post-like-counter").contains(0);
+
+    // making PUT request to like a post
+    cy.get(".post-like-button").click();
+
+    // like is registered on post
+    cy.get(".post-like-counter").contains(1);
+
+    // pressing like button again
+    cy.get(".post-like-button").click();
+
+    // like is taken away
+    cy.get(".post-like-counter").contains(0);
   });
 });

@@ -1,11 +1,9 @@
-const mongoose = require("mongoose");
-
 require("../mongodb_helper");
 const User = require("../../models/user");
 
 describe("User model", () => {
   beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
+    User.deleteMany(() => {
       done();
     });
   });
@@ -57,11 +55,8 @@ describe("User model", () => {
 
       User.find((err, users) => {
         expect(err).toBeNull();
-
-        expect(users[0]).toMatchObject({
-          email: "someone@example.com",
-          password: "password",
-        });
+        expect(users[0].email).toEqual("someone@example.com");
+        expect(users[0].password).toEqual("password");
         done();
       });
     });
