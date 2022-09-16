@@ -1,8 +1,194 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li>
-  {{/each}}
-</ul>
+<!-- header starts -->
+<div class="header">
+  <div class="header__left">
+   <a href="/posts"> <img src="images/acebook_logo.svg" alt="" /> </a>
+    <div class="header__input">
+      <span class="material-icons"> search </span>
+      <input type="text" placeholder="Search Acebook" />
+    </div>
+  </div>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+  <div class="header__middle">
+    <div class="header__option active">
+      <span class="material-icons"> home </span>
+    </div>
+
+  </div>
+  <div class="header__right">
+    <div class="header__info">
+      <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt="" />
+      <h4><a href="/profile">Welcome {{firstName}}</a></h4>
+
+    </div>
+    <span class="material-icons">
+      <form action='/sessions?_method=DELETE' method='POST'>
+        <button id="logout" type="submit"><span class="material-icons">logout</span></button>
+      </form>
+    </span>
+  </div>
+</div>
+<!-- header ends -->
+
+<!-- main body starts -->
+<div class="main__body">
+  <!-- sidebar starts -->
+  
+  <div class="sidebar">
+    {{!-- <div class="sidebarRow">
+      <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt="" />
+      <h4><a href="/profile">Welcome {{firstName}}</a></h4>
+
+    </div>
+
+    <div class="sidebarRow">
+      <span class="material-icons"> people </span>
+      <h4>People</h4>
+    </div> --}}
+
+  </div>
+
+  <!-- sidebar ends -->
+
+  <!-- feed starts -->
+  <div class="feed">
+    <div class="storyReel">
+      <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_curtis.jpg');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Curtis.jpeg" alt="" />
+        <h4>Curtis</h4>
+      </div>
+      <!-- story ends -->
+
+      <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_nesho.jpg');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Nesho.jpg" alt="" />
+        <h4>Nesho</h4>
+      </div>
+      <!-- story ends -->
+
+      <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_sophie.jpeg');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Sophie.jpeg" alt="" />
+        <h4>Sophie</h4>
+      </div>
+      <!-- story ends -->
+
+      <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_ladan.webp.png');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Ladan.jpeg" alt="" />
+        <h4>Ladan</h4>
+      </div>
+      <!-- story ends -->
+
+      <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_brijesh.jpg');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Brijesh.jpeg" alt="" />
+        <h4>Brijesh</h4>
+      </div>
+      <!-- story ends -->
+
+      <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_evelina.jpg');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Evelina.jpeg" alt="" />
+        <h4>Evelina</h4>
+      </div>
+      <!-- story ends -->
+
+      <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_allen.jpg');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Allen.jpeg" alt="" />
+        <h4>Allen</h4>
+      </div>
+      <!-- story ends -->
+       <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_stephen.jpg');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Stephen.png" alt="" />
+        <h4>Stephen</h4>
+      </div>
+      <!-- story ends -->
+    </div>
+
+    <!-- message sender starts -->
+    <div class="messageSender">
+      <div class="messageSender__top">
+        <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt=""/>
+
+        {{!-- FORM MODIFIED FOR IMAGE --}}
+        <form id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
+          <input type="file" name="image" accept="image/*"><br>
+          <input id="message" type="text" name="message" value="" placeholder="{{placeholderMessage}}">
+          <input id="submit" type="submit" value="POST">
+        </form>
+      </div>
+    </div>
+    <!-- message sender ends -->
+
+    <!-- post starts -->
+    {{#each posts}}
+    <div class="post">
+      <div class="post__top">
+        <img class="user__avatar post__avatar" src="data:;base64,{{this.user.profilePic.data}}" alt="" />
+        <div class="post__topInfo">
+          <a id="post_name" href="/profile">
+            <h3>{{this.user.firstName}}</h3>
+          </a> <!-- Need to link post to user firstname  -->
+          <p>{{this.createdAt}}</p>
+        </div>
+      </div>
+
+      <div class="post__bottom">
+        <p>{{this.message}}</p>
+      </div>
+
+      <div class="post__image">
+        <img data-test="image" src="data:;base64, {{this.img.data}}" alt="">
+      </div>
+
+      <div class="post__options">
+        <div class="post__option">
+          <p id="like{{this._id}}">{{this.likes.length}}</p>
+          <button id="button{{this._id}}" class="like" type="submit" value="{{this._id}}"
+            style="color:{{this._doc.color}}">
+            <span class="material-icons">thumb_up </span>
+          </button>
+        </div>
+
+        <div class="post__option">
+          <span class="material-icons"> chat_bubble_outline </span>
+          <p>Comment</p>
+        </div>
+
+        {{#each this.comments}}
+        <div class="comment__bottom">{{this.comment}} - {{this.postedBy.firstName}} {{this.postedBy.lastName}}</div>
+        <p>{{this.date}}</p>
+        {{/each}}
+
+        <form class="new-comment-form" action="/comments" method="post">
+          <input type="hidden" id="postID" name="postID" value={{this._id}}>
+          <input class="comment" type="text" name="comment" value="" placeholder="Comment here">
+          <input class="submit-comment" type="submit" value="COMMENT">
+        </form>
+      </div>
+    </div>
+    {{/each}}
+
+
+    <!-- post ends -->
+  </div>
+</div>

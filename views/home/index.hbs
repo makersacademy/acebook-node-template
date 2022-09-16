@@ -1,2 +1,24 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="homepage-outermost">
+  <div class="homepage-outer">
+    <div class="homepage-container-left">
+      <img src="images/acebook_logo.svg" alt="">
+      <p>acebook helps axolotyls <br>meet in the pond.</p>
+    </div>
+
+    <div class="container">
+      <form action='/sessions' method='POST'>
+        <input type="email" name="email" id="user_email" placeholder=" Email address" required>
+        <input type="password" name="password" id="user_password" placeholder=" Password" required>
+        <input type="submit" id="login_submit_btn" value="Log In">
+      </form>
+
+      <p>{{error}}</p>
+
+      <form action="/users/new" method="get">
+        <button id="register_acc">Create New Account</button>
+      </form>
+      <br>
+    </div>
+
+  </div>
+</div>
