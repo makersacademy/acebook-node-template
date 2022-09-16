@@ -8,13 +8,14 @@
 <body>
   <div class="profile-container">
     <div class="circular-portrait">
-      <img id="myImg" src="#" />
+      <img id="myImg" src={{url}} />
     </div>
     <br />
     <div>
-      <form action="/profiles/image" action="POST">
-        <input class="picture-text" id="image" type="file" />
-      </form>
+      <form action="/profiles/image" enctype="multipart/form-data" method="POST">
+        <input class="picture-text" name="image" type="file" />
+        <input type="submit" value="upload" />
+       </form>
     </div>
 
     <h1 id="profile-header">{{profileUsername}}'s profile</h1>
@@ -22,13 +23,28 @@
     <button id="add-friend-button">Add friend</button>
 
     <script type="text/javascript">
-      document.querySelector("#add-friend-button").addEventListener('click', () => { fetch("{{fetchUrl}}", {method:
+      {{!-- document.querySelector("#add-friend-button").addEventListener('click', () => { fetch("{{fetchUrl}}", {method:
       'PUT'}) })
       {{! spacing  }}
       window.addEventListener('load', function () {
       document.querySelector('input[type="file"]').addEventListener('change', function () { if (this.files &&
       this.files[0]) { var img = document.querySelector('#myImg'); img.onload = () => { URL.revokeObjectURL(img.src); }
-      img.src = URL.createObjectURL(this.files[0]); } }); });
+      img.src = URL.createObjectURL(this.files[0]); 
+       fetch('/profiles/image', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({files: img.src   })
+     });}
+    
+    }); 
+  }); --}}
+
+
+
+    
     </script>
 
     <ul class="friends-list">

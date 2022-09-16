@@ -33,7 +33,7 @@ const PostsController = {
       });
     post.save((err) => {
       if (err) {
-        throw err;
+        throw err; 
       }
 
       res.status(201).redirect("/posts");

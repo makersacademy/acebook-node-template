@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  img: String
 });
 
 const User = mongoose.model("User", UserSchema);
