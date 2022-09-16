@@ -65,4 +65,4 @@ cypress/screenshots
 cypress/videos
 
 # uploaded images
-uploads/
+uploads/*

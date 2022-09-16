@@ -1,7 +1,7 @@
 <!-- header starts -->
 <div class="header">
   <div class="header__left">
-    <img src="images/acebook_logo.svg" alt="" />
+    <a href="/posts"><img src="images/acebook_logo.svg" alt="" /></a>
     <div class="header__input">
       <span class="material-icons"> search </span>
       <input type="text" placeholder="Search Acebook" />
@@ -15,7 +15,7 @@
   </div>
   <div class="header__right">
     <div class="header__info">
-      <img class="user__avatar" src="images/img/Makers.png" alt="" />
+      <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt="" />
       <h4><a href="/profile">Welcome {{firstName}}</a></h4>
     </div>
 
@@ -29,7 +29,7 @@
 
 <div class="post">
   <div class="profile_img">
-  <img id="profile_pic" src="{{{url}}}" width="300" height="300" />
+  <img id="profile_pic" src="data:;base64, {{profilePic.data}}" alt=""/>
   </div>
   <div class="post__bottom">
   <ul>

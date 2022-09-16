@@ -1,6 +1,7 @@
 <div class="homepage-outermost">
   <div class="container">
-    <form id="new-user-form" action="/users" method="post">
+
+    <form id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
       <h1>Sign up</h1>
       <br>
       <input id="firstName" type="text" name="firstName" value="" placeholder=" First Name" required>
@@ -11,7 +12,9 @@
       <br>
       <input id="password" type="password" name="password" value="" placeholder=" Password" required>
       <br>
-      <input id="profilePic" type="profilePic" name="profilePic" value="" placeholder="Drag your profile pic url here">
+      {{!-- <input id="profilePic" type="profilePic" name="profilePic" value="" placeholder="Drag your profile pic url here"> --}}
+      <label>Profile picture</label>
+      <input type="file" name="image" accept="image/*"><br>
       <br>
       <input id="submit" type="submit" value="Submit">
       <br>
