@@ -70,7 +70,6 @@ const PostsController = {
     if (message == "") {
       renderPosts(req, res, "Please enter a message")
     }
-    // else if (req.file && req.file.mimetype.split("/")[0] != "image") {
     else if (req.file && !sharpTypes.includes(req.file.mimetype)) {
       renderPosts(req, res, "Invalid image file")
     }
