@@ -1,6 +1,6 @@
-describe("Delete posts button", () => {
-  it("this deletes a post when clicking on it", () => {
-    // clearing db
+describe("Deleting comments", () => {
+  it("delete comment button replaces the container div with a deletion message", () => {
+    // delete all table entries
     cy.request("DELETE", "http://localhost:3030/admin/reset", {
       user: "admin",
       password: "password",
@@ -28,9 +28,21 @@ describe("Delete posts button", () => {
     cy.get("#message").type("this is a post");
     cy.get("#submit-post").click();
 
-    // click delete button on post
-    cy.get(".post-delete-button").click();
-    cy.get(".post").get("ul").should("not.exist");
-    cy.get(".post-delete-message").contains("This post has been deleted");
+    // see post in feed
+    cy.visit("/posts");
+    cy.get(".posts").contains("this is a post");
+    cy.get(".post-like-counter").contains(0);
+    cy.get(".new-comment-link").click();
+    cy.get("#form-comment").type("big test comment");
+    cy.get("#submit-comment").click();
+    cy.get(".comment-like-counter").contains(0);
+
+    // deleting the comment
+    cy.get(".comment-delete-button").click();
+    cy.get(".comment-delete-message").contains("This comment has been deleted");
+
+    // checking comment counter has decremented
+    cy.get(".return-to-timeline").click();
+    cy.get(".comment-counter").contains(0);
   });
 });

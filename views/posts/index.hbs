@@ -12,6 +12,12 @@
 
     <div class="posts">
       {{#each posts}}
+
+        <div class="post" id="post-{{this._id}}">
+          <div class="post-div-container" id="post-div-container-{{this._id}}">
+            <ul>
+              <li class="username">@{{this.user_id.username}}</li>
+
         <div class="post">
           <div class="post-div-container" id="post-div-container-{{this._id}}">
             <ul>
@@ -20,6 +26,7 @@
                 onclick="location.href=`/profiles/{{this.user_id.username}}`"
                 style="cursor:pointer;"
               >@{{this.user_id.username}}</li>
+
               <li class="message">{{this.message}}</li>
               <li class="time">{{this.time_posted}}</li>
             </ul>
@@ -33,25 +40,30 @@
             <button
               class="post-like-button liked-{{this._doc.likedByCurrentUser}}"
               id="button-{{this._id}}"
+
+              onclick="likeOnClick('post', '{{this._id}}')"
+              ``
+
               onclick="likePostOnClick('{{this._id}}')"
+
             >
             </button>
 
-            <script type="text/javascript">
-              document.getElementById("button-{{this._id}}").addEventListener('click',
-              () => { fetch( "/likes/new/" + "{{this._id}}", {method: 'PUT'})
-              .then(response => response.json()) .then(result =>
-              document.getElementById("counter-{{this._id}}").textContent =
-              result.counter) })
-            </script>
-
-            <div class="comment-counter">
+            <div class="comment-counter" id="comment-counter-{{this._id}}">
               {{this.comments_counter}}
               <img id="comment_image" src="/images/comment-bubble.png" />
             </div>
 
+
+            <a
+              class="new-comment-link"
+              href="/comments/{{this._id}}"
+              id="new-comment-link-{{this._id}}"
+            >Write a comment</a>
+
             <a class="new-comment-link" href="/comments/{{this._id}}">Write a
               comment</a>
+
           </div>
 
           {{#if this._doc.belongsToCurrentUser}}
@@ -59,7 +71,7 @@
               <button
                 class="post-delete-button"
                 id="post-delete-button-{{this._id}}"
-                onclick="deletePostOnClick('{{this._id}}')"
+                onclick="deleteOnClick('post', '{{this._id}}')"
               >Delete Post</button>
             </div>
           {{/if}}
@@ -67,5 +79,4 @@
       {{/each}}
     </div>
   </div>
-  <script src="/javascripts/posts/index.js"></script>
 </body>

@@ -11,8 +11,13 @@
   {{! when styling, keep the div and pad as desired, whether the button is displayed or not }}
   <div id="friend-button-status-div">
     {{#if displayAddFriendButton}}
+
+      <button id="add-friend-button" onclick="addFriend('{{fetchUrl}}')">
+        Add friend</button>
+
       <button id="add-friend-button" onclick="addFriend('{{fetchUrl}}')">Add
         friend</button>
+
 
     {{else if isAFriend}}
       <p id="current-friend-message">friends ✔️</p>
@@ -26,4 +31,3 @@
     {{/each}}
   </ul>
 </div>
-<script src="/javascripts/profiles/index.js"></script>

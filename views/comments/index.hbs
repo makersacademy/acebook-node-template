@@ -25,17 +25,25 @@
 
     <div class="comments">
       {{#each comments}}
+
+        <div class="comment" id="comment-{{this._id}}">
+
         <div class="comment">
+
           <div
             class="comment-div-container"
             id="comment-div-container-{{this._id}}"
           >
             <ul>
+
+              <li class="username">@{{this.user_id.username}}</li>
+
               <li
                 class="username comment-username"
                 onclick="location.href=`/profiles/{{this.user_id.username}}`"
                 style="cursor:pointer;"
               >@{{this.user_id.username}}</li>
+
               <li class="message">{{this.message}}</li>
               <li class="time">{{this.time_posted}}</li>
             </ul>
@@ -49,17 +57,31 @@
             <button
               class="comment-like-button liked-{{this._doc.likedByCurrentUser}}"
               id="button-{{this._id}}"
+
+              onclick="likeOnClick('comment', '{{this._id}}')"
+
             >
             </button>
-
-            <script type="text/javascript">
-              document.getElementById("button-{{this._id}}").addEventListener('click',
-              () => { fetch( "/likes/new/" + "{{this._id}}", {method: 'PUT'})
-              .then(response => response.json()) .then(result =>
-              document.getElementById("counter-{{this._id}}").textContent =
-              result.counter) })
-            </script>
           </div>
+
+          {{#if this._doc.belongsToCurrentUser}}
+            <div
+              class="comment-delete-div"
+              id="comment-delete-div-{{this._id}}"
+            >
+              <button
+                class="comment-delete-button"
+                id="comment-delete-button-{{this._id}}"
+                onclick="deleteOnClick('comment', '{{this._id}}')"
+              >Delete comment</button>
+            </div>
+          {{/if}}
+
+        </div>
+      {{/each}}
+
+      <form id="new-comment-form" action="/comments/{{post._id}}" method="POST">
+
         </div>
       {{/each}}
 
@@ -69,6 +91,7 @@
         ,
         method="POST"
       >
+
         <textarea
           id="form-comment"
           type="text"
@@ -80,5 +103,4 @@
       </form>
     </div>
   </div>
-  <script src="/javascripts/posts/index.js"></script>
 </body>

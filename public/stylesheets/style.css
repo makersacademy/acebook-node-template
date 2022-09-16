@@ -151,7 +151,7 @@ input#password {
 
 .post-div-container {
   margin-left: -30px;
-  margin-bottom: -10px
+  margin-bottom: -10px;
 }
 
 .post {
@@ -176,7 +176,7 @@ input#password {
 .post-like-button {
   background-color: transparent;
   border-color: transparent;
-  background-image: url('/images/thumbs-up.png');
+  background-image: url("/images/thumbs-up.png");
   background-size: 16px;
   background-repeat: no-repeat;
   height: 20px;
@@ -186,11 +186,7 @@ input#password {
 }
 
 .post-like-button:hover {
-  background-image: url('/images/thumbs-up-blue.png');
-}
-
-.liked-true {
-  background-image: url('/images/thumbs-up-blue.png');
+  background-image: url("/images/thumbs-up-blue.png");
 }
 
 #comment_image {
@@ -213,10 +209,10 @@ li {
 }
 
 .message {
-  font-size: 18px ;
+  font-size: 18px;
   margin-bottom: 10px;
   max-width: 320px;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 .time {
@@ -269,7 +265,6 @@ li {
 .comment {
   border-bottom: 1.5px solid #007dfa;
   margin-top: 20px;
-
 }
 
 .comment-likes-container {
@@ -284,13 +279,13 @@ li {
 
 .comment-div-container {
   margin-left: -30px;
-  margin-bottom: -10px
+  margin-bottom: -10px;
 }
 
 .comment-like-button {
   background-color: transparent;
   border-color: transparent;
-  background-image: url('/images/thumbs-up.png');
+  background-image: url("/images/thumbs-up.png");
   background-size: 16px;
   background-repeat: no-repeat;
   height: 20px;
@@ -300,7 +295,11 @@ li {
 }
 
 .comment-like-button:hover {
-  background-image: url('/images/thumbs-up-blue.png');
+  background-image: url("/images/thumbs-up-blue.png");
+}
+
+.liked-true {
+  background-image: url("/images/thumbs-up-blue.png");
 }
 
 #new-comment-form {
