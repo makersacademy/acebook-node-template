@@ -113,6 +113,7 @@ function renderPosts(req, res, message) {
 
       posts.forEach((post) => {
         if (post.user.profilePic.data) {
+          // this image doesn't make it onto the page
           post.user.profilePic.data =
             post.user.profilePic.data.toString("base64");
         }
