@@ -16,19 +16,13 @@
   </div>
   <div class="header__right">
     <div class="header__info">
-      <img
-        class="user__avatar"
-        src="data:;base64, {{profilePic.data}}"
-        alt=""
-      />
+      <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt="" />
       <h4><a href="/profile">Welcome {{firstName}}</a></h4>
 
     </div>
     <span class="material-icons">
       <form action="/sessions?_method=DELETE" method="POST">
-        <button id="logout" type="submit"><span
-            class="material-icons"
-          >logout</span></button>
+        <button id="logout" type="submit"><span class="material-icons">logout</span></button>
       </form>
     </span>
   </div>
@@ -38,8 +32,8 @@
 <!-- main body starts -->
 <div class="main__body">
   <!-- sidebar starts -->
-  
-  <div class="sidebar">
+
+  {{!-- <div class="sidebar"> --}}
     {{!-- <div class="sidebarRow">
       <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt="" />
       <h4><a href="/profile">Welcome {{firstName}}</a></h4>
@@ -51,7 +45,8 @@
       <h4>People</h4>
     </div> --}}
 
-  </div>
+    {{!--
+  </div> --}}
 
   <!-- sidebar ends -->
 
@@ -59,8 +54,7 @@
   <div class="feed">
     <div class="storyReel">
       <!-- story starts -->
-      <div
-        style="
+      <div style="
               background-image: url('images/img/_curtis.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Curtis.jpeg" alt="" />
@@ -69,8 +63,7 @@
       <!-- story ends -->
 
       <!-- story starts -->
-      <div
-        style="
+      <div style="
               background-image: url('images/img/_nesho.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Nesho.jpg" alt="" />
@@ -79,8 +72,7 @@
       <!-- story ends -->
 
       <!-- story starts -->
-      <div
-        style="
+      <div style="
               background-image: url('images/img/_sophie.jpeg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Sophie.jpeg" alt="" />
@@ -89,8 +81,7 @@
       <!-- story ends -->
 
       <!-- story starts -->
-      <div
-        style="
+      <div style="
               background-image: url('images/img/_ladan.webp.png');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Ladan.jpeg" alt="" />
@@ -99,8 +90,7 @@
       <!-- story ends -->
 
       <!-- story starts -->
-      <div
-        style="
+      <div style="
               background-image: url('images/img/_brijesh.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Brijesh.jpeg" alt="" />
@@ -109,8 +99,7 @@
       <!-- story ends -->
 
       <!-- story starts -->
-      <div
-        style="
+      <div style="
               background-image: url('images/img/_evelina.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Evelina.jpeg" alt="" />
@@ -119,8 +108,7 @@
       <!-- story ends -->
 
       <!-- story starts -->
-      <div
-        style="
+      <div style="
               background-image: url('images/img/_allen.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Allen.jpeg" alt="" />
@@ -128,8 +116,7 @@
       </div>
       <!-- story ends -->
       <!-- story starts -->
-      <div
-        style="
+      <div style="
               background-image: url('images/img/_stephen.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Stephen.png" alt="" />
@@ -141,11 +128,7 @@
     <!-- message sender starts -->
     <div class="messageSender">
       <div class="messageSender__top">
-        <img
-          class="user__avatar"
-          src="data:;base64, {{profilePic.data}}"
-          alt=""
-        />
+        <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt="" />
 
         {{!-- FORM MODIFIED FOR IMAGE --}}
         <form id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
@@ -159,102 +142,72 @@
 
     <!-- post starts -->
     {{#each posts}}
-      <div class="post">
-        <div class="post__top">
-          <img
-            class="user__avatar post__avatar"
-            src="data:;base64,{{this.user.profilePic.data}}"
-            alt=""
-          />
-          <div class="post__topInfo">
-            <a id="post_name" href="/profile">
-              <h3>{{this.user.firstName}}</h3>
-            </a>
-            <!-- Need to link post to user firstname  -->
-            <p>{{this.createdAt}}</p>
-          </div>
+    <div class="post">
+      <div class="post__top">
+        <img class="user__avatar post__avatar" src="data:;base64,{{this.user.profilePic.data}}" alt="" />
+        <div class="post__topInfo">
+          <a id="post_name" href="/profile">
+            <h3>{{this.user.firstName}}</h3>
+          </a>
+          <!-- Need to link post to user firstname  -->
+          <p>{{this.createdAt}}</p>
         </div>
-
-        <div class="post__bottom">
-          <p>{{this.message}}</p>
-        </div>
-        <div class="post__image">
-          <img data-test="image" src="data:;base64, {{this.img.data}}" alt="" />
-        </div>
-
-        <div class="post__image">
-          {{!-- <img src={{}} alt="" /> --}}
-        </div>
-
-        <div class="post__options">
-          <div class="post__option">
-            <p id="like{{this._id}}">{{this.likes.length}}</p>
-            <button
-              id="button{{this._id}}"
-              class="like"
-              type="submit"
-              value="{{this._id}}"
-              style="color:{{this._doc.color}}"
-            >
-              <span class="material-icons">thumb_up </span>
-            </button>
-          </div>
-
-          {{! Comments section starts here }}
-
-          <div class="messageSender">
-            <div class="messageSender__top">
-              <img class="user__avatar" src="images/img/Makers.png" alt="" />
-
-              <form id="new-comment-form" action="/comments" method="post">
-                {{! <label for="message">Whats on your mind? </label> }}
-                <input
-                  type="hidden"
-                  id="postID"
-                  name="postID"
-                  value={{this._id}}
-                />
-                <input
-                  class="comment"
-                  type="text"
-                  name="comment"
-                  value=""
-                  placeholder=" Leave a comment."
-                />
-                <input
-                  class="submit_comment"
-                  id="submit"
-                  type="submit"
-                  value="COMMENT"
-                />
-
-              </form>
-
-              <button class="hide_show" type="submit"><span
-                  class="material-icons"
-                >
-                  comment
-                </span></button>
-
-            </div>
-          </div>
-        </div>
-
-        {{#each this.comments}}
-          <div
-            class="messageSender__top_comment"
-            id="messageSender__top_comment"
-          >
-            <div class="comment__bottom">
-              <h4>{{this.postedBy.firstName}} {{this.postedBy.lastName}}</h4>
-              <p>{{this.date}}</p>
-            </div>
-            <p class="new_comment">{{this.comment}}</p>
-          </div>
-        {{/each}}
       </div>
 
-      {{! Comments section ends here }}
+      <div class="post__bottom">
+        <p>{{this.message}}</p>
+      </div>
+      <div class="post__image">
+        <img data-test="image" src="data:;base64, {{this.img.data}}" alt="" />
+      </div>
+
+      <div class="post__image">
+        {{!-- <img src={{}} alt="" /> --}}
+      </div>
+
+      <div class="post__options">
+        <div class="post__option">
+          <p id="like{{this._id}}">{{this.likes.length}}</p>
+          <button id="button{{this._id}}" class="like" type="submit" value="{{this._id}}"
+            style="color:{{this._doc.color}}">
+            <span class="material-icons">thumb_up </span>
+          </button>
+        </div>
+
+        {{! Comments section starts here }}
+
+        <div class="messageSender">
+          <div class="messageSender__top">
+            <img class="user__avatar" src="images/img/Makers.png" alt="" />
+
+            <form id="new-comment-form" action="/comments" method="post">
+              {{! <label for="message">Whats on your mind? </label> }}
+              <input type="hidden" id="postID" name="postID" value={{this._id}} />
+              <input class="comment" type="text" name="comment" value="" placeholder=" Leave a comment." />
+              <input class="submit_comment" id="submit" type="submit" value="COMMENT" />
+
+            </form>
+
+            <button class="hide_show" type="submit"><span class="material-icons">
+                comment
+              </span></button>
+
+          </div>
+        </div>
+      </div>
+
+      {{#each this.comments}}
+      <div class="messageSender__top_comment" id="messageSender__top_comment">
+        <div class="comment__bottom">
+          <h4>{{this.postedBy.firstName}} {{this.postedBy.lastName}}</h4>
+          <p>{{this.date}}</p>
+        </div>
+        <p class="new_comment">{{this.comment}}</p>
+      </div>
+      {{/each}}
+    </div>
+
+    {{! Comments section ends here }}
 
     {{/each}}
 
