@@ -28,15 +28,11 @@
 
         <div class="comment" id="comment-{{this._id}}">
 
-        <div class="comment">
-
           <div
             class="comment-div-container"
             id="comment-div-container-{{this._id}}"
           >
             <ul>
-
-              <li class="username">@{{this.user_id.username}}</li>
 
               <li
                 class="username comment-username"
@@ -57,9 +53,7 @@
             <button
               class="comment-like-button liked-{{this._doc.likedByCurrentUser}}"
               id="button-{{this._id}}"
-
               onclick="likeOnClick('comment', '{{this._id}}')"
-
             >
             </button>
           </div>
@@ -76,11 +70,6 @@
               >Delete comment</button>
             </div>
           {{/if}}
-
-        </div>
-      {{/each}}
-
-      <form id="new-comment-form" action="/comments/{{post._id}}" method="POST">
 
         </div>
       {{/each}}

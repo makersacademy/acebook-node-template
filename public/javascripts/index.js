@@ -11,7 +11,6 @@ function deleteOnClick(path, id) {
         if (document.querySelector(`#new-comment-link-${id}`))
           document.querySelector(`#new-comment-link-${id}`).remove();
         document.querySelector(`#button-${id}`).remove();
-        console.log(containerDivEl.getElementsByTagName("*"));
         containerDivEl.append(
           Object.assign(document.createElement("p"), {
             className: `${path}-delete-message`,
