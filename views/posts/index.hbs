@@ -30,16 +30,20 @@
               class="post-like-button liked-{{this._doc.likedByCurrentUser}}"
               id="button-{{this._id}}"
               onclick="likeOnClick('post', '{{this._id}}')"
+              ``
             >
             </button>
 
-            <div class="comment-counter">
+            <div class="comment-counter" id="comment-counter-{{this._id}}">
               {{this.comments_counter}}
               <img id="comment_image" src="/images/comment-bubble.png" />
             </div>
 
-            <a class="new-comment-link" href="/comments/{{this._id}}">Write a
-              comment</a>
+            <a
+              class="new-comment-link"
+              href="/comments/{{this._id}}"
+              id="new-comment-link-{{this._id}}"
+            >Write a comment</a>
           </div>
 
           {{#if this._doc.belongsToCurrentUser}}

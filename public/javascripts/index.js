@@ -3,13 +3,15 @@ function deleteOnClick(path, id) {
     .then((response) => response.json())
     .then((result) => {
       if (result.ok && result.ok === 1 && result.deletedCount === 1) {
-        const containerDivEl = document.querySelector(
-          `#${path}-div-container-${id}`
-        );
+        const containerDivEl = document.querySelector(`#${path}-${id}`);
         const containerDivElChildren = containerDivEl.getElementsByTagName("*");
         for (let i = 0; i < containerDivElChildren.length; i++) {
           containerDivElChildren[i].remove();
         }
+        if (document.querySelector(`#new-comment-link-${id}`))
+          document.querySelector(`#new-comment-link-${id}`).remove();
+        document.querySelector(`#button-${id}`).remove();
+        console.log(containerDivEl.getElementsByTagName("*"));
         containerDivEl.append(
           Object.assign(document.createElement("p"), {
             className: `${path}-delete-message`,
