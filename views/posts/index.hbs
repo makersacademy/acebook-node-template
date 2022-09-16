@@ -12,10 +12,21 @@
 
     <div class="posts">
       {{#each posts}}
+
         <div class="post" id="post-{{this._id}}">
           <div class="post-div-container" id="post-div-container-{{this._id}}">
             <ul>
               <li class="username">@{{this.user_id.username}}</li>
+
+        <div class="post">
+          <div class="post-div-container" id="post-div-container-{{this._id}}">
+            <ul>
+              <li
+                class="username"
+                onclick="location.href=`/profiles/{{this.user_id.username}}`"
+                style="cursor:pointer;"
+              >@{{this.user_id.username}}</li>
+
               <li class="message">{{this.message}}</li>
               <li class="time">{{this.time_posted}}</li>
             </ul>
@@ -29,8 +40,12 @@
             <button
               class="post-like-button liked-{{this._doc.likedByCurrentUser}}"
               id="button-{{this._id}}"
+
               onclick="likeOnClick('post', '{{this._id}}')"
               ``
+
+              onclick="likePostOnClick('{{this._id}}')"
+
             >
             </button>
 
@@ -39,11 +54,16 @@
               <img id="comment_image" src="/images/comment-bubble.png" />
             </div>
 
+
             <a
               class="new-comment-link"
               href="/comments/{{this._id}}"
               id="new-comment-link-{{this._id}}"
             >Write a comment</a>
+
+            <a class="new-comment-link" href="/comments/{{this._id}}">Write a
+              comment</a>
+
           </div>
 
           {{#if this._doc.belongsToCurrentUser}}

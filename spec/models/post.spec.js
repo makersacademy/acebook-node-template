@@ -156,13 +156,7 @@ describe("Post model", () => {
             expect(err).toBeNull();
             expect(posts[0].message).toEqual("some message");
             expect(posts[0].likes[0]).toEqual(userId);
-
-            // find user using ID from saved like in post
-            User.find({ _id: userId }, (err, user) => {
-              expect(err).toBeNull();
-              expect(user[0].username).toEqual("someone");
-              done();
-            });
+            done();
           });
         });
       });
