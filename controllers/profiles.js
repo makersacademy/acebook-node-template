@@ -45,7 +45,8 @@ const ProfilePage = {
 							fetchUrl: "/friends/requests/new/" + profileUsername,
 							displayAddFriendButton: !ownProfile && !isAFriend,
 							isAFriend: isAFriend,
-              url: user.img
+              url: user.img,
+              ownProfile: ownProfile
 						});
 					}
 				}

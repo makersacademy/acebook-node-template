@@ -9,12 +9,14 @@
       <img id="myImg" src={{url}} />
     </div>
     <br />
+    {{#if ownProfile}}
     <div>
       <form action="/profiles/image" enctype="multipart/form-data" method="POST">
         <input class="picture-text" name="image" type="file" />
         <input type="submit" value="upload" />
        </form>
     </div>
+    {{/if}}
   <h1 id="profile-header">{{profileUsername}}'s profile
     <br />
     <br />
