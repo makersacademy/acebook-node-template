@@ -1,7 +1,7 @@
 <!-- header starts -->
 <div class="header">
   <div class="header__left">
-    <img src="images/acebook_logo.svg" alt="" />
+   <a href="/posts"> <img src="images/acebook_logo.svg" alt="" /> </a>
     <div class="header__input">
       <span class="material-icons"> search </span>
       <input type="text" placeholder="Search Acebook" />
@@ -16,7 +16,7 @@
   </div>
   <div class="header__right">
     <div class="header__info">
-      <img class="user__avatar" src="images/img/Makers.png" alt="" />
+      <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt="" />
       <h4><a href="/profile">Welcome {{firstName}}</a></h4>
 
     </div>
@@ -33,8 +33,8 @@
 <div class="main__body">
   <!-- sidebar starts -->
   <div class="sidebar">
-    <div class="sidebarRow">
-      <img class="user__avatar" src="images/img/Makers.png" alt="" />
+    {{!-- <div class="sidebarRow">
+      <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt="" />
       <h4><a href="/profile">Welcome {{firstName}}</a></h4>
 
     </div>
@@ -42,7 +42,7 @@
     <div class="sidebarRow">
       <span class="material-icons"> people </span>
       <h4>People</h4>
-    </div>
+    </div> --}}
 
   </div>
   <!-- sidebar ends -->
@@ -52,7 +52,7 @@
     <div class="storyReel">
       <!-- story starts -->
       <div style="
-              background-image: url('images/img/Curtis.jpeg');
+              background-image: url('images/img/_curtis.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Curtis.jpeg" alt="" />
         <h4>The Axylotls</h4>
@@ -61,16 +61,7 @@
 
       <!-- story starts -->
       <div style="
-              background-image: url('images/img/Stephen.png');
-            " class="story">
-        <img class="user__avatar story__avatar" src="images/img/Stephen.png" alt="" />
-        <h4>The Axylotls</h4>
-      </div>
-      <!-- story ends -->
-
-      <!-- story starts -->
-      <div style="
-              background-image: url('images/img/Nesho.jpg');
+              background-image: url('images/img/_nesho.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Nesho.jpg" alt="" />
         <h4>The Axylotls</h4>
@@ -79,16 +70,16 @@
 
       <!-- story starts -->
       <div style="
-              background-image: url('images/img/Sophia.jpeg');
+              background-image: url('images/img/_sophie.jpeg');
             " class="story">
-        <img class="user__avatar story__avatar" src="images/img/Sophia.jpeg" alt="" />
+        <img class="user__avatar story__avatar" src="images/img/Sophie.jpeg" alt="" />
         <h4>The Axylotls</h4>
       </div>
       <!-- story ends -->
 
       <!-- story starts -->
       <div style="
-              background-image: url('images/img/Ladan.jpeg');
+              background-image: url('images/img/_ladan.webp.png');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Ladan.jpeg" alt="" />
         <h4>The Axylotls</h4>
@@ -97,7 +88,7 @@
 
       <!-- story starts -->
       <div style="
-              background-image: url('images/img/Brijesh.jpeg');
+              background-image: url('images/img/_brijesh.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Brijesh.jpeg" alt="" />
         <h4>The Axylotls</h4>
@@ -106,7 +97,7 @@
 
       <!-- story starts -->
       <div style="
-              background-image: url('images/img/Evelina.jpeg');
+              background-image: url('images/img/_evelina.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Evelina.jpeg" alt="" />
         <h4>The Axylotls</h4>
@@ -115,9 +106,17 @@
 
       <!-- story starts -->
       <div style="
-              background-image: url('images/img/Allen.jpeg');
+              background-image: url('images/img/_allen.jpg');
             " class="story">
         <img class="user__avatar story__avatar" src="images/img/Allen.jpeg" alt="" />
+        <h4>The Axylotls</h4>
+      </div>
+      <!-- story ends -->
+       <!-- story starts -->
+      <div style="
+              background-image: url('images/img/_stephen.jpg');
+            " class="story">
+        <img class="user__avatar story__avatar" src="images/img/Stephen.png" alt="" />
         <h4>The Axylotls</h4>
       </div>
       <!-- story ends -->
@@ -126,14 +125,13 @@
     <!-- message sender starts -->
     <div class="messageSender">
       <div class="messageSender__top">
-        <img class="user__avatar" src="images/img/Makers.png" alt="" />
+        <img class="user__avatar" src="data:;base64, {{profilePic.data}}" alt=""/>
 
-        <form id="new-post-form" action="/posts" method="post">
-          {{!-- <label for="message">Whats on your mind? </label> --}}
+        {{!-- FORM MODIFIED FOR IMAGE --}}
+        <form id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
+          <input type="file" name="image" accept="image/*"><br>
           <input id="message" type="text" name="message" value="" placeholder=" Whats on your mind?  {{blank}}">
           <input id="submit" type="submit" value="POST">
-
-          {{!-- <div id="blank-message!">{{blank}}</div> --}}
         </form>
       </div>
     </div>
@@ -143,9 +141,11 @@
     {{#each posts}}
     <div class="post">
       <div class="post__top">
-        <img class="user__avatar post__avatar" src="images/img/Makers.png" alt="" />
+        <img class="user__avatar post__avatar" src="data:;base64,{{this.user.profilePic.data}}" alt="" />
         <div class="post__topInfo">
-          <a id="post_name" href="/profile"><h3>{{this.user.firstName}}</h3></a> <!-- Need to link post to user firstname  -->
+          <a id="post_name" href="/profile">
+            <h3>{{this.user.firstName}}</h3>
+          </a> <!-- Need to link post to user firstname  -->
           <p>{{this.createdAt}}</p>
         </div>
       </div>
@@ -155,7 +155,7 @@
       </div>
 
       <div class="post__image">
-        {{!-- <img src={{}} alt="" /> --}}
+        <img data-test="image" src="data:;base64, {{this.img.data}}" alt="">
       </div>
 
       <div class="post__options">
@@ -173,10 +173,10 @@
         </div>
 
         {{#each this.comments}}
-          <div class="comment__bottom">{{this.comment}} - {{this.postedBy.firstName}} {{this.postedBy.lastName}}</div>
-          <p>{{this.date}}</p>
+        <div class="comment__bottom">{{this.comment}} - {{this.postedBy.firstName}} {{this.postedBy.lastName}}</div>
+        <p>{{this.date}}</p>
         {{/each}}
-          
+
         <form class="new-comment-form" action="/comments" method="post">
           <input type="hidden" id="postID" name="postID" value={{this._id}}>
           <input class="comment" type="text" name="comment" value="" placeholder="Comment here">

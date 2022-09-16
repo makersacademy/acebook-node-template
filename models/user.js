@@ -22,8 +22,9 @@ const UserSchema = new mongoose.Schema({
   },
 
   profilePic: {
-    type: String,
-    default: "https://live.staticflickr.com/8005/7124089493_53ae788cb3_b.jpg",
+    data: Buffer,
+    contentType: String,
+    // default: "https://live.staticflickr.com/8005/7124089493_53ae788cb3_b.jpg",
   },
 });
 
