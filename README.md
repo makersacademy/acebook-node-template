@@ -1,4 +1,6 @@
-# Acebook
+# Acebook 
+
+
 
 This is a Node.js template for the Acebook engineering project.
 
@@ -13,8 +15,7 @@ It uses:
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
 ## Card wall
-
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+https://trello.com/b/xq4pMzwv/team-guinea-pig
 
 ## Quickstart
 
