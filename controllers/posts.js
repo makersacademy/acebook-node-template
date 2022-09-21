@@ -23,6 +23,17 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  View: (req, res) => {
+    const postId = req.params.id;
+
+    Post.findOne({ _id: postId }).then((post) => {
+      if (!post) {
+        res.redirect("/posts");
+      } else {
+        res.render('posts/post', { post: post });
+      }
+    });
+  }
 };
 
 module.exports = PostsController;
