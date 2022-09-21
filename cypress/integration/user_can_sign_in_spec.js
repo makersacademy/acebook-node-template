@@ -15,4 +15,11 @@ describe("Authentication", () => {
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
   });
+  it("A user signs in with incorrect details and is redirected to /signinerror", () => {
+    cy.visit("/sessions/new");
+    cy.get("#email").type("someone@example53.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    cy.url().should("include", "/signinerror");
+  })
 });
