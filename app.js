@@ -58,6 +58,8 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/signinerror", sessionsRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
