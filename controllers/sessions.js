@@ -10,7 +10,7 @@ const sessionChecker = (req, res, next) => {
 };
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {signedIn: req.body.signedIn});
+    res.render("sessions/new", {signedIn: req.body.signedIn, isLoginPage: true});
   },
 
   Create: (req, res) => {

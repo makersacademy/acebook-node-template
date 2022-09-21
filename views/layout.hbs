@@ -5,11 +5,17 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-  {{#unless signedIn}}
+  <nav> 
+    {{#if signedIn}}
     <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
     </form>
-  {{/unless}}
+    {{else}}
+      {{#unless isLoginPage}}
+    <button> <a href='/sessions/new'> Log in </a></button>
+      {{/unless}}
+    {{/if}}
+  </nav>
     {{{body}}}
   </body>
 </html>
