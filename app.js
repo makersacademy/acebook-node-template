@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const flash = require("express-flash")
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -44,6 +45,10 @@ app.use((req, res, next) => {
   next();
 });
 
+
+// flash middleware
+app.use(flash());
+
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
@@ -62,11 +67,20 @@ const postRedirect = (req, res, next) => {
   }
 };
 
+const userRedirect = (req, res, next) => {
+  if (req.body.signedIn === true) {
+
+      res.redirect("/posts");
+  } else {
+    next();
+  }
+};
+
 // route setup
 app.use("/", sessionChecker, homeRouter);
 app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
-app.use("/users", sessionChecker, usersRouter);
+app.use("/users", sessionChecker, userRedirect, usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

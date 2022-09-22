@@ -1,10 +1,22 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  email: String,
+  email: {
+    type: String,
+    required: [true, 'Please enter an email'], 
+  },
   password: String,
   username: String,
 });
+
+UserSchema.path('email').validate(async(email) => {
+  const email_count = await mongoose.models.User.countDocuments({email})
+  if (email_count === 0) {
+    return true
+  }
+  else
+    return false
+}, 'Email already exists')
 
 const User = mongoose.model("User", UserSchema);
 
