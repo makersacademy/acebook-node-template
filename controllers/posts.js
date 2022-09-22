@@ -1,4 +1,6 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
+const { request } = require("express");
 
 const PostsController = {
   Index: (req, res) => {
@@ -35,7 +37,12 @@ const PostsController = {
     });
   }, 
   CreateComment: (req, res) => {
-    // req.body = { new-comment: 'comment from form' }
+    // req.body = { newComment: 'comment from form' }
+    const comment = new Comment({
+      message: req.body.newComment,
+      postId: req.params.id
+    })
+
   }
 };
 
