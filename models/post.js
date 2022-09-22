@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
+  author_id: String,
+  author_name: String,
   message: String,
   date: String,
 }, {timestamps: true});
