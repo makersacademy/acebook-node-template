@@ -2,6 +2,12 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}} by {{this.author_name}} on {{this.date}}</li>
+  {{!-- lists comments here --}}
+  <form id="new-comment-form" action="/posts/comment" method="post">
+    <label for="message">Comment: </label>
+    <input id="message" type="text" name="message" value="">
+    <input type="submit" value="Submit">
+  </form>
   {{/each}}
   
 </ul>

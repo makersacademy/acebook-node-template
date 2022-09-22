@@ -1,5 +1,6 @@
 const session = require("express-session");
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
@@ -30,6 +31,21 @@ const PostsController = {
     post.author_id  = `${req.session.user._id} `
 
     post.save((err) => {
+      if (err) {
+        throw err;
+      }
+      res.status(201).redirect("/posts");
+    });
+  },
+  Comment: (req, res) => {
+    const comment = new Comment(req.body);
+    //accessing date at time of post creation and converting into nice format by removing last 31 characters
+    comment.date = Date().slice(0, -31)
+    //accessing user first name & last name
+    comment.author_name = `${req.session.user.first_name} ${req.session.user.last_name} `
+    comment.author_id  = `${req.session.user._id} `
+
+    comment.save((err) => {
       if (err) {
         throw err;
       }
