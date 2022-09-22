@@ -6,20 +6,19 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts.reverse() , signedIn: req.body.signedIn});
+      res.render("posts/index", { posts: posts.reverse(), signedIn: req.body.signedIn});
     });
   },
   New: (req, res) => {
     res.render("posts/new", {signedIn: req.body.signedIn});
   },
   Create: (req, res) => {
+    req.body.username = req.session.user.username;
     const post = new Post(req.body);
     post.save((err) => {
       if (err) {
         throw err;
       }
-
       res.status(201).redirect("/posts");
     });
   },
