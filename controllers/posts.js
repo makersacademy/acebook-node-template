@@ -33,6 +33,9 @@ const PostsController = {
         res.render('posts/post', { post: post });
       }
     });
+  }, 
+  CreateComment: (req, res) => {
+    // req.body = { new-comment: 'comment from form' }
   }
 };
 
