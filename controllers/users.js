@@ -9,10 +9,15 @@ const UsersController = {
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
-        throw err;
+        // req.flash(err.message, "Email already exists. Please login");
+        console.log("-----------we've reached the if statement--------")
+        res.redirect("sessions/new");
       }
-      res.status(201).redirect("/posts");
-    });
+      else {
+        console.log("-----------we've hit the redirect statement--------")
+        res.status(201).redirect("/posts"); 
+      }
+  });
   },
 };
 
