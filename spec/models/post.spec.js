@@ -24,7 +24,7 @@ describe("Post model", () => {
   });
 
   it("can save a post", (done) => {
-    var post = new Post({ message: "some message" });
+    var post = new Post({ message: "some message", author_id: "123", author_name: "name"});
 
     post.save((err) => {
       expect(err).toBeNull();
@@ -33,6 +33,9 @@ describe("Post model", () => {
         expect(err).toBeNull();
 
         expect(posts[0]).toMatchObject({ message: "some message" });
+        expect(posts[0]).toMatchObject({author_id:"123"})
+        expect(posts[0]).toMatchObject({author_name:"name"})
+
         done();
       });
     });
