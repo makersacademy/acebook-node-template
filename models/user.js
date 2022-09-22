@@ -22,6 +22,7 @@ const User = mongoose.model("User", UserSchema);
 
 
 
+
 UserSchema.path("password").validate(function passwordValidator(password) {
   let specialChar =~ /[a-z][A-Z][!@£$%&*]/;
 
@@ -38,5 +39,6 @@ UserSchema.path("password").validate(function passwordValidator(password) {
     this.invalidate('password', 'Password is required')
   };
 });
+
 
 module.exports = User;
