@@ -24,7 +24,12 @@ describe("Post model", () => {
   });
 
   it("can save a post", (done) => {
-    var post = new Post({ message: "some message", author_id: "123", author_name: "name"});
+    var post = new Post({ 
+      message: "some message", 
+      author_id: "123",
+      author_name: "name", 
+      date: "Thu Sep 22 2022 12:12:31"
+    });
 
     post.save((err) => {
       expect(err).toBeNull();
@@ -33,8 +38,10 @@ describe("Post model", () => {
         expect(err).toBeNull();
 
         expect(posts[0]).toMatchObject({ message: "some message" });
-        expect(posts[0]).toMatchObject({author_id:"123"})
-        expect(posts[0]).toMatchObject({author_name:"name"})
+        expect(posts[0]).toMatchObject({author_id:"123"});
+        expect(posts[0]).toMatchObject({author_name:"name"});
+        expect(posts[0]).toMatchObject({date:"Thu Sep 22 2022 12:12:31"});
+
 
         done();
       });
