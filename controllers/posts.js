@@ -6,13 +6,15 @@ const PostsController = {
     Post.find((err, posts) => {
       if (err) {
         throw err;
-       }              //posts.reverse also possible here
-       const array = posts.reverse();
-      // const array = posts.sort(
-      //   (objectA, objectB) => Number(objectA.date) - Number(objectB.date)
-      // );
-
-
+       }              
+      //posts.reverse also possible here
+      // console.log(Date(posts[1].date))
+      const array = posts.sort(function(dateA,dateB){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(dateB.date) - new Date(dateA.date);
+      });
+      
       res.render("posts/index", { posts: array });
     });
   },
@@ -20,11 +22,9 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    // console.log(req.session.user);
-    const todaysdate = Date().slice(0, -31)
-    console.log(todaysdate)
     const post = new Post(req.body);
-    post.date = todaysdate;
+    //accessing date at time of post creation and converting into nice format by removing last 31 characters
+    post.date = Date().slice(0, -31)
     //accessing user first name & last name
     post.author_name = `${req.session.user.first_name} ${req.session.user.last_name} `
     post.author_id  = `${req.session.user._id} `
