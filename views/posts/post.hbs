@@ -1,2 +1,8 @@
-<h1>I am a post</h1>
-<h3>Message: {{post.message}}</h3>
+<h1>{{post.message}}</h1>
+
+{{!-- comments go here --}}
+
+<form action="" method="post">
+  <input type="text" name="new-comment" id="new-comment" placeholder="Add new comment here..">
+  <input type="submit" value="Submit">
+</form>
