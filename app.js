@@ -13,13 +13,36 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
+//Adding bodyParser for image upload
+//const bodyParser = require('body-parser');
+const multer = require('multer');
+
+//Adding in Multer for image upload
+
+const storage = multer.diskStorage({
+ 
+  destination: (req, file, cb) => {
+
+    console.log('hello!');
+    console.log(file);
+    
+      cb(null, './public/images')
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now())
+  }
+});
+
+ const upload = multer({ storage: storage });
+
+ //-------------end of image upload code ----------
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
@@ -57,7 +80,7 @@ const sessionChecker = (req, res, next) => {
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
+app.use("/users", upload.single('image') ,usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
