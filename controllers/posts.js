@@ -20,13 +20,10 @@ const PostsController = {
   Create: (req, res) => {
     console.log(req.session.user); 
     const post = new Post(req.body);
-    const name = `${req.session.user.first_name} ${req.session.user.last_name} `
-    // console.log(name)
-    post.author_name = name
-    const userid = `${req.session.user._id} `
-    post.author_id = userid
-    console.log(userid)
-    
+    //accessing user first name & last name
+    post.author_name = `${req.session.user.first_name} ${req.session.user.last_name} `
+    post.author_id  = `${req.session.user._id} `
+
     post.save((err) => {
       if (err) {
         throw err;
