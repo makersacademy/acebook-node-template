@@ -11,8 +11,17 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-
+const photoRouter = require("./routes/photos");
 const app = express();
+var bodyParser = require('body-parser');
+
+require('dotenv/config');
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+  
+// Set EJS as templating engine 
+app.set("view engine", "ejs");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -83,6 +92,7 @@ app.use("/", sessionChecker, homeRouter);
 app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
 app.use("/users", sessionChecker, usersRouter);
+app.use("/photos", sessionChecker, photoRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
