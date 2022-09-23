@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
@@ -30,10 +31,35 @@ const PostsController = {
       if (!post) {
         res.redirect("/posts");
       } else {
-        res.render('posts/post', { post: post });
+        Comment.find({ postId: postId }).then((comments) => {
+          res.render("posts/post", {
+            post: post,
+            comments: comments,
+          });
+        });
       }
     });
-  }
+  },
+  CreateComment: (req, res) => {
+    // req.body = { newComment: 'comment from form' }
+    if (req.body.newComment.trim().length === 0) {
+      res.status(201).redirect(req.get("referer"));
+      return "";
+    }
+
+    const comment = new Comment({
+      message: req.body.newComment,
+      postId: req.params.id,
+    });
+
+    comment.save((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+
+    res.status(201).redirect(req.get("referer"));
+  },
 };
 
 module.exports = PostsController;
