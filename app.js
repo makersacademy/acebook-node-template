@@ -69,6 +69,10 @@ const postRedirect = (req, res, next) => {
 
 const userRedirect = (req, res, next) => {
   if (req.body.signedIn === true) {
+
+      console.log(req.body.signedIn)
+=======
+
       res.redirect("/posts");
   } else {
     next();
@@ -79,7 +83,7 @@ const userRedirect = (req, res, next) => {
 app.use("/", sessionChecker, homeRouter);
 app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
-app.use("/users", sessionChecker, userRedirect, usersRouter);
+app.use("/users", sessionChecker, usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
