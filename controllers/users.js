@@ -15,7 +15,7 @@ const UsersController = {
       email: req.body.email,
       password: req.body.password,
       image: {
-          data: fs.readFileSync(path.join('./public/images/' + 'Photo_Rex.jpeg')),
+          data: fs.readFileSync(path.join('./public/images/' + req.file.filename)),
           contentType: 'image/png'
       }
   }

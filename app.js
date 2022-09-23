@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 
     console.log('hello!');
     console.log(file);
-    
+
       cb(null, './public/images')
   },
   filename: (req, file, cb) => {
@@ -44,8 +44,14 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(cookieParser());
+//app use functions for upload
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+
+// set up EJS EJS is specifically designed for building single-page,
+// multi-page, and hybrid web applications
+//app.use(bodyParser.urlencoded({ extended: false }))
+//app.use(bodyParser.json())
 
 app.use(
   session({
@@ -80,7 +86,10 @@ const sessionChecker = (req, res, next) => {
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", upload.single('image') ,usersRouter);
+app.use("/users", upload.single('image'), usersRouter);
+//app use functions for image upload 
+//app.use(express.static(__dirname + '/public'));
+//app.use('/images', express.static('uploads'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -97,5 +106,7 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
 
 module.exports = app;

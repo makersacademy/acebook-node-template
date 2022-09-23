@@ -1,4 +1,4 @@
-<form id="new-user-form" action="/users" method="post">
+<form id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
   <label for="firstName">First Name: </label>
   <input id="firstName" type="firstName" name="firstName" value="">
   <label for="email">Email: </label>
@@ -6,6 +6,17 @@
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="">
   <label for="image">Image: </label>
-  <input id="image" type="file" name="image" value="">
+  <input id="image" type="file" name="image" value=""> 
   <input id="submit" type="submit" value="Submit">
 </form>
+
+
+<!--<form method="POST" action="/users" enctype="multipart/form-data">
+    <div>
+        <label>Upload profile picture</label>
+        <input type="file" name="image" required/>
+    </div>
+    <div>
+        <input type="submit" value="Upload" />
+    </div>
+</form>-->
