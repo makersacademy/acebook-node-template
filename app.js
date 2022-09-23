@@ -19,8 +19,8 @@ require('dotenv/config');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-  
-// Set EJS as templating engine 
+
+// Set EJS as templating engine
 app.set("view engine", "ejs");
 
 // view engine setup
@@ -60,15 +60,15 @@ app.use(flash());
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
-  if (!req.session.user && !req.cookies.user_sid) {
-    req.body.signedIn = false;
+  if (!req.session.user || !req.cookies.user_sid) {
+    req.session.signedIn = false;
   } else {
-    req.body.signedIn = true;
+    req.session.signedIn = true;
   }
   next();
 };
 const postRedirect = (req, res, next) => {
-  if (req.body.signedIn === false) {
+  if (req.session.signedIn === false) {
 
       res.redirect("/sessions/new");
   } else {
@@ -77,7 +77,7 @@ const postRedirect = (req, res, next) => {
 };
 
 const userRedirect = (req, res, next) => {
-  if (req.body.signedIn === true) {
+  if (req.session.signedIn === true) {
 
       console.log(req.body.signedIn)
 
@@ -91,7 +91,7 @@ const userRedirect = (req, res, next) => {
 app.use("/", sessionChecker, homeRouter);
 app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
-app.use("/users", sessionChecker, usersRouter);
+app.use("/users", sessionChecker, userRedirect, usersRouter);
 app.use("/photos", sessionChecker, photoRouter);
 
 // catch 404 and forward to error handler

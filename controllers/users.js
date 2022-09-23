@@ -3,7 +3,7 @@ const User = require("../models/user");
 const UsersController = {
   New: (req, res) => {
     // console.log(req.body.errorMessage)
-    res.render("users/new", {signedIn: req.body.signedIn, errorMessage: req.session.errorMessage});
+    res.render("users/new", {signedIn: req.session.signedIn, errorMessage: req.session.errorMessage});
   },
 
   Create: (req, res) => {
@@ -26,7 +26,7 @@ const UsersController = {
       }
       else {
         console.log("-----------we've hit the redirect statement--------")
-        res.status(201).redirect("/posts"); 
+        res.status(201).redirect("/posts");
       }
   });
   },

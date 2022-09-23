@@ -6,11 +6,11 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts.reverse(), signedIn: req.body.signedIn});
+      res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn});
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {signedIn: req.body.signedIn});
+    res.render("posts/new", {signedIn: req.session.signedIn});
   },
   Create: (req, res) => {
     req.body.username = req.session.user.username;
