@@ -1,6 +1,11 @@
 <h1>{{post.message}}</h1>
 
 {{!-- comments go here --}}
+<ul>
+  {{#each comments }}
+    <li>{{this.message}}</li>
+  {{/each}}
+</ul>
 
 <form action="/posts/{{post._id}}" method="post">
   <input type="text" name="newComment" id="newComment" placeholder="Add new comment here..">
