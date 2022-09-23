@@ -54,4 +54,46 @@ describe("User model", () => {
       });
     });
   });
+  it ("throws an error if password is not longer than 7 or more characters", async () => {
+    try {
+      await new User({
+        email: "someone@example.com",
+        password: "password123",
+      }).save()
+    } catch (err) {
+      expect(err.errors.password.message).toEqual("Password should be longer than 7 characters or more")
+    }
+  })
+
+  it ("throws an error if password does not contain special character", async () => {
+    try {
+      await new User({
+        email: "someone@example.com",
+        password: "password123",
+      }).save()
+    } catch (err) {
+      expect(err.errors.password.message).toEqual("Password must contain at least one special character: !@£$%&*")
+    }
+  })
+
+  it ("throw an error if password does not contain an uppercase character", async () => {
+    try {
+      await new User({
+        email: "someone@example.com",
+        password: "password123",
+      }).save()
+    } catch (err) {
+      expect(err.errors.password.message).toEqual("Password must contain an uppercase")
+    }
+  })
+  it("should throw an error if the password value is empty", async () => {
+    try {
+      await new User({
+        email: "someone@example.com",
+        password: ""
+      }).save()
+    } catch (err) {
+      expect(err.errors.password.message).toEqual("Password is required")
+    }
+  })
 });

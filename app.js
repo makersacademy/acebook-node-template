@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const flash = require("express-flash")
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -53,6 +54,10 @@ app.use((req, res, next) => {
   next();
 });
 
+
+// flash middleware
+app.use(flash());
+
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
@@ -66,6 +71,18 @@ const postRedirect = (req, res, next) => {
   if (req.body.signedIn === false) {
 
       res.redirect("/sessions/new");
+  } else {
+    next();
+  }
+};
+
+const userRedirect = (req, res, next) => {
+  if (req.body.signedIn === true) {
+
+      console.log(req.body.signedIn)
+=======
+
+      res.redirect("/posts");
   } else {
     next();
   }
