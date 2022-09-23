@@ -16,8 +16,11 @@ const UsersController = {
           req.session.errorMessage = err.message
         console.log("-----------we've reached the if statement--------")
         res.redirect("sessions/new");
-        }else if (err.message === "User validation failed"){
-          console.log(err.errors.email.VallidatorError)
+        }else if (err.message.includes("User validation failed")){
+          // console.log(err.errors.email.ValidatorError)
+          console.log(err.message)
+          req.session.errorMessage = err.message
+          res.redirect("users/new")
         } else {
           console.log(err.errors.password.message)
           req.session.errorMessage = err.errors.password.message
