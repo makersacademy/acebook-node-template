@@ -26,29 +26,30 @@ const PostsController = {
   },
   View: (req, res) => {
     const postId = req.params.id;
-    
+
     Post.findOne({ _id: postId }).then((post) => {
       if (!post) {
         res.redirect("/posts");
       } else {
         Comment.find({ postId: postId }).then((comments) => {
-          res.render('posts/post', {
-            post: post, comments: comments
+          res.render("posts/post", {
+            post: post,
+            comments: comments,
           });
-        })
+        });
       }
     });
-  }, 
+  },
   CreateComment: (req, res) => {
     // req.body = { newComment: 'comment from form' }
     if (req.body.newComment.trim().length === 0) {
-      res.status(201).redirect(req.get('referer'));
-      return '';
-    };
+      res.status(201).redirect(req.get("referer"));
+      return "";
+    }
 
     const comment = new Comment({
       message: req.body.newComment,
-      postId: req.params.id
+      postId: req.params.id,
     });
 
     comment.save((err) => {
@@ -57,8 +58,8 @@ const PostsController = {
       }
     });
 
-    res.status(201).redirect(req.get('referer'));
-  }
+    res.status(201).redirect(req.get("referer"));
+  },
 };
 
 module.exports = PostsController;
