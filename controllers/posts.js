@@ -1,10 +1,10 @@
-const session = require("express-session");
+// const session = require("express-session");
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find().populate("comments").exec((err, posts, comments) => {
       if (err) {
         throw err;
        }              
@@ -16,7 +16,7 @@ const PostsController = {
         return new Date(dateB.date) - new Date(dateA.date);
       });
       
-      res.render("posts/index", { posts: array });
+      res.render("posts/index", { posts: array, comments: comments });
     });
   },
   New: (req, res) => {
@@ -45,13 +45,20 @@ const PostsController = {
     comment.author_name = `${req.session.user.first_name} ${req.session.user.last_name} `
     comment.author_id  = `${req.session.user._id} `
 
-    comment.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
+    comment
+    .save()
+    .then(() => Post.findById(req.params.id))
+    .then((post) => {
+      post.comments.unshift(comment);
+      return post.save();
+    })
+    .then(() => res.redirect('/posts'))
+    .catch((err) => {
+      console.log(err);
     });
-  },
-};
+    }
+  }
+
 
 module.exports = PostsController;
+

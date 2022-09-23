@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const PostSchema = new mongoose.Schema({
   //adds column to database table
@@ -6,6 +7,7 @@ const PostSchema = new mongoose.Schema({
   author_name: String,
   message: String,
   date: String,
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 });
 // }, {timestamps: true});
 

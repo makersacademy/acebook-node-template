@@ -1,9 +1,13 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}} by {{this.author_name}} on {{this.date}}</li>
+  <li>{{this.message}} by {{this.author_name}} on {{this.date}}
+  </li>
+      <br>{{#each this.comments}}
+      {{this.message}} Posted by {{this.author_name}} on {{this.date}} </br>
+      {{/each}}
   {{!-- lists comments here --}}
-  <form id="new-comment-form" action="/posts/comment" method="post">
+  <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
     <label for="message">Comment: </label>
     <input id="message" type="text" name="message" value="">
     <input type="submit" value="Submit">
