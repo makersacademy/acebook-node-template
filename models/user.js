@@ -9,15 +9,6 @@ const UserSchema = new mongoose.Schema({
   username: String,
 });
 
-// UserSchema.path('email').validate(async(email) => {
-//   const email_length = await email.length;
-//   if (email_length === 0) {
-//     return false
-//   }
-//   else
-//     return true
-// }, 'No email entered')
-
 UserSchema.path('email').validate(async(email) => {
   const email_count = await mongoose.models.User.countDocuments({email})
   if (email_count === 0) {
