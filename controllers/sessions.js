@@ -10,7 +10,7 @@ const sessionChecker = (req, res, next) => {
 };
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {signedIn: req.body.signedIn, isLoginPage: true});
+    res.render("sessions/new", {signedIn: req.session.signedIn, isLoginPage: true});
   },
 
   Create: (req, res) => {
@@ -33,8 +33,8 @@ const SessionsController = {
   Destroy: (req, res) => {
     console.log("logging out");
     if (req.session.user && req.cookies.user_sid) {
+      req.session.user = null;
       res.clearCookie("user_sid");
-      req.body.signedIn = false
     }
     res.redirect("/sessions/new");
   },
