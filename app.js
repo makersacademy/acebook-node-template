@@ -69,7 +69,6 @@ const postRedirect = (req, res, next) => {
 
 const userRedirect = (req, res, next) => {
   if (req.body.signedIn === true) {
-
       res.redirect("/posts");
   } else {
     next();
