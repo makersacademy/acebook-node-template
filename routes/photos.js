@@ -3,9 +3,10 @@ const router = express.Router();
 
 const PhotosController = require("../controllers/photos");
 
-router.get("/images", PhotosController.Index);
 router.get("/new", PhotosController.New);
-router.post("/images/new", PhotosController.Create);
+router.post("/", PhotosController.Create);
+router.get("/", PhotosController.Index);
+
 
 module.exports = router;
 
