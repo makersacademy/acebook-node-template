@@ -7,7 +7,7 @@ const PostsController = {
     Post.find().populate("comments").exec((err, posts, comments) => {
       if (err) {
         throw err;
-       }              
+        }              
       //posts.reverse also possible here
       // console.log(Date(posts[1].date))
       const array = posts.sort(function(dateA,dateB){
@@ -16,12 +16,14 @@ const PostsController = {
         return new Date(dateB.date) - new Date(dateA.date);
       });
       
-      res.render("posts/index", { posts: array, comments: comments });
+      res.render("posts/index", { posts: array, comments: comments, userLoggedIn: true});
     });
   },
+
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", { userLoggedIn: true });
   },
+  
   Create: (req, res) => {
     const post = new Post(req.body);
     //accessing date at time of post creation and converting into nice format by removing last 31 characters
