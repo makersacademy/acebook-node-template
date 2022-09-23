@@ -6,8 +6,10 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please enter an email'], 
   },
   password: String,
-  username: String,
-});
+  username: {
+    type: String,
+    required: [true, 'Please enter a username'],
+}});
 
 UserSchema.path('email').validate(async(email) => {
   const email_count = await mongoose.models.User.countDocuments({email})
