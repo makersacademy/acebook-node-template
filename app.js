@@ -10,6 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const photosRouter = require("./routes/photos");
 
 const app = express();
 var bodyParser = require('body-parser');
@@ -36,17 +37,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 var imgModel = require('./models/photo.js');
 
-app.get('/images', (req, res) => {
-  imgModel.find({}, (err, items) => {
-      if (err) {
-          console.log(err);
-          res.status(500).send('An error occurred', err);
-      }
-      else {
-          res.render('imagesPage', { items: items });
-      }
-  });
-});
+
 
 app.post('/images', upload.single('image'), (req, res, next) => {
   
@@ -123,6 +114,7 @@ app.use("/", sessionChecker, homeRouter);
 app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
 app.use("/users", sessionChecker, usersRouter);
+app.use("/photos", sessionChecker, photosRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
