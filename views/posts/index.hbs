@@ -1,9 +1,18 @@
 <h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>USER: {{this.username}} MESSAGE: {{this.message}}</li>
-  {{/each}}
-</ul>
+
+{{#each posts}}
+<br>
+<div class="card text-center">
+  <div class="card-header"> 
+    <h5>USER: {{this.username}}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-title"> MESSAGE: {{this.message}} </p>
+    {{!-- <p class="card-text">Comment</p> --}}
+  </div>
+</div>
+{{/each}}
+
 
 <a class="new-post-link" href="/posts/new">New post</a>
 <br>
