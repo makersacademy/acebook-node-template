@@ -12,6 +12,11 @@
   <div class="container-fluid">
     <span class="navbar-brand mb-0 h1">Acebook</span>
     {{#if signedIn}}
+      {{#unless posts}}
+      <button class="btn btn-light" type="button"> 
+          <a class="end me-2" href='/posts'> Timeline </a>
+      </button>
+      {{/unless}}
       <form class="d-flex" action='/sessions?_method=DELETE' method='POST'>
         <input class="form-control me-2" type="submit" value="Log Out">
       </form>
