@@ -6,6 +6,11 @@
 
 .navbar {
   padding-right: 50px;
+  color: black;
+}
+
+.nav-link active, nav-item {
+  color: black;
 }
 
 /* body {

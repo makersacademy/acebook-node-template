@@ -8,25 +8,29 @@
 
   <body>
 
-<nav class="navbar" style="background-color: #e3f2fd;">
+<nav class="navbar text-dark" style="background-color: #e3f2fd;">
   <div class="container-fluid">
     <span class="navbar-brand mb-0 h1">Acebook</span>
+    <ul class="nav justify-content-end mb-lg-0">
     {{#if signedIn}}
       {{#unless posts}}
-      <button class="btn btn-light" type="button"> 
-          <a class="end me-2" href='/posts'> Timeline </a>
-      </button>
+      <li class="nav-item text-dark">
+          <a class="nav-link active text-dark" href='/posts'> Timeline </a>
+      </li>
       {{/unless}}
-      <form class="d-flex" action='/sessions?_method=DELETE' method='POST'>
-        <input class="form-control me-2" type="submit" value="Log Out">
-      </form>
+      <li class="nav-item">
+        <form class="d-flex" action='/sessions?_method=DELETE' method='POST'>
+          <input class="form-control me-2" type="submit" value="Log Out">
+        </form>
+      </li>  
     {{else}}
       {{#unless isLoginPage}}
-        <button class="btn btn-outline-secondary" type="button"> 
-          <a href='/sessions/new'> Log in </a>
-        </button>
+      <li class="nav-item text-dark">
+          <a class="nav-link text-dark" href='/sessions/new'> Log in </a>
+      </li>
       {{/unless}}
     {{/if}}
+    </ul>
   </div>
 </nav> 
 
