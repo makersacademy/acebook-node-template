@@ -8,7 +8,11 @@
 
     <nav>
       <ul class="posts">
-        <li>Home</li>
+        <li>    
+           <a href='/'> 
+              Home
+          </a>
+        </li>
           {{#if userLoggedIn}}
             <li>
               <form action='/sessions?_method=DELETE' method='POST'>
