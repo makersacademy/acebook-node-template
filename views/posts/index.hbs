@@ -1,11 +1,24 @@
+<div class="body_not_navbar">
+  
 <h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>USER: {{this.username}} MESSAGE: {{this.message}}</li>
-  {{/each}}
-</ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+  <a class="new-post-link" href="/posts/new">Create a new post</a>
+  <br>
+  <a class="upload-photo" href="/photos/new">Upload your profile photo</a>
+  <br>
 <br>
+
+{{#each posts}}
 <br>
-<a class="upload-photo" href="/photos/new">Upload your profile photo</a>
+<div class="card text-center w-75">
+  <div class="card-header"> 
+    <h5>USER: {{this.username}}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-title"> MESSAGE: {{this.message}} </p>
+    {{!-- <p class="card-text">Comment</p> --}}
+  </div>
+</div>
+{{/each}}
+
+</div>

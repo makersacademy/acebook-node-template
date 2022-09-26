@@ -22,11 +22,7 @@ UserSchema.path('email').validate(async(email) => {
 
 const User = mongoose.model("User", UserSchema);
 
-
-
-
 UserSchema.path("password").validate(function passwordValidator() {
- 
   let lowCaseChar = /[a-z]/;
   let upCaseChar = /[A-Z]/;
   let numberChar = /[0-9]/;
