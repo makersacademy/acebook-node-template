@@ -19,7 +19,7 @@ const UsersController = {
           contentType: 'image/png'
       }
   }
-    console.log(obj);
+    //console.log(obj);
     const user = new User(obj);
 
     user.save((err) => {
@@ -30,6 +30,30 @@ const UsersController = {
       next();
     });
   },
+
+  View: (req, res) => {
+
+  //const user = new User(res);
+
+  User.find((err, users) => {
+      if (err) {
+          console.log(err);
+          res.status(500).send('An error occurred', err);
+      }
+      else {
+        console.log(users);
+        // users = [ { name, email, ..., image: { data: 'weird string' } }, { name, email, ... }, ... ]
+        const images = users.map(user => {
+          return {data : user.image.data.toString('base64')}
+        });
+        // images = [ { data: 'base64 string' }, { data: 'another base64 string'}, ... ]
+          res.render('users/Image', { images: images });
+
+      }
+  });
+
+  },
+
 };
 
 module.exports = UsersController;
