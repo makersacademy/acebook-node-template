@@ -2,7 +2,12 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {session: req.session});
+    if (req.session.user && req.cookies.user_sid){
+      res.render("users/new", {session: req.session, userLoggedIn: true});
+    }
+    else {
+      res.render("users/new", {session: req.session});
+    }
   },
 
   Create: (req, res) => {

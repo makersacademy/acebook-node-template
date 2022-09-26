@@ -1,6 +1,12 @@
 const HomeController = {
   Index: (req, res) => {
-    res.render("home/index", { title: "Acebook", session: req.session });
+     if (req.session.user && req.cookies.user_sid) {
+      res.render("home/index", { title: "Acebook", session: req.session, userLoggedIn: true});
+     }
+     else {
+      res.render("home/index", { title: "Acebook", session: req.session});
+
+     }
   },
 
   Error: (req, res) => {
