@@ -8,7 +8,7 @@ describe("Registration", () => {
     cy.get("#first_name").type("first")
     cy.get("#last_name").type("last")
     cy.get("#email").type("anotherrandomemail@example.com");
-    cy.get("#password").type("password123");
+    cy.get("#password").type("Password8$");
     cy.get("#submit").click();
 
     cy.url().should("include", "/sessions/new");

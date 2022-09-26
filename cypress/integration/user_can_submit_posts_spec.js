@@ -9,13 +9,13 @@ describe("Timeline", () => {
     cy.get("#first_name").type("first1")
     cy.get("#last_name").type("last1")
     cy.get("#email").type("london@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password8$");
     cy.get("#submit").click();
 
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("london@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password8$");
     cy.get("#submit").click();
 
 
