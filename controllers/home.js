@@ -6,6 +6,10 @@ const HomeController = {
   Error: (req, res) => {
    res.render("signinerror", {});
   },
+
+  SignupError: (req, res) => {
+    res.render("signuperror", {});
+   },
 };
 
 module.exports = HomeController;

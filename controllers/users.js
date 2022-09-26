@@ -8,10 +8,12 @@ const UsersController = {
   Create: (req, res) => {
     const user = new User(req.body);
     user.save((err) => {
-      if (err) {
-        throw err;
+      if (!err) {
+        res.status(201).redirect("/sessions/new");
       }
-      res.status(201).redirect("/posts");
+      else {
+        res.redirect("/signuperror");
+      }
     });
   },
 };
