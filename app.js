@@ -36,7 +36,6 @@ app.use(methodOverride("_method"));
 
 app.use(
   session({
-    key: "user_sid",
     secret: "super_secret",
     resave: false,
     saveUninitialized: false,
@@ -47,12 +46,12 @@ app.use(
 );
 
 // clear the cookies after user logs out
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-    res.clearCookie("user_sid");
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (!req.session.user) {
+//     res.clearCookie("user_sid");
+//   }
+//   next();
+// });
 
 
 // flash middleware
@@ -60,7 +59,7 @@ app.use(flash());
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
-  if (!req.session.user || !req.cookies.user_sid) {
+  if (!req.session.user) {
     req.session.signedIn = false;
   } else {
     req.session.signedIn = true;
@@ -79,7 +78,6 @@ const postRedirect = (req, res, next) => {
 const userRedirect = (req, res, next) => {
   if (req.session.signedIn === true) {
 
-      console.log(req.body.signedIn)
 
       res.redirect("/posts");
   } else {
@@ -88,11 +86,12 @@ const userRedirect = (req, res, next) => {
 };
 
 // route setup
-app.use("/", sessionChecker, homeRouter);
+
 app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
 app.use("/users", sessionChecker, userRedirect, usersRouter);
 app.use("/photos", sessionChecker, photoRouter);
+app.use("/", sessionChecker, userRedirect, homeRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
