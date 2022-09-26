@@ -6,14 +6,25 @@
   </head>
 <body>
 {{#if user }}
+  <div class="topnav">
+    <h1>Acebook</h1>
+  <a class="active" href="/">Home</a>
+  <a href="/posts">Posts</a>
+  <a href="posts/new">Create a new post</a>
+  <a href="/">placeholder</a>
+  <a href="/">placeholder</a>
   <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
     </form>
+    </div>
 {{else}}
-<a href="/sessions/new">Log in</a>
-  {{!-- <form action='/sessions?_method=CREATE' method='GET'>
-      <input type="button" value="Log in">
-    </form> --}}
+<div class="topnav">
+  <h1>Acebook</h1>
+  <a class="active" href="/">Home</a>
+  <a href="/sessions/new">Log in</a>
+  <a href="/users/new">Create Account</a>
+  <a href="">placeholder</a>
+</div>
     {{/if}}
     {{{body}}}
 </body>
