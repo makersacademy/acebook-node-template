@@ -1,7 +1,12 @@
 <div class="body_not_navbar">
 
 <h1> Sign-up Page</h1>
-{{errorMessage}}
+<ul>
+  {{#each errors}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+
 
 <form id="new-user-form" action="/users" method="post">
   <label for="email">Email: </label>
