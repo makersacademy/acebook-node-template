@@ -12,6 +12,7 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const photoRouter = require("./routes/photos");
+const accountRouter = require("./routes/account");
 const app = express();
 var bodyParser = require('body-parser');
 
@@ -91,7 +92,12 @@ app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
 app.use("/users", sessionChecker, userRedirect, usersRouter);
 app.use("/photos", sessionChecker, photoRouter);
+app.use("/account", sessionChecker, accountRouter);
+
 app.use("/", sessionChecker, userRedirect, homeRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
