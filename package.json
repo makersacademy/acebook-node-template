@@ -29,6 +29,7 @@
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.0",
     "cypress": "^9.5.1",
     "eslint": "^8.10.0",
     "eslint-plugin-cypress": "^2.8.1",

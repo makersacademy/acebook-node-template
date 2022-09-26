@@ -9,20 +9,30 @@
     <nav>
       <ul class="posts">
         <li>    
-           <a href='/'> 
-              Home
-          </a>
+          <form action='/' method='GET'>
+            <input type="submit" value="Home">
+          </form>
         </li>
           {{#if userLoggedIn}}
             <li>
               <form action='/sessions?_method=DELETE' method='POST'>
                 <input type="submit" value="Log out">
               </form>
+            </li>
+            <li>
+              <form action='/posts/new' method='GET'>
+                <input type="submit" value="New post">
+              </form>
             </li>                 
           {{else}}
             <li>    
               <form action='/sessions/new' method='GET'>
                 <input type="submit" value="Log in">
+              </form>
+            </li>
+            <li>
+              <form action='/users/new' method='GET'>
+                <input type="submit" value="Sign up">
               </form>
             </li>   
           {{/if}}
