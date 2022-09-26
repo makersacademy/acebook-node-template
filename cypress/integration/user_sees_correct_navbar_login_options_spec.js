@@ -18,18 +18,28 @@ describe("Home Page", () => {
 
 
   it ("it shows logout button on home page when user is logged in", () => {
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-    cy.url().should("include", "/posts");
-    cy.visit("/")
-    cy.contains("Log out")
+    cy.task('emptyUsers').then(() => {
+
+      // sign up
+      cy.visit("/users/new");
+      cy.get("#first_name").type("first1")
+      cy.get("#last_name").type("last1")
+      cy.get("#email").type("london@example.com");
+      cy.get("#password").type("password");
+      cy.get("#submit").click();
+      cy.visit("/sessions/new");
+      cy.get("#email").type("london@example.com");
+      cy.get("#password").type("password");
+      cy.get("#submit").click();
+      cy.url().should("include", "/posts");
+      cy.visit("/")
+      cy.contains("Log out")
   });
+})
 
   it ("it shows logout button on login page when user is logged in", () => {
     cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("london@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
     cy.url().should("include", "/posts");
@@ -40,7 +50,7 @@ describe("Home Page", () => {
 
   it ("it shows logout button on sign up page when user is logged in", () => {
     cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("london@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
     cy.url().should("include", "/posts");
