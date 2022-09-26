@@ -5,9 +5,26 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
+
+    <nav>
+      <ul class="posts">
+        <li>Home</li>
+          {{#if userLoggedIn}}
+            <li>
+              <form action='/sessions?_method=DELETE' method='POST'>
+                <input type="submit" value="Log out">
+              </form>
+            </li>                 
+          {{else}}
+            <li>    
+              <form action='/sessions/new' method='GET'>
+                <input type="submit" value="Log in">
+              </form>
+            </li>   
+          {{/if}}
+      </ul>
+    </nav>
+
     {{{body}}}
   </body>
 </html>

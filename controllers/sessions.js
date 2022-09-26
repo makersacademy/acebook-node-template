@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", {session: req.session});
   },
 
   Create: (req, res) => {
@@ -12,9 +12,9 @@ const SessionsController = {
 
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        res.redirect("/sessions/new");
+        res.redirect("/signinerror");
       } else if (user.password != password) {
-        res.redirect("/sessions/new");
+        res.redirect("/signinerror");
       } else {
         req.session.user = user;
         res.redirect("/posts");
@@ -27,7 +27,7 @@ const SessionsController = {
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie("user_sid");
     }
-    res.redirect("/sessions/new");
+    res.redirect("/");
   },
 };
 
