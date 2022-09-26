@@ -25,11 +25,11 @@ describe("Home Page", () => {
       cy.get("#first_name").type("first1")
       cy.get("#last_name").type("last1")
       cy.get("#email").type("london@example.com");
-      cy.get("#password").type("password");
+      cy.get("#password").type("Password8$");
       cy.get("#submit").click();
       cy.visit("/sessions/new");
       cy.get("#email").type("london@example.com");
-      cy.get("#password").type("password");
+      cy.get("#password").type("Password8$");
       cy.get("#submit").click();
       cy.url().should("include", "/posts");
       cy.visit("/")
@@ -40,7 +40,7 @@ describe("Home Page", () => {
   it ("it shows logout button on login page when user is logged in", () => {
     cy.visit("/sessions/new");
     cy.get("#email").type("london@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password8$");
     cy.get("#submit").click();
     cy.url().should("include", "/posts");
     cy.visit("/")
@@ -51,7 +51,7 @@ describe("Home Page", () => {
   it ("it shows logout button on sign up page when user is logged in", () => {
     cy.visit("/sessions/new");
     cy.get("#email").type("london@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password8$");
     cy.get("#submit").click();
     cy.url().should("include", "/posts");
     cy.visit("/")
