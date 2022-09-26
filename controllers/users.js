@@ -2,17 +2,36 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {});
+    // console.log(req.body.errorMessage)
+    res.render("users/new", {signedIn: req.session.signedIn, errorMessage: req.session.errorMessage});
   },
 
   Create: (req, res) => {
     const user = new User(req.body);
     user.save((err) => {
+      console.log(err);
       if (err) {
-        throw err;
+        if (err.message === "Email already exists"){
+          // req.flash(err.message, "Email already exists. Please login");
+          req.session.errorMessage = err.message
+        console.log("-----------we've reached the if statement--------")
+        res.redirect("sessions/new");
+        }else if (err.message.includes("User validation failed")){
+          // console.log(err.errors.email.ValidatorError)
+          console.log(err.message)
+          req.session.errorMessage = err.message
+          res.redirect("users/new")
+        } else {
+          console.log(err.errors.password.message)
+          req.session.errorMessage = err.errors.password.message
+          res.redirect("users/new");
+        }
       }
-      res.status(201).redirect("/posts");
-    });
+      else {
+        console.log("-----------we've hit the redirect statement--------")
+        res.status(201).redirect("/posts");
+      }
+  });
   },
 };
 

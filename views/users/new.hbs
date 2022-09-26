@@ -1,7 +1,15 @@
+<div class="body_not_navbar">
+
+<h1> Sign-up Page</h1>
+{{errorMessage}}
+
 <form id="new-user-form" action="/users" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
+  <label for="username">Username: </label>
+  <input id="username" type="username" name="username" value="">
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="">
   <input id="submit" type="submit" value="Submit">
 </form>
+</div>
