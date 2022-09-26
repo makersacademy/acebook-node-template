@@ -2,6 +2,7 @@
   padding-left: 200px;
   padding-top: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: white;
 }
 
 .navbar {
@@ -13,11 +14,10 @@
   color: black;
 }
 
-/* body {
-  padding-left: 200px;
-  padding-top: 30px;
+body {
+  background-color: white;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-} */
+}
 
 a {
   color: #00B7FF;
