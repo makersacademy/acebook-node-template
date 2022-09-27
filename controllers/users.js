@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
-const multer = require("multer");
 
 const UsersController = {
   New: (req, res) => {

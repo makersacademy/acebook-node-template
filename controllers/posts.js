@@ -1,6 +1,5 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
-const { post } = require("../app");
 const User = require("../models/user");
 
 const PostsController = {
