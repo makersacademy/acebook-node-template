@@ -1,8 +1,28 @@
+.topnav {
+  background-color: #3b5998;
+  float: inline-start;
+  color: white;
+  overflow: hidden;
+  text-align: left;
+  font-size: auto;
+  padding: 14px 16px;
+  height: auto;
+}
+
+.topnav a {
+  float: inline-end;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: solid;
+  font-size: 17px;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
