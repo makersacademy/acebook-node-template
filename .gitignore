@@ -60,6 +60,8 @@ typings/
 # next.js build output
 .next
 
+.DS_Store
+
 # cypress.io
 cypress/screenshots
 cypress/videos
