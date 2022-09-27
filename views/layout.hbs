@@ -2,18 +2,28 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-<body>
-{{#if user }}
-  <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
-{{else}}
-<a href="/sessions/new">Log in</a>
-  {{!-- <form action='/sessions?_method=CREATE' method='GET'>
-      <input type="button" value="Log in">
-    </form> --}}
+  <body>
+    {{#if user}}
+      <div class="topnav">
+        <h1>Acebook</h1>
+        <a class="active" href="/myprofile">MyProfile</a>
+        <a href="/posts">Posts</a>
+        <a href="posts/new">Create a new post</a>
+        <a href="/">placeholder</a>
+        <a href="/">placeholder</a>
+        <a href="/sessions/delete">Log out</a>
+        
+      </div>
+    {{else}}
+      <div class="topnav">
+        <h1>Acebook</h1>
+        <a href="/sessions/new">Log in</a>
+        <a href="/users/new">Create Account</a>
+        <a href="">placeholder</a>
+      </div>
     {{/if}}
     {{{body}}}
-</body>
+  </body>
+</html>
