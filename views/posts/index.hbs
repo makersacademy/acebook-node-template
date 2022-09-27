@@ -12,7 +12,7 @@
 <br>
 <div class="card text-center w-75">
   <div class="card-header">
-    <h5>USER: {{this.username}}</h5>
+    <h5>USER: <a href="/users/profile/{{this.user._id}}">{{this.user.username}}</a></h5>
   </div>
   <div class="card-body">
     <p class="card-title"><b>Message:</b> {{this.message}} </p>
@@ -20,7 +20,6 @@
     <form action="/posts/{{this._id}}/like" method="post"><button type="submit">Like!</button></form>
       {{!-- <p class="card-text">Comment</p> --}}
     </div>
-    <p class="card-title"> MESSAGE: {{this.message}} </p>
     <p class="card-title"><a class="comments card-title" href="/posts/{{this._id}}">x comments</a></p>
     {{!-- <p class="card-text">Comment</p> --}}
   </div>

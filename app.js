@@ -90,7 +90,7 @@ const userRedirect = (req, res, next) => {
 
 app.use("/posts", sessionChecker, signedOutRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
-app.use("/users", sessionChecker, userRedirect, usersRouter);
+app.use("/users", sessionChecker, usersRouter);
 app.use("/photos", sessionChecker, photoRouter);
 app.use("/account", sessionChecker, signedOutRedirect, accountRouter);
 

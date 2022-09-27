@@ -1,3 +1,4 @@
+const Post = require("../models/post");
 const User = require("../models/user");
 
 const UsersController = {
@@ -22,34 +23,19 @@ const UsersController = {
 
 
       }
+    },
 
-  //   user.save((err) => {
-  //     console.log(err);
-  //     if (err) {
-  //       if (err.message === "Email already exists"){
-  //         // req.flash(err.message, "Email already exists. Please login");
-  //         req.session.errorMessage = err.message
-  //       console.log("-----------we've reached the if statement--------")
-  //       res.redirect("sessions/new");
-  //       }else if (err.message.includes("User validation failed")){
-  //         // console.log(err.errors.email.ValidatorError)
-  //         console.log(err.message)
-  //         req.session.errorMessage = err.message
-  //         res.redirect("users/new")
-  //       } else {
-  //         console.log(err.errors.password.message)
-  //         req.session.errorMessage = err.errors.password.message
-  //         res.redirect("users/new");
-  //       }
-  //     }
-  //     else {
-  //       console.log("-----------we've hit the redirect statement--------")
-  //       res.status(201).redirect("/posts");
-  //     }
-  // });
+  ViewProfile: async (req, res) => {
+    var userId = req.params.userId;
+    var user = await User.findById(userId)
+    var posts = await Post.find({user: {_id: userId}})
+    res.render("users/profile", {signedIn: req.session.signedIn, posts: posts, user: user});
+
+  }
 
 
-      }
+
+
   };
 
 module.exports = UsersController;
