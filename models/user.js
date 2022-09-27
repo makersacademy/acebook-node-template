@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   email: {
     type: String,
     required: [true, 'Please enter an email'], 
@@ -9,7 +10,9 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, 'Please enter a username'],
-}});
+},
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
+});
 
 UserSchema.path('email').validate(async(email) => {
   const email_count = await mongoose.models.User.countDocuments({email})
