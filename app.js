@@ -15,38 +15,34 @@ const app = express();
 
 //Adding bodyParser for image upload
 //const bodyParser = require('body-parser');
-const multer = require('multer');
+const multer = require("multer");
 
 //Adding in Multer for image upload
 
 const storage = multer.diskStorage({
- 
   destination: (req, file, cb) => {
-
-      cb(null, './public/images')
+    cb(null, "./public/images");
   },
   filename: (req, file, cb) => {
-      cb(null, file.fieldname + '-' + Date.now())
-  }
+    cb(null, file.fieldname + "-" + Date.now());
+  },
 });
 
-console.log('hello!');
+console.log("hello!");
 console.log(storage);
 
- const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
- //-------------end of image upload code ----------
+//-------------end of image upload code ----------
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 // Set EJS as templating engine for image view requirement
 //app.set("view engine", "ejs");
 
-
-
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app use functions for upload
 app.use(express.static(path.join(__dirname, "public")));
@@ -95,8 +91,8 @@ app.use(function (req, res, next) {
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", upload.single('image'), usersRouter);
-//app use functions for image upload 
+app.use("/users", upload.single("image"), usersRouter);
+//app use functions for image upload
 //app.use(express.static(__dirname + '/public'));
 //app.use('/images', express.static('uploads'));
 
@@ -115,7 +111,5 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
-
-
 
 module.exports = app;

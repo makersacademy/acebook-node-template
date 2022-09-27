@@ -1,15 +1,12 @@
-
-
 <ul>
 
-{{#each images }}
-{{!-- images = [ { data: 'base64 string' }, { data: 'another base64 string'}, ... ] --}}
+  {{#each images}}
+    {{! images = [ { data: 'base64 string' }, { data: 'another base64 string'}, ... ] }}
 
-<li>
-  <img src="data:image/png;base64,{{this.data}}" alt="">
-</li>
-  
-{{/each}}
+    <li>
+      <img src="data:image/png;base64,{{this.data}}" alt="" />
+    </li>
+
+  {{/each}}
 
 </ul>
-
