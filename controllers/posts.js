@@ -24,22 +24,12 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
-  Like: (req, res) => {
+  Like: async (req, res) => {
     console.log("Bonjour")
-    Post.findById(postId => {
-      postId.body.likes += 1;
-    })
+    var postId = req.params.postId;
+    await Post.findByIdAndUpdate(postId, {$inc:{likes: 1}}).exec()
+    res.redirect('back');
+    }
   }
-};
 
 module.exports = PostsController;
-
-// User.findByIdAndUpdate(user_id, { name: 'Gourav' },
-//                             function (err, docs) {
-//     if (err){
-//         console.log(err)
-//     }
-//     else{
-//         console.log("Updated User : ", docs);
-//     }
-// });
