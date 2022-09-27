@@ -78,11 +78,10 @@ const PostsController = {
       
       
       .then(() => {res.redirect('/posts')})
+
+    }
       
       .catch((err) => {console.log(err)})
-      
-      
-     
-    }
+    
     
   module.exports = PostsController;
