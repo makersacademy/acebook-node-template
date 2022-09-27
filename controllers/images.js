@@ -1,0 +1,66 @@
+const Image = require("../models/image");
+const fs = require('fs');
+var path = require('path');
+require('dotenv/config');
+
+
+const ImagesController = {
+  
+  Index: (req, res) => {
+    console.log("made it to here")
+    Image.find({}, (err, images) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('./images/imagesPage', { images: images });
+        }
+    });
+  },
+  New: (req, res) => {
+    Image.find({}, (err, images) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('./images/index.ejs', { images: images });
+        }
+    });
+  },
+
+  Create: (req, res, next) => {
+    var multer = require('multer');
+  
+    var storage = multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, 'uploads')
+        },
+        filename: (req, file, cb) => {
+            cb(null, file.fieldname + '-' + Date.now())
+        }
+    });
+  
+    var upload = multer({ storage: storage });
+    var obj = {
+        name: req.body.name,
+        desc: req.body.desc,
+        img: {
+            data: fs.readFileSync(path.join('uploads/' + req.file.filename)),
+            contentType: 'image/png'
+        }
+    }
+    Image.create(obj, (err, item) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            item.save();
+            res.redirect('/images/all');
+        }
+    });
+  }
+}
+
+module.exports = ImagesController;
