@@ -1,5 +1,5 @@
 <div class="body_not_navbar">
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <h1>Timeline</h1>
 
   <a class="new-post-link" href="/posts/new">Create a new post</a>
@@ -11,7 +11,7 @@
 {{#each posts}}
 <br>
 <div class="card text-center w-75">
-  <div class="card-header"> 
+  <div class="card-header">
     <h5>USER: {{this.username}}</h5>
   </div>
   <div class="card-body">
@@ -21,10 +21,9 @@
       {{!-- <p class="card-text">Comment</p> --}}
     </div>
     <p class="card-title"> MESSAGE: {{this.message}} </p>
-    <a class="comments" href="/posts/{{this._id}}">x comments</a>
+    <p class="card-title"><a class="comments card-title" href="/posts/{{this._id}}">x comments</a></p>
     {{!-- <p class="card-text">Comment</p> --}}
   </div>
-</div>
-{{/each}}
 
+{{/each}}
 </div>

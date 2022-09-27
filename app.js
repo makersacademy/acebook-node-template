@@ -67,7 +67,7 @@ const sessionChecker = (req, res, next) => {
   }
   next();
 };
-const postRedirect = (req, res, next) => {
+const signedOutRedirect = (req, res, next) => {
   if (req.session.signedIn === false) {
 
       res.redirect("/sessions/new");
@@ -88,11 +88,11 @@ const userRedirect = (req, res, next) => {
 
 // route setup
 
-app.use("/posts", sessionChecker, postRedirect, postsRouter);
+app.use("/posts", sessionChecker, signedOutRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
 app.use("/users", sessionChecker, userRedirect, usersRouter);
 app.use("/photos", sessionChecker, photoRouter);
-app.use("/account", sessionChecker, accountRouter);
+app.use("/account", sessionChecker, signedOutRedirect, accountRouter);
 
 app.use("/", sessionChecker, userRedirect, homeRouter);
 
