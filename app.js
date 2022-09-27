@@ -23,15 +23,15 @@ const storage = multer.diskStorage({
  
   destination: (req, file, cb) => {
 
-    console.log('hello!');
-    console.log(file);
-
       cb(null, './public/images')
   },
   filename: (req, file, cb) => {
       cb(null, file.fieldname + '-' + Date.now())
   }
 });
+
+console.log('hello!');
+console.log(storage);
 
  const upload = multer({ storage: storage });
 

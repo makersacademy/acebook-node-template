@@ -4,8 +4,7 @@ const UserSchema = new mongoose.Schema({
   firstName: String,
   email: String,
   password: String,
-  image:
-    {
+  image:  {
         data: Buffer,
         contentType: String
     }

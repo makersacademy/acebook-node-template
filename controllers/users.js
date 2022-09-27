@@ -9,12 +9,13 @@ const UsersController = {
   },
 
   Create: (req, res, next) => {
-    console.log(req.file);
+    //console.log(req.file);
     const obj = {
       firstName: req.body.firstName,
       email: req.body.email,
       password: req.body.password,
-      image: {
+      image:  {
+
           data: fs.readFileSync(path.join('./public/images/' + req.file.filename)),
           contentType: 'image/png'
       }
