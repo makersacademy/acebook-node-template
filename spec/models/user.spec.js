@@ -149,11 +149,19 @@ describe("User model", () => {
   })
   it("should throw an error if the email is already in use", async () => {
     try {
-      await new User({
+      const user = await new User({
         username:"user",
         email:"test123@test.com",
         password: "Password123!"
       }).save()
+      const _id = user._id;
+      const post = await new Post({
+        user: _id,
+        message: "This is a new post",
+        username: "Vishal101"
+      }).save()
+      const retrieved_post = await Post.findOne({ username: "Vishal101" }).populate("user");
+      console.log(retrieved_post);
     } catch (err) {
       expect(err.errors.email.message).toEqual("Email already exists")
     }
