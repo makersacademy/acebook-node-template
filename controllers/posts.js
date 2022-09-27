@@ -10,9 +10,19 @@ const PostsController = {
       res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn});
     });
   },
+ 
+  PostId: (req, res) => {
+    Post.findById(req.params.postId).then((myPost) => {
+      res.render("comments/index", {post: myPost, signedIn: req.session.signedIn});
+
+    });
+    
+  },
+
   New: (req, res) => {
     res.render("posts/new", {signedIn: req.session.signedIn});
   },
+
   Create: (req, res) => {
     req.body.username = req.session.user.username;
     req.body.likes = 0;

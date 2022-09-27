@@ -32,12 +32,12 @@ const SessionsController = {
 
   Destroy: (req, res) => {
     console.log("logging out");
-    if (req.session.user && req.cookies.user_sid) {
-      req.session.user = null;
-      res.clearCookie("user_sid");
+    if (req.session.user) {
+      req.session.destroy();
     }
     res.redirect("/sessions/new");
-  },
+}
+
 };
 
 module.exports = SessionsController;

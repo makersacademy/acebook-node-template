@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
+const Post = require("../../models/post");
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -142,6 +143,25 @@ describe("User model", () => {
         email:"test123@test.com",
         password: "Password123!"
       }).save()
+    } catch (err) {
+      expect(err.errors.email.message).toEqual("Email already exists")
+    }
+  })
+  it("should throw an error if the email is already in use", async () => {
+    try {
+      const user = await new User({
+        username:"user",
+        email:"test123@test.com",
+        password: "Password123!"
+      }).save()
+      const _id = user._id;
+      const post = await new Post({
+        user: _id,
+        message: "This is a new post",
+        username: "Vishal101"
+      }).save()
+      const retrieved_post = await Post.findOne({ username: "Vishal101" }).populate("user");
+      console.log(retrieved_post);
     } catch (err) {
       expect(err.errors.email.message).toEqual("Email already exists")
     }

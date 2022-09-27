@@ -18,6 +18,11 @@
           <a class="nav-link active text-dark" href='/posts'> Timeline </a>
       </li>
       {{/unless}}
+      {{#unless account }}
+      <li class="nav-item text-dark">
+          <a class="nav-link active text-dark" href='/account'> Account Page</a>
+      </li>
+      {{/unless}}
       <li class="nav-item">
         <form class="d-flex" action='/sessions?_method=DELETE' method='POST'>
           <input class="form-control me-2" type="submit" value="Log Out">

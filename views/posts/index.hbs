@@ -20,6 +20,10 @@
     <form action="/posts/{{this._id}}/like" method="post"><button type="submit">Like!</button></form>
       {{!-- <p class="card-text">Comment</p> --}}
     </div>
+    <p class="card-title"> MESSAGE: {{this.message}} </p>
+    <a class="comments" href="/posts/{{this._id}}">x comments</a>
+    {{!-- <p class="card-text">Comment</p> --}}
+  </div>
 </div>
 {{/each}}
 
