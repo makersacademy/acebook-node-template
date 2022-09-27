@@ -1,7 +1,7 @@
 const HomeController = {
-  Index: (req, res) => {
-    res.render("home/index", { title: "Acebook" });
-  },
+  // Index: (req, res) => {
+  //   res.render("home/index", { title: "Acebook" });
+  // },
   MyProfile: (req, res) => {
     // check if logged in
     if (!req.session.user) {
