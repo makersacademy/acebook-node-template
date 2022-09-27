@@ -2,6 +2,7 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
+    console.log("We are here 1")
     Post.find((err, posts) => {
       if (err) {
         throw err;
@@ -23,6 +24,22 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  Like: (req, res) => {
+    console.log("Bonjour")
+    Post.findById(postId => {
+      postId.body.likes += 1;
+    })
+  }
 };
 
 module.exports = PostsController;
+
+// User.findByIdAndUpdate(user_id, { name: 'Gourav' },
+//                             function (err, docs) {
+//     if (err){
+//         console.log(err)
+//     }
+//     else{
+//         console.log("Updated User : ", docs);
+//     }
+// });
