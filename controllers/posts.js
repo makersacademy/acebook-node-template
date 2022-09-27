@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 
 const PostsController = {
   Index: async (req, res) => {
@@ -6,9 +7,11 @@ const PostsController = {
     res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn});
     },
 
-  PostId: (req, res) => {
+  PostId: async (req, res) => {
+    var postId = req.params.postId;
+    var comments = await Comment.find({post: {_id: postId}})
     Post.findById(req.params.postId).then((myPost) => {
-      res.render("comments/index", {post: myPost, signedIn: req.session.signedIn});
+      res.render("comments/index", {post: myPost, signedIn: req.session.signedIn, comments: comments});
 
     });
 

@@ -86,7 +86,7 @@ const userRedirect = (req, res, next) => {
 // route setup
 
 app.use("/comments", sessionChecker, commentsRouter);
-app.use("/posts", sessionChecker, postRedirect, postsRouter);
+app.use("/posts", sessionChecker, signedOutRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
 app.use("/users", sessionChecker, userRedirect, usersRouter);
 app.use("/account", sessionChecker, accountRouter);
