@@ -16,8 +16,8 @@ var storage = multer.diskStorage({
   
 var upload = multer({ storage: storage });
 
-router.get("/", ImagesController.Index);
-router.get("/all", ImagesController.New);
+router.get("/all", ImagesController.Index);
+router.get("/upload", ImagesController.New);
 router.post("/", upload.single('image'), ImagesController.Create);
 
 module.exports = router;

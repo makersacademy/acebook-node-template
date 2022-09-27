@@ -6,7 +6,7 @@ require('dotenv/config');
 
 const ImagesController = {
   
-  Index: (req, res) => {
+  New: (req, res) => {
     console.log("made it to here")
     Image.find({}, (err, images) => {
         if (err) {
@@ -18,7 +18,7 @@ const ImagesController = {
         }
     });
   },
-  New: (req, res) => {
+  Index: (req, res) => {
     Image.find({}, (err, images) => {
         if (err) {
             console.log(err);
