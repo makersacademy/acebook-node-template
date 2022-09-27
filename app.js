@@ -12,18 +12,16 @@ const postsRouter = require("./routes/posts");
 const commentsRouter = require("./routes/comments");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-const photoRouter = require("./routes/photos");
+const imagesRouter = require("./routes/images");
 const accountRouter = require("./routes/account");
 const app = express();
 var bodyParser = require('body-parser');
+
 
 require('dotenv/config');
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-// Set EJS as templating engine
-app.set("view engine", "ejs");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -68,7 +66,7 @@ const sessionChecker = (req, res, next) => {
   }
   next();
 };
-const postRedirect = (req, res, next) => {
+const signedOutRedirect = (req, res, next) => {
   if (req.session.signedIn === false) {
 
       res.redirect("/sessions/new");
@@ -79,8 +77,6 @@ const postRedirect = (req, res, next) => {
 
 const userRedirect = (req, res, next) => {
   if (req.session.signedIn === true) {
-
-
       res.redirect("/posts");
   } else {
     next();
@@ -93,9 +89,8 @@ app.use("/comments", sessionChecker, commentsRouter);
 app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
 app.use("/users", sessionChecker, userRedirect, usersRouter);
-app.use("/photos", sessionChecker, photoRouter);
 app.use("/account", sessionChecker, accountRouter);
-
+app.use("/images", sessionChecker, imagesRouter);
 app.use("/", sessionChecker, userRedirect, homeRouter);
 
 
