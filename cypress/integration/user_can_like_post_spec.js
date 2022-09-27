@@ -25,9 +25,9 @@ describe("like button", () => {
 
             //User can like a post
 
-            cy.get("#like_button").click();
+            cy.get("#like-button").click();
             cy.get('.posts').should('contain', 1);
-            cy.get("#like_counts").should('contain', 1);
+            cy.get("#like-button").should('contain', 1);
         })
           
     })

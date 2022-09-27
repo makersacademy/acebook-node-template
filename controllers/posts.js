@@ -61,6 +61,7 @@ const PostsController = {
     },
 
     Likes: function(req, res){
+      console.log(req.session.user._id)
       var likes_id = req.params.id
       Post.findById(likes_id).then((post) => {
         post.likes.count += 1;
