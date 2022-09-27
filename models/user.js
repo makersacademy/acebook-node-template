@@ -4,16 +4,15 @@ const UserSchema = new mongoose.Schema({
   firstName: String,
   email: String,
   password: String,
-  image:
-    {
-        data: Buffer,
-        contentType: String
-    },
-    requests: {
-      sent: [ ],
-      received: [ user_1 ]
-      },
-      friends: [ ]
+  image: {
+    data: Buffer,
+    contentType: String
+  },
+  requests: {
+    sent: [ String ],
+    received: [ String ]
+  },
+  friends: [ String ]
 });
 
 const User = mongoose.model("User", UserSchema);

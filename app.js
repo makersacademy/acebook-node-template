@@ -10,6 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const addFriendsRouter = require("./routes/addFriends");
 
 const app = express();
 
@@ -92,6 +93,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", upload.single('image'), usersRouter);
+app.use("/addFriends", addFriendsRouter)
 //app use functions for image upload 
 //app.use(express.static(__dirname + '/public'));
 //app.use('/images', express.static('uploads'));
