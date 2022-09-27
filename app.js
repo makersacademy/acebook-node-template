@@ -65,7 +65,7 @@ const sessionChecker = (req, res, next) => {
   }
   next();
 };
-const postRedirect = (req, res, next) => {
+const signedOutRedirect = (req, res, next) => {
   if (req.session.signedIn === false) {
 
       res.redirect("/sessions/new");
