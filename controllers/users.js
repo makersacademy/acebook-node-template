@@ -21,6 +21,15 @@ const UsersController = {
       }
     });
   },
-};
 
+  Profile: (req, res) => {
+    console.log(req.session.user)
+    User.find(req.session.user.id).populate("users").exec((err, users, posts) => {
+      if (err) {
+        throw err;
+        }            
+        res.render("users/profile", { users: users, posts: posts, userLoggedIn: true});
+      });
+    },
+  }
 module.exports = UsersController;

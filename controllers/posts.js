@@ -46,7 +46,7 @@ const PostsController = {
     //accessing user first name & last name
     comment.author_name = `${req.session.user.first_name} ${req.session.user.last_name} `
     comment.author_id  = `${req.session.user._id} `
-
+    console.log(req.params.id)
     comment
     .save()
     .then(() => Post.findById(req.params.id))
