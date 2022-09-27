@@ -9,7 +9,8 @@ const PostSchema = new mongoose.Schema({
   date: String,
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
   likes: {
-    count:{type: Number, default: 0}
+    count:{type: Number, default: 0},
+    likes_id:{type: Array, default: []}
   }
 });
 // }, {timestamps: true});

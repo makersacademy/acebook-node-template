@@ -24,11 +24,13 @@ describe("like button", () => {
             cy.get("#new-post-form").submit();
 
             //User can like a post
+            cy.get("#like-button").click();
 
+
+            // User can only like a post once
             cy.get("#like-button").click();
             cy.get('.posts').should('contain', 1);
             cy.get("#like-button").should('contain', 1);
-        })
-          
+        })     
     })
 })

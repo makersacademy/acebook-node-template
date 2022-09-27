@@ -61,23 +61,28 @@ const PostsController = {
     },
 
     Likes: function(req, res){
-      console.log(req.session.user._id)
       var likes_id = req.params.id
-      Post.findById(likes_id).then((post) => {
-        post.likes.count += 1;
-        return post.save()
-      })
-      .then(() => res.redirect('/posts'))
-      .catch((err) => {
-      console.log(err);
-    });
-    },
+      const active_user =(req.session.user._id)
+    
+      if (Post.likes.likes_id.includes(active_user)){
+        res.status(201).redirect('/posts');
+      } else{
+        Post.findById(likes_id).then((post) => {
+          post.likes.count += 1;
+          post.likes.likes_id.push(active_user)
+          console.log(post.likes.likes_id)
+          return post.save()
+        })
+      }
+      
+      
+      
+      .then(() => {res.redirect('/posts')})
+      
+      .catch((err) => {console.log(err)})
+      
       
      
-
-    } 
-  
-
-
-module.exports = PostsController;
-
+    }
+    
+  module.exports = PostsController;
