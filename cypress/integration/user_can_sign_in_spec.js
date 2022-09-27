@@ -17,7 +17,7 @@ describe("Authentication", () => {
 
     cy.task('emptyPosts').then(() => {
       cy.url().should("include", "/posts");
-      cy.contains("a", "New post");
+      cy.contains("New post");
     })
     })
   });
