@@ -3,6 +3,9 @@
   {{#each posts}}
   <li>{{this.message}} by {{this.author_name}} on {{this.date}}
   </li>
+      <form action="/posts/{{this._id}}/likes" method="post">
+        <button id= "like-button" type="submit">likes: {{this.likes.count}}</button>
+      </form>
       <br>{{#each this.comments}}
       {{this.message}} Posted by {{this.author_name}} on {{this.date}} </br>
       {{/each}}
@@ -15,3 +18,5 @@
   {{/each}}
   
 </ul>
+
+

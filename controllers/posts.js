@@ -58,8 +58,25 @@ const PostsController = {
     .catch((err) => {
       console.log(err);
     });
-    }
-  }
+    },
+
+    Likes: function(req, res){
+      console.log(req.session.user._id)
+      var likes_id = req.params.id
+      Post.findById(likes_id).then((post) => {
+        post.likes.count += 1;
+        return post.save()
+      })
+      .then(() => res.redirect('/posts'))
+      .catch((err) => {
+      console.log(err);
+    });
+    },
+      
+     
+
+    } 
+  
 
 
 module.exports = PostsController;

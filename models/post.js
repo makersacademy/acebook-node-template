@@ -7,7 +7,10 @@ const PostSchema = new mongoose.Schema({
   author_name: String,
   message: String,
   date: String,
-  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+  likes: {
+    count:{type: Number, default: 0}
+  }
 });
 // }, {timestamps: true});
 
