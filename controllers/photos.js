@@ -23,15 +23,15 @@ const PhotosController = {
               console.log('we are here 1')
           }
           else {
-            console.log('we are here 1.5')
+            console.log('we are here 1')
               res.render('/photos/imagesPage', { items: items });
           }
       });
     },
   
   New: (req, res) => {
+    console.log('2')
     res.render("photos/imagesPage.ejs");
-    console.log(res)
   },
 
   Create: (req, res) => {
