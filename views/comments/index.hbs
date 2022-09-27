@@ -2,11 +2,18 @@
   
 <h1>Comments</h1>
 
-  <a class="new-comment-link" href="/posts/new">Add a comment</a>
-  <br>
-
 <br>
 
+<h3> Add a comment</h3>
+<form id="new-comment-form" action="/comments/{{post._id}}" method="post">
+  <label for="comment">Add a comment below: </label>
+  <br>
+  <input id="comment" type="text" name="comment" value="">
+  <br>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+</div>
 
 <br>
 <div class="card text-center w-75">
@@ -18,6 +25,19 @@
     {{!-- <p class="card-text">Comment</p> --}}
   </div>
 </div>
+
+{{#each comments}}
+<br>
+<div class="card text-center w-75">
+  <div class="card-header"> 
+    <h5>User: {{post.username}}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-title"> Comment: {{post.message}} </p>
+    {{!-- <p class="card-text">Comment</p> --}}
+  </div>
+</div>
+{{/each}}
 
 
 </div>

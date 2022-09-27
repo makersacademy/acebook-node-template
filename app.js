@@ -9,6 +9,7 @@ const flash = require("express-flash")
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
+const commentsRouter = require("./routes/comments");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const photoRouter = require("./routes/photos");
@@ -88,6 +89,7 @@ const userRedirect = (req, res, next) => {
 
 // route setup
 
+app.use("/comments", sessionChecker, commentsRouter);
 app.use("/posts", sessionChecker, postRedirect, postsRouter);
 app.use("/sessions", sessionChecker, sessionsRouter);
 app.use("/users", sessionChecker, userRedirect, usersRouter);
