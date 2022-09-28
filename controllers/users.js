@@ -34,17 +34,14 @@ const UsersController = {
       }
     })  
     .exec((err, users) => {
-      console.log("params", req.params.id) 
       if (err) {
         throw err;
         }            
-        res.render("users/:id", { users: users });
+        res.render("users/:id", { users: users, userLoggedIn: true });
     });
   },
 
   Account: (req, res) => {
-    console.log("session ", req.session.user)
-    console.log(req.session.user._id)
     User.findOne({_id: req.session.user._id})
     .populate({
       path: "posts",
@@ -56,9 +53,8 @@ const UsersController = {
     .exec((err, users) => {
       if (err) {
         throw err;
-        } 
-        console.log("users", users)           
-        res.render("users/account", { users: users });
+        }           
+        res.render("users/account", { users: users, userLoggedIn: true });
       });
     },
   }
