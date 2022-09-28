@@ -25,11 +25,9 @@ const PostsController = {
 
   PostId: async (req, res) => {
     var postId = req.params.postId;
-    var comments = await Comment.find({post: {_id: postId}})
-    Post.findById(req.params.postId).then((myPost) => {
-      res.render("comments/index", {post: myPost, signedIn: req.session.signedIn, comments: comments});
-
-    });
+    var comments = await Comment.find({post: {_id: postId}}).populate('user');
+    const myPost = await Post.findById(req.params.postId).populate('user');
+      res.render("comments/index", {post: myPost, signedIn: req.session.signedIn, comments: comments.reverse()});
 
   },
 

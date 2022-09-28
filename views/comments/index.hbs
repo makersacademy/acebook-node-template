@@ -13,12 +13,12 @@
   <br>
   <input type="submit" value="Submit">
 </form>
-</div>
 
 <br>
 <div class="card text-center w-75">
   <div class="card-header"> 
     <h5>USER: {{post.username}}</h5>
+    <img id="profilepic" src="/{{post.user.profilepic}}">
   </div>
   <div class="card-body">
     <p class="card-title"> MESSAGE: {{post.message}} </p>
@@ -31,6 +31,7 @@
 <div class="card text-center w-75">
   <div class="card-header"> 
     <h5>User: {{this.username}}</h5>
+    <img id="profilepic" src="/{{this.user.profilepic}}">
   </div>
   <div class="card-body">
     <p class="card-title"> Comment: {{this.comment}} </p>
