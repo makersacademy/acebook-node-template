@@ -46,14 +46,6 @@ app.use(
   })
 );
 
-// clear the cookies after user logs out
-// app.use((req, res, next) => {
-//   if (!req.session.user) {
-//     res.clearCookie("user_sid");
-//   }
-//   next();
-// });
-
 
 // flash middleware
 app.use(flash());
@@ -76,23 +68,23 @@ const signedOutRedirect = (req, res, next) => {
   }
 };
 
-const userRedirect = (req, res, next) => {
+const signedInRedirect = (req, res, next) => {
   if (req.session.signedIn === true) {
       res.redirect("/posts");
   } else {
     next();
   }
 };
-
+app.use(sessionChecker)
 // route setup
 
-app.use("/comments", sessionChecker, commentsRouter);
-app.use("/posts", sessionChecker, signedOutRedirect, postsRouter);
-app.use("/sessions", sessionChecker, sessionsRouter);
-app.use("/users", sessionChecker, userRedirect, usersRouter);
-app.use("/account", sessionChecker, accountRouter);
-app.use("/images", sessionChecker, imagesRouter);
-app.use("/", sessionChecker, userRedirect, homeRouter);
+app.use("/comments", commentsRouter);
+app.use("/posts", signedOutRedirect, postsRouter);
+app.use("/sessions", sessionsRouter);
+app.use("/users", usersRouter);
+app.use("/account", accountRouter);
+app.use("/images", imagesRouter);
+app.use("/", signedInRedirect, homeRouter);
 
 
 

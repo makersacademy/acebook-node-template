@@ -18,10 +18,8 @@
     <p class="card-title"><b>Message:</b> {{this.message}} </p>
     <p class="card-title"><b>Likes:</b> {{this.likes}} </p>
     <form action="/posts/{{this._id}}/like" method="post"><button type="submit">Like!</button></form>
-      {{!-- <p class="card-text">Comment</p> --}}
     </div>
-    <p class="card-title"><a class="comments card-title" href="/posts/{{this._id}}">{{commentCount}} comments</a></p>
-    {{!-- <p class="card-text">Comment</p> --}}
+    <p class="card-title"><a class="comments card-title" href="/posts/{{this._id}}">{{this.commentCount}} comments</a></p>
   </div>
 {{/each}}
 
