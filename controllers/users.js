@@ -1,3 +1,5 @@
+
+const session = require("express-session");
 const User = require("../models/user");
 
 const UsersController = {
@@ -23,13 +25,43 @@ const UsersController = {
   },
 
   Profile: (req, res) => {
-    console.log(req.session.user)
-    User.find(req.session.user.id).populate("users").exec((err, users, posts) => {
+    User.findOne({ _id: req.params.id })
+    .populate({
+      path: "posts",
+      populate: {
+        path: "comments",
+        model: 'Comment'
+      }
+    })  
+    .exec((err, users) => {
+      console.log("params", req.params.id) 
       if (err) {
         throw err;
         }            
-        res.render("users/profile", { users: users, posts: posts, userLoggedIn: true});
+        res.render("users/:id", { users: users });
+    });
+  },
+
+  Account: (req, res) => {
+    console.log("session ", req.session.user)
+    console.log(req.session.user._id)
+    User.findOne({_id: req.session.user._id})
+    .populate({
+      path: "posts",
+      populate: {
+        path: "comments",
+        model: 'Comment'
+      }
+    })      
+    .exec((err, users) => {
+      if (err) {
+        throw err;
+        } 
+        console.log("users", users)           
+        res.render("users/account", { users: users });
       });
     },
   }
+
+
 module.exports = UsersController;

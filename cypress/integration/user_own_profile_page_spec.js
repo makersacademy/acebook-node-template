@@ -16,7 +16,7 @@ describe("User's own profile page", function() {
              cy.get("#submit").click();
 
              //User vists own profile page
-             cy.visit("/users/profile");
+             cy.visit("/users/account");
              cy.get(".title").should("contain", "Profile page");
              cy.get(".name").should("contain", "first1 last1");
         })
