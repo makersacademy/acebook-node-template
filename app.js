@@ -89,7 +89,8 @@ app.use(function (req, res, next) {
 
 // route setup
 app.use("/", homeRouter);
-app.use("/posts", sessionChecker, postsRouter);
+app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
+//app.use("/imgPosts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", upload.single("image"), usersRouter);
 //app use functions for image upload

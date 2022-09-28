@@ -1,12 +1,73 @@
 <!-- library for like -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <h1>Timeline</h1>
+
+{{!-- Adding new post on the same posts page --}}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="well">
+            <form id="new-post-form" action="/posts" method="post">
+            <label for="message">Post New Message: </label>
+            <input id="message" type="text" name="message" value="" />
+            <input type="submit" value="Post" />
+            </form>
+        </div>
+    </div>
+        <div class="col-sm-6">
+          <div class="well">
+            <form id="new-post-form" action="/posts/img" method="post" enctype="multipart/form-data">
+            <label for="image">Post New Image: </label>
+            <input id="image" type="file" name="image" value="" />
+            <input id="submit" type="submit" value="Post" />
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <ul class="posts">
+  {{#each posts}}
+<div class="row">
+        <div class="col-sm-1">
+          <div class="well">
+           <img src="data:image/png;base64,{{this.image}}" class="img-circle" height="55" width="55" alt="Avatar">
+          <center><p><b>{{this.name}}</b></p></center>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="well">
+            <img src="data:image/png;base64,{{this.newImage}}"   alt="">
+            <p>{{this.message}}</p>
+            <div><button onclick="actOnPost(event);" data-post-id="{{ this._id }}">Like</button>
+            <span id="likes-count-{{ this._id }}">{{ this.likes_count }}</span></div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+
+            <form action="/posts/{{post._id}}" method="post">
+            <input type="text" name="newComment" id="newComment" placeholder="Add new comment here.."/>
+            <input type="submit" value="Add Comment" />
+            </form>
+
+
+            <a href="/posts/{{this._id}}">View Previous Comments</a>
+          
+          </div>
+        </div>
+      </div>
+  {{/each}}
+</ul>
+
+
+
+
+{{!-- <ul class="posts">
   {{#each posts}}
     <li>
       <img src="data:image/png;base64,{{this.image}}" width="30" height="40" alt="" />
       {{this.message}}</li>
-      {{this.name}}
+      <b>{{this.name}}</b>
     <a href="/posts/{{this._id}}">View Comments</a>
 
 <button onclick="actOnPost(event);"
@@ -15,9 +76,9 @@
 <span id="likes-count-{{ this._id }}">{{ this.likes_count }}</span>
 
   {{/each}}
-</ul>
+</ul> --}}
 
-<!-- in index.hbs -->
+<!-- Script for like button  -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         var updatePostStats = {
