@@ -3,8 +3,13 @@ const Comment = require("../models/comment");
 
 const PostsController = {
   Index: async (req, res) => {
-    const posts = await Post.find().populate('user')
-    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn});
+    let posts = await Post.find().populate('user');
+    posts.forEach( async (post) => {
+      let comments = await Comment.find({post: post._id});
+      post.commentCount = comments.length;
+    });
+    
+    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount});
     },
 
   PostId: async (req, res) => {
