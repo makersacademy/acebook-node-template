@@ -6,11 +6,20 @@ const PostsController = {
   Index: async (req, res) => {
     const images = await Image.find()
     let posts = await Post.find().populate('user');
-    posts.forEach( async (post) => {
-      let comments = await Comment.find({post: post._id});
-      post.commentCount = comments.length;
+    let comments = await Comment.find();
+    posts.forEach( (post) => {
+      post.commentCount = 0;
+      comments.forEach((comment) => {
+
+        if (String(comment.post) == String(post._id)){
+
+
+            post.commentCount++;
+
+        }
+      });
     });
-    
+
     res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, images: images, isTimeline: true});
     },
 
