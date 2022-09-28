@@ -13,7 +13,7 @@
     <span class="navbar-brand mb-0 h1">Acebook</span>
     <ul class="nav justify-content-end mb-lg-0">
     {{#if signedIn}}
-      {{#unless posts}}
+      {{#unless isTimeline}}
       <li class="nav-item text-dark">
           <a class="nav-link active text-dark" href='/posts'> Timeline </a>
       </li>
@@ -32,6 +32,11 @@
       {{#unless isLoginPage}}
       <li class="nav-item text-dark">
           <a class="nav-link text-dark" href='/sessions/new'> Log in </a>
+      </li>
+      {{/unless}}
+      {{#unless isHomePage}}
+      <li class="nav-item text-dark">
+          <a class="nav-link text-dark" href='/'> Create account </a>
       </li>
       {{/unless}}
     {{/if}}

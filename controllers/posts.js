@@ -9,7 +9,7 @@ const PostsController = {
       post.commentCount = comments.length;
     });
     
-    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount});
+    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, isTimeline: true});
     },
 
   PostId: async (req, res) => {
