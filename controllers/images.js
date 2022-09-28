@@ -13,7 +13,7 @@ const ImagesController = {
             res.status(500).send('An error occurred', err);
         }
         else {
-            res.render('./images/imagesPage', { images: images });
+            res.render('./images/imagesPage', { images: images, signedIn: req.session.signedIn, });
         }
     });
   },

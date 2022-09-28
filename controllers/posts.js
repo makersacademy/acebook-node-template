@@ -10,7 +10,8 @@ const PostsController = {
       let comments = await Comment.find({post: post._id});
       post.commentCount = comments.length;
     });
-    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, images: images});
+    
+    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, images: images, isTimeline: true});
     },
 
   PostId: async (req, res) => {
