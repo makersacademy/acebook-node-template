@@ -21,9 +21,6 @@ const PostsController = {
 
           // 2. save name in post
           posts[index].name = user.firstName;
-
-          
-
         });
       });
 
@@ -39,7 +36,6 @@ const PostsController = {
       message: req.body.message,
       userId: req.session.user._id,
     });
-
 
     post.save((err) => {
       if (err) {
@@ -88,17 +84,19 @@ const PostsController = {
 
   LikesCounter: (req, res, next) => {
     const action = req.body.action;
-    const counter  = action === 'Like' ? 1 : -1;
-    Post.updateOne({_id: req.params.id}, {$inc: {likes_count: counter}}, {}, (err, numberAffected) => {
-
-     // res.send('');
-     });
-//});
-  //  res.render("posts/", {});
-  res.redirect("/posts");
+    const counter = action === "Like" ? 1 : -1;
+    Post.updateOne(
+      { _id: req.params.id },
+      { $inc: { likes_count: counter } },
+      {},
+      (err, numberAffected) => {
+        // res.send('');
+      }
+    );
+    //});
+    //  res.render("posts/", {});
+    res.redirect("/posts");
   },
-
-
 };
 
 module.exports = PostsController;
