@@ -1,15 +1,17 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const Image = require("../models/image");
 
 const PostsController = {
   Index: async (req, res) => {
+    const images = await Image.find()
     let posts = await Post.find().populate('user');
     posts.forEach( async (post) => {
       let comments = await Comment.find({post: post._id});
       post.commentCount = comments.length;
     });
     
-    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, isTimeline: true});
+    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, images: images, isTimeline: true});
     },
 
   PostId: async (req, res) => {
@@ -39,7 +41,6 @@ const PostsController = {
     });
   },
   Like: async (req, res) => {
-    console.log("Bonjour")
     var postId = req.params.postId;
     await Post.findByIdAndUpdate(postId, {$inc:{likes: 1}}).exec()
     res.redirect('back');
