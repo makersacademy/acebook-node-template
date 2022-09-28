@@ -53,7 +53,17 @@ const PostsController = {
     var postId = req.params.postId;
     await Post.findByIdAndUpdate(postId, {$inc:{likes: 1}}).exec()
     res.redirect('back');
-    }
-  }
+    },
+  Destroy: async (req, res) => {
+    console.log("bonjour")
+    var postId = req.params.postId;
+    var post = await Post.findById(postId);
+    console.log(post)
+    await Post.findByIdAndDelete(postId);
+    await Comment.find({post: postId}).remove().exec();
+    res.redirect('/posts')
+  }};
+
+  
 
 module.exports = PostsController;
