@@ -1,6 +1,7 @@
 // const session = require("express-session");
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -32,13 +33,20 @@ const PostsController = {
     post.author_name = `${req.session.user.first_name} ${req.session.user.last_name} `
     post.author_id  = `${req.session.user._id} `
 
-    post.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
+    post
+    .save()
+    .then(() => User.findById(req.session.user))
+    .then((user) => {
+      user.posts.unshift(post);
+      return user.save();
+    })
+    .then(() => res.redirect('/posts'))
+    .catch((err) => {
+      console.log(err);
     });
-  },
+    },
+
+
   Comment: (req, res) => {
     const comment = new Comment(req.body);
     //accessing date at time of post creation and converting into nice format by removing last 31 characters
@@ -46,7 +54,7 @@ const PostsController = {
     //accessing user first name & last name
     comment.author_name = `${req.session.user.first_name} ${req.session.user.last_name} `
     comment.author_id  = `${req.session.user._id} `
-
+    console.log(req.params.id)
     comment
     .save()
     .then(() => Post.findById(req.params.id))
@@ -64,7 +72,7 @@ const PostsController = {
       const active_user = req.session.user._id
       console.log(Post.likes)
       Post.findById(req.params.id).then((post) => {
-        if(post.likes.likes_id.includes(active_user)){
+        if (post.likes.likes_id.includes(active_user)){
             res.status(201).redirect('/posts');
         } 
         else{

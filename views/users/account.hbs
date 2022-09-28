@@ -1,8 +1,9 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}} by <a href="/users/{{this.author_id}}" action="/users/{{this.author_id}}" method='GET'> {{this.author_name}}</a></p> on {{this.date}}
-  </li>
+<h1 class="title">My Profile page</h1>
+<div class="overflow-auto"></div>
+  <br><h3> <font size="+1"> <h1 class="name">{{users.first_name}} {{users.last_name}}</h1></font></h3>
+  <br><h3>Recent posts:</h3>
+{{#each users.posts}}
+  <p class="lead">{{this.message}}</p><p> on {{this.date}}
       <form action="/posts/{{this._id}}/likes" method="post">
         <button id= "like-button" type="submit">likes: {{this.likes.count}}</button>
       </form>
@@ -15,8 +16,8 @@
     <input id="message" type="text" name="message" value="">
     <input type="submit" value="Submit">
   </form>
+    </div>
+    </form>
+    </div>
+    </form>
   {{/each}}
-  
-</ul>
-
-
