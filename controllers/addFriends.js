@@ -1,32 +1,24 @@
 const User = require("../models/user");
 
 const addFriendsController = {
-  Search: (req, res) => {
+  Search: async (req, res) => {
     if (!req.session.user) {
       res.redirect("/sessions/new");
     } else {
-      const searchTerm = req.body.searchTerm;
+      const searchTerm = req.query.searchTerm;
+      
       let results = [];
+      if (searchTerm) {
+        results = await User.find({
+          firstName: new RegExp(searchTerm, 'i')
+        }, 'firstName email image').exec();
 
-      if (!searchTerm) {
-        results = []
-        res.render("addFriends/index", { results: results });
-      } else {
-        // find Users
-        User.find({
-          name: { $regex: searchTerm },
-        }).then((users) => {
-          // get their images
-          users.forEach((user, i) => {
-            user.image = user.image.data.toString("base64");
-
-            // pass to results
-            results.push(user);
-          });
-
-          res.render("addFriends/index", { results: results });
-        });
+        results = await results.map(user => (
+          { ...user._doc, image: user.image.data.toString('base64') }
+        ));
       }
+      
+      res.render('addFriends/index', { results: results });
     }
   },
 };
