@@ -13,8 +13,7 @@
         <% images.forEach(function(image) { %>
         <div>
             <div>
-                <img src="data:image/<%=image.img.contentType%>;base64,
-                     <%=image.img.data.toString('base64')%>">
+                <img src={{this.link}}
                 <div>
                     <h5><%= image.name %></h5>
                       
