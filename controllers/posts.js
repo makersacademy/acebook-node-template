@@ -19,8 +19,9 @@ const PostsController = {
         }
       });
     });
+    let logged_in_user = req.session.user._id;
 
-    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, images: images, isTimeline: true});
+    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, images: images, isTimeline: true, logged_in_user});
     },
 
   PostId: async (req, res) => {
@@ -53,7 +54,7 @@ const PostsController = {
     var postId = req.params.postId;
     await Post.findByIdAndUpdate(postId, {$inc:{likes: 1}}).exec()
     res.redirect('back');
-    },
+    },  
   Destroy: async (req, res) => {
     console.log("bonjour")
     var postId = req.params.postId;
@@ -62,7 +63,9 @@ const PostsController = {
     await Post.findByIdAndDelete(postId);
     await Comment.find({post: postId}).remove().exec();
     res.redirect('/posts')
-  }};
+  }
+
+};
 
   
 

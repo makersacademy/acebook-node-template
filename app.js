@@ -6,6 +6,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const flash = require("express-flash")
+const Handlebars = require('hbs');
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -103,6 +104,15 @@ app.use((err, req, res) => {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+
+// Handlebars helper file
+
+Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
 });
 
 module.exports = app;
