@@ -12,7 +12,7 @@
   {{!-- lists comments here --}}
   <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
     <label for="message">Comment: </label>
-    <input id="message" type="text" name="message" value="">
+    <textarea id="message" name="message" rows="1" cols="25" minlength="2" maxlength="280"  placeholder="Enter your comment" required></textarea>
     <input type="submit" value="Submit">
   </form>
   {{/each}}

@@ -24,7 +24,7 @@ describe("Timeline", () => {
       cy.visit("/posts");
       cy.contains("New post").click();
 
-      cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+      cy.get("#new-post-form").find('[name="message"]').type("Hello, world!");
       cy.get("#new-post-form").submit();
     })
 
@@ -32,7 +32,7 @@ describe("Timeline", () => {
 
     cy.task('emptyComments').then(() => {
       // submit a comment
-      cy.get("#new-comment-form").find('[type="text"]').type("test comment");
+      cy.get("#new-comment-form").find('[name="message"]').type("test comment");
       cy.get("#new-comment-form").submit();
 
       cy.get(".posts").should("contain", "test comment", "first1 last1");

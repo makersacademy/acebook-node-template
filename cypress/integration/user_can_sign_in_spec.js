@@ -5,6 +5,8 @@ describe("Authentication", () => {
     
     // sign up
     cy.visit("/users/new");
+    cy.get("#first_name").type("maker");
+    cy.get("#last_name").type("example");    
     cy.get("#email").type("makers@example.com");
     cy.get("#password").type("Password8$");
     cy.get("#submit").click();
