@@ -43,7 +43,20 @@ const PostsController = {
     var postId = req.params.postId;
     await Post.findByIdAndUpdate(postId, {$inc:{likes: 1}}).exec()
     res.redirect('back');
-    }
-  }
+    },
+
+  Destroy: async (req, res) => {
+    console.log("bonjour")
+    var postId = req.params.postId;
+    await Post.findByIdAndDelete(postId, (err) => {
+      if (err){
+        console.log(err);
+    }else{
+        res.redirect('/posts');
+    }});
+  },
+  };
+
+  
 
 module.exports = PostsController;
