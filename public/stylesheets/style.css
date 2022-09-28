@@ -1,8 +1,32 @@
+.body_not_navbar {
+  padding-left: 200px;
+  padding-top: 30px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: white;
+}
+
+.navbar {
+  padding-right: 50px;
+  color: black;
+}
+
+.nav-link active, nav-item {
+  color: black;
+}
+
 body {
-  padding: 50px;
+  background-color: white;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
+
+#message {
+  width: 600px; 
+  height: 100px; 
+  border: 1px solid #999999; 
+  padding: 5px; 
+}
+

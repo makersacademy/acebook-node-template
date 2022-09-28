@@ -1,18 +1,11 @@
 <div class="body_not_navbar">
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<h1>Timeline</h1>
 
-  <a class="new-post-link" href="/posts/new">Create a new post</a>
-  <br>
-  <a class="upload-photo" href="/images">Upload a photo</a>
-  <br>
-<br>
-
+<h1> {{user.username}}'s Profile Page</h1>
 {{#each posts}}
 <br>
 <div class="card text-center w-75">
   <div class="card-header">
-    <h5>USER: <a href="/users/profile/{{this.user._id}}">{{this.user.username}}</a></h5>
+    <h5>USER: <a href="/users/profile/{{this.user._id}}">{{this.username}}</a></h5>
   </div>
   <div class="card-body">
     <p class="card-title"><b>Message:</b> {{this.message}} </p>
@@ -26,3 +19,4 @@
 
 {{/each}}
 </div>
+

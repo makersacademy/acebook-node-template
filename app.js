@@ -5,13 +5,22 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const flash = require("express-flash")
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-
+const imagesRouter = require("./routes/images");
+const accountRouter = require("./routes/account");
 const app = express();
+var bodyParser = require('body-parser');
+
+
+require('dotenv/config');
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -26,7 +35,6 @@ app.use(methodOverride("_method"));
 
 app.use(
   session({
-    key: "user_sid",
     secret: "super_secret",
     resave: false,
     saveUninitialized: false,
@@ -37,27 +45,55 @@ app.use(
 );
 
 // clear the cookies after user logs out
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-    res.clearCookie("user_sid");
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (!req.session.user) {
+//     res.clearCookie("user_sid");
+//   }
+//   next();
+// });
+
+
+// flash middleware
+app.use(flash());
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
-  if (!req.session.user && !req.cookies.user_sid) {
-    res.redirect("/sessions/new");
+  if (!req.session.user) {
+    req.session.signedIn = false;
+  } else {
+    req.session.signedIn = true;
+  }
+  next();
+};
+const signedOutRedirect = (req, res, next) => {
+  if (req.session.signedIn === false) {
+
+      res.redirect("/sessions/new");
   } else {
     next();
   }
 };
 
+const userRedirect = (req, res, next) => {
+  if (req.session.signedIn === true) {
+      res.redirect("/posts");
+  } else {
+    next();
+  }
+};
+
+
+
 // route setup
-app.use("/", homeRouter);
-app.use("/posts", sessionChecker, postsRouter);
-app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
+app.use("/posts", sessionChecker, postRedirect, postsRouter);
+app.use("/sessions", sessionChecker, sessionsRouter);
+app.use("/users", sessionChecker, userRedirect, usersRouter);
+app.use("/account", sessionChecker, accountRouter);
+app.use("/images", sessionChecker, imagesRouter);
+app.use("/", sessionChecker, userRedirect, homeRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
