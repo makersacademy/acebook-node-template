@@ -67,7 +67,6 @@ const UsersController = {
     }
   },
   Update: async(req, res) => {
-    console.log(req.session.user)
     var user = await User.findOneAndUpdate({_id: req.session.user._id}, {$set: {bio: req.body.bio, location: req.body.location, age: req.body.age}})
     user.save((err) => {
       if (!err) {
@@ -77,7 +76,6 @@ const UsersController = {
         res.redirect("/users/editmyprofile");
       }
     });
-    console.log(req.session.user)
   },
   }
   
