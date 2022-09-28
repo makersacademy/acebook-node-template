@@ -17,7 +17,12 @@
   <h4><a href="/addFriends">FIND FRIENDS</a></h4>
   <ul>
     {{#each sent }}
-    <li>{{this.name}} - {{this.email}}</li>
+    <li>
+      <p>{{this.firstName}} - {{this.email}}</p>
+      <form action="/addFriends/cancel" method="post">
+        <button type="submit" name="userId" value="{{this._id}}">Cancel</button>
+      </form>
+    </li>
     {{/each}}
   </ul>
 </div>
@@ -26,7 +31,15 @@
   <h2>RECEIVED REQUESTS</h2>
   <ul>
     {{#each received }}
-    <li>{{this.name}} - {{this.email}}</li>
+    <li>
+      <p>{{this.firstName}} - {{this.email}}</p>
+      <form action="/addFriends/accept" method="post">
+        <button type="submit" name="userId" value="{{this._id}}">Accept</button>
+      </form>
+      <form action="/addFriends/decline" method="post">
+        <button type="submit" name="userId" value="{{this._id}}">Decline</button>
+      </form>
+    </li>
     {{/each}}
   </ul>
 </div>

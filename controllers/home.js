@@ -15,6 +15,7 @@ const HomeController = {
       // 1) look for their updated user model
       User.findOne({ _id: req.session.user._id }).then((user) => {
         req.session.user = user;
+        console.log(user)
       });
 
       // 2) find users they are friends with
@@ -27,7 +28,7 @@ const HomeController = {
 
       // 3) find users they've sent a request to
       const sent = [];
-      req.session.user.requests.sent.forEach((userId) => {
+      req.session.user.sent.forEach((userId) => {
         User.findOne({ _id: userId }).then((user) => {
           sent.push(user);
         });
@@ -35,7 +36,7 @@ const HomeController = {
 
       // 4) find users they've received a request from
       const received = [];
-      req.session.user.requests.received.forEach((userId) => {
+      req.session.user.received.forEach((userId) => {
         User.findOne({ _id: userId }).then((user) => {
           received.push(user);
         });
