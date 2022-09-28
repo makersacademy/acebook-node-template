@@ -15,14 +15,13 @@ const PostsController = {
       posts.forEach((post, index) => {
         User.findById(post.userId).then((user) => {
           // 1. convert image into base 64 and save in post
+          console.log(user);
           posts[index].image = user.image.data.toString("base64");
 
           // 2. save name in post
-          posts[index].name = user.name;
+          posts[index].name = user.firstName;
         });
       });
-
-      console.log(posts);
 
       res.render("posts/index", { posts: posts });
     });
@@ -36,9 +35,6 @@ const PostsController = {
       message: req.body.message,
       userId: req.session.user._id,
     });
-
-    //console.log('below is req obj==============================================================');
-    //console.log(req.session.user._id);
 
     post.save((err) => {
       if (err) {
@@ -83,6 +79,22 @@ const PostsController = {
     });
 
     res.status(201).redirect(req.get("referer"));
+  },
+
+  LikesCounter: (req, res, next) => {
+    const action = req.body.action;
+    const counter = action === "Like" ? 1 : -1;
+    Post.updateOne(
+      { _id: req.params.id },
+      { $inc: { likes_count: counter } },
+      {},
+      (err, numberAffected) => {
+        // res.send('');
+      }
+    );
+    //});
+    //  res.render("posts/", {});
+    res.redirect("/posts");
   },
 };
 
