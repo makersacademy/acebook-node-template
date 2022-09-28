@@ -11,7 +11,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please enter a username'],
 },
-  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
+  profilepic: String,
 });
 
 UserSchema.path('email').validate(async(email) => {

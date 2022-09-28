@@ -4,7 +4,7 @@
 
   <a class="new-post-link" href="/posts/new">Create a new post</a>
   <br>
-  <a class="upload-photo" href="/images">Upload a photo</a>
+  <a class="upload-photo" href="/images/upload">Upload a photo</a>
   <br>
 <br>
 
@@ -13,6 +13,7 @@
 <div class="card text-center w-75">
   <div class="card-header">
     <h5>USER: <a href="/users/profile/{{this.user._id}}">{{this.username}}</a></h5>
+    <img id="profilepic" src="{{user.profilepic}}">
   </div>
   <div class="card-body">
     <p class="card-title"><b>Message:</b> {{this.message}} </p>
@@ -21,6 +22,11 @@
     </div>
     <p class="card-title"><a class="comments card-title" href="/posts/{{this._id}}">{{this.commentCount}} comments</a></p>
   </div>
-
 {{/each}}
+
+{{!-- <p>Start</p>
+{{#each images}}
+  <img src="{{this.link}}">
+{{/each}}
+<p>End</p> --}}
 </div>

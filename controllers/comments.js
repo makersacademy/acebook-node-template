@@ -9,14 +9,6 @@ const CommentsController = {
       res.render("comments/index", { comments: comments.reverse(), signedIn: req.session.signedIn});
     });
   },
- 
-  // PostId: (req, res) => {
-  //   Post.findById(req.params.postId).then((myPost) => {
-  //     res.render("comments/index", {post: myPost, signedIn: req.session.signedIn});
-
-  //   });
-    
-  // },
 
   New: (req, res) => {
     res.render("comments/new", {signedIn: req.session.signedIn});
