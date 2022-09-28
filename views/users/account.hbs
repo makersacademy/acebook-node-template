@@ -1,6 +1,14 @@
 <h1 class="title">My Profile page</h1>
 <div class="overflow-auto"></div>
   <br><h3> <font size="+1"> <h1 class="name">{{users.first_name}} {{users.last_name}}</h1></font></h3>
+   <li>  
+     <a href="/users/editmyprofile" action="/users/editmyprofile" method='GET'>Edit my profile</a>
+  </li>
+  <h1>Bio: {{users.bio}} </h1>
+   <h1>Location: {{users.location}} </h1>
+    <h1>Age: {{users.age}} </h1>
+
+
   <br><h3>Recent posts:</h3>
 {{#each users.posts}}
   <p class="lead">{{this.message}}</p><p> on {{this.date}}

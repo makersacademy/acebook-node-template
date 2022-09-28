@@ -57,7 +57,28 @@ const UsersController = {
         res.render("users/account", { users: users, userLoggedIn: true });
       });
     },
+
+  Edit: (req, res) => {
+    if (req.session.user && req.cookies.user_sid){
+      res.render("users/editmyprofile", {session: req.session, userLoggedIn: true});
+    }
+    else {
+      res.render("users/editmyprofile", {session: req.session});
+    }
+  },
+  Update: async(req, res) => {
+    console.log(req.session.user)
+    var user = await User.findOneAndUpdate({_id: req.session.user._id}, {$set: {bio: req.body.bio, location: req.body.location, age: req.body.age}})
+    user.save((err) => {
+      if (!err) {
+        res.status(201).redirect("/users/account");
+      }
+      else {
+        res.redirect("/users/editmyprofile");
+      }
+    });
+    console.log(req.session.user)
+  },
   }
-
-
+  
 module.exports = UsersController;

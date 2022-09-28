@@ -7,6 +7,9 @@ const UserSchema = new mongoose.Schema({
   email: { type: String,  unique: true },
   password: String,
   posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
+  bio: String,
+  location: String,
+  age: Number,
 });
 
 const User = mongoose.model("User", UserSchema);

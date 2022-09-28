@@ -2,6 +2,9 @@
 <h1>Profile page</h1>
 
   <br><h3> <font size="+1">  User: {{users.first_name}} {{users.last_name}}</font></h3>
+    <h1>Bio: {{users.bio}} </h1>
+   <h1>Location: {{users.location}} </h1>
+    <h1>Age: {{users.age}} </h1>
   <br><h3>Recent posts:</h3>
   <div class="overflow-auto">
 {{#each users.posts}}
