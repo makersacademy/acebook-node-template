@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 require("../mongodb_helper");
 const User = require("../../models/user");
 const Post = require("../../models/post");
+const Friend = require("../../models/friend");
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -75,7 +76,7 @@ describe("User model", () => {
     } catch (err) {
       expect(err.errors.password.message).toEqual("Password should be longer than 7 characters or more")
     }
-  })
+  });
 
   it ("throws an error if password does not contain special character", async () => {
     try {
@@ -87,7 +88,7 @@ describe("User model", () => {
     } catch (err) {
       expect(err.errors.password.message).toEqual("Password must contain at least one special character: !@£$%&*")
     }
-  })
+  });
 
   it ("throw an error if password does not contain an uppercase character", async () => {
     try {
@@ -99,7 +100,8 @@ describe("User model", () => {
     } catch (err) {
       expect(err.errors.password.message).toEqual("Password must contain at least one uppercase letter: A-Z")
     }
-  })
+  });
+
   it("should throw an error if the password value is empty", async () => {
     try {
       await new User({
@@ -110,7 +112,8 @@ describe("User model", () => {
     } catch (err) {
       expect(err.errors.password.message).toEqual("Password is required")
     }
-  })
+  });
+
   it("should throw an error if the username value is empty", async () => {
     try {
       await new User({
@@ -120,7 +123,8 @@ describe("User model", () => {
     } catch (err) {
       expect(err.errors.username.message).toEqual("Please enter a username")
     }
-  })
+  });
+
   it("should throw an error if the password value is empty", async () => {
     try {
       await new User({
@@ -130,7 +134,8 @@ describe("User model", () => {
     } catch (err) {
       expect(err.errors.email.message).toEqual("Please enter an email")
     }
-  })
+  });
+
   it("should throw an error if the email is already in use", async () => {
     try {
       await new User({
@@ -146,7 +151,8 @@ describe("User model", () => {
     } catch (err) {
       expect(err.errors.email.message).toEqual("Email already exists")
     }
-  })
+  });
+
   it("should throw an error if the email is already in use", async () => {
     try {
       const user = await new User({
@@ -161,9 +167,55 @@ describe("User model", () => {
         username: "Vishal101"
       }).save()
       const retrieved_post = await Post.findOne({ username: "Vishal101" }).populate("user");
-      console.log(retrieved_post);
     } catch (err) {
       expect(err.errors.email.message).toEqual("Email already exists")
     }
-  })
+  });
+
+  it("should send a friend request", async () => {
+    try{
+      const user1 = await new User({
+        username:"user1",
+        email:"test123@test.com",
+        password: "Password123!"
+      }).save()
+
+      const user2 = await new User({
+        username:"user2",
+        email:"test1234@test.com",
+        password: "Password123!"
+      }).save()
+
+      const docA = await Friend.findOneAndUpdate(
+        { requester: user1, recipient: user2 },
+        { $set: { status: 1 }},
+        { upsert: true, new: true }
+      )
+      const docB = await Friend.findOneAndUpdate(
+        { recipient: user1, requester: user2 },
+        { $set: { status: 2 }},
+        { upsert: true, new: true }
+      )
+      const updateUser1 = await User.findOneAndUpdate(
+        { _id: user1 },
+        { $push: { friends: docA._id }}
+    )
+      const updateUser2 = await User.findOneAndUpdate(
+        { _id: user2 },
+        { $push: { friends: docB._id }}
+      )
+      const users = await User.find().populate('friends');
+      users.forEach(user => {
+        console.log(user.username)
+        console.log(user.friends)}
+        )
+      const friends = await Friend.find().populate('recipient');
+      // console.log(friends)
+
+
+    } catch(err){
+      console.log(err)
+    }
+
+  });
 });

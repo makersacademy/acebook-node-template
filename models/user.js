@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema({
   // _id: mongoose.Schema.Types.ObjectId,
   email: {
     type: String,
-    required: [true, 'Please enter an email'], 
+    required: [true, 'Please enter an email'],
   },
   password: String,
   username: {
@@ -13,6 +13,8 @@ const UserSchema = new mongoose.Schema({
 },
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
   profilepic: String,
+
+  friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'Friend'}]
 });
 
 UserSchema.path('email').validate(async(email) => {
