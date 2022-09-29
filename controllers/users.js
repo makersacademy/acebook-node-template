@@ -20,7 +20,6 @@ const UsersController = {
         contentType: "image/png",
       },
     };
-    //console.log(obj);
     const user = new User(obj);
 
     user.save((err) => {

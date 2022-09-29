@@ -8,6 +8,9 @@ const UserSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
+  sent: Array,
+  received: Array,
+  friends: Array,
 });
 
 const User = mongoose.model("User", UserSchema);
