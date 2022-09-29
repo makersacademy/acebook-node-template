@@ -6,6 +6,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const flash = require("express-flash")
+const Handlebars = require('hbs');
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -104,5 +105,6 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
 
 module.exports = app;
