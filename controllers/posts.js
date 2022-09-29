@@ -9,6 +9,9 @@ const PostsController = {
     let comments = await Comment.find();
     posts.forEach( (post) => {
       post.commentCount = 0;
+      if (String(req.session.user._id) === String(post.user._id)) {
+        post.isMine = true;
+      }
       comments.forEach((comment) => {
 
         if (String(comment.post) == String(post._id)){
@@ -19,9 +22,8 @@ const PostsController = {
         }
       });
     });
-    let logged_in_user = req.session.user._id;
 
-    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, images: images, isTimeline: true, logged_in_user});
+    res.render("posts/index", { posts: posts.reverse(), signedIn: req.session.signedIn, commentCount: posts.commentCount, images: images, isTimeline: true});
     },
 
   PostId: async (req, res) => {
