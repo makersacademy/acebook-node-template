@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const User = require("../models/user");
+const Friend = require("../models/friend");
 
 const UsersController = {
   New: (req, res) => {
@@ -27,9 +28,87 @@ const UsersController = {
 
   ViewProfile: async (req, res) => {
     var userId = req.params.userId;
-    var user = await User.findById(userId)
+    var user = await User.findById(userId).populate({path : 'friends', populate: {path: 'recipient'}, populate: {path: 'requester'}})
     var posts = await Post.find({user: {_id: userId}})
-    res.render("users/profile", {signedIn: req.session.signedIn, posts: posts, user: user});
+
+    const acceptedFriends = user.friends.filter(f => f.status === 3 && String(f.recipient )=== String(user._id));
+    const friendsWhoAccepted = user.friends.filter(f => f.status === 3 && String(f.requester._id) === String(user._id));
+    console.log(friendsWhoAccepted)
+    res.render("users/profile", {signedIn: req.session.signedIn, posts: posts, user: user, acceptedFriends: acceptedFriends, friendsWhoAccepted: friendsWhoAccepted});
+
+  },
+
+  AddFriend: async (req, res) => {
+    const user1 = req.session.user._id;
+    const user2 = req.params.userId;
+
+    const docA = await Friend.findOneAndUpdate(
+      { requester: user1, recipient: user2 },
+      { $set: { status: 1 }},
+      { upsert: true, new: true }
+    )
+
+    const docB = await Friend.findOneAndUpdate(
+      { recipient: user1, requester: user2 },
+      { $set: { status: 2 }},
+      { upsert: true, new: true }
+    )
+
+    const updateUser1 = await User.findOneAndUpdate(
+      { _id: user1 },
+      { $addToSet: { friends: docA._id }}
+  )
+    const updateUser2 = await User.findOneAndUpdate(
+      { _id: user2 },
+      { $addToSet: { friends: docB._id }}
+    )
+    res.redirect('back');
+  },
+
+  AcceptFriend: async (req, res) => {
+
+
+    const user1 = req.session.user._id;
+
+    const user2 = req.params.userId;
+    const docA = await Friend.findOneAndUpdate(
+      { requester: user1, recipient: user2},
+      { $set: { status: 3 }},
+      { upsert: true, new: true }
+    )
+
+    const docB = await Friend.findOneAndUpdate(
+      { recipient: user1, requester: user2 },
+      { $set: { status: 3 }},
+      { upsert: true, new: true }
+    )
+    const friends = await Friend.find();
+    console.log(friends)
+    res.redirect('back');
+
+
+  },
+
+  RejectFriend: async (req, res) => {
+    console.log('---------------------------here-----------')
+
+    const user1 = req.session.user._id;
+    console.log("#################################")
+    console.log(user1)
+    console.log("#################################")
+    const user2 = req.params.userId;
+    const docA = await Friend.findOneAndUpdate(
+      { requester: user1, recipient: user2},
+      { $set: { status: 0 }},
+      { upsert: true, new: true }
+    )
+
+    const docB = await Friend.findOneAndUpdate(
+      { recipient: user1, requester: user2 },
+      { $set: { status: 0 }},
+      { upsert: true, new: true }
+    )
+    res.redirect('back');
 
   }
 

@@ -191,11 +191,13 @@ describe("User model", () => {
         { $set: { status: 1 }},
         { upsert: true, new: true }
       )
+
       const docB = await Friend.findOneAndUpdate(
         { recipient: user1, requester: user2 },
         { $set: { status: 2 }},
         { upsert: true, new: true }
       )
+
       const updateUser1 = await User.findOneAndUpdate(
         { _id: user1 },
         { $push: { friends: docA._id }}
@@ -205,10 +207,7 @@ describe("User model", () => {
         { $push: { friends: docB._id }}
       )
       const users = await User.find().populate('friends');
-      users.forEach(user => {
-        console.log(user.username)
-        console.log(user.friends)}
-        )
+
       const friends = await Friend.find().populate('recipient');
       // console.log(friends)
 

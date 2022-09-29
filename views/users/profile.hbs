@@ -1,6 +1,17 @@
 <div class="body_not_navbar">
 
 <h1> {{user.username}}'s Profile Page</h1>
+<form action="/users/profile/{{user._id}}/add" method="post">
+    <input type="submit" value="Add friend" />
+</form>
+<br />
+{{#each friendsWhoAccepted}}
+  {{this.recipient.username}} <br>
+{{/each}}
+{{#each acceptedFriends}}
+  {{this.requester.username}}<br>
+{{/each}}
+
 {{#each posts}}
 <br>
 <div class="card text-center w-75">
