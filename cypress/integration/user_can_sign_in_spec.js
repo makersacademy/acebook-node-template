@@ -9,13 +9,13 @@ describe("Authentication", () => {
     cy.get("#last_name").type("example");    
     cy.get("#email").type("makers@example.com");
     cy.get("#password").type("Password8$");
-    cy.get("#submit").click();
+    cy.get("#submit").click()
 
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("makers@example.com");
     cy.get("#password").type("Password8$");
-    cy.get("#submit").click();
+    cy.get("#submit").click()
 
     cy.task('emptyPosts').then(() => {
       cy.url().should("include", "/posts");
@@ -27,7 +27,7 @@ describe("Authentication", () => {
     cy.visit("/sessions/new");
     cy.get("#email").type("makers123@example53.com");
     cy.get("#password").type("Password8$");
-    cy.get("#submit").click();
+    cy.get("#submit").click()
     cy.url().should("include", "/signinerror");
   })
 });
