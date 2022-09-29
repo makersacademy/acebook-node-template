@@ -79,7 +79,21 @@ const addFriendsController = {
     res.status(201).redirect('/myprofile');
   },
   Decline: async(req, res) => {
+    // in terms of who sent the friend request:
+    const receiver = req.session.user._id;
+    const sender = req.body.userId;
 
+    // remove request from sender
+    await User.findByIdAndUpdate(sender, {
+      $pull: { sent: receiver }
+    });
+
+    // remove request from receiver
+    await User.findByIdAndUpdate(receiver, {
+      $pull: { received: sender }
+    });
+
+    res.status(201).redirect('/myprofile');
   }
 };
 

@@ -6,6 +6,6 @@ router.get("/", addFriendsController.Search);
 router.post("/send", addFriendsController.Send);
 router.post("/cancel", addFriendsController.Cancel);
 router.post("/accept", addFriendsController.Accept);
-// router.post("/decline", addFriendsController.Decline);
+router.post("/decline", addFriendsController.Decline);
 
 module.exports = router;
