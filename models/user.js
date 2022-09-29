@@ -6,11 +6,11 @@ const UserSchema = new mongoose.Schema({
   password: String,
   image: {
     data: Buffer,
-    contentType: String
+    contentType: String,
   },
   sent: Array,
   received: Array,
-  friends: Array
+  friends: Array,
 });
 
 const User = mongoose.model("User", UserSchema);

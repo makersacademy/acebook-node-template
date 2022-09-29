@@ -1,7 +1,7 @@
 const User = require("../models/user");
-const fs = require('fs');
+const fs = require("fs");
 const path = require("path");
-const multer = require('multer');
+const multer = require("multer");
 
 const UsersController = {
   New: (req, res) => {
@@ -15,11 +15,12 @@ const UsersController = {
       email: req.body.email,
       password: req.body.password,
       image: {
-          data: fs.readFileSync(path.join('./public/images/' + req.file.filename)),
-          contentType: 'image/png'
-      }
-  }
-    console.log(obj);
+        data: fs.readFileSync(
+          path.join("./public/images/" + req.file.filename)
+        ),
+        contentType: "image/png",
+      },
+    };
     const user = new User(obj);
 
     user.save((err) => {
