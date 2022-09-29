@@ -5,14 +5,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-
-    <nav>
-      <ul class="posts">
-        <li>    
-          <form action='/' method='GET'>
-            <input type="submit" value="Home">
-          </form>
-        </li>
+    <nav id="navbar" class="navbar"> 
+      <ul style="list-style: none;"class="posts">
+   <a href="/"> <img src="/stylesheets/LogoFaceA.png"  class="logo"></a>
           {{#if userLoggedIn}}
             <li>
               <form action='/sessions?_method=DELETE' method='POST'>
