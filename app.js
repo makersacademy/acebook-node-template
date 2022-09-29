@@ -19,9 +19,6 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    console.log("hello!");
-    console.log(file);
-
     cb(null, "./public/images");
   },
   filename: (req, file, cb) => {
@@ -35,6 +32,8 @@ const upload = multer({ storage: storage });
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+// Set EJS as templating engine for image view requirement
+//app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());

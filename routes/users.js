@@ -4,5 +4,6 @@ const UsersController = require("../controllers/users");
 
 router.get("/new", UsersController.New);
 router.post("/", UsersController.Create);
+router.get("/Image", UsersController.View);
 
 module.exports = router;

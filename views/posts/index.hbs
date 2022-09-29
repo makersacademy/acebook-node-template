@@ -1,9 +1,50 @@
+<!-- library for like -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-    <li>{{this.message}}</li>
+    <li>
+      <img src="data:image/png;base64,{{this.image}}" width="30" height="40" alt="" />
+      {{this.message}}</li>
+      {{this.name}}
     <a href="/posts/{{this._id}}">View Comments</a>
+
+<button onclick="actOnPost(event);"
+   data-post-id="{{ this._id }}">Like
+</button>
+<span id="likes-count-{{ this._id }}">{{ this.likes_count }}</span>
+
   {{/each}}
 </ul>
+
+<!-- in index.hbs -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var updatePostStats = {
+            Like: function (postId) {
+                document.querySelector('#likes-count-' + postId).textContent++;
+            },
+            Unlike: function(postId) {
+                document.querySelector('#likes-count-' + postId).textContent--;
+            }
+        };
+    
+        var toggleButtonText = {
+            Like: function(button) {
+                button.textContent = "Unlike";
+            },
+            Unlike: function(button) {
+                button.textContent = "Like";
+            }
+        };
+    
+        var actOnPost = function (event) {
+            var postId = event.target.dataset.postId;
+            var action = event.target.textContent.trim();
+            toggleButtonText[action](event.target);
+            updatePostStats[action](postId);
+            axios.post('/posts/likes/' + postId + '/act', { action: action });
+        };
+    </script>
 
 <a class="new-post-link" href="/posts/new">New post</a>
