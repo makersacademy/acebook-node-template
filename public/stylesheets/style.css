@@ -61,10 +61,20 @@ body {
   background-color: #084523; /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 5px 5px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: block;
+  margin: auto;
   font-size: 16px;
   border: 1px solid black;
+}
+
+li{
+  display: inline;
+  float: right;
+  padding: 10px;
+  margin: auto;
+  
+ 
 }

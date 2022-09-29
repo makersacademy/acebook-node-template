@@ -12,7 +12,7 @@ describe("Home Page", () => {
 
   it ("it has a home button that can be clicked", () => {
     cy.visit("/sessions/new");
-    cy.contains("Home").click();
+    cy.get('a').get('[href="/"]').click()
     cy.url().should("include", "/");
   });
 
