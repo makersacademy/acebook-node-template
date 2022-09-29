@@ -75,6 +75,15 @@ li{
   float: right;
   padding: 10px;
   margin: auto;
-  
- 
+}
+
+.posts{
+  text-align: center;
+  margin: auto;
+  font-size: 25px;
+}
+
+w3-container w3-green{
+  padding: 14px 200px;
+
 }

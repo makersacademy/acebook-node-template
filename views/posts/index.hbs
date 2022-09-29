@@ -7,25 +7,37 @@
 <br>
 <br>
 
-<h1>Timeline</h1>
+
+
+
 <ul class="posts">
+     <h1>Timeline</h1>
+    
+
   {{#each posts}}
-  <li>{{this.message}} by <a href="/users/{{this.author_id}}" action="/users/{{this.author_id}}" method='GET'> {{this.author_name}}</a></p> on {{this.date}}
-  </li>
+    <div class="w3-panel w3-green w3-round-small">
+
+ {{this.message}} by <a href="/users/{{this.author_id}}" action="/users/{{this.author_id}}" method='GET'> {{this.author_name}}</a></p> on {{this.date}}
+  
       <form action="/posts/{{this._id}}/likes" method="post">
         <button id= "like-button" type="submit">likes: {{this.likes.count}}</button>
       </form>
-      <br>{{#each this.comments}}
-      {{this.message}} Posted by {{this.author_name}} on {{this.date}} </br>
-      {{/each}}
-  {{!-- lists comments here --}}
-  <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
+      <br>
+      <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
     <label for="message">Comment: </label>
     <textarea id="message" name="message" rows="1" cols="25" minlength="2" maxlength="280"  placeholder="Enter your comment" required></textarea>
     <input type="submit" value="Submit">
   </form>
+      <br>{{#each this.comments}}
+          <div class="w3-panel w3-blue w3-round-small">
+
+      {{this.message}} Posted by {{this.author_name}} on {{this.date}} </br>
+       </div>
+      {{/each}}
+  {{!-- lists comments here --}}
+   </div>
   {{/each}}
-  
 </ul>
+
 
 
