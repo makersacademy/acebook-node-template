@@ -1,8 +1,70 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px;
+  border: 0px;
+  margin: 0px;
+  font: 14px  Helvetica, Arial, sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-image: url("background.png");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-repeat: no-repeat;
+  overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
-a {
-  color: #00B7FF;
+.logo{
+  width: 100px;
+  cursor: pointer;
+
+}
+
+.navbar{
+  overflow: hidden;
+  background-color: #084523;
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  background-color: rgba(8, 69, 35,0.5);
+
+}
+
+.navbar a {
+  float: left;
+  display: inline;
+  color: #084523;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.signup{
+  text-align: center;
+  margin: auto;
+
+}
+
+.login{
+  text-align: center;
+  margin: auto;
+
+}
+
+.welcome{
+  text-align: center;
+  margin: auto;
+  font-size: 25px;
+}
+
+ input[type=submit]{
+  background-color: #084523; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border: 1px solid black;
 }
