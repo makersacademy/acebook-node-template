@@ -11,6 +11,10 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+
+
+
+
 const app = express();
 
 //Adding bodyParser for image upload
@@ -28,8 +32,8 @@ const storage = multer.diskStorage({
   },
 });
 
-console.log("hello!");
-console.log(storage);
+// console.log("hello!");
+// console.log(storage);
 
 const upload = multer({ storage: storage });
 
@@ -82,6 +86,13 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+//  function to check if file is uploaded
+// const fileChecker = (req, res ) => {
+//   if (!req.file.filename) {
+//     req.file.filename = "imagess";
+//   } 
+// };
+
 app.use(function (req, res, next) {
   res.locals.user = req.session.user;
   next();
@@ -89,7 +100,7 @@ app.use(function (req, res, next) {
 
 // route setup
 app.use("/", homeRouter);
-app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
+app.use("/posts", upload.single("image"), sessionChecker,  postsRouter);
 //app.use("/imgPosts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", upload.single("image"), usersRouter);

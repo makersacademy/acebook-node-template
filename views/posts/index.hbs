@@ -4,40 +4,38 @@
 
 {{!-- Adding new post on the same posts page --}}
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <div class="well">
-            <form id="new-post-form" action="/posts" method="post">
-            <label for="message">Post New Message: </label>
-            <input id="message" type="text" name="message" value="" />
-            <input type="submit" value="Post" />
-            </form>
-        </div>
-    </div>
-        <div class="col-sm-6">
-          <div class="well">
+            <table>
+                <tr>
             <form id="new-post-form" action="/posts/img" method="post" enctype="multipart/form-data">
-            <label for="image">Post New Image: </label>
-            <input id="image" type="file" name="image" value="" />
-            <input id="submit" type="submit" value="Post" />
+            <th><label for="message">Create New Post :</label></th>
+            <th><input id="message" type="text" name="message" size="40" value="" placeholder="Type post message here.."/></th>
+           <td> You can also post an Image, Click button to select image file ==>  </td>
+          
+            <td><input id="image" type="file" name="image" value="" /></td>
+            <th><input id="submit" type="submit" value="Post" /></th>
             </form>
+                 </tr>
+            </table>
         </div>
     </div>
 </div>
 
 
 <ul class="posts">
-  {{#each posts}}
+  {{#each  posts}}
 <div class="row">
         <div class="col-sm-1">
           <div class="well">
-           <img src="data:image/png;base64,{{this.image}}" class="img-circle" height="55" width="55" alt="Avatar">
+           <center><img src="data:image/png;base64,{{this.image}}" class="img-circle" height="55" width="55" alt="Avatar"></center>
           <center><p><b>{{this.name}}</b></p></center>
           </div>
         </div>
         <div class="col-sm-8">
           <div class="well">
             <img src="data:image/png;base64,{{this.newImage}}"   alt="">
-            <p>{{this.message}}</p>
+            <h4><p>{{this.message}}</p></h4>
             <div><button onclick="actOnPost(event);" data-post-id="{{ this._id }}">Like</button>
             <span id="likes-count-{{ this._id }}">{{ this.likes_count }}</span></div>
           </div>
@@ -81,6 +79,7 @@
 <!-- Script for like button  -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+       
         var updatePostStats = {
             Like: function (postId) {
                 document.querySelector('#likes-count-' + postId).textContent++;

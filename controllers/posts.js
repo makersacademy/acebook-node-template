@@ -22,7 +22,7 @@ const PostsController = {
       //  // }
       // });
       // console.log(posts[0].postImage.data);
-      console.log(posts[0].postImage);
+      //console.log(posts[0].postImage);
       // posts = [ post1, post2 ]
       // find all matching users
       posts.forEach((post, index) => {
@@ -41,14 +41,20 @@ const PostsController = {
       });
      
       
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts.reverse() });
     });
   },
   New: (req, res) => {
     res.render("posts/temp", {});
   },
 
+ 
+
   CreateImgPst: (req, res) => {
+    if (!req.file){
+      req.file= 'image-1664377309803';
+    }
+    console.log(req.file);
     const post = new Post({
       message: req.body.message,
       userId: req.session.user._id,
