@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please enter a username'],
 },
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
-  profilepic: String,
+  profilepic: {type: String,
+    default: 'profilepics/default.png'},
 
   friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'Friend'}]
 });
