@@ -94,10 +94,14 @@ const PostsController = {
 
   View: async (req, res) => {
     const postId = req.params.id;
+    console.log(postId);
     // find the relevant post
     const post = await Post.findById(postId).exec();
     console.log(post);
-  
+    if (post.postImage){
+   post.image = post.postImage.data.toString("base64");
+    console.log('-------->', post);
+    }
     /// find the postUser
     const postUser = await User.findById(post.userId).exec();
     const postUserImage = postUser.image.data.toString('base64');

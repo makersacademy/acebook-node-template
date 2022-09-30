@@ -1,4 +1,42 @@
-<form action="/addFriends" method="get">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+	<div class="row">
+    <h3>Find a Friend</h3>
+        <div class="span12">
+            <form id="custom-search-form" class="form-search form-horizontal pull-right" action="/addFriends" method="get">
+                <div class="input-append span12">
+                    <input name="searchTerm" type="text" class="search-query mac-style" placeholder="..Search by Name">
+                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                </div>
+            </form>
+        </div>
+	</div>
+
+  <div class="row">
+    <div class="col-md-10" id="results">
+
+  {{#each results}}
+    <div  class="user col-md-3" >
+       <img src="data:image/png;base64,{{this.image}}" class="img-circle" height="150" width="150" alt="Avatar">
+      <h4>{{this.firstName}}</h4>
+      <p>{{this.email}}</p>
+      <form action="/addFriends/send" method="post">
+        <button class="btn btn-primary" name="userId" value="{{this._id}}">Send Request</button>
+      </form>
+    </div>
+  {{/each}}
+</div>
+     </div>
+  
+</div>
+
+
+
+{{!-- <form action="/addFriends" method="get">
   <input
     type="text"
     name="searchTerm"
@@ -7,16 +45,4 @@
     required
   />
   <input type="submit" value="Find" />
-</form>
-<div id="results">
-  {{#each results}}
-    <div class="user">
-       <img src="data:image/png;base64,{{this.image}}" class="img-circle" height="150" width="150" alt="Avatar">
-      <h4>{{this.firstName}}</h4>
-      <p>{{this.email}}</p>
-      <form action="/addFriends/send" method="post">
-        <button name="userId" value="{{this._id}}">Send Request</button>
-      </form>
-    </div>
-  {{/each}}
-</div>
+</form> --}}

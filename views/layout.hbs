@@ -9,19 +9,16 @@
       <div class="topnav">
         <h1>Acebook</h1>
         <a class="active" href="/myprofile">MyProfile</a>
-        <a href="/posts">Posts</a>
-        <a href="posts/new">Create a new post</a>
-        <a href="/">placeholder</a>
-        <a href="/">placeholder</a>
+        <a href="/posts">Timeline</a>
+        <a href="/addFriends">Find Friends</a>
         <a href="/sessions/delete">Log out</a>
         
       </div>
     {{else}}
       <div class="topnav">
         <h1>Acebook</h1>
-        <a href="/sessions/new">Log in</a>
-        <a href="/users/new">Create Account</a>
-        <a href="">placeholder</a>
+        {{!-- <a href="/sessions/new">Log in</a>
+        <a href="/users/new">Create Account</a> --}}
       </div>
     {{/if}}
     {{{body}}}
