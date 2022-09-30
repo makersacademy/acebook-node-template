@@ -14,6 +14,8 @@
       <img src="data:image/png;base64, {{this.image}}" alt="profile pic" />
       <h4>{{this.firstName}}</h4>
       <p>{{this.email}}</p>
+      <img src="data:image/png;base64,{{this.image}}"  height="150" width="150" alt="Avatar">
+       <p>{{this.image}}</p>
       <form action="/addFriends/send" method="post">
         <button name="userId" value="{{this._id}}">Send Request</button>
       </form>

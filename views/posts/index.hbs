@@ -1,7 +1,6 @@
 <!-- library for like -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <h1>Timeline</h1>
-
 {{!-- Adding new post on the same posts page --}}
 <div class="row">
     <div class="col-sm-12">
@@ -9,12 +8,15 @@
             <table>
                 <tr>
             <form id="new-post-form" action="/posts/img" method="post" enctype="multipart/form-data">
+            <h4>Welcome {{userName}}</h4>
+            <th><center><img src="data:image/png;base64,{{userImage}}"  height="150" width="150" alt="Avatar"></center></th>
+            
             <th><label for="message">Create New Post :</label></th>
             <th><input id="message" type="text" name="message" size="40" value="" placeholder="Type post message here.."/></th>
            <td> You can also post an Image, Click button to select image file ==>  </td>
           
-            <td><input id="image" type="file" name="image" value="" /></td>
-            <th><input id="submit" type="submit" value="Post" /></th>
+            <th><input id="image" type="file" name="image" value="" /></hd>
+            <th><input id="submitPost" type="submit" value="Post" /></th>
             </form>
                  </tr>
             </table>
@@ -34,18 +36,20 @@
         </div>
         <div class="col-sm-8">
           <div class="well">
+            <div class="timeAgo">Posted - {{this.newTime}}</div>
             <img src="data:image/png;base64,{{this.newImage}}"   alt="">
             <h4><p>{{this.message}}</p></h4>
             <div><button onclick="actOnPost(event);" data-post-id="{{ this._id }}">Like</button>
             <span id="likes-count-{{ this._id }}">{{ this.likes_count }}</span></div>
+            
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
 
-            <form action="/posts/{{post._id}}" method="post">
+            <form id="new-comment-form" action="/posts/{{this._id}}" method="post">
             <input type="text" name="newComment" id="newComment" placeholder="Add new comment here.."/>
-            <input type="submit" value="Add Comment" />
+            <input id="submitComment" type="submit" value="Add Comment" />
             </form>
 
 

@@ -1,7 +1,32 @@
-<form id="new-session-form" action="/sessions" method="post">
+
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="login">
+<div class="span3 well">
+      <legend>Login</legend>
+    <form accept-charset="UTF-8" id="new-session-form" action="/sessions" method="post">
+		<input class="span3" name="email" placeholder="Enter email" type="text"> 
+        <input class="span3" name="password" placeholder="Password" type="password"> 
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+    <p>
+     New to Acebook? <a class="new-post-link" href="/users/new">Sign up!</a> 
+    </p>
+</div>
+</div>
+
+
+
+
+{{!-- <form id="new-session-form" action="/sessions" method="post">
   <label for="email">Email: </label>
+
+
   <input id="email" type="email" name="email" value="" />
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="" />
   <input id="submit" type="submit" value="Submit" />
-</form>
+</form> --}}

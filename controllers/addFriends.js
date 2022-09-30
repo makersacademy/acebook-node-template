@@ -21,6 +21,7 @@ const addFriendsController = {
         .filter((user) => user._id != req.session.user._id);
     }
 
+
     res.render("addFriends/index", { results: results });
   },
   Send: async (req, res) => {

@@ -4,44 +4,45 @@ const Comment = require("../models/comment");
 const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
-// const { localsAsTemplateData } = require("hbs");
-// const { syncBuiltinESMExports } = require("module");
-// const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+const timeFcn = require("../public/javascripts/timeAgo");
+
 
 const PostsController = {
-  Index: (req, res) => {
+  Index: async (req, res) => {
+    var userImage = 'Image';
+    var userName = 'Name';
     // find all posts
-    Post.find((err, posts) => {
+    if (req.session.user){
+    await User.findById(req.session.user._id).then((user) => {
+      userImage = user.image.data.toString("base64");
+      userName =user.firstName; 
+    
+   }); 
+  }
+    await Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-      
-      // posts.forEach((post, Index) => {
-      //   //if (post.postImage) {
-      //   posts[Index].postImage = post.postImage.data.toString("base64");
-      //  // }
-      // });
-      // console.log(posts[0].postImage.data);
-      //console.log(posts[0].postImage);
-      // posts = [ post1, post2 ]
-      // find all matching users
+      posts = posts.reverse();
       posts.forEach((post, index) => {
         User.findById(post.userId).then((user) => {
           // 1. convert image into base 64 and save in post
           //console.log(user);
+          if (user.image){
           posts[index].image = user.image.data.toString("base64");
-
+        }
           // 2. save name in post
           posts[index].name = user.firstName;
         });
         if (post.postImage.data) {
         posts[index].newImage = post.postImage.data.toString("base64");
-        //console.log(posts[index].postImage); 
+        posts[index].newTime = timeFcn(post.date);
+        //console.log(posts[index].newTime); 
+        //console.log(posts[index].postImage.data); 
         }
       });
-     
-      
-      res.render("posts/index", { posts: posts.reverse() });
+      //console.log(userImage);
+      res.render("posts/index", { posts: posts, userImage: userImage, userName: userName});
     });
   },
   New: (req, res) => {
@@ -52,7 +53,7 @@ const PostsController = {
 
   CreateImgPst: (req, res) => {
     if (!req.file){
-      req.file= 'image-1664377309803';
+      req.file= 'undefined';
     }
     console.log(req.file);
     const post = new Post({
@@ -99,6 +100,13 @@ const PostsController = {
         res.redirect("/posts");
       } else {
         Comment.find({ postId: postId }).then((comments) => {
+          console.log(comments);
+//--------------------
+      comments.forEach((comment, index) => {
+                comments[index].newCommentTime = timeFcn(comment.date);
+
+      });
+          //------------
           res.render("posts/post", {
             post: post,
             comments: comments,

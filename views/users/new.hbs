@@ -1,10 +1,50 @@
-<form
+
+
+
+
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="login">
+<div class="span3 well">
+      <legend>Signup for new account!</legend>
+    <form accept-charset="UTF-8" id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
+        <label for="firstName">Name: </label>
+        <input class="span3" id="firstName" type="firstName" name="firstName" placeholder="Enter Name" value="" />
+        <label for="email">Email: </label>
+		    <input class="span3" id="email" name="email" placeholder="Enter email" type="email" value="" >
+        <label for="password">Password: </label> 
+        <input class="span3" id="password" name="password" placeholder="Password" type="password" value="">
+        <label for="image">Upload Image: </label>
+        <input class="span3" id="image" type="file" name="image" value="" /> 
+        <button class="btn btn-primary" type="submit">SignUp</button>
+    </form>
+    <p>
+     Already have an account? <a class="new-post-link" href="/sessions/new">Login</a> 
+    </p>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{{!-- <form
   id="new-user-form"
   action="/users"
   method="post"
   enctype="multipart/form-data"
 >
   <label for="firstName">First Name: </label>
+
+  
   <input id="firstName" type="firstName" name="firstName" value="" />
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="" />
@@ -13,4 +53,4 @@
   <label for="image">Image: </label>
   <input id="image" type="file" name="image" value="" />
   <input id="submit" type="submit" value="Submit" />
-</form>
+</form> --}}

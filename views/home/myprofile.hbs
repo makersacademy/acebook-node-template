@@ -1,13 +1,14 @@
 <div>
   <h2>Name: {{user.firstName}}</h2>
   <h3>Email: {{user.email}}</h3>
+  <img src="data:image/png;base64,{{profileImage}}"  height="150" width="150" alt="Avatar">
 </div>
 
 <div id="friends">
   <h2>FRIENDS</h2>
   <ul>
     {{#each friends}}
-      <li>{{this.name}} - {{this.email}}</li>
+      <li>{{this.firstName}} - {{this.email}}</li>
     {{/each}}
   </ul>
 </div>

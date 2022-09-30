@@ -4,7 +4,7 @@ const HomeController = {
   // Index: (req, res) => {
   //   res.render("home/index", { title: "Acebook" });
   // },
-  MyProfile: (req, res) => {
+  MyProfile: async (req, res) => {
     // check if logged in
     if (!req.session.user) {
       // if they are not logged in
@@ -13,7 +13,10 @@ const HomeController = {
       // if they are logged in
 
       // 1) look for their updated user model
-      User.findOne({ _id: req.session.user._id }).then((user) => {
+      var profileImage = [];
+     await User.findOne({ _id: req.session.user._id }).then((user) => {
+        profileImage= user.image.data.toString("base64");
+        console.log(profileImage);
         req.session.user = user;
       });
 
@@ -46,6 +49,7 @@ const HomeController = {
         friends: friends,
         sent: sent,
         received: received,
+        profileImage: profileImage
       });
     }
   },
