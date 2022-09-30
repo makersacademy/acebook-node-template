@@ -12,7 +12,7 @@
 <br>
 <div class="card text-center w-75">
   <div class="card-header">
-    <h5>USER: <a href="/users/profile/{{this.user._id}}">{{this.username}}</a></h5>
+    <h5>USER: <a href="/users/profile/{{this.user._id}}"> {{this.username}}</a></h5>
     <img id="profilepic" src="{{user.profilepic}}">
   </div>
   <div class="card-body">
@@ -27,6 +27,13 @@
   <form class="card-title" method="POST" action="/posts/{{this._id}}/delete?_method=DELETE">
     <input class="form-control me-2" type="submit" value="Delete">
   </form>
+    {{#if this.isMine}}
+          <form class="card-title" method="POST" action="/posts/{{this._id}}/delete?_method=DELETE">
+            <input class="form-control me-2" type="submit" value="Delete">
+          </form>
+    {{else}}
+          <br>
+    {{/if}}
   
   </div>
 {{/each}}

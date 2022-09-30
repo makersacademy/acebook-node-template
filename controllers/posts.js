@@ -9,6 +9,9 @@ const PostsController = {
     let comments = await Comment.find();
     posts.forEach( (post) => {
       post.commentCount = 0;
+      if (String(req.session.user._id) === String(post.user._id)) {
+        post.isMine = true;
+      }
       comments.forEach((comment) => {
 
         if (String(comment.post) == String(post._id)){
@@ -55,7 +58,7 @@ const PostsController = {
     var postId = req.params.postId;
     await Post.findByIdAndUpdate(postId, {$inc:{likes: 1}}).exec()
     res.redirect('back');
-    },
+    },  
   Destroy: async (req, res) => {
     console.log("bonjour")
     var postId = req.params.postId;
@@ -64,7 +67,9 @@ const PostsController = {
     await Post.findByIdAndDelete(postId);
     await Comment.find({post: postId}).remove().exec();
     res.redirect('/posts')
-  }};
+  }
+
+};
 
   
 
