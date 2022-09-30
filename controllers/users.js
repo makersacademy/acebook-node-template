@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
-const multer = require("multer");
 
 const UsersController = {
   New: (req, res) => {
@@ -21,7 +20,6 @@ const UsersController = {
         contentType: "image/png",
       },
     };
-    //console.log(obj);
     const user = new User(obj);
 
     user.save((err) => {

@@ -1,5 +1,7 @@
 const User = require("../models/user");
 
+const User = require("../models/user");
+
 const HomeController = {
   // Index: (req, res) => {
   //   res.render("home/index", { title: "Acebook" });
