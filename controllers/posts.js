@@ -92,28 +92,45 @@ const PostsController = {
     });
   },
 
-  View: (req, res) => {
+  View: async (req, res) => {
     const postId = req.params.id;
-
-    Post.findOne({ _id: postId }).then((post) => {
-      if (!post) {
-        res.redirect("/posts");
-      } else {
-        Comment.find({ postId: postId }).then((comments) => {
-          console.log(comments);
-//--------------------
-      comments.forEach((comment, index) => {
-                comments[index].newCommentTime = timeFcn(comment.date);
-
-      });
-          //------------
-          res.render("posts/post", {
-            post: post,
-            comments: comments,
-          });
-        });
-      }
+    // find the relevant post
+    const post = await Post.findById(postId).exec();
+    console.log(post);
+  
+    /// find the postUser
+    const postUser = await User.findById(post.userId).exec();
+    const postUserImage = postUser.image.data.toString('base64');
+  
+    // find the relevant comments
+    let comments = await Comment.find(
+      { postId: postId }
+    ).exec();
+    comments = comments.reverse()
+    console.log('before', comments);
+    comments.forEach((comment, i) => {
+      comments[i].time = timeFcn(comment.date);
     });
+    console.log('after', comments);
+  
+    // find the matching comment users
+    const users = await Promise.all(comments.map(async (comment) => {
+      const foundUser = await User.findById(comment.userId).exec();
+      return foundUser;
+    }));
+    console.log('users', users);
+    users.forEach((user, i) => {
+      comments[i].user = {
+      firstName: user.firstName, image: user.image.data.toString('base64')
+      };
+    });
+  
+    res.render("posts/post", {
+      post: post,
+      postUser: postUser,
+      postUserImage: postUserImage,
+      comments: comments,
+    });  
   },
   CreateComment: (req, res) => {
     // req.body = { newComment: 'comment from form' }
@@ -125,6 +142,7 @@ const PostsController = {
     const comment = new Comment({
       message: req.body.newComment,
       postId: req.params.id,
+      userId: req.session.user._id
     });
 
     comment.save((err) => {
