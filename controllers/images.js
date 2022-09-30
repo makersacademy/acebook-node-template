@@ -31,29 +31,21 @@ const ImagesController = {
   },
 
   Create: (req, res, next) => {
-    var multer = require('multer');
-    var storage = multer.diskStorage({
-        destination: (req, file, cb) => {
-            cb(null, 'public/uploads')
-        },
-        filename: (req, file, cb) => {
-            cb(null, file.fieldname + '-' + Date.now())
-        }
-    });
-    var upload = multer({ storage: storage });
+    console.log("########### 4 ###########")
     var obj = {
         name: req.body.name,
         
         link: path.join('uploads/' + req.file.filename)
-        
+       
     }
     Image.create(obj, (err, item) => {
         if (err) {
             console.log(err);
         }
         else {
+            console.log("########### 5 ###########")
             item.save();
-            res.redirect('/images/all');
+            next();
         }
     });
   }
