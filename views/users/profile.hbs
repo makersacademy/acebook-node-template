@@ -11,7 +11,7 @@
   <div class="card-body">
     <p class="card-title"><b>Message:</b> {{this.message}} </p>
     <p class="card-title"><b>Likes:</b> {{this.likes}} </p>
-    <form action="/posts/{{this._id}}/like" method="post"><button type="submit">Like!</button></form>
+    <form action="/posts/{{this._id}}/like" method="post"><button type="submit" class="btn btn-outline-dark">Like!</button></form>
       {{!-- <p class="card-text">Comment</p> --}}
     </div>
     <p class="card-title"><a class="comments card-title" href="/posts/{{this._id}}">x comments</a></p>
