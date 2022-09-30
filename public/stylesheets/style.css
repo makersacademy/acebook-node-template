@@ -28,6 +28,11 @@ body {
 
 a {
   color: #00b7ff;
+
+}
+.topnav a:hover {
+  color:#f2f2f2; 
+
 }
 
 .login {
@@ -45,3 +50,24 @@ a {
   align-items: center;
   color: rgb(43, 153, 226);
 }
+
+.user {
+  border: 2px solid green;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.post {
+  padding-top: 15px;
+}
+/* .row2 {
+  display: table;
+
+}
+.column2 {
+flex: 2;
+  float: left;
+  width: 100%;
+  border: 2px solid green;
+} */

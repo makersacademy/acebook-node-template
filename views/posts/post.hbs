@@ -1,18 +1,70 @@
-<h1>{{post.message}}</h1>
+<link rel="stylesheet" href="/stylesheets/post.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-{{! comments go here }}
-<ul>
-  {{#each comments}}
-    <li>{{this.message}} - {{this.newCommentTime}}</li>
-  {{/each}}
-</ul>
+{{!-- Original post --}}
+<div class="container post">
+  <div class="col-md-2 col-sm-2 hidden-xs">
+  <figure class="thumbnail">
+    <img height="100" width="100" class="img-responsive" src="data:image/png;base64,{{postUserImage}}" />
+    <figcaption class="text-center">{{postUser.firstName}}</figcaption>
+  </figure>
+</div>
+<div class="comment-post">
+  <h4>
+    {{post.message}}
+  </h4>
+ <img height="300" class="img-responsive" src="data:image/png;base64,{{post.image}}" /> 
+</div>
+</div>
 
-<form action="/posts/{{post._id}}" method="post">
-  <input
-    type="text"
-    name="newComment"
-    id="newComment"
-    placeholder="Add new comment here.."
-  />
-  <input type="submit" value="Submit" />
-</form>
+ 
+{{!-- comments section --}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      
+      <h2 class="page-header">Comments</h2>
+        <section class="comment-list">
+          {{!-- New comment form --}}
+          <form action="/posts/{{post._id}}" method="post">
+            <input
+              type="text"
+              name="newComment"
+              id="newComment"
+              placeholder="Add new comment here.."
+            />
+            <input type="submit" value="Submit" />
+          </form><br>
+           
+          {{#each comments }}
+            <article class="row">
+            {{!-- div with user image --}}
+            <div class="col-md-2 col-sm-2 hidden-xs">
+              <figure class="thumbnail">
+                {{!-- put image.data.toString('base64') of user in thise img tag --}}
+                <img class="img-responsive" src="data:image/png;base64,{{this.user.image}}" />
+                {{!-- put firstName of user in thise img tag --}}
+                <figcaption class="text-center">{{this.user.firstName}}</figcaption>
+              </figure>
+            </div>
+            {{!-- div with comment stuff --}}
+            <div class="col-md-10 col-sm-10">
+              <div class="panel panel-default arrow left">
+                <div class="panel-body">
+                  <header class="text-left">
+                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>{{this.time}}</time>
+                  </header>
+                  <div class="comment-post">
+                    <p>{{this.message}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          {{/each}}
+        </section>
+    </div>
+  </div>
+</div>
