@@ -7,20 +7,25 @@
         <form action="/account/uploadProfilePic" method="POST" enctype="multipart/form-data">
             <div>
                 <label for="name">Image Title</label>
+                <br>
                 <input type="text" id="name" placeholder="Name" 
                        value="" name="name" required>
             </div>
+            <br>
             <div>
                 <label for="desc">Image Description</label>
+                <br>
                 <textarea id="desc" name="desc" value="" rows="2" 
                           placeholder="Description" required>
                 </textarea>
             </div>
+            <br>
             <div>
                 <label for="image">Upload Image</label>
                 <input type="file" id="image" 
                        name="image" value="" required>
             </div>
+            <br>
             <div>
                 <button type="submit">Submit</button>
             </div>

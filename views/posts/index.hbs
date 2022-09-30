@@ -23,7 +23,7 @@
     <p class="card-title"><a class="comments card-title" href="/posts/{{this._id}}">{{this.commentCount}} comments</a></p>
     {{#if this.isMine}}
           <form class="card-title" method="POST" action="/posts/{{this._id}}/delete?_method=DELETE">
-            <input class="form-control me-2" type="submit" value="Delete">
+            <input class="form-control me-2" id ="delete-button" type="submit" value="Delete">
           </form>
     {{else}}
           <br>

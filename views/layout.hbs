@@ -18,6 +18,11 @@
           <a class="nav-link active text-dark" href='/posts'> Timeline </a>
       </li>
       {{/unless}}
+      {{#unless isProfile }}
+      <li class="nav-item text-dark">
+          <a class="nav-link active text-dark" href='/users/profile/{{this._id}}'> Profile</a>
+      </li>
+      {{/unless}}
       {{#unless account }}
       <li class="nav-item text-dark">
           <a class="nav-link active text-dark" href='/account'> Account Page</a>

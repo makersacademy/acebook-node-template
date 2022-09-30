@@ -1,9 +1,10 @@
 <div class="body_not_navbar">
 
 <h1> {{user.username}}'s Profile Page</h1>
+<br>
 {{#each posts}}
 <br>
-<div class="card text-center w-75">
+<div class="card text-center w-75 border-light mb-3">
   <div class="card-header">
     <h5>USER: <a href="/users/profile/{{this.user._id}}">{{this.username}}</a></h5>
   </div>
