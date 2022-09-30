@@ -55,8 +55,7 @@ body {
 .about {
   text-align: center;
   padding: 5px;
-  position: center; 
-  margin-left: 38px;
+  position: center;
   margin-right: 38px;
   color: #fff;
   background-color: #084523;
@@ -292,6 +291,17 @@ li{
   float: right;
   padding: 10px;
   margin: auto;
+}
+
+.demo-notes{
+  padding: 5px;
+  padding-left: 100px;
+  position: center; 
+  margin-left: 38px;
+  margin-right: 38px;
+  font-size: x-large;
+  color: #fff;
+  background-color: rgba(17, 143, 72, 0.95);
 }
 
 .posts{
