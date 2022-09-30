@@ -5,8 +5,11 @@ var path = require('path')
 require('dotenv/config')
 
 const AccountController = {
-    Index: (req, res) => {
-      res.render("account/index", { title: "Account Page" , signedIn: req.session.signedIn});
+    Index: async (req, res) => {
+    req.session.user = await User.findById(req.session.user._id).populate({path: 'friends', populate : {path: 'recipient'}});
+    const incomingRequests = req.session.user.friends.filter(f => f.status === 2);
+    await incomingRequests
+    res.render("account/index", { title: "Account Page" , signedIn: req.session.signedIn, currentUser: req.session.user, requests:incomingRequests});
     },
     Profilepic: (req, res) => {
 
@@ -23,7 +26,7 @@ const AccountController = {
 
       var obj = {
           name: req.body.name,
-          
+
           link: path.join('profilepics/' + req.file.filename)
       }
       Image.create(obj, async (err, item) => {
@@ -32,7 +35,6 @@ const AccountController = {
           }
           else {
               item.save();
-              console.log(req.session.user)
               const user = await User.findById(req.session.user._id);
               await User.updateOne(user, { $set: { profilepic: obj.link } });
             //   user.profilepic = obj.link
@@ -42,5 +44,5 @@ const AccountController = {
       });
     }
   };
-  
+
   module.exports = AccountController;

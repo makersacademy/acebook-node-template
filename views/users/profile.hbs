@@ -1,6 +1,33 @@
 <div class="body_not_navbar">
 
 <h1> {{user.username}}'s Profile Page</h1>
+{{#if notFriends}}
+  <form action="/users/profile/{{user._id}}/add" method="post">
+      <input type="submit" value="Add friend" />
+  </form>
+{{/if}}
+{{#if areFriends}}
+  <form action="/users/{{user._id}}/rejectRequest" method="post">
+      <input type="submit" value="Remove friend" />
+  </form>
+{{/if}}
+{{#if pendingFriend}}
+ <p>Friend request pending...</p>
+{{/if}}
+{{#if requestedFriend}}
+  <form action="/users/{{user._id}}/acceptRequest" method="post">
+      <input type="submit" value="Accept friend" />
+  </form>
+{{/if}}
+<br />
+
+
+  {{#each friendsWhoAccepted}}
+    <div class="friends"><img class="friend-profile-pic" src="/{{this.recipient.profilepic}}">{{this.recipient.username}} </div> <br >
+  {{/each}}
+  {{#each acceptedFriends}}
+    <div class="friends"><img class="friend-profile-pic" src="/{{this.requester.profilepic}}"> {{this.requester.username}}</div> <br >
+  {{/each}}
 {{#each posts}}
 <br>
 <div class="card text-center w-75">
