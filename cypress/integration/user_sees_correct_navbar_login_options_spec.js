@@ -1,7 +1,7 @@
 describe("Home Page", () => {
   it("has a title", () => {
     cy.visit("/");
-    cy.get(".title").should("contain", "Acebook");
+    cy.get('div[class="welcome"]').find("img").should('be.visible');
   });
 
   it ("it has a login button that can be clicked", () => {

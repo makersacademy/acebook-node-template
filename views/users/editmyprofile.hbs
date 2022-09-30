@@ -7,21 +7,26 @@
 <br>
 <br>
 
-<h1>Edit your profile</h1>
+<div class="edit-profile-title">
+  <h1>Edit your profile</h1>
+</div>
+<div class="form">
   <form id="editmyprofile-form" action="/users/account" method="post">
-  <label for="bio">Bio: </label>
-  <textarea id="bio" name="bio" rows="1" cols="25" minlength="2" maxlength="280" placeholder="Enter your bio here!" required></textarea>
-  <br>
-  <br>
-  <label for="location">Location: </label>
-  <input id="location" type="text" pattern="{4,16}"  name="location" value="" required>
-  <br>
-  <br>
-  <label for="age">Age: </label>
-  <input id="age" type="number" pattern="{1, 2}" name="age" value="" required>
-  <br>
-  <br>
-  <input id="submit" type="submit" value="Submit">
-</form>
+    <label for="bio" class="profile-field">Bio: </label>
+    <textarea id="bio" name="bio" rows="1" cols="25" minlength="2" maxlength="280" placeholder="Enter your bio here!" required></textarea>
+    <br>
+    <br>
+    <label for="location" class="profile-field">Location: </label>
+    <input id="location" type="text" pattern="{4,16}"  name="location" value="" required>
+    <br>
+    <br>
+    <label for="age" class="profile-field">Age: </label>
+    <input id="age" type="number" pattern="{1, 2}" name="age" value="" required>
+    <br>
+    <br>
+    <input id="submit" type="submit" value="Submit">
+  </form>
+</div>
+
 
 

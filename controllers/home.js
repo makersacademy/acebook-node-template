@@ -9,6 +9,10 @@ const HomeController = {
      }
   },
 
+  About: (req, res) => {
+   res.render("home/about", {title: "About", session: req.session});
+  },
+
   Error: (req, res) => {
    res.render("signinerror", {});
   },

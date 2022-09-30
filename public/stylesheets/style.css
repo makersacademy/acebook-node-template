@@ -15,9 +15,141 @@ body {
 }
 
 .logo{
-  width: 100px;
+  width: 200px;
   cursor: pointer;
 
+}
+
+.existing-account {
+  text-align: center;
+  color: #fff;
+  background-color: #084523;
+}
+
+.sign-in-failed {
+  text-align: center;
+  color: #fff;
+  background-color: #084523;
+}
+
+.my-profile {
+  text-align: center;
+  padding: 5px;
+  position: center; 
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(76, 175, 80, 0.95);
+}
+
+.profile-title {
+  text-align: center;
+  padding: 5px;
+  position: center; 
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color:  rgba(76, 175, 80, 0.95);
+}
+
+.about {
+  text-align: center;
+  padding: 5px;
+  position: center; 
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: #084523;
+}
+
+.edit-profile-title {
+  text-align: center;
+  padding: 2px;
+  position: center; 
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(76, 175, 80, 0.95);
+}
+
+::placeholder {
+  font: 14px  Helvetica, Arial, sans-serif;
+}
+
+.profile-form {
+  text-align: center;
+  padding: 5px;
+  position: center;
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(17, 143, 72, 0.95);
+}
+
+#editmyprofile-form {
+  text-align: center;
+  padding: 5px;
+  position: center;
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(17, 143, 72, 0.95);
+}
+
+.name {
+  background-color: #084523;
+  padding: 5px;
+}
+
+.edit-profile {
+  font-size: x-large;
+}
+
+.info {
+  text-align: center;
+  padding: 5px;
+  position: center; 
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(17, 143, 72, 0.95);
+}
+.profile-comment {
+  background-color: #118f48;
+  font-size: x-large;
+}
+
+p {
+  line-height: 1.4;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+
+a:link {
+  color: #084523;
+}
+
+a:visited {
+  color: #4B4A0B;
+}
+
+a:focus {
+  border-bottom: 1px solid;
+  background: #06CA74;
+}
+
+a:hover {
+  border-bottom: 1px solid;
+  background: #73BBBF;
+}
+
+a:active {
+  background: #05AB41;
+  color: #cdfeaa;
 }
 
 .navbar{
@@ -41,23 +173,70 @@ body {
 
 .signup{
   text-align: center;
-  margin: auto;
+  padding: 50px;
+  position: center;
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(17, 143, 72, 0.95);
+}
 
+.signup-field {
+  font-size: x-large;
 }
 
 .login{
   text-align: center;
-  margin: auto;
+  padding: 50px;
+  position: center;
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(17, 143, 72, 0.95);
+}
 
+.login-field {
+  font-size: x-large;
+}
+
+.profile-field{
+  font-size: x-large;
+}
+
+#new-post-form {
+  text-align: center;
+  padding: 5px;
+  position: center;
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(17, 143, 72, 0.95);
+}
+
+.message {
+  font-size: x-large;
+  padding: 50px;
+}
+
+.about-link {
+  text-align: left;
+  padding: 50px;
+  position: center;
+  margin-left: 38px;
+  margin-right: 38px;
+  color: #fff;
+  background-color: rgba(17, 143, 72, 0.95);
 }
 
 .welcome{
+  object-position: center top;
   text-align: center;
+  padding-top: 45px;
   margin: auto;
   font-size: 25px;
 }
 
- input[type=submit]{
+input[type=submit]{
   background-color: #084523; /* Green */
   border: none;
   color: white;
@@ -66,8 +245,46 @@ body {
   text-decoration: none;
   display: block;
   margin: auto;
-  font-size: 16px;
+  font-size: large;
   border: 1px solid black;
+}
+
+input[type=submit]:hover {
+  border-bottom: 1px solid;
+  background: #73BBBF;
+}
+
+#like-button {
+  background-color: #084523;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin: auto;
+  font-size: large;
+  border: 1px solid black;
+}
+
+#like-button:hover {
+  border-bottom: 1px solid;
+  background: #73BBBF;
+}
+
+.lead {
+  font-size: xx-large ;
+}
+
+.lead-date {
+  font-style: normal;
+  font-weight: lighter;
+  font-size: x-large;
+}
+
+#new-comment-form {
+  background-color: #118f48;
+  font-size: x-large;
 }
 
 li{
@@ -81,9 +298,4 @@ li{
   text-align: center;
   margin: auto;
   font-size: 25px;
-}
-
-w3-container w3-green{
-  padding: 14px 200px;
-
 }
