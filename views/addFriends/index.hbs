@@ -11,7 +11,7 @@
 <div id="results">
   {{#each results}}
     <div class="user">
-      <img src="data:image/png;base64, {{this.image}}" alt="profile pic" />
+       <img src="data:image/png;base64,{{this.image}}" class="img-circle" height="150" width="150" alt="Avatar">
       <h4>{{this.firstName}}</h4>
       <p>{{this.email}}</p>
       <form action="/addFriends/send" method="post">

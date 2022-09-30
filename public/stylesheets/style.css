@@ -7,6 +7,8 @@
   font-size: auto;
   padding: 14px 16px;
   height: auto;
+  /* justify-content: center; */
+  display: flex;
 }
 
 .topnav a {
@@ -16,13 +18,30 @@
   padding: 14px 16px;
   text-decoration: solid;
   font-size: 17px;
+  
 }
 
 body {
-  padding: 50px;
+  /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00b7ff;
+}
+
+.login {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}
+
+.timeAgo {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(43, 153, 226);
 }

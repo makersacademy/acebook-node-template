@@ -36,14 +36,15 @@ const UsersController = {
 
     User.find((err, users) => {
       if (err) {
-        console.log(err);
+        //console.log(err);
         res.status(500).send("An error occurred", err);
       } else {
-        console.log(users);
+        //console.log(users);
         // users = [ { name, email, ..., image: { data: 'weird string' } }, { name, email, ... }, ... ]
         const images = users.map((user) => {
           return { data: user.image.data.toString("base64") };
         });
+        console.log(images); 
         // images = [ { data: 'base64 string' }, { data: 'another base64 string'}, ... ]
         res.render("users/Image", { images: images });
       }

@@ -72,6 +72,13 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+//  function to check if file is uploaded
+// const fileChecker = (req, res ) => {
+//   if (!req.file.filename) {
+//     req.file.filename = "imagess";
+//   } 
+// };
+
 app.use(function (req, res, next) {
   res.locals.user = req.session.user;
   next();
@@ -79,7 +86,8 @@ app.use(function (req, res, next) {
 
 // route setup
 app.use("/", homeRouter);
-app.use("/posts", sessionChecker, postsRouter);
+app.use("/posts", upload.single("image"), sessionChecker,  postsRouter);
+//app.use("/imgPosts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", upload.single("image"), usersRouter);
 app.use("/addFriends", sessionChecker, addFriendsRouter);
