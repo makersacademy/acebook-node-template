@@ -1,12 +1,34 @@
 <div class="body_not_navbar">
   
 <h1> Create a new post</h1>
-<form id="new-post-form" action="/posts" method="post">
+<form id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
   <label for="message">Enter a message below: </label>
   <br>
   <input id="message" type="text" name="message" value="">
   <br>
   <br>
-  <input type="submit" value="Submit">
-</form>
 </div>
+<br>
+<br>
+<br>
+
+            <div>
+                <label for="name">Image Title</label>
+                <input type="text" id="name" placeholder="Name" 
+                       value="" name="name">
+            </div>
+            <div>
+                <label for="desc">Image Description</label>
+                <textarea id="desc" name="desc" value="" rows="2" 
+                          placeholder="Description">
+                </textarea>
+            </div>
+            <div>
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" 
+                       name="image" value="">
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>

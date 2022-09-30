@@ -35,12 +35,16 @@ const PostsController = {
     res.render("posts/new", {signedIn: req.session.signedIn});
   },
 
-  Create: (req, res) => {
+  Create: async (req, res) => {
+    console.log("########### 3 ###########")
     req.body.username = req.session.user.username;
     req.body.likes = 0;
     const post = new Post(req.body);
     post.user = req.session.user._id;
-    post.save((err) => {
+    if (req.file) {
+      post.image = req.file.filename;
+    }
+    await post.save((err) => {
       if (err) {
         throw err;
       }
