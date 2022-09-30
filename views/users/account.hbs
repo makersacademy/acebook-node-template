@@ -7,34 +7,43 @@
 <br>
 <br>
 
-<h1 class="title">My Profile page</h1>
-<div class="overflow-auto"></div>
-  <br><h3> <font size="+1"> <h1 class="name">{{users.first_name}} {{users.last_name}}</h1></font></h3>
-   <li>  
-     <a href="/users/editmyprofile" action="/users/editmyprofile" method='GET'>Edit my profile</a>
-  </li>
-  <h1>Bio: {{users.bio}} </h1>
-   <h1>Location: {{users.location}} </h1>
-    <h1>Age: {{users.age}} </h1>
-
-
-  <br><h3>Recent posts:</h3>
-{{#each users.posts}}
-  <p class="lead">{{this.message}}</p><p> on {{this.date}}
-      <form action="/posts/{{this._id}}/likes" method="post">
-        <button id= "like-button" type="submit">likes: {{this.likes.count}}</button>
-      </form>
-      <br>{{#each this.comments}}
-      {{this.message}} Posted by {{this.author_name}} on {{this.date}} </br>
+<div class="profile-title">
+  <h1>{{users.first_name}} {{users.last_name}}</h1> 
+  <h1 class="name">My Profile page</h1>
+  <a href="/users/editmyprofile" class="edit-profile" action="/users/editmyprofile" method='GET'>Edit my profile</a>
+</div>
+<br>
+<div class="my-profile">
+  <br> 
+  <h1 class="info">Bio: {{users.bio}}</h1>  
+  <h1 class="info">Location: {{users.location}}</h1>
+  <h1 class="info">Age: {{users.age}}</h1>
+  <br>
+  <h1>Recent posts:</h1>
+    {{#each users.posts}}
+      <br>
+      <p class="lead">{{this.message}}</p>
+      <p class="lead-date"> on {{this.date}}
+        <form action="/posts/{{this._id}}/likes" method="post">
+          <button id= "like-button" type="submit">likes: {{this.likes.count}}</button>
+        </form>
+      </p>
+        <br>
+        {{!-- lists comments here --}}
+        <div class="form">
+          <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
+            <label for="message">Comment: <br></label>
+            <input id="message" type="text" name="message" value="">
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      <br>            
+      {{#each this.comments}}
+      <br>
+      <div class="profile-comment">
+        {{this.message}} Posted by {{this.author_name}} on {{this.date}}</br>
+      </div>
       {{/each}}
-  {{!-- lists comments here --}}
-  <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
-    <label for="message">Comment: </label>
-    <input id="message" type="text" name="message" value="">
-    <input type="submit" value="Submit">
-  </form>
-    </div>
-    </form>
-    </div>
-    </form>
-  {{/each}}
+      <br>
+    {{/each}}
+</div>

@@ -2,51 +2,50 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <body>
     <nav id="navbar" class="navbar"> 
       <ul style="list-style: none;"class="posts">
-   <a href="/"> <img src="/stylesheets/LogoFaceA.png"  class="logo"></a>
-          {{#if userLoggedIn}}
-            <li>
-              <form action='/sessions?_method=DELETE' method='POST'>
-                <input type="submit" value="Log out">
-              </form>
-            </li>
-            <li>
-              <form action='/posts' method='GET'>
-                <input type="submit" value="Post Timeline">
-              </form>
-            </li> 
-            <li>
-              <form action='/posts/new' method='GET'>
-                <input type="submit" value="New post">
-              </form>
-            </li> 
-            <li>
-              <form action='/users/account' method='GET'>
-                <input type="submit" value="My Profile">
-              </form>
-            </li>                
-          {{else}}
-            <li>   
-              <br> 
-              <form action='/sessions/new' method='GET'>
-                <input type="submit" value="Log in">
-              </form>
-            </li>
-            <li>
-              <br>
-              <form action='/users/new' method='GET'>
-                <input type="submit" value="Sign up">
-              </form>
-            </li>   
-          {{/if}}
+        <a href="/"><img src="/stylesheets/LogoFaceA.png" class="logo"></a>
+        <a href="/about"><img src="/stylesheets/About.png" class="logo"></a>
+        {{#if userLoggedIn}}
+          <li>
+            <form action='/sessions?_method=DELETE' method='POST'>
+              <input type="submit" value="Log out">
+            </form>
+          </li>
+          <li>
+            <form action='/posts' method='GET'>
+              <input type="submit" value="Post Timeline">
+            </form>
+          </li> 
+          <li>
+            <form action='/posts/new' method='GET'>
+              <input type="submit" value="New post">
+            </form>
+          </li> 
+          <li>
+            <form action='/users/account' method='GET'>
+              <input type="submit" value="My Profile">
+            </form>
+          </li>                
+        {{else}}
+          <li>   
+            <br> 
+            <form action='/sessions/new' method='GET'>
+              <input type="submit" value="Log in">
+            </form>
+          </li>
+          <li>
+            <br>
+            <form action='/users/new' method='GET'>
+              <input type="submit" value="Sign up">
+            </form>
+          </li>   
+        {{/if}}
       </ul>
     </nav>
-
     {{{body}}}
   </body>
 </html>

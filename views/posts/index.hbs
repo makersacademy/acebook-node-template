@@ -7,37 +7,36 @@
 <br>
 <br>
 
-
-
-
-<ul class="posts">
-     <h1>Timeline</h1>
-    
-
-  {{#each posts}}
-    <div class="w3-panel w3-green w3-round-small">
-
- {{this.message}} by <a href="/users/{{this.author_id}}" action="/users/{{this.author_id}}" method='GET'> {{this.author_name}}</a></p> on {{this.date}}
-  
-      <form action="/posts/{{this._id}}/likes" method="post">
-        <button id= "like-button" type="submit">likes: {{this.likes.count}}</button>
-      </form>
+<div class="profile-title">
+  <h1>Timeline</h1>
+</div>
+<br>
+<div class="my-profile">
+  <ul class="posts">
+    {{#each posts}}
+      <p class="lead">{{this.message}}</p>
+      <p class="lead-author">by <a href="/users/{{this.author_id}}" action="/users/{{this.author_id}}" method='GET'>{{this.author_name}}</a></p>
+      <p class="lead-date"> on {{this.date}}
+        <form action="/posts/{{this._id}}/likes" method="post">
+          <button id= "like-button" type="submit">likes: {{this.likes.count}}</button>
+        </form>
+      </p>  
+        <br>
+        <div class="form">
+          <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
+            <label for="message">Comment: </label>
+            <textarea id="message" name="message" rows="1" cols="25" minlength="2" maxlength="280" placeholder="Enter your comment" required></textarea>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      <br>   
+      {{#each this.comments}}
       <br>
-      <form id="new-comment-form" action="/posts/{{this._id}}/comment" method="post">
-    <label for="message">Comment: </label>
-    <textarea id="message" name="message" rows="1" cols="25" minlength="2" maxlength="280"  placeholder="Enter your comment" required></textarea>
-    <input type="submit" value="Submit">
-  </form>
-      <br>{{#each this.comments}}
-          <div class="w3-panel w3-blue w3-round-small">
-
-      {{this.message}} Posted by {{this.author_name}} on {{this.date}} </br>
-       </div>
+      <div class="profile-comment">
+        {{this.message}} Posted by {{this.author_name}} on {{this.date}}</br>
+      </div>
       {{/each}}
-  {{!-- lists comments here --}}
-   </div>
-  {{/each}}
-</ul>
-
-
-
+      <br>
+    {{/each}}
+  </ul>
+</div>
