@@ -1,0 +1,44 @@
+<div class="body_not_navbar">
+  
+<h1>Comments</h1>
+
+<br>
+
+<h3> Add a comment</h3>
+<form id="new-comment-form" action="/comments/{{post._id}}" method="post">
+  <label for="comment">Add a comment below: </label>
+  <br>
+  <input id="comment" type="text" name="comment" value="">
+  <br>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<br>
+<div class="card text-center w-75">
+  <div class="card-header"> 
+    <h5>USER: {{post.username}}</h5>
+    <img id="profilepic" src="/{{post.user.profilepic}}">
+  </div>
+  <div class="card-body">
+    <p class="card-title"> MESSAGE: {{post.message}} </p>
+    {{!-- <p class="card-text">Comment</p> --}}
+  </div>
+</div>
+
+{{#each comments}}
+<br>
+<div class="card text-center w-75">
+  <div class="card-header"> 
+    <h5>User: {{this.username}}</h5>
+    <img id="profilepic" src="/{{this.user.profilepic}}">
+  </div>
+  <div class="card-body">
+    <p class="card-title"> Comment: {{this.comment}} </p>
+    {{!-- <p class="card-text">Comment</p> --}}
+  </div>
+</div>
+{{/each}}
+
+
+</div>

@@ -1,8 +1,16 @@
 const User = require("../models/user");
 
+
+const sessionChecker = (req, res, next) => {
+  if (!req.session.user && !req.cookies.user_sid) {
+    res.redirect("/sessions/new");
+  } else {
+    next();
+  }
+};
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", {signedIn: req.session.signedIn, isLoginPage: true});
   },
 
   Create: (req, res) => {
@@ -24,11 +32,12 @@ const SessionsController = {
 
   Destroy: (req, res) => {
     console.log("logging out");
-    if (req.session.user && req.cookies.user_sid) {
-      res.clearCookie("user_sid");
+    if (req.session.user) {
+      req.session.destroy();
     }
     res.redirect("/sessions/new");
-  },
+}
+
 };
 
 module.exports = SessionsController;
