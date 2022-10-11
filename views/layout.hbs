@@ -1,13 +1,23 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
+    <p>
+      <a href="/posts"> Acebook </a>
+      {{! redirects to log-in if not logged in}}
+      {{! https://handlebarsjs.com/guide/builtin-helpers.html }}
+      {{#if session.user}}
+        <a href="/posts/new"> Make a post </a>
+        <form action="/sessions?_method=DELETE" method="POST">
+          <input type="submit" value="Log Out" />
+        </form>
+      {{else}}
+        <a href="/users/new"> Log-in </a>
+        <a href="/sessions/new"> Sign-up </a>
+      {{/if}}
+    </p>
     {{{body}}}
   </body>
 </html>
