@@ -10,8 +10,7 @@ describe("Authentication", () => {
 
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#firstName").type("first name example");
-    cy.get("#lastName").type("exampleLastName");
+
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
