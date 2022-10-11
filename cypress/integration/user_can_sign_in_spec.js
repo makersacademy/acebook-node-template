@@ -15,4 +15,9 @@ describe("Authentication", () => {
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
   });
+  it("Sign in page has a new title", () => {
+    // sign up
+    cy.visit("/sessions/new");
+    cy.get('.title').should('contain', 'Sign in to Acebook');
+  });
 });

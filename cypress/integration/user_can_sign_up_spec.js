@@ -8,4 +8,17 @@ describe("Registration", () => {
 
     cy.url().should("include", "/sessions/new");
   });
+  
+  it("Shows a signup title", () => {
+    // sign up
+    cy.visit("/");
+    cy.get("#signup").click();
+
+    cy.url().should("include", "/users/new");
+  });
+  it("Sign up page has a new title", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get('.title').should('contain', 'Sign up to Acebook');
+  });
 });
