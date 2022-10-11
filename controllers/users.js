@@ -14,10 +14,7 @@ const UsersController = {
           return res
             .status(422)
             .send({ success: false, message: "Email already exists!" })
-            .redirect("/users/new");
         }
-        // Handle some other error
-        return res.status(422).send(err);
       }
       res.status(201).redirect("/posts");
     });
