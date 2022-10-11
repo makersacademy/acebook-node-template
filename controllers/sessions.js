@@ -1,3 +1,4 @@
+const session = require("express-session");
 const User = require("../models/user");
 
 const SessionsController = {
@@ -7,6 +8,7 @@ const SessionsController = {
 
   Create: (req, res) => {
     console.log("trying to log in");
+
     const email = req.body.email;
     const password = req.body.password;
 
