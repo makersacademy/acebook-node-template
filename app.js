@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const flash = require('connect-flash'); // ADDED
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -73,6 +74,13 @@ app.use((err, req, res) => {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+
+app.use(flash());
+
+app.get('/sessions/new', (req, res) => {
+  req.flash('message', 'Invalid Details');
+  res.redirect('/sessions/new');
 });
 
 module.exports = app;
