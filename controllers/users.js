@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {});
+    res.render("users/new", {title: 'Sign up to Acebook', layout: 'signup'});
   },
 
   Create: (req, res) => {
@@ -11,7 +11,7 @@ const UsersController = {
       if (err) {
         throw err;
       }
-      res.status(201).redirect("/posts");
+      res.status(201).redirect("/sessions/new");
     });
   },
 };
