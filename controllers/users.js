@@ -13,7 +13,7 @@ const UsersController = {
           // Duplicate email
           return res
             .status(422)
-            .send({ success: false, message: "Email already exists!" })
+            .render("error", { message: "This email already exists" });
         }
       }
       res.status(201).redirect("/posts");
