@@ -9,15 +9,15 @@ describe("Timeline", () => {
 
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#name").type("someone");
     cy.get("#email").type("someone1@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();   
-
+    cy.contains("Make a post").click(); 
+    cy.visit("/posts/new");
+      
     // we send data directly to the database instead of clicking the submit button
     cy.request('POST', '/posts/', {
       message: 'Body of test post new',
