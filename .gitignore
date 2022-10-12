@@ -65,6 +65,3 @@ typings/
 # cypress.io
 cypress/screenshots
 cypress/videos
-
-# package-lock
-package-lock.json
