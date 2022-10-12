@@ -5,11 +5,15 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const multer = require("multer");
+
+const Image = require("./models/image");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const uploadRouter = require("./routes/upload");
 
 const app = express();
 
@@ -59,7 +63,41 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+// storage for multer
+const Storage = multer.diskStorage({
+  destination: "uploads",
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({
+  storage: Storage,
+}).single("testImage");
+
+// image upload
+app.post("/upload", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const newImage = new Image({
+        name: req.body.name,
+        image: {
+          data: req.file.filename,
+          contentType: "image/png",
+        },
+      });
+      newImage
+        .save()
+        .then(() => res.send("successfully uploaded"))
+        .catch((err) => console.log(err));
+    }
+  });
+});
+
 // route setup
+app.use("/upload", uploadRouter);
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter); //sessionChecker used only for /posts
 app.use("/sessions", sessionsRouter);
