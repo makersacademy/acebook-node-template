@@ -1,7 +1,10 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li >{{this.message}} - {{this.createdAt}}</li>
+
+  <li > <div><!-- Username and profile picture -->{{this.createdAt}}</div>
+        <div>{{this.message}} <img src="https://fsymbols.com/images/heart.png" id="like-button"/> {{this.likes.length}}</div> 
+  </li>
   
   {{/each}}
 </ul>

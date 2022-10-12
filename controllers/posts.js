@@ -6,6 +6,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      
       res.render("posts/index", { posts: posts });
     }).sort({createdAt: -1}) ;
   },
