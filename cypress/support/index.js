@@ -17,4 +17,14 @@
 // import './commands'
 
 // Alternatively you can use CommonJS syntax:
-require('./commands')
+beforeEach(async () => {
+  // This runs prior to every test and clears all the data
+  await cy.task("resetDb");
+});
+
+// ran at the end of each specs
+after(() => {
+  cy.task("closeDbConnection");
+});
+
+require("./commands");
