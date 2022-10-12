@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
-
-const PostSchema = new mongoose.Schema({
-  message: String,},
+const Schema = mongoose.Schema;
+const PostSchema = new mongoose.Schema(
+  {
+    message: String,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
   { timestamps: true }
 );
 
