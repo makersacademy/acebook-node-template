@@ -14,9 +14,13 @@ describe("Timeline", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.get("#make-post").click();
+    cy.get("#make-post").click(); // get posts/new
 
+    // bad practice, doesn't test how website actually works, can't get session.user._id
     // we send data directly to the database instead of clicking the submit button
+    // use actual form submission instead as below and resolve date problem otherwise:
+    // cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    // cy.get("#new-post-form").submit();
     cy.request("POST", "/posts/", {
       message: "Body of test post new",
       createdAt: 1665497979886,
