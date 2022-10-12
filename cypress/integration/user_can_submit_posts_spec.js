@@ -1,8 +1,5 @@
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
-    
-
-    // cy.get('#date').should('have.value', '04/14/2021')
 
     // sign up
     cy.visit("/users/new");
@@ -29,7 +26,7 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Hi, guys!");
     cy.get("#new-post-form").submit();
 
-    cy.contains("li","Hi, guys!");
+    cy.get(".posts li").first().contains("Hi, guys!");
     
 
   });
