@@ -7,6 +7,7 @@ const PostSchema = new mongoose.Schema({
     default: () => Date.now(),
     immutable: true,
   },
+  // user_id: //populate - what to define in the schema
 });
 
 const Post = mongoose.model("Post", PostSchema);

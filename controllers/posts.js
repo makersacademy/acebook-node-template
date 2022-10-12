@@ -17,6 +17,10 @@ const PostsController = {
     const post = new Post(req.body);
     console.log(req.body);
     //add user to Post
+    // {
+    //   message: "string"
+    //   user_id: req.session.user.id
+    // }
     post.save((err) => {
       if (err) {
         throw err;
