@@ -6,8 +6,12 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      
-      res.render("posts/index", { posts: posts });
+      console.log('session when page is loaded');
+      console.log(req.session.user);
+      res.render("posts/index", {
+          posts: posts,
+          session: req.session
+      });
     }).sort({createdAt: -1}) ;
   },
   New: (req, res) => {
@@ -23,6 +27,21 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  Like: (req, res) => {
+    console.log(req.body.userId);
+    console.log(req.body.postId);
+    // req params passes in the user id & post id
+    // post id looks up the post and adds the user id to post.likes array
+    // let likedPost = Post.findById(req.params.postId);
+    // if (likedPost.likes.includes(req.params.userId)) {
+
+    // }
+    // check if the userId is already in the likes array, if not:
+    // likedPost.likes.push(req.params.userId);
+    // if it is in the array, remove it
+
+    res.status(201).redirect("/users/new");
+  }
 };
 
 module.exports = PostsController;
