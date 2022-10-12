@@ -1,7 +1,12 @@
-<form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
+<h1>AceBook</h1>
+<h2>Create account</h2>
+{{#if error}}
+  <div>{{ error }}</div>
+{{/if}}
+<form id="new-user-form" action="/users/new" method="post">
+  <div><input id="name" type="text" name="name" value="" placeholder="Name"></div>
+  <div><input id="email" type="email" name="email" value="" placeholder="Email"></div>
+  <div><input id="password1" type="password" name="password1" value="" placeholder="Password"></div>
+  <div><input id="password2" type="password" name="password2" value="" placeholder="Confirm Password"></div>
+  <div><input id="submit" type="submit" value="Sign Up!"></div>
 </form>

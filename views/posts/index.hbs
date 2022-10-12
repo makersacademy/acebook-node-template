@@ -1,11 +1,17 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li >{{this.message}} - {{this.createdAt}}</li>
-    <form method="POST" action="/posts/{{this._id}}">
-
-      <input type="submit" value="comment">
+  <div>
+    <li >{{this.message}} - {{this.createdAt}}</li>
+    <!-- create a comment on the post -->
+    <form id="new-comment-form" action="/posts/{{this._id}}" method="post">
+      <input id="message" type="text" name="message" value="" placeholder="Comment here">
+      <input type="submit" value="Submit">
     </form>
+    {{#each this.comments}}
+      <li>{{this.name}} - {{this.message}} - {{this.createdAt}}</li>
+    {{/each}}
+  </div>
   {{/each}}
 </ul>
 

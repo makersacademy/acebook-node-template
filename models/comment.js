@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
-const CommentSchema = new mongoose.Schema(
-  { message: String, name: String },
-  { timestamps: true }
-);
+const CommentSchema = new mongoose.Schema({
+  name: String,
+  message: String,
+  createdAt: Date,
+});
 
-const Comment = mongoose.model("Post", CommentSchema);
+const Comment = mongoose.model("Comment", CommentSchema);
 
 module.exports = Comment;

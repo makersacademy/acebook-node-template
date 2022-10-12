@@ -1,15 +1,25 @@
+// const User = require('../../models/user');
+// const Post = require('../../models/post');
+
 describe("Timeline", () => {
+  // beforeEach(() => {
+  //   User.collection.drop();
+  //   Post.collection.drop();
+  // });
+  
   it("can submit posts, when signed in, and view them", () => {
 
     // sign up
     cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
+    cy.get("#name").type("name");
+    cy.get("#email").type("someone5@example.com");
+    cy.get("#password1").type("password");
+    cy.get("#password2").type("password");
     cy.get("#submit").click();
 
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone4@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
