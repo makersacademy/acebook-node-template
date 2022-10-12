@@ -34,6 +34,7 @@
    4. Github forked repo: https://github.com/oahciy/acebook-priceless
    5. Github Makers master/main repo: https://github.com/makersacademy/acebook-node-template
    6. Miro board: https://miro.com/app/board/uXjVPPd0XIc=/
+   7. Trello board: https://trello.com/b/nq40fIRV/acebook
 
 
 ## ROLES: 
@@ -108,5 +109,6 @@ https://docs.google.com/spreadsheets/d/12W1ienkAIuIkCsyAgThxA8Il0xyo6a_CqvdKLII3
 3. Mongodb
    * Mongo overview, good intro
    * https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/
+
 
 ## MISC.
