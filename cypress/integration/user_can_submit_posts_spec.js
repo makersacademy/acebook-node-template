@@ -8,6 +8,7 @@ describe("Timeline", () => {
   // });
   
   it("can submit posts, when signed in, and view them", () => {
+
     // sign up
     cy.visit("/users/new");
     cy.get("#name").type("name");
@@ -22,13 +23,21 @@ describe("Timeline", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    // submit a post
+    // submit a post 
+
     cy.visit("/posts");
     cy.contains("New post").click();
 
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").find('[type="text"]').type("Hi, guys!");
+    cy.get("#new-post-form").submit();
+
+    cy.get(".posts li").first().contains("Hi, guys!");
+    
+
   });
 });
