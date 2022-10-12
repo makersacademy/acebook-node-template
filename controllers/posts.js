@@ -2,12 +2,12 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts)=> {
+    Post.find((err, posts) => {
       if (err) {
         throw err;
       }
       res.render("posts/index", { posts: posts });
-    }).sort({createdAt: -1}) ;
+    }).sort({ createdAt: -1 });
   },
   New: (req, res) => {
     res.render("posts/new", {});
@@ -21,6 +21,9 @@ const PostsController = {
 
       res.status(201).redirect("/posts");
     });
+  },
+  CreateComment: (req, res) => {
+    res.redirect("/users/new");
   },
 };
 

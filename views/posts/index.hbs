@@ -2,7 +2,10 @@
 <ul class="posts">
   {{#each posts}}
   <li >{{this.message}} - {{this.createdAt}}</li>
-  
+    <form method="POST" action="/posts/{{this._id}}">
+
+      <input type="submit" value="comment">
+    </form>
   {{/each}}
 </ul>
 
