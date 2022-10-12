@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now(),
     immutable: true,
-  }
+  },
 });
 
 const Post = mongoose.model("Post", PostSchema);
