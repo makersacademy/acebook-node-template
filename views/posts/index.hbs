@@ -5,7 +5,12 @@
     <li>{{this.message}}
       at
       {{this.createdAt}}
-      {{this.likes.length}} likes
+
+      by
+      {{this.user.firstName}}
+      {{this.user.lastName}}
+       {{this.likes.length}} likes
+
     </li>
     <label for="like"></label>
     <input id="like" type="submit" value="Like this post">

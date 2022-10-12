@@ -10,10 +10,11 @@ const PostsController = {
       }
 
       res.render("posts/index", { posts: posts.reverse(), user: session });
-    });
+    }).populate("user");
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    let session = req.session.user;
+    res.render("posts/new", { user: session });
   },
   Create: (req, res) => {
     const post = new Post(req.body);
