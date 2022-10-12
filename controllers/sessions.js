@@ -17,7 +17,6 @@ const SessionsController = {
         res.redirect("/sessions/new");
       } else {
         req.session.user = user; // user id will be in req.session.user.id
-        console.log(req.session);
         res.redirect("/posts");
       }
     });

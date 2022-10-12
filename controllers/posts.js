@@ -14,18 +14,14 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
-    console.log(req.body);
-    //add user to Post
-    // {
-    //   message: "string"
-    //   user_id: req.session.user.id
-    // }
+    const post = new Post({
+      message: req.body.message, // { message: "form field value" }
+      user_id: req.session.user._id, // session { user: {} }
+    });
     post.save((err) => {
       if (err) {
         throw err;
       }
-
       res.status(201).redirect("/posts");
     });
   },

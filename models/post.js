@@ -7,7 +7,11 @@ const PostSchema = new mongoose.Schema({
     default: () => Date.now(),
     immutable: true,
   },
-  // user_id: //populate - what to define in the schema
+  author: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 const Post = mongoose.model("Post", PostSchema);
