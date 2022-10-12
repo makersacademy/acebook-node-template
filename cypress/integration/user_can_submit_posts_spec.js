@@ -75,27 +75,4 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.get(".title").contains("Hi Bob! Welcome to the TimeLine");
   });
-
-  it("name of user appears after post", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#firstName").type("Abdullah");
-    cy.get("#lastName").type("D");
-    cy.get("#email").type("abd@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("abd@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
-    //make a post
-    cy.visit("/posts");
-    cy.contains("New post").click();
-
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
-    cy.get("#new-post-form").submit();
-    cy.get(".posts").first().should("contain.text", "by Abdullah D");
-  });
 });
