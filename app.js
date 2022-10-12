@@ -36,6 +36,12 @@ app.use(
   })
 );
 
+//adds session to handlebars locals
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
+
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
@@ -55,7 +61,7 @@ const sessionChecker = (req, res, next) => {
 
 // route setup
 app.use("/", homeRouter);
-app.use("/posts", sessionChecker, postsRouter);
+app.use("/posts", sessionChecker, postsRouter); //sessionChecker used only for /posts
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 
