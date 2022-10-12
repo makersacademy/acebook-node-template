@@ -36,7 +36,7 @@ app.use(
   })
 );
 
-//adds session to handlebars locals for conditional navbar
+//adds session to handlebars locals
 app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();
