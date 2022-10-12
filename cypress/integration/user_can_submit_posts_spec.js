@@ -55,4 +55,24 @@ describe("Timeline", () => {
     cy.get(".posts").first().should("contain", "a");
     cy.get(".posts").last().should("contain", "Hello, world!");
   });
+
+  it("the timeline has the logged user first name", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#firstName").type("Bob");
+    cy.get("#lastName").type("John");
+    cy.get("#email").type("Bob@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("Bob@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    //check if first name of logged in user appears
+
+    cy.visit("/posts");
+    cy.get(".title").contains("Hi Bob! Welcome to the TimeLine");
+  });
 });

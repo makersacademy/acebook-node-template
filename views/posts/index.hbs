@@ -1,9 +1,11 @@
-<h1>Timeline</h1>
+<h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
 <ul class="posts">
 
   {{#each posts}}
-  <li>{{this.message}} at {{this.createdAt}}
-  </li>
+    <li>{{this.message}}
+      at
+      {{this.createdAt}}
+    </li>
   {{/each}}
 </ul>
 
