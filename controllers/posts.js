@@ -18,6 +18,9 @@ const PostsController = {
     post.name = req.session.user.name;
     post.message = req.body.message;
     post.photo_link = req.session.user.photo_link; 
+    const date = new Date();
+    post.date_string = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.toLocaleTimeString()}`
+      
     post.save((err) => {
       if (err) {
         throw err;
@@ -34,7 +37,8 @@ const PostsController = {
       const comment = new Comment();
       comment.name = req.session.user.name;
       comment.message = req.body.message;
-      comment.createdAt = new Date();
+      const date = new Date();
+      comment.createdAt = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.toLocaleTimeString()}`
       post.comments.unshift(comment);
       post.save((err) => {
         if (err) {
