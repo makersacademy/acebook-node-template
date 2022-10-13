@@ -12,7 +12,10 @@ const PostSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  like: Number,
+  like: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Post = mongoose.model("Post", PostSchema);

@@ -8,8 +8,8 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        
-        console.log(posts);
+
+        // console.log(posts);
         res.render("posts/index", { posts: posts });
       });
   },
@@ -29,14 +29,14 @@ const PostsController = {
     });
   },
   Like: (req, res) => {
-    Post.find({ _id: req.body.postid}).exec((err, post) => {
+    Post.findOneAndUpdate({ _id: req.body.postid }, {like: parseInt(req.body.like) + 1})
+    .exec((err, post) => {
       if (err) {
         throw err;
       }
-      post.like += 1;
-      console.log(post);
+      console.log(post.like);
       res.status(201).redirect("/posts");
-    })
+    });
   },
 };
 
