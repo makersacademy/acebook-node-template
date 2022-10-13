@@ -2,7 +2,8 @@
 <ul class="posts">
 
   {{#each posts}}
-    <li>{{this.message}}
+  <li> <img src="/images/profile_picture.png" alt="Default profile picture icon" width="40" height="40"></li>
+      <li>{{this.message}}
       at
       {{this.createdAt}}
 
@@ -15,11 +16,10 @@
 
     </li>
 
-    <form action="/posts/{{this._id}}" method="post">
+    <form id="like-btn" action="/posts/{{this._id}}" method="post">
 
       <input type="submit" value="likes" />
     </form>
-
   {{/each}}
 </ul>
 

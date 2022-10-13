@@ -44,6 +44,10 @@ app.use((req, res, next) => {
   next();
 });
 
+
+// gets images from public folder
+app.use(express.static(path.join(__dirname, 'public')))
+
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
