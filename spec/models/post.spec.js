@@ -37,4 +37,26 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("has an empty array of likes", (done) => {
+    var post = new Post({ message: "some message" });
+    let like = post.likes.toObject();
+    expect(like).toEqual([]);
+    done();
+  });
+
+  it("has an empty array of likes", (done) => {
+    var post = new Post({ message: "some message" });
+   
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        let like = posts[0].likes.toObject();
+        expect(like).toEqual([]);
+        done();
+      });
+    });
+  });
 });
