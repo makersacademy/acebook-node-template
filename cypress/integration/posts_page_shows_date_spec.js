@@ -5,21 +5,23 @@ describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
     // sign up
     cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#name").type("someone");
+    cy.get("#email").type("someone1@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone1@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
     // submit a post
     cy.visit("/posts");
-    cy.get("#make-post").click(); // get posts/new
 
-    // bad practice, doesn't test how website actually works, can't get session.user._id
+    cy.contains("Make a post").click(); 
+    cy.visit("/posts/new");      
+
     // we send data directly to the database instead of clicking the submit button
     // use actual form submission instead as below and resolve date problem otherwise:
     // cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
