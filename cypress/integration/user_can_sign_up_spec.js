@@ -4,13 +4,13 @@ describe("Registration", () => {
     cy.visit("/users/new");
     cy.get("#firstName").type("exampleFirstName");
     cy.get("#lastName").type("exampleLastName");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone4@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
     cy.url().should("include", "/sessions/new");
   });
-  
+
   it("Shows a signup title", () => {
     // sign up
     cy.visit("/");
@@ -21,6 +21,6 @@ describe("Registration", () => {
   it("Sign up page has a new title", () => {
     // sign up
     cy.visit("/users/new");
-    cy.get('.title').should('contain', 'Sign up to Acebook');
+    cy.get(".title").should("contain", "Sign up to Acebook");
   });
 });
