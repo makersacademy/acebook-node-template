@@ -1,4 +1,4 @@
-<h1>Images page</h1>
+<h1>Settings</h1>
 <ul class="user">
   <img src="{{user.image}}" />
   <li>{{user.name}}</li>
@@ -9,12 +9,6 @@
 <form action="/settings" enctype="multipart/form-data" method="post">
   <div class="form-group">
     <input type="file" class="form-control-file" name="uploadedImage" />
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Text note for image"
-      name="textNote"
-    />
-    <input type="submit" value="Upload avatar" class="btn btn-default" />
+    <input type="submit" value="Upload" class="btn btn-default" />
   </div>
 </form>
