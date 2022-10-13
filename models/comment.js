@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const CommentSchema = new mongoose.Schema({
   name: String,
   message: String,
-  createdAt: Date,
+  createdAt: String,
 });
 
 const Comment = mongoose.model("Comment", CommentSchema);
