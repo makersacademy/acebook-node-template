@@ -6,8 +6,6 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log('session when page is loaded');
-      console.log(req.session.user);
       res.render("posts/index", {
           posts: posts,
           session: req.session
@@ -30,17 +28,21 @@ const PostsController = {
   Like: (req, res) => {
     console.log(req.body.userId);
     console.log(req.body.postId);
-    // req params passes in the user id & post id
-    // post id looks up the post and adds the user id to post.likes array
-    // let likedPost = Post.findById(req.params.postId);
-    // if (likedPost.likes.includes(req.params.userId)) {
 
+    // let likedPost = Post.findById(req.body.postId);
+    // if (likedPost.likes.includes(req.body.userId)) {
+    //   // removing that userId from the array
+    //   for (let i = 0; i < likedPost.likes.length; i++) { 
+    //     if (likedPost.likes[i] === req.body.userId) { 
+    //         likedPost.likes.splice(i, 1); 
+    //     }
+    //   }
+    // } else {
+    //   // adding the userId to the array
+    //   likedPost.likes.push(req.body.userId)
     // }
-    // check if the userId is already in the likes array, if not:
-    // likedPost.likes.push(req.params.userId);
-    // if it is in the array, remove it
-
-    res.status(201).redirect("/users/new");
+    // // TODO need to update the database with likedPost here!!
+    res.status(201).redirect("/posts");
   }
 };
 

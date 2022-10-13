@@ -2,19 +2,16 @@
 <ul class="posts">
   {{#each posts}}
 
-  <li > <div><!-- Username and profile picture -->{{this.createdAt}}</div>
+  <li ><div><!-- profile picture goes here -->{{../session.user.name}} -- {{this.createdAt}}</div>
         <div>{{this.message}} 
-          <!-- <img src="https://fsymbols.com/images/heart.png" id="like-button"/> -->
           <form method="POST" action="/posts/like">
-          <input type="text" value="{{this._id}}" name="postId">
-          <input type="text" value="{{session.user}}" name="userId">
-          <input type="submit" value="Like" id="like-button">
-          </form> {{this.likes.length}}</div> 
+          <input type="hidden" value="{{this._id}}" name="postId">
+          <input type="hidden" value="{{../session.user._id}}" name="userId">
+          <input type="submit" value="Like" id="like-button">{{this.likes.length}}
+          </form></div> 
   </li>
   
   {{/each}}
-
-  {{session.user.name}}
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
