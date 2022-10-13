@@ -1,13 +1,14 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts)=> {
+    Post.find((err, posts) => {
       if (err) {
         throw err;
       }
       res.render("posts/index", { posts: posts });
-    }).sort({createdAt: -1}) ;
+    }).sort({ createdAt: -1 });
   },
   New: (req, res) => {
     res.render("posts/new", {});
@@ -20,6 +21,24 @@ const PostsController = {
       }
 
       res.status(201).redirect("/posts");
+    });
+  },
+  CreateComment: (req, res) => {
+    Post.findById(req.params.id, (err, post) => {
+      if (err) {
+        throw err;
+      }
+      const comment = new Comment();
+      comment.name = req.session.user.name;
+      comment.message = req.body.message;
+      comment.createdAt = new Date();
+      post.comments.unshift(comment);
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
     });
   },
 };
