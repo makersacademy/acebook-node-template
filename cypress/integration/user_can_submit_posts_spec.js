@@ -75,4 +75,50 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.get(".title").contains("Hi Bob! Welcome to the TimeLine");
   });
+  // users name appears on posts
+  it("the timeline has the logged user first name", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#firstName").type("Bob");
+    cy.get("#lastName").type("John");
+    cy.get("#email").type("b@b.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("b@b.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    //submit a post
+    cy.visit("/posts");
+    cy.contains("New post").click();
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").submit();
+    //check if first name of logged in user appears
+    cy.visit("/posts");
+    cy.get(".posts").contains("Bob");
+  });
+
+  it("logged in users can like posts", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#firstName").type("Bob");
+    cy.get("#lastName").type("John");
+    cy.get("#email").type("a@a.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("a@a.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    //submit a post
+    cy.visit("/posts");
+    cy.contains("New post").click();
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").submit();
+    // like post
+    cy.contains("likes").click();
+    cy.get(".posts").should("contain", "1");
+  });
 });

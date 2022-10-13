@@ -9,11 +9,17 @@
       by
       {{this.user.firstName}}
       {{this.user.lastName}}
-       {{this.likes.length}} likes
+      {{this.likes.length}}
+
+      likes
 
     </li>
-    <label for="like"></label>
-    <input id="like" type="submit" value="Like this post">
+
+    <form action="/posts/{{this._id}}" method="post">
+
+      <input type="submit" value="likes" />
+    </form>
+
   {{/each}}
 </ul>
 
