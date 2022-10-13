@@ -1,4 +1,12 @@
 <h1>Timeline</h1>
+
+<form id="new-post-form" action="/posts" method="post">
+  <label for="message">What's on your mind?</label>
+  <input id="message" type="text" name="message" value="">
+  <input type="submit" value="Post">
+</form>
+
+
 <ul class="posts">
   {{#each posts}}
   <div class="post">
@@ -14,5 +22,3 @@
   </div>
   {{/each}}
 </ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>
