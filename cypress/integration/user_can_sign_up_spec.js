@@ -33,7 +33,7 @@ describe("Registration", () => {
   it("A user types an email that is already in the database and is redirected to signing up page", () => {
     cy.visit("/users/new");
     cy.get("#name").type("name");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone1@example.com");
     cy.get("#password1").type("password");
     cy.get("#password2").type("password");
     cy.get("#submit").click();
@@ -42,7 +42,7 @@ describe("Registration", () => {
     // needs to sign up again
     cy.visit("/users/new");
     cy.get("#name").type("name");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone1@example.com");
     cy.get("#password1").type("password");
     cy.get("#password2").type("password");
     cy.get("#submit").click();

@@ -3,7 +3,7 @@ describe("Authentication", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#name").type("name");
-    cy.get("#email").type("someone1@example.com");
+    cy.get("#email").type("someone@example.com");
     cy.get("#password1").type("password");
     cy.get("#password2").type("password");
     cy.get("#submit").click();
@@ -12,19 +12,19 @@ describe("Authentication", () => {
     cy.get("#logout").click();
 
     // sign in
-    cy.get("#email").type("someone1@example.com");
+    cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
     cy.url().should("include", "/posts");
-    cy.contains("a", "New post");
+    cy.contains("What's on your mind?");
   });
 
   it("show error message when incorrect credentials have been inputted", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#name").type("name");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone1@example.com");
     cy.get("#password1").type("password");
     cy.get("#password2").type("password");
     cy.get("#submit").click();
@@ -33,7 +33,7 @@ describe("Authentication", () => {
     cy.get("#logout").click();
 
     // sign in
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone1@example.com");
     cy.get("#password").type("pass");
     cy.get("#submit").click();
 
