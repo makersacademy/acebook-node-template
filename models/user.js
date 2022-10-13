@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const fs = require("fs");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -15,8 +16,18 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    data: Buffer,
-    contentType: String,
+    data: {
+      type: Buffer,
+      default: () => {
+        return fs.readFileSync("../public/images/testImage.png");
+      },
+    },
+    contentType: {
+      type: String,
+      default: () => {
+        "image/png";
+      },
+    },
   },
 });
 

@@ -1,10 +1,8 @@
 <h1>Images page</h1>
-<ul class="image">
-  {{#each images}}
-    <li>
-      <img src="{{this}}" />
-    </li>
-  {{/each}}
+<ul class="user">
+  <img src="{{user.image}}" />
+  <li>{{user.name}}</li>
+  <li>{{user.email}}</li>
 </ul>
 
 <h3>Upload new image</h3>

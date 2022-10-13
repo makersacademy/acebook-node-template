@@ -5,19 +5,18 @@ const User = require("../models/user");
 
 const SettingsController = {
   Index: (req, res) => {
-    Image.find((err, images) => {
-      if (err) {
-        throw err;
-      }
-      const srcStrings = images.map((image) => {
+    User.findById(req.session.user._id)
+      .then((user) => {
+        //overwrite the image field of the user object with the src string and pass user object to render
         const string = `data:${
-          image.contentType
-        };base64,${image.data.data.toString("base64")}`;
-        console.log(string);
-        return string;
+          user.image.contentType
+        };base64,${user.image.data.toString("base64")}`;
+        user.image = string;
+        res.render("settings/index", { user: user });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      res.render("settings/index", { images: srcStrings });
-    });
   },
 
   UploadImage: (req, res) => {
@@ -30,6 +29,7 @@ const SettingsController = {
             data: req.file.buffer,
             contentType: req.file.mimetype,
           };
+          console.log(req.file.buffer);
           user
             .save()
             .then(() => res.redirect("/settings"))
