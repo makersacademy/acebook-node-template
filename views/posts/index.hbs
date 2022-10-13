@@ -4,5 +4,11 @@
     <li>{{this.author.name}}</li>
     <li>{{this.createdAt}}</li>
     <li>{{this.message}}</li>
+    {{!-- received like --}}
+    <form id="like" action="/posts/like" method="post">
+    {{!-- <label for="message">Likes: </label> --}}
+    <input id="postid" type="hidden" value={{this._id}} name="postid" />
+    <input type="submit" value="like" />
+    </form>
   {{/each}}
 </ul>

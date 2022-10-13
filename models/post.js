@@ -7,11 +7,12 @@ const PostSchema = new mongoose.Schema({
     default: () => Date.now(),
     immutable: true,
   },
-  author: { 
+  author: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "User",
     required: true,
   },
+  like: Number,
 });
 
 const Post = mongoose.model("Post", PostSchema);

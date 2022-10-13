@@ -8,7 +8,7 @@ const PostsController = {
         if (err) {
           throw err;
         }
-
+        
         console.log(posts);
         res.render("posts/index", { posts: posts });
       });
@@ -27,6 +27,16 @@ const PostsController = {
       }
       res.status(201).redirect("/posts");
     });
+  },
+  Like: (req, res) => {
+    Post.find({ _id: req.body.postid}).exec((err, post) => {
+      if (err) {
+        throw err;
+      }
+      post.like += 1;
+      console.log(post);
+      res.status(201).redirect("/posts");
+    })
   },
 };
 
