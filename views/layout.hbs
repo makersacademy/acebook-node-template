@@ -5,9 +5,17 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
+
+<!-- sessions.user is true if loggedIn-->
+    {{#if this.session.user}}
+        <form action='/sessions?_method=DELETE' method='POST'>
       <input id="logout" type="submit" value="Log Out">
     </form>
+ {{else}}
+    <form action="/sessions/new" method="get">
+          <input type="submit" value="Log In">
+        </form>
+    {{/if}}
     {{{body}}}
   </body>
 </html>
