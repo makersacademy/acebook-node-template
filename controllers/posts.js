@@ -30,20 +30,29 @@ const PostsController = {
     console.log(req.body.userId);
     console.log(req.body.postId);
 
-    // let likedPost = Post.findById(req.body.postId);
-    // if (likedPost.likes.includes(req.body.userId)) {
-    //   // removing that userId from the array
-    //   for (let i = 0; i < likedPost.likes.length; i++) { 
-    //     if (likedPost.likes[i] === req.body.userId) { 
-    //         likedPost.likes.splice(i, 1); 
-    //     }
-    //   }
-    // } else {
-    //   // adding the userId to the array
-    //   likedPost.likes.push(req.body.userId)
-    // }
-    // // TODO need to update the database with likedPost here!!
-    res.status(201).redirect("/posts");
+    Post.findById(req.body.postId, (err, post) => {
+      if (err) {
+        throw err;
+      };
+      if (post.likes.includes(req.body.userId)) {
+      // removing that userId from the array
+        for (let i = 0; i < post.likes.length; i++) { 
+          if (post.likes[i] === req.body.userId) { 
+              post.likes.splice(i, 1); 
+          }
+        }
+      } else {
+        // adding the userId to the array
+        post.likes.push(req.body.userId);
+      };   
+
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    });
   },
 
   CreateComment: (req, res) => {

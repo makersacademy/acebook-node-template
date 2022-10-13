@@ -2,7 +2,7 @@
 <ul class="posts">
   {{#each posts}}
   <div class="post">
-    <p><!-- profile picture goes here -->{{../session.user.name}} - {{this.createdAt}}</p>
+    <p><!-- profile picture and user name (of the person who created the post) goe here --> - {{this.createdAt}}</p>
     <div>{{this.message}}
       <!-- create a like button and the number of likes -->
       <form method="POST" action="/posts/like">
