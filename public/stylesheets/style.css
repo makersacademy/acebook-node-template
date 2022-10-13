@@ -7,7 +7,11 @@ a {
   color: #00B7FF;
 }
 
-.profile_picture{
+.navbar_forms {
+    float:left;
+}
+
+.profile_picture {
   border-radius: 50%;
   width: 40px;
   height: 40px;
