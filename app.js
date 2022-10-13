@@ -64,6 +64,7 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+//revise use of handlebars helper functions
 hbs.handlebars.registerHelper("toStringFromBase64", function (data) {
   return data.toString("base64");
 });
@@ -79,6 +80,7 @@ const Storage = multer.diskStorage({
 const upload = multer().single("uploadedImage");
 // storage: Storage,
 
+//eventually move this inside the controller & route!
 // image upload
 app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
