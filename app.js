@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const multer = require("multer");
+
 const hbs = require("hbs");
 
 const Image = require("./models/image");
@@ -63,32 +63,6 @@ const sessionChecker = (req, res, next) => {
     next();
   }
 };
-
-const upload = multer().single("uploadedImage");
-
-//eventually move this inside the controller & route!
-// image upload
-app.post("/upload", (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      const newImage = new Image({
-        name: req.body.textNote,
-        data: {
-          data: req.file.buffer,
-          contentType: req.file.mimetype,
-        },
-        contentType: req.file.mimetype,
-      });
-      console.log(req.file);
-      newImage
-        .save()
-        .then(() => res.send("successfully uploaded"))
-        .catch((err) => console.log(err));
-    }
-  });
-});
 
 // route setup
 app.use("/upload", uploadRouter);

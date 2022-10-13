@@ -1,4 +1,6 @@
 const Image = require("../models/image");
+const multer = require("multer");
+const upload = multer().single("uploadedImage");
 
 const UploadController = {
   Index: (req, res) => {
@@ -16,17 +18,27 @@ const UploadController = {
       res.render("upload/index", { images: srcStrings });
     });
   },
-  // UploadImage: (req, res) => {
-  //   const image = new Image(req.body);
-  //   console.log(req.body);
-  //   image.save((err) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-
-  //     res.status(201).redirect("/upload");
-  //   });
-  // },
+  UploadImage: (req, res) => {
+    upload(req, res, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const newImage = new Image({
+          name: req.body.textNote,
+          data: {
+            data: req.file.buffer,
+            contentType: req.file.mimetype,
+          },
+          contentType: req.file.mimetype,
+        });
+        console.log(req.file);
+        newImage
+          .save()
+          .then(() => res.redirect("/upload"))
+          .catch((err) => console.log(err));
+      }
+    });
+  },
 };
 
 module.exports = UploadController;
