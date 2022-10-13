@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+#like-button {
+  width: 20px;
+  background-image: url("../images/heart.webp");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  border: none;
+}
