@@ -41,9 +41,7 @@ describe("Post model", () => {
 
       Post.find((err, posts) => {
         expect(err).toBeNull();
-        console.log(posts)
         expect(posts[0]).toMatchObject({ message: "some message" });
-        expect(posts[0]).toMatchObject({ author: 123456789012345678901234 });
         done();
       });
     });

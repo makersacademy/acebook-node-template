@@ -20,7 +20,7 @@ describe("Timeline", () => {
     cy.visit("/posts/new");
 
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
-    cy.get("#new-post-form").submit();
+    cy.get("#submit").click();
 
     cy.get(".posts").should("contain", "Hello, world!");
     cy.get(".posts").should("contain", "someone");
