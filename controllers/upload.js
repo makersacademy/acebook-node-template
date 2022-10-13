@@ -6,8 +6,14 @@ const UploadController = {
       if (err) {
         throw err;
       }
-      console.log(images[0].data.data.toString("base64")); //logs intended string
-      res.render("upload/index", { images: images });
+      const srcStrings = images.map((image) => {
+        const string = `data:${
+          image.contentType
+        };base64,${image.data.data.toString("base64")}`;
+        console.log(string);
+        return string;
+      });
+      res.render("upload/index", { images: srcStrings });
     });
   },
   // UploadImage: (req, res) => {

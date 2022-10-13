@@ -64,21 +64,7 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
-//revise use of handlebars helper functions
-hbs.handlebars.registerHelper("toStringFromBase64", function (data) {
-  return data.toString("base64");
-});
-
-// storage for multer
-const Storage = multer.diskStorage({
-  destination: "public/uploads",
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-
 const upload = multer().single("uploadedImage");
-// storage: Storage,
 
 //eventually move this inside the controller & route!
 // image upload
@@ -87,13 +73,10 @@ app.post("/upload", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      // const correctFilePath = req.file.path.slice("public".length);
       const newImage = new Image({
-        // name: Date.now() + req.body.name,
-        // name: req.body.textNote  // save content of text note curretly unused
-        name: req.body.textNote, // TODO currently used for displaying the image
+        name: req.body.textNote,
         data: {
-          data: req.file.buffer, //here we shoudl save req.file.buffer
+          data: req.file.buffer,
           contentType: req.file.mimetype,
         },
         contentType: req.file.mimetype,
