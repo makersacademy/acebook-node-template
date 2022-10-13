@@ -4,14 +4,14 @@ describe("Authentication", () => {
     cy.visit("/users/new");
     cy.get("#firstName").type("first name example");
     cy.get("#lastName").type("exampleLastName");
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone3@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
     // sign in
     cy.visit("/sessions/new");
 
-    cy.get("#email").type("someone@example.com");
+    cy.get("#email").type("someone3@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
@@ -21,6 +21,6 @@ describe("Authentication", () => {
   it("Sign in page has a new title", () => {
     // sign up
     cy.visit("/sessions/new");
-    cy.get('.title').should('contain', 'Sign in to Acebook');
+    cy.get(".title").should("contain", "Sign in to Acebook");
   });
 });
