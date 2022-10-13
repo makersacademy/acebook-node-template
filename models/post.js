@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema(
-  { message: String,
+  { name: String, 
+    message: String, 
     likes: Array,
-    comments: Array},
-  { timestamps: true }
+    comments: Array, 
+    photo_link: String,
+    date_string: String 
+  },
+  { timestamps: true}
 );
 
 const Post = mongoose.model("Post", PostSchema);

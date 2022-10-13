@@ -1,3 +1,4 @@
+<br>
 <h1>Timeline</h1>
 
 <form id="new-post-form" action="/posts" method="post">
@@ -10,7 +11,10 @@
 <ul class="posts">
   {{#each posts}}
   <div class="post">
-    <p><!-- profile picture and user name (of the person who created the post) goe here --> - {{this.createdAt}}</p>
+   <p> 
+      <img class="profile_picture" src="{{this.photo_link}}" alt="profile_picture">
+      {{this.name}} - {{this.date_string}}
+     </p>
     <div>{{this.message}}
       <!-- create a like button and the number of likes -->
       <form method="POST" action="/posts/like">
@@ -32,3 +36,4 @@
 
   {{/each}}
 </ul>
+

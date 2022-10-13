@@ -8,13 +8,32 @@
 
 <!-- sessions.user is true if loggedIn-->
     {{#if this.session.user}}
-        <form action='/sessions?_method=DELETE' method='POST'>
+        <div class="navbar">
+
+    <form class="navbar_forms" action='/posts' method='GET'>
+      <input id="timeline" type="submit" value="Timeline">
+    </form>
+
+    <form class="navbar_forms" action='users/{{session.user.id}}' method='GET'>
+      <input id="viewProfile" type="submit" value="View Profile">
+    </form>
+
+        <form class="navbar_forms" action='/users/{{session.user.id}}edit' method='GET'>
+      <input id="editProfile" type="submit" value="Edit Profile">
+    </form>
+
+            <form class="navbar_forms" action='/sessions?_method=DELETE' method='POST'>
       <input id="logout" type="submit" value="Log Out">
     </form>
+  </div>
+
  {{else}}
-    <form action="/sessions/new" method="get">
-          <input type="submit" value="Log In">
-        </form>
+
+      <div class="navbar">
+        <a href="/users/new">Sign Up</a>
+        <a href="/sessions/new">Log In</a>
+      </div>
+
     {{/if}}
     {{{body}}}
 
