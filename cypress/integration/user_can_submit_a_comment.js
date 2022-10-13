@@ -1,12 +1,4 @@
-// const User = require('../../models/user');
-// const Post = require('../../models/post');
-
 describe("Timeline", () => {
-  // beforeEach(() => {
-  //   User.collection.drop();
-  //   Post.collection.drop();
-  // });
-
   it("can submit posts, when signed in, and view them", () => {
     // sign up
     cy.visit("/users/new");
@@ -32,9 +24,10 @@ describe("Timeline", () => {
 
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hi, guys!");
-    cy.get("#new-post-form").submit();
+    cy.visit("/posts");
+    cy.get("#new-comment-form").find('[type="text"]').type("comment on post");
+    cy.get("#new-comment-form").submit();
 
-    cy.get(".post").first().contains("Hi, guys!");
+    cy.get(".comment").first().contains("comment on post");
   });
 });
