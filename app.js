@@ -70,6 +70,11 @@ app.use((req, res, next) => {
   next(createError(404));
 });
 
+// // catch 422 and forward to error handler
+// app.use((req, res, next) => {
+//   next(createError(422));
+// });
+
 // error handler
 app.use((err, req, res) => {
   // set locals, only providing error in development
