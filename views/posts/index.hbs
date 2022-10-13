@@ -10,7 +10,10 @@
 <ul class="posts">
   {{#each posts}}
   <div class="post">
-    <p>{{this.message}} - {{this.createdAt}}</p>
+    <p> 
+      <img class="profile_picture" src="{{this.photo_link}}" alt="profile_picture">
+      {{this.name}}- {{this.message}} - {{this.createdAt}}
+     </p>
     <!-- create a comment on the post -->
     <form id="new-comment-form" action="/posts/{{this._id}}" method="post">
       <input id="message" type="text" name="message" value="" placeholder="Comment here">

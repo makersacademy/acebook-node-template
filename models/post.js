@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema(
-  { message: String, comments: Array },
+  { name: String, message: String, comments: Array, photo_link: String },
   { timestamps: true }
 );
 
