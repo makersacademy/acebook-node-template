@@ -6,7 +6,8 @@
   </head>
   <body>
 
-    {{#if loggedIn}}
+<!-- sessions.user is true if loggedIn-->
+    {{#if this.session.user}}
         <form action='/sessions?_method=DELETE' method='POST'>
       <input id="logout" type="submit" value="Log Out">
     </form>

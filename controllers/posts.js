@@ -6,7 +6,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts, loggedIn: true });
+      res.render("posts/index", { posts: posts, session: req.session });
     }).sort({createdAt: -1}) ;
   },
   New: (req, res) => {
