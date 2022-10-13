@@ -8,17 +8,7 @@ describe("Timeline", () => {
       cy.get("#password2").type("password");
       cy.get("#submit").click();
   
-      // sign in
-      cy.visit("/sessions/new");
-      cy.get("#email").type("someone@example.com");
-      cy.get("#password").type("password");
-      cy.get("#submit").click();
-  
-      // submit a post
-  
-      cy.visit("/posts");
-      cy.contains("New post").click();
-  
+      // submit a post 
       cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
       cy.get("#new-post-form").submit();
   
