@@ -16,7 +16,7 @@ const SessionsController = {
       } else if (user.password != password) {
         res.redirect("/sessions/new");
       } else {
-        req.session.user = user; // user id will be in req.session.user.id
+        req.session.user = user;
         res.redirect("/posts");
       }
     });
