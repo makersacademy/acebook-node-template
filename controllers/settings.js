@@ -8,11 +8,14 @@ const SettingsController = {
     User.findById(req.session.user._id)
       .then((user) => {
         //overwrite the image field of the user object with the src string and pass user object to render
-        const string = `data:${
-          user.image.contentType
-        };base64,${user.image.data.toString("base64")}`;
-        user.image = string;
-        res.render("settings/index", { user: user });
+        const viewUser = {
+          name: user.name,
+          email: user.email,
+          image: `data:${
+            user.image.contentType
+          };base64,${user.image.data.toString("base64")}`,
+        };
+        res.render("settings/index", { user: viewUser });
       })
       .catch((err) => {
         console.log(err);
