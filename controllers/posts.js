@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -75,7 +76,7 @@ const PostsController = {
     let session = req.session.user;
     const id = req.params.id;
     const comment = new Comment(req.body);
-    comment.user = session._id;
+    comment.user = session;
     comment.save((err) => {
       if (err) {
         throw err;

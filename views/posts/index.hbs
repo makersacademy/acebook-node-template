@@ -4,26 +4,31 @@
 
   {{#each posts}}
     <li>{{this.message}}
+      <li>
       at
       {{this.createdAt}}
 
       by
       {{this.user.firstName}}
       {{this.user.lastName}}
-
+<li>
       {{this.likes.length}}
 
-      likes
+      likes</li></li>
       {{#if this.remarks.length}}
-
+<li>
         Comments=
+ </li>       
         {{#each this.remarks}}
-
-          {{this.content}}
-
+<li>
+      {{this.content}} by {{this.user.firstName}}
+          </li>
         {{/each}}
+        
       {{else}}
+      <li>
         NO Comments have been made
+        </li>
       {{/if}}
 
     </li>
