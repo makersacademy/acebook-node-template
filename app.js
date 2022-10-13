@@ -6,7 +6,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const multer = require("multer");
-// const hbs = require("hbs");
+const hbs = require("hbs");
 
 const Image = require("./models/image");
 
@@ -64,9 +64,9 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
-// hbs.handlebars.registerHelper("toStringFromBase64", function (data) {
-//   return data.toString("base64");
-// });
+hbs.handlebars.registerHelper("toStringFromBase64", function (data) {
+  return data.toString("base64");
+});
 
 // storage for multer
 const Storage = multer.diskStorage({
@@ -76,9 +76,8 @@ const Storage = multer.diskStorage({
   },
 });
 
-const upload = multer({
-  storage: Storage,
-}).single("uploadedImage");
+const upload = multer().single("uploadedImage");
+// storage: Storage,
 
 // image upload
 app.post("/upload", (req, res) => {
@@ -86,16 +85,18 @@ app.post("/upload", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      const correctFilePath = req.file.path.slice("public".length);
+      // const correctFilePath = req.file.path.slice("public".length);
       const newImage = new Image({
         // name: Date.now() + req.body.name,
         // name: req.body.textNote  // save content of text note curretly unused
-        name: correctFilePath, // TODO currently used for displaying the image
-        image: {
-          data: req.file.filename,
+        name: req.body.textNote, // TODO currently used for displaying the image
+        data: {
+          data: req.file.buffer, //here we shoudl save req.file.buffer
           contentType: req.file.mimetype,
         },
+        contentType: req.file.mimetype,
       });
+      console.log(req.file);
       newImage
         .save()
         .then(() => res.send("successfully uploaded"))

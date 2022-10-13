@@ -3,9 +3,14 @@
 <ul class="image">
   {{#each images}}
     <li>
-      <p>{{this.image}}</p>
+      {{image.data.data}}
+      {{!-- <img
+        src="data:{{image.contentType}};base64,
+                     {{toStringFromBase64 image.data.data}}"
+      /> --}}
+      {{!-- <p>{{this.image}}</p> --}}
       {{! TODO line below needs updating to proper display method }}
-      <img src="{{this.name}}" />
+      {{!-- <img src="{{this.name}}" /> --}}
     </li>
   {{/each}}
 </ul>
