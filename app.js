@@ -6,15 +6,11 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 
-const hbs = require("hbs");
-
-const Image = require("./models/image");
-
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-const uploadRouter = require("./routes/upload");
+const settingsRouter = require("./routes/settings");
 
 const app = express();
 
@@ -65,7 +61,7 @@ const sessionChecker = (req, res, next) => {
 };
 
 // route setup
-app.use("/upload", uploadRouter);
+app.use("/settings", settingsRouter);
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter); //sessionChecker used only for /posts
 app.use("/sessions", sessionsRouter);

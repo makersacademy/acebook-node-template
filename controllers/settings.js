@@ -2,7 +2,7 @@ const Image = require("../models/image");
 const multer = require("multer");
 const upload = multer().single("uploadedImage");
 
-const UploadController = {
+const SettingsController = {
   Index: (req, res) => {
     Image.find((err, images) => {
       if (err) {
@@ -15,7 +15,7 @@ const UploadController = {
         console.log(string);
         return string;
       });
-      res.render("upload/index", { images: srcStrings });
+      res.render("settings/index", { images: srcStrings });
     });
   },
   UploadImage: (req, res) => {
@@ -34,11 +34,11 @@ const UploadController = {
         console.log(req.file);
         newImage
           .save()
-          .then(() => res.redirect("/upload"))
+          .then(() => res.redirect("/settings"))
           .catch((err) => console.log(err));
       }
     });
   },
 };
 
-module.exports = UploadController;
+module.exports = SettingsController;
