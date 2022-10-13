@@ -1,4 +1,7 @@
 describe("Timeline", () => {
+
+  // IGNORE ALL TESTS FOR NOW - USE FUTURE FIXED TESTS
+
   it("can submit posts, when signed in, and view them", () => {
     // sign up
     cy.visit("/users/new");
