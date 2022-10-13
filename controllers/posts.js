@@ -10,9 +10,9 @@ const PostsController = {
       res.render("posts/index", { posts: posts, session: req.session });
     }).sort({createdAt: -1}) ;
   },
-  New: (req, res) => {
-    res.render("posts/new", {});
-  },
+  // New: (req, res) => {
+  //   res.render("posts/new", {session: req.session});
+  // },
   Create: (req, res) => {
     const post = new Post(req.body);
     post.save((err) => {
