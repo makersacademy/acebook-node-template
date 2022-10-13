@@ -6,6 +6,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const multer = require("multer");
+// const hbs = require("hbs");
 
 const Image = require("./models/image");
 
@@ -63,9 +64,13 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+// hbs.handlebars.registerHelper("toStringFromBase64", function (data) {
+//   return data.toString("base64");
+// });
+
 // storage for multer
 const Storage = multer.diskStorage({
-  destination: "uploads",
+  destination: "public/uploads",
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
@@ -73,7 +78,7 @@ const Storage = multer.diskStorage({
 
 const upload = multer({
   storage: Storage,
-}).single("testImage");
+}).single("uploadedImage");
 
 // image upload
 app.post("/upload", (req, res) => {
@@ -81,11 +86,14 @@ app.post("/upload", (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      const correctFilePath = req.file.path.slice("public".length);
       const newImage = new Image({
-        name: req.body.name,
+        // name: Date.now() + req.body.name,
+        // name: req.body.textNote  // save content of text note curretly unused
+        name: correctFilePath, // TODO currently used for displaying the image
         image: {
           data: req.file.filename,
-          contentType: "image/png",
+          contentType: req.file.mimetype,
         },
       });
       newImage

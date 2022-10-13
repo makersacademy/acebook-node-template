@@ -1,2 +1,25 @@
 {{!placeholder}}
-<p>Test</p>
+<h1>Images page</h1>
+<ul class="image">
+  {{#each images}}
+    <li>
+      <p>{{this.image}}</p>
+      {{! TODO line below needs updating to proper display method }}
+      <img src="{{this.name}}" />
+    </li>
+  {{/each}}
+</ul>
+
+<h3>Upload new image</h3>
+<form action="/upload" enctype="multipart/form-data" method="post">
+  <div class="form-group">
+    <input type="file" class="form-control-file" name="uploadedImage" />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Text note for image"
+      name="textNote"
+    />
+    <input type="submit" value="Upload avatar" class="btn btn-default" />
+  </div>
+</form>
