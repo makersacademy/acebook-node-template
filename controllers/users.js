@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {});
+    res.render("users/new", {layout: false});
   },
 
   Create: (req, res) => {
@@ -15,7 +15,7 @@ const UsersController = {
       user.save((err) => {
         if (err) {
           errorMessage = "Email already exists."
-          res.render("users/new", {error: errorMessage});
+          res.render("users/new", {layout: false, error: errorMessage});
           // throw err;
         } else {
           req.session.user = user;
@@ -25,7 +25,7 @@ const UsersController = {
     
     } else {
       errorMessage = "Passwords do not match";
-      res.render("users/new", {error: errorMessage});
+      res.render("users/new", {layout: false, error: errorMessage});
     }
     
 

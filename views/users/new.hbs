@@ -1,3 +1,8 @@
+ <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
 <h1>AceBook</h1>
 <h2>Create account</h2>
 {{#if error}}
@@ -10,3 +15,7 @@
   <div><input id="password2" type="password" name="password2" value="" placeholder="Confirm Password"></div>
   <div><input id="submit" type="submit" value="Sign Up!"></div>
 </form>
+
+    <form action="/sessions/new" method="get">
+          <input type="submit" value="Click here to log in">
+        </form>
