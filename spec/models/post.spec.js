@@ -33,15 +33,17 @@ describe("Post model", () => {
   });
 
   it("can save a post", (done) => {
-    var post = new Post({ message: "some message" });
 
+    var post = new Post({ message: "some message", author: "123456789012345678901234" });
+    
     post.save((err) => {
       expect(err).toBeNull();
 
       Post.find((err, posts) => {
         expect(err).toBeNull();
-
+        console.log(posts)
         expect(posts[0]).toMatchObject({ message: "some message" });
+        expect(posts[0]).toMatchObject({ author: 123456789012345678901234 });
         done();
       });
     });
