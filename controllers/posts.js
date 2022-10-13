@@ -26,6 +26,28 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+
+  Like: (req, res) => {
+    let session = req.session.user;
+    console.log(session);
+    const id = req.params.id;
+    console.log(req.params.id);
+    Post.findById(id, (err, post) => {
+      if (post.likes.includes(session._id)) {
+        return res.status(201).redirect("/posts");
+      }
+      if (err) {
+        throw err;
+      }
+      post.likes.push(session._id);
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    });
+  },
 };
 
 module.exports = PostsController;
