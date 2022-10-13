@@ -14,6 +14,7 @@ describe("Authentication", () => {
     cy.get("#submit").click();
 
     cy.url().should("include", "/posts");
+
     cy.contains("Timeline");
   });
 });

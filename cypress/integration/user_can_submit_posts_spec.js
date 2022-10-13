@@ -5,6 +5,7 @@ describe("Timeline", () => {
     cy.get("#name").type("someone");
     cy.get("#email").type("someone4@example.com");
     cy.get("#password").type("password");
+    cy.get("#name").type("someone");
     cy.get("#submit").click();
 
     // sign in
@@ -22,5 +23,6 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+    cy.get(".posts").should("contain", "someone");
   });
 });
