@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  image: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
 const User = mongoose.model("User", UserSchema);
