@@ -45,13 +45,9 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
         expect(posts[0]).toMatchObject({ message: "some message" });
-<<<<<<< HEAD
-        expect(posts[0].author).toBeDefined()
-=======
         expect(posts[0].author).toMatchObject(
           new mongoose.mongo.ObjectId("123456789012345678901234")
         );
->>>>>>> 3f837b0895a0a4726424babb129a2b6a87ce7616
         done();
       });
     });
