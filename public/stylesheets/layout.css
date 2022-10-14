@@ -5,6 +5,12 @@
   font-family: 'kumbh Sans', sans-serif;
   scroll-behavior: smooth;
   }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+  }
   
   .navbar {
       background: #131313;
@@ -88,8 +94,18 @@
       background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
       background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
       color: #fff;
-      transition: 0.3s ease;
+      transition: 1s ease;
   } 
+
+  form:hover .button {
+    background: -webkit-linear-gradient(to left, #fcb045, #fcb045, #fcb045);
+    background: linear-gradient(to left, #fcb045, #fcb045, #fcb045);
+    /* background: #fcb045; */
+    color: #9518fc;
+    transition: 1s ease;
+  }
+
+
   
   .navbar__links:hover {
       color: #9518fc;
