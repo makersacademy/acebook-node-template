@@ -13,8 +13,7 @@ const PostSchema = new mongoose.Schema({
     required: true,
   },
   like: {
-    type: Number,
-    default: 0,
+    type: [String],
   },
 });
 

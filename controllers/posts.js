@@ -29,8 +29,10 @@ const PostsController = {
     });
   },
   Like: (req, res) => {
-    Post.findOneAndUpdate({ _id: req.body.postid }, {like: parseInt(req.body.like) + 1})
-    .exec((err, post) => {
+    Post.updateOne(
+      { _id: req.body.postid },
+      { $addToSet: { like: req.session.user._id } }
+    ).exec((err, post) => {
       if (err) {
         throw err;
       }

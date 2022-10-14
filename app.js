@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const hbs = require("hbs");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -36,6 +37,11 @@ app.use(
     },
   })
 );
+
+// handlebar helper functions
+hbs.handlebars.registerHelper("formatLikesNumber", function (likesNumber) {
+  return likesNumber == 1 ? "1 like" : `${likesNumber} likes`;
+});
 
 //adds session to handlebars locals
 app.use(function (req, res, next) {

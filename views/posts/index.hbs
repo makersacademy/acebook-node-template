@@ -1,15 +1,14 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-    
     <li>{{this.author.name}}</li>
     <li>{{this.createdAt}}</li>
     <li>{{this.message}}</li>
-    <li>{{this.like}}</li>
+    <li id="likeCount">{{formatLikesNumber this.like.length}}</li>
     <form id="like" action="/posts/like" method="post">
-    <input id="postid" type="hidden" value={{this._id}} name="postid" />
-    <input id="like" type="hidden" value={{this.like}} name="like" />
-    <input type="submit" value="like" />
+      <input id="postid" type="hidden" value={{this._id}} name="postid" />
+      <input id="like" type="hidden" value={{this.like}} name="like" />
+      <input id="submit" type="submit" value="like" />
     </form>
   {{/each}}
 </ul>
