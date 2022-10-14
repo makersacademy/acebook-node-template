@@ -46,6 +46,9 @@ describe("Post model", () => {
       Post.find((err, posts) => {
         expect(err).toBeNull();
         expect(posts[0]).toMatchObject({ message: "some message" });
+        expect(posts[0].author).toMatchObject(
+          new mongoose.mongo.ObjectId("123456789012345678901234")
+        );
         done();
       });
     });
