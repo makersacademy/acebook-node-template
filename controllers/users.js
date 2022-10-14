@@ -10,15 +10,12 @@ const UsersController = {
     let errorMessage = "";
     user.name = req.body.name;
     user.email = req.body.email;
-
-    // Ssdfcsdcv!123
-
+    
     if (req.body.password1 === req.body.password2) {
       user.password = req.body.password1;  
        
       let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
       let nameRegex = /^[a-zA-Z ,.'-]+$/;
-// ^\S+[a-zA-Z ]+[-]*([a-zA-Z ]+)*$     ^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$
       if ( user.password.match(passwordRegex) && user.name.match(nameRegex)) {        
         user.save((err) => {
         if (err) {
