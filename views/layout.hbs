@@ -1,42 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'>
   </head>
   <body>
+    <header>
+      <!-- sessions.user is true if loggedIn-->
+      {{#if this.session.user}}
+          <div class="navbar">
 
-<!-- sessions.user is true if loggedIn-->
-    {{#if this.session.user}}
-        <div class="navbar">
+            <form class="navbar_forms" action='/posts' method='GET'>
+              <input id="timeline" type="submit" value="Timeline">
+            </form>
 
-    <form class="navbar_forms" action='/posts' method='GET'>
-      <input id="timeline" type="submit" value="Timeline">
-    </form>
+            <form class="navbar_forms" action='users/{{session.user.id}}' method='GET'>
+              <input id="viewProfile" type="submit" value="View Profile">
+            </form>
 
-    <form class="navbar_forms" action='users/{{session.user.id}}' method='GET'>
-      <input id="viewProfile" type="submit" value="View Profile">
-    </form>
-
-        <form class="navbar_forms" action='/users/{{session.user.id}}edit' method='GET'>
-      <input id="editProfile" type="submit" value="Edit Profile">
-    </form>
-
+            <form class="navbar_forms" action='/users/{{session.user.id}}edit' method='GET'>
+              <input id="editProfile" type="submit" value="Edit Profile">
+            </form>
             <form class="navbar_forms" action='/sessions?_method=DELETE' method='POST'>
-      <input id="logout" type="submit" value="Log Out">
-    </form>
-  </div>
+              <input id="logout" type="submit" value="Log Out">
+            </form>
+          </div>
 
- {{else}}
+      {{else}}
+        <div class="navbar">
+          <a href="/users/new">Sign Up</a>
+          <a href="/sessions/new">Log In</a>
+        </div>
 
-      <div class="navbar">
-        <a href="/users/new">Sign Up</a>
-        <a href="/sessions/new">Log In</a>
-      </div>
-
-    {{/if}}
-    {{{body}}}
-
-
+      {{/if}}
+    </header>
+    <main>
+      {{{body}}}
+    </main>
+    <footer>
+      <div class="footer-items">  &copy; 2022 Monsters, Inc</div>
+      <div class="footer-items"> A project by <a href="https://makers.tech/" target="_blank">Makers Academy</a> Students</div>
+      <div class="footer-items"> <a href="#" target="_blank">About Us</a></div>
+    </footer>
   </body>
 </html>
