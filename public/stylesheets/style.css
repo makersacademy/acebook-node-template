@@ -1,11 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+main {
+  padding: 50px;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
 }
+
+/* nav {
+  background-color: rgb(36, 153, 36);
+} */
 
 #like-button {
   width: 20px;
@@ -25,3 +38,33 @@ a {
   height: 40px;
 }
 
+nav, footer {
+  color: white;
+  background-color: rgb(36, 153, 36);
+}
+
+nav {
+  height: 70px;
+  font-size: 20px;
+}
+
+nav a {
+  margin: auto 20px;
+  color: white;
+}
+
+footer {
+  height: 40px;
+}
+
+.footer-items a, nav a:hover {
+  color: rgb(72, 218, 255)
+}
+
+.footer-items a:hover {
+  color: rgb(245, 132, 255)
+}
+
+.footer-items {
+  padding: 10px 0 0 0;
+}
