@@ -9,10 +9,12 @@ const SettingsController = {
         const viewUser = {
           name: user.name,
           email: user.email,
-          image: `data:${
-            user.image.contentType
-          };base64,${user.image.data.toString("base64")}`,
         };
+        if (user.hasOwnProperty("image")) {
+          viewUser.image = `data:${
+            user.image.contentType
+          };base64,${user.image.data.toString("base64")}`;
+        }
         res.render("settings/index", { user: viewUser });
       })
       .catch((err) => {
