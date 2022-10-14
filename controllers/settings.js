@@ -4,15 +4,19 @@ const User = require("../models/user");
 
 const SettingsController = {
   Index: (req, res) => {
+    console.log(req.session);
     User.findById(req.session.user._id)
       .then((user) => {
+        console.log(user);
         const viewUser = {
           name: user.name,
           email: user.email,
-          image: `data:${
-            user.image.contentType
-          };base64,${user.image.data.toString("base64")}`,
         };
+        if (user.hasOwnProperty("image")) {
+          viewUser.image = `data:${
+            user.image.contentType
+          };base64,${user.image.data.toString("base64")}`;
+        }
         res.render("settings/index", { user: viewUser });
       })
       .catch((err) => {
