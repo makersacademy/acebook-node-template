@@ -1,6 +1,6 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
-const User = require("../models/user");
+// const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
