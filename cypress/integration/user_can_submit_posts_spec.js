@@ -158,4 +158,27 @@ describe("Timeline", () => {
 
     cy.get(".posts").contains("my first comment");
   });
+
+  it("User photo appears next to post", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#firstName").type("Bob");
+    cy.get("#lastName").type("John");
+    cy.get("#email").type("a2@a.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("a2@a.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+    //submit a post
+    cy.visit("/posts");
+    cy.contains("New post").click();
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").submit();
+    // check user photo in the post
+    cy.visit("/posts");
+    cy.get(".posts").find("img").should('have.attr', 'src', '/images/profile_picture.png')
+  });
 });
