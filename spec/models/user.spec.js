@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-
+const path = require('path')
+const fs = require('fs')
 require("../mongodb_helper");
 const User = require("../../models/user");
 
@@ -69,6 +70,30 @@ describe("User model", () => {
           email: "someone@example.com",
           password: "password",
         });
+        done();
+      });
+    });
+  });
+
+  it("a new user is saved with a default avatar", (done) => {
+    const user = new User({
+      name: "someone",
+      email: "someone@example.com",
+      password: "password",
+    });
+
+    user.save((err) => {
+      expect(err).toBeNull();
+
+      User.find((err, users) => {
+        expect(err).toBeNull();
+        expect(users[0]).toMatchObject({
+          name: "someone",
+          email: "someone@example.com",
+          password: "password",
+        });
+        expect(users[0].image.data).toMatchObject(fs.readFileSync(path.join(__dirname, '..', '..', 'public', 'images', 'testImage.png')))
+        expect(users[0].image.contentType).toMatch("image/png")
         done();
       });
     });

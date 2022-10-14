@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     contentType: {
       type: String,
       default: () => {
-        "image/png";
+        return "image/png";
       },
     },
   },

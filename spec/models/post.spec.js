@@ -39,7 +39,6 @@ describe("Post model", () => {
       message: "some message",
       author: "123456789012345678901234",
     });
-
     post.save((err) => {
       expect(err).toBeNull();
 
