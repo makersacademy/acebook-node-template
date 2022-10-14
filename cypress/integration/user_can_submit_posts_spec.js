@@ -1,11 +1,4 @@
-// const User = require('../../models/user');
-// const Post = require('../../models/post');
-
 describe("Timeline", () => {
-  // beforeEach(() => {
-  //   User.collection.drop();
-  //   Post.collection.drop();
-  // });
 
   it("can submit posts, when signed in, and view them", () => {
     // sign up

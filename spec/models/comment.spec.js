@@ -1,6 +1,3 @@
-var mongoose = require("mongoose");
-
-require("../mongodb_helper");
 var Comment = require("../../models/comment");
 
 describe("Comment model", () => {

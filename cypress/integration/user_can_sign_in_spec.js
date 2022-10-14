@@ -17,7 +17,7 @@ describe("Authentication", () => {
     cy.get("#submit").click();
 
     cy.url().should("include", "/posts");
-    cy.contains("What's on your mind?");
+    cy.contains("label", "What's on your mind?");
   });
 
   it("show error message when incorrect credentials have been inputted", () => {

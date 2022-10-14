@@ -1,3 +1,4 @@
+<br>
 <h1>Timeline</h1>
 
 <form id="new-post-form" action="/posts" method="post">
@@ -10,7 +11,19 @@
 <ul class="posts">
   {{#each posts}}
   <div class="post">
-    <p>{{this.message}} - {{this.createdAt}}</p>
+   <p> 
+      <img class="profile_picture" src="{{this.photo_link}}" alt="profile_picture">
+      {{this.name}} - {{this.date_string}}
+     </p>
+    <div>{{this.message}}
+      <!-- create a like button and the number of likes -->
+      <form method="POST" action="/posts/like">
+        <input type="hidden" value="{{this._id}}" name="postId">
+        <input type="hidden" value="{{../session.user._id}}" name="userId">
+        <input type="submit" value="" id="like-button">
+        <span id="like-number">{{this.likes.length}}</span>
+      </form>
+    </div> 
     <!-- create a comment on the post -->
     <form id="new-comment-form" action="/posts/{{this._id}}" method="post">
       <input id="message" type="text" name="message" value="" placeholder="Comment here">
@@ -20,5 +33,7 @@
       <li class="comment">{{this.name}} - {{this.message}} - {{this.createdAt}}</li>
     {{/each}}
   </div>
+
   {{/each}}
 </ul>
+
