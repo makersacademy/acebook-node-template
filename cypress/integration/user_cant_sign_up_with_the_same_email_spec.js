@@ -1,7 +1,6 @@
 describe("Registration", () => {
   it("A user can't sign up with the same email twice - it gets redirected to the error page", () => {
 
-
     cy.visit("/users/new");
     cy.get("#name").type("someone");
     cy.get("#email").type("someone@example.com");
