@@ -1,4 +1,6 @@
 const Post = require("../models/post");
+const Comment = require("../models/comment");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -9,8 +11,13 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts.reverse(), user: session });
-    }).populate("user");
+      res.render("posts/index", {
+        posts: posts.reverse(),
+        user: session,
+      });
+    })
+      .populate("user")
+      .populate("comment");
   },
   New: (req, res) => {
     let session = req.session.user;
@@ -45,6 +52,46 @@ const PostsController = {
           throw err;
         }
         res.status(201).redirect("/posts");
+      });
+    });
+  },
+
+  // Comment: (req, res) => {
+  //   let session = req.session.user;
+
+  //   const comment = new Comment(req.body);
+  //   let id = comment._id;
+
+  //   comment.save((err) => {
+  //     if (err) {
+  //       throw err;
+  //     }
+
+  //     // res.status(201).redirect("/posts");
+  //     res.render("posts/index", { cid: id });
+  //   });
+
+  //comments on posts
+  Comment: (req, res) => {
+    let session = req.session.user;
+    const id = req.params.id;
+    const comment = new Comment(req.body);
+    comment.user = session;
+    comment.save((err) => {
+      if (err) {
+        throw err;
+      }
+      Post.findById(id, (err, post) => {
+        if (err) {
+          throw err;
+        }
+        post.remarks.push(comment);
+        post.save((err) => {
+          if (err) {
+            throw err;
+          }
+          res.status(201).redirect("/posts");
+        });
       });
     });
   },

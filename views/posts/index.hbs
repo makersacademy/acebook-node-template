@@ -1,4 +1,5 @@
 <h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
+
 <ul class="posts">
 
   {{#each posts}}
@@ -10,15 +11,43 @@
       by
       {{this.user.firstName}}
       {{this.user.lastName}}
+<li>
       {{this.likes.length}}
 
-      likes
+      likes</li></li>
+      {{#if this.remarks.length}}
+<li>
+        Comments=
+ </li>       
+        {{#each this.remarks}}
+<li>
+      {{this.content}} by {{this.user.firstName}}
+          </li>
+        {{/each}}
+        
+      {{else}}
+      <li>
+        NO Comments have been made
+        </li>
+      {{/if}}
 
     </li>
 
-    <form id="like-btn" action="/posts/{{this._id}}" method="post">
+    <form id="likes-form" action="/posts/{{this._id}}" method="post">
 
       <input type="submit" value="likes" />
+    </form>
+
+    <form
+      id="new-comment-form"
+      action="/posts/comments/{{this._id}}"
+      method="post"
+    >
+      <label for="comments"> comment here</label>
+      <input type="text" value="" name="content" />
+
+      <input type="submit" value="Submit" />
+
     </form>
   {{/each}}
 </ul>

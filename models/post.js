@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema(
   {
     message: String,
 
+    remarks: Array,
     likes: Array,
     user: {
       type: Schema.Types.ObjectId,
@@ -13,6 +14,7 @@ const PostSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
 
 const Post = mongoose.model("Post", PostSchema);
 
