@@ -5,13 +5,13 @@ const User = require("../../models/user");
 
 describe("User model", () => {
   beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
+    mongoose.connection.collections.users.deleteMany({}).then(() => {
       done();
     });
   });
-  
+
   afterEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
+    mongoose.connection.collections.users.deleteMany({}).then(() => {
       done();
     });
   });
