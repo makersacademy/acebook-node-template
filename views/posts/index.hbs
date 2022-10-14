@@ -35,6 +35,12 @@
         {{#each this.remarks}}
 <li>
       {{this.content}} by {{this.user.firstName}}
+      <li>
+      <form id="comment-likes-form" action="/posts/comments/likes/{{this._id}}" method="POST">
+
+          <input name="commentLikes" type="submit" value="Like" />
+        </form>
+        {{this.commentLikes.length}} likes
           </li>
         {{/each}}
         
@@ -52,6 +58,7 @@
       <input type="text" value="" name="content" />
 
       <input type="submit" value="Submit" />
+      {{!-- <input id="BigComment" type="hidden" name="remarks" value={{this._id}} /> --}}
 
     </form>
     </div>

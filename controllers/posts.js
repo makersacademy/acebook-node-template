@@ -17,7 +17,8 @@ const PostsController = {
       });
     })
       .populate("user")
-      .populate("comment");
+      .populate("remarks")
+      .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}});
   },
   New: (req, res) => {
     let session = req.session.user;
@@ -36,9 +37,7 @@ const PostsController = {
 
   Like: (req, res) => {
     let session = req.session.user;
-    console.log(session);
     const id = req.params.id;
-    console.log(req.params.id);
     Post.findById(id, (err, post) => {
       if (post.likes.includes(session._id)) {
         return res.status(201).redirect("/posts");
@@ -76,7 +75,7 @@ const PostsController = {
     let session = req.session.user;
     const id = req.params.id;
     const comment = new Comment(req.body);
-    comment.user = session;
+    comment.user = session._id;
     comment.save((err) => {
       if (err) {
         throw err;
@@ -85,13 +84,32 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        post.remarks.push(comment);
+        post.remarks.push(comment._id);
         post.save((err) => {
           if (err) {
             throw err;
           }
           res.status(201).redirect("/posts");
         });
+      });
+    });
+  },
+  LikeComment: (req, res) => {
+    let session = req.session.user
+    const id = req.params.id;
+    Comment.findById(id, (err, comment) => {
+      if (comment.commentLikes.includes(session._id)) {
+        return res.status(201).redirect("/posts");
+      }
+      if (err) {
+        throw err;
+      }
+      comment.commentLikes.push(session._id);
+      comment.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
       });
     });
   },

@@ -8,4 +8,5 @@ router.post("/", PostsController.Create);
 router.get("/new", PostsController.New);
 router.post("/:id", PostsController.Like);
 router.post("/comments/:id", PostsController.Comment);
+router.post("/comments/likes/:id", PostsController.LikeComment);
 module.exports = router;
