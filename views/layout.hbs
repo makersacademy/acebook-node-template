@@ -10,7 +10,7 @@
       {{! https://handlebarsjs.com/guide/builtin-helpers.html }}
       {{#if session.user}}
         <a href="/posts/new">Make a post</a>
-        <a href="/settings">Settings</a>
+        <a id="settings-navbar" href="/settings">Settings</a>
         <form action="/sessions?_method=DELETE" method="POST">
           <input id="logout" type="submit" value="Log Out" />
         </form>
