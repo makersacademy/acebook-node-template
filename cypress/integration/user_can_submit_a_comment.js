@@ -4,14 +4,8 @@ describe("Timeline", () => {
     cy.visit("/users/new");
     cy.get("#name").type("name");
     cy.get("#email").type("someone@example.com");
-    cy.get("#password1").type("password");
-    cy.get("#password2").type("password");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password1").type("Password@1");
+    cy.get("#password2").type("Password@1");
     cy.get("#submit").click();
 
     // submit a post
