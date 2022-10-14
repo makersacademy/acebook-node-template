@@ -63,7 +63,7 @@ describe("Registration", () => {
     cy.url().should("include", "users/new");
 
     // should see error message
-    cy.contains("div", "Please enter a valid name.");
+    cy.contains("div", "Please enter a valid name");
   });
 
   it("A user writes an invalid password", () => {
