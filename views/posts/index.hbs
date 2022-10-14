@@ -1,9 +1,10 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-    
-    <li>{{this.author.name}}</li>
-    <li>{{this.createdAt}}</li>
-    <li>{{this.message}}</li>
+    <div class="post">
+      <li>{{this.author.name}}</li>
+      <li>{{this.createdAt}}</li>
+      <li>{{this.message}}</li>
+    </div>
   {{/each}}
 </ul>
