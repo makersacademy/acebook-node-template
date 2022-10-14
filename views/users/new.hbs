@@ -1,21 +1,32 @@
- <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-
-<h1>AceBook</h1>
-<h2>Create account</h2>
-{{#if error}}
-  <div>{{ error }}</div>
-{{/if}}
-<form id="new-user-form" action="/users/new" method="post">
-  <div><input id="name" type="text" name="name" value=""  placeholder="Name"></div>
-  <div><input id="email" type="email" name="email" value="" placeholder="Email"></div>
-  <div><input id="password1" type="password" name="password1" value="" placeholder="Password"></div>
-  <div><input id="password2" type="password" name="password2" value="" placeholder="Confirm Password"></div>
-  <div><input id="submit" type="submit" value="Sign Up!"></div>
-</form>
-
-    <form action="/sessions/new" method="get">
-          <input type="submit" value="Click here to log in">
+ <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>{{title}}</title>
+      <link rel='stylesheet' href='/stylesheets/style.css'>
+    </head>
+    <body>
+      <main>
+        <h1>AceBook</h1>
+        <h2>Create account</h2>
+        {{#if error}}
+          <div>{{ error }}</div>
+        {{/if}}
+        <form id="new-user-form" action="/users/new" method="post">
+          <div><input id="name" type="text" name="name" value="" placeholder="Name"></div>
+          <div><input id="email" type="email" name="email" value="" placeholder="Email"></div>
+          <div><input id="password1" type="password" name="password1" value="" placeholder="Password"></div>
+          <div><input id="password2" type="password" name="password2" value="" placeholder="Confirm Password"></div>
+          <div><input id="submit" type="submit" value="Sign Up!"></div>
         </form>
+        <div>Do you already have an account? <a href="/sessions/new">Click here to login</a></div>
+      </main>
+      <footer>
+        <div class="footer-items"> &copy;2022 Monsters, Inc</div>
+        <div class="footer-items"> A project by <a href="https://makers.tech/" target="_blank">Makers Academy</a> Students</div>
+        <div class="footer-items"> <a href="#" target="_blank">About Us</a></div>
+      </footer>
+    </body>
+  </html>

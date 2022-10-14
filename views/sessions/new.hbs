@@ -1,25 +1,38 @@
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>{{title}}</title>
+      <link rel='stylesheet' href='/stylesheets/style.css'>
+    </head>
+    <body>
+      <main>
+        <h1>Welcome to AceBook</h1>
+        <h2>Please log in here</h2>
 
-<h1>Welcome to AceBook</h1>
-<h2>Please log in here</h2>
+        <form id="new-session-form" action="/sessions/new" method="post">
+          <label for="email">Email: </label>
+          <input id="email" type="email" name="email" value="">
+          <label for="password">Password: </label>
+          <input id="password" type="password" name="password" value="">
+          <input id="submit" type="submit" value="Login">
+        </form>
 
-<form id="new-session-form" action="/sessions/new" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+        {{#if message}}
+            <div class="alert alert-info">{{message}}</div>
+        {{/if}}
 
-{{#if message}}
-    <div class="alert alert-info">{{message}}</div>
-{{/if}}
+        <a href="/users/new">Create a new account</a>
 
-
-<form action="/users/new">
-  <input type="submit" value="Create a new account">
-</form>
+      </main>
+      <footer>
+        <div class="footer-items">  &copy; 2022 Monsters, Inc</div>
+        <div class="footer-items"> A project by <a href="https://makers.tech/" target="_blank">Makers Academy</a> Students</div>
+        <div class="footer-items"> <a href="#" target="_blank">About Us</a></div>
+      </footer>
+    </body>
+  </html>
+  
 
