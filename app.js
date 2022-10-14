@@ -10,6 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const settingsRouter = require("./routes/settings");
 
 const app = express();
 
@@ -60,6 +61,7 @@ const sessionChecker = (req, res, next) => {
 };
 
 // route setup
+app.use("/settings", sessionChecker, settingsRouter);
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter); //sessionChecker used only for /posts
 app.use("/sessions", sessionsRouter);
