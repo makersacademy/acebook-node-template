@@ -4,10 +4,8 @@ const User = require("../models/user");
 
 const SettingsController = {
   Index: (req, res) => {
-    console.log(req.session);
     User.findById(req.session.user._id)
       .then((user) => {
-        console.log(user);
         const viewUser = {
           name: user.name,
           email: user.email,
