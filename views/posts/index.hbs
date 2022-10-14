@@ -1,21 +1,34 @@
 <h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
 
+<div class="new-post">
+  <button class="new-post-btn"><a class="new-post-link new-post-btn-line" href="/posts/new">New post</a></button>
+</div>
+
 <ul class="posts">
 
   {{#each posts}}
-  <li> <img src="/images/profile_picture.png" alt="Default profile picture icon" width="40" height="40"></li>
-      <li>{{this.message}}
-      at
-      {{this.createdAt}}
+    <li>
+      <div class="card">
+        <div>
+          <img class="img-card" src="/images/default-pic.png" alt="Avatar">
+        </div>
+        <h4><b>{{this.user.firstName}} {{this.user.lastName}}</b></h4>  
+        <div class="message">
+        <p>{{this.message}}</p>
+        </div>
+        <div class="message2">
 
-      by
-      {{this.user.firstName}}
-      {{this.user.lastName}}
-<li>
-      {{this.likes.length}}
+        </div>
+        <div class="likes">
+          {{this.likes.length}}
+          likes
+          {{this.createdAt}}
+          
+        <form id="likes-form" action="/posts/{{this._id}}" method="post">
 
-      likes</li></li>
-      {{#if this.remarks.length}}
+          <input type="submit" value="likes" />
+        </form>
+        {{#if this.remarks.length}}
 <li>
         Comments=
  </li>       
@@ -30,15 +43,7 @@
         NO Comments have been made
         </li>
       {{/if}}
-
-    </li>
-
-    <form id="likes-form" action="/posts/{{this._id}}" method="post">
-
-      <input type="submit" value="likes" />
-    </form>
-
-    <form
+          <form
       id="new-comment-form"
       action="/posts/comments/{{this._id}}"
       method="post"
@@ -49,7 +54,8 @@
       <input type="submit" value="Submit" />
 
     </form>
+    </div>
+        </div>
+    </li>
   {{/each}}
 </ul>
-
-<a class="new-post-link" href="/posts/new">New post</a>

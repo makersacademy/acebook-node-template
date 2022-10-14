@@ -6,6 +6,11 @@
   scroll-behavior: smooth;
   }
   
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
   .navbar {
       background: #131313;
       height: 80px;
@@ -89,7 +94,21 @@
       background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
       color: #fff;
       transition: 0.3s ease;
+      padding-top: 10px;
   } 
+
+  /* input.button:hover {
+    background: -webkit-linear-gradient(to right, #fcb045);
+    background: linear-gradient(to right, #fcb045);
+  } */
+
+  .button:hover {
+    background: -webkit-linear-gradient(to left, #fcb045, #fcb045, #fcb045);
+    background: linear-gradient(to left, #fcb045, #fcb045, #fcb045);
+    /* background: #fcb045; */
+    color: #9518fc;
+    transition: 1s ease;
+  }
   
   .navbar__links:hover {
       color: #9518fc;
