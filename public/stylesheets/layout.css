@@ -54,6 +54,7 @@
       display: flex;
       align-items: center;
       list-style: none;
+      cursor: pointer;
   }
   
   .navbar__item {
@@ -77,6 +78,7 @@
       align-items: center;
       padding: 0 1rem;
       width: 100%;
+      cursor: pointer;
   }
   
   .button {
@@ -111,6 +113,8 @@
       color: #9518fc;
       transition: all 0.3s ease;
   }
+
+  
   
   @media screen and (max-width: 960px) {
       .navbar__container {

@@ -1,0 +1,154 @@
+form 
+  max-width: 30em
+  margin: 3em auto
+  
+.field + .field
+  margin-top: (12 / 16) * 1em
+
+.field
+  position: relative
+  border: none
+
+label
+  font-size: (12 / 16) * 1em
+  text-transform: uppercase
+  color: $neutral-medium
+
+input ~ label
+  position: absolute
+  top: -3em
+  display: block
+  border-radius: 3px
+  padding: 0.5em
+  font-size: (10 / 16) * 1em
+  color: $neutral-lighter
+  background-color: $neutral-dark
+  pointer-events: none
+  text-transform: initial
+  z-index: 2
+  opacity: 0
+  transition: opacity 0.25s ease 0
+
+  &::before
+    position: absolute
+    display: inline-block
+    content: ""
+    width: 10px
+    height: 10px
+    background: $neutral-dark
+    transform: rotate(45deg)
+    z-index: 1
+    bottom: -5px
+    left: 10px
+
+input:focus ~ label
+  opacity: 0.8
+  transition: opacity 0.5s ease 1s
+
+input, button
+  transition: all 0.5s ease
+  padding: (12 / 16) * 1em
+  font-size: inherit
+  border-radius: 3px
+
+  -webkit-appearance: none
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+
+  width: 100%
+
+  background-color: $neutral-light
+  border: 2px solid $neutral-light
+  
+  &:focus
+    border-color: $neutral-medium
+    background-color: $neutral-medium
+
+::-webkit-input-placeholder
+  font-size: (12 / 16) * 1em
+  color: $neutral-medium
+
+button:focus, input:focus
+  position: relative
+  outline: none
+  color: white
+
+
+input[type="submit"], button
+  display: inline-block
+  width: auto
+  font-size: (14 / 16) * 1em
+  padding: ((10 / 14) * 1em) ((32 / 14) * 1em)
+  margin: ((4 / 14) * 1em) 0
+  color: white
+  -webkit-font-smoothing: antialiased
+  background-color: $aqua
+  border: 2px solid $aqua
+  text-transform: uppercase
+
+  &::before, &::after
+    font-family: "Ionicons"
+    content: "\f10b"
+    margin: 0 0.25em
+    opacity: 0
+    transition: all 0.5s ease
+
+  &::after
+    content: "\f108"
+
+  &:focus
+    $color: darken($aqua, 8%)
+    border-color: $color
+    background-color: $color
+
+    &::after, &::before
+      opacity: 1
+
+
+input[type="checkbox"]
+  position: relative
+  -webkit-appearance: none
+  height: 2em
+  width: 4em
+  border-radius: 1.5em
+  background-color: $neutral-light
+  border-color: transparent
+  background-clip: padding-box
+  color: $neutral-medium
+  vertical-align: middle
+
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 50%
+    background-color: white
+    border-radius: 100%
+    border: 2px solid transparent
+    transition: all 0.5s ease
+    background-clip: padding-box
+    z-index: 2
+
+  &::after
+    position: absolute
+    left: 0.675em
+    top: 0.375em
+    font-family: "Ionicons"
+    content: "\f121 \f129"
+    letter-spacing: 0.75em
+    z-index: 1
+
+  &:focus
+    color: white
+    border-color: transparent
+    background-color: $neutral-medium
+
+
+  &:checked
+    color: white
+    background-color: $green
+    border-color: transparent
+
+    &::before
+      transform: translateX(100%)

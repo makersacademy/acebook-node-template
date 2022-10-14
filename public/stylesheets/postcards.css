@@ -53,6 +53,16 @@ img {
   height: 100px;
 }
 
+.img-card:hover {
+  transform: scale(1.15);
+  transition: 0.5s;
+}
+
+h4:hover {
+  transform: scale(1.15);
+  transition: 0.5s;
+}
+
 .message {
   text-align: center;
   left: 50%;
@@ -76,6 +86,7 @@ img {
 input.button:hover {
   background: -webkit-linear-gradient(to right, #fcb045);
   background: linear-gradient(to right, #fcb045);
+  cursor: pointer;
 }
 
 .button {
