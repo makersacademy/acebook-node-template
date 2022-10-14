@@ -25,14 +25,29 @@ describe("Post model", () => {
 
   it("can save a post", (done) => {
     var post = new Post({ message: "some message" });
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+        expect(posts[0]).toMatchObject({
+          message: "some message",
+        });
+        done();
+      });
+    });
+  });
+
+  it("has an empty array of comments", (done) => {
+    var post = new Post({ message: "some message" });
 
     post.save((err) => {
       expect(err).toBeNull();
 
       Post.find((err, posts) => {
         expect(err).toBeNull();
-
-        expect(posts[0]).toMatchObject({ message: "some message" });
+        let comment = posts[0].comments.toObject();
+        expect(comment).toEqual([]);
         done();
       });
     });
@@ -40,14 +55,7 @@ describe("Post model", () => {
 
   it("has an empty array of likes", (done) => {
     var post = new Post({ message: "some message" });
-    let like = post.likes.toObject();
-    expect(like).toEqual([]);
-    done();
-  });
 
-  it("has an empty array of likes", (done) => {
-    var post = new Post({ message: "some message" });
-   
     post.save((err) => {
       expect(err).toBeNull();
 
