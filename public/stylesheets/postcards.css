@@ -37,13 +37,14 @@ img {
 }
 
 .card {
-  display: inline-block;
+  display: block;
   height: auto;
   width: 600px;
   position: relative;
   margin-bottom: 20px;
   white-space: normal;
   word-break: break-word;
+  margin: auto;
 }
 
 .img-card {
@@ -79,4 +80,10 @@ input.button:hover {
 
 .button {
   margin-top: 20px;
+}
+
+.comments { 
+  position: relative;
+  top: -10px;
+  list-style: none;
 }

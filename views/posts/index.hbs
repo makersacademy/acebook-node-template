@@ -6,19 +6,27 @@
 
 <ul class="posts">
 
+<div>
   {{#each posts}}
-    <li>
+    {{!-- <li> --}}
       <div class="card">
+
+        {{!-- profile pic --}}
         <div>
           <img class="img-card" src="/images/default-pic.png" alt="Avatar">
         </div>
+        {{!-- message --}}
         <h4><b>{{this.user.firstName}} {{this.user.lastName}}</b></h4>  
         <div class="message">
         <p>{{this.message}}</p>
         </div>
-        <div class="message2">
-
+        {{!-- if uploading a photo --}}
+        <div class="photos">
         </div>
+
+
+        
+          {{!-- likes section --}}
         <div class="likes">
           {{this.likes.length}}
           likes
@@ -28,34 +36,40 @@
 
           <input type="submit" value="likes" />
         </form>
-        {{#if this.remarks.length}}
-<li>
-        Comments=
- </li>       
-        {{#each this.remarks}}
-<li>
-      {{this.content}} by {{this.user.firstName}}
-          </li>
-        {{/each}}
-        
-      {{else}}
-      <li>
-        NO Comments have been made
-        </li>
-      {{/if}}
-          <form
-      id="new-comment-form"
-      action="/posts/comments/{{this._id}}"
-      method="post"
-    >
-      <label for="comments"> comment here</label>
-      <input type="text" value="" name="content" />
-
-      <input type="submit" value="Submit" />
-
-    </form>
-    </div>
         </div>
-    </li>
+
+        {{!-- comment section --}}
+          <div class="comments">
+          {{#if this.remarks.length}}
+          <li>
+          Comments=
+          </li>       
+          {{#each this.remarks}}
+          <li>
+          {{this.content}} by {{this.user.firstName}}
+            </li>
+          {{/each}}
+          
+            {{else}}
+          <li>
+          NO Comments have been made
+          </li>
+          {{/if}}
+          <form
+          id="new-comment-form"
+          action="/posts/comments/{{this._id}}"
+          method="post"
+          >
+          <label for="comments"> comment here</label>
+          <input type="text" value="" name="content" />
+
+          <input type="submit" value="Submit" />
+
+          </form>
+        </div>
+
+      </div>
+    {{!-- </li> --}}
   {{/each}}
+  </div>
 </ul>
