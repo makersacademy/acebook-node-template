@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const fs = require("fs");
+const path = require('path')
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -19,7 +20,7 @@ const UserSchema = new mongoose.Schema({
     data: {
       type: Buffer,
       default: () => {
-        return fs.readFileSync("../public/images/testImage.png");
+        return fs.readFileSync(path.join(__dirname, '..', 'public', 'images', 'testImage.png'));
       },
     },
     contentType: {
