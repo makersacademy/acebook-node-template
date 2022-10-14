@@ -9,6 +9,12 @@ describe("User model", () => {
       done();
     });
   });
+  
+  afterEach((done) => {
+    mongoose.connection.collections.users.drop(() => {
+      done();
+    });
+  });
 
   it("has an email address", () => {
     const user = new User({
