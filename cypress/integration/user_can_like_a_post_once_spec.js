@@ -28,10 +28,10 @@ describe("Timeline", () => {
     cy.get("#submit").click();
 
     // press like twice
-    cy.get("#likeCount").should("contain", "0");
-    cy.get("#submit").click();
-    cy.get("#submit").click();
-    cy.get("#likeCount").should("contain", "1");
+    cy.get(".likeCount").should("contain", "0");
+    cy.get(".submit:first").click();
+    cy.get(".submit:first").click();
+    cy.get(".likeCount").should("contain", "1");
 
     cy.get("#logout").click();
 
@@ -44,9 +44,9 @@ describe("Timeline", () => {
     cy.visit("/posts");
 
     // press like twice
-    cy.get("#likeCount").should("contain", "1");
-    cy.get("#submit").click();
-    cy.get("#submit").click();
-    cy.get("#likeCount").should("contain", "2");
+    cy.get(".likeCount").should("contain", "1");
+    cy.get(".submit:first").click();
+    cy.get(".submit:first").click();
+    cy.get(".likeCount").should("contain", "2");
   });
 });
