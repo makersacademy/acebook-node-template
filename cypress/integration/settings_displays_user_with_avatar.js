@@ -18,13 +18,15 @@ describe("Settings", () => {
     // get /settings
     cy.get("#settings-navbar").click();
 
-    cy.log(cy.get("#user-name"));
-    cy.get("#user-name").should("contains", "someone");
-    cy.get("#user-email").should("contains", "someone3@example.com");
-    const image = cy.readFile(
-      path.join(__dirname, "..", "..", "public", "images", "testImage.png")
-    );
-    const srcString = `data:image\png;base64,${image.toString("base64")}`;
-    cy.get("#profile-image").should("have.attr", "src", srcString);
+    cy.get(".user").should("contain", "someone");
+    cy.get("#user-email").should("contain", "someone3@example.com");
+
+    cy.readFile(
+      path.join(__dirname, "..", "..", "public", "images", "testImage.png"),
+      "base64"
+    ).then((image) => {
+      const src = `data:image/png;base64,${image}`;
+      cy.get("#profile-image").should("have.attr", "src", src);
+    });
   });
 });
