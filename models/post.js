@@ -5,7 +5,11 @@ const PostSchema = new mongoose.Schema(
   {
     message: String,
 
-    remarks: Array,
+    // remarks: Array,
+    remarks: [{
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }],
     likes: Array,
     user: {
       type: Schema.Types.ObjectId,
