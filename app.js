@@ -43,6 +43,10 @@ hbs.handlebars.registerHelper("formatLikesNumber", function (likesNumber) {
   return likesNumber == 1 ? "1 like" : `${likesNumber} likes`;
 });
 
+hbs.handlebars.registerHelper("formatPostAuthorImage", function (type, data) {
+  return `data:${type};base64,${data.toString("base64")}`;
+});
+
 //adds session to handlebars locals
 app.use(function (req, res, next) {
   res.locals.session = req.session;
