@@ -1,18 +1,35 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
+  font: 20px "Nunito", sans-serif;
+  background-image: url("../images/monsters_inc_background.png");
+  color: white;
+}
+
+main {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+.center {
+  width: 400px;
+  margin: 0 auto;
 }
 
 #like-button {
   width: 20px;
-  background-image: url("../images/heart.webp");
+  background-image: url("../images/like_heart_purple.png");
   background-size: 20px;
   background-repeat: no-repeat;
   border: none;
+  background-color: transparent;
 }
 
 .navbar_forms {
@@ -25,3 +42,182 @@ a {
   height: 40px;
 }
 
+nav, footer {
+  color: white;
+  background-color: rgb(36, 153, 36);
+}
+
+nav {
+  height: 70px;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+nav a {
+  margin: auto 20px;
+  color: white;
+}
+
+footer {
+  height: 40px;
+  font-size: 16px;
+}
+
+.footer-items a, nav a:hover {
+  color: rgb(72, 218, 255)
+}
+
+.footer-items a:hover {
+  color: rgb(245, 132, 255)
+}
+
+.footer-items {
+  padding: 10px 0 0 0;
+}
+
+/* Posts main page */
+
+#new-post-form {
+  background-color: rgb(150, 38, 160);
+  border: 3px solid rgb(236, 122, 247);
+  border-radius: 10px;
+  color: white;
+  width: 500px;
+  margin: 20px auto;
+  padding: 15px 20px;
+  font-size: 25px;
+}
+
+#message-container {
+  text-align: center;
+  margin: 12px auto;
+}
+
+#new-post-form input[type=text] {
+  background-color: rgb(151, 231, 251);
+  border: 3px solid rgb(0, 177, 204);
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 3px 12px;
+  margin: 5px 0 5px 15px;
+}
+
+#new-post-form input[type=text]:focus {
+  outline: none;
+  border: 3px solid rgb(236, 122, 247);
+} 
+
+#new-post-form input[type=submit] {
+  background-color: rgb(236, 122, 247);
+  border: 3px solid rgb(150, 38, 160);
+  border-radius: 30px;
+  font-size: 20px;
+  padding: 3px 22px;
+  margin: 5px 0 5px 15px;
+}
+
+#new-post-form input[type=submit]:hover, #new-post-form input[type=submit]:active {
+  background-color: rgb(94, 21, 101);
+  border: 3px solid rgb(236, 122, 247);
+  color: white;
+}
+
+.posts {
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  background-color: rgb(20, 108, 20);
+  color:rgb(72, 218, 255);
+  width: 500px;
+  margin: 10px auto;
+  padding: 0 0 15px 0;
+  border: 3px solid rgb(154, 228, 154);
+  border-radius: 10px;
+}
+
+.post-header {
+  background-color:rgb(36, 153, 36);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.post-message {
+  padding: 15px 20px;
+}
+
+#new-comment-form input[type=text] {
+  background-color: rgb(36, 153, 36);
+  border: 3px solid rgb(16, 88, 16);
+  font-style: italic;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 3px 12px;
+  margin: 5px 0 5px 15px;
+}
+
+#new-comment-form input[type=text]:focus {
+  outline: none;
+  border: 3px solid rgb(76, 209, 76);
+}
+
+#new-comment-form input[type=submit] {
+  background-color: rgb(76, 209, 76);
+  font-size: 16px;
+  padding: 3px 12px;
+  border: 3px solid rgb(20, 108, 20);
+  border-radius: 20px;
+  margin: 0;
+}
+
+#new-comment-form input[type=submit]:hover, #new-comment-form input[type=submit]:active {
+  background-color: rgb(16, 88, 16); 
+  border: 3px solid rgb(76, 209, 76);
+  color: white;
+}
+
+.comment {
+  color: rgb(154, 228, 154);
+  font-size: 16px;
+  font-style: italic;
+  margin: 5px 15px;
+}
+
+/* LOGIN/New Session and SIGNUP/New User forms */
+
+#error {
+  color: rgb(236, 122, 247);
+}
+
+#new-session-form input, #new-user-form input {
+  background-color: rgb(151, 231, 251);
+  border: 3px solid rgb(0, 177, 204);
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 3px 12px;
+  margin: 5px;
+}
+
+#new-session-form input:focus, #new-user-form input:focus {
+  outline: none;
+  border: 3px solid rgb(236, 122, 247);
+}
+
+#new-session-form input[type=submit], #new-user-form input[type=submit] {
+  background-color: rgb(236, 122, 247);
+  border: 3px solid rgb(150, 38, 160);
+  border-radius: 30px;
+  font-size: 20px;
+  padding: 3px 22px;
+  margin: 5px;
+}
+
+#new-session-form input[type=submit]:hover, #new-session-form input[type=submit]:active, #new-user-form input[type=submit]:hover, #new-user-form input[type=submit]:active {
+  background-color: rgb(94, 21, 101);
+  border: 3px solid rgb(236, 122, 247);
+  color: white;
+}

@@ -4,11 +4,12 @@ describe('Liking', () => {
     cy.visit("/users/new");
     cy.get("#name").type("name");
     cy.get("#email").type("someone1@example.com");
-    cy.get("#password1").type("password");
-    cy.get("#password2").type("password");
+    cy.get("#password1").type("Password@1");
+    cy.get("#password2").type("Password@1");
     cy.get("#submit").click();
 
     //create post
+    cy.contains("#logout", "Logout");
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
@@ -23,11 +24,12 @@ describe('Liking', () => {
     cy.visit("/users/new");
     cy.get("#name").type("name");
     cy.get("#email").type("someone2@example.com");
-    cy.get("#password1").type("password");
-    cy.get("#password2").type("password");
+    cy.get("#password1").type("Password@1");
+    cy.get("#password2").type("Password@1");
     cy.get("#submit").click();
 
     //create post
+    cy.contains("#logout", "Logout");
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
@@ -47,11 +49,12 @@ describe('Liking', () => {
     cy.visit("/users/new");
     cy.get("#name").type("name");
     cy.get("#email").type("someone3@example.com");
-    cy.get("#password1").type("password");
-    cy.get("#password2").type("password");
+    cy.get("#password1").type("Password@1");
+    cy.get("#password2").type("Password@1");
     cy.get("#submit").click();
 
     //create post
+    cy.contains("#logout", "Logout");
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
@@ -67,11 +70,12 @@ describe('Liking', () => {
     cy.visit("/users/new");
     cy.get("#name").type("name");
     cy.get("#email").type("someone4@example.com");
-    cy.get("#password1").type("password");
-    cy.get("#password2").type("password");
+    cy.get("#password1").type("Password@1");
+    cy.get("#password2").type("Password@1");
     cy.get("#submit").click();
 
     //click like button
+    cy.contains("#logout", "Logout");
     cy.get("#like-button").click();
 
     cy.contains("#like-number", '2');
