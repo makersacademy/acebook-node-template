@@ -1,11 +1,10 @@
 <h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
 
-<div class="new-post">
-  <button class="new-post-btn"><a
-      class="new-post-link new-post-btn-line"
-      href="/posts/new"
-    >New post</a></button>
-</div>
+<form id="new-post-form" action="/posts" method="POST">
+  <input id="message" type="text" name="message" placeholder="Make a new post" />
+  <input id="user" type="hidden" name="user" value={{user._id}} />
+  <input type="submit" value="Submit" />
+</form>
 
 <ul class="posts">
 
@@ -62,9 +61,10 @@
             {{/each}}
 
           {{else}}
-            <li>
-              NO Comments have been made
-            </li>
+          
+            <ul>
+              No Comments have been made
+            </ul>
           {{/if}}
           <form
             id="new-comment-form"

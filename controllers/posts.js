@@ -31,7 +31,7 @@ const PostsController = {
         throw err;
       }
 
-      res.status(201).redirect("/posts");
+      res.status(201).redirect(req.get('referer'));
     });
   },
 
@@ -40,7 +40,7 @@ const PostsController = {
     const id = req.params.id;
     Post.findById(id, (err, post) => {
       if (post.likes.includes(session._id)) {
-        return res.status(201).redirect("/posts");
+        return res.status(201).redirect(req.get('referer'));
       }
       if (err) {
         throw err;
@@ -50,7 +50,7 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        res.status(201).redirect("/posts");
+        res.status(201).redirect(req.get('referer'));
       });
     });
   },
@@ -89,7 +89,7 @@ const PostsController = {
           if (err) {
             throw err;
           }
-          res.status(201).redirect("/posts");
+          res.status(201).redirect(req.get('referer'));
         });
       });
     });
@@ -99,7 +99,7 @@ const PostsController = {
     const id = req.params.id;
     Comment.findById(id, (err, comment) => {
       if (comment.commentLikes.includes(session._id)) {
-        return res.status(201).redirect("/posts");
+        return res.status(201).redirect(req.get('referer'));
       }
       if (err) {
         throw err;
@@ -109,7 +109,7 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        res.status(201).redirect("/posts");
+        res.status(201).redirect(req.get('referer'));
       });
     });
   },
