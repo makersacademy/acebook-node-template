@@ -3,6 +3,7 @@ const Post = require("../models/post");
 const PostsController = {
   Index: (req, res) => {
     Post.find({})
+      .sort([['createdAt', -1]])
       .populate("author")
       .exec((err, posts) => {
         if (err) {
