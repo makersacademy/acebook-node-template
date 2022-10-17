@@ -19,9 +19,9 @@ const mongoose = require("mongoose");
 //   // `config` is the resolved Cypress config
 // };
 
-module.exports = async (on) => {
+module.exports = (on) => {
   on("task", {
-    async emptyPosts() {
+    emptyPosts() {
       mongoose.connect("mongodb://0.0.0.0/acebook_test");
       const result = mongoose.connection.collection("posts").deleteMany({});
       return result;
@@ -29,7 +29,7 @@ module.exports = async (on) => {
   });
 
   on("task", {
-    async emptyUsers() {
+    emptyUsers() {
       mongoose.connect("mongodb://0.0.0.0/acebook_test");
       const result = mongoose.connection.collection("users").deleteMany({});
       return result;
