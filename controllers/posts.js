@@ -1,18 +1,30 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const session = require("express-session");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    let posts = Post.find((err, posts) => {
       if (err) {
         throw err;
       }
+      let post_owners = [];
+      if (req.session.user._id){
+          posts.forEach(post => {
+            let post_owner = post.user_id == req.session.user._id;
+            post_owners.push(post_owner)
+          });
+          console.log(post_owners);  
+      }
+
       res.render("posts/index", {
+        post_owners: post_owners,
         posts: posts,
         session: req.session,
       });
     }).sort({ createdAt: -1 });
   },
+  //  
   // New: (req, res) => {
   //   res.render("posts/new", {session: req.session});
   // },
@@ -25,7 +37,7 @@ const PostsController = {
     post.date_string = `${date.getDate()}-${
       date.getMonth() + 1
     }-${date.getFullYear()} ${date.toLocaleTimeString()}`;
-
+    post.user_id = req.session.user._id;
     post.save((err) => {
       if (err) {
         throw err;
@@ -84,6 +96,15 @@ const PostsController = {
       });
     });
   },
+
+  DeletePost: (req, res) => {
+    Post.findOneAndDelete({_id: req.params.id}, (err)=> {
+      if (err) {
+        throw err;
+      }
+      res.status(201).redirect("/posts");
+    })
+  }
 };
 
 module.exports = PostsController;

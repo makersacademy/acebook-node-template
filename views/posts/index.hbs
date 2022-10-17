@@ -20,6 +20,13 @@
         <span id="like-number">{{this.likes.length}}</span>
       </form>
     </div> 
+      
+      {{#if post_owners[{{@index}}]}}
+      <!-- Delete a post -->
+      <form id="new-comment-form" action="/posts/delete/{{this._id}}" method="post">
+        <input type="submit" value="Delete">
+      </form>
+    {{/if}}
     <!-- create a comment on the post -->
     <form id="new-comment-form" action="/posts/{{this._id}}" method="post">
       <input id="message" type="text" name="message" value="" placeholder="Comment here">
