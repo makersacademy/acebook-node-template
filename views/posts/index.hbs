@@ -17,6 +17,24 @@
             />
             <input class="submit" type="submit" value="like" />
           </form>
+          <div class="comments">
+            <p>Comments</p>
+            {{#each this.comments}}
+              <ul class="comments">
+                <li>{{this.message}}</li>
+              </ul>
+            {{/each}}
+          </div>
+          <form class="comment-form" action="/posts/comments" method="post">
+            <input
+              class="postid"
+              type="hidden"
+              value={{this._id}}
+              name="postid"
+            />
+            <input class="comment-content" name="content" required />
+            <input class="submit" type="submit" value="comment" />
+          </form>
         </ul>
       </div>
     </li>
