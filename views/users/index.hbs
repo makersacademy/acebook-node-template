@@ -1,4 +1,4 @@
-<h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
+<h1 class="title">Hi {{user.firstName}}! Welcome to your profile</h1>
 
 <form id="new-post-form" action="/posts" method="POST">
   <input id="message" type="text" name="message" placeholder="Make a new post" />
@@ -18,7 +18,7 @@
           <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
         </div>
         {{! message }}
-        <h4><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+        <h4><b>{{this.user.firstName}} {{this.user.lastName}}</b></h4>
         <div class="message">
           <p>{{this.message}}</p>
         </div>
