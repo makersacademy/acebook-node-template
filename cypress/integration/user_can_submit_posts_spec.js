@@ -16,9 +16,9 @@ describe("Timeline", () => {
     // submit a post
     cy.visit("/posts");
 
-    cy.get(".new-post-btn").click();
+    // cy.get(".new-post-btn").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("Hello, world!", {force: true});
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
@@ -40,18 +40,18 @@ describe("Timeline", () => {
     // submit a post
     cy.visit("/posts");
 
-    cy.contains("New post").click();
+    // cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("Hello, world!", {force: true});
     cy.get("#new-post-form").submit();
-    cy.contains("New post").click({force:true});
-    cy.get("#new-post-form").find('[type="text"]').type("AAAAA");
+    // cy.contains("New post").click({force:true});
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("AAAAA", {force: true});
     cy.get("#new-post-form").submit();
-    cy.contains("New post").click({force:true})
-    cy.get("#new-post-form").find('[type="text"]').type("BBB");
+    // cy.contains("New post").click({force:true})
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("BBB", {force: true});
     cy.get("#new-post-form").submit();
-    cy.contains("New post").click({force:true});
-    cy.get("#new-post-form").find('[type="text"]').type("a");
+    // cy.contains("New post").click({force:true});
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("a", {force: true});
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").first().should("contain", "a");
@@ -95,8 +95,8 @@ describe("Timeline", () => {
     cy.get("#submit").click();
     //submit a post
     cy.visit("/posts");
-    cy.contains("New post").click({force:true});
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    // cy.contains("New post").click({force:true});
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("Hello, world!", {force: true});
     cy.get("#new-post-form").submit();
     //check if first name of logged in user appears
     cy.visit("/posts");
@@ -118,8 +118,8 @@ describe("Timeline", () => {
     cy.get("#submit").click();
     //submit a post
     cy.visit("/posts");
-    cy.contains("New post").click({force:true});
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    // cy.contains("New post").click({force:true});
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("Hello, world!", {force: true});
     cy.get("#new-post-form").submit();
     // like post
     // cy.contains("likes").click();
@@ -144,8 +144,8 @@ describe("Timeline", () => {
     cy.get("#submit").click();
     //submit a post
     cy.visit("/posts");
-    cy.contains("New post").click({force:true});
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    // cy.contains("New post").click({force:true});
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("Hello, world!", {force: true});
     cy.get("#new-post-form").submit();
 
     // comment on a post
@@ -153,7 +153,7 @@ describe("Timeline", () => {
     // cy.visit("/posts");
 
     cy.get("#new-comment-form")
-      .find('[type="text"]')
+      .find('[type="text"]', {force: true})
       .first()
       .type("my first comment", {force:true});
     cy.get("#new-comment-form").submit();
@@ -178,8 +178,8 @@ describe("Timeline", () => {
     cy.get("#submit").click({force:true});
     //submit a post
     cy.visit("/posts");
-    cy.contains("New post").click({force:true});
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    // cy.contains("New post").click({force:true});
+    cy.get("#new-post-form").find('[type="text"]', {force: true}).type("Hello, world!", {force: true});
     cy.get("#new-post-form").submit();
     // check user photo in the post
     cy.visit("/posts");

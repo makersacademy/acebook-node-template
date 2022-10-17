@@ -18,13 +18,13 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="/" class="navbar__links" id="home-page">Home</a>
+                    <a href="/posts" class="navbar__links" id="home-page">Home</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="/profile/:id" class="navbar__links" id="my-profile">My Profile</a>
+                 <a href="/users/index" class="navbar__links" id="settings">My Profile</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="/settings/:id" class="navbar__links" id="settings">Settings</a>
+                    <a href="/settings/{{this.id}}" class="navbar__links" id="settings">Settings</a>
                 </li>
                 <li class="navbar__btn">
                   <form action="/sessions?_method=DELETE" method="POST">
