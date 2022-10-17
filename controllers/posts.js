@@ -4,21 +4,19 @@ const session = require("express-session");
 
 const PostsController = {
   Index: (req, res) => {
-    let posts = Post.find((err, posts) => {
+    Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-      let post_owners = [];
-      if (req.session.user._id){
-          posts.forEach(post => {
-            let post_owner = post.user_id == req.session.user._id;
-            post_owners.push(post_owner)
-          });
-          console.log(post_owners);  
-      }
+      
+      posts.forEach((post) => {
+        post.owner = req.session.user._id == post.user_id;
+        post.comments.forEach((comment) => {
+          comment.comment_owner = req.session.user._id == comment.user_id;
+        });
+      });
 
       res.render("posts/index", {
-        post_owners: post_owners,
         posts: posts,
         session: req.session,
       });
@@ -87,6 +85,8 @@ const PostsController = {
       comment.createdAt = `${date.getDate()}-${
         date.getMonth() + 1
       }-${date.getFullYear()} ${date.toLocaleTimeString()}`;
+      comment.user_id = req.session.user._id;
+      comment.post_id = req.params.id;
       post.comments.unshift(comment);
       post.save((err) => {
         if (err) {
@@ -104,7 +104,27 @@ const PostsController = {
       }
       res.status(201).redirect("/posts");
     })
-  }
+  },
+
+  DeleteComment: (req, res) => {
+    Post.findById(req.params.id, (err, post) => {
+      if (err) {
+        throw err;
+      }
+      for(let i=0; i< post.comments.length; i++){
+        if(post.comments[i]._id == req.params.commentId){
+          post.comments.splice(i, 1);
+        }
+      }
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+     
+      res.status(201).redirect("/posts");
+    });
+  });
+}
 };
 
 module.exports = PostsController;
