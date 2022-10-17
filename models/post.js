@@ -12,24 +12,7 @@ const PostSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  comments: [
-    {
-      message: {
-        type: String,
-        required: true,
-      },
-      author: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: () => Date.now(),
-        immutable: true,
-      },
-    },
-  ],
+  comments: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Comment" }],
 });
 
 const Post = mongoose.model("Post", PostSchema);

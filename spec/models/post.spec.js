@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 require("../mongodb_helper");
 var Post = require("../../models/post");
 var User = require("../../models/user");
+var Comment = require("../../models/comment");
 
 describe("Post model", () => {
   beforeEach((done) => {
@@ -65,89 +66,97 @@ describe("Post model", () => {
   });
 
   it("can add a comment to a post", (done) => {
-    var post = new Post({
-      message: "some message",
+    //creates a comment
+    var comment = new Comment({
+      message: "a comment",
       author: "123456789012345678901234",
       createdAt: 1665497979886,
-      comments: [
-        {
-          message: "a comment",
-          author: "123456789012345678901234",
-          createdAt: 1665497979886,
-        },
-      ],
     });
-    post.save((err) => {
+    //saves the comment
+    comment.save((err, comment) => {
       expect(err).toBeNull();
-
-      Post.find((err, posts) => {
+      //creates a post
+      var post = new Post({
+        message: "some message",
+        author: "123456789012345678901234",
+        createdAt: 1665497979886,
+        comments: [comment._id],
+      });
+      //saves the post
+      post.save((err) => {
         expect(err).toBeNull();
-        expect(posts[0]).toMatchObject({ message: "some message" });
-        expect(posts[0].createdAt.toString()).toEqual(
-          "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
-        );
-        expect(posts[0].author).toMatchObject(
-          new mongoose.mongo.ObjectId("123456789012345678901234")
-        );
-        expect(posts[0].comments[0]).toMatchObject({
-          message: "a comment",
-          author: new mongoose.mongo.ObjectId("123456789012345678901234"),
-        });
-        expect(posts[0].comments[0].createdAt.toString()).toEqual(
-          "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
-        );
-        done();
+        //finds posts, populates comments and checks contents
+        Post.find({})
+          .populate("comments")
+          .exec((err, posts) => {
+            expect(err).toBeNull();
+            expect(posts[0]).toMatchObject({ message: "some message" });
+            expect(posts[0].createdAt.toString()).toEqual(
+              "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
+            );
+            expect(posts[0].author).toMatchObject(
+              new mongoose.mongo.ObjectId("123456789012345678901234")
+            );
+            expect(posts[0].comments[0]).toMatchObject({
+              message: "a comment",
+              author: new mongoose.mongo.ObjectId("123456789012345678901234"),
+            });
+            expect(posts[0].comments[0].createdAt.toString()).toEqual(
+              "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
+            );
+            done();
+          });
       });
     });
   });
 
-  it("can add multiple comments to a post", (done) => {
+  //this test uses async/await to avoid callback hell
+  it("can add multiple comments to a post", async () => {
+    //creates multiple comments
+    var comment = new Comment({
+      message: "a comment",
+      author: "123456789012345678901234",
+      createdAt: 1665497979886,
+    });
+    var comment2 = new Comment({
+      message: "another comment",
+      author: "123456789012345678901235",
+      createdAt: 1665497979886,
+    });
+    await comment.save();
+    await comment2.save();
+    //creates post and adds comments
     var post = new Post({
       message: "some message",
       author: "123456789012345678901234",
       createdAt: 1665497979886,
-      comments: [
-        {
-          message: "a comment",
-          author: "123456789012345678901234",
-          createdAt: 1665497979886,
-        },
-        {
-          message: "another comment",
-          author: "123456789012345678901235",
-          createdAt: 1665497979886,
-        },
-      ],
+      comments: [comment._id, comment2._id],
     });
-    post.save((err) => {
-      expect(err).toBeNull();
-
-      Post.find((err, posts) => {
-        expect(err).toBeNull();
-        expect(posts[0]).toMatchObject({ message: "some message" });
-        expect(posts[0].createdAt.toString()).toEqual(
-          "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
-        );
-        expect(posts[0].author).toMatchObject(
-          new mongoose.mongo.ObjectId("123456789012345678901234")
-        );
-        expect(posts[0].comments[0]).toMatchObject({
-          message: "a comment",
-          author: new mongoose.mongo.ObjectId("123456789012345678901234"),
-        });
-        expect(posts[0].comments[0].createdAt.toString()).toEqual(
-          "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
-        );
-        expect(posts[0].comments[1]).toMatchObject({
-          message: "another comment",
-          author: new mongoose.mongo.ObjectId("123456789012345678901235"),
-        });
-        expect(posts[0].comments[1].createdAt.toString()).toEqual(
-          "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
-        );
-        done();
-      });
+    await post.save();
+    //finds post with populated comments
+    const posts = await Post.find({}).populate("comments").exec();
+    //assertions
+    expect(posts[0]).toMatchObject({ message: "some message" });
+    expect(posts[0].createdAt.toString()).toEqual(
+      "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
+    );
+    expect(posts[0].author).toMatchObject(
+      new mongoose.mongo.ObjectId("123456789012345678901234")
+    );
+    expect(posts[0].comments[0]).toMatchObject({
+      message: "a comment",
+      author: new mongoose.mongo.ObjectId("123456789012345678901234"),
     });
+    expect(posts[0].comments[0].createdAt.toString()).toEqual(
+      "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
+    );
+    expect(posts[0].comments[1]).toMatchObject({
+      message: "another comment",
+      author: new mongoose.mongo.ObjectId("123456789012345678901235"),
+    });
+    expect(posts[0].comments[1].createdAt.toString()).toEqual(
+      "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
+    );
   });
 
   it("can populate the author field of a post with a User", (done) => {
@@ -178,5 +187,54 @@ describe("Post model", () => {
           });
       });
     });
+  });
+
+  //async test to avoid callback hell
+  it("can populate the author field of a comment with a User", async () => {
+    //creates a user
+    var user = new User({
+      name: "Rita",
+      email: "rita@gmail.com",
+      password: "password",
+    });
+    await user.save();
+    //creates a comment
+    var comment = new Comment({
+      message: "a comment",
+      author: user._id,
+      createdAt: 1665497979886,
+    });
+    await comment.save();
+    //creates a post
+    var post = new Post({
+      message: "some message",
+      author: user._id,
+      createdAt: 1665497979886,
+      comments: [comment._id],
+    });
+    await post.save();
+    //finds posts with comments and their authors populated
+    const posts = await Post.find({})
+      .populate("author")
+      .populate({
+        path: "comments",
+        populate: {
+          path: "author",
+        },
+      })
+      .exec();
+    //assertions
+    expect(posts[0]).toMatchObject({ message: "some message" });
+    expect(posts[0].createdAt.toString()).toEqual(
+      "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
+    );
+    expect(posts[0].author.name).toEqual("Rita");
+    expect(posts[0].comments[0].message).toEqual("a comment");
+    expect(posts[0].comments[0].createdAt.toString()).toEqual(
+      "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
+    );
+    expect(posts[0].comments[0].author.name).toEqual("Rita");
+    expect(posts[0].comments[0].author.email).toEqual("rita@gmail.com");
+    expect(posts[0].comments[0].author.password).toEqual("password");
   });
 });
