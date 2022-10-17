@@ -38,7 +38,11 @@ const PostsController = {
         contentType: "image/png",
       },
     };
+
     post.photo = obj.img;
+    post.code = obj.img.data.toString("base64");
+    console.log(post.photo);
+    console.log(post.photo.data.toString("base64"));
     post.save((err) => {
       if (err) {
         throw err;
