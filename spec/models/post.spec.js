@@ -6,20 +6,18 @@ var User = require("../../models/user");
 var Comment = require("../../models/comment");
 
 describe("Post model", () => {
-  beforeEach((done) => {
-    mongoose.connection.collections.posts.deleteMany({}).then(() => {
-      mongoose.connection.collections.users.deleteMany({}).then(() => {
-        done();
-      });
-    });
+  // async is easier for deleting mutliple collections
+  beforeEach(async () => {
+    await mongoose.connection.collections.posts.deleteMany({});
+    await mongoose.connection.collections.comments.deleteMany({});
+    await mongoose.connection.collections.users.deleteMany({});
   });
 
-  afterEach((done) => {
-    mongoose.connection.collections.posts.deleteMany({}).then(() => {
-      mongoose.connection.collections.users.deleteMany({}).then(() => {
-        done();
-      });
-    });
+  // async is easier for deleting mutliple collections
+  afterEach(async () => {
+    await mongoose.connection.collections.posts.deleteMany({});
+    await mongoose.connection.collections.comments.deleteMany({});
+    await mongoose.connection.collections.users.deleteMany({});
   });
 
   it("has a message", () => {
