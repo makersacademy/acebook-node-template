@@ -18,7 +18,7 @@ const PostsController = {
     post.name = req.session.user.name;
     post.message = req.body.message;
     post.photo_link = req.session.user.photo_link;
-    if (req.file.filename) {
+    if (req.file) {
       post.image = req.file.filename;
     }
     const date = new Date();

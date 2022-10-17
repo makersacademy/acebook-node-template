@@ -11,7 +11,10 @@
 <ul class="posts">
   {{#each posts}}
   <div class="post">
-    <img src="/images/{{this.image}}" alt="">
+    {{this.image}}
+    {{#if this.image}}
+      <img src="/images/{{this.image}}" class="postImage" alt="">
+    {{/if}}
     <p> 
       <img class="profile_picture" src="{{this.photo_link}}" alt="profile_picture">
       {{this.name}} - {{this.date_string}}
