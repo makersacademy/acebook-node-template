@@ -1,44 +1,34 @@
 <h1>Timeline</h1>
+{{! all posts }}
 <ul class="posts">
   {{#each posts}}
-    <li>
-      <div class="post">
-        <ul>
-          <li>{{this.author.name}}</li>
-          <li>{{this.createdAt}}</li>
-          <li>{{this.message}}</li>
-          <li class="likeCount">{{formatLikesNumber this.like.length}}</li>
-          <form class="like" action="/posts/like" method="post">
-            <input
-              class="postid"
-              type="hidden"
-              value={{this._id}}
-              name="postid"
-            />
-            <input class="submit" type="submit" value="like" />
-          </form>
-          <div class="comments">
-            <p>Comments</p>
-            {{#each this.comments}}
-              <ul class="comments">
-                <li>{{this.message}}</li>
-                <li>{{this.author.name}}</li>
-                <li>{{this.createdAt}}</li>
-              </ul>
-            {{/each}}
-          </div>
-          <form class="comment-form" action="/posts/comments" method="post">
-            <input
-              class="postid"
-              type="hidden"
-              value={{this._id}}
-              name="postid"
-            />
-            <input class="comment-input" name="content" required />
-            <input class="submit-comment" type="submit" value="comment" />
-          </form>
-        </ul>
-      </div>
-    </li>
+    {{! a post }}
+    <ul id={{this._id}} class="post">
+      <li class="post-content">{{this.message}}</li>
+      <li class="post-autor">By {{this.author.name}}</li>
+      <li class="post-date">On {{this.createdAt}}</li>
+      <li class="likeCount">{{formatLikesNumber this.like.length}}</li>
+      <form class="like" action="/posts/like" method="post">
+        <input class="postid" type="hidden" value={{this._id}} name="postid" />
+        <input class="submit" type="submit" value="like" />
+      </form>
+      {{! all comments }}
+      <li class="comments">
+        <p>Comments</p>
+        {{#each this.comments}}
+          {{! a comment }}
+          <ul id={{this.id}} class="comment">
+            <li class="comment-content">{{this.message}}</li>
+            <li class="comment-author">By {{this.author.name}}</li>
+            <li class="comment-date">On {{this.createdAt}}</li>
+          </ul>
+        {{/each}}
+      </li>
+      <form class="comment-form" action="/posts/comments" method="post">
+        <input class="postid" type="hidden" value={{this._id}} name="postid" />
+        <input class="comment-input" name="content" required />
+        <input class="submit-comment" type="submit" value="comment" />
+      </form>
+    </ul>
   {{/each}}
 </ul>
