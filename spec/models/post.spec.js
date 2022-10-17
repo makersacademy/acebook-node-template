@@ -2,11 +2,22 @@ var mongoose = require("mongoose");
 
 require("../mongodb_helper");
 var Post = require("../../models/post");
+var User = require("../../models/user");
 
 describe("Post model", () => {
   beforeEach((done) => {
     mongoose.connection.collections.posts.deleteMany({}).then(() => {
-      done();
+      mongoose.connection.collections.users.deleteMany({}).then(() => {
+        done();
+      });
+    });
+  });
+
+  afterEach((done) => {
+    mongoose.connection.collections.posts.deleteMany({}).then(() => {
+      mongoose.connection.collections.users.deleteMany({}).then(() => {
+        done();
+      });
     });
   });
 
@@ -135,6 +146,36 @@ describe("Post model", () => {
           "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
         );
         done();
+      });
+    });
+  });
+
+  it("can populate the author field of a post with a User", (done) => {
+    var user = new User({
+      name: "Rita",
+      email: "rita@gmail.com",
+      password: "password",
+    });
+    user.save((err, user) => {
+      var post = new Post({
+        message: "some message",
+        author: user._id,
+        createdAt: 1665497979886,
+      });
+      post.save((err) => {
+        expect(err).toBeNull();
+
+        Post.find({})
+          .populate("author")
+          .exec((err, posts) => {
+            expect(err).toBeNull();
+
+            expect(posts[0]).toMatchObject({ message: "some message" });
+            expect(posts[0].author.name).toEqual("Rita");
+            expect(posts[0].author.email).toEqual("rita@gmail.com");
+            expect(posts[0].author.password).toEqual("password");
+            done();
+          });
       });
     });
   });
