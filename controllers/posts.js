@@ -14,7 +14,6 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        console.log(posts[0].comments[0].message);
         res.render("posts/index", { posts: posts });
       });
   },
