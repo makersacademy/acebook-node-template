@@ -13,15 +13,14 @@ const PostsController = {
       });
     }).sort({ createdAt: -1 });
   },
-  // New: (req, res) => {
-  //   res.render("posts/new", {session: req.session});
-  // },
   Create: (req, res) => {
     const post = new Post();
     post.name = req.session.user.name;
     post.message = req.body.message;
     post.photo_link = req.session.user.photo_link;
+    post.image = req.file.filename;
     const date = new Date();
+    console.log(JSON.stringify(req.file));
     post.date_string = `${date.getDate()}-${
       date.getMonth() + 1
     }-${date.getFullYear()} ${date.toLocaleTimeString()}`;
