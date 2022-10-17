@@ -13,25 +13,47 @@ describe("Timeline", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
     
-    // submit a post
+    // submit multiple posts
     cy.visit("/posts");
     
     cy.contains("Make a post").click(); 
     cy.visit("/posts/new");
-    cy.get("#message").type("Cypress test post!");
+    cy.get("#message").type("Oldest post in this test!");
     cy.get("#submit").click();
 
+    cy.contains("Make a post").click(); 
+    cy.visit("/posts/new");
+    cy.get("#message").type("Middle post in this test!");
+    cy.get("#submit").click();
+
+    cy.contains("Make a post").click(); 
+    cy.visit("/posts/new");
+    cy.get("#message").type("Newest post in this test!");
+    cy.get("#submit").click();
+
+    // after redirection to /posts
+    cy.get(".post")
+      .first() // or .eq(0)
+      .should("contain", "Newest post in this test!");
+    
+    cy.get(".post")
+      .eq(1)
+      .should("contain", "Middle post in this test!");
+    
+    cy.get(".post")
+      .eq(2)
+      .should("contain", "Oldest post in this test!");
+    
     //Get the current date
     const date = new Date();
     var yyyy = date.getFullYear();
-
-    // Keeping following code for future reference/changes
+    
+    // // Keeping following code for future reference/changes
     // let options = {year: 'numeric', month: 'long', day: 'numeric' };
     // const dateString = Intl.DateTimeFormat('en-UK', options).format(date)
-
-    // visit a /posts page to check fr the result
-    cy.visit("/posts/");
-    cy.get(".posts").should("contain", "Cypress test post!");
+    
+    // temporary test to assert date
+    // when doing proper test should target the actual div class
     cy.get(".posts").should("contain", yyyy);
     // cy.get(".posts").should("contain", dateString);
   });
