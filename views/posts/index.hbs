@@ -4,6 +4,13 @@
   {{#each posts}}
     {{! a post }}
     <ul id={{this._id}} class="post">
+      <li><img
+          class="author-post-image"
+          src="{{formatPostAuthorImage
+            this.author.image.contentType
+            this.author.image.data
+          }}"
+        /></li>
       <li class="post-content">{{this.message}}</li>
       <li class="post-author">By {{this.author.name}}</li>
       <li class="post-date">On {{this.createdAt}}</li>
