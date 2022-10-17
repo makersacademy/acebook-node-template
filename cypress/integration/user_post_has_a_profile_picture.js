@@ -14,7 +14,7 @@ describe("Timeline", () => {
   
       // checks if img element created
       
-      cy.get('.profile_picture').parent('p');
+      cy.get('.profile_picture').parent('.post-header');
     });
   });
   
