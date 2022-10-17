@@ -18,7 +18,7 @@
           <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
         </div>
         {{! message }}
-        <h4><b>{{this.user.firstName}} {{this.user.lastName}}</b></h4>
+        <h4><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
         <div class="message">
           <p>{{this.message}}</p>
         </div>
@@ -44,7 +44,7 @@
               <ul>
                 {{this.content}}
                 by
-                {{this.user.firstName}}
+                <a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}}</a>
               </ul>
               <ul>
                 <form

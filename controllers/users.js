@@ -22,7 +22,6 @@ const UsersController = {
 
   Profile: (req, res) => {
     let session = req.session.user;
-    console.log(session._id)
     Post.find({"user": session._id}, (err, posts) => {
       if (err) {
         throw err;
@@ -39,6 +38,31 @@ const UsersController = {
 
 
   },
-};
+
+  OtherProfile: (req, res) => {
+    let id = req.params.id;
+    User.findById(id, (err, users) => {
+      if (err) {
+        throw err;
+      }
+      Post.find({"user": id}, (err, posts) => {
+        if (err) {
+          throw err;
+        }
+  
+        res.render("users/:id", {
+          posts: posts.reverse(),
+          user: users,
+        })
+      })
+        .populate("user")
+        .populate("remarks")
+        .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}});
+  
+    });
+      
+  
+    },
+    }
 
 module.exports = UsersController;

@@ -59,6 +59,7 @@ const sessionChecker = (req, res, next) => {
 
 // route setup
 app.use("/users/index", sessionChecker, usersRouter);
+app.use("/users/:id", sessionChecker, usersRouter);
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
