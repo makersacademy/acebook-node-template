@@ -22,6 +22,8 @@
             {{#each this.comments}}
               <ul class="comments">
                 <li>{{this.message}}</li>
+                <li>{{this.author.name}}</li>
+                <li>{{this.createdAt}}</li>
               </ul>
             {{/each}}
           </div>
