@@ -43,6 +43,19 @@ hbs.handlebars.registerHelper("formatLikesNumber", function (likesNumber) {
   return likesNumber == 1 ? "1 like" : `${likesNumber} likes`;
 });
 
+hbs.handlebars.registerHelper("formatDate", function (dateObject) {
+  let output = "";
+  const time = dateObject;
+  output +=
+    time.getDate() +
+    "-" +
+    time.toLocaleString("default", { month: "short" }) +
+    "-" +
+    time.getFullYear();
+  output += " " + time.getHours() + ":" + time.getMinutes();
+  return output;
+});
+
 //adds session to handlebars locals
 app.use(function (req, res, next) {
   res.locals.session = req.session;
