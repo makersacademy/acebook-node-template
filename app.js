@@ -43,10 +43,6 @@ hbs.handlebars.registerHelper("formatLikesNumber", function (likesNumber) {
   return likesNumber == 1 ? "1 like" : `${likesNumber} likes`;
 });
 
-// viewUser.image = `data:${
-//   user.image.contentType
-// };base64,${user.image.data.toString("base64")}`;
-
 hbs.handlebars.registerHelper("formatPostAuthorImage", function (type, data) {
   return `data:${type};base64,${data.toString("base64")}`;
 });
