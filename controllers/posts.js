@@ -3,7 +3,7 @@ const Post = require("../models/post");
 const PostsController = {
   Index: (req, res) => {
     Post.find({})
-      .sort([['createdAt', -1]])
+      .sort([["createdAt", -1]])
       .populate("author")
       .exec((err, posts) => {
         if (err) {
@@ -33,11 +33,11 @@ const PostsController = {
     Post.updateOne(
       { _id: req.body.postid },
       { $addToSet: { like: req.session.user._id } }
-    ).exec((err, post) => {
+    ).exec((err) => {
       if (err) {
         throw err;
       }
-      console.log(post.like);
+      // console.log(post.like);  // need to add post to .exec to use
       res.status(201).redirect("/posts");
     });
   },
