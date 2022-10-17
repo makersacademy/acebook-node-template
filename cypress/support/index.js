@@ -17,4 +17,10 @@
 // import './commands'
 
 // Alternatively you can use CommonJS syntax:
-require('./commands')
+require("./commands");
+
+beforeEach(() => {
+  // cy.task("deleteAllItemsInDatabase");
+  cy.task("emptyPosts");
+  cy.task("emptyUsers");
+});
