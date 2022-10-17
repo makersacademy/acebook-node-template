@@ -3,6 +3,9 @@
   <head>
     <title>{{title}}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,700;1,500&display=swap" rel="stylesheet"> 
     <link rel='stylesheet' href='/stylesheets/style.css'>
   </head>
   <body>
@@ -11,7 +14,7 @@
       
           <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-              <a class="navbar-brand" href="/posts">Monsters Inc</a>
+              <a class="navbar-brand" href="/posts">Acebook</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -28,7 +31,7 @@
                     <a  href="/users/{{session.user.id}}/edit">Edit Profile</a>
                   </li>
                   <li class="nav-item">
-                    <a  href="/sessions/delete">Logout</a>
+                    <a  href="/sessions/delete" id="logout">Logout</a>
                   </li>
                   {{else}}
                   <li class="nav-item">
