@@ -65,6 +65,10 @@ describe("Comments", () => {
         cy.get(".submit-comment:first").click();
       });
 
+    //expect post authors to match
+    cy.get(".post:first").find(".post-author").should("contain", "someone");
+    cy.get(".post").eq(1).find(".post-author").should("contain", "someone");
+
     //expect comment to be visible
     cy.get(".post:first")
       .find(".comments:first")
@@ -100,6 +104,10 @@ describe("Comments", () => {
         cy.get(".comment-input:first").type("Comment on second post");
         cy.get(".submit-comment:first").click();
       });
+
+    //expect post authors to match
+    cy.get(".post:first").find(".post-author").should("contain", "someone");
+    cy.get(".post").eq(1).find(".post-author").should("contain", "someone");
 
     //expect two comments for first post
     cy.get(".post:first")

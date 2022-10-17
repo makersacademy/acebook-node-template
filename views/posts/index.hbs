@@ -5,7 +5,7 @@
     {{! a post }}
     <ul id={{this._id}} class="post">
       <li class="post-content">{{this.message}}</li>
-      <li class="post-autor">By {{this.author.name}}</li>
+      <li class="post-author">By {{this.author.name}}</li>
       <li class="post-date">On {{this.createdAt}}</li>
       <li class="likeCount">{{formatLikesNumber this.like.length}}</li>
       <form class="like" action="/posts/like" method="post">
