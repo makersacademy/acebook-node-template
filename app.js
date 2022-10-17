@@ -6,6 +6,11 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 
+//image stuff
+const bodyParser = require("body-parser");
+const fs = require("fs");
+const multer = require("multer");
+
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
@@ -44,9 +49,23 @@ app.use((req, res, next) => {
   next();
 });
 
+//image
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "-" + Date.now());
+  },
+});
+
+const upload = multer({ storage: storage });
+
+////////////
+
+app.use(bodyParser.json());
 
 // gets images from public folder
-app.use(express.static(path.join(__dirname, 'public')))
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
@@ -59,7 +78,7 @@ const sessionChecker = (req, res, next) => {
 
 // route setup
 app.use("/", homeRouter);
-app.use("/posts", sessionChecker, postsRouter);
+app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 

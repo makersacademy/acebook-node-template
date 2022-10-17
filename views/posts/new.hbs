@@ -1,6 +1,13 @@
-<form id="new-post-form" action="/posts" method="POST">
+<form
+  id="new-post-form"
+  action="/posts"
+  enctype="multipart/form-data"
+  method="POST"
+>
   <label for="message">Message: </label>
   <input id="message" type="text" name="message" value="" />
   <input id="user" type="hidden" name="user" value={{user._id}} />
+  <input class="choose-file-btn" type="file" name="image" />
+
   <input type="submit" value="Submit" />
 </form>

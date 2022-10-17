@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
-// const User = require("../models/user");
+const fs = require("fs");
+const path = require("path");
 
 const PostsController = {
   Index: (req, res) => {
@@ -18,7 +19,7 @@ const PostsController = {
     })
       .populate("user")
       .populate("remarks")
-      .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}});
+      .populate({ path: "remarks", populate: { path: "user" } });
   },
   New: (req, res) => {
     let session = req.session.user;
@@ -26,6 +27,18 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    const obj = {
+      img: {
+        data: fs.readFileSync(
+          path.join(
+            "/Users/adaoub/Desktop/Makers-Projects/acebook/uploads/" +
+              req.file.filename
+          )
+        ),
+        contentType: "image/png",
+      },
+    };
+    post.photo = obj.img;
     post.save((err) => {
       if (err) {
         throw err;
@@ -55,21 +68,6 @@ const PostsController = {
     });
   },
 
-  // Comment: (req, res) => {
-  //   let session = req.session.user;
-
-  //   const comment = new Comment(req.body);
-  //   let id = comment._id;
-
-  //   comment.save((err) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-
-  //     // res.status(201).redirect("/posts");
-  //     res.render("posts/index", { cid: id });
-  //   });
-
   //comments on posts
   Comment: (req, res) => {
     let session = req.session.user;
@@ -95,7 +93,7 @@ const PostsController = {
     });
   },
   LikeComment: (req, res) => {
-    let session = req.session.user
+    let session = req.session.user;
     const id = req.params.id;
     Comment.findById(id, (err, comment) => {
       if (comment.commentLikes.includes(session._id)) {
