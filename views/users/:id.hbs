@@ -1,0 +1,78 @@
+<h1 class="title">{{user.firstName}} {{user.lastName}}'s Profile</h1>
+
+<ul class="posts">
+
+  <div>
+    {{#each posts}}
+      {{! <li> }}
+      <div class="card">
+
+        {{! profile pic }}
+        <div>
+          <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
+        </div>
+        {{! message }}
+        <h4><b>{{this.user.firstName}} {{this.user.lastName}}</b></h4>
+        <div class="message">
+          <p>{{this.message}}</p>
+        </div>
+        {{! if uploading a photo }}
+        <div class="photos">
+        </div>
+
+        {{! likes section }}
+        <div class="likes">
+          {{this.likes.length}}
+          likes
+          {{this.createdAt}}
+
+          <form id="likes-form" action="/posts/{{this._id}}" method="post">
+
+            <input type="submit" value="likes" />
+          </form>
+          {{#if this.remarks.length}}
+            <ul>
+              Comments=
+            </ul>
+            {{#each this.remarks}}
+              <ul>
+                {{this.content}}
+                by
+                <a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}}</a>
+              </ul>
+              <ul>
+                <form
+                  id="comment-likes-form"
+                  action="/posts/comments/likes/{{this._id}}"
+                  method="POST"
+                >
+
+                  <input name="commentLikes" type="submit" value="Like" />
+                </form>
+                {{this.commentLikes.length}}
+                likes
+              </ul>
+            {{/each}}
+
+          {{else}}
+          
+            <ul>
+              No Comments have been made
+            </ul>
+          {{/if}}
+          <form
+            id="new-comment-form"
+            action="/posts/comments/{{this._id}}"
+            method="post"
+          >
+            <label for="comments"> comment here</label>
+            <input type="text" value="" name="content" />
+
+            <input type="submit" value="Submit" />
+
+          </form>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</ul>
