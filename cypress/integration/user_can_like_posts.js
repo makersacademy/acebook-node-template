@@ -9,6 +9,7 @@ describe('Liking', () => {
     cy.get("#submit").click();
 
     //create post
+    cy.contains("#logout", "Logout");
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
@@ -28,6 +29,7 @@ describe('Liking', () => {
     cy.get("#submit").click();
 
     //create post
+    cy.contains("#logout", "Logout");
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
@@ -52,6 +54,7 @@ describe('Liking', () => {
     cy.get("#submit").click();
 
     //create post
+    cy.contains("#logout", "Logout");
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
@@ -72,6 +75,7 @@ describe('Liking', () => {
     cy.get("#submit").click();
 
     //click like button
+    cy.contains("#logout", "Logout");
     cy.get("#like-button").click();
 
     cy.contains("#like-number", '2');

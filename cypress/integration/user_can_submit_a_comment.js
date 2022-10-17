@@ -9,7 +9,7 @@ describe("Timeline", () => {
     cy.get("#submit").click();
 
     // submit a post
-
+    cy.contains("#logout", "Logout");
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#new-post-form").submit();
 
