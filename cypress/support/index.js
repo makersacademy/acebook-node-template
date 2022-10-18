@@ -20,7 +20,7 @@
 require("./commands");
 
 beforeEach(() => {
-  // cy.task("deleteAllItemsInDatabase");
   cy.task("emptyPosts");
   cy.task("emptyUsers");
+  cy.task("emptyComments");
 });
