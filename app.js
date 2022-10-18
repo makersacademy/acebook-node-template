@@ -8,7 +8,6 @@ const methodOverride = require("method-override");
 
 //image libraries
 const bodyParser = require("body-parser");
-const fs = require("fs");
 const multer = require("multer");
 
 const homeRouter = require("./routes/home");
@@ -79,12 +78,12 @@ const sessionChecker = (req, res, next) => {
 };
 
 // route setup
+app.use("/users", usersRouter);
 app.use("/users/index", sessionChecker, usersRouter);
 app.use("/users/:id", sessionChecker, usersRouter);
 app.use("/", homeRouter);
 app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
 
 
 // catch 404 and forward to error handler
