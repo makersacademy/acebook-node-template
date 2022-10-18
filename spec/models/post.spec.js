@@ -32,8 +32,7 @@ describe("Post model", () => {
     });
     expect(post.message).toEqual("some message");
     expect(post.createdAt.toString()).toEqual(
-      // "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
-      "17-Oct-2022 16:10"
+      "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
     );
   });
 
