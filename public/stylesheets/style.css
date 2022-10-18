@@ -30,6 +30,7 @@ a {
   background-repeat: no-repeat;
   border: none;
   background-color: transparent;
+  background-position: center;
 }
 
 .navbar_forms {
@@ -88,6 +89,21 @@ footer {
   font-size: 25px;
 }
 
+#image-selector::file-selector-button {
+  background-color: rgb(236, 122, 247);
+  border: 3px solid rgb(150, 38, 160);
+  border-radius: 30px;
+  font-size: 20px;
+  padding: 3px 22px;
+  margin: 5px 10px 5px 15px;
+}
+
+#image-selector::file-selector-button:hover, #image-selector::file-selector-button:active {
+  background-color: rgb(94, 21, 101);
+  border: 3px solid rgb(236, 122, 247);
+  color: white;
+}
+
 #message-container {
   text-align: center;
   margin: 12px auto;
@@ -144,6 +160,10 @@ footer {
   border-radius: 10px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.postImage {
+  width: 494px;
 }
 
 .post-message {

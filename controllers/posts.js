@@ -21,15 +21,15 @@ const PostsController = {
       });
     }).sort({ createdAt: -1 });
   },
-  //  
-  // New: (req, res) => {
-  //   res.render("posts/new", {session: req.session});
-  // },
+
   Create: (req, res) => {
     const post = new Post();
     post.name = req.session.user.name;
     post.message = req.body.message;
     post.photo_link = req.session.user.photo_link;
+    if (req.file) {
+      post.image = req.file.filename;
+    }
     const date = new Date();
     post.date_string = `${date.getDate()}-${
       date.getMonth() + 1
