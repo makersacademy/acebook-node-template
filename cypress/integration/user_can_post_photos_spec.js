@@ -1,5 +1,6 @@
+const path = require("path");
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+  it("can access new post form with photo upload", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#name").type("someone");
@@ -14,10 +15,8 @@ describe("Timeline", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    // // submit a post
-    // cy.visit("/posts");
+    // asserts form contents
     cy.contains("Make a post").click();
-    // cy.visit("/posts/new");
     cy.get("#new-post-form").should(
       "have.attr",
       "enctype",
@@ -29,11 +28,41 @@ describe("Timeline", () => {
     cy.get("#new-post-form")
       .find("#submit")
       .should("have.class", "btn btn-default");
-    // cy.get("#submit").click();
+  });
 
-    // cy.get(".post:first")
-    //   .find(".post-content")
-    //   .should("contain", "Hello, world!");
-    // cy.get(".post:first").find(".post-author").should("contain", "someone");
+  it("can submit post with just photo", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#name").type("someone");
+    cy.get("#email").type("someone4@example.com");
+    cy.get("#password").type("password");
+    cy.get("#name").type("someone");
+    cy.get("#submit").click();
+
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("someone4@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    // uploads an image and submits post
+    cy.contains("Make a post").click();
+    cy.get("#new-post-form")
+      .find('[type="file"]')
+      .selectFile(
+        path.join(__dirname, "..", "..", "public", "images", "cat.png")
+      );
+
+    cy.get("#new-post-form").find("#submit").click();
+
+    cy.readFile(
+      path.join(__dirname, "..", "..", "public", "images", "cat.png"),
+      "base64"
+    ).then((image) => {
+      const src = `data:image/png;base64,${image}`;
+      cy.get(".post:first")
+        .find(".post-image:first")
+        .should("have.attr", "src", src);
+    });
   });
 });

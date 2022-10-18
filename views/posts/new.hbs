@@ -1,6 +1,16 @@
-<form id="new-post-form" action="/posts" enctype="multipart/form-data" method="post">
+<form
+  id="new-post-form"
+  action="/posts"
+  enctype="multipart/form-data"
+  method="post"
+>
   <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="" />
-  <input id="post-image" type="file" name="uploadedImage" class="form-control-file" />
-  <input id="submit" type="submit" value="Submit" class="btn btn-default"/>
+  <input id="message" type="text" name="message" class="form-control" />
+  <input
+    id="post-image"
+    type="file"
+    name="uploadedImage"
+    class="form-control-file"
+  />
+  <input id="submit" type="submit" value="Submit" class="btn btn-default" />
 </form>
