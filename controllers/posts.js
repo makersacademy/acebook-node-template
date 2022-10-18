@@ -22,7 +22,6 @@ const PostsController = {
       post.image = req.file.filename;
     }
     const date = new Date();
-    console.log(JSON.stringify(req.file));
     post.date_string = `${date.getDate()}-${
       date.getMonth() + 1
     }-${date.getFullYear()} ${date.toLocaleTimeString()}`;
