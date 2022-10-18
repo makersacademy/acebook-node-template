@@ -4,7 +4,7 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {layout: false});
+    res.render("users/new");
   },
 
   Create: (req, res) => {
@@ -21,7 +21,7 @@ const UsersController = {
           bcrypt.hash(req.body.password1, 10, (err, hash) => {
             if (err) {
               throw err;
-            };
+            }
             user.password = hash;
             user.save((err) => {
             if (err) {
@@ -37,14 +37,14 @@ const UsersController = {
         
       } else if (!user.name.match(nameRegex)){
         errorMessage = "Please enter a valid name"
-        res.render("users/new", {layout: false, error: errorMessage});
+        res.render("users/new", {error: errorMessage});
       } else {
         errorMessage = "Password must be 8-15 characters and contain an uppercase, lowercase, numeric and special character"
-        res.render("users/new", {layout: false, error: errorMessage});
+        res.render("users/new", {error: errorMessage});
       } 
     } else {
       errorMessage = "Passwords do not match";
-      res.render("users/new", {layout: false, error: errorMessage});
+      res.render("users/new", {error: errorMessage});
     }
   },
 };
