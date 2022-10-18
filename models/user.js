@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -18,6 +18,17 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  requests: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    unique: true,
+  }],
+  friends: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    unique: true,
+  }],
+
 });
 
 const User = mongoose.model("User", UserSchema);

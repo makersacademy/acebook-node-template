@@ -1,5 +1,11 @@
 <h1 class="title">{{user.firstName}} {{user.lastName}}'s Profile</h1>
 
+<ul class="friend-request">
+                  <form id="add-friend" action="/users/{{user._id}}" method="POST">
+                    <input id="status" name="requests" type="submit" value={{status}} />
+                  </form>
+                  
+                </ul>
 <ul class="posts">
 
   <div>
@@ -38,7 +44,7 @@
               <ul>
                 {{this.content}}
                 by
-                <a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}}</a>
+                <a href="{{this.user._id}}" class="userLink">{{this.user.firstName}}</a>
               </ul>
               <ul>
                 <form
