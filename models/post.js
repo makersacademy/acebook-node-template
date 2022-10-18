@@ -6,7 +6,8 @@ const PostSchema = new mongoose.Schema(
     likes: Array,
     comments: Array, 
     photo_link: String,
-    date_string: String 
+    date_string: String,
+    user_id: mongoose.Schema.Types.ObjectId
   },
   { timestamps: true}
 );
