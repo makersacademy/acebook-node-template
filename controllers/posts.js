@@ -1,5 +1,7 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const multer = require("multer");
+const upload = multer().single("uploadedImage");
 
 const PostsController = {
   Index: (req, res) => {
@@ -21,17 +23,29 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post({
-      message: req.body.message,
-      author: req.session.user._id,
-    });
-    post.save((err) => {
-      if (err) {
-        throw err;
+    upload(req, res, (err) => {
+      if (err) throw err;
+      const post = new Post({
+        author: req.session.user._id,
+      });
+      if (req.body.message != null && req.body.message != "") {
+        post.message = req.body.message;
       }
-      res.status(201).redirect("/posts");
+      if (req.file) {
+        post.image = {
+          data: req.file.buffer,
+          contentType: req.file.mimetype,
+        };
+      }
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
     });
   },
+
   Like: (req, res) => {
     Post.updateOne(
       { _id: req.body.postid },

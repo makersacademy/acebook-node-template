@@ -1,6 +1,8 @@
 var mongoose = require("mongoose");
 
 require("../mongodb_helper");
+const fs = require("fs");
+const path = require("path");
 var Post = require("../../models/post");
 var User = require("../../models/user");
 var Comment = require("../../models/comment");
@@ -234,5 +236,30 @@ describe("Post model", () => {
     expect(posts[0].comments[0].author.name).toEqual("Rita");
     expect(posts[0].comments[0].author.email).toEqual("rita@gmail.com");
     expect(posts[0].comments[0].author.password).toEqual("password");
+  });
+
+  it("a post can have an image", async () => {
+    const post = new Post({
+      message: "someone posted",
+      author: "123456789012345678901234",
+      image: {
+        data: fs.readFileSync(
+          path.join(__dirname, "..", "..", "public", "images", "testImage.png")
+        ),
+        contentType: "image/png",
+      },
+    });
+
+    await post.save();
+
+    const posts = await Post.find({});
+
+    expect(posts[0].message).toMatch("someone posted");
+    expect(posts[0].image.data).toMatchObject(
+      fs.readFileSync(
+        path.join(__dirname, "..", "..", "public", "images", "testImage.png")
+      )
+    );
+    expect(posts[0].image.contentType).toMatch("image/png");
   });
 });

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const path = require('path')
-const fs = require('fs')
+const path = require("path");
+const fs = require("fs");
 require("../mongodb_helper");
 const User = require("../../models/user");
 
@@ -93,8 +93,19 @@ describe("User model", () => {
           email: "someone@example.com",
           password: "password",
         });
-        expect(users[0].image.data).toMatchObject(fs.readFileSync(path.join(__dirname, '..', '..', 'public', 'images', 'testImage.png')))
-        expect(users[0].image.contentType).toMatch("image/png")
+        expect(users[0].image.data).toMatchObject(
+          fs.readFileSync(
+            path.join(
+              __dirname,
+              "..",
+              "..",
+              "public",
+              "images",
+              "testImage.png"
+            )
+          )
+        );
+        expect(users[0].image.contentType).toMatch("image/png");
         done();
       });
     });

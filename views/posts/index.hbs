@@ -4,6 +4,19 @@
   {{#each posts}}
     {{! a post }}
     <ul id={{this._id}} class="post">
+      {{#if this.message}}
+        <li class="post-content">{{this.message}}</li>
+      {{/if}}
+      {{#if this.image.data}}
+        <li><img
+            class="post-image"
+            src="{{formatImage
+              this.image.contentType
+              this.image.data
+            }}"
+          /></li>
+      {{/if}}
+      <li class="post-author">By {{this.author.name}}</li>
       <li><img
           class="author-post-image"
           src="{{formatImage
@@ -11,8 +24,6 @@
             this.author.image.data
           }}"
         /></li>
-      <li class="post-content">{{this.message}}</li>
-      <li class="post-author">By {{this.author.name}}</li>
       <li class="post-date">On {{formatDate this.createdAt}}</li>
       <li class="likeCount">{{formatLikesNumber this.like.length}}</li>
       <form class="like" action="/posts/like" method="post">

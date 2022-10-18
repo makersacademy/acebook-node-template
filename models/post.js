@@ -16,6 +16,10 @@ const PostSchema = new mongoose.Schema({
     type: [String],
   },
   comments: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Comment" }],
+  image: {
+    data: Buffer,
+    contentType: String,
+  },
 });
 
 const Post = mongoose.model("Post", PostSchema);
