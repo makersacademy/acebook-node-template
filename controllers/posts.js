@@ -53,7 +53,7 @@ const PostsController = {
       Post.updateOne(
         { _id: req.body.postid },
         { $addToSet: { comments: comment._id } }
-      ).exec((err, post) => {
+      ).exec((err) => {
         if (err) throw err;
         res.redirect("/posts");
       });

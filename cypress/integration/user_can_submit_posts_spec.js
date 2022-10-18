@@ -16,13 +16,15 @@ describe("Timeline", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("Make a post").click(); 
+    cy.contains("Make a post").click();
     cy.visit("/posts/new");
 
     cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
     cy.get("#submit").click();
 
-    cy.get(".posts").should("contain", "Hello, world!");
-    cy.get(".posts").should("contain", "someone");
+    cy.get(".post:first")
+      .find(".post-content")
+      .should("contain", "Hello, world!");
+    cy.get(".post:first").find(".post-author").should("contain", "someone");
   });
 });
