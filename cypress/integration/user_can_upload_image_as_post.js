@@ -30,6 +30,6 @@ describe("Timeline", () => {
 
     cy.get(".post").first().contains("Hello, world!");
     cy.get(".postImage");
-    // Test passes but in video image is not created. Manual testing works.
+    // Test passes but in the video, image is not created. Manual testing works.
   });
 });
