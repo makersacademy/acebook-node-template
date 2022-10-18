@@ -83,7 +83,6 @@ conn.once("open", () => {
 const storage = new GridFsStorage({
   url: "mongodb://127.0.0.1/acebook",
   file: (req, file) => {
-    // if (file.contentType === 'image/png' || file.contentType === 'image/jpeg') {
       return new Promise((resolve, reject) => {
         crypto.randomBytes(16, (err, buf) => {
           if (err) {
@@ -97,7 +96,6 @@ const storage = new GridFsStorage({
           resolve(fileInfo);
         });
       });
-    //}
   },
 });
 
