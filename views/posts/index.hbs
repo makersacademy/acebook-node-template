@@ -36,6 +36,13 @@
         {{#each this.comments}}
           {{! a comment }}
           <ul id={{this.id}} class="comment">
+            <li><img
+                class="author-comment-image"
+                src="{{formatImage
+                  this.author.image.contentType
+                  this.author.image.data
+                }}"
+              /></li>
             <li class="comment-content">{{this.message}}</li>
             <li class="comment-author">By {{this.author.name}}</li>
             <li class="comment-date">On {{formatDate this.createdAt}}</li>

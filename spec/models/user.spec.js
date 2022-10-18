@@ -81,6 +81,7 @@ describe("User model", () => {
       email: "someone@example.com",
       password: "password",
     });
+    
 
     user.save((err) => {
       expect(err).toBeNull();
@@ -109,4 +110,27 @@ describe("User model", () => {
       });
     });
   });
+
+  it("email address is unique", async () => {
+    const user1 = new User({
+      name: "someone one",
+      email: "someone@example.com",
+      password: "password",
+    });
+    
+    await user1.save((err) => {
+      expect(err).toBeNull();
+    }); 
+    
+    const user2 = new User({
+      name: "someone two",
+      email: "someone@example.com",
+      password: "password",
+    });
+    
+    await user2.save((err) => {
+      expect(err.name).toEqual('MongoError');
+      expect(err.code).toEqual(11000);
+    });
+  })
 });
