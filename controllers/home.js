@@ -1,6 +1,6 @@
 const HomeController = {
   Index: (req, res) => {
-    res.render("home/index", { title: "Acebook", session: req.session });
+    res.render("sessions/new", { title: "Acebook", session: req.session });
   },
 };
 
