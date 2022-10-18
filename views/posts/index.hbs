@@ -24,18 +24,19 @@
           <p>{{this.message}}</p>
         </div>
 
-        {{#if this.photo}}
+        {{!-- {{do not render an image if this.photo is null}} --}}
 
-          <div class="photos">
+        <div class="photos">
+          {{#if this.photo.photoExists}}
 
             <img
               src="data:image/png;base64,{{this.photo.code}}"
+              alt=""
               width="100px"
             />
 
-          </div>
-
-        {{/if}}
+          {{/if}}
+        </div>
 
         {{! likes section }}
         <div class="likes">

@@ -39,12 +39,13 @@ const PostsController = {
           ),
           contentType: "image/png",
           code: "",
+          photoExists: "",
         },
       };
 
       obj.img.code = obj.img.data.toString("base64");
+      obj.img.photoExists = true;
       post.photo = obj.img;
-      // post.code = obj.img.data.toString("base64");
     } else {
       post.photo = false;
     }
