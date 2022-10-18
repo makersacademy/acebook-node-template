@@ -83,19 +83,21 @@ conn.once("open", () => {
 const storage = new GridFsStorage({
   url: "mongodb://127.0.0.1/acebook",
   file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = buf.toString("hex") + path.extname(file.originalname);
-        const fileInfo = {
-          filename: filename,
-          bucketName: "uploads",
-        };
-        resolve(fileInfo);
+    // if (file.contentType === 'image/png' || file.contentType === 'image/jpeg') {
+      return new Promise((resolve, reject) => {
+        crypto.randomBytes(16, (err, buf) => {
+          if (err) {
+            return reject(err);
+          }
+          const filename = buf.toString("hex") + path.extname(file.originalname);
+          const fileInfo = {
+            filename: filename,
+            bucketName: "uploads",
+          };
+          resolve(fileInfo);
+        });
       });
-    });
+    //}
   },
 });
 
