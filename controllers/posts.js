@@ -1,6 +1,5 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
-const session = require("express-session");
 
 const PostsController = {
   Index: (req, res) => {
