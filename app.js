@@ -47,6 +47,19 @@ hbs.handlebars.registerHelper("formatImage", function (type, data) {
   return `data:${type};base64,${data.toString("base64")}`;
 });
 
+hbs.handlebars.registerHelper("formatDate", function (dateObject) {
+  let output = "";
+  const time = dateObject;
+  output +=
+    time.getDate() +
+    "-" +
+    time.toLocaleString("default", { month: "short" }) +
+    "-" +
+    time.getFullYear();
+  output += " " + time.getHours() + ":" + time.getMinutes();
+  return output;
+});
+
 //adds session to handlebars locals
 app.use(function (req, res, next) {
   res.locals.session = req.session;
