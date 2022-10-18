@@ -12,15 +12,15 @@ describe("Timeline", () => {
     cy.get("#email").type("someone5@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-    
+
     // submit a post
     cy.visit("/posts");
-    
-    cy.contains("Make a post").click(); 
+
+    cy.contains("Make a post").click();
     cy.visit("/posts/new");
     cy.get("#message").type("Cypress test post!");
     cy.get("#submit").click();
 
-    cy.get('div').should('have.class', 'post')
+    cy.get(".post:first > li").should("have.length", "5");
   });
 });

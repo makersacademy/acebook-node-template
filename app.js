@@ -43,6 +43,10 @@ hbs.handlebars.registerHelper("formatLikesNumber", function (likesNumber) {
   return likesNumber == 1 ? "1 like" : `${likesNumber} likes`;
 });
 
+hbs.handlebars.registerHelper("formatPostAuthorImage", function (type, data) {
+  return `data:${type};base64,${data.toString("base64")}`;
+});
+
 hbs.handlebars.registerHelper("formatDate", function (dateObject) {
   let output = "";
   const time = dateObject;
