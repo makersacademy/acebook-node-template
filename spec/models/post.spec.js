@@ -238,30 +238,28 @@ describe("Post model", () => {
     expect(posts[0].comments[0].author.password).toEqual("password");
   });
 
-  it("a post can have an image", (done) => {
+  it("a post can have an image", async () => {
     const post = new Post({
       message: "someone posted",
       author: "123456789012345678901234",
       image: {
-        data: fs.readFileSync(path.join(__dirname, '..', '..', 'public', 'images', 'testImage.png')),
-        contentType: "image/png"
-      }
+        data: fs.readFileSync(
+          path.join(__dirname, "..", "..", "public", "images", "testImage.png")
+        ),
+        contentType: "image/png",
+      },
     });
 
-    // user.save((err) => {
-    //   expect(err).toBeNull();
+    await post.save();
 
-    //   User.find((err, users) => {
-    //     expect(err).toBeNull();
-    //     expect(users[0]).toMatchObject({
-    //       name: "someone",
-    //       email: "someone@example.com",
-    //       password: "password",
-    //     });
-    //     expect(users[0].image.data).toMatchObject(fs.readFileSync(path.join(__dirname, '..', '..', 'public', 'images', 'testImage.png')))
-    //     expect(users[0].image.contentType).toMatch("image/png")
-    //     done();
-    //   });
-    // });
+    const posts = await Post.find({});
+
+    expect(posts[0].message).toMatch("someone posted");
+    expect(posts[0].image.data).toMatchObject(
+      fs.readFileSync(
+        path.join(__dirname, "..", "..", "public", "images", "testImage.png")
+      )
+    );
+    expect(posts[0].image.contentType).toMatch("image/png");
   });
 });
