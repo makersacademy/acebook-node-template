@@ -35,4 +35,12 @@ module.exports = (on) => {
       return result;
     },
   });
+
+  on("task", {
+    emptyComments() {
+      mongoose.connect("mongodb://0.0.0.0/acebook_test");
+      const result = mongoose.connection.collection("comments").deleteMany({});
+      return result;
+    },
+  });
 };
