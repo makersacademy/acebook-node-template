@@ -16,7 +16,7 @@ describe("Authentication", () => {
     cy.get("#submit").click();
 
     cy.url().should("include", "/posts");
-    cy.contains("a", "New post");
+    // cy.get('.title').should("contain", "Timeline");
   });
   it("Sign in page has a new title", () => {
     // sign up
