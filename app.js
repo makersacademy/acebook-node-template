@@ -5,11 +5,9 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const handlebars = require('hbs');
 
 //image libraries
 const bodyParser = require("body-parser");
-// const fs = require("fs");
 const multer = require("multer");
 
 const homeRouter = require("./routes/home");
