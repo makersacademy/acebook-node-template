@@ -1,6 +1,8 @@
 var mongoose = require("mongoose");
 
 require("../mongodb_helper");
+const fs = require("fs");
+const path = require("path");
 var Post = require("../../models/post");
 var User = require("../../models/user");
 var Comment = require("../../models/comment");
@@ -234,5 +236,32 @@ describe("Post model", () => {
     expect(posts[0].comments[0].author.name).toEqual("Rita");
     expect(posts[0].comments[0].author.email).toEqual("rita@gmail.com");
     expect(posts[0].comments[0].author.password).toEqual("password");
+  });
+
+  it("a post can have an image", (done) => {
+    const post = new Post({
+      message: "someone posted",
+      author: "123456789012345678901234",
+      image: {
+        data: fs.readFileSync(path.join(__dirname, '..', '..', 'public', 'images', 'testImage.png')),
+        contentType: "image/png"
+      }
+    });
+
+    // user.save((err) => {
+    //   expect(err).toBeNull();
+
+    //   User.find((err, users) => {
+    //     expect(err).toBeNull();
+    //     expect(users[0]).toMatchObject({
+    //       name: "someone",
+    //       email: "someone@example.com",
+    //       password: "password",
+    //     });
+    //     expect(users[0].image.data).toMatchObject(fs.readFileSync(path.join(__dirname, '..', '..', 'public', 'images', 'testImage.png')))
+    //     expect(users[0].image.contentType).toMatch("image/png")
+    //     done();
+    //   });
+    // });
   });
 });
