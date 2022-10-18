@@ -5,20 +5,26 @@ const PostSchema = new mongoose.Schema(
   {
     message: String,
 
-    // remarks: Array,
-    remarks: [{
-      type: Schema.Types.ObjectId,
-      ref: "Comment"
-    }],
+    remarks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
     likes: Array,
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    photo: {
+      data: Buffer,
+      contentType: String,
+      code: String,
+      photoExists: Boolean,
+    },
   },
   { timestamps: true }
 );
-
 
 const Post = mongoose.model("Post", PostSchema);
 

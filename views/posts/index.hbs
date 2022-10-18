@@ -1,7 +1,12 @@
 <h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
 
 <form id="new-post-form" action="/posts" method="POST">
-  <input id="message" type="text" name="message" placeholder="Make a new post" />
+  <input
+    id="message"
+    type="text"
+    name="message"
+    placeholder="Make a new post"
+  />
   <input id="user" type="hidden" name="user" value={{user._id}} />
   <input type="submit" value="Submit" />
 </form>
@@ -18,12 +23,26 @@
           <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
         </div>
         {{! message }}
-        <h4><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+        <h4><b><a
+              href="users/{{this.user._id}}"
+              class="userLink"
+            >{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
         <div class="message">
           <p>{{this.message}}</p>
         </div>
-        {{! if uploading a photo }}
+
+        {{!-- {{do not render an image if this.photo is null}} --}}
+
         <div class="photos">
+          {{#if this.photo.photoExists}}
+
+            <img
+              src="data:image/png;base64,{{this.photo.code}}"
+              alt=""
+              width="100px"
+            />
+
+          {{/if}}
         </div>
 
         {{! likes section }}
@@ -44,7 +63,10 @@
               <ul>
                 {{this.content}}
                 by
-                <a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}}</a>
+                <a
+                  href="users/{{this.user._id}}"
+                  class="userLink"
+                >{{this.user.firstName}}</a>
               </ul>
               <ul>
                 <form
@@ -61,7 +83,7 @@
             {{/each}}
 
           {{else}}
-          
+
             <ul>
               No Comments have been made
             </ul>
