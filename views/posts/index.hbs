@@ -23,16 +23,19 @@
         <div class="message">
           <p>{{this.message}}</p>
         </div>
-        {{! if uploading a photo }}
-        <div class="photos">
 
-          <img
-            src="data:image/png;base64,{{this.code}}"
-            width="100"
-            alt="wrong"
-          />
+        {{#if this.photo}}
 
-        </div>
+          <div class="photos">
+
+            <img
+              src="data:image/png;base64,{{this.photo.code}}"
+              width="100px"
+            />
+
+          </div>
+
+        {{/if}}
 
         {{! likes section }}
         <div class="likes">

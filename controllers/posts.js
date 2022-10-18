@@ -3,6 +3,10 @@ const Comment = require("../models/comment");
 const fs = require("fs");
 const path = require("path");
 
+//app root directory
+let appDir = path.dirname(require.main.filename);
+appDir = appDir.replace("bin", "").replace("controllers", "");
+
 const PostsController = {
   Index: (req, res) => {
     let session = req.session.user;
@@ -27,22 +31,23 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
-    const obj = {
-      img: {
-        data: fs.readFileSync(
-          path.join(
-            "/Users/adaoub/Desktop/Makers-Projects/acebook/uploads/" +
-              req.file.filename
-          )
-        ),
-        contentType: "image/png",
-      },
-    };
+    if (req.file) {
+      const obj = {
+        img: {
+          data: fs.readFileSync(
+            path.join(appDir + "/public/images/" + req.file.filename)
+          ),
+          contentType: "image/png",
+          code: "",
+        },
+      };
 
-    post.photo = obj.img;
-    post.code = obj.img.data.toString("base64");
-    console.log(post.photo);
-    console.log(post.photo.data.toString("base64"));
+      obj.img.code = obj.img.data.toString("base64");
+      post.photo = obj.img;
+      // post.code = obj.img.data.toString("base64");
+    } else {
+      post.photo = false;
+    }
     post.save((err) => {
       if (err) {
         throw err;
