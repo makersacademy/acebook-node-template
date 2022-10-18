@@ -24,10 +24,13 @@ const PostsController = {
   },
   Create: (req, res) => {
     upload(req, res, (err) => {
+      if (err) throw err;
       const post = new Post({
-        message: req.body.message,
         author: req.session.user._id,
       });
+      if (req.body.message != null && req.body.message != "") {
+        post.message = req.body.message;
+      }
       if (req.file) {
         post.image = {
           data: req.file.buffer,
