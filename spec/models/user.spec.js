@@ -180,4 +180,37 @@ describe("User model", () => {
       new mongoose.mongo.ObjectId("223456789012345678901234")
     )       
   });
+
+  it("user can accept a friend request", async () => {
+    const user1 = new User({
+      name: "someone one",
+      email: "someone1@example.com",
+      password: "password",
+      friendRequests: ["123456789012345678901234"],
+    });
+
+    await user1.save()
+      .catch((err) => {
+      expect(err).toBeNull();
+    });
+
+    await User.updateOne(
+      {_id: user1._id},
+      {
+        $addToSet: { friends: "123456789012345678901234" },
+        $pull: { friendRequests: "123456789012345678901234" }
+      }
+    )
+
+    const finalUser = await User.findById(user1._id)
+
+    expect(finalUser.friendRequests.length).toEqual(0)
+    expect(finalUser.friends.length).toEqual(1)
+    expect(finalUser.friends[0]).toEqual(
+      new mongoose.mongo.ObjectId("123456789012345678901234")
+    )
+
+
+
+  })
 });
