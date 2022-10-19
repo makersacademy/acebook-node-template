@@ -1,6 +1,9 @@
 <h1>Settings</h1>
 <ul id="user" class="user">
-  <img id="profile-image" src="{{formatImage user.image.contentType user.image.data}}" />
+  <img
+    id="profile-image"
+    src="{{formatImage user.image.contentType user.image.data}}"
+  />
   <li id="user-name">{{user.name}}</li>
   <li id="user-email">{{user.email}}</li>
 </ul>
@@ -8,24 +11,53 @@
 <h3>Upload new image</h3>
 <form action="/settings" enctype="multipart/form-data" method="post">
   <div class="form-group">
-    <input id="choose-file" type="file" class="form-control-file" name="uploadedImage" />
-    <input id="upload-file" type="submit" value="Upload" class="btn btn-default" />
+    <input
+      id="choose-file"
+      type="file"
+      class="form-control-file"
+      name="uploadedImage"
+    />
+    <input
+      id="upload-file"
+      type="submit"
+      value="Upload"
+      class="btn btn-default"
+    />
   </div>
 </form>
 
 <div id="friend-requests">Your friends requests:
   {{#each user.friendRequests}}
     <ul>
-      <li><img
-        class="friend-req-proile-iamge"
-        src="{{formatImage
-          this.image.contentType
-          this.image.data
-        }}"
+      <li>
+        <img
+          class="friend-req-proile-iamge"
+          src="{{formatImage this.image.contentType this.image.data}}"
+        />
       </li>
       <li class="friend-req-name">{{this.name}}</li>
-      <li class="friend-req-accept"><form>Accept</form></li>
-      <li class="friend-req-decline"><form>Decline</form></li>
+      <li class="friend-req-accept">
+        <form action="/friends/accept" method="post">
+          <input
+            class="requester-id"
+            type="hidden"
+            name="requester"
+            value={{this._id}}
+          />
+          <input class="accept-button" type="submit" value="Accept" />
+        </form>
+      </li>
+      <li class="friend-req-decline">
+        <form action="/friends/decline" method="post">
+          <input
+            class="requester-id"
+            type="hidden"
+            name="requester"
+            value={{this._id}}
+          />
+          <input class="accept-button" type="submit" value="Decline" />
+        </form>
+      </li>
     </ul>
   {{/each}}
 </div>
