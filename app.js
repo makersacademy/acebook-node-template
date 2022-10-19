@@ -79,7 +79,7 @@ const sessionChecker = (req, res, next) => {
 };
 
 // route setup
-app.use("/users", usersRouter);
+app.use("/users", upload.single("image"), usersRouter);
 app.use("/users/index", sessionChecker, usersRouter);
 app.use("/users/:id", sessionChecker, usersRouter);
 app.use("/", homeRouter);
