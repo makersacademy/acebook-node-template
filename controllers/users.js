@@ -9,8 +9,10 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
+    console.log(user)
     const email = user.email;
-    console.log(email);
+    console.log(email)
+
     user.save((err) => {
       if (err) {
         // let display = "invalid email";
@@ -44,16 +46,30 @@ const UsersController = {
     if (req.params.id === req.session.user._id)
     {res.redirect('index')}
     let id = req.params.id;
-    console.log(id)
     let session = req.session.user
-    console.log(session)
-    let status = "Add friend"
+    let status = true
+    let awaiting = false;
+    let confirmed = false;
+    let otherConfirmed = false;
     User.findById(id, (err, user) => {
-      console.log(user);
       if (user.requests.includes(session._id))
-      {status = "Awaiting"}
-      if (user.friends.includes(session._id))
-      {status = "You're friends"}
+      {status = false;
+      awaiting = true;
+      confirmed = false;
+      otherConfirmed = false;}
+      else if (user.friends.includes(session._id))
+      {status = false;
+        awaiting = false;
+        confirmed = true;
+        otherConfirmed = false;}
+      else if (session.requests.includes(id)) {status = false;
+        awaiting = false;
+        confirmed = false;
+        otherConfirmed = true;}
+      else {status = true
+        awaiting = false;
+        confirmed = false;
+        otherConfirmed = false;}
       if (err) {
         throw err;
       }
@@ -66,6 +82,9 @@ const UsersController = {
           posts: posts.reverse(),
           user: user,
           status: status,
+          awaiting: awaiting,
+          confirmed: confirmed,
+          otherConfirmed: otherConfirmed,
         })
       })
         .populate("user")
@@ -83,9 +102,9 @@ const UsersController = {
           throw err;
         }
         if (user.requests.includes(session._id))
-        {return res.redirect(`users/${friendId}`)}
+        {return res.redirect(`${friendId}`)}
         if (user.friends.includes(session._id))
-        {return res.redirect(`users/${friendId}`)}
+        {return res.redirect(`${friendId}`)}
         
         user.requests.push(session._id)
         user.save((err) => {
@@ -94,7 +113,7 @@ const UsersController = {
             // res.render("users/new", { message: display });
             throw err;
           }})
-        {res.redirect(`users/${friendId}`)}
+        {res.redirect(`${friendId}`)}
         
        })
 
@@ -117,7 +136,6 @@ const UsersController = {
       let session = req.session.user;
       let answer = req.body.confirm
       let friend = req.body.id
-      if (answer === 'Confirm')
       User.findById(session._id,  (err, user) => {
         if (err) {
           throw err;
@@ -127,8 +145,22 @@ const UsersController = {
         let updatedRequests = requests.splice(friendIndex, 1)
         if (answer === 'Confirm')
           {user.friends.push(friend);
-          console.log(updatedRequests)
-          User.updateOne({_id: session._id }, {$set: {requests: updatedRequests}});}
+          User.updateOne({_id: session._id }, {$set: {requests: updatedRequests}});
+          User.findById(friend, (err, user) => {
+            if (err) {
+              throw err;
+            }
+            user.friends.push(session._id)
+            user.save((err) => {
+              if (err) {
+                  // let display = "invalid email";
+                  // res.render("users/new", { message: display });
+                throw err;
+              }
+            })
+            
+          })
+        }
         if (answer === 'Reject')
           {User.updateOne({_id: session._id }, {$set: {requests: updatedRequests}});}
         user.save((err) => {

@@ -3,13 +3,15 @@ const router = express.Router();
 
 const UsersController = require("../controllers/users");
 
-router.get("/requests", UsersController.Requests);
-router.post("/requests", UsersController.ConfirmRequest)
 router.get("/new", UsersController.New);
 router.post("/", UsersController.Create);
+router.post("/requests", UsersController.ConfirmRequest)
+router.get("/requests", UsersController.Requests);
 router.get("/index", UsersController.Profile);
-router.get("/:id", UsersController.OtherProfile);
 router.post("/:id", UsersController.FriendRequest);
+router.get("/:id", UsersController.OtherProfile);
+
+
 
 
 module.exports = router;

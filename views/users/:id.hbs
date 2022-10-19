@@ -1,13 +1,27 @@
+<body>
 <h1 class="title">{{user.firstName}} {{user.lastName}}'s Profile</h1>
 
+{{#if status}}
 <ul class="friend-request">
                   <form id="add-friend" action="/users/{{user._id}}" method="POST">
-                    <input id="status" name="requests" type="submit" value={{status}} />
+                    <input id="status" name="requests" type="submit" value="Add friend"/>
                   </form>
-                  
                 </ul>
-<ul class="posts">
-
+{{/if}}
+  {{#if awaiting}}
+ Awaiting Confirmation
+  {{/if}}
+  {{#if confirmed}}
+  You are friends
+{{/if}}
+{{#if otherConfirmed}}
+<ul class="friend-request">
+                  <form id="accept-request" action="/users/requests" method="GET">
+                    <input id="status" name="requests" type="submit" value="Accept Friend Request"/>
+                  </form>
+                </ul>
+{{/if}}
+<ul class="posts"></ul>
   <div>
     {{#each posts}}
       {{! <li> }}
@@ -82,3 +96,4 @@
     {{/each}}
   </div>
 </ul>
+</body>
