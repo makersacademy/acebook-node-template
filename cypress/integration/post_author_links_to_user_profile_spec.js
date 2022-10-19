@@ -29,6 +29,6 @@ describe("Author Links", () => {
       });
 
     // redirects to profile
-    cy.get("#username").should("contain", "someone");
+    cy.get("#user-name").should("contain", "someone");
   });
 });
