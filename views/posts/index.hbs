@@ -55,7 +55,7 @@
         <div class="likes">
           {{this.likes.length}}
           likes
-          {{this.createdAt}}
+          {{timeAgo this.createdAt}}
 
           <form id="likes-form" action="/posts/{{this._id}}" method="post">
 
