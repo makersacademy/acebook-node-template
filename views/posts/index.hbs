@@ -10,13 +10,13 @@
       {{#if this.image.data}}
         <li><img
             class="post-image"
-            src="{{formatImage
-              this.image.contentType
-              this.image.data
-            }}"
+            src="{{formatImage this.image.contentType this.image.data}}"
           /></li>
       {{/if}}
-      <li class="post-author">By {{this.author.name}}</li>
+      <li class="post-author">
+        By
+        <a href="/users/{{this.author._id}}"> {{this.author.name}}</a>
+      </li>
       <li><img
           class="author-post-image"
           src="{{formatImage
