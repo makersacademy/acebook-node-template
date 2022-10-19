@@ -82,7 +82,6 @@ describe("User model", () => {
       password: "password",
     });
     
-
     user.save((err) => {
       expect(err).toBeNull();
 
@@ -132,5 +131,53 @@ describe("User model", () => {
       expect(err.name).toEqual('MongoError');
       expect(err.code).toEqual(11000);
     });
-  })
+  });
+
+  it("a user has array of confirmed friends", async () => {
+    const user1 = new User({
+      name: "someone one",
+      email: "someone1@example.com",
+      password: "password",
+      friends: ["123456789012345678901234", "223456789012345678901234"],
+    });
+    
+    await user1.save()
+      .catch((err) => {
+      expect(err).toBeNull();
+    });
+    
+    const users = await User.find({})
+
+    expect(users[0].name).toEqual('someone one')
+    expect(users[0].friends[0]).toEqual(
+      new mongoose.mongo.ObjectId("123456789012345678901234")
+    )
+    expect(users[0].friends[1]).toEqual(
+      new mongoose.mongo.ObjectId("223456789012345678901234")
+    )       
+  });
+
+  it("a user has array of inbound friend requests", async () => {
+    const user1 = new User({
+      name: "someone one",
+      email: "someone1@example.com",
+      password: "password",
+      friendRequests: ["123456789012345678901234", "223456789012345678901234"],
+    });
+    
+    await user1.save()
+      .catch((err) => {
+      expect(err).toBeNull();
+    });
+    
+    const users = await User.find({})
+
+    expect(users[0].name).toEqual('someone one')
+    expect(users[0].friendRequests[0]).toEqual(
+      new mongoose.mongo.ObjectId("123456789012345678901234")
+    )
+    expect(users[0].friendRequests[1]).toEqual(
+      new mongoose.mongo.ObjectId("223456789012345678901234")
+    )       
+  });
 });

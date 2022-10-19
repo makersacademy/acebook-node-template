@@ -29,7 +29,9 @@ const UserSchema = new mongoose.Schema({
         return "image/png";
       },
     },
-  },
+  },  
+  friends: [{type: mongoose.SchemaTypes.ObjectId, ref: "User"}],
+  friendRequests: [{type: mongoose.SchemaTypes.ObjectId, ref: "User"}],
 });
 
 const User = mongoose.model("User", UserSchema);
