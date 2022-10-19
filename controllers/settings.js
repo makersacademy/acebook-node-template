@@ -5,13 +5,24 @@ const User = require("../models/user");
 const SettingsController = {
   Index: (req, res) => {
     User.findById(req.session.user._id)
-      .then((user) => {
-        res.render("settings/index", { user: user });
+      .populate("friendRequests")
+      .exec((err,user) => {
+        if (err) {
+          throw err;
+        }
+        res.render("settings/index", {user: user})
       })
-      .catch((err) => {
-        console.log(err);
-      });
   },
+
+  // Index: (req, res) => {
+  //   User.findById(req.session.user._id).
+  //     .then((user) => {
+  //       res.render("settings/index", { user: user });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // },
 
   UploadImage: (req, res) => {
     upload(req, res, (err) => {
