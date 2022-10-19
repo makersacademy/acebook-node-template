@@ -1,6 +1,6 @@
 <h1>Settings</h1>
 <ul id="user" class="user">
-  <img id="profile-image" src="{{user.image}}" />
+  <img id="profile-image" src="{{formatImage user.image.contentType user.image.data}}" />
   <li id="user-name">{{user.name}}</li>
   <li id="user-email">{{user.email}}</li>
 </ul>
