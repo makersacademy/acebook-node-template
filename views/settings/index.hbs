@@ -15,4 +15,17 @@
 
 <div id="friend-requests">Your friends requests:
   {{#each user.friendRequests}}
+    <ul>
+      <li><img
+        class="friend-req-proile-iamge"
+        src="{{formatImage
+          this.image.contentType
+          this.image.data
+        }}"
+      </li>
+      <li class="friend-req-name">{{this.name}}</li>
+      <li class="friend-req-accept"><form>Accept</form></li>
+      <li class="friend-req-decline"><form>Decline</form></li>
+    </ul>
+  {{/each}}
 </div>
