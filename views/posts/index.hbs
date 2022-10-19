@@ -106,6 +106,15 @@
 
           </form>
         </div>
+
+        {{! delete post button }}
+        <form
+          id="delete-post-form"
+          action="/posts/delete/{{this._id}}"
+          method="post"
+        >
+          <input id="delete_button" type="submit" value="Delete" />
+        </form>
       </div>
     {{/each}}
   </div>
