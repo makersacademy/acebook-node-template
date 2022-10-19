@@ -27,4 +27,17 @@ describe("Comment model", () => {
       "Tue Oct 11 2022 15:19:39 GMT+0100 (British Summer Time)"
     );
   });
+
+  it("has a message, author and createdAt date", async () => {
+    const comment = new Comment({
+      message: "a comment",
+      author: "123456789012345678901234",
+    });
+    await comment.save();
+    const comments = await Comment.find({});
+    expect(comments[0].message).toEqual("a comment");
+    expect(comments[0].author).toEqual(
+      new mongoose.mongo.ObjectId("123456789012345678901234")
+    );
+  });
 });

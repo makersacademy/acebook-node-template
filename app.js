@@ -12,6 +12,7 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const settingsRouter = require("./routes/settings");
+const friendsRouter = require("./routes/friends");
 
 const app = express();
 
@@ -89,6 +90,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter); //sessionChecker used only for /posts
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/friends", friendsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

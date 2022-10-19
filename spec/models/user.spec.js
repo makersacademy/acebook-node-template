@@ -81,7 +81,7 @@ describe("User model", () => {
       email: "someone@example.com",
       password: "password",
     });
-    
+
     user.save((err) => {
       expect(err).toBeNull();
 
@@ -116,19 +116,19 @@ describe("User model", () => {
       email: "someone@example.com",
       password: "password",
     });
-    
+
     await user1.save((err) => {
       expect(err).toBeNull();
-    }); 
-    
+    });
+
     const user2 = new User({
       name: "someone two",
       email: "someone@example.com",
       password: "password",
     });
-    
+
     await user2.save((err) => {
-      expect(err.name).toEqual('MongoError');
+      expect(err.name).toEqual("MongoError");
       expect(err.code).toEqual(11000);
     });
   });
@@ -140,21 +140,20 @@ describe("User model", () => {
       password: "password",
       friends: ["123456789012345678901234", "223456789012345678901234"],
     });
-    
-    await user1.save()
-      .catch((err) => {
+
+    await user1.save().catch((err) => {
       expect(err).toBeNull();
     });
-    
-    const users = await User.find({})
 
-    expect(users[0].name).toEqual('someone one')
+    const users = await User.find({});
+
+    expect(users[0].name).toEqual("someone one");
     expect(users[0].friends[0]).toEqual(
       new mongoose.mongo.ObjectId("123456789012345678901234")
-    )
+    );
     expect(users[0].friends[1]).toEqual(
       new mongoose.mongo.ObjectId("223456789012345678901234")
-    )       
+    );
   });
 
   it("a user has array of inbound friend requests", async () => {
@@ -164,20 +163,98 @@ describe("User model", () => {
       password: "password",
       friendRequests: ["123456789012345678901234", "223456789012345678901234"],
     });
-    
-    await user1.save()
-      .catch((err) => {
+
+    await user1.save().catch((err) => {
       expect(err).toBeNull();
     });
-    
-    const users = await User.find({})
 
-    expect(users[0].name).toEqual('someone one')
+    const users = await User.find({});
+
+    expect(users[0].name).toEqual("someone one");
     expect(users[0].friendRequests[0]).toEqual(
       new mongoose.mongo.ObjectId("123456789012345678901234")
-    )
+    );
     expect(users[0].friendRequests[1]).toEqual(
       new mongoose.mongo.ObjectId("223456789012345678901234")
-    )       
+    );
+  });
+
+  it("user can accept a friend request", async () => {
+    const user1 = new User({
+      name: "someone one",
+      email: "someone1@example.com",
+      password: "password",
+      friendRequests: ["123456789012345678901234"],
+    });
+
+    await user1.save().catch((err) => {
+      expect(err).toBeNull();
+    });
+
+    await User.updateOne(
+      { _id: user1._id },
+      {
+        $addToSet: { friends: "123456789012345678901234" },
+        $pull: { friendRequests: "123456789012345678901234" },
+      }
+    );
+
+    const finalUser = await User.findById(user1._id);
+
+    expect(finalUser.friendRequests.length).toEqual(0);
+    expect(finalUser.friends.length).toEqual(1);
+    expect(finalUser.friends[0]).toEqual(
+      new mongoose.mongo.ObjectId("123456789012345678901234")
+    );
+  });
+
+  it("can populate all friends with Users", async () => {
+    const user1 = new User({
+      name: "Rita",
+      email: "rita@gmail.com",
+      password: "password",
+    });
+    await user1.save();
+
+    const user2 = new User({
+      name: "Marina",
+      email: "marina@gmail.com",
+      password: "password",
+      friends: [user1._id],
+    });
+    await user2.save();
+
+    const user = await User.findById(user2._id).populate("friends").exec();
+
+    expect(user.friends.length).toEqual(1);
+    expect(user.friends[0].name).toEqual("Rita");
+    expect(user.friends[0]._id).toEqual(user1._id);
+    expect(user.friends[0].email).toEqual("rita@gmail.com");
+  });
+
+  it("can populate all friendRequests with Users", async () => {
+    const user1 = new User({
+      name: "Rita",
+      email: "rita@gmail.com",
+      password: "password",
+    });
+    await user1.save();
+
+    const user2 = new User({
+      name: "Marina",
+      email: "marina@gmail.com",
+      password: "password",
+      friendRequests: [user1._id],
+    });
+    await user2.save();
+
+    const user = await User.findById(user2._id)
+      .populate("friendRequests")
+      .exec();
+
+    expect(user.friendRequests.length).toEqual(1);
+    expect(user.friendRequests[0].name).toEqual("Rita");
+    expect(user.friendRequests[0]._id).toEqual(user1._id);
+    expect(user.friendRequests[0].email).toEqual("rita@gmail.com");
   });
 });
