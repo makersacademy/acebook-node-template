@@ -6,23 +6,13 @@ const SettingsController = {
   Index: (req, res) => {
     User.findById(req.session.user._id)
       .populate("friendRequests")
-      .exec((err,user) => {
+      .exec((err, user) => {
         if (err) {
           throw err;
         }
-        res.render("settings/index", {user: user})
-      })
+        res.render("settings/index", { user: user });
+      });
   },
-
-  // Index: (req, res) => {
-  //   User.findById(req.session.user._id).
-  //     .then((user) => {
-  //       res.render("settings/index", { user: user });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // },
 
   UploadImage: (req, res) => {
     upload(req, res, (err) => {
