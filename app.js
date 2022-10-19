@@ -8,7 +8,6 @@ const methodOverride = require("method-override");
 
 //image libraries
 const bodyParser = require("body-parser");
-const fs = require("fs");
 const multer = require("multer");
 
 const homeRouter = require("./routes/home");
@@ -16,11 +15,25 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
-const app = express();
 
-// view engine setup
+const app = express();
+const hbs = require('hbs');
+const moment = require('moment');
+
+hbs.registerHelper('dateFormat', function(date, timeFormat) {
+  return moment(date).format(timeFormat);
+});
+
+hbs.registerHelper('timeAgo', function(date) {
+  return moment(date).fromNow();
+});
+
 app.set("views", path.join(__dirname, "views"));
+// app.engine('.hbs', hbs.engine)
 app.set("view engine", "hbs");
+
+
+
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -79,12 +92,12 @@ const sessionChecker = (req, res, next) => {
 };
 
 // route setup
+app.use("/users", usersRouter);
 app.use("/users/index", sessionChecker, usersRouter);
 app.use("/users/:id", sessionChecker, usersRouter);
 app.use("/", homeRouter);
 app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
 
 
 // catch 404 and forward to error handler
