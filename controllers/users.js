@@ -1,6 +1,22 @@
 const User = require("../models/user");
 
 const UsersController = {
+  Index: (req, res) => {
+    const userID = req.params.id;
+    User.findById(userID)
+      .populate("friends")
+      .then((user) => {
+        const viewUser = {
+          name: user.name,
+          friends: user.friends,
+        };
+        viewUser.image = `data:${
+          user.image.contentType
+        };base64,${user.image.data.toString("base64")}`;
+        res.render("users/index", { user: viewUser });
+      });
+  },
+
   New: (req, res) => {
     res.render("users/new", {});
   },
