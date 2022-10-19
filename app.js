@@ -99,7 +99,6 @@ app.use("/", homeRouter);
 app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));

@@ -7,5 +7,6 @@ router.get("/new", UsersController.New);
 router.post("/", UsersController.Create);
 router.get("/index", UsersController.Profile);
 router.get("/:id", UsersController.OtherProfile);
+// friends request routes
 
 module.exports = router;
