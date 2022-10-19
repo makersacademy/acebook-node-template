@@ -55,7 +55,9 @@
         <div class="likes">
           {{this.likes.length}}
           likes
-          {{timeAgo this.createdAt}}
+          <div class="tooltip">{{timeAgo this.createdAt}}
+              <span class="tooltiptext">{{dateFormat this.createdAt "LLLL"}}</span>
+          </div>
 
           <form id="likes-form" action="/posts/{{this._id}}" method="post">
 
