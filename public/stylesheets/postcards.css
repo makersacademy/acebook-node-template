@@ -55,11 +55,21 @@ img {
   /* float: left; */
   width: 100px;
   height: 100px;
+  border-radius: 50px;
+  float: left;
+  margin: 20px;
 }
 
 .img-card:hover {
   transform: scale(1.15);
   transition: 0.5s;
+}
+
+.name {
+  padding-right: 350px;
+  padding-left: 150px;
+  padding-top: 40px;
+  height: 80px;
 }
 
 h4:hover {
@@ -101,4 +111,8 @@ input.button:hover {
   position: relative;
   top: -10px;
   list-style: none;
+}
+
+.form-margin-bottom {
+  padding-bottom: 1rem;
 }

@@ -1,11 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/components.css" />
+</head>
+
+
+<body>
 <h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
-
-<form id="new-post-form" action="/posts" method="POST">
-  <input id="message" type="text" name="message" placeholder="Make a new post" />
-  <input id="user" type="hidden" name="user" value={{user._id}} />
-  <input type="submit" value="Submit" />
-</form>
-
+<div class="submit-container">
+  <form class="submit-center" id="new-post-form" action="/posts" method="POST">
+    <input class="input-text2" id="message" type="text" name="message" placeholder="Make a new post" />
+    <input id="user" type="hidden" name="user" value={{user._id}} />
+    <input class="input-button2" type="submit" value="Submit" />
+  </form>
+</div>
 <ul class="posts">
 
   <div>
@@ -18,7 +30,11 @@
           <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
         </div>
         {{! message }}
-        <h4><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+        <h4 class="name"><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+        
+        {{this.createdAt}}
+
+
         <div class="message">
           <p>{{this.message}}</p>
         </div>
@@ -30,7 +46,6 @@
         <div class="likes">
           {{this.likes.length}}
           likes
-          {{this.createdAt}}
 
           <form id="likes-form" action="/posts/{{this._id}}" method="post">
 
@@ -67,6 +82,7 @@
             </ul>
           {{/if}}
           <form
+            class= "form-margin-bottom"
             id="new-comment-form"
             action="/posts/comments/{{this._id}}"
             method="post"
@@ -82,3 +98,5 @@
     {{/each}}
   </div>
 </ul>
+</body>
+</html>

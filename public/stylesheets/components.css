@@ -1,0 +1,73 @@
+/* Forms */
+
+.input-text {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-button {
+  width: 100%;
+  background-color: #0175e4;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-text2 {
+  width: 275px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-button2 {
+  width: 100px;
+  background-color: #0175e4;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-container {
+  position: relative;
+  text-align: center;
+}
+
+.sign-form {
+  display: inline-block;
+  width: 50%;
+  border: rgb(216, 216, 216) solid 2px;
+}
+
+#new-session-form {
+  display: inline-block;
+  width: 60%;
+}
+
+#new-user-form {
+  display: inline-block;
+  width: 50%;
+}
+
+
+.title-container {
+  position: relative;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+}

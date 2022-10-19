@@ -9,11 +9,11 @@
   body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+    background-color: lightgray;
   }
   
   .navbar {
-      background: #131313;
+      background: white;
       height: 80px;
       display: flex;
       justify-content: center;
@@ -36,8 +36,7 @@
   }
   
   #navbar__logo {
-      background-color: #ff8177;
-      background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+      background-color: #0175e4;
       background-size: 100%;
       -webkit-background-clip: text;
       -moz-background-clip: text;
@@ -62,7 +61,7 @@
   }
   
   .navbar__links {
-      color: #fff;
+      color: #0175e4;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -74,11 +73,15 @@
   
   .navbar__btn {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       padding: 0 1rem;
       width: 100%;
       cursor: pointer;
+  }
+
+  .navbar__btn form {
+    padding-left: 10px;
   }
   
   .button {
@@ -92,29 +95,43 @@
       border: none;
       outline: none;
       border-radius: 4px;
-      background: #833ab4;
-      background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
-      background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+      background: #0175e4;
       color: #fff;
       transition: 1s ease;
   } 
 
   form:hover .button {
-    background: -webkit-linear-gradient(to left, #fcb045, #fcb045, #fcb045);
-    background: linear-gradient(to left, #fcb045, #fcb045, #fcb045);
+    background: #5495d1;
     /* background: #fcb045; */
-    color: #9518fc;
+    color: white;
     transition: 1s ease;
   }
 
 
   
   .navbar__links:hover {
-      color: #9518fc;
+      color: #5495d1;
       transition: all 0.3s ease;
   }
 
-  
+.homepage-container {
+    position: relative;
+    text-align: center;
+}
+
+.homepage-center {
+    display: block;
+}
+
+.submit-container {
+    position: relative;
+    text-align: center;
+  }
+
+  .submit-center {
+    display: inline-block;
+    width: 500px;
+  }
   
   @media screen and (max-width: 960px) {
       .navbar__container {

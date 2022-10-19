@@ -1,9 +1,31 @@
-<h1 class="title">{{title}}</h1>
-<form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="" />
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/stylesheets/components.css" />
+</head>
+<body>
+  
+  <div class="title-container">
+    <h1 class="title">{{title}}</h1>
+  </div>
 
-  <input id="submit" type="submit" value="Submit" />
-</form>
+  <div class="form-container">
+  <div class="sign-form">
+  <form id="new-session-form" action="/sessions" method="post">
+    <label for="email">Email: </label>
+    <input class="input-text" id="email" type="email" name="email" value="" />
+    <label for="password">Password: </label>
+    <input class="input-text" id="password" type="password" name="password" value="" />
+
+    <input class="input-button" id="submit" type="submit" value="Submit" />
+  </form>
+  </div>
+  </div>
+</body>
+</html>
+
+
