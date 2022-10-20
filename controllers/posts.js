@@ -1,6 +1,11 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
-// const User = require("../models/user");
+const fs = require("fs");
+const path = require("path");
+
+//app root directory
+let appDir = path.dirname(require.main.filename);
+appDir = appDir.replace("bin", "").replace("controllers", "");
 
 const PostsController = {
   Index: (req, res) => {
@@ -18,7 +23,7 @@ const PostsController = {
     })
       .populate("user")
       .populate("remarks")
-      .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}});
+      .populate({ path: "remarks", populate: { path: "user" } });
   },
   New: (req, res) => {
     let session = req.session.user;
@@ -26,12 +31,30 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    if (req.file) {
+      const obj = {
+        img: {
+          data: fs.readFileSync(
+            path.join(appDir + "/public/images/" + req.file.filename)
+          ),
+          contentType: "image/png",
+          code: "",
+          photoExists: "",
+        },
+      };
+
+      obj.img.code = obj.img.data.toString("base64");
+      obj.img.photoExists = true;
+      post.photo = obj.img;
+    } else {
+      post.photo = false;
+    }
     post.save((err) => {
       if (err) {
         throw err;
       }
 
-      res.status(201).redirect(req.get('referer'));
+      res.status(201).redirect(req.get("referer"));
     });
   },
 
@@ -40,7 +63,7 @@ const PostsController = {
     const id = req.params.id;
     Post.findById(id, (err, post) => {
       if (post.likes.includes(session._id)) {
-        return res.status(201).redirect(req.get('referer'));
+        return res.status(201).redirect(req.get("referer"));
       }
       if (err) {
         throw err;
@@ -50,25 +73,10 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        res.status(201).redirect(req.get('referer'));
+        res.status(201).redirect(req.get("referer"));
       });
     });
   },
-
-  // Comment: (req, res) => {
-  //   let session = req.session.user;
-
-  //   const comment = new Comment(req.body);
-  //   let id = comment._id;
-
-  //   comment.save((err) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-
-  //     // res.status(201).redirect("/posts");
-  //     res.render("posts/index", { cid: id });
-  //   });
 
   //comments on posts
   Comment: (req, res) => {
@@ -89,17 +97,17 @@ const PostsController = {
           if (err) {
             throw err;
           }
-          res.status(201).redirect(req.get('referer'));
+          res.status(201).redirect(req.get("referer"));
         });
       });
     });
   },
   LikeComment: (req, res) => {
-    let session = req.session.user
+    let session = req.session.user;
     const id = req.params.id;
     Comment.findById(id, (err, comment) => {
       if (comment.commentLikes.includes(session._id)) {
-        return res.status(201).redirect(req.get('referer'));
+        return res.status(201).redirect(req.get("referer"));
       }
       if (err) {
         throw err;
@@ -109,8 +117,19 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        res.status(201).redirect(req.get('referer'));
+        res.status(201).redirect(req.get("referer"));
       });
+    });
+  },
+
+  // delete post
+  Delete: (req, res) => {
+    const id = req.params.id;
+    Post.findByIdAndDelete(id, (err) => {
+      if (err) {
+        throw err;
+      }
+      res.status(201).redirect(req.get("referer"));
     });
   },
 };

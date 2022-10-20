@@ -11,55 +11,89 @@
 
 <body>
 <h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
-<div class="submit-container">
-  <form class="submit-center" id="new-post-form" action="/posts" method="POST">
-    <input class="input-text2" id="message" type="text" name="message" placeholder="Make a new post" />
-    <input id="user" type="hidden" name="user" value={{user._id}} />
-    <input class="input-button2" type="submit" value="Submit" />
-  </form>
-</div>
+
+<form id="new-post-form" action="/posts" enctype="multipart/form-data"  method="POST">
+  <input id="message" type="text" name="message" placeholder="Make a new post" />
+  <input id="user" type="hidden" name="user" value={{user._id}} />
+  <input class="choose-file-btn" type="file" name="image" />
+  <input type="submit" value="Submit" />
+</form>
+
 <ul class="posts">
 
   <div>
     {{#each posts}}
       {{! <li> }}
       <div class="card">
-
-        {{! profile pic }}
         <div>
-          <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
+        <div class="flex">
+        {{! profile pic }}
+          <div id="row1">
+            <div id="avatar">
+            <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
+            </div>
+            <div id="name-and-date">
+              <h4 class="name"><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+              <h5 class="date">{{this.createdAt}}</h5>
+            </div>
         </div>
         {{! message }}
-        <h4 class="name"><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
-        
-        {{this.createdAt}}
-
-
+        <h4><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+          <div class="tooltip">{{timeAgo this.createdAt}}
+              <span class="tooltiptext">{{dateFormat this.createdAt "LLLL"}}</span>
+          </div>
         <div class="message">
           <p>{{this.message}}</p>
         </div>
-        {{! if uploading a photo }}
-        <div class="photos">
-        </div>
 
+        {{!-- {{do not render an image if this.photo is null}} --}}
+
+        <div class="photos">
+          {{#if this.photo.photoExists}}
+
+            <img
+              src="data:image/png;base64,{{this.photo.code}}"
+              alt=""
+              width="100px"
+            />
+
+          {{/if}}
+        </div>
+          <div id="row2">
+            <div class="message">
+              <p>{{this.message}}</p>
+            </div>
+          </div>
+
+        {{! if uploading a photo }}
+          <div id="row3">
+            <div class="photos">
+            </div>
+          </div>
+
+        <div id="row4">
         {{! likes section }}
         <div class="likes">
           {{this.likes.length}}
           likes
+          {{this.createdAt}}
 
           <form id="likes-form" action="/posts/{{this._id}}" method="post">
-
-            <input type="submit" value="likes" />
+            <input type="submit" value="Like" />
           </form>
+        <div class="like-btn">
           {{#if this.remarks.length}}
             <ul>
-              Comments=
+              Comments:
             </ul>
             {{#each this.remarks}}
               <ul>
                 {{this.content}}
                 by
-                <a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}}</a>
+                <a
+                  href="users/{{this.user._id}}"
+                  class="userLink"
+                >{{this.user.firstName}}</a>
               </ul>
               <ul>
                 <form
@@ -76,24 +110,35 @@
             {{/each}}
 
           {{else}}
-          
+
             <ul>
               No Comments have been made
             </ul>
           {{/if}}
+          <div class="comment">
           <form
             class= "form-margin-bottom"
             id="new-comment-form"
             action="/posts/comments/{{this._id}}"
-            method="post"
-          >
-            <label for="comments"> comment here</label>
-            <input type="text" value="" name="content" />
-
-            <input type="submit" value="Submit" />
-
+            method="post">
+              <label for="comments"> comment here</label>
+              <input type="text" value="" name="content" />
+              <input type="submit" value="Submit" />
           </form>
+          </div>
         </div>
+        </div>
+        </div>
+        </div>
+
+        {{! delete post button }}
+        <form
+          id="delete-post-form"
+          action="/posts/delete/{{this._id}}"
+          method="post"
+        >
+          <input id="delete_button" type="submit" value="Delete" />
+        </form>
       </div>
     {{/each}}
   </div>

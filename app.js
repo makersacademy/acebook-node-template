@@ -6,16 +6,34 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 
+//image libraries
+const bodyParser = require("body-parser");
+const multer = require("multer");
+
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
-const app = express();
 
-// view engine setup
+const app = express();
+const hbs = require('hbs');
+const moment = require('moment');
+
+hbs.registerHelper('dateFormat', function(date, timeFormat) {
+  return moment(date).format(timeFormat);
+});
+
+hbs.registerHelper('timeAgo', function(date) {
+  return moment(date).fromNow();
+});
+
 app.set("views", path.join(__dirname, "views"));
+// app.engine('.hbs', hbs.engine)
 app.set("view engine", "hbs");
+
+
+
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -44,9 +62,25 @@ app.use((req, res, next) => {
   next();
 });
 
+//image upload
 
-// gets images from public folder
-app.use(express.static(path.join(__dirname, 'public')))
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
+
+////////////
+
+app.use(bodyParser.json());
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
@@ -62,9 +96,8 @@ app.use("/users", usersRouter);
 app.use("/users/index", sessionChecker, usersRouter);
 app.use("/users/:id", sessionChecker, usersRouter);
 app.use("/", homeRouter);
-app.use("/posts", sessionChecker, postsRouter);
+app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
