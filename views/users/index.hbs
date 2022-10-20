@@ -5,23 +5,25 @@
     src="{{formatImage user.image.contentType user.image.data}}"
   />
   <h3 id="user-name">{{user.name}}</h3>
-  {{#if loggedIn}}
-    <form class="add-friend-form" action="/friends/request" method="post">
-      <input
-        class="requestee-id"
-        type="hidden"
-        value="{{user._id}}"
-        name="requestee"
-      />
-      {{#if isPending}}
-        <input id="pending-friends-button" type="submit" value="Your friend request is still pending" disabled>
-      {{else if isFriends}}
-        <input id="already-friends-button" type="submit" value="You are friends with {{user.name}} 🎉" disabled>
-      {{else}}
-        <input id="add-friend-button" type="submit" value="Add Friend" />
-      {{/if}}
-    </form>
-  </div>
+  {{#if isLoggedIn}}
+    {{#if isNotOwnProfile}}
+      <form class="add-friend-form" action="/friends/request" method="post">
+        <input
+          class="requestee-id"
+          type="hidden"
+          value="{{user._id}}"
+          name="requestee"
+        />
+        {{#if isPending}}
+          <input id="pending-friends-button" type="submit" value="Your friend request is still pending" disabled>
+        {{else if isFriends}}
+          <input id="already-friends-button" type="submit" value="You are friends with {{user.name}} 🎉" disabled>
+        {{else}}
+          <input id="add-friend-button" type="submit" value="Add Friend" />
+        {{/if}}
+      </form>
+    </div>
+    {{/if}}
   {{/if}}
   {{#if hasFriends}}
     <div id="friends">

@@ -1,5 +1,5 @@
 describe("Friend Request", () => {
-  it("a user can accept friend requests", () => {
+  it("a user can send decline friend requests", () => {
     // sign up John
     cy.visit("/users/new");
     cy.get("#name").type("John");
@@ -67,7 +67,7 @@ describe("Friend Request", () => {
     cy.get("#settings-navbar").click();
     cy.get("#friend-requests").within(() => {
       cy.get(".friend-req-name:first").should("contain", "Jane");
-      cy.get(".accept-button:first").click();
+      cy.get(".decline-button:first").click();
     });
 
     // refreshes without any requests
@@ -81,30 +81,7 @@ describe("Friend Request", () => {
         cy.get("a").click();
       });
 
-    //check for no add friend button
-    cy.get("#add-friends-button").should("not.exist");
-
     // check for Jane in friends
-    cy.get("#friends")
-      .find(".friend-name:first")
-      .within(() => {
-        cy.get("a").should("contain", "Jane");
-        //go to Jane's profile
-        cy.get("a").click();
-      });
-
-    //check for you are already friends button
-    cy.get("#already-friends-button").should(
-      "have.attr",
-      "value",
-      "You are friends with Jane 🎉"
-    );
-
-    //check for John in friends
-    cy.get("#friends")
-      .find(".friend-name:first")
-      .within(() => {
-        cy.get("a").should("contain", "John");
-      });
+    cy.get("#friends").should("not.exist");
   });
 });
