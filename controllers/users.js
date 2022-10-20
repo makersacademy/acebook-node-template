@@ -6,14 +6,28 @@ const UsersController = {
     User.findById(userID)
       .populate("friends")
       .then((user) => {
-        const viewUser = {
-          name: user.name,
-          friends: user.friends,
-        };
-        viewUser.image = `data:${
-          user.image.contentType
-        };base64,${user.image.data.toString("base64")}`;
-        res.render("users/index", { user: viewUser });
+        const hasFriends = user.friends.length > 0;
+        const isLoggedIn = req.session.user != null;
+        const isFriends =
+          req.session.user != null
+            ? user.friends.some((friend) => friend._id == req.session.user._id)
+            : false;
+        const isPending =
+          req.session.user != null
+            ? user.friendRequests.includes(req.session.user._id)
+            : false;
+        const isNotOwnProfile =
+          req.session.user != null
+            ? req.session.user._id != req.params.id
+            : false;
+        res.render("users/index", {
+          user: user,
+          isLoggedIn: isLoggedIn,
+          isFriends: isFriends,
+          hasFriends: hasFriends,
+          isPending: isPending,
+          isNotOwnProfile: isNotOwnProfile,
+        });
       });
   },
 

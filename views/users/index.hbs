@@ -1,11 +1,39 @@
 <h1>Profile Page</h1>
 <div class="user">
-  <img id="profile-image" src="{{user.image}}" />
-  <h2 id="user-name">{{user.name}}</h2>
-</div>
-<div>
-  <h2>Friends</h2>
-  {{#each user.friends}}
-  <li>{{this.name}}</li>
-  {{/each}}
-</div>
+  <img
+    id="profile-image"
+    src="{{formatImage user.image.contentType user.image.data}}"
+  />
+  <h3 id="user-name">{{user.name}}</h3>
+  {{#if isLoggedIn}}
+    {{#if isNotOwnProfile}}
+      <form class="add-friend-form" action="/friends/request" method="post">
+        <input
+          class="requestee-id"
+          type="hidden"
+          value="{{user._id}}"
+          name="requestee"
+        />
+        {{#if isPending}}
+          <input id="pending-friends-button" type="submit" value="Your friend request is still pending" disabled>
+        {{else if isFriends}}
+          <input id="already-friends-button" type="submit" value="You are friends with {{user.name}} 🎉" disabled>
+        {{else}}
+          <input id="add-friend-button" type="submit" value="Add Friend" />
+        {{/if}}
+      </form>
+    </div>
+    {{/if}}
+  {{/if}}
+  {{#if hasFriends}}
+    <div id="friends">
+      <h3>Friends</h3>
+      {{#each user.friends}}
+        <li class="friend-name"><a href="/users/{{this._id}}">{{this.name}}</a></li>
+        <li><img
+            class="friend-profile-image"
+            src="{{formatImage this.image.contentType this.image.data}}"
+          /></li>
+      {{/each}}
+    </div>
+  {{/if}}

@@ -10,7 +10,11 @@ const SettingsController = {
         if (err) {
           throw err;
         }
-        res.render("settings/index", { user: user });
+        const hasFriendRequests = user.friendRequests.length > 0;
+        res.render("settings/index", {
+          user: user,
+          hasFriendRequests: hasFriendRequests,
+        });
       });
   },
 
