@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
 const UserSchema = new mongoose.Schema({
@@ -20,6 +21,18 @@ const UserSchema = new mongoose.Schema({
     required: true,
     min: 6,
   },
+
+  requests: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    // unique: true,
+  }],
+  friends: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    // unique: true,
+  }],
+
   photo: {
     data: Buffer,
     contentType: String,
