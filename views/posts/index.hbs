@@ -25,9 +25,19 @@
       <div class="card">
 
         {{! profile pic }}
-        <div>
-          <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
-        </div>
+        {{#if this.user.photo.photoExists}}
+
+          <img
+            class="img-card"
+            src="data:image/png;base64,{{this.user.photo.code}}"
+            alt="avatar"
+          />
+
+        {{else}}
+          <img class="img-card" src="/images/default-pic.png" alt="avatar" />
+
+        {{/if}}
+
         {{! message }}
         <h4><b><a
               href="users/{{this.user._id}}"
