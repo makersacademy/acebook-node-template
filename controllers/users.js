@@ -135,7 +135,7 @@ const UsersController = {
       let friendIndex = session.requests.findIndex(i => i === friend)
       let updatedRequests = session.requests.filter(id => id !== friend)
         if (friendIndex === -1)
-          {res.redirect('users/requests')}
+          {res.redirect('/users/requests')}
         if (answer === 'Confirm')
           {User.findById(session._id, (err, user) => {
             if (err) {
