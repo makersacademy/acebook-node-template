@@ -11,13 +11,14 @@
 
 <body>
 <h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
-
+<div class="submit-post-container">
 <form id="new-post-form" action="/posts" enctype="multipart/form-data"  method="POST">
-  <input id="message" type="text" name="message" placeholder="Make a new post" />
+  <input class="input-text2" id="message" type="text" name="message" placeholder="Make a new post" />
   <input id="user" type="hidden" name="user" value={{user._id}} />
-  <input class="choose-file-btn" type="file" name="image" />
-  <input type="submit" value="Submit" />
+  <input class="choose-file-btn" type="file" name="image"/ size="10">
+  <input class="input-button2" type="submit" value="Submit" />
 </form>
+</div>
 
 <ul class="posts">
 
@@ -34,54 +35,69 @@
             </div>
             <div id="name-and-date">
               <h4 class="name"><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
-              <h5 class="date">{{this.createdAt}}</h5>
-            </div>
-        </div>
-        {{! message }}
-        <h4><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
-          <div class="tooltip">{{timeAgo this.createdAt}}
+              <h5 class="date"><div class="tooltip">{{timeAgo this.createdAt}}
               <span class="tooltiptext">{{dateFormat this.createdAt "LLLL"}}</span>
-          </div>
-        <div class="message">
-          <p>{{this.message}}</p>
+          </div></h5>
+            </div>
+            <div></div>
+            <div class="delete-post-button">
+        {{! delete post button }}
+        <form
+          id="delete-post-form"
+          action="/posts/delete/{{this._id}}"
+          method="post"
+        >
+          <input id="delete_button" type="submit" value="Delete" />
+        </form>
+        </div>
         </div>
 
         {{!-- {{do not render an image if this.photo is null}} --}}
-
+        <div id="row2">
         <div class="photos">
           {{#if this.photo.photoExists}}
 
             <img
               src="data:image/png;base64,{{this.photo.code}}"
               alt=""
-              width="100px"
+              width="200px"
+              height="200px"
             />
 
           {{/if}}
         </div>
-          <div id="row2">
+        </div>
+          <div id="row3">
             <div class="message">
               <p>{{this.message}}</p>
             </div>
           </div>
 
-        {{! if uploading a photo }}
-          <div id="row3">
-            <div class="photos">
-            </div>
-          </div>
-
         <div id="row4">
         {{! likes section }}
+          <div class="like-btn">
+            <form id="likes-form" action="/posts/{{this._id}}" method="post">
+              <input class="input-button" type="submit" value="Like" />
+            </form>
+        </div>
         <div class="likes">
           {{this.likes.length}}
           likes
-          {{this.createdAt}}
-
-          <form id="likes-form" action="/posts/{{this._id}}" method="post">
-            <input type="submit" value="Like" />
+        </div>
+        <div class="comment">
+          <form
+            class= "form-margin-bottom"
+            id="new-comment-form"
+            action="/posts/comments/{{this._id}}"
+            method="post">
+              <input class="input-text2" type="text" value="" name="content" placeholder="Comment here"/>
+              <input class="input-button2" type="submit" value="Submit" />
           </form>
-        <div class="like-btn">
+        </div>
+        </div>
+
+        <div id="row5">
+        <div class="comment-section">
           {{#if this.remarks.length}}
             <ul>
               Comments:
@@ -96,16 +112,23 @@
                 >{{this.user.firstName}}</a>
               </ul>
               <ul>
+                <div class="comment-like">
+                  <div class="comment-like-container">
                 <form
                   id="comment-likes-form"
                   action="/posts/comments/likes/{{this._id}}"
                   method="POST"
                 >
 
-                  <input name="commentLikes" type="submit" value="Like" />
+                  <input class="comment-like-button" name="commentLikes" type="submit" value="Like" />
                 </form>
+                </div>
+                <div>
+                <p class="comment-like-counter">
                 {{this.commentLikes.length}}
                 likes
+                </p>
+                </div>
               </ul>
             {{/each}}
 
@@ -115,33 +138,13 @@
               No Comments have been made
             </ul>
           {{/if}}
-          <div class="comment">
-          <form
-            class= "form-margin-bottom"
-            id="new-comment-form"
-            action="/posts/comments/{{this._id}}"
-            method="post">
-              <label for="comments"> comment here</label>
-              <input type="text" value="" name="content" />
-              <input type="submit" value="Submit" />
-          </form>
           </div>
         </div>
         </div>
-        </div>
-        </div>
-
-        {{! delete post button }}
-        <form
-          id="delete-post-form"
-          action="/posts/delete/{{this._id}}"
-          method="post"
-        >
-          <input id="delete_button" type="submit" value="Delete" />
-        </form>
       </div>
-    {{/each}}
+      </div>
   </div>
+    {{/each}}
 </ul>
 </body>
 </html>

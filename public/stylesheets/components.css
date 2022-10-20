@@ -42,6 +42,25 @@
   cursor: pointer;
 }
 
+.choose-file-btn {
+    display: inline-block;
+    padding: 14px 0px;
+    cursor: pointer;
+    width: 175px;
+}
+
+
+.comment-like-button {
+  width: 100px;
+  background-color: #0175e4;
+  color: white;
+  padding: 5px 5px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .form-container {
   position: relative;
   text-align: center;
@@ -70,4 +89,15 @@
   padding-top: 50px;
   padding-bottom: 50px;
 
+}
+
+
+.photos {
+  height: 200px;
+}
+
+
+.submit-post-container {
+  position: relative;
+  text-align: center;
 }

@@ -33,6 +33,8 @@ h1 {
 /* Add rounded corners to the top left and the top right corner of the image */
 img {
   border-radius: 5px 5px 0 0;
+  max-width: 100%;
+  height: auto;
 }
 
 .posts {
@@ -45,10 +47,10 @@ img {
   height: auto;
   width: 600px;
   position: relative;
-  margin-bottom: 20px;
+  margin: auto;
   white-space: normal;
   word-break: break-word;
-  margin: auto;
+  margin-bottom: 20px;
 }
 
 .img-card {
@@ -72,9 +74,6 @@ img {
   /* padding-top: 10px; */
 }
 
-#post-time {
-  
-}
 
 h4:hover {
   transform: scale(1.15);
@@ -88,11 +87,39 @@ h4:hover {
   left: 50%;
   height: 200px;
   overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.message p{
+  margin-bottom: -16px;
+}
+
+.like-btn {
+  margin-left: 20px;
 }
 
 .likes {
   text-align: center;
-  padding-top: 10px;
+  padding-top: 22px;
+  padding-left: 10px;
+}
+
+.comment-like-container {
+  padding-left: 220px;
+}
+
+
+.comment-like {
+  display: grid;
+  grid-template-columns: auto auto;
+  flex-direction: row;
+}
+
+
+.comment-like-counter{
+  margin-top: 12px;
+  padding-right: 220px;
+  margin-bottom: 25px;
 }
 
 .new-post {
@@ -166,7 +193,7 @@ input.button:hover {
   grid-template-columns: 20% 20% 30% 30%;
   /* grid-template-rows: 50% 50%; */
   grid-template-areas: 
-    "avatar name-and-date . ."
+    "avatar name-and-date . delete"
     "avatar name-and-date . .";
 
 }
@@ -179,12 +206,25 @@ input.button:hover {
   grid-area: name-and-date;
 }
 
+/* .row4-container{
+  display: grid;
+  grid-template-columns: auto auto auto;
+} */
 
 #row4{
   display: grid;
   width: 100%;
   height: 100px;
+  grid-template-columns: 20% 10% 70%;
   grid-template-areas: 
-    "like comment comment"
+    "like-btn likes comments"
+    ". . comment-section"
 }
 
+#row4#like-btn {
+  grid-area: like-btn;
+}
+
+#row4#comments {
+  grid-area: comments;
+}

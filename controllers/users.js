@@ -40,6 +40,9 @@ const UsersController = {
   },
 
   OtherProfile: (req, res) => {
+    if (req.params.id === req.session.user._id) {
+      res.redirect("index");
+      } 
     let id = req.params.id;
     User.findById(id, (err, users) => {
       if (err) {
