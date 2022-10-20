@@ -135,7 +135,7 @@ const UsersController = {
       let friendIndex = session.requests.findIndex(i => i === friend)
       let updatedRequests = session.requests.filter(id => id !== friend)
         if (friendIndex === -1)
-          {res.redirect('users/requests')}
+          {res.redirect('/users/requests')}
         if (answer === 'Confirm')
           {User.findById(session._id, (err, user) => {
             if (err) {
@@ -145,6 +145,7 @@ const UsersController = {
               {console.log('Already friends')}
             else
               {user.friends.push(friend);}
+              session.friends = user.friends
             user.requests = updatedRequests;
             user.save((err) => {
             if (err) {
@@ -169,7 +170,7 @@ const UsersController = {
             }
             if (user.friends.includes(session._id))
               {console.log('Already Friends!')}
-            else
+            else if (session.friends.includes(user._id))
               {user.friends.push(session._id);
             user.save((err) => {
               if (err) {
