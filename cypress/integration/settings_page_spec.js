@@ -44,7 +44,20 @@ describe("photo shows in Settings", () => {
       cy.get(".settings")
         .find("img")
         .should("have.attr", "src", "/images/default-pic.png");
+        // submit a post
+         cy.visit("/posts");
+   
+        // cy.contains("New post").click();
+   
+         cy.get("#new-post-form")
+           .find('[type="text"]', { force: true })
+           .type("Hello, world!", { force: true });
+         cy.get("#new-post-form").submit();
+           // check user photo in the post
+         cy.visit("/posts");
+         cy.get(".posts")
+         .find("img")
+         .should("have.attr", "src", "/images/default-pic.png");
     });
-    // check photo on timeline
   });
 });
