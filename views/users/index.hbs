@@ -28,9 +28,20 @@
       <div class="card">
 
         {{! profile pic }}
-        <div>
-          <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
-        </div>
+        {{!-- <div> --}}
+          {{#if this.user.photo.photoExists}}
+
+          <img
+            class="img-card"
+            src="data:image/png;base64,{{this.user.photo.code}}"
+            alt="avatar"
+          />
+
+        {{else}}
+          <img class="img-card" src="/images/default-pic.png" alt="avatar" />
+
+        {{/if}}
+        {{!-- </div> --}}
         {{! message }}
         <h4><b>{{this.user.firstName}} {{this.user.lastName}}</b></h4>
         <div class="message">
