@@ -4,7 +4,7 @@
     id="profile-image"
     src="{{formatImage user.image.contentType user.image.data}}"
   />
-  <li id="user-name">{{user.name}}</li>
+  <li id="user-name"><a href="/users/{{user._id}}">{{user.name}}</a></li>
   <li id="user-email">{{user.email}}</li>
 </ul>
 
@@ -26,6 +26,7 @@
   </div>
 </form>
 
+{{#if hasFriendRequests}}
 <div id="friend-requests">Your friends requests:
   {{#each user.friendRequests}}
     <ul>
@@ -60,4 +61,5 @@
       </li>
     </ul>
   {{/each}}
+{{/if}}
 </div>
