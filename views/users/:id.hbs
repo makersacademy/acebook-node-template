@@ -9,12 +9,12 @@
                 </ul>
 {{/if}}
   {{#if awaiting}}
- Awaiting Confirmation
+ <h4 class="status" >Awaiting Confirmation</h4>
   {{/if}}
   {{#if confirmed}}
   You are friends
 {{/if}}
-{{#if otherConfirmed}}
+<h4 class="status" >You're friends</h4>
 <ul class="friend-request">
                   <form id="accept-request" action="/users/requests" method="GET">
                     <input id="status" name="requests" type="submit" value="Accept Friend Request"/>
