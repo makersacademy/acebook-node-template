@@ -81,7 +81,7 @@ describe("Friend Request", () => {
         cy.get("a").click();
       });
 
-    //check for no add friend button
+    // no add friend button on own profile
     cy.get("#add-friends-button").should("not.exist");
 
     // check for Jane in friends
@@ -93,7 +93,7 @@ describe("Friend Request", () => {
         cy.get("a").click();
       });
 
-    //check for you are already friends button
+    // check for you are already friends button
     cy.get("#already-friends-button").should(
       "have.attr",
       "value",
