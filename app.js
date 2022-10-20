@@ -57,7 +57,8 @@ hbs.handlebars.registerHelper("formatDate", function (dateObject) {
     time.toLocaleString("default", { month: "short" }) +
     "-" +
     time.getFullYear();
-  output += " " + time.getHours() + ":" + time.getMinutes();
+  const minutes = (time.getMinutes() < 10 ? "0" : "") + time.getMinutes();
+  output += " " + time.getHours() + ":" + minutes;
   return output;
 });
 
