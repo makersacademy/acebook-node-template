@@ -1,14 +1,22 @@
 <h1 class="title">Hi {{user.firstName}}! Welcome to your profile</h1> 
+<a href="requests" class="friend-requests" > Friend requests </a>
 <div class="card">
 
 
-</div>
-
-<a href="requests" class="friend-requests" > Friend requests </a>
-                
-<form id="new-post-form" action="/posts" method="POST">
-  <input id="message" type="text" name="message" placeholder="Make a new post" />
-  <input class="hidden" id="user" type="hidden" name="user" value={{user._id}} />
+<form
+  id="new-post-form"
+  action="/posts"
+  enctype="multipart/form-data"
+  method="POST"
+>
+  <input
+    id="message"
+    type="text"
+    name="message"
+    placeholder="Make a new post"
+  />
+  <input id="user" type="hidden" name="user" value={{user._id}} />
+  <input class="choose-file-btn" type="file" name="image" />
   <input type="submit" value="Submit" />
 </form>
 
@@ -30,6 +38,15 @@
         </div>
         {{! if uploading a photo }}
         <div class="photos">
+          {{#if this.photo.photoExists}}
+
+            <img
+              src="data:image/png;base64,{{this.photo.code}}"
+              alt=""
+              width="100px"
+            />
+
+          {{/if}}
         </div>
 
         {{! likes section }}
@@ -50,7 +67,10 @@
               <ul>
                 {{this.content}}
                 by
-                <a href="{{this.user._id}}" class="userLink">{{this.user.firstName}}</a>
+                <a
+                  href="users/{{this.user._id}}"
+                  class="userLink"
+                >{{this.user.firstName}}</a>
               </ul>
               <ul>
                 <form
@@ -67,7 +87,7 @@
             {{/each}}
 
           {{else}}
-          
+
             <ul>
               No Comments have been made
             </ul>

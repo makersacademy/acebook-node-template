@@ -16,10 +16,22 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
 const app = express();
+const hbs = require("hbs");
+const moment = require("moment");
+
+hbs.registerHelper("dateFormat", function (date, timeFormat) {
+  return moment(date).format(timeFormat);
+});
+
+hbs.registerHelper("timeAgo", function (date) {
+  return moment(date).fromNow();
+});
 
 
 // view engine setup
+
 app.set("views", path.join(__dirname, "views"));
+// app.engine('.hbs', hbs.engine)
 app.set("view engine", "hbs");
 
 app.use(logger("dev"));
@@ -79,16 +91,13 @@ const sessionChecker = (req, res, next) => {
 };
 
 // route setup
-// app.use("/users", usersRouter);
-app.use("/users", usersRouter);
-// app.use("users/index", sessionChecker, usersRouter);
-// app.use("users/:id", sessionChecker, usersRouter);
+
+app.use("/users", upload.single("image"), usersRouter);
+app.use("/users/index", sessionChecker, usersRouter);
+app.use("/users/:id", sessionChecker, usersRouter);
 app.use("/", homeRouter);
 app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-
-
-
 
 
 // catch 404 and forward to error handler

@@ -1,6 +1,11 @@
 <h1 class="title">Hi {{user.firstName}}! Welcome to the TimeLine</h1>
 
-<form id="new-post-form" action="/posts" method="POST">
+<form
+  id="new-post-form"
+  action="/posts"
+  enctype="multipart/form-data"
+  method="POST"
+>
   <input
     id="message"
     type="text"
@@ -8,6 +13,7 @@
     placeholder="Make a new post"
   />
   <input id="user" type="hidden" name="user" value={{user._id}} />
+  <input class="choose-file-btn" type="file" name="image" />
   <input type="submit" value="Submit" />
 </form>
 
@@ -19,9 +25,19 @@
       <div class="card">
 
         {{! profile pic }}
-        <div>
-          <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
-        </div>
+        {{#if this.user.photo.photoExists}}
+
+          <img
+            class="img-card"
+            src="data:image/png;base64,{{this.user.photo.code}}"
+            alt="avatar"
+          />
+
+        {{else}}
+          <img class="img-card" src="/images/default-pic.png" alt="avatar" />
+
+        {{/if}}
+
         {{! message }}
         <h4><b><a
               href="users/{{this.user._id}}"
@@ -49,7 +65,9 @@
         <div class="likes">
           {{this.likes.length}}
           likes
-          {{this.createdAt}}
+          <div class="tooltip">{{timeAgo this.createdAt}}
+              <span class="tooltiptext">{{dateFormat this.createdAt "LLLL"}}</span>
+          </div>
 
           <form id="likes-form" action="/posts/{{this._id}}" method="post">
 
@@ -100,6 +118,15 @@
 
           </form>
         </div>
+
+        {{! delete post button }}
+        <form
+          id="delete-post-form"
+          action="/posts/delete/{{this._id}}"
+          method="post"
+        >
+          <input id="delete_button" type="submit" value="Delete" />
+        </form>
       </div>
     {{/each}}
   </div>

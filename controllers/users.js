@@ -1,5 +1,11 @@
 const User = require("../models/user");
 const Post = require("../models/post");
+const fs = require("fs");
+const bcrypt = require("bcryptjs");
+const path = require("path");
+//app root directory
+let appDir = path.dirname(require.main.filename);
+appDir = appDir.replace("bin", "").replace("controllers", "");
 
 const UsersController = {
 
@@ -9,7 +15,6 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-    // const email = user.email;
 
     user.save((err) => {
       if (err) {
@@ -21,20 +26,21 @@ const UsersController = {
 
   Profile: (req, res) => {
     let session = req.session.user;
-    Post.find({"user": session._id}, (err, posts) => {
+    Post.find({ user: session._id }, (err, posts) => {
       if (err) {
         throw err;
       }
       res.render("users/index", {
         posts: posts.reverse(),
         user: session,
-      })
+      });
     })
       .populate("user")
       .populate("remarks")
       .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}})
       .populate('friends')
       .populate('requests');
+
   },
 
   OtherProfile: (req, res) => {
@@ -68,7 +74,7 @@ const UsersController = {
       if (err) {
         throw err;
       }
-      Post.find({"user": id}, (err, posts) => {
+      Post.find({ user: id }, (err, posts) => {
         if (err) {
           throw err;
         }
@@ -174,6 +180,78 @@ const UsersController = {
       session.requests = updatedRequests;
       res.redirect('/users/requests')
     },
-}
+
+  Settings: (req, res) => {
+    let session = req.session.user;
+    res.render("users/settings", { user: session });
+  },
+
+  UpdateSettings: (req, res) => {
+    let session = req.session.user;
+    let message = "Your Details have been updated successfully";
+    User.findById(session._id, (err, user) => {
+      if (err) {
+        throw err;
+      }
+
+      bcrypt.compare(req.body.password, user.password, function (err, result) {
+        if (err) {
+          throw err;
+        }
+        if (result) {
+          user.firstName = req.body.firstName;
+          user.lastName = req.body.lastName;
+          user.email = req.body.email;
+          user.save((err) => {
+            if (err) {
+              throw err;
+            }
+            res
+              .status(201)
+              .render("users/settings", { user: user, message: message });
+          });
+        } else {
+          message = "Your password is incorrect";
+          res
+            .status(201)
+            .render("users/settings", { user: user, message: message });
+        }
+      });
+    });
+  },
+
+  ChangePhoto: (req, res) => {
+    let session = req.session.user;
+    User.findById(session._id, (err, user) => {
+      if (err) {
+        throw err;
+      }
+      if (req.file) {
+        const obj = {
+          img: {
+            data: fs.readFileSync(
+              path.join(appDir + "/public/images/" + req.file.filename)
+            ),
+            contentType: "image/png",
+            code: "",
+            photoExists: "",
+          },
+        };
+        obj.img.code = obj.img.data.toString("base64");
+        obj.img.photoExists = true;
+        user.photo = obj.img;
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+          res.status(201).render("users/settings", { user: user });
+        });
+      } else {
+        res.render("users/settings", { user: user });
+      }
+    });
+  },
+};
+
 
 module.exports = UsersController;

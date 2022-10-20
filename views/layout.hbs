@@ -2,10 +2,9 @@
   <head>
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/layout.css" />
-    <link rel="stylesheet" href="/stylesheets/postcards.css">
+    <link rel="stylesheet" href="/stylesheets/postcards.css" />
   </head>
   <body>
-
 
     <!-- Navbar section -->
     <nav class="navbar">
@@ -24,7 +23,7 @@
                  <a href="/users/index" class="navbar__links" id="my-profile">My Profile</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="/settings/{{this.id}}" class="navbar__links" id="settings">Settings</a>
+                    <a href="/users/settings" class="navbar__links" id="settings">Settings</a>
                 </li>
                 <li class="navbar__btn">
                   <form id="log-out" action="/sessions?_method=DELETE" method="POST">
@@ -32,7 +31,8 @@
                   </form>
                 </li>
             </ul>
-        </div>
+
+      </div>
     </nav>
     {{{body}}}
   </body>
