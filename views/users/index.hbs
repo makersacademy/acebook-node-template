@@ -14,24 +14,24 @@
         name="requestee"
       />
       {{#if isPending}}
-        <input class="already-fiends-button" type="submit" value="Your friend request is still pending" disabled>
+        <input id="pending-friends-button" type="submit" value="Your friend request is still pending" disabled>
       {{else if isFriends}}
-        <input class="already-fiends-button" type="submit" value="You are friends with {{user.name}} 🎉" disabled>
+        <input id="already-friends-button" type="submit" value="You are friends with {{user.name}} 🎉" disabled>
       {{else}}
-        <input class="add-friend-button" type="submit" value="Add Friend" />
+        <input id="add-friend-button" type="submit" value="Add Friend" />
       {{/if}}
     </form>
   </div>
   {{/if}}
-<div>
   {{#if hasFriends}}
-    <h3>Friends</h3>
-    {{#each user.friends}}
-      <li><a href="/users/{{this._id}}">{{this.name}}</a></li>
-      <li><img
-          class="friend-profile-image"
-          src="{{formatImage this.image.contentType this.image.data}}"
-        /></li>
-    {{/each}}
+    <div id="friends">
+      <h3>Friends</h3>
+      {{#each user.friends}}
+        <li class="friend-name"><a href="/users/{{this._id}}">{{this.name}}</a></li>
+        <li><img
+            class="friend-profile-image"
+            src="{{formatImage this.image.contentType this.image.data}}"
+          /></li>
+      {{/each}}
+    </div>
   {{/if}}
-</div>
