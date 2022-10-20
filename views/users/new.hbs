@@ -1,7 +1,16 @@
+{{#if display}}
+  <h1>{{display}}</h1>
+{{/if}}
+<h1 class="title">{{title}}</h1>
 <form id="new-user-form" action="/users" method="post">
   <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
+  <input class="field" id="email" type="email" name="email" value="" />
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
+  <input class="field" id="password" type="password" name="password" value="" />
+  <label for="fname"> First Name</label>
+  <input class="field" id="firstName" type="text" name="firstName" value="" />
+  <label for="lname">Last Name</label>
+  <input class="field" id="lastName" type="text" name="lastName" value="" />
+
+  <input class="field form-actions" id="submit" type="submit" value="Submit" />
 </form>
