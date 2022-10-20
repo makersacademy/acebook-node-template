@@ -118,8 +118,8 @@
 
           </form>
         </div>
-
         {{! delete post button }}
+        {{#matches this.user._id ../user._id}}
         <form
           id="delete-post-form"
           action="/posts/delete/{{this._id}}"
@@ -127,6 +127,7 @@
         >
           <input id="delete_button" type="submit" value="Delete" />
         </form>
+        {{/matches}}
       </div>
     {{/each}}
   </div>
