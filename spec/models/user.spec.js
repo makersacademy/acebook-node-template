@@ -60,7 +60,7 @@ describe("User model", () => {
           firstName: "exampleName",
           lastName: "example lastName",
           email: "someone@example.com",
-          password: "password",
+          // password: "password",  **password doesn't match due to encryption
         });
         done();
       });
