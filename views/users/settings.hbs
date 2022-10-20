@@ -1,12 +1,7 @@
 {{! settings form }}
 {{message}}
 <div class="settings">
-  <form
-    id="settings-form"
-    action="/users/settings"
-    method="post"
-    enctype="multipart/form-data"
-  >
+  <form id="settings-form" action="/users/settings" method="post">
     <label for="firstName">First Name</label>
     <input type="text" value="{{user.firstName}}" name="firstName" />
 
@@ -19,8 +14,18 @@
     <label for="password">Password</label>
     <input type="password" value="" name="password" />
 
-    <input class="choose-file-btn" type="file" name="image" />
+    <input type="submit" value="Submit" />
 
+  </form>
+
+  <form
+    id="photo_change"
+    action="/users/settings/photo"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <label>Upload Photo</label>
+    <input class="choose-file-btn" type="file" name="image" />
     <input type="submit" value="Submit" />
 
   </form>

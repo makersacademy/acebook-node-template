@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Post = require("../models/post");
 const fs = require("fs");
+const bcrypt = require("bcryptjs");
 const path = require("path");
 //app root directory
 let appDir = path.dirname(require.main.filename);
@@ -73,6 +74,39 @@ const UsersController = {
       if (err) {
         throw err;
       }
+
+      bcrypt.compare(req.body.password, user.password, function (err, result) {
+        if (err) {
+          throw err;
+        }
+        if (result) {
+          user.firstName = req.body.firstName;
+          user.lastName = req.body.lastName;
+          user.email = req.body.email;
+          user.save((err) => {
+            if (err) {
+              throw err;
+            }
+            res
+              .status(201)
+              .render("users/settings", { user: user, message: message });
+          });
+        } else {
+          message = "Your password is incorrect";
+          res
+            .status(201)
+            .render("users/settings", { user: user, message: message });
+        }
+      });
+    });
+  },
+
+  ChangePhoto: (req, res) => {
+    let session = req.session.user;
+    User.findById(session._id, (err, user) => {
+      if (err) {
+        throw err;
+      }
       if (req.file) {
         const obj = {
           img: {
@@ -87,39 +121,14 @@ const UsersController = {
         obj.img.code = obj.img.data.toString("base64");
         obj.img.photoExists = true;
         user.photo = obj.img;
-      } else {
-        const defaultObj = {
-          img: {
-            data: fs.readFileSync(
-              path.join(appDir + "/public/images/default-pic.png")
-            ),
-            contentType: "image/png",
-            code: "",
-            photoExists: "",
-          },
-        };
-        defaultObj.img.code = defaultObj.img.data.toString("base64");
-        defaultObj.img.photoExists = true;
-        user.photo = defaultObj.img;
-      }
-
-      if (req.body.password == user.password) {
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName;
-        user.email = req.body.email;
         user.save((err) => {
           if (err) {
             throw err;
           }
-          res
-            .status(201)
-            .render("users/settings", { user: user, message: message });
+          res.status(201).render("users/settings", { user: user });
         });
       } else {
-        message = "Your password is incorrect";
-        res
-          .status(201)
-          .render("users/settings", { user: session, message: message });
+        res.render("users/settings", { user: user });
       }
     });
   },

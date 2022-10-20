@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    min: 6
+    min: 6,
   },
   photo: {
     data: Buffer,
@@ -28,26 +28,24 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.pre('save', function(next){
-  if(!this.isModified('password'))
-    return next();
+UserSchema.pre("save", function (next) {
+  if (!this.isModified("password")) return next();
   bcrypt.hash(this.password, 10, (err, passwordHash) => {
-    if(err)
-      return next(err);
+    if (err) return next(err);
     this.password = passwordHash;
     next();
   });
 });
 
-UserSchema.methods.comparePassword = function(candidatePassword) {
+UserSchema.methods.comparePassword = function (candidatePassword) {
   const currentPassword = this.password;
   return new Promise((resolve, reject) => {
-      bcrypt.compare(candidatePassword, currentPassword, function(err, isMatch) {
-          if (err) return reject(err);
-          resolve(isMatch);
-      });
-  })
-  };
+    bcrypt.compare(candidatePassword, currentPassword, function (err, isMatch) {
+      if (err) return reject(err);
+      resolve(isMatch);
+    });
+  });
+};
 
 const User = mongoose.model("User", UserSchema);
 
