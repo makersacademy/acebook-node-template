@@ -28,7 +28,12 @@ hbs.registerHelper("timeAgo", function (date) {
 });
 
 
+
 // view engine setup
+
+hbs.registerHelper("matches", function(x, y, options) {
+  return (x == y) ? options.fn(this) : options.inverse(this);
+  });
 
 app.set("views", path.join(__dirname, "views"));
 // app.engine('.hbs', hbs.engine)

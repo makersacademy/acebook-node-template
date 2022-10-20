@@ -2,6 +2,7 @@ const Post = require("../models/post");
 const Comment = require("../models/comment");
 const fs = require("fs");
 const path = require("path");
+const { post } = require("../app");
 
 //app root directory
 let appDir = path.dirname(require.main.filename);
@@ -10,12 +11,10 @@ appDir = appDir.replace("bin", "").replace("controllers", "");
 const PostsController = {
   Index: (req, res) => {
     let session = req.session.user;
-
     Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-
       res.render("posts/index", {
         posts: posts.reverse(),
         user: session,
