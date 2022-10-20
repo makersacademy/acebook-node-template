@@ -13,13 +13,9 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-    const email = user.email;
 
-    console.log(email);
     user.save((err) => {
       if (err) {
-        // let display = "invalid email";
-        // res.render("users/new", { message: display });
         throw err;
       }
       res.status(201).redirect("/sessions/new");
@@ -70,34 +66,6 @@ const UsersController = {
     res.render("users/settings", { user: session });
   },
 
-  // UpdateSettings: (req, res) => {
-  //   let session = req.session.user;
-  //   let message = "Your Details have been updated successfully";
-  //   console.log(req.body);
-
-  //   User.findByIdAndUpdate(session._id, { $set: req.body }, (err, user) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     if (req.body.password == user.password) {
-  //       user.save((err) => {
-  //         if (err) {
-  //           throw err;
-  //         }
-  //         res
-  //           .status(201)
-  //           .render("users/settings", { user: session, message: message });
-  //       });
-  //     } else {
-  //       message = "Your password is incorrect";
-  //       res
-  //         .status(201)
-  //         .render("users/settings", { user: session, message: message });
-  //     }
-  //   });
-  // },
-
-  // update settings
   UpdateSettings: (req, res) => {
     let session = req.session.user;
     let message = "Your Details have been updated successfully";
