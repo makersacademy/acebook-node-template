@@ -9,9 +9,7 @@ const UsersController = {
 
   Create: (req, res) => {
     const user = new User(req.body);
-    console.log(user)
-    const email = user.email;
-    console.log(email)
+    // const email = user.email;
 
     user.save((err) => {
       if (err) {
@@ -37,7 +35,9 @@ const UsersController = {
     })
       .populate("user")
       .populate("remarks")
-      .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}});
+      .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}})
+      .populate('friends')
+      .populate('requests');
 
 
   },
@@ -126,6 +126,7 @@ const UsersController = {
           throw err;
         }
         res.render('users/requests', {
+          session: session,
           user: user,
         })
       }).populate("friends")
@@ -133,50 +134,72 @@ const UsersController = {
     },
 
     ConfirmRequest: (req, res) => {
-      let session = req.session.user;
       let answer = req.body.confirm
+      let session = req.session.user
       let friend = req.body.id
-      User.findById(session._id,  (err, user) => {
+      let friendIndex = session.requests.findIndex(i => i === friend)
+      let updatedRequests = session.requests.filter(id => id !== friend)
+      console.log(friendIndex)
+      if (friendIndex === -1)
+        {res.redirect('users/requests')}
+      if (answer === 'Confirm')
+        {User.findById(session._id, (err, user) => {
+          if (err) {
+            throw err;
+          }
+
+          console.log(updatedRequests)
+          if (user.friends.includes(friend))
+            {console.log('Already friends')}
+          else
+            {user.friends.push(friend);}
+          user.requests = updatedRequests;
+          user.save((err) => {
+          if (err) {
+            throw err;
+          }
+          })
+        })
+        }
+      if (answer === 'Reject') 
+        {User.findById(session._id, (err, user) => {
+          if (err) {
+            throw err;
+          }
+          
+          user.requests = updatedRequests;
+          console.log(updatedRequests)
+          user.save((err) => {
+          if (err) {
+            throw err;
+          }
+          })})}
+      User.findById(friend, (err, user) => {
         if (err) {
           throw err;
         }
-        let requests = user.requests
-        let friendIndex = requests.indexOf(friend)
-        let updatedRequests = requests.splice(friendIndex, 1)
-        if (answer === 'Confirm')
-          {user.friends.push(friend);
-          User.updateOne({_id: session._id }, {$set: {requests: updatedRequests}});
-          User.findById(friend, (err, user) => {
-            if (err) {
-              throw err;
-            }
-            user.friends.push(session._id)
-            user.save((err) => {
-              if (err) {
-                  // let display = "invalid email";
-                  // res.render("users/new", { message: display });
-                throw err;
-              }
-            })
-            
-          })
-        }
-        if (answer === 'Reject')
-          {User.updateOne({_id: session._id }, {$set: {requests: updatedRequests}});}
+        // let updatedRequestsFriend = user.requests.filter(id => id !== session._id)
+        // user.requests = updatedRequestsFriend;
+        if (user.friends.includes(session._id))
+          {console.log('Already Friends!')}
+        else
+        {user.friends.push(session._id);
         user.save((err) => {
           if (err) {
-              // let display = "invalid email";
-              // res.render("users/new", { message: display });
-            throw err;
+           throw err;
           }
-        })
-        res.render('users/requests', {
-          user: user,
-        })
-      }) 
-        .populate("friends")
-        .populate("requests");       
+        })}
+      })
+        
+    
+      session.requests = updatedRequests;
+      res.redirect('/users/requests')
     },
-    }
+      
+      
+      }
+      
+    
+    
 
 module.exports = UsersController;

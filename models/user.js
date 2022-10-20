@@ -21,12 +21,12 @@ const UserSchema = new mongoose.Schema({
   requests: [{
     type: Schema.Types.ObjectId,
     ref: "User",
-    // unique: true,
+    unique: true,
   }],
   friends: [{
     type: Schema.Types.ObjectId,
     ref: "User",
-    // unique: true,
+    unique: true,
   }],
 
 });
