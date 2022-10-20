@@ -27,14 +27,13 @@ hbs.registerHelper("timeAgo", function (date) {
   return moment(date).fromNow();
 });
 
-<<<<<<< Updated upstream
+
 
 // view engine setup
-=======
+
 hbs.registerHelper("matches", function(x, y, options) {
   return (x == y) ? options.fn(this) : options.inverse(this);
   });
->>>>>>> Stashed changes
 
 app.set("views", path.join(__dirname, "views"));
 // app.engine('.hbs', hbs.engine)
