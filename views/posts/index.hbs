@@ -31,7 +31,18 @@
         {{! profile pic }}
           <div id="row1">
             <div id="avatar">
+              {{#if this.user.photo.photoExists}}
+
+          <img
+            class="img-card"
+            src="data:image/png;base64,{{this.user.photo.code}}"
+            alt="avatar"
+          />
+
+        {{else}}
             <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
+        {{/if}}
+
             </div>
             <div id="name-and-date">
               <h4 class="name"><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
@@ -42,6 +53,7 @@
             <div></div>
             <div class="delete-post-button">
         {{! delete post button }}
+        {{#matches this.user._id ../user._id}}
         <form
           id="delete-post-form"
           action="/posts/delete/{{this._id}}"
@@ -49,7 +61,16 @@
         >
           <input id="delete_button" type="submit" value="Delete" />
         </form>
+        {{/matches}}
         </div>
+
+        {{! message }}
+        <h4><b><a
+              href="users/{{this.user._id}}"
+              class="userLink"
+            >{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+        <div class="message">
+          <p>{{this.message}}</p>
         </div>
 
         {{!-- {{do not render an image if this.photo is null}} --}}
@@ -141,6 +162,7 @@
           </div>
         </div>
         </div>
+        
       </div>
       </div>
   </div>
