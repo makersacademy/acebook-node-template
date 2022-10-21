@@ -1,30 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/components.css" />
+</head>
+<body>
+  <h1 class="title">Update your profile</h1> 
 {{! settings form }}
+
 {{message}}
 <div class="settings">
-  <form id="settings-form" action="/users/settings" method="post">
-    <label for="firstName">First Name</label>
-    <input type="text" value="{{user.firstName}}" name="firstName" />
 
-    <label for="lastName">Last Name</label>
-    <input type="text" value="{{user.lastName}}" name="lastName" />
 
-    <label for="email">Email</label>
-    <input type="text" value="{{user.email}}" name="email" />
-
-    <label for="password">Password</label>
-    <input type="password" value="" name="password" />
-
-    <input type="submit" value="Submit" />
-
-  </form>
-
+  <div class="submit-settings-photo">
   <form
     id="photo_change"
     action="/users/settings/photo"
     method="post"
     enctype="multipart/form-data"
   >
-    <label>Upload Photo</label>
+    <label>Change Photo</label>
     <input class="choose-file-btn" type="file" name="image" />
     <input type="submit" value="Submit" />
 
@@ -42,4 +40,30 @@
     <img class="img-card" src="/images/default-pic.png" alt="avatar" />
 
   {{/if}}
+  </div>
+
+<div class="form-container">
+<div class="sign-form">
+    <form id="settings-form" action="/users/settings" method="post">
+    <label for="firstName">First Name</label>
+    <input class="input-text" type="text" value="{{user.firstName}}" name="firstName" />
+
+    <label for="lastName">Last Name</label>
+    <input class="input-text" type="text" value="{{user.lastName}}" name="lastName" />
+
+    <label for="email">Email</label>
+    <input class="input-text" type="text" value="{{user.email}}" name="email" />
+
+    <label for="password">Password</label>
+    <input class="input-text" type="password" value="" name="password" />
+
+    <input class="input-button" type="submit" value="Submit" />
+
+  </form>
+  </div>
+  </div>
+
+
 </div>
+</body>
+</html>

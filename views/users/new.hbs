@@ -1,16 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/components.css" />
+</head>
+<body>
 {{#if display}}
   <h1>{{display}}</h1>
 {{/if}}
+<div class="title-container">
 <h1 class="title">{{title}}</h1>
+</div>
+
+<div class="form-container">
+<div class="sign-form">
 <form id="new-user-form" action="/users" method="post">
   <label for="email">Email: </label>
-  <input class="field" id="email" type="email" name="email" value="" />
+  <input class="input-text" id="email" type="email" name="email" value="" />
   <label for="password">Password: </label>
-  <input class="field" id="password" type="password" name="password" value="" />
+  <input class="input-text" id="password" type="password" name="password" value="" />
   <label for="fname"> First Name</label>
-  <input class="field" id="firstName" type="text" name="firstName" value="" />
+  <input class="input-text" id="firstName" type="text" name="firstName" value="" />
   <label for="lname">Last Name</label>
-  <input class="field" id="lastName" type="text" name="lastName" value="" />
+  <input class="input-text" id="lastName" type="text" name="lastName" value="" />
 
-  <input class="field form-actions" id="submit" type="submit" value="Submit" />
-</form>
+  <input class="input-button" id="submit" type="submit" value="Submit" />
+  </form>
+  </div>
+  </div>
+</body>
+</html>
