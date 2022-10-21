@@ -39,10 +39,14 @@
         {{/if}}
 
         {{! message }}
+        {{#matches ../user._id this.user.id }}
+        <h4><b>{{this.user.firstName}} {{this.user.lastName}}</b></h4>
+        {{else}}
         <h4><b><a
-              href="users/{{this.user._id}}"
+              href="/users/{{this.user.id}}"
               class="userLink"
             >{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+        {{/matches}}
         <div class="message">
           <p>{{this.message}}</p>
         </div>
@@ -81,10 +85,14 @@
               <ul>
                 {{this.content}}
                 by
+                {{#matches ../user._id this.user.id }}
+               You
+                {{else}}
                 <a
                   href="users/{{this.user._id}}"
                   class="userLink"
                 >{{this.user.firstName}}</a>
+                {{/matches}}
               </ul>
               <ul>
                 <form

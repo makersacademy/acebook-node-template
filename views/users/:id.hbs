@@ -12,9 +12,9 @@
  <h4 class="status" >Awaiting Confirmation</h4>
   {{/if}}
   {{#if confirmed}}
-  You are friends
+  <h4 class="status" >You're friends</h4>
 {{/if}}
-<h4 class="status" >You're friends</h4>
+{{#if otherConfirmed}}
 <ul class="friend-request">
                   <form id="accept-request" action="/users/requests" method="GET">
                     <input id="status" name="requests" type="submit" value="Accept Friend Request"/>
@@ -59,7 +59,11 @@
               <ul>
                 {{this.content}}
                 by
+                {{#matches ../user._id this.user.id }}
+        You
+        {{else}}
                 <a href="{{this.user._id}}" class="userLink">{{this.user.firstName}}</a>
+              {{/matches}}
               </ul>
               <ul>
                 <form
