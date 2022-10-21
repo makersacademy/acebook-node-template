@@ -6,15 +6,37 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 
+//image libraries
+const bodyParser = require("body-parser");
+const multer = require("multer");
+
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
 const app = express();
+const hbs = require("hbs");
+const moment = require("moment");
+
+hbs.registerHelper("dateFormat", function (date, timeFormat) {
+  return moment(date).format(timeFormat);
+});
+
+hbs.registerHelper("timeAgo", function (date) {
+  return moment(date).fromNow();
+});
+
+
 
 // view engine setup
+
+hbs.registerHelper("matches", function(x, y, options) {
+  return (x == y) ? options.fn(this) : options.inverse(this);
+  });
+
 app.set("views", path.join(__dirname, "views"));
+// app.engine('.hbs', hbs.engine)
 app.set("view engine", "hbs");
 
 app.use(logger("dev"));
@@ -44,20 +66,44 @@ app.use((req, res, next) => {
   next();
 });
 
+//image upload
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
+
+////////////
+
+app.use(bodyParser.json());
+
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
-    res.redirect("/sessions/new");
+    res.redirect("/");
   } else {
     next();
   }
 };
 
 // route setup
+
+app.use("/users", upload.single("image"), usersRouter);
+app.use("/users/index", sessionChecker, usersRouter);
+app.use("/users/:id", sessionChecker, usersRouter);
 app.use("/", homeRouter);
-app.use("/posts", sessionChecker, postsRouter);
+app.use("/posts", upload.single("image"), sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
-app.use("/users", usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -74,5 +120,6 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
 
 module.exports = app;

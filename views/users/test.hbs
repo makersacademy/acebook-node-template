@@ -1,0 +1,50 @@
+<form action='/users/new' method='GET'>
+
+  <input id="firstName"  class="field" type="text" name="firstName" value="">
+    <label for="First Name">First Name:</label>
+
+  <input id="lastName"  class="field" type="text" name="lastName" value="">
+    <label for="Last Name">Last Name:</label>
+
+  <input id="email"  class="field" type="email" name="email" value="">
+    <label for="First Name">Email Address:</label>
+    
+  <input id="password"  class="field" type="password" name="password" value="">
+    <label for="First Name">Password:</label>
+
+  <input id="form-btn" class="field form-actions" type="submit" value="Submit" />
+  </form>
+
+
+  {{!-- class="field"
+    %input(placeholder="lastName")
+    %label Last Name
+
+  .field
+    %input(type="email" placeholder="Email")
+    %label Your Email Address
+
+  .field
+    %input(type="password" placeholder="Password")
+    %label Choose A Password
+
+  .field
+    %label(for="checkme")
+      Terms and Conditions
+    %input(type="checkbox" id="checkme")
+
+  .field.form-actions
+    %button(type="submit") Submit
+
+</form>
+    
+ <form action='/users/new' method='GET'>
+     <input id="signin" class="button" type="submit" value="Sign In">
+</form>
+
+<form id="new-post-form" action="/posts" method="POST">
+  <label for="message">Message: </label>
+  <input id="message" type="text" name="message" value="" />
+  <input id="user" type="hidden" name="user" value={{user._id}} />
+  <input type="submit" value="Submit" />
+</form> --}}

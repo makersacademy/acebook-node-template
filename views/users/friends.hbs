@@ -1,0 +1,38 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/components.css" />
+</head>
+<body>
+  {{#each list}}
+  <div class="submit-post-container">
+    <ul>
+      {{#if this.photo.photoExists}}
+
+        <img
+          class="img-card"
+          src="data:image/png;base64,{{this.photo.code}}"
+          alt="avatar"
+        />
+
+      {{else}}
+        <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
+      {{/if}}
+      <a href="{{this._id}}">
+        {{this.firstName}}
+        {{this.lastName}}
+      </a>
+
+    </ul>
+  </div>
+  {{/each}}
+
+</div>
+</ul>
+</body>
+</html>

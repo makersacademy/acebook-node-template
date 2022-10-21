@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/components.css" />
+</head>
+
+
+<body>
+<h1 class="title">{{user.firstName}} {{user.lastName}}'s Profile</h1>
+<div class="submit-post-container"
+{{#if status}}
+<ul class="friend-request">
+                  <form id="add-friend" action="/users/{{user._id}}" method="POST">
+                    <input class="input-button2" id="status" name="requests" type="submit" value="Add friend"/>
+                  </form>
+                </ul>
+{{/if}}
+  {{#if awaiting}}
+ <h4 class="status" >Awaiting Confirmation</h4>
+  {{/if}}
+  {{#if confirmed}}
+  <h4 class="status" >You're friends</h4>
+{{/if}}
+{{#if otherConfirmed}}
+<ul class="friend-request">
+                  <form id="accept-request" action="/users/requests" method="GET">
+                    <input id="status" name="requests" type="submit" value="Accept Friend Request"/>
+                  </form>
+                </ul>
+{{/if}}
+</div>
+<ul class="posts">
+  <div>
+    {{#each posts}}
+      {{! <li> }}
+     <div class="card">
+        <div>
+        <div class="flex">
+        {{! profile pic }}
+       
+        <div id="row1">
+            <div id="avatar">
+              {{#if this.user.photo.photoExists}}
+
+          <img
+            class="img-card"
+            src="data:image/png;base64,{{this.user.photo.code}}"
+            alt="avatar"
+          />
+
+        {{else}}   
+            <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
+          {{/if}}
+
+            </div>
+            <div id="name-and-date">
+              <h4 class="name"><b><a href="users/{{this.user._id}}" class="userLink">{{this.user.firstName}} {{this.user.lastName}}</a></b></h4>
+              <h5 class="date"><div class="tooltip">{{timeAgo this.createdAt}}
+              <span class="tooltiptext">{{dateFormat this.createdAt "LLLL"}}</span>
+          </div></h5>
+            </div>
+            <div></div>
+        {{#matches this.user._id ../user._id}}
+            <div id="delete">
+        {{! delete post button }}
+        <div class="delete-button">
+        <form
+          id="delete-post-form"
+          action="/posts/delete/{{this._id}}"
+          method="post"
+        >
+          <input type="submit" value=" X " />
+        </form>
+        </div>
+        </div>
+      {{/matches}}
+        </div>
+
+        {{!-- {{do not render an image if this.photo is null}} --}}
+        <div id="row2">
+        <div class="photos">
+          {{#if this.photo.photoExists}}
+
+            <img
+              src="data:image/png;base64,{{this.photo.code}}"
+              alt=""
+              width="200px"
+              height="200px"
+            />
+
+          {{/if}}
+        </div>
+        </div>
+          <div id="row3">
+            <div class="message">
+              <p>{{this.message}}</p>
+            </div>
+          </div>
+
+        <div id="row4">
+        {{! likes section }}
+          <div class="like-btn">
+            <form id="likes-form" action="/posts/{{this._id}}" method="post">
+              <input class="input-button" type="submit" value="Like" />
+            </form>
+        </div>
+        <div class="likes">
+          {{this.likes.length}}
+          likes
+        </div>
+        <div class="comment">
+          <form
+            class= "form-margin-bottom"
+            id="new-comment-form"
+            action="/posts/comments/{{this._id}}"
+            method="post">
+              <input class="input-text2" type="text" value="" name="content" placeholder="Comment here"/>
+              <input class="input-button2" type="submit" value="Submit" />
+          </form>
+        </div>
+        </div>
+
+        <div id="row5">
+        <div class="comment-section">
+          {{#if this.remarks.length}}
+            <ul>
+              Comments:
+            </ul>
+            {{#each this.remarks}}
+              <ul>
+                {{this.content}}
+                by
+                {{#matches ../user._id this.user.id }}
+               You
+                {{else}}
+                <a
+                  href="users/{{this.user._id}}"
+                  class="userLink"
+                >{{this.user.firstName}}</a>
+                {{/matches}}
+              </ul>
+              <ul>
+                <div class="comment-like">
+                  <div class="comment-like-container">
+                <form
+                  id="comment-likes-form"
+                  action="/posts/comments/likes/{{this._id}}"
+                  method="POST"
+                >
+
+                  <input class="comment-like-button" name="commentLikes" type="submit" value="Like" />
+                </form>
+                </div>
+                <div>
+                <p class="comment-like-counter">
+                {{this.commentLikes.length}}
+                likes
+                </p>
+                </div>
+              </ul>
+            {{/each}}
+
+          {{else}}
+
+            <ul>
+              No Comments have been made
+            </ul>
+          {{/if}}
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+  </div>
+    {{/each}}
+</ul>
+</body>
+</html>

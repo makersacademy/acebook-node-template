@@ -1,0 +1,238 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 25px; /* 5px rounded corners */
+  width: 50%;
+  background: #fff;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.userLink {
+  text-decoration: none;
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 5px 5px 0 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.posts {
+  position: relative;
+  text-align: center;
+}
+
+.card {
+  /* display: block; */
+  height: auto;
+  width: 600px;
+  position: relative;
+  margin: auto;
+  white-space: normal;
+  word-break: break-word;
+  margin-bottom: 20px;
+}
+
+.img-card {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin: 20px;
+}
+
+.img-card:hover {
+  transform: scale(1.15);
+  transition: 0.5s;
+}
+
+.name {
+  padding-top: 10px;
+}
+
+.time {
+  padding-left: 10px;
+  /* padding-top: 10px; */
+}
+
+
+h4:hover {
+  transform: scale(1.15);
+  transition: 0.5s;
+}
+
+.message {
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  left: 50%;
+  height: 200px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.message p{
+  margin-bottom: -16px;
+}
+
+.like-btn {
+  margin-left: 20px;
+}
+
+.likes {
+  text-align: center;
+  padding-top: 22px;
+  padding-left: 10px;
+}
+
+.comment-like-container {
+  padding-left: 220px;
+}
+
+
+.comment-like {
+  display: grid;
+  grid-template-columns: auto auto;
+  flex-direction: row;
+}
+
+
+.comment-like-counter{
+  margin-top: 12px;
+  padding-right: 220px;
+  margin-bottom: 25px;
+}
+
+.new-post {
+  text-align: center;
+}
+
+.new-post-btn-line {
+  text-decoration: none;
+}
+
+input.button:hover {
+  background: -webkit-linear-gradient(to right, #fcb045);
+  background: linear-gradient(to right, #fcb045);
+  cursor: pointer;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+.comments {
+  position: relative;
+  top: -10px;
+  list-style: none;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 100%;
+  margin-left: -60px
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.form-margin-bottom {
+  padding-bottom: 1rem;
+}
+
+
+
+.flex{
+  display: flex;
+  flex-direction: column;
+}
+
+#row1{
+  display: grid;
+  width: 100%;
+  height: 200px;
+  grid-template-columns: 20% 22% 30% 28%;
+  /* grid-template-rows: 50% 50%; */
+  grid-template-areas: 
+    "avatar name-and-date . delete"
+    "avatar name-and-date . .";
+
+}
+
+#row1#avatar {
+  grid-area: avatar;
+}
+
+#row1#name-and-date {
+  grid-area: name-and-date;
+}
+
+
+/* .row4-container{
+  display: grid;
+  grid-template-columns: auto auto auto;
+} */
+
+#row4{
+  display: grid;
+  width: 100%;
+  height: 100px;
+  grid-template-columns: 20% 10% 70%;
+  grid-template-areas: 
+    "like-btn likes comments"
+    ". . comment-section"
+}
+
+#row4#like-btn {
+  grid-area: like-btn;
+}
+
+#row4#comments {
+  grid-area: comments;
+}
+
+.photos img {
+  height: auto;
+  width: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
