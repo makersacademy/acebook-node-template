@@ -1,19 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/components.css" />
+</head>
+
+
+<body>
 {{#if user.requests}}
 <h1 class="title">Hi {{user.firstName}}! These are your pending friend requests</h1>
 <ul>
 {{#each user.requests}}
+<div class="submit-post-container">
 <a href="/users/{{this._id}}" class='userLink' >{{this.firstName}} {{this.lastName}}</a>
 <form id="confirm-request" action="/users/requests" method="POST">
 <input name="id" type="hidden" value="{{this._id}}"/>
-<input name="confirm" type="submit" value="Confirm"/>
+<input class="input-button2" name="confirm" type="submit" value="Confirm"/>
 </form>
 <form id="reject-request" action="/users/requests" method="POST">
 <input name="id" type="hidden" value="{{this._id}}"/>
-<input name="confirm" type="submit" value="Reject">
-</>
+<input class="input-button2" name="confirm" type="submit" value="Reject">
+
 </form>
 </ul>
+</div>
 {{/each}}
 {{else}}
 <h1 class="title">Hi {{user.firstName}}! You're all up to date</h1>
 {{/if}}
+
+</ul>
+</body>
+</html>

@@ -64,6 +64,7 @@
           </div></h5>
             </div>
             <div></div>
+        {{#matches this.user._id ../user._id}}
             <div id="delete">
         {{! delete post button }}
         <div class="delete-button">
@@ -76,6 +77,7 @@
         </form>
         </div>
         </div>
+      {{/matches}}
         </div>
 
         {{!-- {{do not render an image if this.photo is null}} --}}

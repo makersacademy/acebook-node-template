@@ -12,13 +12,13 @@
 <body>
 <h1 class="title">Hi {{user.firstName}}! Welcome to your profile</h1> 
 <div class="submit-post-container">
+<a href="friendslist" class="friend-requests"> Friends List </a>
 <a href="requests" class="friend-requests"> 
   <span>Friend requests</span>
   {{#if user.requests}} 
   <span class="badge">{{user.requests.length}}</span> 
   {{/if}}
 </a>
-<a href="friendslist" class="friend-requests"> Friends List </a>
 </div>
 
 <div class="submit-post-container">
