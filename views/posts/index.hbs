@@ -54,13 +54,15 @@
             <div></div>
             <div class="delete-post-button">
         {{! delete post button }}
+       <div class="delete-button">
         <form
           id="delete-post-form"
           action="/posts/delete/{{this._id}}"
           method="post"
         >
-          <input id="delete_button" type="submit" value="Delete" />
+          <input type="submit" value=" X " />
         </form>
+        </div>
         </div>
         </div>
 
