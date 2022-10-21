@@ -118,10 +118,14 @@
               <ul>
                 {{this.content}}
                 by
+                {{#matches ../user._id this.user.id }}
+               You
+                {{else}}
                 <a
                   href="users/{{this.user._id}}"
                   class="userLink"
                 >{{this.user.firstName}}</a>
+                {{/matches}}
               </ul>
               <ul>
                 <div class="comment-like">
