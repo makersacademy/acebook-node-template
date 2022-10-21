@@ -8,7 +8,6 @@ let appDir = path.dirname(require.main.filename);
 appDir = appDir.replace("bin", "").replace("controllers", "");
 
 const UsersController = {
-
   New: (req, res) => {
     res.render("users/new", { title: "Sign up to Acebook", layout: "signup" });
   },
@@ -37,40 +36,43 @@ const UsersController = {
     })
       .populate("user")
       .populate("remarks")
-      .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}})
-      .populate('friends')
-      .populate('requests');
-
+      .populate({ path: "remarks", populate: { path: "user" } })
+      .populate("friends")
+      .populate("requests");
   },
 
   OtherProfile: (req, res) => {
-    if (req.params.id === req.session.user._id)
-    {res.redirect('index')}
+    if (req.params.id === req.session.user._id) {
+      res.redirect("index");
+    }
     let id = req.params.id;
-    let session = req.session.user
-    let status = true
+    let session = req.session.user;
+    let status = true;
     let awaiting = false;
     let confirmed = false;
     let otherConfirmed = false;
     User.findById(id, (err, user) => {
-      if (user.requests.includes(session._id))
-      {status = false;
-      awaiting = true;
-      confirmed = false;
-      otherConfirmed = false;}
-      else if (user.friends.includes(session._id))
-      {status = false;
+      if (user.requests.includes(session._id)) {
+        status = false;
+        awaiting = true;
+        confirmed = false;
+        otherConfirmed = false;
+      } else if (user.friends.includes(session._id)) {
+        status = false;
         awaiting = false;
         confirmed = true;
-        otherConfirmed = false;}
-      else if (session.requests.includes(id)) {status = false;
+        otherConfirmed = false;
+      } else if (session.requests.includes(id)) {
+        status = false;
         awaiting = false;
         confirmed = false;
-        otherConfirmed = true;}
-      else {status = true
+        otherConfirmed = true;
+      } else {
+        status = true;
         awaiting = false;
         confirmed = false;
-        otherConfirmed = false;}
+        otherConfirmed = false;
+      }
       if (err) {
         throw err;
       }
@@ -85,102 +87,113 @@ const UsersController = {
           awaiting: awaiting,
           confirmed: confirmed,
           otherConfirmed: otherConfirmed,
-        })
+        });
       })
         .populate("user")
         .populate("remarks")
-        .populate({ 'path': 'remarks', 'populate': { 'path': 'user'}})
-        ;
-      });
-    },
+        .populate({ path: "remarks", populate: { path: "user" } });
+    });
+  },
 
-    FriendRequest: (req, res) => {
-      let friendId = req.params.id;
-      let session = req.session.user;
-      User.findById(friendId, (err, user) => {
+  FriendRequest: (req, res) => {
+    let friendId = req.params.id;
+    let session = req.session.user;
+    User.findById(friendId, (err, user) => {
+      if (err) {
+        throw err;
+      }
+      if (user.requests.includes(session._id)) {
+        return res.redirect(`${friendId}`);
+      }
+      if (user.friends.includes(session._id)) {
+        return res.redirect(`${friendId}`);
+      }
+      user.requests.push(session._id);
+      user.save((err) => {
         if (err) {
           throw err;
         }
-        if (user.requests.includes(session._id))
-        {return res.redirect(`${friendId}`)}
-        if (user.friends.includes(session._id))
-        {return res.redirect(`${friendId}`)}
-        user.requests.push(session._id)
-        user.save((err) => {
-          if (err) {
-            throw err;
-          }})
-        {res.redirect(`${friendId}`)} 
-       })
-    },
+      });
+      {
+        res.redirect(`${friendId}`);
+      }
+    });
+  },
 
-    Requests: (req, res) => {
-      let session = req.session.user;
+  Requests: (req, res) => {
+    let session = req.session.user;
+    User.findById(session._id, (err, user) => {
+      if (err) {
+        throw err;
+      }
+      res.render("users/requests", {
+        session: session,
+        user: user,
+      });
+    })
+      .populate("friends")
+      .populate("requests");
+  },
+
+  ConfirmRequest: (req, res) => {
+    let answer = req.body.confirm;
+    let session = req.session.user;
+    let friend = req.body.id;
+    let friendIndex = session.requests.findIndex((i) => i === friend);
+    let updatedRequests = session.requests.filter((id) => id !== friend);
+    if (friendIndex === -1) {
+      res.redirect("/users/requests");
+    }
+    if (answer === "Confirm") {
       User.findById(session._id, (err, user) => {
         if (err) {
           throw err;
         }
-        res.render('users/requests', {
-          session: session,
-          user: user,
-        })
-      }).populate("friends")
-      .populate("requests");
-    },
-    
-    ConfirmRequest: (req, res) => {
-      let answer = req.body.confirm
-      let session = req.session.user
-      let friend = req.body.id
-      let friendIndex = session.requests.findIndex(i => i === friend)
-      let updatedRequests = session.requests.filter(id => id !== friend)
-        if (friendIndex === -1)
-          {res.redirect('/users/requests')}
-        if (answer === 'Confirm')
-          {User.findById(session._id, (err, user) => {
-            if (err) {
-              throw err;
-            }
-            if (user.friends.includes(friend))
-              {console.log('Already friends')}
-            else
-              {user.friends.push(friend);}
-              session.friends = user.friends
-            user.requests = updatedRequests;
-            user.save((err) => {
-            if (err) {
-              throw err;
-            }
-            })
-          })}
-        if (answer === 'Reject') 
-          {User.findById(session._id, (err, user) => {
-            if (err) {
-              throw err;
-            }
-            user.requests = updatedRequests;
-            user.save((err) => {
-            if (err) {
-              throw err;
-            }
-            })})}
-          User.findById(friend, (err, user) => {
-            if (err) {
-              throw err;
-            }
-            if (user.friends.includes(session._id))
-              {console.log('Already Friends!')}
-            else if (session.friends.includes(user._id))
-              {user.friends.push(session._id);
-            user.save((err) => {
-              if (err) {
-                throw err;
-              }
-            })}
-          })
-      session.requests = updatedRequests;
-      res.redirect('/users/requests')
-    },
+        if (user.friends.includes(friend)) {
+          console.log("Already friends");
+        } else {
+          user.friends.push(friend);
+        }
+        session.friends = user.friends;
+        user.requests = updatedRequests;
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+        });
+      });
+    }
+    if (answer === "Reject") {
+      User.findById(session._id, (err, user) => {
+        if (err) {
+          throw err;
+        }
+        user.requests = updatedRequests;
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+        });
+      });
+    }
+    User.findById(friend, (err, user) => {
+      if (err) {
+        throw err;
+      }
+      if (user.friends.includes(session._id)) {
+        console.log("Already Friends!");
+      } else if (session.friends.includes(user._id)) {
+        user.friends.push(session._id);
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+        });
+      }
+    });
+    session.requests = updatedRequests;
+    res.redirect("/users/requests");
+  },
 
   Settings: (req, res) => {
     let session = req.session.user;
@@ -252,7 +265,19 @@ const UsersController = {
       }
     });
   },
-};
 
+  FriendsList: (req, res) => {
+    let session = req.session.user;
+    User.findById(session._id, (err, users) => {
+      if (err) {
+        throw err;
+      }
+
+      let friendList = users.friends;
+
+      res.render("users/friends", { session: session, list: friendList });
+    }).populate("friends");
+  },
+};
 
 module.exports = UsersController;

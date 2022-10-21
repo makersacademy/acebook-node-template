@@ -1,0 +1,25 @@
+<div class="submit-post-container">
+
+  {{#each list}}
+    <ul>
+      {{#if this.photo.photoExists}}
+
+        <img
+          class="img-card"
+          src="data:image/png;base64,{{this.photo.code}}"
+          alt="avatar"
+        />
+
+      {{else}}
+        <img class="img-card" src="/images/default-pic.png" alt="Avatar" />
+      {{/if}}
+      <a href="{{this._id}}">
+        {{this.firstName}}
+        {{this.lastName}}
+      </a>
+
+    </ul>
+
+  {{/each}}
+
+</div>
