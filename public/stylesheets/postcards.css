@@ -11,7 +11,7 @@ h1 {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
+  border-radius: 25px; /* 5px rounded corners */
   width: 50%;
   background: #fff;
 }
@@ -190,7 +190,7 @@ input.button:hover {
   display: grid;
   width: 100%;
   height: 200px;
-  grid-template-columns: 20% 20% 30% 30%;
+  grid-template-columns: 20% 22% 30% 28%;
   /* grid-template-rows: 50% 50%; */
   grid-template-areas: 
     "avatar name-and-date . delete"

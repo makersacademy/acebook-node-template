@@ -65,5 +65,5 @@ cypress/screenshots
 cypress/videos
 
 
-#Uploads
-uploads
+#public images - uploaded
+public/images
