@@ -6,13 +6,25 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
+    const email = req.body.email;
+    const password = req.body.password;
+    if(email != "" && password != "") {
+      User.findOne({ email: email }).then((user) => {
+        if (!user) {
+          const user = new User(req.body);
+          user.save((err) => {
+            if (err) {
+              throw err;
+            }
+            res.status(201).redirect("/posts");
+          });
+        } else {
+          res.redirect("/users/new");
+        }
+      });
+    } else {
+      res.redirect("/users/new");
+    }
   },
 };
 
