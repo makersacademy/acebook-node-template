@@ -1,4 +1,15 @@
-<form id="new-post-form" action="/posts" method="post">
+<script>
+  function validatePost() {
+    if (document.getElementById('message').value == "") {
+      alert('Post cannot be empty!');
+      return false;
+    } else {
+      return true;
+    }
+  };
+</script>
+
+<form onsubmit="return validatePost()" id="new-post-form" action="/posts" method="post">
   <label for="message">Message: </label>
   <input id="message" type="text" name="message" value="">
   <input type="submit" value="Submit">

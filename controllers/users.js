@@ -15,8 +15,10 @@ const UsersController = {
           user.save((err) => {
             if (err) {
               throw err;
+            } else {
+              req.session.user = user;
+              res.status(201).redirect("/posts");
             }
-            res.status(201).redirect("/posts");
           });
         } else {
           res.redirect("/users/new");
