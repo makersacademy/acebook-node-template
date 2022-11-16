@@ -1,5 +1,5 @@
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
+  beforeEach(() => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -11,7 +11,9 @@ describe("Timeline", () => {
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
+  });
 
+  it("can submit posts, when signed in, and view them", () => {
     // submit a post
     cy.visit("/posts");
     cy.contains("New post").click();
@@ -23,18 +25,6 @@ describe("Timeline", () => {
   });
 
   it("doesn't accept empty posts", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
     // user cannot submit empty post
     cy.visit("/posts");
     cy.contains("New post").click();
@@ -50,18 +40,6 @@ describe("Timeline", () => {
   });
 
   it("shows the most recent posts first", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
     // receive posts sorted by most recent first
     cy.visit("/posts");
     cy.contains("New post").click();
@@ -77,18 +55,6 @@ describe("Timeline", () => {
   });
 
   it("has a back button that works", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
     // receive posts sorted by most recent first
     cy.visit("/posts");
     cy.contains("New post").click();
