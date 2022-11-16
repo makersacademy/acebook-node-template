@@ -16,7 +16,6 @@
 }
 
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -29,15 +28,31 @@ a {
 	margin-right: 5%;
 }
 
+.container2 {
+	margin: 5% 20%;
+	max-width: 75%;
+	text-align: center;
+}
+
+.form{
+	margin: 15px
+}
+
+.header{
+	color: #4267B2
+}
+
 /* Navbar section */
 
 .nav{
-	width: 97.1%;
+	display: block;
+	width: 90%;
 	height: 65px;
-	position: fixed;
+	margin-left: auto;
+	margin-right: auto;
 	line-height: 65px;
 	text-align: center;
-	background-color: rgba(0,0,255,0.8);
+	background-color: #4267B2;
 }
 
 .nav div.logo{
@@ -75,9 +90,23 @@ a {
 	height: 65px;
 }
 
+.nav div.main_list ul form{
+	width: 120px;
+	height: 65px;
+}
+
 .nav div.main_list ul li a{
 	text-decoration: none;
 	color: #fff;
+	line-height: 65px;
+	text-transform: uppercase;
+}
+
+.nav div.main_list input{
+	text-decoration: none;
+	color: #fff;
+	background-color: transparent;
+	border: none;
 	line-height: 65px;
 	text-transform: uppercase;
 }
@@ -86,14 +115,16 @@ a {
 	color: #c0c0c0;
 }
 
-
+.nav div.main_list input:hover{
+	color: #c0c0c0;
+}
 
 /* Home section */
 
 .home{
 	width: 100%;
-	height: 20vh;
-	background-color: #ddd;
+	height: 5vh;
+	background-color: rgb(255, 255, 255);
 }
 
 /* Medai qurey section */
@@ -105,9 +136,6 @@ a {
 	}
 	
 }
-
-
-
 
 @media screen and (max-width:768px) {
 	
