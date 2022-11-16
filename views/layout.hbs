@@ -5,10 +5,25 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
+    {{!-- if logged in -> see welcome message with name and the logout button --}}
+    {{!-- if not logged in -> see login button and message telling you to login --}}
+    
+      {{#if newUser}}
+        
+        <p>You need to login.</p>
+      
+      {{else}}
+        
+       
+       <p>You are logged in.</p>
+        <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
-    </form>
+        </form>
+          
+      {{/if}}    
+
     <div>Welcome to Acebook!</div>
+
     {{{body}}}
   </body>
 </html>
