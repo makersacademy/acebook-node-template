@@ -75,4 +75,26 @@ describe("Timeline", () => {
 
     cy.get(".posts").find('li').first().should("contain", "Goodbye, world!");
   });
+
+  it("has a back button that works", () => {
+    // sign up
+    cy.visit("/users/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    // receive posts sorted by most recent first
+    cy.visit("/posts");
+    cy.contains("New post").click();
+
+    cy.get("#cancel").click();
+    cy.url().should("include", "/posts");
+    cy.url().should("not.include", "new");
+  });
 });
