@@ -82,6 +82,7 @@ a {
 	width:100%;
 	height: 65px;
 	display: flex;
+	justify-content: flex-end;
 	list-style: none;
 }
 
@@ -119,14 +120,6 @@ a {
 	color: #c0c0c0;
 }
 
-/* Home section */
-
-.home{
-	width: 100%;
-	height: 5vh;
-	background-color: rgb(255, 255, 255);
-}
-
 /* Medai qurey section */
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -156,15 +149,6 @@ a {
 	
 	.nav div.show_list{
 			height: 200px;
-	}
-	
-	.nav div.main_list ul{
-			flex-direction: column;
-			width: 100%;
-			height: 200px;
-			top: 80px;
-			right: 0;
-			left: 0;
 	}
 	
 	.nav div.main_list ul li{

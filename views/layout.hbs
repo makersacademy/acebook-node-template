@@ -13,11 +13,15 @@
           <div class="main_list" id="mainListDiv">
               <ul>
                   <li><a href="/posts">Posts</a></li>
-                  <li><a href="/users/new">Sign Up</a></li>
-                  <li><a href="/sessions/new">Sign In</a></li>
-                  <form action='/sessions?_method=DELETE' method='POST'>
-                    <input type="submit" value="Log Out">
-                  </form>
+                  {{#unless loggedIn}}
+                    <li><a href="/users/new">Sign Up</a></li>
+                    <li><a href="/sessions/new">Sign In</a></li>
+                  {{/unless}}
+                  {{#if loggedIn}}
+                    <form action='/sessions?_method=DELETE' method='POST'>
+                      <input type="submit" value="Log Out">
+                    </form>
+                  {{/if}}
               </ul>
           </div>
           <div class="media_button">
@@ -26,7 +30,6 @@
       </div>
   </nav>
     
-<section class="home"></section>
     {{{body}}}
   </body>
 

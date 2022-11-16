@@ -8,11 +8,11 @@ const PostsController = {
         throw err;
       }
 
-            res.render("posts/index", { posts: posts });
+            res.render("posts/index", { posts: posts, loggedIn: req.session.loggedIn });
         }).sort({ createdAt: -1 });
     },
     New: (req, res) => {
-        res.render("posts/new", {});
+        res.render("posts/new", { loggedIn: req.session.loggedIn });
     },
     Create: (req, res) => {
         var post = new Post({
