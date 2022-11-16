@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 
+
 const PostsController = {
     Index: (req, res) => {
         Post.find((err, posts) => {
@@ -14,7 +15,11 @@ const PostsController = {
         res.render("posts/new", {});
     },
     Create: (req, res) => {
-        const post = new Post(req.body);
+        var post = new Post({
+            message: req.body.message,
+            userID : req.session.user
+        });
+        //const post = new Post(req.body);
         post.save((err) => {
             if (err) {
                 throw err;

@@ -38,23 +38,4 @@ describe("Post model", () => {
         });
     });
 
-    // it("shows the most recent post first", (done) => {
-    //   var post1 = new Post({ message: "some message" });
-    //   var post2 = new Post({ message: "some other message" });
-
-    //   post1.save((err) => {
-    //     expect(err).toBeNull();
-    //   });
-
-    //   post2.save((err) => {
-    //     expect(err).toBeNull();
-    //   });
-
-    //   Post.find((err, posts) => {
-    //     expect(err).toBeNull();
-
-    //     expect(posts[0]).toMatchObject({ message: "some message" });
-    //     done();
-    //   });
-    // });
 });
