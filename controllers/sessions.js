@@ -4,8 +4,7 @@ const SessionsController = {
   New: (req, res) => {
     if (req.session.user) {
       res.redirect('/posts')
-    }
-    else {
+    } else {
       res.render('sessions/new', { newUser: true })
     }
   },
