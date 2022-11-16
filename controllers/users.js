@@ -8,7 +8,8 @@ const UsersController = {
   Create: (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    if(email != "" && password != "") {
+    const name = req.body.name;
+    if (email != "" && password != "" && name != "") {
       User.findOne({ email: email }).then((user) => {
         if (!user) {
           const user = new User(req.body);
