@@ -12,6 +12,20 @@ describe("Timeline", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
+    // user cannot submit empty post
+    cy.visit("/posts");
+
+    const stub = cy.stub()
+    cy.on('window:alert', stub)
+
+    cy.contains("New post").click();
+
+    cy.get("#new-post-form").submit();
+
+    cy.then(() => {
+      expect(stub.getCall(0)).to.be.calledWith('Post cannot be empty!')
+    })
+
     // submit a post
     cy.visit("/posts");
     cy.contains("New post").click();

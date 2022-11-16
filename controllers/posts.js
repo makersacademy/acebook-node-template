@@ -15,13 +15,18 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
-    post.save((err) => {
-      if (err) {
-        throw err;
-      }
+    const message = req.body.message;
+    if (message != "") {
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
 
-      res.status(201).redirect("/posts");
-    });
+        res.status(201).redirect("/posts");
+      });
+    } else {
+      res.redirect("/posts/new");
+    }
   },
 };
 
