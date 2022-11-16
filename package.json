@@ -30,11 +30,16 @@
   },
   "devDependencies": {
     "cypress": "^9.5.1",
-    "eslint": "^8.10.0",
+    "eslint": "^8.27.0",
+    "eslint-config-standard": "^17.0.0",
     "eslint-plugin-cypress": "^2.8.1",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^22.21.0",
+    "eslint-plugin-n": "^15.5.1",
     "eslint-plugin-node": "^10.0.0",
-    "jest": "^27.5.1"
+    "eslint-plugin-promise": "^6.1.1",
+    "jest": "^27.5.1",
+    "mockingoose": "^2.15.2"
   },
   "nodemonConfig": {
     "ext": "js,hbs"
