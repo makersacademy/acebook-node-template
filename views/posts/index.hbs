@@ -4,6 +4,7 @@
   {{#each posts}}
   <p>
   <div>
+  <!--author holds user object, author.name refers to name of the user-->
   {{ this.author.name }} says:<br>
   <li>{{this.message}}  - {{this.likes}} likes</li>
   </div>

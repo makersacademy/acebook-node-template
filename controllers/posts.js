@@ -3,6 +3,8 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
+    //populate("author") -> populates author with a user object.
+    //sort({createdAt: -1}) -> sort posts by timestamp to get newest post first.
     Post.find().populate("author").sort({ createdAt: -1 }).exec((err, posts) => {
       if (err) {
         throw err;
@@ -18,7 +20,6 @@ const PostsController = {
             message: req.body.message,
             author: req.session.user
         });
-        //const message = req.body.message;
         if (post.message != "") {
           post.save((err) => {
             if (err) {
