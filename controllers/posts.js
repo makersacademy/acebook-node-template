@@ -3,13 +3,14 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find().populate("author").sort({ createdAt: -1 }).exec((err, posts) => {
       if (err) {
         throw err;
       }
+      console.log(posts)
 
             res.render("posts/index", { posts: posts });
-        }).sort({ createdAt: -1 });
+        });
     },
     New: (req, res) => {
         res.render("posts/new", {});
@@ -17,7 +18,7 @@ const PostsController = {
     Create: (req, res) => {
         var post = new Post({
             message: req.body.message,
-            userID : req.session.user
+            author: req.session.user
         });
         //const message = req.body.message;
         if (post.message != "") {
@@ -33,6 +34,10 @@ const PostsController = {
       res.redirect("/posts/new");
     }
   },
+    getTheUser: (req, res) => {
+      let foundUser = Post.find({message: req.body.message}).populate("author");
+      res.json(foundUser);
+    }
 };
 
 module.exports = PostsController;

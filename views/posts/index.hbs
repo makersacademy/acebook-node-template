@@ -2,7 +2,10 @@
 <ul class="posts">
   {{#each posts}}
   <p>
+  <div>
+  {{ this.author.name }} says:<br>
   <li>{{this.message}}  - {{this.likes}} likes</li>
+  </div>
   </p>
   {{/each}}
 </ul>

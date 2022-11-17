@@ -24,5 +24,7 @@ describe("Timeline", () => {
 
     // Assert that we can see the likes count
     cy.get(".posts").should("contain", "0 likes");
+    //assert that we can see name of post author
+    cy.get(".posts").should("contain", "Testing User");
   });
 });
