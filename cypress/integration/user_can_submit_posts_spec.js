@@ -1,11 +1,10 @@
 describe('Timeline', () => {
-
-  beforeEach(() => {
+  it('can submit a post and view it', () => {
     // sign up
     cy.visit('/users/new')
     cy.get('#first_name').type('Someone')
     cy.get('#last_name').type('Example')
-    cy.get('#DOB').type('1993-10-02')
+    cy.get('#DOB').type('2000-01-01')
     cy.get('#email').type('someone@example.com')
     cy.get('#password').type('password')
     cy.get('#submit').click()
@@ -16,9 +15,6 @@ describe('Timeline', () => {
     cy.get('#password').type('password')
     cy.get('#submit').click()
 
-    })
-
-  it('can submit a post and view it', () => {
     // submit a post
     cy.visit('/posts')
     cy.contains('New post').click()
@@ -31,6 +27,21 @@ describe('Timeline', () => {
 
 
   it('can submit posts, when signed in, and view the newest first', () => {
+    // sign up
+    cy.visit('/users/new')
+    cy.get('#first_name').type('Someone')
+    cy.get('#last_name').type('Example')
+    cy.get('#DOB').type('2000-01-01')
+    cy.get('#email').type('someone@example.com')
+    cy.get('#password').type('password')
+    cy.get('#submit').click()
+
+    // sign in
+    cy.visit('/sessions/new')
+    cy.get('#email').type('someone@example.com')
+    cy.get('#password').type('password')
+    cy.get('#submit').click()
+
     // submit a post
     cy.visit('/posts')
     cy.contains('New post').click()
@@ -49,6 +60,21 @@ describe('Timeline', () => {
   })
 
   it('can submit a post, view it with first name', () => {
+    // sign up
+    cy.visit('/users/new')
+    cy.get('#first_name').type('Someone')
+    cy.get('#last_name').type('Example')
+    cy.get('#DOB').type('2000-01-01')
+    cy.get('#email').type('someone@example.com')
+    cy.get('#password').type('password')
+    cy.get('#submit').click()
+
+    // sign in
+    cy.visit('/sessions/new')
+    cy.get('#email').type('someone@example.com')
+    cy.get('#password').type('password')
+    cy.get('#submit').click()
+    
     // submit a post
     cy.visit('/posts')
     cy.contains('New post').click()
