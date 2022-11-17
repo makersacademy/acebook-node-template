@@ -7,13 +7,13 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log(posts)
 
-            res.render("posts/index", { posts: posts });
+            res.render("posts/index", { posts: posts, loggedIn: req.session.loggedIn });
         });
+
     },
     New: (req, res) => {
-        res.render("posts/new", {});
+        res.render("posts/new", { loggedIn: req.session.loggedIn });
     },
     Create: (req, res) => {
         var post = new Post({
@@ -26,8 +26,6 @@ const PostsController = {
             if (err) {
             throw err;
           }
-
-
         res.status(201).redirect("/posts");
       });
     } else {

@@ -51,6 +51,10 @@ Card Wall - https://trello.com/b/ijhjWPjZ/acebook-6
    ```
    brew services start mongodb-community@5.0
    ```
+8. Install BCrypt
+   ```
+   npm install bcrypt
+   ```
 
 ### Start
 
