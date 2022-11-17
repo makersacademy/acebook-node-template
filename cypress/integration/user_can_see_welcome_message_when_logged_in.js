@@ -1,4 +1,4 @@
-describe.skip('Timeline', () => {
+describe('Timeline', () => {
   it('can see a personalised welcome message when logged in', () => {
     // sign up
     cy.visit('/users/new')
