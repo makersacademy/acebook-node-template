@@ -3,7 +3,7 @@ describe("Timeline", () => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password1$");
     cy.get("#submit").click();
   });
 
@@ -22,7 +22,7 @@ describe("Timeline", () => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password1$");
     cy.get("#submit").click();
 
     // user cannot submit empty post
@@ -43,7 +43,7 @@ describe("Timeline", () => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password1$");
     cy.get("#submit").click();
 
     // receive posts sorted by most recent first
@@ -64,7 +64,7 @@ describe("Timeline", () => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password1$");
     cy.get("#submit").click();
     
     // receive posts sorted by most recent first

@@ -3,7 +3,7 @@ describe("Authentication", () => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("Password1$");
     cy.get("#submit").click();
 
     cy.url().should("include", "/posts");
