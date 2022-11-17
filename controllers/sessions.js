@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", { loggedIn: req.session.loggedIn });
+    res.render("sessions/new", { loggedIn: req.session.loggedIn, username: req.session.username });
   },
 
   Create: (req, res) => {
@@ -22,6 +22,7 @@ const SessionsController = {
       } else {
         req.session.loggedIn = true;
         req.session.user = user;
+        req.session.username = req.session.user.name;
         res.redirect("/posts");
       }
     });
