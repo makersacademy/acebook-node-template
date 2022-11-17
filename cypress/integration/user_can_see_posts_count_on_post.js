@@ -1,4 +1,4 @@
-describe.skip('Timeline', () => {
+describe('Timeline', () => {
   it('can see likes count on a new post', () => {
     // sign up
     cy.visit('/users/new')
