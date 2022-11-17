@@ -1,12 +1,13 @@
 describe("Timeline", () => {
-  it("can submit posts, when signed in, and view them", () => {
-
+  beforeEach(() => {
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
+  });
 
+  it("can submit posts, when signed in, and view them", () => {
     // submit a post
     cy.visit("/posts");
     cy.contains("New post").click();
@@ -18,7 +19,6 @@ describe("Timeline", () => {
   });
 
   it("doesn't accept empty posts", () => {
-
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
@@ -40,7 +40,6 @@ describe("Timeline", () => {
   });
 
   it("shows the most recent posts first", () => {
-
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
@@ -62,13 +61,12 @@ describe("Timeline", () => {
   });
 
   it("has a back button that works", () => {
-
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someoneelse@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-
+    
     // receive posts sorted by most recent first
     cy.visit("/posts");
     cy.contains("New post").click();

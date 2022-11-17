@@ -3,13 +3,14 @@ const bcrypt = require('bcrypt');
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {});
+    res.render("users/new", { loggedIn: req.session.loggedIn });
   },
 
   Create: (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    if(email != "" && password != "") {
+    const name = req.body.name;
+    if (email != "" && password != "" && name != "") {
       User.findOne({ email: email }).then((user) => {
         if (!user) {
           bcrypt.hash(password, 10, function(err, hash) {
