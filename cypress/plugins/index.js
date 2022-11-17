@@ -12,6 +12,19 @@
 // the project's config changing)
 
 module.exports = function () {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  // const { connect } = require('mongoose')
+
+  // module.exports = async (on, config) => {
+  //   const db = await connect()
+  //   const users = db.collection('users')
+
+  //   on('task', {
+  //     async clearUsers() {
+  //       console.log('clear users')
+  //       await users.remove({})
+
+  //       return null
+  //     }
+  //   })
+  // }
 }
