@@ -5,6 +5,7 @@ describe('Registration', () => {
     cy.get('#first_name').type('Sarah')
     cy.get('#last_name').type('Smith')
     cy.get('#DOB').type('1981-11-06')
+
     cy.get('#email').type('someone@example.com')
     cy.get('#password').type('password')
     cy.get('#submit').click()
