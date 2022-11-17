@@ -2,7 +2,7 @@ describe("Registration", () => {
   it("A user signs up and is redirected to sign in", () => {
     // sign up
     cy.visit("/users/new");
-    cy.get("#email").type("someoneelse@example.com");
+    cy.get("#email").type("someoneelseagain@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
@@ -35,7 +35,7 @@ describe("Registration", () => {
     cy.url().should("include", "/users/new");
   });
 
-  it("A user signs up and is redirected to sign in", () => {
+  it("A user signs up with an email that has been used and is redirected to sign up", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");

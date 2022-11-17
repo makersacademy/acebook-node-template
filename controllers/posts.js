@@ -10,9 +10,11 @@ const PostsController = {
       res.render("posts/index", { posts: posts });
     }).sort({ createdAt: -1 });
   },
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
+  
   Create: (req, res) => {
     const post = new Post(req.body);
     const message = req.body.message;
