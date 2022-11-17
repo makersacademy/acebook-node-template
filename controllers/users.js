@@ -12,7 +12,12 @@ const UsersController = {
     User.findOne({ email }).then((email) => {
       if (!email) {
         req.session.user = user
-        res.redirect('/posts')
+        user.save((err) => {
+          if (err) {
+            throw err
+          }
+          res.status(201).redirect('/posts')
+        })
       } else if (user.email !== email) {
         res.redirect('/users/new')
       }
