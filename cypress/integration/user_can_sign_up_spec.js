@@ -1,4 +1,4 @@
-describe.skip('Registration', () => {
+describe('Registration', () => {
   it('A user signs up and is redirected to sign in', () => {
     // sign up
     cy.visit('/users/new')
