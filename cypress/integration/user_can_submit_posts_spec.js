@@ -25,7 +25,6 @@ describe('Timeline', () => {
     cy.get('.posts').should('contain', 'Hello, world!')
   })
 
-
   it('can submit posts, when signed in, and view the newest first', () => {
     // sign up
     cy.visit('/users/new')
@@ -43,6 +42,11 @@ describe('Timeline', () => {
     cy.get('#submit').click()
 
     // submit a post
+    cy.visit('/sessions/new')
+    cy.get('#email').type('someone@example.com')
+    cy.get('#password').type('password')
+    cy.get('#submit').click()
+
     cy.visit('/posts')
     cy.contains('New post').click()
 
