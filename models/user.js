@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
   password: String,
   first_name: String,
   last_name: String,
-  DOB: String
+  DOB: String,
+  posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
 })
 
 const User = mongoose.model('User', UserSchema)
