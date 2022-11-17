@@ -62,7 +62,17 @@ describe('Timeline', () => {
     cy.get('#new-post-form').submit()
     cy.get('.posts').eq(0).should('contain.text', 'Goodbye, world!')
   })
+    it('cannot submit an empty post', () => {
+    cy.visit('/sessions/new')
+    cy.get('#email').type('someone@example.com')
+    cy.get('#password').type('password')
+    cy.get('#submit').click()
 
+    cy.visit('/posts')
+    cy.contains('New post').click()
+    cy.get('#new-post-form').submit()
+    cy.url().should('include', '/posts/new')
+  })
   it('can submit a post, view it with first name', () => {
     // sign up
     cy.visit('/users/new')

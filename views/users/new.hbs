@@ -1,14 +1,18 @@
 <div id="sign_up">Sign up here for a new Acebook account! </div>
-<form id="new-user-form" action="/users" method="post">
+<form id="new-user-form" action="/users" method="post" required >
   <label for="first_name">First Name: </label>
-  <input id="first_name" type="text" name="first_name" value="">
+  <input id="first_name" type="text" name="first_name" value="" oninvalid="alert('You must enter your name')" required>
   <label for="last_name">Last Name: </label>
-  <input id="last_name" type="text" name="last_name" value="">
+  <input id="last_name" type="text" name="last_name" value="" 
+  oninvalid="alert('You must enter your surname')" required>
   <label for="DOB">Date of birth: </label>
-  <input id= "DOB" type="date" name="DOB" max="2022-11-15" value="">
+  <input id= "DOB" type="date" name="DOB" max="2022-11-15" value="" 
+  oninvalid="alert('You must enter your date of birth')" required>
   <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
+  <input id="email" type="email" name="email" value="" 
+  oninvalid="alert('You must enter your email')" required>
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
+  <input id="password" type="password" name="password" value="" 
+  oninvalid="alert('Come on, you need a password')" required>
   <input id="submit" type="submit" value="Submit">
 </form>
