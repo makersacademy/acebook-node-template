@@ -48,7 +48,7 @@ describe('Timeline', () => {
     cy.get('.posts').eq(0).should('contain.text', 'Goodbye, world!')
   })
 
-  it('can submit a post, view it with first name and last name', () => {
+  it('can submit a post, view it with first name', () => {
     // submit a post
     cy.visit('/posts')
     cy.contains('New post').click()
@@ -56,6 +56,6 @@ describe('Timeline', () => {
     cy.get('#new-post-form').find('[type="text"]').type('Hello, world!')
     cy.get('#new-post-form').submit()
 
-    cy.get('.posts').should('contain', 'Someone Example')
+    cy.get('.posts').should('contain', 'Someone')
   })
 })
