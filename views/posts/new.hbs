@@ -8,10 +8,11 @@
     }
   };
 </script>
-
-<form onsubmit="return validatePost()" id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
-  <input type="submit" value="Submit">
-  <input id="cancel" type="button" onclick="javascript:window.location='/posts';" value='Cancel'>
-</form>
+<div class="container">
+  <form onsubmit="return validatePost()" id="new-post-form" action="/posts" method="post">
+    <label for="message">Message: </label>
+    <input id="message" type="text" name="message" value="">
+    <input type="submit" value="Submit">
+    <input id="cancel" type="button" onclick="javascript:window.location='/posts';" value='Cancel'>
+  </form>
+</div>

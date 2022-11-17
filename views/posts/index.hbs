@@ -1,12 +1,16 @@
 <div class="container">
-  <h1>Timeline</h1>
-  <ul class="posts">
-    {{#each posts}}
-    <p>
-    <li>{{this.message}}  - {{this.likes}} likes</li>
-    </p>
-    {{/each}}
-  </ul>
-  
-  <a class="new-post-link" href="/posts/new">New post</a>
+<h1>Timeline</h1>
+<ul class="posts">
+  {{#each posts}}
+  <p>
+  <div>
+  {{ this.author.name }} says:<br>
+  <li>{{this.message}}  - {{this.likes}} likes</li>
+  </div>
+  </p>
+  {{/each}}
+</ul>
+
+<a class="new-post-link" href="/posts/new">New post</a>
 </div>
+

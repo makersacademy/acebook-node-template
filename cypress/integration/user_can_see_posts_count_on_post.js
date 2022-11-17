@@ -2,14 +2,8 @@ describe("Timeline", () => {
   it("can see likes count on a new post", () => {
     // sign up
     cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
+    cy.get("#email").type("someoneelse@example.com");
     cy.get("#name").type("Testing User");
-    cy.get("#submit").click();
-
-    // sign in
-    cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
@@ -24,5 +18,7 @@ describe("Timeline", () => {
 
     // Assert that we can see the likes count
     cy.get(".posts").should("contain", "0 likes");
+    //assert that we can see name of post author
+    cy.get(".posts").should("contain", "Testing User");
   });
 });
