@@ -31,11 +31,7 @@ const PostsController = {
     } else {
       res.redirect("/posts/new");
     }
-  },
-    getTheUser: (req, res) => {
-      let foundUser = Post.find({message: req.body.message}).populate("author");
-      res.json(foundUser);
-    }
+  }
 };
 
 module.exports = PostsController;
