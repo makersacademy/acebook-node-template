@@ -12,12 +12,12 @@
           </div>
           <div class="main_list" id="mainListDiv">
               <ul>
-                  <li><a href="/posts">Posts</a></li>
                   {{#unless loggedIn}}
                     <li><a href="/users/new">Sign Up</a></li>
                     <li><a href="/sessions/new">Sign In</a></li>
                   {{/unless}}
                   {{#if loggedIn}}
+                    <li><a href="/posts">Posts</a></li>
                     <form action='/sessions?_method=DELETE' method='POST'>
                       <input type="submit" value="Log Out">
                     </form>
