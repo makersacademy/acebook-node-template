@@ -53,15 +53,6 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
-app.use((req, res, next) => {
-  if (!req.session.user && !req.cookies.user_sid) {
-    req.session.loggedIn = false;
-  } else {
-    req.session.loggedIn = true;
-  }
-  next();
-});
-
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);

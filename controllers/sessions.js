@@ -16,6 +16,7 @@ const SessionsController = {
       } else if (user.password != password) {
         res.redirect("/sessions/new");
       } else {
+        req.session.loggedIn = true;
         req.session.user = user;
         res.redirect("/posts");
       }
@@ -26,6 +27,7 @@ const SessionsController = {
     console.log("logging out");
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie("user_sid");
+      req.session.loggedIn = false;
     }
     res.redirect("/sessions/new");
   },
