@@ -1,5 +1,9 @@
 describe('Timeline', () => {
+
   beforeEach(() => {
+
+  it('can submit posts, when signed in, and view them', () => {
+
     // sign up
     cy.visit('/users/new')
     cy.get('#email').type('someone@example.com')
@@ -11,9 +15,11 @@ describe('Timeline', () => {
     cy.get('#email').type('someone@example.com')
     cy.get('#password').type('password')
     cy.get('#submit').click()
+
   })
 
-  it('can submit posts, when signed in, and view them', () => {
+
+  it('can submit a post and view it', () => {
     // submit a post
     cy.visit('/posts')
     cy.contains('New post').click()
@@ -24,7 +30,8 @@ describe('Timeline', () => {
     cy.get('.posts').should('contain', 'Hello, world!')
   })
 
-  it('can submit posts, when signed in, and view them', () => {
+
+  it('can submit posts, when signed in, and view the newest first', () => {
     // submit a post
     cy.visit('/posts')
     cy.contains('New post').click()

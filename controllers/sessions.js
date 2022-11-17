@@ -2,7 +2,11 @@ const User = require('../models/user')
 
 const SessionsController = {
   New: (req, res) => {
-    res.render('sessions/new', {})
+    if (req.session.user) {
+      res.redirect('/posts')
+    } else {
+      res.render('sessions/new', { newUser: true })
+    }
   },
 
   Create: (req, res) => {

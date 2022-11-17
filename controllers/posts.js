@@ -7,11 +7,11 @@ const PostsController = {
         throw err
       }
       posts.reverse();
-      res.render('posts/index', { posts })
+      res.render('posts/index', { posts, current_user: req.session.user.first_name })
     })
   },
   New: (req, res) => {
-    res.render('posts/new', {})
+    res.render('posts/new', { current_user: req.session.user.first_name })
   },
   Create: (req, res) => {
     const post = new Post(req.body)

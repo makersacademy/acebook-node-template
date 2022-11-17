@@ -26,6 +26,39 @@ describe('User model', () => {
     expect(user.password).toEqual('password')
   })
 
+  it('has a first name', () => {
+    const user = new User({
+      first_name: 'Sarah',
+      last_name: 'Smith',
+      DOB: '1981-11-06',
+      email: 'someone@example.com',
+      password: 'password'
+    })
+    expect(user.first_name).toEqual('Sarah')
+  })
+
+  it('has a last name', () => {
+    const user = new User({
+      first_name: 'Sarah',
+      last_name: 'Smith',
+      DOB: '1981-11-06',
+      email: 'someone@example.com',
+      password: 'password'
+    })
+    expect(user.last_name).toEqual('Smith')
+  })
+
+  it('has a date of birth', () => {
+    const user = new User({
+      first_name: 'Sarah',
+      last_name: 'Smith',
+      DOB: '1981-11-06',
+      email: 'someone@example.com',
+      password: 'password'
+    })
+    expect(user.DOB).toContain('1981-11-06')
+  })
+
   it('can list all users', (done) => {
     User.find((err, users) => {
       expect(err).toBeNull()
