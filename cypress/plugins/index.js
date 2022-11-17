@@ -12,19 +12,4 @@
 // the project's config changing)
 
 module.exports = function () {
-  // const { connect } = require('mongoose')
-
-  // module.exports = async (on, config) => {
-  //   const db = await connect()
-  //   const users = db.collection('users')
-
-  //   on('task', {
-  //     async clearUsers() {
-  //       console.log('clear users')
-  //       await users.remove({})
-
-  //       return null
-  //     }
-  //   })
-  // }
 }
