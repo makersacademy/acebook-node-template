@@ -2,16 +2,20 @@ const User = require('../models/user')
 
 const UsersController = {
   New: (req, res) => {
-    res.render('users/new', { newUser: true })
+    res.render('users/new', {})
   },
 
   Create: (req, res) => {
     const user = new User(req.body)
-    user.save((err) => {
-      if (err) {
-        throw err
+    const email = user.email
+
+    User.findOne({ email }).then((email) => {
+      if (!email) {
+        req.session.user = user
+        res.redirect('/posts')
+      } else if (user.email !== email) {
+        res.redirect('/users/new')
       }
-      res.status(201).redirect('/posts')
     })
   }
 }
