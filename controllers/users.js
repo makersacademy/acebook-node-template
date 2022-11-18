@@ -22,6 +22,7 @@ const UsersController = {
               } else {
                 req.session.loggedIn = true
                 req.session.user = user;
+                req.session.username = req.session.user.name;
                 res.status(201).redirect("/posts");
               }
             });
