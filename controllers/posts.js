@@ -36,7 +36,13 @@ const PostsController = {
       } else {
         res.redirect('/posts/new')
       }
+    },
+
+    Profile: (req,res) => {
+      res.render('posts/profile', { current_user: req.session.user.first_name, current_user_dob: req.session.user.DOB })
     }
   }
+
+  
 
 module.exports = PostsController

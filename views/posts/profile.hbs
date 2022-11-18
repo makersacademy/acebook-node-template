@@ -1,0 +1,17 @@
+
+<p>Hello.Welcome to your profile page.</p>
+
+<p>Name: {{current_user}}</p>
+<p>Profile Picture:</p>
+<p>DOB: {{current_user_dob}}</p>
+<p>Number of Posts:</p>
+
+<ul class="posts">
+  {{#each posts}}
+  <li>{{this.message}}</li> 
+  <li>{{this.likes}} likes</li>
+  <li>{{this.user_id.first_name}}</li>
+  <li>{{this.createdAt}}</li>
+  <br>
+  {{/each}}
+</ul>
