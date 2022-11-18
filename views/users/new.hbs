@@ -8,6 +8,97 @@
     <input id="name" type="text" name="name" value="">
     <label for="password">Password: </label>
     <input id="password" type="password" name="password" value="">
-    <input id="submit" type="submit" value="Submit">
+    <input id="submit" type="submit" value="Submit" disabled="true">
   </form>
 </div>
+<ul id="list" style="text-align:center">
+  <li id="emailWarning" style="color:red">Must have a email address</li>
+  <br>
+  <li id="nameWarning" style="color:red">Must have a name</li>
+  <br>
+  <li id="characters" style="color:red">Passwords must have at least 8 characters</li>
+  <li id="numbers" style="color:red">Passwords must contain at least one number</li>
+  <li id="specials" style="color:red">Passwords must contain at least one special character</li>
+  <li id="capitals" style="color:red">Passwords must contain at least one capital letter</li>
+</ul>
+<script> 
+  const password = document.getElementById('password');
+  const email = document.getElementById('email');
+  const name = document.getElementById('name');
+  const test1 = document.getElementById('characters');
+  const test2 = document.getElementById('numbers');
+  const test3 = document.getElementById('specials');
+  const test4 = document.getElementById('capitals');
+  const test5 = document.getElementById('emailWarning');
+  const test6 = document.getElementById('nameWarning');
+  password.addEventListener('input', validatePassword);
+  email.addEventListener('input', validateEmail);
+  name.addEventListener('input', validateName);
+
+  function validatePassword(e) {
+    if(document.getElementById('password').value.length > 7) {
+      test1.style.color="green";
+    } else {
+      test1.style.color="red";
+    };
+
+    var regex = /\d/g;
+    if(regex.test(password.value)) {
+      test2.style.color="green";
+    } else {
+      test2.style.color="red";
+    };
+
+    var regex = /\W|_/g;
+    if(regex.test(password.value)) {
+      test3.style.color="green";
+    } else {
+      test3.style.color="red";
+    };
+
+    var regex = /[A-Z]/g;
+    if(regex.test(password.value)) {
+      test4.style.color="green";
+    } else {
+      test4.style.color="red";
+    };
+
+    if(document.getElementById('email').value.length > 2) {
+      test5.style.color="green";
+    } else {
+      test5.style.color="red";
+    };
+    updateSubmit();
+  };
+
+  function validateEmail(e) {
+    if(document.getElementById('email').value.length > 2) {
+      test5.style.color="green";
+    } else {
+      test5.style.color="red";
+    };
+    updateSubmit();
+  };
+
+  function validateName(e) {
+    if(document.getElementById('name').value.length > 0) {
+      test6.style.color="green";
+    } else {
+      test6.style.color="red";
+    };
+    updateSubmit();
+  };
+
+  function updateSubmit() {
+    if(test1.style.color =="green" &&
+    test2.style.color =="green" &&
+    test3.style.color =="green" &&
+    test4.style.color =="green" &&
+    test5.style.color =="green" &&
+    test6.style.color =="green") {
+      document.getElementById('submit').disabled=false;
+    } else {
+      document.getElementById('submit').disabled=true;
+    };
+  };
+</script>
