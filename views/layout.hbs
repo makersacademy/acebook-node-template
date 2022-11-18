@@ -12,6 +12,7 @@
         <p>You need to login.</p>
       {{else}}  
        <p>Hello, {{current_user}}, you are logged in.</p>
+       <a id='profile-link' href="/posts/profile">View your profile</a>
         <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
         </form>

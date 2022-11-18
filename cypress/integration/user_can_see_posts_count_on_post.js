@@ -2,6 +2,8 @@ describe('Timeline', () => {
   it('can see likes count on a new post', () => {
     // sign up
     cy.visit('/users/new')
+    cy.get('#first_name').type('Peppa')
+    cy.get('#last_name').type('Pig')
     cy.get('#email').type('someone@example.com')
     cy.get('#password').type('password')
     cy.get('#submit').click()

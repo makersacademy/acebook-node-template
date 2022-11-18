@@ -62,7 +62,9 @@ describe('Timeline', () => {
     cy.get('#new-post-form').submit()
     cy.get('.posts').eq(0).should('contain.text', 'Goodbye, world!')
   })
-    it('cannot submit an empty post', () => {
+    
+  
+  it('cannot submit an empty post', () => {
     cy.visit('/sessions/new')
     cy.get('#email').type('someone@example.com')
     cy.get('#password').type('password')
