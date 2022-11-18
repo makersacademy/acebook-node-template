@@ -20,6 +20,7 @@ const UsersController = {
               if (err) {
                 throw err;
               } else {
+                req.session.loggedIn = true
                 req.session.user = user;
                 res.status(201).redirect("/posts");
               }
