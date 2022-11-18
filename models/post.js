@@ -4,7 +4,12 @@ const User = require('../models/user')
 const PostSchema = new mongoose.Schema({
   message: String,
   likes: { type: Number, default: 0 },
+  // connects to id from User schema
   user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true},
+  created_date: {
+    type: Date,
+    default: Date.now
+    }
 },
 { timestamps: true }
 
