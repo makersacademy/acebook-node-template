@@ -4,7 +4,7 @@
   <li>{{this.message}}</li> 
   <li>{{this.likes}} likes</li>
   <li>{{this.user_id.first_name}}</li>
-  <li>{{this.createdAt}}</li>
+  <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
   <br>
   {{/each}}
 </ul>
