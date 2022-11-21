@@ -6,7 +6,7 @@
     Unlike: function (postId) {
       document.querySelector('#likes-count-' + postId).textContent--;
     }
-  };
+  }
 
   var toggleButtonText = {
     Like: function (button) {
@@ -15,7 +15,7 @@
     Unlike: function (button) {
       button.textContent = "Like";
     }
-  };
+  }
 
   var actOnPost = function (event) {
     var postId = event.target.getAttribute("postId");
@@ -23,7 +23,7 @@
     toggleButtonText[action](event.target);
     updatePostStats[action](postId);
     updateLikes(postId, action);
-  };
+  }
 
   async function updateLikes(postId, action) {
     let postUpdate = {

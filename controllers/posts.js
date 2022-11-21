@@ -1,5 +1,5 @@
 const Post = require("../models/post");
-
+const ObjectId = require('mongodb').ObjectID;
 
 const PostsController = {
   Index: (req, res) => {
@@ -32,16 +32,17 @@ const PostsController = {
     }
   },
   Like: (req) => {
-    // res.render("posts/:id", { loggedIn: req.session.loggedIn, username: req.session.username, });
     let value = 1;
-    if (req.body.action == "Unlike"); {
+    if (req.body.action == "Unlike") {
       value = -1;
     }
-    console.log(req.body.postId);
-    console.log(value);
-    Post.updateOne(req.body.postId, { $inc: { likes: value } });
+    const postToUpdate = req.body.postId;
+    Post.updateOne({ _id: ObjectId(postToUpdate) }, { $inc: { likes: value } }).exec((err) => {
+      if (err) {
+        throw err;
+      }
+    });
   },
 };
-
 
 module.exports = PostsController;
