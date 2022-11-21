@@ -3,8 +3,35 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Acebook</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          {{#if newUser}}
+          <li><a href="/sessions/new">Login</a></li>
+          <li><a href="/users/new">Sign up</a></li>
+          {{else}} 
+          <li><a href="/posts/profile">My profile</a></li>
+          <li><a href="/posts">Timeline</a></li>
+          <li><a href="/posts/new">New post</a></li>
+          <li class ="logOutButton"><div>
+            <form class="form-inline" action='/sessions?_method=DELETE' method='POST'>
+              <input type="submit" value="Log Out">
+            </form>
+          </div></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+
     {{!-- if logged in -> see welcome message with name and the logout button --}}
     {{!-- if not logged in -> see login button and message telling you to login --}}
     
@@ -22,5 +49,11 @@
     <div>Share your life with your friends!</div>
 
     {{{body}}}
+
+    <script>
+            function myFunction() {
+                document.getElementById("nav navbar-nav").submit();
+            }
+    </script>
   </body>
 </html>
