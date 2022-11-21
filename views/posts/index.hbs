@@ -1,14 +1,39 @@
 <h1>Timeline</h1>
 
-
+<a class="new-post-link" href="/posts/new">New post</a>
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li> 
   <li>{{this.likes}} likes</li>
   <li>{{this.user_id.first_name}}</li>
   <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  <button>Like</button>
+  <input type="button" name="answer" value="Comment" onclick="showDiv(event)" />
+  <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
+    <form id="new-comment-form" action="/posts" method="post">
+     <input placeholder="You can only input 254 characters" id="message" type="text" name="message" value="" required>
+     <input type="button" name="answer" value="Submit" onclick="submitComment(event)" >
+     </form>
+     <p id="demo"></p>
+  </div>
+    
+  <br>
   <br>
   {{/each}}
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<script> 
+  function showDiv(event) {
+    console.log(event)
+
+   event.target.nextElementSibling.style.display = "block";
+}
+
+function submitComment(event){
+   var x = event.target.previousElementSibling.value;
+  post.comment.$push(x)
+}
+</script>
+
+
+

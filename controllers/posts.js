@@ -38,11 +38,26 @@ const PostsController = {
       }
     },
 
+    Update: (req, res) => {
+      var post = new Post({
+        comment: req.body.comment,
+        user_id: req.session.user,
+        post_id: req.body._id
+      });
+
+      post.updateOne({ _id: post.post_id }, {
+    $push: {
+      comments: post.comment
+    }
+
+      })},
+
     Profile: (req,res) => {
       res.render('posts/profile', { current_user: req.session.user.first_name, current_user_dob: req.session.user.DOB })
     }
   }
 
+  
   
 
 module.exports = PostsController
