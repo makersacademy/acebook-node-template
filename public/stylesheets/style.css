@@ -7,8 +7,33 @@ a {
   color: #00B7FF;
 }
 
-ul {
+.posts {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+
+.navbar-default .logOutButton {
+    color: #777;
+    font: inherit;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    float: right;
+    line-height: 20px;
+}
+
+.container-fluid {
+  background-color: pink;
+}
+
+.navbar-default .logOutButton:hover {
+  color: fuchsia;
+}
+
+.navbar-nav>li:hover {
+  background-color: #a9c6c4;
 }

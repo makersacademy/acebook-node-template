@@ -16,7 +16,7 @@ describe('Timeline', () => {
 
     // Assert that we can click on a link that takes us to profile page after login
     cy.visit('/posts')
-    cy.get('#profile-link').should('contain', 'View your profile')
+    cy.get('#profile-link').should('contain', 'My profile')
     cy.get('#profile-link').click()
     cy.url().should('include', '/posts/profile')
   })
