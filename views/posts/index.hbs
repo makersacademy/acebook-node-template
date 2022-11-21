@@ -3,10 +3,13 @@
 
 <ul class="posts">
   {{#each posts}}
+  <div class="post-format">
+  <li class="post-user">{{this.user_id.first_name}}</li>
+  <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  
   <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  <li>{{this.user_id.first_name}}</li>
-  <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  <li class="post-likes">{{this.likes}} likes</li>
+  <br>
   <li>
     <form action="/posts/like" method = "POST">
     <input type="hidden" id="hiddenbudden" name="id" value={{this.id}}>
@@ -14,6 +17,7 @@
     </form>
   </li>
   <br>
+  </div>
   {{/each}}
 </ul>
 
