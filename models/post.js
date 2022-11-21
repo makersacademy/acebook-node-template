@@ -5,11 +5,11 @@ const PostSchema = new mongoose.Schema({
   message: String,
   likes: { type: Number, default: 0 },
   // connects to id from User schema
-  user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true}
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true }
 },
 { timestamps: true }
 
-);
+)
 
 const Post = mongoose.model('Post', PostSchema)
 
