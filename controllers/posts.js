@@ -9,28 +9,39 @@ const PostsController = {
       if (err) {
         throw err;
       }
-        res.render("posts/index", { posts: posts, loggedIn: req.session.loggedIn, username: req.session.username  });
-      });
-    },
-    New: (req, res) => {
-        res.render("posts/new", { loggedIn: req.session.loggedIn, username: req.session.username });
-    },
-    Create: (req, res) => {
-        var post = new Post({
-            message: req.body.message,
-            author: req.session.user
-        });
-        if (post.message != "") {
-          post.save((err) => {
-            if (err) {
-            throw err;
-          }
+      res.render("posts/index", { posts: posts, loggedIn: req.session.loggedIn, username: req.session.username });
+    });
+  },
+  New: (req, res) => {
+    res.render("posts/new", { loggedIn: req.session.loggedIn, username: req.session.username });
+  },
+  Create: (req, res) => {
+    var post = new Post({
+      message: req.body.message,
+      author: req.session.user
+    });
+    if (post.message != "") {
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
         res.status(201).redirect("/posts");
       });
     } else {
       res.redirect("/posts/new");
     }
-  }
+  },
+  Like: (req) => {
+    // res.render("posts/:id", { loggedIn: req.session.loggedIn, username: req.session.username, });
+    let value = 1;
+    if (req.body.action == "Unlike"); {
+      value = -1;
+    }
+    console.log(req.body.postId);
+    console.log(value);
+    Post.updateOne(req.body.postId, { $inc: { likes: value } });
+  },
 };
+
 
 module.exports = PostsController;

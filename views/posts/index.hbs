@@ -1,17 +1,67 @@
+<script>
+  var updatePostStats = {
+    Like: function (postId) {
+      document.querySelector('#likes-count-' + postId).textContent++;
+    },
+    Unlike: function (postId) {
+      document.querySelector('#likes-count-' + postId).textContent--;
+    }
+  };
+
+  var toggleButtonText = {
+    Like: function (button) {
+      button.textContent = "Unlike";
+    },
+    Unlike: function (button) {
+      button.textContent = "Like";
+    }
+  };
+
+  var actOnPost = function (event) {
+    var postId = event.target.getAttribute("postId");
+    var action = event.target.textContent.trim();
+    toggleButtonText[action](event.target);
+    updatePostStats[action](postId);
+    updateLikes(postId, action);
+  };
+
+  async function updateLikes(postId, action) {
+    let postUpdate = {
+      postId: postId,
+      action: action
+    };
+
+    let response = await fetch('/posts/like', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+
+      body: JSON.stringify(postUpdate)
+    });
+
+    let result = await response.json();
+    alert(result.message);
+  }
+</script>
+
+
 <div class="container">
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <p>
-  <div>
-  <!--author holds user object, author.name refers to name of the user-->
-  {{ this.author.name }} says:<br>
-  <li>{{this.message}}  - {{this.likes}} likes</li>
-  </div>
-  </p>
-  {{/each}}
-</ul>
+  <h1>Timeline</h1>
+  <ul class="posts">
+    {{#each posts}}
 
-<a class="new-post-link" href="/posts/new">New post</a>
+    <div>
+      <!--author holds user object, author.name refers to name of the user-->
+      {{ this.author.name }} says:<br>
+      <li>{{this.message}}</li>
+      <i class="fa-regular fa-thumbs-up" aria-hidden="true" postId="{{this._id}}" onclick="actOnPost(event)"> Like </i>
+      - <span id="likes-count-{{this._id}}">{{this.likes}}</span> likes
+    </div>
+
+
+    {{/each}}
+  </ul>
+
+  <a class="new-post-link" href="/posts/new">New post</a>
 </div>
-
