@@ -2,9 +2,33 @@
 <html>
   <head>
     <title>{{title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Acebook</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="nav-home"><a href="/">Home</a></li>
+          {{#if newUser}}
+          <li><a id='login-link' href="/sessions/new">Login</a></li>
+          <li><a id='signup-link' href="/users/new">Sign up</a></li>
+        </ul>
+          {{else}} 
+          <li><a id='profile-link' href="/posts/profile">My profile</a></li>
+          <li><a href="/posts">Timeline</a></li>
+          <li><a href="/posts/new">New post</a></li>
+        </ul>
+        <div class ="logOutButton"><form class="form-inline" action='/sessions?_method=DELETE' method='POST'><input type="submit" value="Log Out"></form></div> 
+        {{/if}}
+      </div>
+    </nav>
+
     {{!-- if logged in -> see welcome message with name and the logout button --}}
     {{!-- if not logged in -> see login button and message telling you to login --}}
     
@@ -12,11 +36,7 @@
         <p>You need to login.</p>
       {{else}}  
        <p>Hello, {{current_user}}, you are logged in.</p>
-       <a id='profile-link' href="/posts/profile">View your profile</a>
-        <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-        </form>
-          
+         
       {{/if}}    
 
     <div>Share your life with your friends!</div>
