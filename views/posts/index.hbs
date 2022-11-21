@@ -10,16 +10,18 @@
 
   var toggleButtonText = {
     Like: function (button) {
-      button.textContent = "Unlike";
+      button.classList.remove('fa-regular');
+      button.classList.add('fa-solid');
     },
     Unlike: function (button) {
-      button.textContent = "Like";
+      button.classList.remove('fa-solid');
+      button.classList.add('fa-regular');
     }
   }
 
   var actOnPost = function (event) {
     var postId = event.target.getAttribute("postId");
-    var action = event.target.textContent.trim();
+    var action = event.target.classList.item(1) == 'fa-regular' ? "Like" : "Unlike";
     toggleButtonText[action](event.target);
     updatePostStats[action](postId);
     updateLikes(postId, action);
@@ -55,8 +57,9 @@
       <!--author holds user object, author.name refers to name of the user-->
       {{ this.author.name }} says:<br>
       <li>{{this.message}}</li>
-      <i class="fa-regular fa-thumbs-up" aria-hidden="true" postId="{{this._id}}" onclick="actOnPost(event)"> Like </i>
-      - <span id="likes-count-{{this._id}}">{{this.likes}}</span> likes
+      <i class="fa-thumbs-up {{this.likedByMe}}" aria-hidden="true" postId="{{this._id}}"
+        onclick="actOnPost(event)"></i>
+      - <span id="likes-count-{{this._id}}">{{this.likesCount}}</span> likes
     </div>
 
 

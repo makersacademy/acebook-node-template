@@ -1,17 +1,17 @@
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: -apple-system,
-	BlinkMacSystemFont,
-	"Segoe UI",
-	Roboto,
-	Helvetica,
-	Arial,
-	sans-serif,
-	"Apple Color Emoji",
-	"Segoe UI Emoji",
-	"Segoe UI Symbol";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
 }
 
 body {
@@ -22,145 +22,150 @@ a {
   color: #00B7FF;
 }
 
-.container{
-	margin-left: 5%;
-	margin-right: 5%;
+.container {
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .container2 {
-	margin: 5% 20%;
-	max-width: 75%;
-	text-align: center;
+  margin: 5% 20%;
+  max-width: 75%;
+  text-align: center;
 }
 
-.form{
-	margin: 15px
+.form {
+  margin: 15px
 }
 
-.header{
-	color: #4267B2
+.header {
+  color: #4267B2
 }
 
 /* Navbar section */
 
-.nav{
-	display: block;
-	width: 90%;
-	height: 65px;
-	margin-left: auto;
-	margin-right: auto;
-	line-height: 65px;
-	text-align: center;
-	background-color: #4267B2;
+.nav {
+  display: block;
+  width: 90%;
+  height: 65px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 65px;
+  text-align: center;
+  background-color: #4267B2;
 }
 
-.nav div.logo{
-	width: 180px;
-	height: 10px;
-	position: absolute;
+.nav div.logo {
+  width: 180px;
+  height: 10px;
+  position: absolute;
 }
 
-.nav div.logo a{
-	text-decoration: none;
-	color: #fff;
-	font-size: 1.8em;
-	text-transform: uppercase;
+.nav div.logo a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.8em;
+  text-transform: uppercase;
 }
 
 .nav div.logo a:hover {
-	color: #c0c0c0;
+  color: #c0c0c0;
 }
 
-.nav div.main_list{
-	width: 600px;
-	height: 65px;
-	float: right;
+.nav div.main_list {
+  width: 600px;
+  height: 65px;
+  float: right;
 }
 
-.nav div.main_list ul{
-	width:100%;
-	height: 65px;
-	display: flex;
-	justify-content: flex-end;
-	list-style: none;
+.nav div.main_list ul {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
 }
 
-.nav div.main_list ul li{
-	width: 120px;
-	height: 65px;
-	color: #fff;
-	text-transform: uppercase;
+.nav div.main_list ul li {
+  width: 120px;
+  height: 65px;
+  color: #fff;
+  text-transform: uppercase;
 }
 
-.nav div.main_list ul form{
-	width: 120px;
-	height: 65px;
+.nav div.main_list ul form {
+  width: 120px;
+  height: 65px;
 }
 
-.nav div.main_list ul li a{
-	text-decoration: none;
-	color: #fff;
-	line-height: 65px;
-	text-transform: uppercase;
+.nav div.main_list ul li a {
+  text-decoration: none;
+  color: #fff;
+  line-height: 65px;
+  text-transform: uppercase;
 }
 
-.nav div.main_list input{
-	text-decoration: none;
-	color: #fff;
-	background-color: transparent;
-	border: none;
-	line-height: 65px;
-	text-transform: uppercase;
+.nav div.main_list input {
+  text-decoration: none;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  line-height: 65px;
+  text-transform: uppercase;
 }
 
-.nav div.main_list ul li a:hover{
-	color: #c0c0c0;
+.nav div.main_list ul li a:hover {
+  color: #c0c0c0;
 }
 
-.nav div.main_list input:hover{
-	color: #c0c0c0;
+.nav div.main_list input:hover {
+  color: #c0c0c0;
 }
 
 /* Medai qurey section */
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-	
-	.container{
-			margin: 0;
-	}
-	
+
+  .container {
+    margin: 0;
+  }
+
 }
 
 @media screen and (max-width:768px) {
-	
-	.container{
-			margin: 0;
-	}
-	
-	.nav div.logo{
-			margin-left: 15px;
-	}
-	
-	.nav div.main_list{
-			width: 100%;
-			margin-top: 65px;
-			height: 0px;
-			overflow: hidden;
-	}
-	
-	.nav div.main_list ul li{
-			width: 100%;
-			height: 40px;
-			background-color:rgba(0,0,255,0.8);
-	}
-	
-	.nav div.main_list ul li a{
-		text-align: center;
-			line-height: 40px;
-			width: 100%;
-			height: 40px;
-			display: table;
-	}
-	
-	
+
+  .container {
+    margin: 0;
+  }
+
+  .nav div.logo {
+    margin-left: 15px;
+  }
+
+  .nav div.main_list {
+    width: 100%;
+    margin-top: 65px;
+    height: 0px;
+    overflow: hidden;
+  }
+
+  .nav div.main_list ul li {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(0, 0, 255, 0.8);
+  }
+
+  .nav div.main_list ul li a {
+    text-align: center;
+    line-height: 40px;
+    width: 100%;
+    height: 40px;
+    display: table;
+  }
+
+
+}
+
+.fa-thumbs-up {
+  color: #4267B2;
+  font-size: 2em;
 }

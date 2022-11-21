@@ -9,7 +9,22 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts, loggedIn: req.session.loggedIn, username: req.session.username });
+      let tempPosts = {};
+      for (var index in posts) {
+        tempPosts[index] = posts[index];
+        tempPosts[index].likesCount = posts[index].likes.length;
+        tempPosts[index].likedByMe = 'fa-regular';
+
+        // THIS DOESN'T WORK!!
+        // console.log(posts[index].likes.includes(req.session.userId));
+        // console.log(req.session.user_id);
+        // THIS DOESN'T WORK!!
+
+        if (posts[index].likes.includes([req.session.user])) {
+          tempPosts[index].likedByMe = 'fa-solid';
+        }
+      }
+      res.render("posts/index", { posts: tempPosts, loggedIn: req.session.loggedIn, username: req.session.username });
     });
   },
   New: (req, res) => {
@@ -32,16 +47,21 @@ const PostsController = {
     }
   },
   Like: (req) => {
-    let value = 1;
+    const postToUpdateId = ObjectId(req.body.postId);
+    const currentUser = req.session.user;
     if (req.body.action == "Unlike") {
-      value = -1;
+      Post.findByIdAndUpdate(postToUpdateId, { $pullAll: { likes: [currentUser] } }).exec((err) => {
+        if (err) {
+          throw err;
+        }
+      });
+    } else {
+      Post.findByIdAndUpdate(postToUpdateId, { $addToSet: { likes: currentUser } }).exec((err) => {
+        if (err) {
+          throw err;
+        }
+      })
     }
-    const postToUpdate = req.body.postId;
-    Post.updateOne({ _id: ObjectId(postToUpdate) }, { $inc: { likes: value } }).exec((err) => {
-      if (err) {
-        throw err;
-      }
-    });
   },
 };
 
