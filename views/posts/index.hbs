@@ -7,6 +7,12 @@
   <li>{{this.likes}} likes</li>
   <li>{{this.user_id.first_name}}</li>
   <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  <li>
+    <form action="/posts/like" method = "POST">
+    <input type="hidden" id="hiddenbudden" name="id" value={{this.id}}>
+    <button id="likeButton" type="submit">Like!</button>
+    </form>
+  </li>
   <br>
   {{/each}}
 </ul>
