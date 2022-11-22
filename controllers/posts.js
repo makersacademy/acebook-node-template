@@ -36,17 +36,43 @@ const PostsController = {
       res.redirect('/posts/new')
     }
   },
+/*
   Like: (req, res) => {
-    Post.findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: 1 } }, { returnNewDocument: true }).exec((err) => {
+    // query entries that match the post ID and return array of likers
+    Post.find({ _id: req.body.id }, (err, liked) => {
       if (err) {
         throw err
       }
-      res.status(200).redirect('/posts')
+      // if likers array included current user ID then unable to like again
+      if (liked[0].likers.includes(req.session.user._id)) {
+        res.status(100)
+      } else {
+        // otherwise like is added to database and current user added to likers for that post
+        Post.findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: 1 }, $push: { likers: req.session.user._id } }, { returnNewDocument: true }).exec((err) => {
+          if (err) {
+            throw err
+          }
+          res.status(200).redirect('/posts')
+        })
+      }
     })
   },
+ */
 
-  // user can click on like button under post,
-  // it sends post route to update table and then redirected to /posts with updated number of likes
+ Like: (req, res) => {
+    // check if current user is in the likers list
+    if (req.body.likers.includes(req.session.user._id)) {
+      res.status(201)
+    } else {
+      // otherwise like is added to database and current user added to likers for that post
+      Post.findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: 1 }, $push: { likers: req.session.user._id } }, { returnNewDocument: true }).exec((err) => {
+        if (err) {
+          throw err
+        }
+        res.status(200).redirect('/posts')
+      })
+    }
+  },
 
   Profile: (req, res) => {
     res.render('posts/profile', { current_user: req.session.user.first_name, current_user_dob: req.session.user.DOB })

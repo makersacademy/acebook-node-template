@@ -9,7 +9,8 @@
   <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
   <li>
     <form action="/posts/like" method = "POST">
-    <input type="hidden" id="hiddenbudden" name="id" value={{this.id}}>
+    <input type="hidden" id="hiddenbutton" name="id" value={{this.id}}>  
+    <input type="hidden" id="hiddenbutton" name="likers" value={{this.likers}}> 
     <button id="likeButton" type="submit">Like!</button>
     </form>
   </li>
