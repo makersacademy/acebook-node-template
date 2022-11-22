@@ -12,13 +12,15 @@
   <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
     <form id="new-comment-form" action="/posts/comments" method="post">
      <input placeholder="You can only input 254 characters" id="message" type="text" name="comments" value="">
-      <input type="hidden" id="hiddenbutton" name="id" value={{this.id}}>  
-      {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments}}> --}}
-     <button type="submit" id="comment_button" value={{this.comments}}>Submit</button>
+      <input type="hidden" id="hiddenbutton" name="id" value={{this._id}}>
+      {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments.comment}}> --}}
+      <input type="hidden" id="hiddenbutton" name="commenter" value={{this.comments.commenter}}>
+     <button type="submit" id="comment_button">Submit</button>
      </form>
      <p id="demo"></p>
   </div>
-  <li>{{this.comments}}</li>
+  <li>{{this.comments.comment}}</li>
+  <li>{{this.comments.commenter}}</li>
   <br>
   <br>
   {{/each}}
