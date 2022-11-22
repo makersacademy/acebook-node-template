@@ -10,13 +10,15 @@
   <button>Like</button>
   <input type="button" name="answer" value="Comment" onclick="showDiv(event)" />
   <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
-    <form id="new-comment-form" action="/posts" method="post">
-     <input placeholder="You can only input 254 characters" id="message" type="text" name="message" value="" required>
-     <input type="button" name="answer" value="Submit" onclick="submitComment(event)" >
+    <form id="new-comment-form" action="/posts/comments" method="post">
+     <input placeholder="You can only input 254 characters" id="message" type="text" name="comments" value="">
+      <input type="hidden" id="hiddenbutton" name="id" value={{this.id}}>  
+      <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments}}>
+     <button type="submit" id="comment_button">Submit</button>
      </form>
      <p id="demo"></p>
   </div>
-    
+    <li>{{this.comments}}</li>
   <br>
   <br>
   {{/each}}
