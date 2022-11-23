@@ -8,7 +8,7 @@ const PostsController = {
       if (err) {
         throw err
       }
-
+      console.log(posts[0].comments)
       posts.reverse();
       res.render('posts/index', { posts, current_user: req.session.user.first_name })
       })
