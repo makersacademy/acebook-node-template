@@ -1,10 +1,25 @@
 <h1>Timeline</h1>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
 <ul class="posts">
   {{#each posts}}
+  
+  <div class="post-format">
+  <li class="post-user">{{this.user_id.first_name}}</li>
+  <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  
   <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
+  <li class="post-likes">{{this.likes}} likes</li>
+  <br>
+  <li>
+<!-- this form posts the value of the inputs to the /posts/like route.
+the values come from the handlebars template. -->
+    <form action="/posts/like" method = "POST">
+    <input type="hidden" id="{{@index}}" name="id" value={{this.id}}>   
+    <button id={{this.id}} style = '' type="submit"></button>
+    </form>
+  </li>
   <li>{{this.user_id.first_name}}</li>
   <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
   <button>Like</button>
@@ -25,7 +40,25 @@
   {{/each}}
 
   <br>
+
   <br>
+  </div>
+
+<script>
+  id = document.getElementById("{{@index}}").value
+ 
+  $.post('/posts/checklikes', {id:id}).done(function(data){
+    if (data.liked === 'true'){
+      document.getElementById(data.id).style = 'background-color:#B3B1B1';
+      document.getElementById(data.id).innerText = 'Dislike';
+    }
+    else if (data.liked === 'false') {
+      document.getElementById(data.id).style= 'background-color:#E3E3E3';
+      document.getElementById(data.id).innerText = ' Like ';
+    }
+  })
+</script>
+
   {{/each}}
 
 
