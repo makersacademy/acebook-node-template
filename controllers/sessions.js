@@ -1,4 +1,5 @@
 const User = require('../models/user')
+var bcrypt = require('bcrypt')
 
 const SessionsController = {
   New: (req, res) => {
@@ -17,11 +18,19 @@ const SessionsController = {
     User.findOne({ email }).then((user) => {
       if (!user) {
         res.redirect('/sessions/new')
-      } else if (user.password !== password) {
-        res.redirect('/sessions/new')
       } else {
-        req.session.user = user
-        res.redirect('/posts')
+        bcrypt.compare(password, user.password, function (err, result) {
+          if (err) {
+            throw err
+          }
+
+          if (result === true) {
+            req.session.user = user
+            res.redirect('/posts')
+          } else {
+            res.redirect('/sessions/new')
+          }
+        });
       }
     })
   },
