@@ -9,13 +9,9 @@
 <ul class="posts">
   {{!-- looks through the posts table --}}
   {{#each posts}}
-  {{!-- {{#when this.user_id.email 'eq' req.session.user.email }} --}}
      <li>{{this.message}}</li> 
       <li>{{this.likes}} likes</li>
-      <li>{{this.user_id.first_name}}</li>
       <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
-      <li>{{this.user_id.email}}</li>
       <br>
- {{!-- {{/when}} --}}
  {{/each}}
 </ul>
