@@ -74,8 +74,21 @@ const PostsController = {
     }
   },
 
-  Profile: (req, res) => {
-    res.render('posts/profile', { current_user: req.session.user.first_name, current_user_dob: req.session.user.DOB })
+  Profile: (req,res) => {
+    Post.find({'user_id' : `${req.session.user._id}`
+    }).populate("user_id")
+        .exec((err, posts) => {
+      if (err) {
+        throw err
+      }
+      posts.reverse();
+      res.render('posts/profile', { posts, 
+        current_user: req.session.user.first_name, 
+        current_user_dob: req.session.user.DOB,  
+        current_user_id: req.session.user._id,
+        current_user_email: (req.session.user.email).toString()
+      })
+      })
   }
 }
 
