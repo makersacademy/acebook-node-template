@@ -39,7 +39,7 @@ const PostsController = {
     },
 
     Comments: (req, res) => {
-      Post.findOneAndUpdate({ _id: req.body.id }, { $push: { comments: {comment: req.body.comments, commenters: req.session.user.first_name} } }, { returnNewDocument: true }).exec((err) => {
+      Post.findOneAndUpdate({ _id: req.body.id }, { $push: { comments: {comment: req.body.comments, commenter: req.session.user.first_name} } }, { returnNewDocument: true }).exec((err) => {
         if (err) {
           throw err
         }
