@@ -18,8 +18,6 @@ const SessionsController = {
     User.findOne({ email }).then((user) => {
       if (!user) {
         res.redirect('/sessions/new')
-        console.log(password)
-        console.log(user.password)
       } else {
         bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
