@@ -27,8 +27,9 @@ the values come from the handlebars template. -->
   user_id = document.getElementById("user_id").value
   id = document.getElementById("id").value
   document.getElementById("id").id = 'Changed';
-  console.log(id)
-  $.post('/posts/checklikes', {id:id, user_id:user_id}).done(function(data,statusText,xhr){
+  
+  
+  $.post('/posts/checklikes',  {id:id, user_id:user_id}).done(function(data,statusText,xhr){
     const status = xhr.status;
     if (status === 200){
       document.getElementById("likeButton").style = 'background-color:#B3B1B1';
