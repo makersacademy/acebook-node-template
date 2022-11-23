@@ -20,10 +20,9 @@
      <p id="demo"></p>
   </div>
 
-<li>{{comments}}</li>
-    {{!-- {{#each comments}}
-    <li>{{this}}</li>
-    {{/each}} --}}
+  {{#each this.comments}}
+    <li>{{this.comment}}: {{this.commenter}}</li>
+  {{/each}}
 
   <br>
   <br>
