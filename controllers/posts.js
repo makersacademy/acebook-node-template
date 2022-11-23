@@ -8,7 +8,8 @@ const PostsController = {
       if (err) {
         throw err
       }
-      posts.reverse()
+
+      posts.reverse();
       res.render('posts/index', { posts, current_user: req.session.user.first_name, current_session: req.session.user._id })
     })
   },
@@ -62,6 +63,16 @@ const PostsController = {
     })
   },
 
+    Comments: (req, res) => {
+      Post.findOneAndUpdate({ _id: req.body.id }, { $push: { comments: {comment: req.body.comments, commenter: req.session.user.first_name} } }, { returnNewDocument: true }).exec((err) => {
+        if (err) {
+          throw err
+        }
+        res.status(200).redirect('/posts')
+      })
+      },
+
+
   CheckLikes: (req, res) => {
     Post.findOne({ _id: req.body.id, likers: req.session.user._id }).exec((err, result) => {
       if (err) {
@@ -92,5 +103,4 @@ const PostsController = {
       })
   }
 }
-
 module.exports = PostsController

@@ -3,6 +3,10 @@ const User = require('../models/user')
 
 const PostSchema = new mongoose.Schema({
   message: String,
+  comments: [{
+    comment: { type: String },
+    commenter: { type: String }
+  }],
   likes: { type: Number, default: 0 },
   likers: {type: Array, default: []},
   // connects to id from User schema

@@ -1,5 +1,7 @@
 <h1>Timeline</h1>
 
+<a class="new-post-link" href="/posts/new">New post</a>
+
 <ul class="posts">
   {{#each posts}}
   
@@ -18,6 +20,27 @@ the values come from the handlebars template. -->
     <button id={{this.id}} style = '' type="submit"></button>
     </form>
   </li>
+  <li>{{this.user_id.first_name}}</li>
+  <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  <button>Like</button>
+  <input type="button" name="answer" value="Comment" onclick="showDiv(event)" />
+  <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
+    <form id="new-comment-form" action="/posts/comments" method="post">
+     <textarea placeholder="Enter a comment!" id="message" type="text" name="comments" value=""rows="4" cols="50" required></textarea>
+      <input type="hidden" id="hiddenbutton" name="id" value={{this._id}}>
+      {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments.comment}}> --}}
+      <input type="hidden" id="hiddenbutton" name="commenter" value={{this.comments.commenter}}>
+     <button type="submit" id="comment_button">Submit</button>
+     </form>
+     <p id="demo"></p>
+  </div>
+
+  {{#each this.comments}}
+    <li>{{this.comment}}: {{this.commenter}}</li>
+  {{/each}}
+
+  <br>
+
   <br>
   </div>
 
@@ -37,6 +60,22 @@ the values come from the handlebars template. -->
 </script>
 
   {{/each}}
-</ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+
+<script> 
+  function showDiv(event) {
+    console.log(event)
+
+   event.target.nextElementSibling.style.display = "block";
+}
+
+function submitComment(event){
+   var x = event.target.previousElementSibling.value;
+  post.comment.$push(x)
+}
+
+
+</script>
+
+
+
