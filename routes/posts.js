@@ -7,5 +7,6 @@ router.get('/', PostsController.Index)
 router.post('/', PostsController.Create)
 router.get('/new', PostsController.New)
 router.post('/like', PostsController.Like)
+router.post('/checklikes', PostsController.CheckLikes)
 router.get('/profile', PostsController.Profile)
 module.exports = router

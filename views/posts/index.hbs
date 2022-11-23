@@ -1,8 +1,8 @@
 <h1>Timeline</h1>
 
-
 <ul class="posts">
   {{#each posts}}
+  
   <div class="post-format">
   <li class="post-user">{{this.user_id.first_name}}</li>
   <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
@@ -11,14 +11,41 @@
   <li class="post-likes">{{this.likes}} likes</li>
   <br>
   <li>
+<!-- this form posts the value of the inputs to the /posts/like route.
+the values come from the handlebars template. -->
     <form action="/posts/like" method = "POST">
-    <input type="hidden" id="hiddenbutton" name="id" value={{this.id}}>  
-    <input type="hidden" id="hiddenbutton" name="likers" value={{this.likers}}> 
-    <button id="likeButton" type="submit">Like!</button>
+    <input type="hidden" id="id" name="id" value={{this.id}}>  
+    <input type="hidden" id="user_id" name="user_id" value={{../current_session}}> 
+    <input type="hidden" id="likers" name="likers" value={{this.likers}}> 
+    <button id="likeButton" style = '' type="submit"></button>
     </form>
   </li>
   <br>
   </div>
+
+<script>
+  user_id = document.getElementById("user_id").value
+  id = document.getElementById("id").value
+  document.getElementById("id").id = 'Changed';
+  console.log(id)
+  $.post('/posts/checklikes', {id:id, user_id:user_id}).done(function(data,statusText,xhr){
+    const status = xhr.status;
+    if (status === 200){
+      document.getElementById("likeButton").style = 'background-color:#B3B1B1';
+      document.getElementById("likeButton").innerText = 'Dislike';
+    }
+    else if (status === 201) {
+      document.getElementById("likeButton").style= 'background-color:#E3E3E3';
+      document.getElementById("likeButton").innerText = ' Like ';
+    }
+    document.getElementById("likeButton").id = 'Changed';
+    document.getElementById("likers").id = 'Changed';
+    document.getElementById("user_id").id = 'Changed';
+
+  })
+ 
+</script>
+
   {{/each}}
 </ul>
 
