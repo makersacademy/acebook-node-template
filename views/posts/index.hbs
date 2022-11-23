@@ -11,7 +11,7 @@
   <input type="button" name="answer" value="Comment" onclick="showDiv(event)" />
   <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
     <form id="new-comment-form" action="/posts/comments" method="post">
-     <input placeholder="You can only input 254 characters" id="message" type="text" name="comments" value="">
+     <textarea placeholder="Enter a comment!" id="message" type="text" name="comments" value=""rows="4" cols="50" required></textarea>
       <input type="hidden" id="hiddenbutton" name="id" value={{this._id}}>
       {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments.comment}}> --}}
       <input type="hidden" id="hiddenbutton" name="commenter" value={{this.comments.commenter}}>
