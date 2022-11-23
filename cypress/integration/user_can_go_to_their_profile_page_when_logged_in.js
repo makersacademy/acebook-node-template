@@ -5,13 +5,13 @@ describe('Timeline', () => {
     cy.get('#first_name').type('Sarah')
     cy.get('#last_name').type('Smith')
     cy.get('#email').type('bob@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
 
     // sign in
     cy.visit('/sessions/new')
     cy.get('#email').type('bob@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
 
     // Assert that we can click on a link that takes us to profile page after login
