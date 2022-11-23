@@ -16,6 +16,11 @@ const app = express()
 // handlebars
 var hbs = require('hbs');
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+hbs.registerHelper('setVariable', setVariable);
+
+function setVariable(varName, varValue, options){
+  options.data.root[varName] = varValue;
+};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))

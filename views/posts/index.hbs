@@ -19,12 +19,17 @@
      </form>
      <p id="demo"></p>
   </div>
-  <li>{{this.comments.commenter}}: {{this.comments.comment}}</li>
-  {{!-- <li>{{this.comments.commenter}}</li> --}}
+
+    {{#each comments.commenter}}
+    <li>{{this.comment}}</li>
+    {{/each}}
+    {{!-- {{#each comments.commenter}}
+    <li>{{this}}</li>
+    {{/each}} --}}
+
   <br>
   <br>
   {{/each}}
-</ul>
 
 <script> 
   function showDiv(event) {
@@ -37,6 +42,8 @@ function submitComment(event){
    var x = event.target.previousElementSibling.value;
   post.comment.$push(x)
 }
+
+
 </script>
 
 
