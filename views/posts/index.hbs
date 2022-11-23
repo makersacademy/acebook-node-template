@@ -14,37 +14,26 @@
 <!-- this form posts the value of the inputs to the /posts/like route.
 the values come from the handlebars template. -->
     <form action="/posts/like" method = "POST">
-    <input type="hidden" id="id" name="id" value={{this.id}}>  
-    <input type="hidden" id="user_id" name="user_id" value={{../current_session}}> 
-    <input type="hidden" id="likers" name="likers" value={{this.likers}}> 
-    <button id="likeButton" style = '' type="submit"></button>
+    <input type="hidden" id="{{@index}}" name="id" value={{this.id}}>   
+    <button id={{this.id}} style = '' type="submit"></button>
     </form>
   </li>
   <br>
   </div>
 
 <script>
-  user_id = document.getElementById("user_id").value
-  id = document.getElementById("id").value
-  document.getElementById("id").id = 'Changed';
-  
-  
-  $.post('/posts/checklikes',  {id:id, user_id:user_id}).done(function(data,statusText,xhr){
-    const status = xhr.status;
-    if (status === 200){
-      document.getElementById("likeButton").style = 'background-color:#B3B1B1';
-      document.getElementById("likeButton").innerText = 'Dislike';
-    }
-    else if (status === 201) {
-      document.getElementById("likeButton").style= 'background-color:#E3E3E3';
-      document.getElementById("likeButton").innerText = ' Like ';
-    }
-    document.getElementById("likeButton").id = 'Changed';
-    document.getElementById("likers").id = 'Changed';
-    document.getElementById("user_id").id = 'Changed';
-
-  })
+  id = document.getElementById("{{@index}}").value
  
+  $.post('/posts/checklikes', {id:id}).done(function(data){
+    if (data.liked === 'true'){
+      document.getElementById(data.id).style = 'background-color:#B3B1B1';
+      document.getElementById(data.id).innerText = 'Dislike';
+    }
+    else if (data.liked === 'false') {
+      document.getElementById(data.id).style= 'background-color:#E3E3E3';
+      document.getElementById(data.id).innerText = ' Like ';
+    }
+  })
 </script>
 
   {{/each}}

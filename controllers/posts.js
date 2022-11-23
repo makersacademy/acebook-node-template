@@ -36,19 +36,23 @@ const PostsController = {
       res.redirect('/posts/new')
     }
   },
-  /*
+
   Like: (req, res) => {
-    // query entries that match the post ID and return array of likers
-    Post.find({ _id: req.body.id }, (err, liked) => {
+    // check if current user is in the likers list
+    Post.findOne({ _id: req.body.id, likers: req.session.user._id }).exec((err, result) => {
       if (err) {
         throw err
       }
-      // if likers array included current user ID then unable to like again
-      if (liked[0].likers.includes(req.session.user._id)) {
-        res.status(100)
+      if (result) {
+        Post.findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: -1 }, $pull: { likers: req.session.user._id } }).exec((err) => {
+          if (err) {
+            throw err
+          }
+          res.status(201).redirect('/posts')
+        })
       } else {
-        // otherwise like is added to database and current user added to likers for that post
-        Post.findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: 1 }, $push: { likers: req.session.user._id } }, { returnNewDocument: true }).exec((err) => {
+      // otherwise like is added to database and current user added to likers for that post
+        Post.findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: 1 }, $push: { likers: req.session.user._id } }).exec((err) => {
           if (err) {
             throw err
           }
@@ -57,35 +61,16 @@ const PostsController = {
       }
     })
   },
- */
-
-  Like: (req, res) => {
-    // check if current user is in the likers list
-    
-    if (req.body.likers.includes(req.body.user_id)) {
-      Post.findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: -1 }, $pull: { likers: req.body.user_id } }).exec((err) => {
-        if (err) {
-          throw err
-        }
-        res.status(201).redirect('/posts')
-      });
-    } else {
-      // otherwise like is added to database and current user added to likers for that post
-      Post.findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: 1 }, $push: { likers: req.body.user_id } }).exec((err) => {
-        if (err) {
-          throw err
-        }
-        res.status(200).redirect('/posts')
-      })
-    }
-  },
 
   CheckLikes: (req, res) => {
-    Post.findOne({ _id: req.body.id, likers: req.body.user_id }).exec((err, result) => {
+    Post.findOne({ _id: req.body.id, likers: req.session.user._id }).exec((err, result) => {
+      if (err) {
+        throw err
+      }
       if (result) {
-        res.status(200).end()
+        res.json({ liked: 'true', id: req.body.id })
       } else {
-        res.status(201).end()
+        res.json({ liked: 'false', id: req.body.id })
       }
     })
   },
