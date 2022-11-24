@@ -8,21 +8,21 @@
   {{#each posts}}
     <li class="post-user">{{this.user_id.first_name}} says...</li>
   <div class="post-format">
-    <div class='post-message'><li>{{this.message}}</li><br></div> 
+    <div class='post-message'><li>{{this.message}}</li><br></div><br>
     <div class='post-likes'><li class="post-likes">{{this.likes}} likes</li><br>
   <li>
 <!-- this form posts the value of the inputs to the /posts/like route.
 the values come from the handlebars template. -->
     <form action="/posts/like" method = "POST">
     <input type="hidden" id="{{@index}}" name="id" value={{this.id}}>   
-    <button id={{this.id}} style = '' type="submit"></button>
+    <button class='button' id={{this.id}} type="submit"></button>
     </form>
   </li><br>
   <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY"}}</li>
   <br>
-  </div>
+  </div><br>
   
-  <input type="button" name="answer" value="Write a comment..." onclick="showDiv(event)" />
+  <input class='comment-button' type="button" name="answer" value="Write a comment..." onclick="showDiv(event)" />
   <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
     <form id="new-comment-form" action="/posts/comments" method="post">
      <textarea placeholder="Enter a comment!" id="message" type="text" name="comments" value=""rows="4" cols="50" required></textarea>
@@ -34,8 +34,7 @@ the values come from the handlebars template. -->
      <p id="demo"></p>
   </div>
   <br>
-  <br>
-  <p>What others are saying...</p>
+  <p>What others are saying...<p>
   {{#each this.comments}}
     <li class="commenter-comment">{{this.commenter}} says...</li>
     <li class="user-comment">{{this.comment}}</li><br>
