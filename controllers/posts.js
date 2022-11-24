@@ -86,8 +86,10 @@ const PostsController = {
         current_user: req.session.user.first_name, 
         current_user_dob: req.session.user.DOB,  
         current_user_id: req.session.user._id,
-        current_user_email: (req.session.user.email).toString()
+        current_user_email: (req.session.user.email).toString(),
+        current_user_profilepicture: req.session.user.profile_picture
       })
+      console.log(req.session.user.profile_picture);
       })
   }
 }

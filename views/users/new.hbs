@@ -1,5 +1,5 @@
 <div id="sign_up">Sign up here for a new Acebook account! </div>
-<form id="new-user-form" action="/users" method="post" required >
+<form id="new-user-form" action="/users" method="post" enctype="multipart/form-data" >
   <label for="first_name">First Name: </label>
   <input id="first_name" type="text" name="first_name" value="" oninvalid="alert('You must enter your name')" required>
   <label for="last_name">Last Name: </label>
@@ -14,5 +14,9 @@
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="" 
   oninvalid="alert('Come on, you need a password')" required>
+
+  <label for="profile_picture">Profile Picture: </label>
+  <input class="choose-profile-pic-btn" type="file" name="avatar">
+
   <input id="submit" type="submit" value="Submit">
 </form>
