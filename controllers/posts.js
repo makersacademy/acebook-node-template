@@ -64,6 +64,7 @@ const PostsController = {
   },
 
     Comments: (req, res) => {
+
       Post.findOneAndUpdate({ _id: req.body.id }, { $push: { comments: {comment: req.body.comments, commenter: req.session.user.first_name} } }, { returnNewDocument: true }).exec((err) => {
         if (err) {
           throw err
@@ -71,7 +72,6 @@ const PostsController = {
         res.status(200).redirect('/posts')
       })
       },
-
 
   CheckLikes: (req, res) => {
     Post.findOne({ _id: req.body.id, likers: req.session.user._id }).exec((err, result) => {
@@ -86,9 +86,9 @@ const PostsController = {
     })
   },
 
-  Profile: (req,res) => {
-    Post.find({'user_id' : `${req.session.user._id}`
-    }).populate("user_id")
+  Profile: (req, res) => {
+    Post.find({ user_id : `${req.session.user._id}`
+    }).populate('user_id')
         .exec((err, posts) => {
       if (err) {
         throw err
@@ -98,8 +98,10 @@ const PostsController = {
         current_user: req.session.user.first_name, 
         current_user_dob: req.session.user.DOB,  
         current_user_id: req.session.user._id,
-        current_user_email: (req.session.user.email).toString()
+        current_user_email: (req.session.user.email).toString(),
+        current_user_profilepicture: Buffer.from(req.session.user.profile_picture.data.data).toString('base64')
       })
+      console.log(req.session.user.profile_picture)
       })
   }
 }

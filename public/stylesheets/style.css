@@ -1,9 +1,14 @@
+html {
+  cursor: url(/images/cursor.png), auto;
+}
+
 body {
   padding: 70px;
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
   text-align: center;
   background: rgb(240, 236, 216);
+
 }
 
 a {

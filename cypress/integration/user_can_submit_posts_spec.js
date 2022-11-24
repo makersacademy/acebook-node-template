@@ -6,13 +6,13 @@ describe('Timeline', () => {
     cy.get('#last_name').type('Example')
     cy.get('#DOB').type('2000-01-01')
     cy.get('#email').type('someone@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
 
     // sign in
     cy.visit('/sessions/new')
     cy.get('#email').type('someone@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
 
     // submit a post
@@ -33,13 +33,13 @@ describe('Timeline', () => {
     cy.get('#last_name').type('Example')
     cy.get('#DOB').type('2000-01-01')
     cy.get('#email').type('someone@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
 
     // sign in
     cy.visit('/sessions/new')
     cy.get('#email').type('someone@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
 
     // submit a post
@@ -61,7 +61,7 @@ describe('Timeline', () => {
 it('cannot submit an empty post', () => {
     cy.visit('/sessions/new')
     cy.get('#email').type('someone@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
 
     cy.visit('/posts')
@@ -76,13 +76,13 @@ it('cannot submit an empty post', () => {
     cy.get('#last_name').type('Example')
     cy.get('#DOB').type('2000-01-01')
     cy.get('#email').type('someone@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
 
     // sign in
     cy.visit('/sessions/new')
     cy.get('#email').type('someone@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
     
     // submit a post

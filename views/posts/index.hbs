@@ -25,7 +25,9 @@ the values come from the handlebars template. -->
   <input class='comment-button' type="button" name="answer" value="Write a comment..." onclick="showDiv(event)" />
   <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
     <form id="new-comment-form" action="/posts/comments" method="post">
+
      <textarea placeholder="Enter a comment!" id="message" type="text" name="comments" value=""rows="4" cols="50" required></textarea>
+
       <input type="hidden" id="hiddenbutton" name="id" value={{this._id}}>
       {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments.comment}}> --}}
       <input type="hidden" id="hiddenbutton" name="commenter" value={{this.comments.commenter}}>
@@ -39,6 +41,7 @@ the values come from the handlebars template. -->
     <li class="commenter-comment">{{this.commenter}} says...</li>
     <li class="user-comment">{{this.comment}}</li><br>
   {{/each}}
+
   </div>
 
 
@@ -71,7 +74,6 @@ function submitComment(event){
    var x = event.target.previousElementSibling.value;
   post.comment.$push(x)
 }
-
 
 </script>
 
