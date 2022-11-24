@@ -13,7 +13,7 @@ describe('User model', () => {
   it('has an email address', () => {
     const user = new User({
       email: 'someone@example.com',
-      password: 'password'
+      password: 'pasSword!2'
     })
     expect(user.email).toEqual('someone@example.com')
   })
@@ -21,7 +21,7 @@ describe('User model', () => {
   it('has a password', () => {
     const user = new User({
       email: 'someone@example.com',
-      password: 'password'
+      password: 'pasSword!2'
     })
     expect(user.password).toEqual('password')
   })
@@ -32,7 +32,7 @@ describe('User model', () => {
       last_name: 'Smith',
       DOB: '1981-11-06',
       email: 'someone@example.com',
-      password: 'password'
+      password: 'pasSword!2'
     })
     expect(user.first_name).toEqual('Sarah')
   })
@@ -43,7 +43,7 @@ describe('User model', () => {
       last_name: 'Smith',
       DOB: '1981-11-06',
       email: 'someone@example.com',
-      password: 'password'
+      password: 'pasSword!2'
     })
     expect(user.last_name).toEqual('Smith')
   })
@@ -54,7 +54,7 @@ describe('User model', () => {
       last_name: 'Smith',
       DOB: '1981-11-06',
       email: 'someone@example.com',
-      password: 'password'
+      password: 'pasSword!2'
     })
     expect(user.DOB).toContain('1981-11-06')
   })
@@ -70,7 +70,7 @@ describe('User model', () => {
   it('can save a user', (done) => {
     const user = new User({
       email: 'someone@example.com',
-      password: 'password'
+      password: 'pasSword!2'
     })
 
     user.save((err) => {
@@ -81,7 +81,7 @@ describe('User model', () => {
 
         expect(users[0]).toMatchObject({
           email: 'someone@example.com',
-          password: 'password'
+          password: 'pasSword!2'
         })
         done()
       })
