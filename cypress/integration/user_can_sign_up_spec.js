@@ -16,7 +16,7 @@ describe('Registration', () => {
     cy.get('#DOB').type('1981-11-06')
 
     cy.get('#email').type(random().toString() + '@example.com')
-    cy.get('#password').type('password')
+    cy.get('#password').type('pasSword!2')
     cy.get('#submit').click()
     // the user gets an error message
 
