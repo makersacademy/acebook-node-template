@@ -1,10 +1,11 @@
 html {
-  cursor: url('/images/logo.png'), auto;
+  cursor: url(/images/cursor.png), auto;
 }
 
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
 a {
@@ -68,6 +69,10 @@ a {
 
 .navbar-nav>li:hover {
   background-color: #a9c6c4;
+}
+
+.navbar-header {
+  padding-right: 10px;
 }
 
 
