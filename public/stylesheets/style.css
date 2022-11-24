@@ -1,3 +1,7 @@
+html {
+  cursor: url('/images/logo.png'), auto;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -65,3 +69,5 @@ a {
 .navbar-nav>li:hover {
   background-color: #a9c6c4;
 }
+
+
