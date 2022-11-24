@@ -13,6 +13,6 @@
   oninvalid="alert('You must enter your email')" required>
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="" 
-  oninvalid="alert('Come on, you need a password')" required>
+  oninvalid="alert('Come on, you need a password')" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
   <input id="submit" type="submit" value="Submit">
 </form>
