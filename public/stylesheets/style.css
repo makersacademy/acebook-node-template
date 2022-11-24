@@ -1,6 +1,7 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 70px;
+  font-family: 'Dosis', sans-serif;
+  font-size: 14px;
   text-align: center;
   background: rgb(240, 236, 216);
 }
@@ -9,13 +10,34 @@ a {
   color: rgb(107, 84, 140);
 }
 
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: #BF9A84;
+}
+
 .posts {
   margin: 0;
   padding: 0;
   list-style: none;
   
 }
+.post-message {
+  display: flex;
+  margin: auto;
+  font-size: 18px;
+  background-color: #F0ECD8;
+  border-radius: 15px;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
 
+.post-likes {
+  display: flex;
+  margin: auto;
+  font-size: 12px;
+  /* padding: 1rem 1rem; */
+  vertical-align: middle;
+}
 .post-format {
   margin: auto;
   border-style: solid;
@@ -35,13 +57,14 @@ a {
 }
 
 .post-date {
+  display: flex;
   font-style: italic;
   font-size: 10px;
+  margin: auto;
+  vertical-align: middle;
 }
 
-.post-likes {
-  font-size: 12px;
-}
+
 
 
 .navbar-default .logOutButton {
@@ -58,7 +81,7 @@ a {
 
 .container-fluid {
   background-color: rgba(140, 69, 28, 0.523);
-  border-radius: 8px;
+  /* border-radius: 8px; */
 
 }
 
@@ -96,9 +119,14 @@ textarea {
 }
 
 .navbar-default .navbar-brand {
-  color:rgb(240, 236, 216)
+  color:rgb(240, 236, 216);
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
 }
 
 .navbar-default .navbar-nav > li > a {
-  color:rgb(240, 236, 216)
+  color:rgb(240, 236, 216);
+  font-size: 20px;
 }
+
+/* font-family: 'Dosis', sans-serif */

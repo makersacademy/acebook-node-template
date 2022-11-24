@@ -6,13 +6,10 @@
 
 <ul class="posts">
   {{#each posts}}
-  
+    <li class="post-user">{{this.user_id.first_name}} says...</li>
   <div class="post-format">
-  <li class="post-user">{{this.user_id.first_name}} says...</li>
-  <li>{{this.message}}</li> 
-  <li class="post-likes">{{this.likes}} likes</li>
-
-  <br>
+    <div class='post-message'><li>{{this.message}}</li><br></div> 
+    <div class='post-likes'><li class="post-likes">{{this.likes}} likes</li><br>
   <li>
 <!-- this form posts the value of the inputs to the /posts/like route.
 the values come from the handlebars template. -->
@@ -20,10 +17,11 @@ the values come from the handlebars template. -->
     <input type="hidden" id="{{@index}}" name="id" value={{this.id}}>   
     <button id={{this.id}} style = '' type="submit"></button>
     </form>
-  </li>
-  <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  </li><br>
+  <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY"}}</li>
   <br>
-  <button id="show" value="Write a comment.."></button>
+  </div>
+  
   <input type="button" name="answer" value="Write a comment..." onclick="showDiv(event)" />
   <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
     <form id="new-comment-form" action="/posts/comments" method="post">
