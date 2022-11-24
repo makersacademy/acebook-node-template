@@ -36,12 +36,13 @@ the values come from the handlebars template. -->
      <p id="demo"></p>
   </div>
   <br>
-  <p>What others are saying...<p>
-  {{#each this.comments}}
-    <li class="commenter-comment">{{this.commenter}} says...</li>
-    <li class="user-comment">{{this.comment}}</li><br>
-  {{/each}}
-
+  <p id="comments">What others are saying...<p>
+    <div class="comments">
+      {{#each this.comments}}
+        <li class="commenter">{{this.commenter}}...</li>
+        <li class="commenter-comment">{{this.comment}}</li><br>
+      {{/each}}
+    </div>
   </div>
 
 
@@ -60,7 +61,7 @@ the values come from the handlebars template. -->
   })
 </script>
 
-  {{/each}}
+{{/each}}
 
 
 <script> 

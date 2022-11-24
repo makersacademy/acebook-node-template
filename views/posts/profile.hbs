@@ -10,12 +10,23 @@
   </div>
 </ul>
 </div>
-<ul class="user-posts">
+<div class="user-posts-container">
+  <h2>My posts</h2>
+  <div class="user-posts">
+   
   {{!-- looks through the posts table --}}
   {{#each posts}}
-      <ul>{{this.message}}</ul> 
-      <ul>{{this.likes}} likes</ul>
-      <ul>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mma"}}</ul>
+      <ul class="post-message">{{this.message}}</ul> 
+      <ul class="post-likes">{{this.likes}} likes</ul>
+      <ul class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mma"}}</ul>
       <br>
+    <div class="comments">
+        {{#each comments}}
+          <ul class="commenter">{{this.commenter}}...</ul>
+          <ul class="commenter-comment">{{this.comment}}</ul><br>
+        {{/each}}
+    </div> 
  {{/each}}
-</ul>
+ 
+ </div>
+</div>
