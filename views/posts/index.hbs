@@ -1,14 +1,14 @@
 <h1>Timeline</h1>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<a class="new-post-link" href="/posts/new">Create post...</a>
+<br>
+<br>
 
 <ul class="posts">
   {{#each posts}}
   
   <div class="post-format">
   <li class="post-user">{{this.user_id.first_name}} says...</li>
-
-  
   <li>{{this.message}}</li> 
   <li class="post-likes">{{this.likes}} likes</li>
 
@@ -38,8 +38,8 @@ the values come from the handlebars template. -->
   <br>
   <p>What others are saying...</p>
   {{#each this.comments}}
-    <li>{{this.commenter}} says...</li>
-    <li>{{this.comment}}</li><br>
+    <li class="commenter-comment">{{this.commenter}} says...</li>
+    <li class="user-comment">{{this.comment}}</li><br>
   {{/each}}
   </div>
 

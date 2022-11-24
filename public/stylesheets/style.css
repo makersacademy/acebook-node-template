@@ -1,10 +1,12 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  background: rgb(240, 236, 216);
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(107, 84, 140);
 }
 
 .posts {
@@ -15,14 +17,16 @@ a {
 }
 
 .post-format {
+  margin: auto;
   border-style: solid;
-  border-color: grey;
+  border-color: rgb(233, 218, 144);
   border-radius: 15px;
   height: 50%;
   width: 40%;
-  background-color: rgb(190, 203, 205);
+  background-color: rgb(233, 218, 144);
   padding: 20px 20px 20px 20px;
   margin-bottom: 10px;
+  box-shadow: 5px 5px 5px 2px rgba(171, 165, 134, 0.411);
 }
 
 .post-user {
@@ -40,10 +44,8 @@ a {
 }
 
 
-
-
 .navbar-default .logOutButton {
-    color: #777;
+    color: rgb(107, 84, 140,);
     font: inherit;
     margin: 0;
     border: none;
@@ -55,13 +57,40 @@ a {
 }
 
 .container-fluid {
-  background-color: pink;
+  background-color: rgba(140, 69, 28, 0.523);
+  border-radius: 8px;
+
 }
 
 .navbar-default .logOutButton:hover {
-  color: fuchsia;
+  color: rgb(140, 69, 28);
 }
 
 .navbar-nav>li:hover {
-  background-color: #a9c6c4;
+  background-color: rgba(140, 69, 28, 0.414);
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+#new-post-form {
+  margin: auto;
+  border-style: solid;
+  border-color: rgb(233, 218, 144);
+  border-radius: 15px;
+  height: 50%;
+  width: 40%;
+  background-color: rgb(233, 218, 144);
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 5px 2px rgba(205, 172, 4, 0.411);
 }
