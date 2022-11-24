@@ -28,43 +28,6 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-// app.post('/users', upload.single('avatar'), async (req, res) => {
-//   // req.file is the name of your file in the form above, here 'avatar'
-//   // req.body will hold the text fields, if there were any 
-//   // req.file can be used to access all file properties
-//   console.log(req.file)
-//   try {
-//     //check if the request has an image or not
-//     if (!req.file) {
-//       res.json({
-//         success: false,
-//         message: 'You must provide at least 1 file'
-//       })
-//     } else {
-//       let imageUploadObject = {
-//         first_name: req.body.first_name,
-//         last_name: req.body.last_name,
-//         DOB: req.body.DOB,
-//         email: req.body.email,
-//         password: req.body.password,
-//         profile_picture: {
-//           data: req.file.buffer,
-//           contentType: req.file.mimetype
-//         }
-        
-//       }
-//       console.log(imageUploadObject);
-//       const uploadObject = new User (imageUploadObject);
-//       // saving the object into the database
-//       const uploadProcess = await uploadObject.save();
-//     }
-//   } catch (error) {
-//     console.error(error)
-//     res.status(500).send("Server Error")
-//   }
-// });
-
-
 // handlebars
 var hbs = require('hbs');
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
