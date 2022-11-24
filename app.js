@@ -11,7 +11,22 @@ const postsRouter = require('./routes/posts')
 const sessionsRouter = require('./routes/sessions')
 const usersRouter = require('./routes/users')
 
+const User = require('./models/user')
+
+var bodyParser = require('body-parser')
 const app = express()
+const multer = require('multer')
+
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'profile_pictures')
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now())
+  }
+});
+
+var upload = multer({ storage: storage });
 
 // handlebars
 var hbs = require('hbs');
@@ -61,12 +76,14 @@ const sessionChecker = (req, res, next) => {
 app.use('/', homeRouter)
 app.use('/posts', sessionChecker, postsRouter)
 app.use('/sessions', sessionsRouter)
-app.use('/users', usersRouter)
+app.use('/users', upload.single('image'), usersRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404))
 })
+
+app.use(express.static(path.join(__dirname + '/profile_pictures')))
 
 // error handler
 app.use((err, req, res) => {

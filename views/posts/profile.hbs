@@ -6,6 +6,10 @@
 <p>DOB: {{current_user_dob}}</p>
 <p>Number of Posts:</p>
 
+{{!-- {{current_user_profilepicture}} --}}
+
+<img src="data:image/png;base64, {{current_user_profilepicture}}">
+
 <ul class="posts">
   {{!-- looks through the posts table --}}
   {{#each posts}}
