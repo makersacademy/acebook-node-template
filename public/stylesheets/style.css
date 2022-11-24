@@ -7,8 +7,61 @@ a {
   color: #00B7FF;
 }
 
-ul {
+.posts {
   margin: 0;
   padding: 0;
   list-style: none;
+  
+}
+
+.post-format {
+  border-style: solid;
+  border-color: grey;
+  border-radius: 15px;
+  height: 50%;
+  width: 40%;
+  background-color: rgb(190, 203, 205);
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 10px;
+}
+
+.post-user {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.post-date {
+  font-style: italic;
+  font-size: 10px;
+}
+
+.post-likes {
+  font-size: 12px;
+}
+
+
+
+
+.navbar-default .logOutButton {
+    color: #777;
+    font: inherit;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    float: right;
+    line-height: 20px;
+}
+
+.container-fluid {
+  background-color: pink;
+}
+
+.navbar-default .logOutButton:hover {
+  color: fuchsia;
+}
+
+.navbar-nav>li:hover {
+  background-color: #a9c6c4;
 }
