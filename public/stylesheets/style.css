@@ -17,7 +17,7 @@ a {
 
 p {
   display: flex;
-  font-family: 'Pacifico', cursive;';
+  font-family: 'Pacifico', cursive;
   font-size: 14px;
   color: #876B5B;
 }
@@ -36,6 +36,13 @@ p {
 h1 {
   font-family: 'Pacifico', cursive;
   color: #BF9A84;
+}
+
+span {
+  display: flex;
+  font-family: 'Pacifico', cursive;
+  color: rgb(240, 236, 216);
+  font-size: 22px;
 }
 
 .posts {
@@ -88,7 +95,6 @@ h1 {
   vertical-align: middle;
 }
 
-
 .navbar-default .logOutButton {
     color: rgb(107, 84, 140,);
     font: inherit;
@@ -125,6 +131,43 @@ textarea {
   background-color: #f8f8f8;
   font-size: 16px;
   resize: none;
+}
+
+.profile {
+  display: flex;
+  background-color: #c2afa3;
+  box-shadow: 3px 3px 3px 2px #a6958bb6;
+  border-radius: 4px;
+  flex-basis: content;
+  float: inline-start;
+  /* flex-direction: column; */
+  align-items: stretch;
+  margin: 10px;
+}
+
+.profile > div {
+  width: 150px;
+  height: 150px;
+  /* margin: auto; */
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.user-posts {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  background-color: #c2afa3;
+  box-shadow: 3px 3px 3px 2px #a6958bb6;
+  border-radius: 4px;
+  flex-basis: content;
+  float: none;
+  margin: 10px;
 }
 
 #new-post-form {
