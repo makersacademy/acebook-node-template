@@ -23,6 +23,7 @@ the values come from the handlebars template. -->
   </li>
   <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
   <br>
+  <button id="show" value="Write a comment.."></button>
   <input type="button" name="answer" value="Write a comment..." onclick="showDiv(event)" />
   <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
     <form id="new-comment-form" action="/posts/comments" method="post">
@@ -30,7 +31,7 @@ the values come from the handlebars template. -->
       <input type="hidden" id="hiddenbutton" name="id" value={{this._id}}>
       {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments.comment}}> --}}
       <input type="hidden" id="hiddenbutton" name="commenter" value={{this.comments.commenter}}>
-     <button type="submit" id="comment_button">Submit</button>
+     <br><button type="submit" id="comment_button">Submit</button>
      </form>
      <p id="demo"></p>
   </div>
