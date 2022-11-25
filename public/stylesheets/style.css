@@ -17,7 +17,7 @@ a {
 
 p {
   display: flex;
-  font-family: 'Pacifico', cursive;';
+  font-family: 'Pacifico', cursive;
   font-size: 14px;
   color: #876B5B;
 }
@@ -35,7 +35,21 @@ p {
 
 h1 {
   font-family: 'Pacifico', cursive;
-  color: #BF9A84;
+  color: rgb(242, 159, 4);
+}
+
+h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 40px;
+  color: rgb(240, 236, 216);
+  margin: 10px;
+}
+
+span {
+  display: flex;
+  font-family: 'Pacifico', cursive;
+  color: rgb(240, 236, 216);
+  font-size: 22px;
 }
 
 .posts {
@@ -48,16 +62,24 @@ h1 {
   display: flex;
   margin: auto;
   font-size: 18px;
+  text-align: left;
   background-color: #F0ECD8;
   border-radius: 15px;
   padding: 1rem 1rem;
   vertical-align: middle;
 }
-
+.post-date {
+  display: flex;
+  font-style: italic;
+  font-size: 16px;
+  margin: auto;
+  vertical-align: middle;
+}
 .post-likes {
   display: flex;
   margin: auto;
-  font-size: 12px;
+  font-style: italic;
+  font-size: 16px;
   /* padding: 1rem 1rem; */
   vertical-align: middle;
 }
@@ -73,6 +95,38 @@ h1 {
   margin-bottom: 10px;
   box-shadow: 5px 5px 5px 2px rgba(171, 165, 134, 0.411);
 }
+.comments {
+  /* display: flex; */
+  flex-direction: column;
+  /* background-color: rgb(242, 159, 4); */
+  border-radius: 15px;
+  padding: 1rem 1rem;
+
+}
+
+.commenter{
+  /* align-items: flex-start; */
+  margin: auto;
+  /* background-color: #F0ECD8; */
+  padding: 6px 6px 6px 6px;
+  font-size: 14px;
+  text-align: left;
+  /* padding: 1rem 1rem; */
+  /* vertical-align: text-top; */
+
+}
+.commenter-comment{
+  margin: auto;
+  background-color: rgba(242, 159, 4, 0.436);
+  border-radius: 15px;
+  padding: 6px 6px 6px 6px;
+  font-size: 14px;
+  text-align: left;
+}
+
+#comments {
+  font-size: 16px;
+}
 
 .post-user {
   /* display: flex; */
@@ -80,25 +134,16 @@ h1 {
   font-size: 18px;
 }
 
-.post-date {
-  display: flex;
-  font-style: italic;
-  font-size: 10px;
-  margin: auto;
-  vertical-align: middle;
-}
-
-
 .navbar-default .logOutButton {
-    color: rgb(107, 84, 140,);
-    font: inherit;
-    margin: 0;
-    border: none;
-    background-color: transparent;
-    padding-top: 15px;
-    padding-bottom: 10px;
-    float: right;
-    line-height: 20px;
+  color: rgb(107, 84, 140,);
+  font: inherit;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  float: right;
+  line-height: 20px;
 }
 
 .container-fluid {
@@ -125,6 +170,57 @@ textarea {
   background-color: #f8f8f8;
   font-size: 16px;
   resize: none;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-around;
+  background-color: #c2afa3;
+  box-shadow: 3px 3px 3px 2px #a6958bb6;
+  border-radius: 4px;
+  float: inline-start;
+  align-items: stretch;
+  margin: 10px;
+  padding: 5px 5px 5px 5px;
+}
+
+.profile > div {
+  width: 150px;
+  height: 150px;
+  flex-basis: content;
+  /* margin: auto; */
+}
+
+.profile-pic {
+  border-radius: 50%;
+  border: 5px solid #F0ECD8;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.user-posts-container {
+  display: flex;
+  justify-content: space-around;
+  /* flex-direction: column; */
+  /* align-items: center; */
+  background-color: #c2afa3;
+  box-shadow: 3px 3px 3px 2px #a6958bb6;
+  border-radius: 4px;
+  /* flex-basis: content; */
+  /* float: none; */
+  margin: 10px;
+}
+.my-posts-text {
+  font-family: 'Pacifico', cursive;
+  font-size: 40px;
+  color: rgb(240, 236, 216);
+  margin: 10px;
+}
+.user-posts {
+  /* background-color: #F0ECD8; */
+  padding: 5px 5px 5px 5px;
+  border-radius: 15px;
 }
 
 #new-post-form {
@@ -158,7 +254,7 @@ textarea {
   color: rgb(140, 69, 28);
   padding: auto;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bolder;
   margin: auto;
 }

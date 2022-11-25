@@ -1,21 +1,32 @@
+<h1>Welcome to your profile page!</h1><br>
 
-<p>Hello.Welcome to your profile page.</p>
-
-<p>Name: {{current_user}}</p>
-<p>Profile Picture:</p>
-<p>DOB: {{current_user_dob}}</p>
-<p>Number of Posts:</p>
-
-{{!-- {{current_user_profilepicture}} --}}
-
-<img src="data:image/png;base64, {{current_user_profilepicture}}">
-
-<ul class="posts">
+<div class="profile">
+  <div>
+    <img class='profile-pic' src="data:image/png;base64, {{current_user_profilepicture}}" >
+  </div>
+  <div><br><br>
+    <p>Name:<br><span> {{current_user}}</span></p>
+    <p>DOB:<br><span> {{current_user_dob}}</span></p>
+  </div>
+</ul>
+</div>
+<div class="user-posts-container">
+  <div class="my-posts-text">My posts</div>
+  <div class="user-posts">
+   
   {{!-- looks through the posts table --}}
   {{#each posts}}
-     <li>{{this.message}}</li> 
-      <li>{{this.likes}} likes</li>
-      <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+      <ul class="post-message">{{this.message}}</ul> 
+      <ul class="post-likes">{{this.likes}} likes</ul>
+      <ul class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mma"}}</ul>
       <br>
+    <div class="comments">
+        {{#each comments}}
+          <ul class="commenter">{{this.commenter}}...</ul>
+          <ul class="commenter-comment">{{this.comment}}</ul><br>
+        {{/each}}
+    </div> 
  {{/each}}
-</ul>
+ 
+ </div>
+</div>
