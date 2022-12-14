@@ -1,5 +1,8 @@
+<br>
+<div class="new-post">
 <form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
+  <label for="message">Create post...</label><br>
+  <textarea placeholder="What do you want to say?" id="message" type="text" name="message" value="" oninvalid="alert('Did you forget to write something?')" required autofocus></textarea>
   <input type="submit" value="Submit">
 </form>
+</div>

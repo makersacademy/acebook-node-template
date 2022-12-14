@@ -1,7 +1,23 @@
-<form id="new-user-form" action="/users" method="post">
+<div id="sign_up">Sign up here for a new Acebook account! </div>
+<form id="new-user-form" action="/users" method="post" enctype="multipart/form-data" >
+  <label for="first_name">First Name: </label>
+  <input id="first_name" type="text" name="first_name" value="" oninvalid="alert('You must enter your name')" required>
+  <label for="last_name">Last Name: </label>
+  <input id="last_name" type="text" name="last_name" value="" 
+  oninvalid="alert('You must enter your surname')" required>
+  <label for="DOB">Date of birth: </label>
+  <input id= "DOB" type="date" name="DOB" max="2022-11-15" value="" 
+  oninvalid="alert('You must enter your date of birth')" required>
   <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
+  <input id="email" type="email" name="email" value="" 
+  oninvalid="alert('You must enter your email')" required>
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
+
+  <input id="password" type="password" name="password" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+  oninvalid="alert('Come on, you need a password')" required>
+
+  <label for="profile_picture">Profile Picture: </label>
+  <input class="choose-profile-pic-btn" type="file" name="image">
+
   <input id="submit" type="submit" value="Submit">
 </form>

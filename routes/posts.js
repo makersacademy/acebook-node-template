@@ -1,10 +1,13 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const PostsController = require("../controllers/posts");
+const PostsController = require('../controllers/posts')
 
-router.get("/", PostsController.Index);
-router.post("/", PostsController.Create);
-router.get("/new", PostsController.New);
-
-module.exports = router;
+router.get('/', PostsController.Index)
+router.post('/', PostsController.Create)
+router.post('/comments', PostsController.Comments)
+router.get('/new', PostsController.New)
+router.post('/like', PostsController.Like)
+router.post('/checklikes', PostsController.CheckLikes)
+router.get('/profile', PostsController.Profile)
+module.exports = router

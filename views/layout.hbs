@@ -2,12 +2,52 @@
 <html>
   <head>
     <title>{{title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="icon" type="image/x-icon" href="/images/beaver-fav.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="/"> <img width="60px" src="/images/logo.png"></a>
+        </div>
+        <ul class='nav navbar-nav'>
+          <li><a id='nav-home' href="/">Home</a></li>
+          {{#if newUser}}
+          <li><a id='login-link' href="/sessions/new">Login</a></li>
+          <li><a id='signup-link' href="/users/new">Sign up</a></li>
+        </ul>
+          {{else}} 
+          <li><a id='profile-link' href="/posts/profile">My profile</a></li>
+          <li><a href="/posts">Timeline</a></li>
+          <li><a href="/posts/new">New post</a></li>
+        </ul>
+        <div class ="logOutButton"><form class="form-inline" action='/sessions?_method=DELETE' method='POST'><input type="submit" value="Log Out"></form></div> 
+        {{/if}}
+      </div>
+    </nav>
+
+    {{!-- if logged in -> see welcome message with name and the logout button --}}
+    {{!-- if not logged in -> see login button and message telling you to login --}}
+    
+      {{#if newUser}}
+        <p>You need to login.</p>
+      {{else}}  
+       <p class="greeting" >Hello, {{current_user}}, you are logged in.</p>
+         
+      {{/if}}    
+
+    <p class="tagline">Share your life with your friends!<p>
+
     {{{body}}}
   </body>
 </html>

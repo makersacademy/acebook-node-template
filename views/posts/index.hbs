@@ -1,9 +1,82 @@
 <h1>Timeline</h1>
+
+<a class="new-post-link" href="/posts/new">Create post...</a>
+<br>
+<br>
+
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  {{/each}}
-</ul>
+    <li class="post-user">{{this.user_id.first_name}} says...</li>
+  <div class="post-format">
+    <div class='post-message'><li>{{this.message}}</li><br></div><br>
+    <div class='post-likes'><li class="post-likes">{{this.likes}} likes</li><br>
+  <li>
+<!-- this form posts the value of the inputs to the /posts/like route.
+the values come from the handlebars template. -->
+    <form action="/posts/like" method = "POST">
+    <input type="hidden" id="{{@index}}" name="id" value={{this.id}}>   
+    <button class='button' id={{this.id}} type="submit"></button>
+    </form>
+  </li><br>
+  <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY"}}</li>
+  <br>
+  </div><br>
+  
+  <input class='comment-button' type="button" name="answer" value="Write a comment..." onclick="showDiv(event)" />
+  <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
+    <form id="new-comment-form" action="/posts/comments" method="post">
 
-<a class="new-post-link" href="/posts/new">New post</a>
+     <textarea placeholder="Enter a comment!" id="message" type="text" name="comments" value=""rows="4" cols="50" required></textarea>
+
+      <input type="hidden" id="hiddenbutton" name="id" value={{this._id}}>
+      {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments.comment}}> --}}
+      <input type="hidden" id="hiddenbutton" name="commenter" value={{this.comments.commenter}}>
+     <br><button type="submit" id="comment_button">Submit</button>
+     </form>
+     <p id="demo"></p>
+  </div>
+  <br>
+  <p id="comments">What others are saying...<p>
+    <div class="comments">
+      {{#each this.comments}}
+        <li class="commenter">{{this.commenter}}...</li>
+        <li class="commenter-comment">{{this.comment}}</li><br>
+      {{/each}}
+    </div>
+  </div>
+
+
+<script>
+  id = document.getElementById("{{@index}}").value
+ 
+  $.post('/posts/checklikes', {id:id}).done(function(data){
+    if (data.liked === 'true'){
+      document.getElementById(data.id).style = 'background-color:#B3B1B1';
+      document.getElementById(data.id).innerText = 'Dislike';
+    }
+    else if (data.liked === 'false') {
+      document.getElementById(data.id).style= 'background-color:#E3E3E3';
+      document.getElementById(data.id).innerText = ' Like ';
+    }
+  })
+</script>
+
+{{/each}}
+
+
+<script> 
+  function showDiv(event) {
+    console.log(event)
+
+   event.target.nextElementSibling.style.display = "block";
+}
+
+function submitComment(event){
+   var x = event.target.previousElementSibling.value;
+  post.comment.$push(x)
+}
+
+</script>
+
+
+
