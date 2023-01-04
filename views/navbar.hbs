@@ -1,9 +1,14 @@
-<!DOCTYPE html>
-
-<html>
+{{!-- <html>
 <head>
 <style>
-
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+body {
+  font: 100% Roboto, sans-serif;
+  background: url(http://wallpapercave.com/wp/aZlqiAT.png) 50% 50% no-repeat;
+  background-size: cover;
+  padding: 50px;
+  margin: 0;
+}
 nav {
   width: 180px;
   background: white;
@@ -60,38 +65,19 @@ a:active { background: #FFCA28; }
 .navicon div:after { top: 7px; }
 </style>
 </head>
-<title>{{title}}</title>
 <body>
-<h1 style="text-align:center"> acebook </h1>
-<p>
-  {{pagename}}
-</p>
-
-{{#if shownavbar}}
+<h1 style="text-align:center"> MakersBNB</h1>
 <nav>
   <div class="navicon">
     <div></div>
   </div>
-  <a href="/posts">Home</a>
-  <a href="/users">Friends</a>
-    <a href="/">Logout</a>
+  <a href="/signup">Sign up</a>
+  <a href="/login">Log in</a>
+  <a href="/account">Account</a>
+  <a href="/listings">All Listings</a>
+  <a href="/listings/newlisting">Make a listing</a>
+    <a href="/logout">Logout</a>
 
 </nav>
-{{/if}}
 </body>
-</html>
-
-
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{!-- <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Home">
-    </form> --}}
-    {{{body}}}
-
-  </body>
-</html>
+</html> --}}

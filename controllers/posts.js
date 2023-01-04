@@ -7,11 +7,11 @@ const PostsController = {
         throw err;
       }
 
-      res.render("posts/index", { posts: posts });
+      res.render("posts/index", { posts: posts, shownavbar:true });
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", {shownavbar:true});
   },
   Create: (req, res) => {
     const post = new Post(req.body);
