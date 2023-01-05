@@ -1,9 +1,81 @@
 <h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  {{/each}}
-</ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+
+<ul class="posts">
+  {{#each posts}}
+  
+  <div class="post-format">
+  <li class="post-user">{{this.user_id.first_name}}</li>
+  <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  
+  <li>{{this.message}}</li> 
+  <li class="post-likes">{{this.likes}} likes</li>
+  <br>
+  <li>
+<!-- this form posts the value of the inputs to the /posts/like route.
+the values come from the handlebars template. -->
+    <form action="/posts/like" method = "POST">
+    <input type="hidden" id="{{@index}}" name="id" value={{this.id}}>   
+    <button id={{this.id}} style = '' type="submit"></button>
+    </form>
+  </li>
+  <li>{{this.user_id.first_name}}</li>
+  <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  <button>Like</button>
+  <input type="button" name="answer" value="Comment" onclick="showDiv(event)" />
+  <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
+    <form id="new-comment-form" action="/posts/comments" method="post">
+     <textarea placeholder="Enter a comment!" id="message" type="text" name="comments" value=""rows="4" cols="50" required></textarea>
+      <input type="hidden" id="hiddenbutton" name="id" value={{this._id}}>
+      {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments.comment}}> --}}
+      <input type="hidden" id="hiddenbutton" name="commenter" value={{this.comments.commenter}}>
+     <button type="submit" id="comment_button">Submit</button>
+     </form>
+     <p id="demo"></p>
+  </div>
+
+  {{#each this.comments}}
+    <li>{{this.comment}}: {{this.commenter}}</li>
+  {{/each}}
+
+  <br>
+
+  <br>
+  </div>
+
+<script>
+  id = document.getElementById("{{@index}}").value
+ 
+  $.post('/posts/checklikes', {id:id}).done(function(data){
+    if (data.liked === 'true'){
+      document.getElementById(data.id).style = 'background-color:#B3B1B1';
+      document.getElementById(data.id).innerText = 'Dislike';
+    }
+    else if (data.liked === 'false') {
+      document.getElementById(data.id).style= 'background-color:#E3E3E3';
+      document.getElementById(data.id).innerText = ' Like ';
+    }
+  })
+</script>
+
+  {{/each}}
+
+
+<script> 
+  function showDiv(event) {
+    console.log(event)
+
+   event.target.nextElementSibling.style.display = "block";
+}
+
+function submitComment(event){
+   var x = event.target.previousElementSibling.value;
+  post.comment.$push(x)
+}
+
+
+</script>
+
+
+

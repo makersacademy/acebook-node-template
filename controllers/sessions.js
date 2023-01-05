@@ -1,34 +1,47 @@
-const User = require("../models/user");
+const User = require('../models/user')
+var bcrypt = require('bcrypt')
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    if (req.session.user) {
+      res.redirect('/posts')
+    } else {
+      res.render('sessions/new', { newUser: true })
+    }
   },
 
   Create: (req, res) => {
-    console.log("trying to log in");
-    const email = req.body.email;
-    const password = req.body.password;
+    console.log('trying to log in')
+    const email = req.body.email
+    const password = req.body.password
 
-    User.findOne({ email: email }).then((user) => {
+    User.findOne({ email }).then((user) => {
       if (!user) {
-        res.redirect("/sessions/new");
-      } else if (user.password != password) {
-        res.redirect("/sessions/new");
+        res.redirect('/sessions/new')
       } else {
-        req.session.user = user;
-        res.redirect("/posts");
+        bcrypt.compare(password, user.password, function (err, result) {
+          if (err) {
+            throw err
+          }
+
+          if (result === true) {
+            req.session.user = user
+            res.redirect('/posts')
+          } else {
+            res.redirect('/sessions/new')
+          }
+        });
       }
-    });
+    })
   },
 
   Destroy: (req, res) => {
-    console.log("logging out");
+    console.log('logging out')
     if (req.session.user && req.cookies.user_sid) {
-      res.clearCookie("user_sid");
+      res.clearCookie('user_sid')
     }
-    res.redirect("/sessions/new");
-  },
-};
+    res.redirect('/sessions/new')
+  }
+}
 
-module.exports = SessionsController;
+module.exports = SessionsController

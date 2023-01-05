@@ -1,0 +1,6 @@
+{
+    "explorer.compactFolders": false,
+    "notebook.compactView": false,
+    "explorer.expandSingleFolderWorkspaces": true,
+    "npm.enableRunFromFolder": false
+}

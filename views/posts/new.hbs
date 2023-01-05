@@ -1,5 +1,6 @@
+<br>
 <form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
+  <label for="message">Message: </label><br>
+  <textarea placeholder="You can only input 254 characters" id="message" type="text" name="message" value="" oninvalid="alert('What do you want to say?')" required rows="4" cols="50" autofocus></textarea>
   <input type="submit" value="Submit">
 </form>
