@@ -7,4 +7,8 @@ router.get("/", PostsController.Index);
 router.post("/", PostsController.Create);
 router.get("/new", PostsController.New);
 
+//please work - 
+router.post('/:id/act', PostsController.Like);
+
+
 module.exports = router;
