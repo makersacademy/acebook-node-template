@@ -48,6 +48,30 @@ const PostsController = {
         }
       });
     } 
+  },
+
+  Love: (req, res) => {
+    const postId = req.params.id;
+    const action = req.body.action;
+    if (action === 'Love') {
+      Post.updateOne({ _id: postId }, { $inc: { loves: 1 } }, function (error) {
+        if (error) {
+          res.send(error);
+          console.log(error)
+        } else {
+          console.log('love updated')
+          res.send('Love added');
+        }
+      });
+    } else if (action === 'Hate') {
+      Post.updateOne({ _id: postId }, { $inc: { loves: -1 } }, function (error) {
+        if (error) {
+          res.send(error);
+        } else {
+          res.send('Hate added');
+        }
+      });
+    } 
   }
 };
 

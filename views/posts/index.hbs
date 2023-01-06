@@ -33,7 +33,35 @@
             updatePostStats[action](postId);
             axios.post('/posts/' + postId + '/act', { action: action });
             }
-        
+
+
+//implementation of love button
+var updatePostStatsLove = {
+            Love: function (postId) {
+                document.querySelector('#loves-count-' + postId).textContent++;
+            },
+            Hate: function(postId) {
+                document.querySelector('#loves-count-' + postId).textContent--;
+            }
+        }; 
+      //toggles the button
+        var toggleButtonTextLove = {
+            Love: function(button) {
+                button.textContent = "Hate";
+
+            },
+            Hate: function(button) {
+                button.textContent = "Love";
+            }
+        };
+      //
+        var actOnPostLove = function (event) {
+            var postId = event.target.dataset.postId;
+            var action = event.target.textContent.trim(); //will either be like or unlike
+            toggleButtonTextLove[action](event.target); //toggles the button to show the opposite
+            updatePostStatsLove[action](postId);
+            axios.post('/posts/' + postId + '/love', { action: action });
+            }      
 </script>
 <head>
 
@@ -60,14 +88,34 @@
         {{!-- set the data-post-id as posts.id onto this button --}}
             <button onclick="actOnPost(event);"
                     data-post-id="{{ this.id }}" style="margin-left: 50px">Like
-            </button>
+            </button><br>
       
       {{!-- TODO LINK IT TO THE DB ; things to consider: borders and long posts--}}
 
     </div>
-    <br>
+    
+        </div>
+        {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
+            <div class="row" style="display: inline-block; margin-left: 30px;"></div>
+            <span>&#128062;</span>
+            <span id="loves-count-{{ this.id }}">{{ this.loves }}</span>
+        </div>
+        {{!-- set the data-post-id as posts.id onto this button --}}
+            <br><button onclick="actOnPostLove(event);"
+                    data-post-id="{{ this.id }}" style="margin-left: 50px">Love
+            </button>
+    <form id="comment-form">
+  <input type="text" id="comment-input" placeholder="Enter your comment here">
+  <button type="submit">Submit</button>
+</form>
+      {{!-- TODO LINK IT TO THE DB ; things to consider: borders and long posts--}}
+    
+    </div>
+    
 {{/each}}
+
 </div>
+
     
 
 

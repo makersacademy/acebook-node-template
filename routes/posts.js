@@ -9,6 +9,6 @@ router.get("/new", PostsController.New);
 
 //please work - 
 router.post('/:id/act', PostsController.Like);
-
+router.post('/:id/love', PostsController.Love);
 
 module.exports = router;

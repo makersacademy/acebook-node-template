@@ -11,8 +11,10 @@ const SessionsController = {
     const password = req.body.password;
 
     User.findOne({ email: email }).then((user) => {
+      //if user doesn't exist in the db, redirects to /new which creates a new account
       if (!user) {
         res.redirect("/sessions/new");
+        //if the userpassword doesn't match it redirects
       } else if (user.password != password) {
         res.redirect("/sessions/new");
       } else {
