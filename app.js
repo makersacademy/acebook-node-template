@@ -61,6 +61,9 @@ app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/friends", friendsRouter)
 
+//posts router to listen to a post request to the id/act
+app.use("/posts/:id/act", postsRouter)
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));

@@ -1,35 +1,90 @@
+
+
 <html>
 <head>
-<script>
-{{!-- const button = document.getElementById('like-button');
-button.addEventListener('click', () => {
-console.log('likes increases?');
-document.getElementById('likes').innerHTML ++;
-}) --}}
-  let likes = 0;
-  function like() {
-    likes++;
-    document.getElementById("testlike").textContent = `Like (${likes})`;
-  }
-  </script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+  //updatePostStats is an object with a like/unlike function - 
+        var updatePostStats = {
+            Like: function (postId) {
+                document.querySelector('#likes-count-' + postId).textContent++;
+            },
+            Unlike: function(postId) {
+                document.querySelector('#likes-count-' + postId).textContent--;
+            }
+        }; 
+      //toggles the button
+        var toggleButtonText = {
+            Like: function(button) {
+                button.textContent = "Unlike";
+
+            },
+            Unlike: function(button) {
+                button.textContent = "Like";
+            }
+        };
+      //
+        var actOnPost = function (event) {
+            var postId = event.target.dataset.postId;
+            var action = event.target.textContent.trim(); //will either be like or unlike
+            toggleButtonText[action](event.target); //toggles the button to show the opposite
+            updatePostStats[action](postId);
+            axios.post('/posts/' + postId + '/act', { action: action });
+            }
+        
+</script>
+<head>
+
 </head>
 
 <body>
-<button id="testlike" onclick="like()">Like 0</button>
-<h1>Timeline</h1>
+
+ <div class="container-fluid text-center">
+ {{!-- for each of the posts array, the message and date is posted and a button 
+ rendered - the button has a onclick method that runs a method from the script, 
+ each button has a data-post-id attached in which the posts.id is attached to.
+ the item with likes count is given an idea which is also associated with posts.id  --}}
+{{#each posts }}
+    <div class="posts" style="margin-left: 50px">
+        <div>
+            <b>{{ this.message }}</b><br>
+            <small>{{ this.date }}</small>
+        </div>
+        {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
+            <div class="row" style="display: inline-block; margin-left: -20px;"></div>
+            <span>&#x1F63B;</span>
+            <span id="likes-count-{{ this.id }}">{{ this.likes }}</span>
+        </div>
+        {{!-- set the data-post-id as posts.id onto this button --}}
+            <button onclick="actOnPost(event);"
+                    data-post-id="{{ this.id }}" style="margin-left: 50px">Like
+            </button>
+      
+      {{!-- TODO LINK IT TO THE DB ; things to consider: borders and long posts--}}
+
+    </div>
+    <br>
+{{/each}}
+</div>
+    
+
+
+
+
+{{!-- <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li> 
-  {{!-- <li id="likes">{{this.likes}}</li> --}}
-  <li id="likes">0</li>
+
+  <li id="like-count">{{this.likes}}</li>
   <li>{{this.date}}</li>
-  <button> <img src="/images/paw.jpg" class="like-button"/></button>
+  <button> <img src="/images/paw.jpg" class="like-button" onclick="actOnPost(event);" data-post-id="{{ this.id }}"/></button>
 
-  {{!-- link a button with id = {{post_id}} or something like that and then have the like associated
-   --}}
-
+ 
   {{/each}}
-</ul>
+</ul> --}}
 
 <a class="new-post-link" href="/posts/new">New post</a>
 </body>
