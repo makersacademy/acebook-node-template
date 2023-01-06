@@ -6,14 +6,26 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
-    user.save((err) => {
+    const newuser = new User(req.body);
+    const email = req.body.email
+    User.findOne({ email: email }).then((user) => {
+      //if user doesn't exist in the db, redirects to /new which creates a new account
+      if (!user)       {
+        newuser.save((err) => {
       if (err) {
         throw err;
       }
       res.status(201).redirect("/posts");
-    });
-  },
-};
+    })}
+    //if user doesn't exist, save it
+      else
+      {
+        console.log('User already exists!')
+        var emailExists = true;
+        res.render("home/index", {emailExists})
+      } 
+    })
+  }
+}
 
 module.exports = UsersController;
