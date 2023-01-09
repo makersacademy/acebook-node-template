@@ -6,8 +6,9 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      const user = req.session.user
       posts = posts.sort((a,b) => b.date-a.date ) //sorts the posts by date order before rendering
-      res.render("posts/index", { posts: posts, shownavbar:true});
+      res.render("posts/index", { posts: posts, shownavbar:true, user: user});
     }); 
   },
 
@@ -16,7 +17,7 @@ const PostsController = {
   },
   
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const post = new Post({message:req.body.message,author:req.session.user.email});
     post.save((err) => {
       if (err) {
         throw err;

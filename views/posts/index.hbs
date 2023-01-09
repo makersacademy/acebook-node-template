@@ -2,6 +2,12 @@
 
 <html>
 <head>
+    <h1>Welcome {{user.email}}</h1>
+    {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is stored as an authenticator. This
+    can now allow use to use this value to show only posts for this user.
+    through the postcontroller, we need to make it so that the posts that are past to this route
+    use the user authentication aka req.session.user in it's post querying.
+    atm idk how to use mongodb querying :() --}}
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -78,6 +84,7 @@ var updatePostStatsLove = {
     <div class="posts" style="margin-left: 50px">
         <div>
             <b>{{ this.message }}</b><br>
+            <small>{{ this.author }}</small><br>
             <small>{{ this.date }}</small>
         </div>
         {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
