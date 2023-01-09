@@ -63,6 +63,7 @@ var updatePostStatsLove = {
       //
         var actOnPostLove = function (event) {
             var postId = event.target.dataset.postId;
+            console.log(postId)
             var action = event.target.textContent.trim(); //will either be like or unlike
             toggleButtonTextLove[action](event.target); //toggles the button to show the opposite
             updatePostStatsLove[action](postId);
@@ -72,6 +73,16 @@ var updatePostStatsLove = {
 
          
 //Follow buttons functionality
+var updateFollows = {
+            Follow: function (userId) {
+                //const authorfollow = document.querySelector('#author-' + userId);
+            },
+            Unfollow: function(userId) {
+                //const authorunfollow = document.querySelector('#author-' + userId);
+            }
+        }; 
+
+
             var toggleFollowText = {
             Follow: function(button) {
                 button.textContent = "Unfollow";
@@ -84,10 +95,11 @@ var updatePostStatsLove = {
 
         var actFollow = function (event) {
             //{{!-- var postId = event.target.dataset.postId; --}}
-            var userId = event.target.dataset.userId;
+            var userId = event.target.dataset.id;
+            console.log(userId)
             var action = event.target.textContent.trim(); //will either be follow or unfollow
             toggleFollowText[action](event.target); //toggles the button to show the opposite
-            //updatePostStatsLove[action](postId);
+            updateFollows[action](userId);
             //axios.post('/posts/' + postId + '/love', { action: action });
             }     
 
@@ -107,7 +119,8 @@ var updatePostStatsLove = {
     <div class="posts" style="margin-left: 50px">
         <div>
             <b>{{ this.message }}</b><br>
-            <small>{{ this.author }}</small><button id="Follow" onclick = "actFollow(event)" >Follow</button><br>
+            <span id="author-{{ this.author }}"><small>{{ this.author }}</small></span>
+            <button data-id="{{ this.author }}" onclick = "actFollow(event)" >Follow</button><br>
             <small>{{ this.date }}</small>
         </div>
         {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
