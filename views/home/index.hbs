@@ -8,9 +8,16 @@
   <br>
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value=""> <br> <br>
+  {{#if accountCreated}}
+  Account Created! Please sign in.
+  {{/if}}
   {{#if emailExists}} 
   Email already exists! <br> 
   Please try to log in, or try to sign up with a different email.
+  {{/if}}
+  {{#if usernameExists}} 
+  Username already exists! <br> 
+  Please try to log in, or try to sign up with a different username.
   {{/if}}
    {{#if wronguser}}
   User does not exist, please sign up!
