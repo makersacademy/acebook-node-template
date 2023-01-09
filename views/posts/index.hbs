@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <h1>Welcome {{user.email}}</h1>
+    <h1>Welcome {{user.username}}</h1>
     {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is stored as an authenticator. This
     can now allow use to use this value to show only posts for this user.
     through the postcontroller, we need to make it so that the posts that are past to this route
@@ -67,7 +67,30 @@ var updatePostStatsLove = {
             toggleButtonTextLove[action](event.target); //toggles the button to show the opposite
             updatePostStatsLove[action](postId);
             axios.post('/posts/' + postId + '/love', { action: action });
-            }      
+            }     
+
+
+         
+//Follow buttons functionality
+            var toggleFollowText = {
+            Follow: function(button) {
+                button.textContent = "Unfollow";
+
+            },
+            Unfollow: function(button) {
+                button.textContent = "Follow";
+            }
+        }; 
+
+        var actFollow = function (event) {
+            //{{!-- var postId = event.target.dataset.postId; --}}
+            var userId = event.target.dataset.userId;
+            var action = event.target.textContent.trim(); //will either be follow or unfollow
+            toggleFollowText[action](event.target); //toggles the button to show the opposite
+            //updatePostStatsLove[action](postId);
+            //axios.post('/posts/' + postId + '/love', { action: action });
+            }     
+
 </script>
 <head>
 
@@ -84,7 +107,7 @@ var updatePostStatsLove = {
     <div class="posts" style="margin-left: 50px">
         <div>
             <b>{{ this.message }}</b><br>
-            <small>{{ this.author }}</small><br>
+            <small>{{ this.author }}</small><button id="Follow" onclick = "actFollow(event)" >Follow</button><br>
             <small>{{ this.date }}</small>
         </div>
         {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
