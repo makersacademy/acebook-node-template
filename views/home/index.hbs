@@ -1,7 +1,10 @@
 {{!-- <h1 class="title">{{title}}</h1> --}}
-<p>Welcome to Acebook</p>
-<br>
 
+<p>Welcome to Acebook purr</p>
+<br>
+<div style="border: 2px solid black; border-radius: 20px; width: 300px">
+  
+<br>
 <form id="new-session-form" action="/sessions" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
@@ -31,6 +34,8 @@
   <br> <input id="submit" type="submit" value="Submit">
 
 
+
+
 </form> <br>
 
 <form id="new-session-form" action="/users/new" method="get">
@@ -40,5 +45,6 @@
 {{!-- currently doesn't work needs to have a new route added with a form --}}
 <form id="new-session-form" action="/sessions" method="post">
 <input id="submit" type="submit" value="Forgot password">
-</form>
+</form><br>
+</div>
 
