@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <h1>Welcome {{user.username}}</h1>
+    <h1>Welcome </h1><h1 id="mainuser">{{user.username}}</h1>
     {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is stored as an authenticator. This
     can now allow use to use this value to show only posts for this user.
     through the postcontroller, we need to make it so that the posts that are past to this route
@@ -42,7 +42,7 @@
 
 
 //implementation of love button
-var updatePostStatsLove = {
+        var updatePostStatsLove = {
             Love: function (postId) {
                 document.querySelector('#loves-count-' + postId).textContent++;
             },
@@ -73,20 +73,19 @@ var updatePostStatsLove = {
 
          
 //Follow buttons functionality
-var updateFollows = {
+        {{!-- var updateFollows = {
             Follow: function (userId) {
                 //const authorfollow = document.querySelector('#author-' + userId);
             },
             Unfollow: function(userId) {
                 //const authorunfollow = document.querySelector('#author-' + userId);
             }
-        }; 
+        };  --}}
 
 
-            var toggleFollowText = {
+        var toggleFollowText = {
             Follow: function(button) {
                 button.textContent = "Unfollow";
-
             },
             Unfollow: function(button) {
                 button.textContent = "Follow";
@@ -95,13 +94,15 @@ var updateFollows = {
 
         var actFollow = function (event) {
             //{{!-- var postId = event.target.dataset.postId; --}}
-            var userId = event.target.dataset.id;
-            console.log(userId)
+            var userId = event.target.dataset.id; //gets userId from data-id
+            console.log(userId) 
+            var mainuser = document.getElementById('mainuser').innerHTML.trim() //gets the main username from the welcome page
+            console.log(mainuser)
             var action = event.target.textContent.trim(); //will either be follow or unfollow
             toggleFollowText[action](event.target); //toggles the button to show the opposite
-            updateFollows[action](userId);
-            //axios.post('/posts/' + postId + '/love', { action: action });
-            }     
+            //updateFollows[action](userId);
+            axios.post('/posts/' + userId + '/befriend', { action: action, friend: userId, main: mainuser }); //create a post route - this route is dodge
+            }     //params are passed into the req body through the curly braces as instance vars?
 
 </script>
 <head>
@@ -151,8 +152,7 @@ var updateFollows = {
   <input type="text" id="comment-input" placeholder="Enter your comment here">
   <button type="submit">Submit</button>
 </form>
-      {{!-- TODO LINK IT TO THE DB ; things to consider: borders and long posts--}}
-    
+
     </div>
     
 {{/each}}
@@ -160,22 +160,6 @@ var updateFollows = {
 </div>
 
     
-
-
-
-
-{{!-- <h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li> 
-
-  <li id="like-count">{{this.likes}}</li>
-  <li>{{this.date}}</li>
-  <button> <img src="/images/paw.jpg" class="like-button" onclick="actOnPost(event);" data-post-id="{{ this.id }}"/></button>
-
- 
-  {{/each}}
-</ul> --}}
 
 <a class="new-post-link" href="/posts/new">New post</a>
 </body>

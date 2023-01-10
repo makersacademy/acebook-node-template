@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -73,6 +74,37 @@ const PostsController = {
         }
       });
     } 
+  },
+  //added a follow object THIS IS ACTUALLY A MESS ATM
+  Follow: (req,res) => {
+    //const postId = req.params.id;
+    const usersname = req.body.main //gets the main user (user who's friend list is created)
+    // console.log(req.param.id)
+    // console.log(req.body.friend)
+    // console.log(req.body.action)
+    // console.log(req.body.main)
+    const friend = req.body.friend; //get friend to add from the post req body
+    const action = req.body.action; //get action
+    if (action === 'Follow') {
+      //use addToSet because want unique values to be added only
+      User.updateOne({ username: usersname }, {$addToSet:{ friends: friend}}, function (error) {
+        if (error) {
+          res.send(error);
+          console.log(error)
+        } else {
+          console.log('Followed');
+        }
+      });
+    } else if (action === 'Unfollow') {
+      User.updateOne({ username: usersname }, { $pull: { friends: friend } }, function (error) {
+        if (error) {
+          res.send(error);
+        } else {
+          console.log('Unfollowed');
+        }
+      });
+    } 
+
   }
 };
 
