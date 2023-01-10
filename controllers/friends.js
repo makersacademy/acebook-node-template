@@ -3,8 +3,8 @@ const User = require("../models/user");
 
 const FriendsController = {
     Index: (req, res) => {
-      console.log(req.session.id)
-      User.find({username:'pass'}, { friends: 1 }, (err, friendsArray) => {
+      const user = req.session.user
+      User.find({username: user.username}, { friends: 1 }, (err, friendsArray) => {
       if (err) {
         throw err;
       }

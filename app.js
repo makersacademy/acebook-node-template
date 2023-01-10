@@ -59,7 +59,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
-app.use("/friends", friendsRouter)
+app.use("/friends", sessionChecker, friendsRouter) //added SC to check user is logged in
 
 //posts router to listen to a post request to the id/act
 app.use("/posts/:id/act", postsRouter)
