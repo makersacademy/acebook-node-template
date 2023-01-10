@@ -1,6 +1,7 @@
 <html>
 
 <head>
+
   <style>
     p {
       text-align: center;
@@ -56,6 +57,14 @@
       position: relative;
     }
 
+    <h1>Welcome </h1><h1 id="mainuser">{{user.username}}</h1>
+    {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is stored as an authenticator. This
+    can now allow use to use this value to show only posts for this user.
+    through the postcontroller, we need to make it so that the posts that are past to this route
+    use the user authentication aka req.session.user in it's post querying.
+    atm idk how to use mongodb querying :() --}}
+
+
     .love-button,
     .like-button,
     .fav-button {
@@ -99,6 +108,103 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
+
+
+  //updatePostStats is an object with a like/unlike function - 
+        var updatePostStats = {
+            Like: function (postId) {
+                document.querySelector('#likes-count-' + postId).textContent++;
+            },
+            Unlike: function(postId) {
+                document.querySelector('#likes-count-' + postId).textContent--;
+            }
+        }; 
+      //toggles the button
+        var toggleButtonText = {
+            Like: function(button) {
+                button.textContent = "Unlike";
+
+            },
+            Unlike: function(button) {
+                button.textContent = "Like";
+            }
+        };
+      //
+        var actOnPost = function (event) {
+            var postId = event.target.dataset.postId;
+            var action = event.target.textContent.trim(); //will either be like or unlike
+            toggleButtonText[action](event.target); //toggles the button to show the opposite
+            updatePostStats[action](postId);
+            axios.post('/posts/' + postId + '/act', { action: action });
+            }
+
+
+//implementation of love button
+        var updatePostStatsLove = {
+            Love: function (postId) {
+                document.querySelector('#loves-count-' + postId).textContent++;
+            },
+            Hate: function(postId) {
+                document.querySelector('#loves-count-' + postId).textContent--;
+            }
+        }; 
+      //toggles the button
+        var toggleButtonTextLove = {
+            Love: function(button) {
+                button.textContent = "Hate";
+
+            },
+            Hate: function(button) {
+                button.textContent = "Love";
+            }
+        };
+      //
+        var actOnPostLove = function (event) {
+            var postId = event.target.dataset.postId;
+            console.log(postId)
+            var action = event.target.textContent.trim(); //will either be like or unlike
+            toggleButtonTextLove[action](event.target); //toggles the button to show the opposite
+            updatePostStatsLove[action](postId);
+            axios.post('/posts/' + postId + '/love', { action: action });
+            }     
+
+
+         
+//Follow buttons functionality
+        {{!-- var updateFollows = {
+            Follow: function (userId) {
+                //const authorfollow = document.querySelector('#author-' + userId);
+            },
+            Unfollow: function(userId) {
+                //const authorunfollow = document.querySelector('#author-' + userId);
+            }
+        };  --}}
+
+
+        var toggleFollowText = {
+            Follow: function(button) {
+                button.textContent = "Unfollow";
+            },
+            Unfollow: function(button) {
+                button.textContent = "Follow";
+            }
+        }; 
+
+        var actFollow = function (event) {
+            //{{!-- var postId = event.target.dataset.postId; --}}
+            var userId = event.target.dataset.id; //gets userId from data-id
+            console.log(userId) 
+            var mainuser = document.getElementById('mainuser').innerHTML.trim() //gets the main username from the welcome page
+            console.log(mainuser)
+            var action = event.target.textContent.trim(); //will either be follow or unfollow
+            toggleFollowText[action](event.target); //toggles the button to show the opposite
+            //updateFollows[action](userId);
+            axios.post('/posts/' + userId + '/befriend', { action: action, friend: userId, main: mainuser }); //create a post route - this route is dodge
+            }     //params are passed into the req body through the curly braces as instance vars?
+
+</script>
+<head>
+
 
     //updatePostStats is an object with a like/unlike function - 
     var updatePostStats = {
@@ -205,6 +311,7 @@
     the item with likes count is given an idea which is also associated with posts.id --}}
     {{#each posts }}
     <div class="posts" style="margin-left: 50px">
+
       <div>
         <b>{{ this.message }}</b><br>
         <span id="author-{{ this.author }}"><small>{{ this.author }}</small></span>
@@ -215,6 +322,43 @@
       <div class="row" style="display: inline-block; margin-left: -20px;"></div>
       <span>&#x1F63B;</span>
       <span id="likes-count-{{ this.id }}">{{ this.likes }}</span>
+
+        <div>
+            <b>{{ this.message }}</b><br>
+            <span id="author-{{ this.author }}"><small>{{ this.author }}</small></span>
+            <button data-id="{{ this.author }}" onclick = "actFollow(event)" >Follow</button><br>
+            <small>{{ this.date }}</small>
+        </div>
+        {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
+            <div class="row" style="display: inline-block; margin-left: -20px;"></div>
+            <span>&#x1F63B;</span>
+            <span id="likes-count-{{ this.id }}">{{ this.likes }}</span>
+        </div>
+        {{!-- set the data-post-id as posts.id onto this button --}}
+            <button onclick="actOnPost(event);"
+                    data-post-id="{{ this.id }}" style="margin-left: 50px">Like
+            </button><br>
+      
+      {{!-- TODO LINK IT TO THE DB ; things to consider: borders and long posts--}}
+
+    </div>
+    
+        </div>
+        {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
+            <div class="row" style="display: inline-block; margin-left: 30px;"></div>
+            <span>&#128062;</span>
+            <span id="loves-count-{{ this.id }}">{{ this.loves }}</span>
+        </div>
+        {{!-- set the data-post-id as posts.id onto this button --}}
+            <br><button onclick="actOnPostLove(event);"
+                    data-post-id="{{ this.id }}" style="margin-left: 50px">Love
+            </button>
+    <form id="comment-form">
+  <input type="text" id="comment-input" placeholder="Enter your comment here">
+  <button type="submit">Submit</button>
+</form>
+
+
     </div>
     {{!-- set the data-post-id as posts.id onto this button --}}
     <button class="like-button" onclick="actOnPost(event);" data-post-id="{{ this.id }}" style="margin-left: 50px">Like
@@ -243,6 +387,7 @@
       style="height:80px; width:200px; display: inline-block; margin-left: 30px; <div style= border: 2px solid black; border-radius: 20px;">
     <button type="submit">Submit</button>
   </form>
+
 
 
 
@@ -280,6 +425,8 @@
   <br>
   <br>
 
+
+<a class="new-post-link" href="/posts/new">New post</a>
 </body>
 
 

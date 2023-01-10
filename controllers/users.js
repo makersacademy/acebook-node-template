@@ -4,7 +4,6 @@ const UsersController = {
   New: (req, res) => {
     res.render("users/new", {shownavbar:true});
   },
-
   Create: (req, res) => {
     const newuser = new User(req.body);
     const email = req.body.email
@@ -18,22 +17,17 @@ const UsersController = {
       if (err) {
         throw err;
       }
-      //res.status(201).redirect("/posts");
-      
         var accountCreated = true;
         res.render("home/index", {accountCreated})
     })}
-
     else
       {
         console.log('User already exists!')
         var usernameExists = true;
         res.render("home/index", {usernameExists})
       } 
-
   })}
-    //if user doesn't exist, save it
-      
+    //if user email and name doesn't exist, save it
     else
       {
         console.log('User already exists!')
@@ -42,6 +36,7 @@ const UsersController = {
       } 
   })
   }
-}
+  }
+
 
 module.exports = UsersController;
