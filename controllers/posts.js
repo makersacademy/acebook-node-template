@@ -3,13 +3,29 @@ const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
+    //do we only see posts from users that are friends?  yes
+    const user = req.session.user
+    const friendsList = user.friends
+    friendsList.push(user.username)
+    console.log(friendsList)
+    Post.find({author: {$in: friendsList}},(err, posts) => {
+      if (err) {
+        throw err;
+      }
+      posts = posts.sort((a,b) => b.date-a.date ) //sorts the posts by date order before rendering
+      res.render("posts/index", { posts: posts, shownavbar:true, user: user});
+    }); 
+  },
+  Explore: (req, res) => {
+    //page to see all posts make it happen
+    const user = req.session.user
     Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-      const user = req.session.user
       posts = posts.sort((a,b) => b.date-a.date ) //sorts the posts by date order before rendering
-      res.render("posts/index", { posts: posts, shownavbar:true, user: user});
+      console.log(posts)
+      res.render("posts/explore", { posts: posts, shownavbar:true, user: user});
     }); 
   },
 
