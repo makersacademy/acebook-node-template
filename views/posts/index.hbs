@@ -1,31 +1,20 @@
 <html>
 <head>
-    <h1>Welcome </h1><h1 id="mainuser">{{user.username}}</h1>
+    {{!-- <h1 id="mainuser">{{user.username}}</h1> --}}
     {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is stored as an authenticator. This
     can now allow use to use this value to show only posts for this user.
     through the postcontroller, we need to make it so that the posts that are past to this route
     use the user authentication aka req.session.user in it's post querying.
     atm idk how to use mongodb querying :() --}}
-<style>
-    p {
-      text-align: center;
-    }
-    h {
-      text-align: center;
-    }
-  </style>
+
   <div class="profile">
     <img src="https://visualpharm.com/assets/422/Cat%20Profile-595b40b65ba036ed117d3d6b.svg" alt="User">
     <span class="author"></span>
-    <h1>
+    <h1 style="display:none;" id="mainuser">{{user.username}}</h1>
       <p style="font-size:40px">Welcome {{user.username}}
       </p>
     </h1>
   </div>
-  {{!-- <h1>
-    <p style="font-size:40px">Welcome {{user.username}}
-    </p>
-  </h1> --}}
   <br>
   {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is
   stored as an authenticator. This
@@ -48,15 +37,11 @@
       padding: 10px;
       position: relative;
     }
-    <h1>Welcome </h1><h1 id="mainuser">{{user.username}}</h1>
-    {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is stored as an authenticator. This
-    can now allow use to use this value to show only posts for this user.
-    through the postcontroller, we need to make it so that the posts that are past to this route
-    use the user authentication aka req.session.user in it's post querying.
-    atm idk how to use mongodb querying :() --}}
+
     .love-button,
     .like-button,
-    .fav-button {
+    .fav-button,
+    .submit-button {
       border: none;
       height: 30px;
       width: 60px;
@@ -83,6 +68,9 @@
       height: 50px;
       margin-right: 10px;
     }
+
+  
+
   </style>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -180,8 +168,8 @@
     <div class="posts" style="margin-left: 50px">
         <div>
             <b>{{ this.message }}</b><br>
-            <span id="author-{{ this.author }}"><small>{{ this.author }}</small></span>
-            <button data-id="{{ this.author }}" onclick = "actFollow(event)" >Follow</button><br>
+            <span id="author-{{ this.author }}"><h3>{{ this.author }}</h3></span>
+            <button data-id="{{ this.author }}" class="fav-button" onclick = "actFollow(event)" >Follow</button><br>
             <small>{{ this.date }}</small>
         </div>
         {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
@@ -191,7 +179,7 @@
         </div>
         {{!-- set the data-post-id as posts.id onto this button --}}
             <button onclick="actOnPost(event);"
-                    data-post-id="{{ this.id }}" style="margin-left: 50px">Like
+                    data-post-id="{{ this.id }}" class="like-button" style="margin-left: 50px">Like
             </button><br>
         </div>
         </div>
@@ -202,11 +190,11 @@
         </div>
         {{!-- set the data-post-id as posts.id onto this button --}}
             <br><button onclick="actOnPostLove(event);"
-                    data-post-id="{{ this.id }}" style="margin-left: 50px">Love
-            </button>
-    <form id="comment-form">
+                    data-post-id="{{ this.id }}" class="love-button" style="margin-left: 50px">Love
+            </button><br>
+    <br><form id="comment-form">
   <input style="height:80px; width:200px; display: inline-block; margin-left: 30px; <div style= border: 2px solid black; border-radius: 20px;" type="text" id="comment-input" placeholder="Enter your comment here">
-  <button type="submit">Submit</button>
+  <button class="submit-button" type="submit">Submit</button>
 </form>
 
     </div>
