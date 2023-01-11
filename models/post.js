@@ -6,7 +6,8 @@ const PostSchema = new mongoose.Schema({
   author: {type:String, required:true}, //required true means it is needed when a post is created, we can then pass an objecrt including user info to the new post initialisation.
   likes: { type: Number, default: 0 },
   loves: { type: Number, default: 0 },
-  date: { type: Date, default:Date.now }
+  date: { type: Date, default:Date.now },
+  comments: {type: [String], default: []}
 });
 
 

@@ -1,18 +1,20 @@
 <html>
+
 <head>
-    {{!-- <h1 id="mainuser">{{user.username}}</h1> --}}
-    {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is stored as an authenticator. This
-    can now allow use to use this value to show only posts for this user.
-    through the postcontroller, we need to make it so that the posts that are past to this route
-    use the user authentication aka req.session.user in it's post querying.
-    atm idk how to use mongodb querying :() --}}
+  {{!-- <h1 id="mainuser">{{user.username}}</h1> --}}
+  {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is
+  stored as an authenticator. This
+  can now allow use to use this value to show only posts for this user.
+  through the postcontroller, we need to make it so that the posts that are past to this route
+  use the user authentication aka req.session.user in it's post querying.
+  atm idk how to use mongodb querying :() --}}
 
   <div class="profile">
     <img src="https://visualpharm.com/assets/422/Cat%20Profile-595b40b65ba036ed117d3d6b.svg" alt="User">
     <span class="author"></span>
     <h1 style="display:none;" id="mainuser">{{user.username}}</h1>
-      <p style="font-size:40px">Welcome {{user.username}}
-      </p>
+    <p style="font-size:40px">Welcome {{user.username}}
+    </p>
     </h1>
   </div>
   <br>
@@ -27,12 +29,14 @@
       padding: 0;
       margin: 0;
     }
+
     .main-div {
       height: 100vh;
       display: flex;
       justify-content: left;
       align-items: left;
     }
+
     .button-div {
       padding: 10px;
       position: relative;
@@ -54,157 +58,176 @@
       justify-content: center;
       align-items: center;
     }
+
     .love-button i,
     .like-button i,
     .fav-button i {
       position: relative;
       left: 70px;
     }
+
     .profile {
       display: flex
     }
+
     img {
       width: 50px;
       height: 50px;
       margin-right: 10px;
     }
-
-  
-
   </style>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
-  //updatePostStats is an object with a like/unlike function - 
-        var updatePostStats = {
-            Like: function (postId) {
-                document.querySelector('#likes-count-' + postId).textContent++;
-            },
-            Unlike: function(postId) {
-                document.querySelector('#likes-count-' + postId).textContent--;
-            }
-        }; 
-      //toggles the button
-        var toggleButtonText = {
-            Like: function(button) {
-                button.textContent = "Unlike";
+    //updatePostStats is an object with a like/unlike function - 
+    var updatePostStats = {
+      Like: function (postId) {
+        document.querySelector('#likes-count-' + postId).textContent++;
+      },
+      Unlike: function (postId) {
+        document.querySelector('#likes-count-' + postId).textContent--;
+      }
+    };
+    //toggles the button
+    var toggleButtonText = {
+      Like: function (button) {
+        button.textContent = "Unlike";
 
-            },
-            Unlike: function(button) {
-                button.textContent = "Like";
-            }
-        };
-      //
-        var actOnPost = function (event) {
-            var postId = event.target.dataset.postId;
-            var action = event.target.textContent.trim(); //will either be like or unlike
-            toggleButtonText[action](event.target); //toggles the button to show the opposite
-            updatePostStats[action](postId);
-            axios.post('/posts/' + postId + '/act', { action: action });
-            }
+      },
+      Unlike: function (button) {
+        button.textContent = "Like";
+      }
+    };
+    //
+    var actOnPost = function (event) {
+      var postId = event.target.dataset.postId;
+      var action = event.target.textContent.trim(); //will either be like or unlike
+      toggleButtonText[action](event.target); //toggles the button to show the opposite
+      updatePostStats[action](postId);
+      axios.post('/posts/' + postId + '/act', { action: action });
+    }
 
 
-//implementation of love button
-        var updatePostStatsLove = {
-            Love: function (postId) {
-                document.querySelector('#loves-count-' + postId).textContent++;
-            },
-            Hate: function(postId) {
-                document.querySelector('#loves-count-' + postId).textContent--;
-            }
-        }; 
-      //toggles the button
-        var toggleButtonTextLove = {
-            Love: function(button) {
-                button.textContent = "Hate";
+    //implementation of love button
+    var updatePostStatsLove = {
+      Love: function (postId) {
+        document.querySelector('#loves-count-' + postId).textContent++;
+      },
+      Hate: function (postId) {
+        document.querySelector('#loves-count-' + postId).textContent--;
+      }
+    };
+    //toggles the button
+    var toggleButtonTextLove = {
+      Love: function (button) {
+        button.textContent = "Hate";
 
-            },
-            Hate: function(button) {
-                button.textContent = "Love";
-            }
-        };
-      //
-        var actOnPostLove = function (event) {
-            var postId = event.target.dataset.postId;
-            console.log(postId)
-            var action = event.target.textContent.trim(); //will either be like or unlike
-            toggleButtonTextLove[action](event.target); //toggles the button to show the opposite
-            updatePostStatsLove[action](postId);
-            axios.post('/posts/' + postId + '/love', { action: action });
-            }     
+      },
+      Hate: function (button) {
+        button.textContent = "Love";
+      }
+    };
+    //
+    var actOnPostLove = function (event) {
+      var postId = event.target.dataset.postId;
+      console.log(postId)
+      var action = event.target.textContent.trim(); //will either be like or unlike
+      toggleButtonTextLove[action](event.target); //toggles the button to show the opposite
+      updatePostStatsLove[action](postId);
+      axios.post('/posts/' + postId + '/love', { action: action });
+    }
 
-         
-//Follow buttons functionality
 
-        var toggleFollowText = {
-            Follow: function(button) {
-                button.textContent = "Followed";
-                button.disabled = true;
-            }
-        }; 
+    //Follow buttons functionality
 
-        var actFollow = function (event) {
-            //{{!-- var postId = event.target.dataset.postId; --}}
-            var userId = event.target.dataset.id; //gets userId from data-id
-            //console.log(userId) 
-            var mainuser = document.getElementById('mainuser').innerHTML.trim() //gets the main username from the welcome page
-            //console.log(mainuser)
-            toggleFollowText["Follow"](event.target); //toggles the button to show the opposite
-            axios.post('/posts/' + userId + '/befriend', { action: "Follow", friend: userId, main: mainuser }); //create a post route - this route is dodge
-            }     //params are passed into the req body through the curly braces as instance vars?
+    var toggleFollowText = {
+      Follow: function (button) {
+        button.textContent = "Followed";
+        button.disabled = true;
+      }
+    };
 
-</script>
+    var actFollow = function (event) {
+      //{{!-- var postId = event.target.dataset.postId; --}}
+      var userId = event.target.dataset.id; //gets userId from data-id
+      //console.log(userId) 
+      var mainuser = document.getElementById('mainuser').innerHTML.trim() //gets the main username from the welcome page
+      //console.log(mainuser)
+      toggleFollowText["Follow"](event.target); //toggles the button to show the opposite
+      axios.post('/posts/' + userId + '/befriend', { action: "Follow", friend: userId, main: mainuser }); //create a post route - this route is dodge
+    }     //params are passed into the req body through the curly braces as instance vars?
+
+  </script>
 
 
 <body>
 
- <div class="container-fluid text-center">
- {{!-- for each of the posts array, the message and date is posted and a button 
- rendered - the button has a onclick method that runs a method from the script, 
- each button has a data-post-id attached in which the posts.id is attached to.
- the item with likes count is given an idea which is also associated with posts.id  --}}
-{{#each posts }}
+  <div class="container-fluid text-center">
+    {{!-- for each of the posts array, the message and date is posted and a button
+    rendered - the button has a onclick method that runs a method from the script,
+    each button has a data-post-id attached in which the posts.id is attached to.
+    the item with likes count is given an idea which is also associated with posts.id --}}
+    {{#each posts }}
     <div class="posts" style="margin-left: 50px">
-        <div>
-            <b>{{ this.message }}</b><br>
-            <span id="author-{{ this.author }}"><h3>{{ this.author }}</h3></span>
-            <button data-id="{{ this.author }}" class="fav-button" onclick = "actFollow(event)" >Follow</button><br>
-            <small>{{ this.date }}</small>
-        </div>
-        {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
-            <div class="row" style="display: inline-block; margin-left: -20px;"></div>
-            <span>&#x1F63B;</span>
-            <span id="likes-count-{{ this.id }}">{{ this.likes }}</span>
-        </div>
-        {{!-- set the data-post-id as posts.id onto this button --}}
-            <button onclick="actOnPost(event);"
-                    data-post-id="{{ this.id }}" class="like-button" style="margin-left: 50px">Like
-            </button><br>
-        </div>
-        </div>
-        {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
-            <div class="row" style="display: inline-block; margin-left: 30px;"></div>
-            <span>&#128062;</span>
-            <span id="loves-count-{{ this.id }}">{{ this.loves }}</span>
-        </div>
-        {{!-- set the data-post-id as posts.id onto this button --}}
-            <br><button onclick="actOnPostLove(event);"
-                    data-post-id="{{ this.id }}" class="love-button" style="margin-left: 50px">Love
-            </button><br>
-    <br><form id="comment-form">
-  <input style="height:80px; width:200px; display: inline-block; margin-left: 30px; <div style= border: 2px solid black; border-radius: 20px;" type="text" id="comment-input" placeholder="Enter your comment here">
-  <button class="submit-button" type="submit">Submit</button>
-</form>
+      <div>
+        <b>{{ this.message }}</b><br>
+        <span id="author-{{ this.author }}">
+          <h3>{{ this.author }}</h3>
+        </span>
+        <button data-id="{{ this.author }}" class="fav-button" onclick="actFollow(event)">Follow</button><br>
+        <small>{{ this.date }}</small>
+      </div>
+      {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
+      <div class="row" style="display: inline-block; margin-left: -20px;"></div>
+      <span>&#x1F63B;</span>
+      <span id="likes-count-{{ this.id }}">{{ this.likes }}</span>
 
-    </div>
-    
-{{/each}}
+      <span style="margin-left:30px">&#128062;</span>
+      <span id="loves-count-{{ this.id }}">{{ this.loves }}</span>
 
+  </div>
+  {{!-- set the data-post-id as posts.id onto this button --}}
+
+  <div id="button-div">
+    <button style="display:inline" onclick="actOnPost(event);" data-post-id="{{ this.id }}" class="like-button"
+      style="margin-left: 50px">Like
+    </button>
+    <button style="display:inline" onclick="actOnPostLove(event);" data-post-id="{{ this.id }}" class="love-button"
+      style="margin-left: 50px">Love
+    </button><br>
+  </div>
+  </div>
+  </div>
+  {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
+  {{!-- set the data-post-id as posts.id onto this button --}}
+
+<div id="post-comments">
+
+    {{#each this.comments}}
+    {{this}}
+    <br>
+    {{/each}}
 </div>
+  <br>
+  <form id="comment-form" method="post" action="/posts/{{ this.id }}/comment">
+    <input
+      style="height:80px; width:200px; display: inline-block; margin-left: 30px; <div style= border: 2px solid black; border-radius: 20px;"
+      type="text" id="comment-" +{{ this.id }} name="comment" placeholder="Enter your comment here">
 
-    
+    <button class="submit-button" type="submit">Submit</button>
+  </form>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+  </div>
+  
+
+  {{/each}}
+
+  </div>
+
+
+
+  <a class="new-post-link" href="/posts/new">New post</a>
 </body>
+
 </html>
