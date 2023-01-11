@@ -1,7 +1,7 @@
-{{!-- <h1 class="title">{{title}}</h1> --}}
-<p>Welcome to Acebook</p>
+<p>Welcome to Acebook purr</p>
 <br>
-
+<div style="border: 2px solid black; border-radius: 20px; width: 300px">
+<br>
 <form id="new-session-form" action="/sessions" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
@@ -11,12 +11,12 @@
   {{#if accountCreated}}
   Account Created! Please sign in.
   {{/if}}
-  {{#if emailExists}} 
-  Email already exists! <br> 
+  {{#if emailExists}}
+  Email already exists! <br>
   Please try to log in, or try to sign up with a different email.
   {{/if}}
-  {{#if usernameExists}} 
-  Username already exists! <br> 
+  {{#if usernameExists}}
+  Username already exists! <br>
   Please try to log in, or try to sign up with a different username.
   {{/if}}
   {{#if wronguser}}
@@ -29,16 +29,12 @@
   {{!-- password and user prompts for incorrect --}}
   <br>
   <br> <input id="submit" type="submit" value="Submit">
-
-
 </form> <br>
-
 <form id="new-session-form" action="/users/new" method="get">
 <input id="submit" type="submit" value="Sign up">
 </form> <br>
-
 {{!-- currently doesn't work needs to have a new route added with a form --}}
 <form id="new-session-form" action="/sessions" method="post">
 <input id="submit" type="submit" value="Forgot password">
-</form>
-
+</form><br>
+</div>
