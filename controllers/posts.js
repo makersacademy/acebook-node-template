@@ -7,7 +7,6 @@ const PostsController = {
     const user = req.session.user
     const friendsList = user.friends
     friendsList.push(user.username)
-    console.log(friendsList)
     Post.find({author: {$in: friendsList}},(err, posts) => {
       if (err) {
         throw err;
@@ -24,7 +23,6 @@ const PostsController = {
         throw err;
       }
       posts = posts.sort((a,b) => b.date-a.date ) //sorts the posts by date order before rendering
-      console.log(posts)
       res.render("posts/explore", { posts: posts, shownavbar:true, user: user});
     }); 
   },

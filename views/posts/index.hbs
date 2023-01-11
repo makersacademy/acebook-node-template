@@ -6,6 +6,84 @@
     through the postcontroller, we need to make it so that the posts that are past to this route
     use the user authentication aka req.session.user in it's post querying.
     atm idk how to use mongodb querying :() --}}
+<style>
+    p {
+      text-align: center;
+    }
+    h {
+      text-align: center;
+    }
+  </style>
+  <div class="profile">
+    <img src="https://visualpharm.com/assets/422/Cat%20Profile-595b40b65ba036ed117d3d6b.svg" alt="User">
+    <span class="author"></span>
+    <h1>
+      <p style="font-size:40px">Welcome {{user.username}}
+      </p>
+    </h1>
+  </div>
+  {{!-- <h1>
+    <p style="font-size:40px">Welcome {{user.username}}
+    </p>
+  </h1> --}}
+  <br>
+  {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is
+  stored as an authenticator. This
+  can now allow use to use this value to show only posts for this user.
+  through the postcontroller, we need to make it so that the posts that are past to this route
+  use the user authentication aka req.session.user in it's post querying.
+  atm idk how to use mongodb querying :() --}}
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .main-div {
+      height: 100vh;
+      display: flex;
+      justify-content: left;
+      align-items: left;
+    }
+    .button-div {
+      padding: 10px;
+      position: relative;
+    }
+    <h1>Welcome </h1><h1 id="mainuser">{{user.username}}</h1>
+    {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is stored as an authenticator. This
+    can now allow use to use this value to show only posts for this user.
+    through the postcontroller, we need to make it so that the posts that are past to this route
+    use the user authentication aka req.session.user in it's post querying.
+    atm idk how to use mongodb querying :() --}}
+    .love-button,
+    .like-button,
+    .fav-button {
+      border: none;
+      height: 30px;
+      width: 60px;
+      font-size: 15px;
+      background-color: #000;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline;
+      justify-content: center;
+      align-items: center;
+    }
+    .love-button i,
+    .like-button i,
+    .fav-button i {
+      position: relative;
+      left: 70px;
+    }
+    .profile {
+      display: flex
+    }
+    img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+  </style>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -127,7 +205,7 @@
                     data-post-id="{{ this.id }}" style="margin-left: 50px">Love
             </button>
     <form id="comment-form">
-  <input type="text" id="comment-input" placeholder="Enter your comment here">
+  <input style="height:80px; width:200px; display: inline-block; margin-left: 30px; <div style= border: 2px solid black; border-radius: 20px;" type="text" id="comment-input" placeholder="Enter your comment here">
   <button type="submit">Submit</button>
 </form>
 

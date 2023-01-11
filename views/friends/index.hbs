@@ -12,7 +12,6 @@
                 button.disabled = true;
             }
         }; 
-
         var unfollow = function (event) {
             var userId = event.target.dataset.id; //gets userId from data-id
             console.log(userId) 
@@ -21,7 +20,6 @@
             toggleUnfollowText["Unfollow"](event.target); //toggles the button to show the opposite
             axios.post('/posts/' + userId + '/befriend', { action: "Unfollow", friend: userId, main: mainuser }); //create a post route - this route is dodge
             }     //params are passed into the req body through the curly braces as instance vars?
-
 </script>
 </head>
 
