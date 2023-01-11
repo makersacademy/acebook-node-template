@@ -10,7 +10,7 @@ const FriendsController = {
       }
       //console.log(friendsArray[0].friends) - the find returns a list of objects which includes ids as well 
       //list of friends to be sent as an argument - this needs usercontroller and a method to list it
-      res.render("friends/index", { title: "Furrends", shownavbar:true, friendslist:friendsArray[0].friends });
+      res.render("friends/index", { title: "Furrends", shownavbar:true, friendslist:friendsArray[0].friends, user:user });
     })
   }
 }

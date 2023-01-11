@@ -68,28 +68,44 @@
             axios.post('/posts/' + postId + '/love', { action: action });
             }     
 
+
          
 //Follow buttons functionality
+        {{!-- var updateFollows = {
+            Follow: function (userId) {
+                //const authorfollow = document.querySelector('#author-' + userId);
+            },
+            Unfollow: function(userId) {
+                //const authorunfollow = document.querySelector('#author-' + userId);
+            }
+        };  --}}
+
 
         var toggleFollowText = {
             Follow: function(button) {
-                button.textContent = "Followed";
-                button.disabled = true;
+                button.textContent = "Unfollow";
+            },
+            Unfollow: function(button) {
+                button.textContent = "Follow";
             }
         }; 
 
         var actFollow = function (event) {
             //{{!-- var postId = event.target.dataset.postId; --}}
             var userId = event.target.dataset.id; //gets userId from data-id
-            //console.log(userId) 
+            console.log(userId) 
             var mainuser = document.getElementById('mainuser').innerHTML.trim() //gets the main username from the welcome page
-            //console.log(mainuser)
-            toggleFollowText["Follow"](event.target); //toggles the button to show the opposite
-            axios.post('/posts/' + userId + '/befriend', { action: "Follow", friend: userId, main: mainuser }); //create a post route - this route is dodge
+            console.log(mainuser)
+            var action = event.target.textContent.trim(); //will either be follow or unfollow
+            toggleFollowText[action](event.target); //toggles the button to show the opposite
+            //updateFollows[action](userId);
+            axios.post('/posts/' + userId + '/befriend', { action: action, friend: userId, main: mainuser }); //create a post route - this route is dodge
             }     //params are passed into the req body through the curly braces as instance vars?
 
 </script>
+<head>
 
+</head>
 
 <body>
 
@@ -115,7 +131,11 @@
             <button onclick="actOnPost(event);"
                     data-post-id="{{ this.id }}" style="margin-left: 50px">Like
             </button><br>
-        </div>
+      
+      {{!-- TODO LINK IT TO THE DB ; things to consider: borders and long posts--}}
+
+    </div>
+    
         </div>
         {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
             <div class="row" style="display: inline-block; margin-left: 30px;"></div>
@@ -138,7 +158,5 @@
 </div>
 
     
-
-<a class="new-post-link" href="/posts/new">New post</a>
 </body>
 </html>

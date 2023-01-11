@@ -2,14 +2,36 @@
 
 
 <head>
-<h1> Furrends </h1>
+<h1> Furrends of</h1>
+<h1 id="mainuser">{{user.username}} </h1>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+        var toggleUnfollowText = {
+            Unfollow: function(button) {
+                button.textContent = "Unfollowed";
+                button.disabled = true;
+            }
+        }; 
+
+        var unfollow = function (event) {
+            var userId = event.target.dataset.id; //gets userId from data-id
+            console.log(userId) 
+            var mainuser = document.getElementById('mainuser').innerHTML.trim() //gets the main username from the welcome page
+            //console.log(mainuser)
+            toggleUnfollowText["Unfollow"](event.target); //toggles the button to show the opposite
+            axios.post('/posts/' + userId + '/befriend', { action: "Unfollow", friend: userId, main: mainuser }); //create a post route - this route is dodge
+            }     //params are passed into the req body through the curly braces as instance vars?
+
+</script>
 </head>
 
 <body>
 {{!-- loop through the friends list array and print each one to the screen --}}
 {{#each friendslist }}  
-<div>
-    {{this}} <br>
+<div style="display: flex">
+   <p id='user'+{{this}}> {{this}} </p> 
+   <button data-id={{this}} onclick="unfollow(event)">Unfollow</button>
+    <br>
 </div>
 
 {{/each}}
