@@ -13,5 +13,7 @@ router.post('/:id/love', PostsController.Love);
 
 //add a friend to follow
 router.post('/:id/befriend', PostsController.Follow);
+// submit is a comment
+router.post('/:id/comment', PostsController.Comment);
 
 module.exports = router;

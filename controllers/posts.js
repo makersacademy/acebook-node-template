@@ -8,6 +8,7 @@ const PostsController = {
     const friendsList = user.friends
     friendsList.push(user.username)
     Post.find({author: {$in: friendsList}},(err, posts) => {
+      
       if (err) {
         throw err;
       }
@@ -119,9 +120,29 @@ const PostsController = {
       });
     } 
 
-  }
-};
+}
+,
+  Comment: (req, res) => {
 
+    // const usersname = req.body.main //gets the main user (user who's friend list is created)
+    // const friend = req.body.friend; //get friend to add from the post req body
+    // const action = req.body.action; //get action
+      const postId = req.params.id
+      const comment = req.body.comment
+      const commenter = "Steve"
+      console.log(commenter)
+      Post.updateOne({ _id: postId }, {$push:({ comments: comment, user: commenter })}, function 
+      (error) {
+        if (error) {
+          res.send(error);
+          console.log(error)
+       }
+       
+      });
+      console.log("bye")
+      res.status(201).redirect("/posts");
+    }
+};
 
 
 module.exports = PostsController;
