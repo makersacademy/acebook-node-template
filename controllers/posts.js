@@ -120,8 +120,7 @@ const PostsController = {
       });
     } 
 
-}
-,
+},
   Comment: (req, res) => {
 
     // const usersname = req.body.main //gets the main user (user who's friend list is created)
@@ -129,9 +128,9 @@ const PostsController = {
     // const action = req.body.action; //get action
       const postId = req.params.id
       const comment = req.body.comment
-      const commenter = "Steve"
-      console.log(commenter)
-      Post.updateOne({ _id: postId }, {$push:({ comments: comment, user: commenter })}, function 
+      const commenter = req.session.user.username
+      const commentObject = {comment:comment, user:commenter}
+      Post.updateOne({ _id: postId }, {$push: {comments:commentObject}}, {new:true}, function 
       (error) {
         if (error) {
           res.send(error);
@@ -139,7 +138,6 @@ const PostsController = {
        }
        
       });
-      console.log("bye")
       res.status(201).redirect("/posts");
     }
 };

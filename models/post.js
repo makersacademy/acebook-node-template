@@ -7,7 +7,11 @@ const PostSchema = new mongoose.Schema({
   likes: { type: Number, default: 0 },
   loves: { type: Number, default: 0 },
   date: { type: Date, default:Date.now },
-  comments: {type: [String], default: []}
+  comments: [{
+    date: { type: Date, default: Date.now },
+    comment: {type: String},
+    user: {type:String}
+}]
 });
 
 

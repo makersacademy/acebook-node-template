@@ -25,7 +25,7 @@
 
 <body>
 {{!-- loop through the friends list array and print each one to the screen --}}
-{{#each friendslist }}  
+{{#each friendslist.friends }}  
 <div style="display: flex">
    <p id='user'+{{this}}> {{this}} </p> 
    <button data-id={{this}} onclick="unfollow(event)">Unfollow</button>
