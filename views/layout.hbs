@@ -3,11 +3,14 @@
 <html>
 
 <head>
+
   <title>Catbook</title>
-  <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico">
+  <link rel="shortcut icon" type="image/jpg" href="/images/favicon.ico">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
 <body>
+  
   <div class="container" >
     <div class="cat">
       <div class="face">
@@ -42,12 +45,15 @@
 <style>
   nav {
     width: 180px;
-    background: rgb(245, 241, 244);
+    background: rgb(255, 255, 255);
     color: rgba(8, 8, 8, 0.87);
     -webkit-clip-path: circle(24px at 30px 24px);
     clip-path: circle(24px at 32px 24px);
     -webkit-transition: -webkit-clip-path 0.5625s, clip-path 0.375s;
     transition: -webkit-clip-path 0.5625s, clip-path 0.375s;
+    position:absolute;
+    top:34px;
+    left:600px;
   }
 
   nav:hover {
@@ -111,47 +117,54 @@
   .navicon div:after {
     top: 7px;
   }
+
+   #banner{
+    position:relative;
+    top:-35px;
+    left:0px;
+}
+
+#pawburger{
+  position:absolute;
+  width:35%;
+  height:35%;
+  z-index: 1;
+  top:-9.5px;
+  left:0px;
+}
+#headers{
+  object-fit: contain;
+}
 </style>
 </head>
-{{!-- <title>{{title}}</title> --}}
 
 <body>
   
-  <h1 style="text-align:center"> Catbook </h1>
-  <p>
-    {{pagename}}
-  </p>
+
+
+<div id="headers">
+  <div style="display:inline-block">
+        <div id="banner" style="display:inline-block">
+    <img src="/images/Catbook.gif" alt="Welcome To Catbook">
 
   {{#if shownavbar}}
   <nav> 
     <div class="navicon">
-      <div></div>
+    <img src="/images/paw.jpg"  id="pawburger" alt="=">
     </div>
-    
     <a href="/posts">Home</a>
     <a href="/friends">Friends</a>
     <a href="/posts/explore">Explore posts</a>
     <a href="/">Logout</a>
+    </div>
+    </nav>
+    {{/if}}
+  </div>
+   {{{body}}}
 
-  </nav>
-  {{/if}}
-</body>
-
-</html>
 
 
-<html>
-
-<head>
-  <title>{{title}}</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-  {{!-- <form action='/sessions?_method=DELETE' method='POST'>
-    <input type="submit" value="Home">
-  </form> --}}
-  {{{body}}}
+  </div>
 
 </body>
 

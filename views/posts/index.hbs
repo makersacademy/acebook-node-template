@@ -1,29 +1,7 @@
 <html>
 
 <head>
-  {{!-- <h1 id="mainuser">{{user.username}}</h1> --}}
-  {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is
-  stored as an authenticator. This
-  can now allow use to use this value to show only posts for this user.
-  through the postcontroller, we need to make it so that the posts that are past to this route
-  use the user authentication aka req.session.user in it's post querying.
-  atm idk how to use mongodb querying :() --}}
 
-  <div class="profile">
-    <img src="https://visualpharm.com/assets/422/Cat%20Profile-595b40b65ba036ed117d3d6b.svg" alt="User">
-    <span class="author"></span>
-    <h1 style="display:none;" id="mainuser">{{user.username}}</h1>
-    <p style="font-size:40px">Welcome {{user.username}}
-    </p>
-    </h1>
-  </div>
-  <br>
-  {{!-- to get the email to display - the session is passed to the rendered page via {{req.session.user}} which is
-  stored as an authenticator. This
-  can now allow use to use this value to show only posts for this user.
-  through the postcontroller, we need to make it so that the posts that are past to this route
-  use the user authentication aka req.session.user in it's post querying.
-  atm idk how to use mongodb querying :() --}}
   <style>
     * {
       padding: 0;
@@ -70,7 +48,7 @@
       display: flex
     }
 
-    img {
+    .usericon {
       width: 50px;
       height: 50px;
       margin-right: 10px;
@@ -107,7 +85,6 @@
       updatePostStats[action](postId);
       axios.post('/posts/' + postId + '/act', { action: action });
     }
-
 
     //implementation of love button
     var updatePostStatsLove = {
@@ -160,8 +137,17 @@
 
   </script>
 
-
+</head>
 <body>
+  <div>
+    <div class="profile">
+    <img id="usericon" src="https://visualpharm.com/assets/422/Cat%20Profile-595b40b65ba036ed117d3d6b.svg" alt="User">
+    <span class="author"></span>
+    <h1 style="display:none;" id="mainuser">{{user.username}}</h1>
+    <p style="font-size:40px">Welcome {{user.username}}
+    </p>
+  </div>
+  <br>
 
   <div class="container-fluid text-center">
     {{!-- for each of the posts array, the message and date is posted and a button
@@ -203,9 +189,9 @@
   {{!-- set the data-post-id as posts.id onto this button --}}
 
 <div id="post-comments">
-
+  <h5> Comments </h5>
     {{#each this.comments}}
-    {{this}}
+    "{{this.comment}}" - <small>{{this.user}}, {{this.date}}</small>
     <br>
     {{/each}}
 </div>

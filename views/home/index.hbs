@@ -1,4 +1,11 @@
-<p>Welcome to Acebook purr</p>
+<html>
+
+<head>
+
+</head>
+
+<body>
+<p>You've been logged out, please log in to continue.</p>
 <br>
 <div style="border: 2px solid black; border-radius: 20px; width: 300px">
 <br>
@@ -9,7 +16,7 @@
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value=""> <br> <br>
   {{#if accountCreated}}
-  Account Created! Please sign in.
+  Account created! Please sign in.
   {{/if}}
   {{#if emailExists}}
   Email already exists! <br>
@@ -38,3 +45,6 @@
 <input id="submit" type="submit" value="Forgot password">
 </form><br>
 </div>
+
+</body>
+</html>
