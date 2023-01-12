@@ -48,7 +48,7 @@
       display: flex
     }
 
-    .usericon {
+    #usericon {
       width: 50px;
       height: 50px;
       margin-right: 10px;
@@ -138,63 +138,83 @@
   </script>
 
 </head>
+
 <body>
   <div>
     <div class="profile">
-    <img id="usericon" src="https://visualpharm.com/assets/422/Cat%20Profile-595b40b65ba036ed117d3d6b.svg" alt="User">
-    <span class="author"></span>
-    <h1 style="display:none;" id="mainuser">{{user.username}}</h1>
-    <p style="font-size:40px">Welcome {{user.username}}
-    </p>
-  </div>
-  <br>
+      {{#if user.profilepic }}
+      <img src="{{user.profilepic}}" width="50" height="50">
+      {{else}}
+      <img id="usericon" src="https://visualpharm.com/assets/422/Cat%20Profile-595b40b65ba036ed117d3d6b.svg" alt="User">
+      {{/if}}
+      <span class="author"></span>
+      <h1 style="display:none;" id="mainuser">{{user.username}}</h1>
+      <p style="font-size:40px">Welcome {{user.username}}
+      </p>
+    </div>
+    <br>
 
-  <div class="container-fluid text-center">
-    {{!-- for each of the posts array, the message and date is posted and a button
-    rendered - the button has a onclick method that runs a method from the script,
-    each button has a data-post-id attached in which the posts.id is attached to.
-    the item with likes count is given an idea which is also associated with posts.id --}}
-    {{#each posts }}
-    <div class="posts" style="margin-left: 50px">
-      <div>
-        <b>{{ this.message }}</b><br>
-        <span id="author-{{ this.author }}">
-          <h3>{{ this.author }}</h3>
-        </span>
-        <button data-id="{{ this.author }}" class="fav-button" onclick="actFollow(event)">Follow</button><br>
-        <small>{{ this.date }}</small>
+    <div class="container-fluid text-center">
+      {{!-- for each of the posts array, the message and date is posted and a button
+      rendered - the button has a onclick method that runs a method from the script,
+      each button has a data-post-id attached in which the posts.id is attached to.
+      the item with likes count is given an idea which is also associated with posts.id --}}
+      {{#each posts }}
+
+      <div class="posts" style="margin-left: 50px">
+        <div>
+          <b>{{ this.message }}</b><br>
+          <div class="photoURL">
+
+            {{#if this.image }}
+            <img src="{{this.image}}" width="100" height="100" alt="image not found!">
+            {{else}}
+            <p></p>
+            {{/if}}
+
+          </div>
+          <span id="author-{{ this.author }}">
+            <h3>{{ this.author }}</h3>
+            {{!-- {{#if }}
+            <img src="{{this.}}" width="100" height="100" alt="image not found!">
+            {{else}}
+            <p></p>
+            {{/if}} --}}
+          </span>
+          <button data-id="{{ this.author }}" class="fav-button" onclick="actFollow(event)">Follow</button><br>
+          <small>{{ this.date }}</small>
+        </div>
+        {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
+        <div class="row" style="display: inline-block; margin-left: -20px;"></div>
+        <span>&#x1F63B;</span>
+        <span id="likes-count-{{ this.id }}">{{ this.likes }}</span>
+
+        <span style="margin-left:30px">&#128062;</span>
+        <span id="loves-count-{{ this.id }}">{{ this.loves }}</span>
+
       </div>
-      {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
-      <div class="row" style="display: inline-block; margin-left: -20px;"></div>
-      <span>&#x1F63B;</span>
-      <span id="likes-count-{{ this.id }}">{{ this.likes }}</span>
+      {{!-- set the data-post-id as posts.id onto this button --}}
 
-      <span style="margin-left:30px">&#128062;</span>
-      <span id="loves-count-{{ this.id }}">{{ this.loves }}</span>
-
-  </div>
-  {{!-- set the data-post-id as posts.id onto this button --}}
-
-  <div id="button-div">
-    <button style="display:inline" onclick="actOnPost(event);" data-post-id="{{ this.id }}" class="like-button"
-      style="margin-left: 50px">Like
-    </button>
-    <button style="display:inline" onclick="actOnPostLove(event);" data-post-id="{{ this.id }}" class="love-button"
-      style="margin-left: 50px">Love
-    </button><br>
-  </div>
-  </div>
+      <div id="button-div">
+        <button style="display:inline" onclick="actOnPost(event);" data-post-id="{{ this.id }}" class="like-button"
+          style="margin-left: 50px">Like
+        </button>
+        <button style="display:inline" onclick="actOnPostLove(event);" data-post-id="{{ this.id }}" class="love-button"
+          style="margin-left: 50px">Love
+        </button><br>
+      </div>
+    </div>
   </div>
   {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
   {{!-- set the data-post-id as posts.id onto this button --}}
 
-<div id="post-comments">
-  <h5> Comments </h5>
+  <div id="post-comments">
+    <h5> Comments </h5>
     {{#each this.comments}}
     "{{this.comment}}" - <small>{{this.user}}, {{this.date}}</small>
     <br>
     {{/each}}
-</div>
+  </div>
   <br>
   <form id="comment-form" method="post" action="/posts/{{ this.id }}/comment">
     <input
@@ -205,7 +225,9 @@
   </form>
 
   </div>
-  
+
+
+
 
   {{/each}}
 
