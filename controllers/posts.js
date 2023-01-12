@@ -4,6 +4,9 @@ const User = require("../models/user");
 const PostsController = {
   Index: (req, res) => {
     //do we only see posts from users that are friends?  yes
+    const postIds = req.params.id
+    console.log(postIds)
+    // const postauthor = Post.findOne({ _id:  })
     const user = req.session.user
     const friendsList = user.friends
     friendsList.push(user.username)
@@ -33,7 +36,7 @@ const PostsController = {
   },
   
   Create: (req, res) => {
-    const post = new Post({message:req.body.message,author:req.session.user.username});
+    const post = new Post({message:req.body.message,author:req.session.user.username,image:req.body.photoURL.trim()});
     post.save((err) => {
       if (err) {
         throw err;
