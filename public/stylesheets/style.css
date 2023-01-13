@@ -168,3 +168,12 @@ body{
   left: 20px;
   z-index: -1;
 }
+
+.box {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.box:hover {
+  box-shadow: 4px 4px 4px grey;
+}

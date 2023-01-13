@@ -5,16 +5,18 @@
 </head>
 
 <body>
-<p>You've been logged out, please log in to continue.</p>
+<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+<p>Please log in or sign up</p>
 <br>
-<div style="border: 2px solid black; border-radius: 20px; width: 300px">
+
+<div class="box">
 <br>
 <form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
+  
+  <input id="email" type="email" name="email" value="" type="text" placeholder="Enter your e-mail">
   <br>
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value=""> <br> <br>
+  
+  <input id="password" type="password" name="password" value="" type="text" placeholder="Password"> <br> <br>
   {{#if accountCreated}}
   Account created! Please sign in.
   {{/if}}
@@ -35,16 +37,16 @@
   <br>
   {{!-- password and user prompts for incorrect --}}
   <br>
-  <br> <input id="submit" type="submit" value="Submit">
+  <br> <input id="submit" type="submit" value="Log in" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 </form> <br>
 <form id="new-session-form" action="/users/new" method="get">
-<input id="submit" type="submit" value="Sign up">
+<input id="submit" type="submit" value="Sign up" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 </form> <br>
 {{!-- currently doesn't work needs to have a new route added with a form --}}
 <form id="new-session-form" action="/sessions" method="post">
-<input id="submit" type="submit" value="Forgot password">
+<input id="submit" type="submit" value="Forgot password" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 </form><br>
 </div>
-
+</div>
 </body>
 </html>
