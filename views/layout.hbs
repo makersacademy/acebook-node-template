@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
 
-  <title>Catbook</title>
+  <title class = "title">Catbook</title>
   <link rel="shortcut icon" type="image/jpg" href="/images/favicon.ico">
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
@@ -52,8 +52,8 @@
     -webkit-transition: -webkit-clip-path 0.5625s, clip-path 0.375s;
     transition: -webkit-clip-path 0.5625s, clip-path 0.375s;
     position:absolute;
-    top:34px;
-    left:600px;
+    top:0px;
+    left:0px;
   }
 
   nav:hover {
@@ -121,7 +121,7 @@
    #banner{
     position:relative;
     top:-35px;
-    left:0px;
+    left:300px;
 }
 
 #pawburger{
@@ -143,10 +143,7 @@
 
 
 <div id="headers">
-  <div style="display:inline-block">
-        <div id="banner" style="display:inline-block">
-    <img src="/images/Catbook.gif" alt="Welcome To Catbook">
-
+  
   {{#if shownavbar}}
   <nav> 
     <div class="navicon">
@@ -159,6 +156,9 @@
     </div>
     </nav>
     {{/if}}
+    <div style="display:inline-block">
+        <div id="banner" style="display:inline-block">
+    <img src="/images/Catbook.gif" alt="Welcome To Catbook">
   </div>
    {{{body}}}
 
