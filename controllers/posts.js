@@ -4,8 +4,6 @@ const User = require("../models/user");
 const PostsController = {
   Index: (req, res) => {
     //do we only see posts from users that are friends?  yes
-    const postIds = req.params.id
-    console.log(postIds)
     // const postauthor = Post.findOne({ _id:  })
     const user = req.session.user
     const friendsList = user.friends

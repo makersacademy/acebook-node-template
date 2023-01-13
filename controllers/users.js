@@ -4,6 +4,9 @@ const UsersController = {
   New: (req, res) => {
     res.render("users/new", {shownavbar:true});
   },
+  Forgot: (req,res) =>{
+    res.render("users/forgot")
+  },
   Create: (req, res) => {
     const newuser = new User(req.body);
     const email = req.body.email

@@ -2,7 +2,7 @@
 
 
 <head>
-<h1> Furrends</h1>
+
 <h1 style="display:none;" id="mainuser">{{user.username}} </h1>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
@@ -21,19 +21,44 @@
             axios.post('/posts/' + userId + '/befriend', { action: "Unfollow", friend: userId, main: mainuser }); //create a post route - this route is dodge
             }     //params are passed into the req body through the curly braces as instance vars?
 </script>
+<style>
+    #friendsList {
+        text-align: center;
+    }
+
+    #meow {
+        text-align: center;
+        height:20px;
+        width:20px;
+    }
+
+    #title{
+        text-align: centre;
+    }
+
+    .users{
+        text-align: center;
+    }
+</style>
 </head>
 
+
 <body>
+
+    <h1 id="title"> Furrends</h1> 
+<div id="friendsList" >
 {{!-- loop through the friends list array and print each one to the screen --}}
 {{#each friendslist.friends }}  
-<div style="display: flex">
+<div style="display: flex" class="users">
    <p id='user'+{{this}}> {{this}} </p> 
    <button data-id={{this}} onclick="unfollow(event)">Unfollow</button>
     <br>
 </div>
-
+</div>
 {{/each}}
 
+<br>
+    <img id="meow" src="/images/sorry.gif" alt="Your mates">
 </body>
 
 

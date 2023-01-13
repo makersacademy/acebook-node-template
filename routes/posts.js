@@ -11,6 +11,7 @@ router.get("/explore", PostsController.Explore); //is this weird?
 router.post('/:id/act', PostsController.Like);
 router.post('/:id/love', PostsController.Love);
 
+
 //add a friend to follow
 router.post('/:id/befriend', PostsController.Follow);
 // submit is a comment
