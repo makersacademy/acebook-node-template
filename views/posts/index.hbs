@@ -58,6 +58,8 @@ div {text-align: center;}
       height: 50px;
       margin-right: 10px;
     }
+
+
   </style>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -192,23 +194,21 @@ div {text-align: center;}
           <small>{{ this.date }}</small>
         </div>
         {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
-        <div class="row" style="display: inline-block; margin-left: -20px;"></div>
-        <span>&#x1F63B;</span>
+        <div class="row" style="margin-left:30px">
+          
+        </div>
+        <span style="margin-left: -40px;"> &#x1F63B;</span>
         <span id="likes-count-{{ this.id }}">{{ this.likes }}</span>
 
-        <span style="margin-left:30px">&#128062;</span>
+        <span style="margin-left:60px">&#128062;</span>
         <span id="loves-count-{{ this.id }}">{{ this.loves }}</span>
 
       </div>
       {{!-- set the data-post-id as posts.id onto this button --}}
 
       <div id="button-div">
-        <button style="display: flex; justify-content: center;" ><button style="display:inline" onclick="actOnPost(event);" data-post-id="{{ this.id }}" class="like-button"
-          style="margin-left: 50px">Like
-        </button>
-        <button style="display:inline" onclick="actOnPostLove(event);" data-post-id="{{ this.id }}" class="love-button"
-          style="margin-left: 50px">Love
-        </button>
+        <button style="display: flex; justify-content: center;" ><button style="margin-left:30px" onclick="actOnPost(event);" data-post-id="{{ this.id }}" class="like-button">Like</button>
+        <button style="margin-left:30px" onclick="actOnPostLove(event);" data-post-id="{{ this.id }}" class="love-button">Love</button>
       </div>
     </div>
   </div>
@@ -218,15 +218,17 @@ div {text-align: center;}
   <div id="post-comments" style="font-size: 18px">
     <h5> Comments: </h5>
     {{#each this.comments}}
-    "{{this.comment}}" - <small>{{this.user}}, {{this.date}}</small>
-    <br>
+    <div class="comment-container" style="text-align:center">
+    "{{this.comment}}" - <small>{{this.user}}, {{this.date}}</small></div>
+    
     {{/each}}
   </div>
   <br>
+  <div style="display: flex; justify-content: center;">
   <form id="comment-form" method="post" action="/posts/{{ this.id }}/comment">
     <input
-      style="height:50px; width:200px; display: inline-block; margin-left: 30px; <div style= border: 2px solid black; border-radius: 20px;"
-      type="text" id="comment-" +{{ this.id }} name="comment" placeholder="Enter your comment here">
+      style="height:50px; width:200px; display: inline-block; margin-left: 30px; border: 2px solid black; border-radius: 20px;"
+      type="text" id="comment-" +{{ this.id }} name="comment" placeholder=" Enter your comment here">
 
     <button class="submit-button" type="submit">Submit</button>
   </form>
