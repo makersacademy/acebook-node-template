@@ -3,6 +3,11 @@
 <head>
 
   <style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+      
+    
     * {
       padding: 0;
       margin: 0;
@@ -141,7 +146,7 @@
 
 <body>
   <div>
-    <div class="profile">
+    <div class="profile" style="display: flex; justify-content: center; align-items: center;">
       {{#if user.profilepic }}
       <img src="{{user.profilepic}}" width="50" height="50">
       {{else}}
@@ -149,9 +154,10 @@
       {{/if}}
       <span class="author"></span>
       <h1 style="display:none;" id="mainuser">{{user.username}}</h1>
-      <p style="font-size:40px">Welcome {{user.username}}
+      <p style="font-size:40px;">Welcome {{user.username}}
       </p>
     </div>
+    
     <br>
 
     <div class="container-fluid text-center">
@@ -181,6 +187,7 @@
             <p></p>
             {{/if}} --}}
           </span>
+          <br>
           <button data-id="{{ this.author }}" class="fav-button" onclick="actFollow(event)">Follow</button><br>
           <small>{{ this.date }}</small>
         </div>
@@ -196,20 +203,20 @@
       {{!-- set the data-post-id as posts.id onto this button --}}
 
       <div id="button-div">
-        <button style="display:inline" onclick="actOnPost(event);" data-post-id="{{ this.id }}" class="like-button"
+        <button style="display: flex; justify-content: center;" ><button style="display:inline" onclick="actOnPost(event);" data-post-id="{{ this.id }}" class="like-button"
           style="margin-left: 50px">Like
         </button>
         <button style="display:inline" onclick="actOnPostLove(event);" data-post-id="{{ this.id }}" class="love-button"
           style="margin-left: 50px">Love
-        </button><br>
+        </button>
       </div>
     </div>
   </div>
   {{!-- adds a little meow with the like counter, associated with this.id and showing this.likes_count --}}
   {{!-- set the data-post-id as posts.id onto this button --}}
-
-  <div id="post-comments">
-    <h5> Comments </h5>
+  <br>
+  <div id="post-comments" style="font-size: 18px">
+    <h5> Comments: </h5>
     {{#each this.comments}}
     "{{this.comment}}" - <small>{{this.user}}, {{this.date}}</small>
     <br>
@@ -218,7 +225,7 @@
   <br>
   <form id="comment-form" method="post" action="/posts/{{ this.id }}/comment">
     <input
-      style="height:80px; width:200px; display: inline-block; margin-left: 30px; <div style= border: 2px solid black; border-radius: 20px;"
+      style="height:50px; width:200px; display: inline-block; margin-left: 30px; <div style= border: 2px solid black; border-radius: 20px;"
       type="text" id="comment-" +{{ this.id }} name="comment" placeholder="Enter your comment here">
 
     <button class="submit-button" type="submit">Submit</button>
@@ -232,10 +239,10 @@
   {{/each}}
 
   </div>
+<br>
 
-
-
-  <a class="new-post-link" href="/posts/new">New post</a>
+<div style="display: flex; align-items: center; justify-content: center;">
+  <a class="new-post-link" href="/posts/new">New post</a></div>
 </body>
 
 </html>
