@@ -14,7 +14,7 @@ jobs:
       # and run all Cypress tests
       - name: Create mongoDB Docker container      
         run: sudo docker run -d -p 27017:27017 mongo:latest
-      - name: start server
+      - name: run cypress integration tests
         uses: cypress-io/github-action@v4.1.0 # use the explicit version number
         with:
           wait-on: "http://localhost:3030"
@@ -24,5 +24,5 @@ jobs:
         env:
           MONGODB_URI: "mongodb://0.0.0.0:27017/"
           MONGODB_DATABASE: "acebook_test"
-      - name: run cypress component test
+      - name: run jest unit tests
         run: npm run test:unit
