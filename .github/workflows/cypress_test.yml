@@ -1,22 +1,38 @@
-name: Cypress Tests
-on: [push]
-jobs:
- Cypress-Test:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Checkout GitCode
-       uses: actions/checkout@v2
-     - name: Install and run MongoDB  
-       uses: docker://mongo   
-       with:   
-        args: --name my-mongo-instance -p 27017:27017
-     - name: Install dependencies   
-       run: npm install   
-     - name: Run Tests   
-       run: npx cypress run
+# name: Cypress Tests
+# on: [push]
+# jobs:
+#  Cypress-Test:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout GitCode
+#        uses: actions/checkout@v2
+#      - name: Install and run MongoDB  
+#        uses: docker://mongo   
+#        with:   
+#         args: --name my-mongo-instance -p 27017:27017
+#      - name: Install dependencies   
+#        run: npm install   
+#      - name: Run Tests   
+#        run: npx cypress run
       
        
- 
+name: Cypress Tests
+
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v5.x.x # use the explicit version number
+        with:
+          build: npm run build
+          start: npm start
     
 
 
