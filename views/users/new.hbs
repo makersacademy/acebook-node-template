@@ -5,15 +5,17 @@
     </head>
       <body>
         <form id="new-user-form" action="/users" method="post">
+          <div class="user-inputs">
+            <div class="email-field">
+              <label for="email">Email: </label>
+              <input id="email" type="email" name="email" value="">
+            </div>
 
-          <label for="email">Email: </label>
-          <input id="email" type="email" name="email" value="">
-
-        <div class="password-field">
-          <label for="password">Password: </label>
-          <input id="password" type="password" name="password" value="">
-        </div>
-
+            <div class="password-field">
+              <label for="password">Password: </label>
+              <input id="password" type="password" name="password" value="">
+            </div>
+          </div>
           <input id="submit" type="submit" value="Submit">
         </form>
       </body>
