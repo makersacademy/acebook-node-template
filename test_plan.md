@@ -66,7 +66,7 @@ We have 2 testers available for this project in our test team.
 The testers assigned to this project are:
 * `A.Patel` - Test Engineer who joined the company last week and is primarily
 still completing onboarding.
-* `R.Le` - Test Engineer who joined the company last week and is primarily
+* `R.Le` - Test Engineer who joined the company last week and is primarily still completing onboarding.
 
 ## Defect Management
 When a tester encounters a bug, they will raise a defect on the GitHub Issues
