@@ -25,12 +25,19 @@ const PostsController = {
   },
    Like: (req, res) => {
     const postId = req.params.id;
-    Post.findByIdAndUpdate(postId, { $inc: { likes: 1 } }, (err, post) => {
+    const userId = req.session.user._id
+    Post.findById(postId, (err, post) => {
       if (err) {
         throw err;
       }
+      if (!post.liked_by.includes(userId)) {
+        post.likes = post.likes + 1;
+        post.liked_by.push(userId)
 
-      res.redirect("/posts");
+        Post.findByIdAndUpdate(postId, {likes: post.likes}, {liked_by: post.liked_by});
+
+        res.redirect("/posts");
+      }
     });
   },
 };
