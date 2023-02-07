@@ -3,6 +3,9 @@
   {{#each posts}}
   <li>{{this.message}}</li> 
   <li>{{this.likes}} likes</li>
+  <form action="/posts/{{this._id}}/like" method="post">
+    <button type="submit">Like</button>
+  </form>
   {{/each}}
 </ul>
 
