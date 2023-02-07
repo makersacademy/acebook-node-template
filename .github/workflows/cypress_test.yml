@@ -12,3 +12,43 @@ jobs:
        with:
          command: npx cypress run
          browser: chrome
+    - name: start server
+        uses: cypress-io/github-action@v4.1.0 # use the explicit version number
+        with:
+          wait-on: "http://localhost:3030"
+          config-file: cypress.config.cjs
+
+
+
+  
+
+
+
+# name: Cypress Tests
+
+# on: [push]
+
+# jobs:
+#   cypress-run:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+#         with:
+#           build: npm run build
+#       # Install NPM dependencies, cache them correctly
+#       # and run all Cypress tests
+#       - name: Create mongoDB Docker container      
+#         run: sudo docker run -d -p 27017:27017 mongo:latest
+#       - name: start server
+#         uses: cypress-io/github-action@v4.1.0 # use the explicit version number
+#         with:
+#           wait-on: "http://localhost:8888"
+#           config-file: cypress.config.cjs
+#           # build: npm run build
+#           start: netlify dev
+#         env:
+#           MONGODB_URI: "mongodb://0.0.0.0:27017/"
+#           MONGODB_DATABASE: "gladiators"
+#       - name: run cypress component test
+#         run: npx cypress run --component
