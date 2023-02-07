@@ -10,11 +10,5 @@ jobs:
      - name: Run Cypress Test
        uses: cypress-io/github-action@v4
        with:
-        node-version: ${{ matrix.node-version }}
-     - name: Start MongoDB
-       uses: supercharge/mongodb-github-action@1.7.0
-       with:
-        mongodb-version: ${{ matrix.mongodb-version }}
-       with:
-         command: npm run test:integration
+         command: npx cypress run
          browser: chrome
