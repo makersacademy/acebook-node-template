@@ -1,0 +1,17 @@
+
+
+input[type=email], input[type=password] {
+    border-radius: 10px;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #cec8f82e;
+}
+
+.password-field {
+    display:flex;
+    flex-direction: column;
+    width: 100%
+}
