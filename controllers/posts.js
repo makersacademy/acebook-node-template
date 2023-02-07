@@ -8,13 +8,14 @@ const PostsController = {
       }
 
       res.render("posts/index", { posts: posts });
-    });
+    }).sort({date:1});
   },
   New: (req, res) => {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.date = Date.now();
     post.save((err) => {
       if (err) {
         throw err;
