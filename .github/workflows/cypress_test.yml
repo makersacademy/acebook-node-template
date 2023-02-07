@@ -6,17 +6,18 @@ jobs:
    steps:
      - name: Checkout GitCode
        uses: actions/checkout@v2
+     - name: Install and run MongoDB  
+       uses: docker://mongo   
+       with:   
+        args: --name my-mongo-instance -p 27017:27017
+     - name: Install dependencies   
+       run: npm install   
+     - name: Run Tests   
+       run: npx cypress run
+      
+       
  
-     - name: Run Cypress Test
-       uses: cypress-io/github-action@v4
-       with:
-         command: npx cypress run
-         browser: chrome
-    - name: start server
-        uses: cypress-io/github-action@v4.1.0 # use the explicit version number
-        with:
-          wait-on: "http://localhost:3030"
-          config-file: cypress.config.cjs
+    
 
 
 
