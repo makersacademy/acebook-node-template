@@ -84,6 +84,22 @@ We initially had some issues due to setting the wait-on function to port 3000 wh
 ## Exploratory testing - initial phase
 High character limit
 Password, username, email field validators not working
+Only works on test server - test server has access to database, normal does not
+
+  * Routes in files aren't clear what pages exist
+    - in the cypress integration files the routes are displayed
+  * Can create a new user using existing login information but it doesnt overide the previous details and the new login doesnt work.
+    - There should be an error message when siging up with existing information and it keeps you on the same page.
+  * User new and sessions new look identical and the only way to distinguish whether youre on the right page is by checking the URL.
+  * Account can be created with a blank username and password, there is now a acc user “ “ and password “ “
+    - There should be an error message when siging up with existing information and it keeps you on the same page. There should be validator checks for each of the forms i.e. unique username and email with a password of a sufficient length (maybe with a character limit as well).
+  * Home route page has a log out button implying youre logged in which might not be right (maybe remove the button from that page entirely).
+    - Should have links to both log in page (sessions new) and sign up page (users new)
+  * Sometimes creating new user on users new automatically logs in when submitting
+    - unsure how to replicate
+  * Email validation allows " " but if you use characters then it allowed "a@a" minimum character before and after.
+  * Password can be a small as 1 character " " or "abc" no validation checks yet.
+  * You can make a post with no content, there should be some validation for post creation.
 
 ## Entry Criteria
 Testing will commence when:
