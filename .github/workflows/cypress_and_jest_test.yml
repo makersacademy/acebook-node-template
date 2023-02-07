@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Cypress and Jest Tests
 
 on: [push]
 
