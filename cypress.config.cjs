@@ -5,4 +5,6 @@ module.exports = defineConfig({
       devServer: {
         framework: "node"
       },
-    }})
+    },
+    e2e: {
+        baseUrl: "http://localhost:3030"}})
