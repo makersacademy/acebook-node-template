@@ -1,10 +1,12 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-    component: {
-      devServer: {
-        framework: "node"
-      },
+  component: {
+    devServer: {
+      framework: "node",
     },
-    e2e: {
-        baseUrl: "http://localhost:3030"}})
+  },
+  e2e: {
+    baseUrl: "http://localhost:3030",
+  },
+});
