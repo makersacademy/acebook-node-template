@@ -23,9 +23,11 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+ 
    Like: (req, res) => {
     const postId = req.params.id;
     const userId = req.session.user._id
+
     Post.findById(postId, (err, post) => {
       if (err) {
         throw err;
@@ -34,10 +36,13 @@ const PostsController = {
         post.likes = post.likes + 1;
         post.liked_by.push(userId)
 
-        Post.findByIdAndUpdate(postId, {likes: post.likes}, {liked_by: post.liked_by});
-
-        res.redirect("/posts");
+        post.save((err) => {
+          if (err) {
+            throw err;
+          }
+        });
       }
+      res.redirect("/posts");
     });
   },
 };
