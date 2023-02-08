@@ -6,4 +6,8 @@
   {{/each}}
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<h1> Create a post </h1>
+<form id="new-post-form" action="/posts" method="post">
+  <input id="message" type="text" name="message" value="" placeholder = 'type your message'>
+  <input type="submit" value="Submit">
+</form>
