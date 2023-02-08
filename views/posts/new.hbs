@@ -13,19 +13,20 @@
         <span class="larger">
           <a href="/posts">Home</a>
           &nbsp;&nbsp;|&nbsp;&nbsp;
-          <form action="/" method="DELETE"><input class="logout" type="submit"
-              value="Log Out"></form>
+          <form action="/sessions?_method=DELETE" method="POST">
+            <input class="logout" type="submit" value="Log Out">
+          </form>
         </span>
       </span>
     </header>
     <form id="new-post-form" action="/posts" method="post">
       <div class="new-post">
         <label for="message">Message: </label>
-        <input id="message" type="text" name="message" value="">
-        <label for="file-upload" class="custom-file-upload" accept=".jpg, .jpeg, .png">
+        <input id="message" type="text" name="message" maxlength="150">
+        <!-- <label for="file-upload" class="custom-file-upload" accept=".jpg, .jpeg, .png">
           Image(PNG/JPG)
       </label>
-      <input id="file-upload" type="file" name="image"/>
+      <input id="file-upload" type="file" name="image"/> -->
         <input class="post"type="submit" value="Post">
       </div>
     </form>

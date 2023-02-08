@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/images", express.static(path.join(__dirname, "/public/images")));
 app.use(methodOverride("_method"));
 
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 app.use(
   session({
@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
-    res.redirect("/sessions/new");
+    res.redirect("/");
   } else {
     next();
   }

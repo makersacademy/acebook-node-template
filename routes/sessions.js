@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 const express = require("express");
 const router = express.Router();
 

@@ -4,24 +4,22 @@
     <script
       src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <link rel='stylesheet' href='/stylesheets/posts-index.css' />
-
-    <header>
-
-      <span class="site_logo">
-        <img src="images/logo trial 3.png" alt="Acebook" height="50">
-      </span>
-
-      <span>
-        <a href="/posts/new">New post</a>
-        <span class="larger">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-        <a href="/">Sign Out</a>
-      </span>
-
-    </header>
-
   </head>
 
   <body>
+
+    <header>
+      <span class="site_logo">
+        <img src="images/logo trial 3.png" alt="Acebook" height="50">
+      </span>
+      <span class="larger">
+        <a href="/posts/new">New post</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <form action="/sessions?_method=DELETE" method="POST">
+          <input class="logout" type="submit" value="Log Out">
+        </form>
+      </span>
+    </header>
     <div class="content">
       <h1>Timeline</h1>
 
@@ -32,7 +30,8 @@
           <div class="title">
             <span class="user-pic">
               <div class="profile-photo"></div>
-              {{this.author}}
+              <div class="author">{{this.author}}
+              </div>
             </span>
 
             <span class="request">
