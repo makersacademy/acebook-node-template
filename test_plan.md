@@ -16,6 +16,7 @@ We will only be testing the following functionality;
 8. Add and edit friends to list
 9. User’s name and little photo next to post
 10. Upload a photo in the form of a post
+
 ## Test Environments
 Tests will be performed using:
 * Chromium engine 109
@@ -24,6 +25,7 @@ Tests will be performed using:
 * Automated testing performed with Playwright 1.28
 * IntelliJ CE 2022.3.1
 * JUnit 5.8.1
+
 ## Features To Be Tested
 For each of the popular frameworks, we want to verify the following features:
 1. Sign Up
@@ -100,6 +102,32 @@ Only works on test server - test server has access to database, normal does not
   * Email validation allows " " but if you use characters then it allowed "a@a" minimum character before and after.
   * Password can be a small as 1 character " " or "abc" no validation checks yet.
   * You can make a post with no content, there should be some validation for post creation.
+
+### Security and accessibility testing
+ ## ZAP test
+  --- 
+  * Absence of Anti-CSRF Tokens
+    - Tokens are used to validate their requests and the users
+    - Attackers can fake request without validation from the Anti-CSRF Tokens
+  * Content Security Policy (CSP) Header Not Set
+    - CSP adds security to detect and prevent attacks such as cross site scripting and data injection which could be used to trick sites to deliver malicous content
+  * Missing Anti-clickjacking Header
+    - It can replicate a false page mimicing your site
+  * Cookie without SameSite Attribute
+    - Cookies can be sent and request cookie information
+  * Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s)
+    - X-Powered-by headers = Shares information of how website runs and users with malicious intent can find vulnerabilities (because your techstack is visible)
+  * X-Content-Type-Options Header Missing
+    - Mime Sniffing (Ask Paul)
+    Vulnerable to XXS (Cross site scripting attack)
+  * Loosely Scoped Cookie
+    - Cookies haven't been configured properly
+## Lighthouse tests
+---
+  - Main two issues shown in the lighthouse report for all the pages
+    * Accessibility - HTML does not contain a default language for the page (screen readers need this to read the page correctly for people with vision impairment)
+    * Accessibility - HTML does not have a title for the page
+    
 
 ## Entry Criteria
 Testing will commence when:

@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          build: npm install
+          build: npm run build
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Create mongoDB Docker container
