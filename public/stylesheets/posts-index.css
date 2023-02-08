@@ -14,7 +14,7 @@ a {
     text-decoration: none;
 }
 
-header {
+header{
     display: flex;
     padding-top: 3%;
     padding-bottom: 3%;
@@ -23,7 +23,12 @@ header {
     background-color: #2B2D42;
     color:#edf2f4;
     justify-content: space-between;
-}
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+  }
 
 footer{
     position: fixed;
@@ -37,8 +42,10 @@ footer{
     text-align: left;
 }
 
-span {
+span.request {
+    display: flex;
     align-self: left;
+    align-items: center;
 }
 
 span.site_logo {
@@ -46,18 +53,40 @@ span.site_logo {
     color: #edf2f4;
     height: 100%;
 }
+span.user-pic{
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.likes-comments{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 
 div.content {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 50%;
+    margin: auto;
+    margin-top: 15%;
     text-align: center;
     box-shadow: #8D99AE;
+    overflow-y: scroll;
+}
+
+div.profile-photo{
+    width:50px;
+    height:50px;
+    border-radius: 30px;
+    border: solid black 3px;
 }
 
 h1 {
     font-size: 50px;
+    margin-bottom: 20px;
 }
 
 p {
@@ -65,16 +94,17 @@ p {
     margin-top: 5%;
 }
 
-.post {
+div.post {
     text-align: left;
+    border-bottom: #2B2D42 solid 2px;
+    margin-bottom: 10px;
+    padding: 20px;
 }
 
 .posts{
     border: 1px solid grey;
     border-style: solid;
-    padding: 10%;
     border-radius: 8px;
-    padding: 40px;
 }
 
 .title {

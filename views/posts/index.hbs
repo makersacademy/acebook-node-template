@@ -14,7 +14,7 @@
       <span>
         <a href="/posts/new">New post</a>
         <span class="larger">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-        <a href="/sessions/new">Sign Out</a>
+        <a href="/">Sign Out</a>
       </span>
 
     </header>
@@ -27,27 +27,30 @@
 
       <div class="posts">
 
+        {{#each posts}}
         <div class="post">
-          {{#each posts}}
           <div class="title">
-            <span>
-              Photo
-              Username
+            <span class="user-pic">
+              <div class="profile-photo"></div>
+              {{this.author}}
             </span>
 
-            <span>
+            <span class="request">
               <p>Request</p>
             </span>
           </div>
           <p>{{this.message}}</p>
-
-          <span>
-            <p>{{this.likes}} likes</p>
-            <p>Comment</p><br>
-          </span>
-          <hr><br>
-          {{/each}}
+          <div class="likes-comments">
+            <div class="likes">
+              <p>{{this.likes}} Likes</p>
+              <p>Like</p>
+            </div>
+            <div class="comments">
+              <p>Comment</p>
+            </div>
+          </div>
         </div>
+        {{/each}}
 
 
       </div>
