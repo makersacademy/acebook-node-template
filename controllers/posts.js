@@ -8,7 +8,7 @@ const PostsController = {
       }
 
       res.render("posts/index", { posts: posts });
-    }).sort({date:1});
+    }).sort({date:-1});
   },
   New: (req, res) => {
     res.render("posts/new", {});
