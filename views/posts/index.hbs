@@ -2,8 +2,11 @@
 <html>
   <head>
     <script
-      src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+      src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js">
+    </script>
+
     <link rel='stylesheet' href='/stylesheets/posts-index.css' />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <header>
 
@@ -36,18 +39,29 @@
             </span>
 
             <span class="request">
-              <p>Request</p>
+              <form action="/request">
+                <input class="custom-file-upload" type="submit" value="+ Request">
+              </form>
             </span>
           </div>
           <p>{{this.message}}</p>
           <div class="likes-comments">
-            <div class="likes">
-              <p>{{this.likes}} Likes</p>
-              <p>Like</p>
+
+            <div>
+              <span class="comments">
+                <p>{{this.likes}} Likes</p><br>
+                <p>Comments</p>
+              </span>
             </div>
-            <div class="comments">
-              <p>Comment</p>
+
+            <div>
+              <span>
+                <i class="material-icons" style="font-size:36px;color:rgb(255, 118, 118);">favorite</i>
+                <i class="material-icons" style="font-size:36px;color:rgb(115, 115, 115);">comment</i>
+              </span>
             </div>
+
+
           </div>
         </div>
         {{/each}}
@@ -56,7 +70,7 @@
       </div>
 
     </div>
-
+    <footer>Acebook™ in partnership with Eta™</footer>
 
   </body>
 
