@@ -1,9 +1,9 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: "Optima", sans-serif;
 }
 body {
-    font: "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: #edf2f4;
     color: #2B2D42;
   }
@@ -19,6 +19,7 @@ body {
     padding-bottom: 3%;
     padding-left: 5%;
     padding-right: 5%;
+    height: 0px;
     background-color: #2B2D42;
     color:#edf2f4;
     justify-content: space-between;
@@ -43,7 +44,6 @@ body {
   span.site_logo{
     padding: 0%;
     color: #edf2f4;
-    height: 100%;
   }
 
   div.content{
