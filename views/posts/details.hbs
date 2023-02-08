@@ -1,0 +1,16 @@
+<h1>Post</h1>
+
+{{post.message}}
+
+<form action="/posts/{{this.post._id}}/create" method="post">
+    <input id="message" type="text" name="message" value="" required>
+    <input type="submit" value="Create">
+</form>
+
+<ul class="comments">
+  {{#each comments}}
+  <li>{{this.message}}</li> 
+  {{/each}}
+</ul>
+
+<a class="new-post-link" href="/posts">Posts</a>
