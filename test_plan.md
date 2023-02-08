@@ -127,7 +127,25 @@ Only works on test server - test server has access to database, normal does not
   - Main two issues shown in the lighthouse report for all the pages
     * Accessibility - HTML does not contain a default language for the page (screen readers need this to read the page correctly for people with vision impairment)
     * Accessibility - HTML does not have a title for the page
-    
+
+## Tests with new site
+---
+- ( + ) Validation in place doesn’t let user, email, pw be empty (minimum char)
+- ( - ) Same username can’t be created on sign up, however if same username has 1 capital letter it can be created (still a dupe)
+- ( - ) Email validation exists however doesn’t support capital letters, won’t let you sign up
+- ( - ) Password validation only takes min 8 char (doesn’t take into acc numbers, capital letter or special char
+- ( + ) Password validation specifies how many char you’ve entered i.e. “5 char entered”
+- ( - ) When existing user/email exists or unable to create new user, it just refreshes the page > should have a prompt msg pop up stating “existing user/email already in use” rather than reload same users/new page
+- ( - ) Empty posts can still be posted
+- ( - ) No char limit on posts, was able to post 50,773 char / 9,158 words
+- ( + ) Special char supported
+- ( + ) Emoji’s supported
+- ( - ) White bar appears on right hand side of /posts page 
+- ( - ) Picture next to username is distorted 
+
+## Accessibility (Lighthouse)
+- ( - ) Make sure to specify language for accessibility on all pages
+- ( - ) Accessibility colour on login page was the only one that’s got a contrast issue
 
 ## Entry Criteria
 Testing will commence when:
