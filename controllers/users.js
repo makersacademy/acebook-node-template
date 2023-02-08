@@ -26,7 +26,7 @@ const UsersController = {
       }
     })
   },
-
+  
   Details: (req, res) => {
     const userId = req.params.id;
 
@@ -34,7 +34,7 @@ const UsersController = {
       if (err) {
         throw err;
       }
-
+      
       res.render("users/details", {user: user});
     });
   },
@@ -42,9 +42,6 @@ const UsersController = {
   Request: (req, res) => {
     const currentId = req.session.user._id;
     const targetId = req.params.id;
-
-    console.log(currentId);
-    console.log(targetId);
 
     User.findById(targetId, (err, user) => {
       if (err) {

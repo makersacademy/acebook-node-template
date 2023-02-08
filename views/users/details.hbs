@@ -1,3 +1,11 @@
 <form action="/users/{{this.user._id}}/request" method="post">
     <input type="submit" value="Send friend request">
 </form>
+
+<p>Your friend requests</p>
+<ul class="requests">
+  {{#each user.friends}}
+    <li>{{this.user_id}}</li>
+    <li>{{this.status}}</li>
+  {{/each}}
+</ul>
