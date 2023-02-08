@@ -78,6 +78,7 @@ const PostsController = {
       if (comment.message[0] === " ") {
         const trimmed = comment.message.trim();
         if (trimmed.length != 0) {
+          comment.message = trimmed;
           comment.save((err) => {
             if (err) {
               throw err;
