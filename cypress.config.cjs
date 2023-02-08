@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-unpublished-require
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({

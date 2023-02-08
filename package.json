@@ -7,8 +7,8 @@
   "scripts": {
     "lint": "eslint .",
     "start": "nodemon ./bin/www",
-    "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/acebook_test' npm start",
-    "test": "npm run test:unit && npm run test:integration",
+    "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/acebook_test' nodemon start",
+    "test": "nodemon run lint && nodemon run test:unit && nodemon run test:integration",
     "test:unit": "jest",
     "test:integration": "cypress run"
   },
@@ -35,7 +35,7 @@
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jest": "^22.21.0",
-    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-node": "^11.1.0",
     "jest": "^27.5.1"
   },
   "nodemonConfig": {
