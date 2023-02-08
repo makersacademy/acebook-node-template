@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
     // sign up
