@@ -1,0 +1,120 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body {
+    font: "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #edf2f4;
+    color: #2B2D42;
+  }
+  
+  a {
+    color: #00B7FF;
+    text-decoration: none;
+  }
+
+  header{
+    display: flex;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #2B2D42;
+    color:#edf2f4;
+    justify-content: space-between;
+  }
+
+  footer{
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-right: 5%;
+    background-color: #2B2D42;
+    color:#edf2f4;
+    text-align: center;
+  }
+
+  span{
+    align-self: center;
+    display: flex;
+  }
+
+  span.site_logo{
+    padding: 0%;
+    color: #edf2f4;
+    height: 100%;
+  }
+
+  div.new-post{
+    font-weight: bolder;
+    border-radius: 5px;
+    box-shadow: 3px 5px #2B2D42;
+    padding: 3%;
+    background-color: #8D99AE;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    box-shadow: #8D99AE;
+  }
+
+  h1{
+    font-size: 20px;
+  }
+
+  p{
+    font-size: 20px;
+    margin-top: 10%;
+    font-style: italic;
+  }
+  input{
+    margin-bottom: 5%;
+  }
+
+  input.logout {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #00B7FF;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input.post{
+  align-self: center;
+  width: 50%;
+  font-weight: bolder;
+}
+
+input.post:hover{
+  background-color: #2B2D42;
+  color: #edf2f4;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  font-size: smaller;
+  border: 1px solid #ccc;
+  width: 80%;
+  align-self: center;
+  display: inline-block;
+  background-color: #edf2f4;
+  padding: 3px 12px;
+  cursor: pointer;
+  margin-bottom: 5%;
+}
+.custom-file-upload:hover{
+  background-color: #2B2D42;
+  color: #edf2f4;
+}

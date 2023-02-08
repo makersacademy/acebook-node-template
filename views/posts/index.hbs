@@ -1,9 +1,63 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  {{/each}}
-</ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <link rel='stylesheet' href='/stylesheets/posts-index.css' />
 
-<a class="new-post-link" href="/posts/new">New post</a>
+    <header>
+
+      <span class="site_logo">
+        <img src="images/logo trial 3.png" alt="Acebook" height="50">
+      </span>
+
+      <span>
+        <a href="/posts/new">New post</a>
+        <span class="larger">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <a href="/">Sign Out</a>
+      </span>
+
+    </header>
+
+  </head>
+
+  <body>
+    <div class="content">
+      <h1>Timeline</h1>
+
+      <div class="posts">
+
+        {{#each posts}}
+        <div class="post">
+          <div class="title">
+            <span class="user-pic">
+              <div class="profile-photo"></div>
+              {{this.author}}
+            </span>
+
+            <span class="request">
+              <p>Request</p>
+            </span>
+          </div>
+          <p>{{this.message}}</p>
+          <div class="likes-comments">
+            <div class="likes">
+              <p>{{this.likes}} Likes</p>
+              <p>Like</p>
+            </div>
+            <div class="comments">
+              <p>Comment</p>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+
+
+      </div>
+
+    </div>
+
+
+  </body>
+
+</html>
