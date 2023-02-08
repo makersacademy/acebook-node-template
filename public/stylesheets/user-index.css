@@ -1,0 +1,133 @@
+*{
+  margin: 0; 
+  padding: 0;
+}
+
+
+    #leftbox {
+    background:#EDF2F4;
+    width:40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+    #rightbox{
+    background:#8D99AE;
+    width:40%;
+    align-self: right;
+    padding: 10px;
+    border-radius: 10px;
+  
+}
+    h1{
+    color: #2B2D42;
+    text-align:center;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 300%;
+}
+    p{
+    color: #2B2D42;
+    text-align:center;
+    padding: 0;
+    font-style: italic;
+}
+
+
+
+div.container{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #edf2f4;
+    color: #2B2D42;
+}
+
+a {
+    color: #00B7FF;
+    text-decoration: none;
+
+}
+
+/* style inputs buttons */
+input,
+.btn {
+  width: 80%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  margin-bottom: 10px;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+
+/* style the submit button */
+input[type=submit] {
+  background-color: #EDF2F4;
+  color: #8D99AE;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+input[type=submit]:hover {
+  background-color: #2B2D42;
+  color: #EDF2F4;
+}
+
+.col {
+  width: 50%;
+  margin: auto;
+  padding: 0 50px;
+  margin-top: 6px;
+  padding-left: 50%;
+  padding-right: 50%;
+}
+
+  header{
+    display: flex;
+    padding-top: 3%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #2B2D42;
+    color:#edf2f4;
+    justify-content: space-between;
+  }
+
+  footer{
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: #2B2D42;
+    color:#edf2f4;
+    text-align: center;
+  }
+
+  span{
+    align-self: right;
+    justify-content: space-between;
+  }
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2{
+  margin-bottom: 20px;
+}
