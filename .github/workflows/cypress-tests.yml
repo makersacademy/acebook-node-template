@@ -12,7 +12,7 @@ jobs:
           build: npm run build
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Create mongoDB Docker container      
+      - name: Create mongoDB Docker container
         run: sudo docker run -d -p 27017:27017 mongo:latest
       - name: start server
         uses: cypress-io/github-action@v4.1.0 # use the explicit version number
