@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    res.render("sessions/new", {error: req.session.error});
   },
 
   Create: (req, res) => {
@@ -11,9 +11,8 @@ const SessionsController = {
     const password = req.body.password;
 
     User.findOne({ email: email }).then((user) => {
-      if (!user) {
-        res.redirect("/sessions/new");
-      } else if (user.password != password) {
+      if (!user || user.password != password) {
+        req.session.error = "INVALID USERNAME OR PASSWORD";
         res.redirect("/sessions/new");
       } else {
         req.session.user = user;
