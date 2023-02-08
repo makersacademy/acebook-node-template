@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 const User = require("../models/user");
 
 const UsersController = {
@@ -8,11 +9,23 @@ const UsersController = {
   Create: (req, res) => {
     const user = new User(req.body);
 
-    user.save((err) => {
-      if (err) {
-        throw err;
-      } 
-      res.status(201).redirect("/posts");
+    User.findOne({ email: user.email }).then((userByEmail) => {
+      if (!userByEmail) {
+        User.findOne({ username: user.username }).then((userByUsername) => {
+          if (!userByUsername) {
+            user.save((err) => {
+              if (err) {
+                throw err;
+              }
+              res.redirect("/sessions/new");
+            });
+          } else {
+            res.redirect("/users/new");
+          }
+        });
+      } else {
+        res.redirect("/users/new");
+      }
     });
   },
 };
