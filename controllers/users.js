@@ -29,11 +29,17 @@ const UsersController = {
   
   Details: (req, res) => {
     const userId = req.params.id;
+    const sessionId = req.session.user._id;
 
     User.findById(userId, (err, user) => {
       if (err) {
         throw err;
       }
+
+      if(userId != sessionId) {
+        user.friends = [];
+      }
+
       res.render("users/details", {user: user});
     });
   },
