@@ -7,8 +7,6 @@
 body {
   background-color: #edf2f4;
   color: #2b2d42;
-  height: 130px;
-  margin: 0;
 }
 
 a {
@@ -18,19 +16,18 @@ a {
 
 header {
   display: flex;
-  width: 94%;
   padding-top: 2%;
   padding-bottom: 2%;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
   margin-bottom: 50px;
   background-color: #2b2d42;
   color: #edf2f4;
   justify-content: space-between;
   align-items: center;
-  position: fixed; 
+  position: sticky;
+  top: 0;
 }
-
 
 footer {
   position: fixed;
@@ -60,7 +57,7 @@ span.request {
   align-items: center;
 }
 
-span{
+span {
   align-self: center;
   display: flex;
 }
@@ -156,4 +153,12 @@ form {
   border-radius: 10px;
   font-size: 20px;
   border: none;
+}
+
+div.profile-photo {
+  overflow: hidden;
+}
+
+form.button {
+  padding: 0;
 }

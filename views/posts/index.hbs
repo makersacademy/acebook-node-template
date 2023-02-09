@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Acebook - Timeline</title>
         <script
             src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js">
     </script>
@@ -8,30 +9,27 @@
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
-
-
-
-<header>
-      <span class="site_logo">
-        <img src="/images/logo trial 3.png" alt="Acebook" height="50">
-      </span>
-
-        <span class="larger">
-
-          <form action="/posts/new">
-            <input class="logout" type="submit" value="New post">
-          </form>
-
-          <p>&nbsp;&nbsp;|&nbsp;&nbsp;</p>
-
-          <form action="/sessions?_method=DELETE" method="POST">
-            <input class="logout" type="submit" value="Log Out">
-          </form>
-
-        </span>
-      </span>
-    </header>
     <body>
+        <header>
+            <span class="site_logo">
+              <a href="/posts"><img src="/images/logo trial 3.png" alt="Acebook" height="50"></a>
+            </span>
+      
+              <span class="larger">
+      
+                <form class="button" action="/posts/new">
+                  <input class="logout" type="submit" value="New post">
+                </form>
+      
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+      
+                <form class="button" action="/sessions?_method=DELETE" method="POST">
+                  <input class="logout" type="submit" value="Log Out">
+                </form>
+      
+              </span>
+            </span>
+          </header>
         
         <div class="content">
             <h1>Timeline</h1>
@@ -41,7 +39,9 @@
                 <div class="post">
                     <div class="title">
                         <span class="user-pic">
-                            <div class="profile-photo"></div>
+                            <div class="profile-photo">
+                                <img src="/images/logo trial 2.png" alt="profile-photo">
+                            </div>
                             <div class="author">{{this.author}}
                             </div>
                         </span>
@@ -56,16 +56,16 @@
                     <p>{{this.message}}</p>
                     <div class="likes-comments">
 
-                        <div>
-                            <span class="comments">
-                                <p>{{this.likes}} Likes</p><br>
-                                <p>Comments</p>
-                            </span>
-                        </div>
+    <div>
+        <span class="comments">
+            <p>{{this.likes}} Likes</p><br>
+            <p>Comments</p>
+        </span>
+    </div>
 
-                        <div>
-                            <span>
-                                <i class="material-icons"
+    <div>
+        <span>
+            <i class="material-icons"
                                     style="font-size:36px;color:rgb(255, 118,
                                     118);">favorite</i>
                                 <i class="material-icons"

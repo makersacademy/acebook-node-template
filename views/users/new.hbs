@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Acebook - Sign Up</title>
         <script
             src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
         <link href="../stylesheets/signup.css" rel="stylesheet" />
@@ -8,7 +9,10 @@
     <body>
         <header>
             <span class="site_logo">
-                <img src="/images/logo trial 3.png" alt="Acebook" height="50" />
+                <a href="/posts">
+                    <img src="/images/logo trial 3.png" alt="Acebook"
+                        height="50" />
+                </a>
             </span>
             <span class="login-signup">
                 <a href="/">Home</a>
@@ -16,7 +20,8 @@
                 <a href="/sessions/new">Log In</a>
             </span>
         </header>
-        <form id="new-user-form" action="/users" method="post">
+        <form id="new-user-form" action="/users"
+            method="post">
             <div class="user-inputs">
                 <div class="username-field">
                     <label for="username">Username: </label>

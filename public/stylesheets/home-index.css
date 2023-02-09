@@ -6,7 +6,6 @@
 body {
   background-color: #edf2f4;
   color: #2b2d42;
-  height: 130px;
 }
 
 a {
@@ -16,11 +15,11 @@ a {
 
 header {
   display: flex;
-  padding-top: 3%;
-  padding-bottom: 3%;
+  padding-top: 2%;
+  padding-bottom: 2%;
   padding-left: 5%;
   padding-right: 5%;
-  height: 0px;
+  margin-bottom: 50px;
   background-color: #2b2d42;
   color: #edf2f4;
   justify-content: space-between;
@@ -40,6 +39,7 @@ footer {
 }
 
 span {
+  display: flex;
   align-self: center;
 }
 
