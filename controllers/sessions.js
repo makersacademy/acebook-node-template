@@ -2,7 +2,8 @@ const User = require("../models/user");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("sessions/new", {});
+    //specifies a specific layout to avoid displaying universal navbar in layout.hbs
+    res.render("sessions/new", {layout: 'sessions/new'});
   },
 
   Create: (req, res) => {
