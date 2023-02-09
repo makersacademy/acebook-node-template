@@ -1,63 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script
-      src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-    <link rel='stylesheet' href='/stylesheets/posts-index.css' />
+    <head>
+        <script
+            src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js">
+    </script>
+        <link rel='stylesheet' href='/stylesheets/posts-index.css' />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
 
-    <header>
+    <body>
 
-      <span class="site_logo">
-        <img src="images/logo trial 3.png" alt="Acebook" height="50">
-      </span>
-
-      <span>
-        <a href="/posts/new">New post</a>
-        <span class="larger">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-        <a href="/">Sign Out</a>
-      </span>
-
-    </header>
-
-  </head>
-
-  <body>
-    <div class="content">
-      <h1>Timeline</h1>
-
-      <div class="posts">
-
-        {{#each posts}}
-        <div class="post">
-          <div class="title">
-            <span class="user-pic">
-              <div class="profile-photo"></div>
-              {{this.author}}
+        <header>
+            <span class="site_logo">
+                <img src="images/logo trial 3.png" alt="Acebook" height="50">
             </span>
-
-            <span class="request">
-              <p>Request</p>
+            <span class="larger">
+                <a href="/posts/new">New post</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <form action="/sessions?_method=DELETE" method="POST">
+                    <input class="logout" type="submit" value="Log Out">
+                </form>
             </span>
-          </div>
-          <p>{{this.message}}</p>
-          <div class="likes-comments">
-            <div class="likes">
-              <p>{{this.likes}} Likes</p>
-              <p>Like</p>
+        </header>
+        <div class="content">
+            <h1>Timeline</h1>
+
+            <div class="posts">
+
+                {{#each posts}}
+                <div class="post">
+                    <div class="title">
+                        <span class="user-pic">
+                            <div class="profile-photo"></div>
+                            <div class="author">{{this.author}}
+                            </div>
+                        </span>
+
+                        <span class="request">
+                            <form action="/request">
+                                <input class="custom-file-upload" type="submit"
+                                    value="+ Request">
+                            </form>
+                        </span>
+                    </div>
+                    <p>{{this.message}}</p>
+                    <div class="likes-comments">
+
+                        <div>
+                            <span class="comments">
+                                <p>{{this.likes}} Likes</p><br>
+                                <p>Comments</p>
+                            </span>
+                        </div>
+
+                        <div>
+                            <span>
+                                <i class="material-icons"
+                                    style="font-size:36px;color:rgb(255, 118,
+                                    118);">favorite</i>
+                                <i class="material-icons"
+                                    style="font-size:36px;color:rgb(115, 115,
+                                    115);">comment</i>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+                {{/each}}
+
+
             </div>
-            <div class="comments">
-              <p>Comment</p>
-            </div>
-          </div>
+
         </div>
-        {{/each}}
+        <footer>Acebook™ in partnership with Eta™</footer>
 
-
-      </div>
-
-    </div>
-
-
-  </body>
+    </body>
 
 </html>
