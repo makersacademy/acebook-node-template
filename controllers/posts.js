@@ -6,8 +6,9 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts.reverse() });
-    });
+      res.render("posts/index", { posts: posts.sort( (a, b) => a.createdAt - b.createdAt ) });
+      console.log(posts)
+    }).sort({ createdAt: 'asc'}).exec();;
   },
   New: (req, res) => {
     res.render("posts/new", {});
