@@ -40,6 +40,16 @@ footer {
   color: #edf2f4;
   text-align: center;
 }
+input.logout {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  color: #00b7ff !important;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
 
 span.request {
   display: flex;
