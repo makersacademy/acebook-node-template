@@ -1,5 +1,6 @@
 <h1>Post</h1>
 
+<a href="/users/{{post.user_id}}">User</a>
 {{post.message}}
 
 <form action="/posts/{{this.post._id}}/create" method="post">
@@ -9,6 +10,7 @@
 
 <ul class="comments">
   {{#each comments}}
+  <a href="/users/{{this.user_id}}">User Profile</a>
   <li>{{this.message}}</li> 
   {{/each}}
 </ul>
