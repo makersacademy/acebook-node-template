@@ -71,11 +71,12 @@ body {
     font-size: 20px;
   }
 
-  p{
+  .p{
     font-size: 20px;
     margin-top: 10%;
     font-style: italic;
   }
+
   input{
     margin-bottom: 5%;
   }
@@ -117,6 +118,7 @@ input[type="file"] {
   margin-bottom: 5%;
   border-radius: 10px;
 }
+
 .custom-file-upload:hover{
   background-color: #2B2D42;
   color: #edf2f4;
@@ -146,4 +148,22 @@ input[type=submit] {
 .label {
   font-size: 40px;
   padding-bottom: 20px;
+}
+
+textarea {
+  border-radius: 10px;
+  padding: 15px;
+  margin: 5px 0 5px 0;
+  display: inline-block;
+  border: none;
+  background: #edf2f4;
+  resize: none;
+}
+
+.characters-remaining-field {
+  text-align: left;
+  padding-bottom: 20px;
+  color: rgb(98, 98, 98);
+  font-weight: 200;
+  font-size: small;
 }

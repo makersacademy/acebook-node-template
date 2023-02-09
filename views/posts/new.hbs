@@ -1,32 +1,59 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
   <head>
-    <script
-      src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <meta charset="UTF-8">
+    <title>Acebook - Create a Post</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <link rel='stylesheet' href='/stylesheets/post-new.css' />
+
+    <script>
+      function textareaLengthCheck(el) {
+        var textArea = el.value.length;
+        var charactersLeft = 250 - textArea;
+        var count = document.getElementById('lblRemainingCount');
+        count.innerHTML = charactersLeft + " characters remaining ";
+      }
+
+      window.addEventListener('load', function() {
+        var textArea = document.getElementById('message');
+        textareaLengthCheck(textArea);
+      });
+    </script>
+
   </head>
   <body>
     <header>
       <span class="site_logo">
-        <img src="/images/logo trial 3.png" alt="Acebook" height="50">
+        <a href="/posts"><img src="/images/logo trial 3.png" alt="Acebook" height="50"></a>
       </span>
 
         <span class="larger">
-          <a href="/posts">Home</a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
+
+          <form action="/posts">
+            <input class="logout" type="submit" value="Home">
+          </form>
+
+          <p class="p">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+
           <form action="/sessions?_method=DELETE" method="POST">
             <input class="logout" type="submit" value="Log Out">
           </form>
+
         </span>
       </span>
     </header>
     <form id="new-post-form" action="/posts" method="post">
       <div class="new-post">
+
         <label for="message" class="label">Create a post</label>
-        <input id="message" type="text" name="message" value="" placeholder="Write a message here...">
-        <label for="file-upload" class="custom-file-upload" accept=".jpg, .jpeg, .png">
-          + Add image
-      </label>
+
+        <textarea id="message" name="message" placeholder="Write a message here..." maxlength="250" minlength="1" value="" rows="4" cols="50" oninput="textareaLengthCheck(this)" required></textarea>
+
+        <p class="characters-remaining-field" id="lblRemainingCount"></p>
+
+        <label for="file-upload" class="custom-file-upload" accept=".jpg, .jpeg, .png">+ Add image</label>
+
       <input id="file-upload" type="file" name="image"/>
         <input class="post"type="submit" value="Post">
       </div>
