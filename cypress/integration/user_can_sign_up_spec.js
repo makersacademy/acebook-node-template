@@ -2,7 +2,7 @@ describe("Registration", () => {
   it("A user signs up and is redirected to sign in", () => {
     // sign up
     cy.visit("/users/new");
-    cy.get("#username").type("TestUserNames");
+    cy.get("#username").type("testusernames");
     cy.get("#email").type("testusers@example.com");
     cy.get("#password").type("Makers12345.");
     cy.get("#submit").click();
