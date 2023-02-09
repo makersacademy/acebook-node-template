@@ -26,6 +26,15 @@ describe("User model", () => {
     expect(user.password).toEqual("password");
   });
 
+  it("has friends", () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      friends: [{"status":"pending","user_id":"63e4dada71de08c481ac30dd"}]
+    });
+    expect(user.friends[0]).toEqual({"status":"pending","user_id":"63e4dada71de08c481ac30dd"});
+  });
+
   it("can list all users", (done) => {
     User.find((err, users) => {
       expect(err).toBeNull();
