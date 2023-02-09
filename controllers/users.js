@@ -6,13 +6,17 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
+    if (req.body.password == req.body.confirm_password) {
+      const user = new User(req.body); 
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    } else {
+      res.redirect("/users/new");
+    };
   },
 };
 
