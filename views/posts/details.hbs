@@ -1,6 +1,4 @@
-<h1>Post</h1>
-
-{{post.message}}
+<h1 class="title">{{post.message}}</h1>
 
 <form action="/posts/{{this.post._id}}/create" method="post">
     <input id="message" type="text" name="message" value="" required>
