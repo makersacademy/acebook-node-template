@@ -62,7 +62,6 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        
         res.render("posts/details", {comments: comments, post: post});
       }).where({post_id: postId})
     ));
@@ -70,12 +69,14 @@ const PostsController = {
 
   CreateComment: (req, res) => {
       const postId = req.params.id;
+      const userId = req.session.user._id
 
       console.log(postId);
 
       const comment = new Comment(req.body);
       comment.post_id = postId;
-
+      comment.user_id = userId;
+      
       if (comment.message[0] === " ") {
         const trimmed = comment.message.trim();
         if (trimmed.length != 0) {

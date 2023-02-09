@@ -9,6 +9,7 @@
 
 <ul class="comments">
   {{#each comments}}
+  <a href="/users/{{this.user_id}}">User Profile</a>
   <li>{{this.message}}</li> 
   {{/each}}
 </ul>
