@@ -1,14 +1,13 @@
-<!DOCTYPE html>
 <html>
   <head>
     <script
       src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-    <link href="../stylesheets/signup.css" rel="stylesheet"/>
+    <link href="../stylesheets/signup.css" rel="stylesheet" />
   </head>
   <body>
     <header>
       <span class="site_logo">
-        <img src="/images/logo trial 3.png" alt="Acebook" height="50">
+        <img src="/images/logo trial 3.png" alt="Acebook" height="50" />
       </span>
       <span class="login-signup">
         <a href="/">Home</a>
@@ -20,23 +19,43 @@
       <div class="user-inputs">
         <div class="username-field">
           <label for="username">Username: </label>
-          <input id="username" type="text" name="username" minlength="4"
-            maxlength="25" pattern="^[a-zA-Z]+[a-zA-Z0-9.$@£_%+-]+$" required>
+          <input
+            id="username"
+            type="text"
+            name="username"
+            title="LowerCase and special chars(.$@£_%!?&)"
+            minlength="4"
+            maxlength="20"
+            pattern="^[a-z]+[a-z0-9.$@£_%!?&]+$"
+            required
+            />
         </div>
         <div class="email-field">
           <label for="email">Email: </label>
-          <input id="email" type="email" name="email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+          <input
+            id="email"
+            type="email"
+            title="LowerCase Only"
+            name="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            required
+            />
         </div>
         <div class="password-field">
           <label for="password">Password: </label>
-          <input id="password" type="password" name="password" minlength="8"
-            maxlength="32" pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}+$"
-            required>
-        </div>
-      </div>
-      <input id="submit" type="submit" value="Submit">
-    </form>
-  </body>
-  <footer>Acebook™ in partnership with Eta™</footer>
-</html>
+          <input
+            id="password"
+            title="8-32 Characters, 1 UpperCase, 1 LowerCase, 1 Digit, 1 Special
+            Character"
+            type="password"
+            name="password"
+            pattern="^(?:(?:(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))|(?:(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]))|(?:(?=.*[0-9])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]))|(?:(?=.*[0-9])(?=.*[a-z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]))).{8,32}$"
+              required
+              />
+            </div>
+          </div>
+          <input id="submit" type="submit" value="Submit" />
+        </form>
+      </body>
+      <footer>Acebook™ in partnership with Eta™</footer>
+    </html>
