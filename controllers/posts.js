@@ -7,8 +7,7 @@ const PostsController = {
         throw err;
       }
       res.render("posts/index", { posts: posts });
-      console.log(posts)
-    }).sort( { createdAt: 'asc' } ).exec();
+    }).sort( { createdAt: 'desc' } ).exec();
   },
   New: (req, res) => {
     res.render("posts/new", {});
