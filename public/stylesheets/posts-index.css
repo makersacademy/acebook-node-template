@@ -8,6 +8,7 @@ body {
   background-color: #edf2f4;
   color: #2b2d42;
   height: 130px;
+  margin: 0;
 }
 
 a {
@@ -27,7 +28,9 @@ header {
   color: #edf2f4;
   justify-content: space-between;
   align-items: center;
+  position: fixed; 
 }
+
 
 footer {
   position: fixed;
@@ -57,6 +60,11 @@ span.request {
   align-items: center;
 }
 
+span{
+  align-self: center;
+  display: flex;
+}
+
 span.site_logo {
   padding: 0%;
   color: #edf2f4;
@@ -81,6 +89,8 @@ div.content {
   margin-top: 0%;
   text-align: center;
   box-shadow: #8d99ae;
+  padding-top: 10%;
+  padding-bottom: 15%;
 }
 
 div.profile-photo {
@@ -130,6 +140,9 @@ hr {
 
 form {
   padding: 10px;
+  color: #00b7ff;
+  text-decoration: none;
+  align-content: center;
 }
 
 .custom-file-upload {
