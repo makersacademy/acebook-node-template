@@ -51,15 +51,15 @@ input.logout {
   font-size: inherit;
 }
 
+span {
+  align-self: center;
+  display: flex;
+}
+
 span.request {
   display: flex;
   align-self: left;
   align-items: center;
-}
-
-span {
-  align-self: center;
-  display: flex;
 }
 
 span.site_logo {
