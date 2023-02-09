@@ -30,6 +30,14 @@ const SessionsController = {
     }
     res.redirect("/sessions/new");
   },
+
+
+
 };
+
+
+
+
+
 
 module.exports = SessionsController;
