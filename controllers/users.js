@@ -14,6 +14,10 @@ const UsersController = {
       res.status(201).redirect("/posts");
     });
   },
+
+  Messages: (req, res) => {
+    res.render("users/messages")
+  }
 };
 
 module.exports = UsersController;
