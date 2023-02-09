@@ -60,15 +60,9 @@ const UsersController = {
   },
 
   Confirm: (req, res) => {
-    console.log("confirmed")
     const theirId = req.params.id;
     const hostId = req.session.user._id;
 
-    // User.findOneAndUpdate({_id: hostId}, {friends: [{user_id: theirId, status: "confirmed"}]});
-
-    // User.findOneAndUpdate({ "_id": hostId }, {"$set": {"status": "confirmed"}})
-
-    // res.status(201).redirect(`/users/${theirId}`);
     User.findOneAndUpdate({"_id": hostId, "friends.user_id": theirId}, {"$set": {"friends.$.status": "confirmed"}}, (err, user) => {
       if (err) {
         throw err;
@@ -76,49 +70,18 @@ const UsersController = {
       console.log(user);
       res.status(201).redirect(`/users/${hostId}`);
     });
-
-    // User.findById(hostId, (err, user) => {
-    //   if (err) {
-    //     throw err;
-    //   }
-    //   // for(let i = 0; i < user.friends.length; i++) {
-    //   //   if(user.friends[i]["user_id"] === theirId) {
-    //   //     user.friends[i]["status"] = "confirmed";
-    //   //   }
-    //   // }
-    //   // user.save((err) => {
-    //   //   if (err) {
-    //   //     throw err;
-    //   //   }
-    //   //   let stat = user.$isNew;
-    //   //   console.log(stat);
-    //   //   res.status(201).redirect(`/users/${theirId}`);
-    //   // });
-    //   // User.updateOne({_id: hostId}, {friends: [{user_id: theirId, status: "confirmed"}]})
-    //   // res.status(201).redirect(`/users/${theirId}`);
-    // });
   },
 
   Deny: (req, res) => {
-    const otherId = req.params.id;
+    const theirId = req.params.id;
     const hostId = req.session.user._id;
 
-    User.findById(hostId, (err, user) => {
+    User.findOneAndUpdate({"_id": hostId, "friends.user_id": theirId}, {"$set": {"friends.$.status": "denied"}}, (err, user) => {
       if (err) {
         throw err;
       }
-      for(let i = 0; i < user.friends.length; i++) {
-        if(user.friends[i]["user_id"] === otherId) {
-          user.friends[i]["status"] = "denied";
-          user.save((err) => {
-            if (err) {
-              throw err;
-            }
-          });
-          console.log(user);
-        }
-      }
-      res.status(201).redirect(`/users/${otherId}`);
+      console.log(user);
+      res.status(201).redirect(`/users/${hostId}`);
     });
   },
 };
