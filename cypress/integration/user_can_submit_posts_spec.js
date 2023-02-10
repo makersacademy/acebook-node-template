@@ -40,7 +40,7 @@ describe("Timeline", () => {
     // DON'T submit a post, but press submit anyway
     cy.visit("/posts");
     cy.contains("New post").click();
-    cy.get("#message").type('{enter}')
+    cy.get("#new-post-form").submit();
     cy.url().should("include", "/posts/new");
 
     // Submit a post with just spaces - this should not post
@@ -51,13 +51,16 @@ describe("Timeline", () => {
     cy.get('#new-post-form > [type="submit"]').click()
     cy.url().should("include", "/posts/new");
 
-    //Removed as it appears the HTML is fixing this itself
-    // // submit a flawed post, spaces at front, spaces in middle, spaces at end
-    // cy.get("#new-post-form").find('[type="text"]').type("            Hello,      world!         ");
+
+
+    // CAN INSERT BACK IN FOR FORMATTING _ CURRENTLY RELYING ON HTML
+
+    // submit a flawed post, spaces at front, spaces in middle, spaces at end
+    // cy.get("#new-post-form").find('[type="text"]').type("            Hello,           world!         ");
     // cy.get('#new-post-form > [type="submit"]').click()
     //
     // // assert that the message exists, but with the spaces stripped
     // // eslint-disable-next-line no-invalid-regexp
-    // cy.get('li > :nth-child(1)').should('have.text',"Hello, world! ");
+    // cy.get('li > :nth-child(1)').should('have.text',"Hello, world!");
   });
 });
