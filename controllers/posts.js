@@ -19,7 +19,7 @@ const PostsController = {
     post.date = Date.now();
     post.user_id = req.session.user._id;
     if (post.message === "" || post.message.length > 250) {
-      res.status(201).redirect("/posts");
+      res.status(201).redirect("/posts/new");
     } else {
       post.save((err) => {
         if (err) {
