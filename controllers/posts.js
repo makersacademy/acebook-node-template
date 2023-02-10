@@ -18,13 +18,17 @@ const PostsController = {
     const post = new Post(req.body);
     post.date = Date.now();
     post.user_id = req.session.user._id;
-    post.save((err) => {
-      if (err) {
-        throw err;
-      }
-
+    if (post.message === "" || post.message.length > 250) {
       res.status(201).redirect("/posts");
-    });
+    } else {
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+  
+        res.status(201).redirect("/posts");
+      });
+    }
   },
  
    Like: (req, res) => {
@@ -71,13 +75,16 @@ const PostsController = {
       const postId = req.params.id;
       const userId = req.session.user._id
 
-      console.log(postId);
-
       const comment = new Comment(req.body);
       comment.post_id = postId;
       comment.user_id = userId;
-      
-      if (comment.message[0] === " ") {
+
+      console.log(comment.message)
+
+      if (comment.message === "" || comment.message.length > 250) { 
+        console.log("oops")
+        res.status(201).redirect(`/posts/${postId}`); 
+      } else if (comment.message[0] === " ") {
         const trimmed = comment.message.trim();
         if (trimmed.length != 0) {
           comment.message = trimmed;
