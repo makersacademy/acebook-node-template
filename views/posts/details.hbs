@@ -1,12 +1,13 @@
 <h1 class="title">{{post.message}}</h1>
 
 <form action="/posts/{{this.post._id}}/create" method="post">
-    <input id="message" type="text" name="message" value="" required>
+    <input id="message" type="text" name="message" maxlength="250" required>
     <input type="submit" value="Create">
 </form>
 
 <ul class="comments">
   {{#each comments}}
+  <a href="/users/{{this.user_id}}">User Profile</a>
   <li>{{this.message}}</li> 
   {{/each}}
 </ul>
