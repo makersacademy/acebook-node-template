@@ -13,14 +13,19 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
-    post.save((err) => {
-      if (err) {
-        throw err;
-      }
-      res.status(201).redirect("/posts");
-    });
-  },
+    if(!req.body.message) {
+      res.redirect("/posts");
+    } else {
+      const post = new Post(req.body);
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+        res.status(201).redirect("/posts");
+      });
+    };
+    },
+    
 };
 
 module.exports = PostsController;
