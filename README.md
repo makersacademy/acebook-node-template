@@ -140,7 +140,7 @@ To be used as a guide, will fluctuate day to day as work needs
 	5. any issues?
 
 
-**Quality** for the group is:
+## Quality - for the group is:
 - understandable code
 - fully functional to the MVP - or above if time
 - looks nice as well
