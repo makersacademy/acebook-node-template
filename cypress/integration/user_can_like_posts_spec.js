@@ -1,4 +1,4 @@
-describe("Timeline", () => {
+describe("Timeline Likes", () => {
     it("can see likes count on a new post", () => {
         // sign up
         cy.task("wipe_database");
@@ -24,11 +24,12 @@ describe("Timeline", () => {
 
         // Assert that we can see the likes count
         cy.get(".posts").should("contain", "0 likes");
-        cy.get("button:first").click();
-
+        cy.get("button").click();
+        cy.wait(1000);
         // Assert that we can see the updated likes count
-        cy.get(".posts").should("contain", "1 like");
+        cy.get(".posts").should("contain", "1 likes");
     });
+
     it("can see likes count on a new post with two existing posts", () => {
         // sign up
         cy.task("wipe_database");
@@ -61,16 +62,8 @@ describe("Timeline", () => {
         cy.get(".posts").should("contain", "Testing time 2");
         cy.get("button:first").click();
 
-
-        // must be fixed, this is garbage
-        // cy.get(".posts").eq(0).should("contain", "1 like");
-        // cy.get(".posts").eq(1).should("contain", "0 likes");
-
-
-
         // Assert that we can see the likes count
         cy.get(".posts").should("contain", "0 likes");
-        // cy.get("button:first").click();
 
         // Assert that we can see the updated likes count
         cy.get(".posts").should("contain", "1 like");

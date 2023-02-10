@@ -1,4 +1,4 @@
-describe("Timeline", () => {
+describe("Timeline Posts", () => {
   it("can submit posts, when signed in, and view them", () => {
     // sign up
     cy.task("wipe_database");

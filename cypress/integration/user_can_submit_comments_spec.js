@@ -36,7 +36,6 @@ describe("Comments", () => {
 
     // attempt to add a comment
     cy.contains("More details").click();
-    cy.get("#message").invoke('val', '')
     cy.contains("Create").click();
     cy.get(".comments li").should("contain", "Comment 1");
     cy.get(".comments li").should("have.length", 1);

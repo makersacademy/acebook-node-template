@@ -12,6 +12,7 @@ describe("Registration", () => {
 
   it("A user cannot sign up with blank credentials", () => {
     // sign up
+    cy.task("wipe_database");
     cy.visit("/users/new");
     cy.get("#submit").click();
     cy.url().should("include", "/users/new");
@@ -19,6 +20,7 @@ describe("Registration", () => {
 
   it("A user cannot sign up with valid email and blank password", () => {
     // sign up
+    cy.task("wipe_database");
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#submit").click();
@@ -27,6 +29,7 @@ describe("Registration", () => {
 
   it("A user cannot sign up with a valid password and blank email", () => {
     // sign up
+    cy.task("wipe_database");
     cy.visit("/users/new");
     cy.get("#password").type("password");
     cy.get("#submit").click();
@@ -35,6 +38,7 @@ describe("Registration", () => {
 
   it("A user cannot sign up with a password and an incomplete/invalid email", () => {
     // sign up
+    cy.task("wipe_database");
     cy.visit("/users/new");
     cy.get("#email").type("someone");
     cy.get("#password").type("password");
@@ -44,6 +48,7 @@ describe("Registration", () => {
 
   it("A user cannot sign up with a duplicate account", () => {
     // sign up
+    cy.task("wipe_database");
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
@@ -56,16 +61,17 @@ describe("Registration", () => {
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
+    // this may fail if a redirect is implemented
     cy.url().should("include", "/users/new");
   });
 
 
   it("A user cannot sign up with a valid email and an invalid password", () => {
     // sign up
+    cy.task("wipe_database");
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("pass");
-
     cy.get("#password").type('{enter}');
     cy.url().should("include", "/users/new");
   });
