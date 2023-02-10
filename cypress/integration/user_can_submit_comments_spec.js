@@ -95,18 +95,18 @@ describe("Comments", () => {
     cy.url().should("include", "/posts");
   });
 
-  // it("user comment is added without extra spaces", () => {
-  //   // sign in
-  //   cy.visit("/sessions/new");
-  //   cy.get("#email").type("someone@example.com");
-  //   cy.get("#password").type("password");
-  //   cy.get("#submit").click();
-  //
-  //   // attempt to add a comment
-  //   cy.contains("More details").click();
-  //   cy.get("#message").type("     Comment 4    ");
-  //   cy.contains("Create").click();
-  //   cy.get(".comments li").eq(3).should("have.text", "Comment 4");
-  //   cy.get(".comments li").should("have.length", 4);
-  // });
+  it("user comment is added without extra spaces", () => {
+    // sign in
+    cy.visit("/sessions/new");
+    cy.get("#email").type("someone@example.com");
+    cy.get("#password").type("password");
+    cy.get("#submit").click();
+
+    // attempt to add a comment
+    cy.contains("More details").click();
+    cy.get("#message").type("     Comment 4    ");
+    cy.contains("Create").click();
+    cy.get(".comments li").eq(3).should("have.text", "Comment 4");
+    cy.get(".comments li").should("have.length", 4);
+  });
 });
