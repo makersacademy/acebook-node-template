@@ -3,7 +3,7 @@
 <a href="/users/{{post.user_id}}">User</a>
 {{post.message}}
 
-<form action="/posts/{{this.post._id}}/create" method="post">
+<form action="/posts/{{post._id}}/create" method="post">
     <input id="message" type="text" name="message" maxlength="250" required>
     <input type="submit" value="Create">
 </form>
