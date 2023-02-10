@@ -20,6 +20,20 @@ const PostsController = {
     post.user_id = req.session.user._id;
     if (post.message === "" || post.message.length > 250) {
       res.status(201).redirect("/posts/new");
+    } else if (post.message[0] === " ") {
+      const trimmed_post = post.message.trim();
+      if (trimmed_post.length != 0) {
+        post.message = trimmed_post;
+        post.save((err) => {
+          if (err) {
+            throw err;
+          }
+
+          res.status(201).redirect(`/posts/new`);
+        });
+      } else {
+        res.status(201).redirect(`/posts/new`);
+      }
     } else {
       post.save((err) => {
         if (err) {
