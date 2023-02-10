@@ -79,8 +79,6 @@ const PostsController = {
       comment.post_id = postId;
       comment.user_id = userId;
 
-      console.log(comment.message)
-
       if (comment.message === "" || comment.message.length > 250) { 
         console.log("oops")
         res.status(201).redirect(`/posts/${postId}`); 
