@@ -13,7 +13,7 @@ describe("Timeline", () => {
       cy.get("#submit").click();
   
       // submit a post
-      cy.visit("/posts");
+      // cy.visit("/posts");
       cy.get("input#message").type("Hello, world!");
       cy.get("#submit_post").click();
   
