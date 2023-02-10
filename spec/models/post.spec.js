@@ -16,7 +16,7 @@ describe("Post model", () => {
   });
 
   it("has a message", () => {
-    var post = new Post({ message: "some message" });
+    var post = new Post({ message: "some message" },  );
     expect(post.message).toEqual("some message");
   });
 
