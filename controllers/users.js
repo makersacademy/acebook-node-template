@@ -18,10 +18,6 @@ const UsersController = {
       res.redirect("/users/new");
     }
   },
-
-Login: (req, res) => {
-    res.render("users/login", {});
-  },
 };
 
 module.exports = UsersController;
