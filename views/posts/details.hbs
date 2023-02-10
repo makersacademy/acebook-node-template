@@ -1,4 +1,7 @@
-<h1 class="title">{{post.message}}</h1>
+<h1>Post</h1>
+
+<a href="/users/{{post.user_id}}">User</a>
+{{post.message}}
 
 <form action="/posts/{{post._id}}/create" method="post">
     <input id="message" type="text" name="message" maxlength="250" required>
