@@ -80,7 +80,6 @@ const PostsController = {
       comment.user_id = userId;
 
       if (comment.message === "" || comment.message.length > 250) { 
-        console.log("oops")
         res.status(201).redirect(`/posts/${postId}`); 
       } else if (comment.message[0] === " ") {
         const trimmed = comment.message.trim();
