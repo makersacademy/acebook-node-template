@@ -13,7 +13,7 @@ const UsersController = {
         throw err;
       }
 
-      if (user.email === "" || user.password < 8 || founduser != null) {
+      if (user.email === "" || user.password.length < 8 || founduser != null) {
         req.session.error = "INVALID USERNAME OR PASSWORD";
         res.redirect("/users/new");
       } else if (founduser === null) {

@@ -1,15 +1,16 @@
 <h1>Timeline</h1>
 <ul class="posts">
-  {{#each posts}}
-  <a href="/users/{{this.user_id}}">User Profile</a>
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  <form action="/posts/{{this._id}}/like" method="post">
-    <button type="submit">Like</button>
-  </form>
-  <a href="/posts/{{this._id}}">More details</a>
-  <p>=====================</p>
-  {{/each}}
+    <li>
+      {{#each posts}}
+      <p>{{this.message}}</p>
+      <p>{{this.likes}} likes</p>
+      <form action="/posts/{{this._id}}/like" method="post">
+        <button type="submit">Like</button>
+      </form>
+      <a href="/posts/{{this._id}}">More details</a>
+      <p>=====================</p>
+      {{/each}}
+    </li>
 </ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
