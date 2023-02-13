@@ -52,14 +52,17 @@ const UsersController = {
       if (err) {
         throw err;
       }
-      if (user.friends.filter(object => object.user_id === currentId).length === 0) {
-        user.friends.push({user_id: `${currentId}`, status: "pending"})
-
-        user.save((err) => {
-          if (err) {
-            throw err;
-          }
-        });
+      if (targetId != currentId)
+      {
+        if (user.friends.filter(object => object.user_id === currentId).length === 0) {
+          user.friends.push({user_id: `${currentId}`, status: "pending"})
+  
+          user.save((err) => {
+            if (err) {
+              throw err;
+            }
+          });
+        }
       }
       res.status(201).redirect(`/users/${targetId}`);
     });
