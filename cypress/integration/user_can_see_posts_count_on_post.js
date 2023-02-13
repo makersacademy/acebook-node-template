@@ -18,7 +18,8 @@ describe("Timeline", () => {
       // cy.visit("/posts");
       cy.url().should("include", "/posts");
       cy.get("input#message").type("Hello, world!");
-      cy.get("#submit_post").click();
+      cy.get("#submit").click();
+
   
       cy.get(".posts").should("contain", "Hello, world!");
 
