@@ -69,11 +69,10 @@ const UsersController = {
     const theirId = req.params.id;
     const hostId = req.session.user._id;
 
-    User.findOneAndUpdate({"_id": hostId, "friends.user_id": theirId}, {"$set": {"friends.$.status": "confirmed"}}, (err, user) => {
+    User.findOneAndUpdate({"_id": hostId, "friends.user_id": theirId}, {"$set": {"friends.$.status": "confirmed"}}, (err) => {
       if (err) {
         throw err;
       }
-      console.log(user);
       res.status(201).redirect(`/users/${hostId}`);
     });
   },
@@ -82,11 +81,10 @@ const UsersController = {
     const theirId = req.params.id;
     const hostId = req.session.user._id;
 
-    User.findOneAndUpdate({"_id": hostId, "friends.user_id": theirId}, {"$set": {"friends.$.status": "denied"}}, (err, user) => {
+    User.findOneAndUpdate({"_id": hostId, "friends.user_id": theirId}, {"$set": {"friends.$.status": "denied"}}, (err) => {
       if (err) {
         throw err;
       }
-      console.log(user);
       res.status(201).redirect(`/users/${hostId}`);
     });
   },

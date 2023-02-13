@@ -9,11 +9,9 @@ const PostsController = {
         throw err;
       }
     }).sort({date:-1}).then((post) => {
-      console.log(post);
       let collection = [];
       async function post_set(post, i) {
         await User.findById(post[i].user_id, (err, user) => {
-          console.log(user);
           if (err) {
             throw err;
           }
