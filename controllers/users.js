@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 const UsersController = {
   New: (req, res) => {
-    res.render("users/new", {error: req.session.error});
+    res.render("users/new", {error: req.session.error, session_user: req.session.user});
   },
 
   Create: (req, res) => {
@@ -41,7 +41,7 @@ const UsersController = {
       }
       user.friends = user.friends.filter(object => object.status === "pending");
 
-      res.render("users/details", {user: user});
+      res.render("users/details", {user: user, session_user: req.session.user});
     });
   },
 

@@ -4,7 +4,7 @@ const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find((err, posts) => {
+    Post.find((err) => {
       if (err) {
         throw err;
       }
@@ -25,13 +25,13 @@ const PostsController = {
         for(let i = 0; i < post.length; i++) {
         await post_set(post, i);
       }
-      res.render("posts/index", { collection: collection});
+      res.render("posts/index", { collection: collection , session_user: req.session.user});
       }
       increment(post);
     })
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", {session_user: req.session.user});
   },
   Create: (req, res) => {
     const post = new Post(req.body);
@@ -99,7 +99,7 @@ const PostsController = {
         if (err) {
           throw err;
         }
-        res.render("posts/details", {comments: comments, post: post});
+        res.render("posts/details", {comments: comments, post: post, session_user: req.session.user});
       }).where({post_id: postId})
     ));
   },
