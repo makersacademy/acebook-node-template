@@ -12,10 +12,6 @@ describe("Timeline", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    // submit a post
-    cy.visit("/posts");
-    cy.contains("Submit").click();
-
 // submit a post
   // cy.visit("/posts");
   cy.url().should("include", "/posts");
