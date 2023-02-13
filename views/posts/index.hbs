@@ -15,6 +15,7 @@
       <img width="40" height="40" src={{this.picture}}>
       <a href="/users/{{this.post.user_id}}">{{this.username}}</a>
       <p>{{this.post.message}}</p>
+      <img width="80" height="80" src={{this.post.picture}}>
       <p>{{this.post.likes}} likes</p>
       <form action="/posts/{{this.post._id}}/like" method="post">
         <button type="submit">Like</button>

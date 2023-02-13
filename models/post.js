@@ -6,6 +6,7 @@ const PostSchema = new mongoose.Schema({
   liked_by: [],
   date: Date,
   user_id: String,
+  picture: { type: String, default: "none" },
 });
 
 const Post = mongoose.model("Post", PostSchema);
