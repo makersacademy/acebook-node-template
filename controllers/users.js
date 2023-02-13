@@ -94,17 +94,21 @@ const UsersController = {
 
   Picture: (req, res) => {
     const hostId = req.params.id;
+    const currentId = req.session.user._id;
     
     User.findById(hostId, (err, user) => {
-      user.picture = req.body.picture;
-
-      user.save((err) => {
-        if (err) {
-          throw err;
-        }
-
+      if (currentId === hostId) {
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+  
+          res.status(201).redirect(`/users/${hostId}`);
+        });
+      } else {
         res.status(201).redirect(`/users/${hostId}`);
-      });
+      }
+      user.picture = req.body.picture;
     });
   },
 };
