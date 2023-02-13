@@ -2,13 +2,13 @@
   <li><form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out">
     </form> </li>
-  <li><a href="/users/{{session_user._id}}"><img src={{session_user.picture}} width="50" height="50"/></a></li>
+  <li><a href="/users/{{session_user._id}}"><img width="50" height="50" src={{session_user.picture}}/></a></li>
   <li><a href="/users/{{session_user._id}}">User Page</a></li>
   <li><a class="new-post-link" href="/posts/new">New post</a></li>
   <li><a class="home" href="/posts">Home</a></li>
 </ul>
 
-<form action="/users/{{this.user._id}}/request" method="post">
+<form action="/users/{{user._id}}/request" method="post">
     <input type="submit" value="Send friend request">
 </form>
 
@@ -18,7 +18,7 @@
   <input type="submit" value="Submit">
 </form>
 
-<img src={{user.picture}} width="50" height="50"/>
+<img width="50" height="50" src={{user.picture}}/>
 
 <p>Your friend requests</p>
 <ul class="requests">
