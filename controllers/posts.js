@@ -8,22 +8,27 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      console.log(posts);
     }).sort({date:-1}).then((post) => {
       let collection = [];
-      for(let i = 0; i < post.length; i++) {
-        User.findById(post[i].user_id, (err, user) => {
+      async function post_set(post, i) {
+        await User.findById(post[i].user_id, (err, user) => {
+          console.log(i);
           if (err) {
             throw err;
           }
           let regex = /^\w*[^@]/g;
           let username = user.email.match(regex);
-          collection.push({post: post[i], picture: user.picture, username: username})
-        });
+          collection.push({post: post[i], picture: user.picture, username: username});
+        })
       }
-      console.log(collection);
+      async function increment(post) {
+        for(let i = 0; i < post.length; i++) {
+        await post_set(post, i);
+      }
       res.render("posts/index", { collection: collection});
-    });
+      }
+      increment(post);
+    })
   },
   New: (req, res) => {
     res.render("posts/new", {});
