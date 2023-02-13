@@ -10,7 +10,7 @@ const UsersController = {
     User.findOne({ email: email }).then((user) => {
       if (user) {
         res.render("users/new", {layout: "users/new", error: "Email already in use"})
-      };
+      }
     });
 
     if (req.body.password == req.body.confirm_password) {
@@ -23,7 +23,7 @@ const UsersController = {
       });
     } else {
       res.redirect("/users/new");
-     };
+     }
   },
 
   Messages: (req, res) => {
