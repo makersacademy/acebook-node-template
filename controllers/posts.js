@@ -21,6 +21,9 @@ const PostsController = {
       res.status(201).redirect("/posts");
     });
   },
+  User_posts: (req, res) => {
+    res.render("posts/myposts");
+  }
 };
 
 module.exports = PostsController;
