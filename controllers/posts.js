@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
@@ -7,9 +8,22 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts });
-    }).sort({date:-1});
+      console.log(posts);
+    }).sort({date:-1}).then((post) => {
+      let collection = [];
+      for(let i = 0; i < post.length; i++) {
+        User.findById(post[i].user_id, (err, user) => {
+          if (err) {
+            throw err;
+          }
+          let regex = /^\w*[^@]/g;
+          let username = user.email.match(regex);
+          collection.push({post: post[i], picture: user.picture, username: username})
+        });
+      }
+      console.log(collection);
+      res.render("posts/index", { collection: collection});
+    });
   },
   New: (req, res) => {
     res.render("posts/new", {});
