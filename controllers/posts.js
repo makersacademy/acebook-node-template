@@ -1,19 +1,23 @@
 const Post = require("../models/post");
 
+
 const PostsController = {
+
+  
+
   Index: (req, res) => {
     Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts });
+        res.render("posts/index", { posts: posts });
     }).sort( { createdAt: 'desc' } ).exec();
   },
   New: (req, res) => {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    if(!req.body.message) {
+    if(req.body.message == "") {
       res.redirect("/posts");
     } else {
       const post = new Post(req.body);
