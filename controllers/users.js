@@ -90,6 +90,22 @@ const UsersController = {
       res.status(201).redirect(`/users/${hostId}`);
     });
   },
+
+  Picture: (req, res) => {
+    const hostId = req.params.id;
+    
+    User.findById(hostId, (err, user) => {
+      user.picture = req.body.picture;
+
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+
+        res.status(201).redirect(`/users/${hostId}`);
+      });
+    });
+  },
 };
 
 module.exports = UsersController;

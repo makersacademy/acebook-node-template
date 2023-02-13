@@ -2,11 +2,13 @@
     <input type="submit" value="Send friend request">
 </form>
 
-
-<form action="myform.cgi"> 
-  <input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> Select a file to upload</label> 
-  <input type="submit" value="submit"> 
+<form id="link-form" action="/users/{{user._id}}/picture" method="post">
+  <label for="picture">Link: </label>
+  <input id="picture" type="text" name="picture" value="">
+  <input type="submit" value="Submit">
 </form>
+
+<img src={{user.picture}} />
 
 <p>Your friend requests</p>
 <ul class="requests">
