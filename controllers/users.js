@@ -39,7 +39,7 @@ const UsersController = {
         user.friends = [];
       }
       user.friends = user.friends.filter(object => object.status === "pending");
-      
+
       res.render("users/details", {user: user, session_user: req.session.user});
     });
   },
@@ -101,7 +101,7 @@ const UsersController = {
           if (err) {
             throw err;
           }
-  
+          req.session.user = user;
           res.status(201).redirect(`/users/${hostId}`);
         });
       } else {
