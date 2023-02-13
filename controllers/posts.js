@@ -12,7 +12,6 @@ const PostsController = {
       let collection = [];
       async function post_set(post, i) {
         await User.findById(post[i].user_id, (err, user) => {
-          console.log(i);
           if (err) {
             throw err;
           }
