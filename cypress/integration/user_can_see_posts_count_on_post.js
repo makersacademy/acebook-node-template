@@ -16,12 +16,15 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("Submit").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
-    cy.get("#new-post-form").submit();
+// submit a post
+  // cy.visit("/posts");
+  cy.url().should("include", "/posts");
+  cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+  cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Hello, world!");
+  cy.get(".posts").should("contain", "Hello, world!");
 
-    // Assert that we can see the likes count
-    cy.get(".posts").should("contain", "0 likes");
+  // Assert that we can see the likes count
+  cy.get(".posts").should("contain", "0 likes");
   });
 });
