@@ -13,7 +13,7 @@ const UsersController = {
         throw err;
       }
 
-      if (user.email === "" || user.password < 8 || founduser != null) {
+      if (user.email === "" || user.password.length < 8 || founduser != null) {
         req.session.error = "INVALID USERNAME OR PASSWORD";
         res.redirect("/users/new");
       } else if (founduser === null) {
@@ -89,6 +89,22 @@ const UsersController = {
       }
       console.log(user);
       res.status(201).redirect(`/users/${hostId}`);
+    });
+  },
+
+  Picture: (req, res) => {
+    const hostId = req.params.id;
+    
+    User.findById(hostId, (err, user) => {
+      user.picture = req.body.picture;
+
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+
+        res.status(201).redirect(`/users/${hostId}`);
+      });
     });
   },
 };
