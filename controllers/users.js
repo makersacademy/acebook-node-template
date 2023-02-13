@@ -39,6 +39,7 @@ const UsersController = {
       if(userId != sessionId) {
         user.friends = [];
       }
+      user.friends = user.friends.filter(object => object.status === "pending");
 
       res.render("users/details", {user: user});
     });
@@ -88,6 +89,26 @@ const UsersController = {
       }
       console.log(user);
       res.status(201).redirect(`/users/${hostId}`);
+    });
+  },
+
+  Picture: (req, res) => {
+    const hostId = req.params.id;
+    const currentId = req.session.user._id;
+    
+    User.findById(hostId, (err, user) => {
+      if (currentId === hostId) {
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+  
+          res.status(201).redirect(`/users/${hostId}`);
+        });
+      } else {
+        res.status(201).redirect(`/users/${hostId}`);
+      }
+      user.picture = req.body.picture;
     });
   },
 };
