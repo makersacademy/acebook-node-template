@@ -17,19 +17,18 @@ const PostsController = {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
-    if(req.body.message == "") {
-      res.redirect("/posts");
-    } else {
-      const post = new Post(req.body);
-      post.save((err) => {
-        if (err) {
-          throw err;
-        }
-        res.status(201).redirect("/posts");
-      });
-    };
-    },
-    
+    const post = new Post(req.body);
+    post.save((err) => {
+      if (err) {
+        throw err;
+      }
+
+      res.status(201).redirect("/posts");
+    });
+  },
+  User_posts: (req, res) => {
+    res.render("posts/myposts");
+  }
 };
 
 module.exports = PostsController;

@@ -18,6 +18,22 @@ const UsersController = {
       res.redirect("/users/new");
     }
   },
+
+  Messages: (req, res) => {
+    res.render("users/messages")
+  },
+
+  Friends: (req, res) => {
+    res.render("users/friends")
+  },
+
+  Notifications: (req, res) => {
+    res.render("users/notifications")
+  },
+
+  Profile: (req, res) => {
+    res.render("users/profile")
+  },
 };
 
 module.exports = UsersController;
