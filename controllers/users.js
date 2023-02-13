@@ -6,17 +6,23 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    if (req.body.password == req.body.confirm_password) {
-      const user = new User(req.body); 
-      user.save((err) => {
-        if (err) {
-          throw err;
-        }
-        res.status(201).redirect("/posts");
-      });
-    } else {
-      res.redirect("/users/new");
-    };
+    const email = req.body.email;
+    User.findOne({ email: email }).then((user) => {
+      if (user) {
+        res.render("users/new", {layout: "users/new", error: "Email already in use"})
+      };
+
+    // if (req.body.password == req.body.confirm_password) {
+    //   const user = new User(req.body); 
+    //   user.save((err) => {
+    //     if (err) {
+    //       throw err;
+    //     }
+    //     res.status(201).redirect("/posts");
+    //   });
+    // } else {
+    //   res.redirect("/users/new");
+     });
   },
 
   Messages: (req, res) => {
