@@ -6,3 +6,70 @@ body {
 a {
   color: #00B7FF;
 }
+
+.nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.nav ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  border-bottom: 1px solid black;
+}
+
+.nav li {
+  float: left;
+}
+
+.nav li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.nav li a:hover {
+  background-color: #111;
+  color: white;
+}
+
+.nav #log_out {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  border: none;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.nav-right {
+  float: right;
+}
+
+.nav #log_out:hover {
+  background-color: #111;
+  color: white;
+}
+
+
+@media screen and (max-width: 500px) {
+  .nav a {
+    float: none;
+    display: block;
+  }
+}
