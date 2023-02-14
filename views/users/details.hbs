@@ -24,7 +24,11 @@
 
 <img width="50" height="50" src={{user.picture}}>
 
+
+{{#unless is_session_user}}
 <p>Your friend requests</p>
+{{/unless}}
+
 <ul class="requests">
   {{#each user.friends}}
     <li>{{this.user_id}}</li>
