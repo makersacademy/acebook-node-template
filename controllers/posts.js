@@ -14,6 +14,7 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.user = req.session.user.username
     post.save((err) => {
       if (err) {
         throw err;

@@ -16,7 +16,7 @@ const UsersController = {
       });
     } else {
       res.redirect("/users/new");
-    };
+    }
   },
 
   Messages: (req, res) => {
