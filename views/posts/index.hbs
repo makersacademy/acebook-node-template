@@ -12,18 +12,21 @@
 <ul class="posts">
     <li>
       {{#each collection}}
-      <img width="40" height="40" src={{this.picture}}>
-      <a href="/users/{{this.post.user_id}}">{{this.username}}</a>
-      <p>{{this.post.message}}</p>
-      {{#if isPicture}}
-      <img width="80" height="80" src={{this.post.picture}}>
-      {{/if}}
-      <p>{{this.post.likes}} likes</p>
-      <form action="/posts/{{this.post._id}}/like" method="post">
-        <button type="submit">Like</button>
-      </form>
-      <a href="/posts/{{this.post._id}}">More details</a>
-      <p>=====================</p>
+        <img width="40" height="40" src={{this.picture}}>
+        <a href="/users/{{this.post.user_id}}">{{this.username}}</a>
+        <p>{{this.post.message}}</p>
+        <p>{{this.post.likes}} likes</p>
+        {{#if alreadyLiked}}
+          <form action="/posts/{{this.post._id}}/unlike" method="post">
+            <button type="submit">Unlike</button>
+          </form>
+        {{else}}
+          <form action="/posts/{{this.post._id}}/like" method="post">
+            <button type="submit">Like</button>
+          </form>
+        {{/if}}
+        <a href="/posts/{{this.post._id}}">More details</a>
+        <p>=====================</p>
       {{/each}}
     </li>
 </ul>

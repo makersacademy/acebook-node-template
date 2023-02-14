@@ -64,25 +64,32 @@ const PostsController = {
     }
   },
  
-   Like: (req, res) => {
+  Like: (req, res) => {
     const postId = req.params.id;
     const userId = req.session.user._id
-
+  
     Post.findById(postId, (err, post) => {
       if (err) {
         throw err;
       }
-      if (!post.liked_by.includes(userId)) {
+  
+      const alreadyLiked = post.liked_by.includes(userId);
+  
+      if (!alreadyLiked) {
         post.likes = post.likes + 1;
-        post.liked_by.push(userId)
-
-        post.save((err) => {
-          if (err) {
-            throw err;
-          }
-        });
+        post.liked_by.push(userId);
+      } else {
+        post.likes = post.likes - 1;
+        post.liked_by = post.liked_by.filter(id => id !== userId);
       }
-      res.redirect("/posts");
+  
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+  
+        res.redirect("/posts");
+      });
     });
   },
 
