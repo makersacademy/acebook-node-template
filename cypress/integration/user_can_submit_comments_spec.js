@@ -21,7 +21,7 @@ describe("Comments", () => {
 
     // add a comment
     cy.contains("More details").click();
-    cy.get(".title").should("contain", "Hello,");
+    cy.get("body").should("contain", "Hello,");
     cy.get("#message").type("Comment 1");
     cy.contains("Create").click();
     cy.get(".comments li").should("contain", "Comment 1");

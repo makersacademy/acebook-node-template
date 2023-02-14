@@ -48,7 +48,7 @@ const PostsController = {
             throw err;
           }
 
-          res.status(201).redirect(`/posts/new`);
+          res.status(201).redirect(`/posts/`);
         });
       } else {
         res.status(201).redirect(`/posts/new`);

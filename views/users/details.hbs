@@ -8,9 +8,13 @@
   <li><a class="home" href="/posts">Home</a></li>
 </ul>
 
-<form action="/users/{{user._id}}/request" method="post">
-    <input type="submit" value="Send friend request">
-</form>
+{{#if is_session_user}}
+  <li>
+    <form action="/users/{{user._id}}/request" method="post">
+      <input type="submit" value="Send friend request">
+    </form>
+  </li>
+{{/if}}
 
 <form id="link-form" action="/users/{{user._id}}/picture" method="post">
   <label for="picture">Link: </label>
@@ -20,7 +24,10 @@
 
 <img width="200" height="200" src={{user.picture}}>
 
+{{#unless is_session_user}}
 <p>Incoming friend requests</p>
+{{/unless}}
+
 <ul class="requests">
   {{#each user.friends}}
     <li>{{this.user_id}}</li>

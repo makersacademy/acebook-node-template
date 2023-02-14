@@ -30,17 +30,27 @@ const UsersController = {
   Details: (req, res) => {
     const userId = req.params.id;
     const sessionId = req.session.user._id;
+
     User.findById(userId, (err, user) => {
       if (err) {
         throw err;
       }
-
+  
+      const isSessionUser = userId !== sessionId;
+      
       if(userId != sessionId) {
         user.friends = [];
       }
-      user.friends = user.friends.filter(object => object.status === "pending");
 
-      res.render("users/details", {user: user, session_user: req.session.user});
+      if (user.friends) {
+        user.friends = user.friends.filter(friend => friend.status === "pending");
+      }
+
+      res.render("users/details", {
+        user: user,
+        session_user: req.session.user,
+        is_session_user: isSessionUser
+      });
     });
   },
 
