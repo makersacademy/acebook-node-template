@@ -15,6 +15,12 @@ describe("Post model", () => {
     expect(post.message).toEqual("some message");
   });
 
+  it("has a liked_by list", () => {
+    var post = new Post({ message: "some message", liked_by: ["63e3dac27cf776b5b35d5b80"]});
+    expect(post.message).toEqual("some message");
+    expect(post.liked_by[0]).toEqual("63e3dac27cf776b5b35d5b80");
+  });
+
   it("can list all posts", (done) => {
     Post.find((err, posts) => {
       expect(err).toBeNull();

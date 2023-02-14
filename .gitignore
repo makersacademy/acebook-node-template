@@ -63,3 +63,9 @@ typings/
 # cypress.io
 cypress/screenshots
 cypress/videos
+
+# Webstorm config folder
+.idea
+
+# DS_STORE FILE
+.DS_Store

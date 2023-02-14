@@ -1,9 +1,32 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  {{/each}}
+<ul>
+  <li><form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out">
+    </form> </li>
+  <li><a href="/users/{{session_user._id}}"><img width="50" height="50" src={{session_user.picture}}></a></li>
+  <li><a href="/users/{{session_user._id}}">User Page</a></li>
+  <li><a class="new-post-link" href="/posts/new">New post</a></li>
+  <li><a class="home" href="/posts">Home</a></li>
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<h1>Timeline</h1>
+<ul class="posts">
+    <li>
+      {{#each collection}}
+        <img width="40" height="40" src={{this.picture}}>
+        <a href="/users/{{this.post.user_id}}">{{this.username}}</a>
+        <p>{{this.post.message}}</p>
+        <p>{{this.post.likes}} likes</p>
+        {{#if alreadyLiked}}
+          <form action="/posts/{{this.post._id}}/unlike" method="post">
+            <button type="submit">Unlike</button>
+          </form>
+        {{else}}
+          <form action="/posts/{{this.post._id}}/like" method="post">
+            <button type="submit">Like</button>
+          </form>
+        {{/if}}
+        <a href="/posts/{{this.post._id}}">More details</a>
+        <p>=====================</p>
+      {{/each}}
+    </li>
+</ul>

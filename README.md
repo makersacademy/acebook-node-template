@@ -14,7 +14,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+Link to Trello: https://trello.com/b/TpjSuBYO/jam-a-pc
 
 ## Quickstart
 
@@ -30,6 +30,17 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    ```
    nvm install 18
    ```
+
+_Note: you if you get an error when running `nvm install 18`, completeing the following commands might help:_
+
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash`
+
+`source ~/.zshrc`
+
+`nvm install node`
+
+`nvm use node`
+
 
 ### Set up your project
 
@@ -74,6 +85,9 @@ so that integration tests do not interact with the development server.
 
 ### Test
 
+_Note: if at any point you get a 'this is your first time running cypress' message telling you that you need to verify it, enter the following command to verify:_
+`npx cypress verify`
+
 - Run all tests
   ```
   npm test
@@ -93,3 +107,47 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Check that it's running using `brew services list`
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+
+# General Rules:
+
+To be used as a guide, will fluctuate day to day as work needs
+
+1. **0930** - Previous cohort/team standup
+	1. shared learning
+	2. ideas sharing
+	3. shared unblocking
+
+
+2. **1000** - JAMA PC standup
+	1. completed items
+	2. plans for the day
+	3. new items to add
+	4. items to remove
+	5. any issues?
+
+
+3. **1230-1400** LUNCH
+
+
+5. **1400** - Afternoon catchup
+
+
+7. **1700** - daily roundup
+	1. completed items
+	2. plans for the day
+	3. new items to add
+	4. items to remove
+	5. any issues?
+
+
+## Quality - for the group is:
+- understandable code
+- fully functional to the MVP - or above if time
+- looks nice as well
+
+Maybe we need to consider:
+- Usability
+- Accessibility
+- Security
+- Testability
+- Longevity

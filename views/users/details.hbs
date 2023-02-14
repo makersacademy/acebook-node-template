@@ -1,0 +1,42 @@
+<ul>
+  <li><form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out">
+    </form> </li>
+  <li><a href="/users/{{session_user._id}}"><img width="50" height="50" src={{session_user.picture}}></a></li>
+  <li><a href="/users/{{session_user._id}}">User Page</a></li>
+  <li><a class="new-post-link" href="/posts/new">New post</a></li>
+  <li><a class="home" href="/posts">Home</a></li>
+</ul>
+
+{{#if is_session_user}}
+  <li>
+    <form action="/users/{{user._id}}/request" method="post">
+      <input type="submit" value="Send friend request">
+    </form>
+  </li>
+{{/if}}
+
+<form id="link-form" action="/users/{{user._id}}/picture" method="post">
+  <label for="picture">Link: </label>
+  <input id="picture" type="text" name="picture" value="">
+  <input type="submit" value="Submit">
+</form>
+
+<img width="200" height="200" src={{user.picture}}>
+
+{{#unless is_session_user}}
+<p>Incoming friend requests</p>
+{{/unless}}
+
+<ul class="requests">
+  {{#each user.friends}}
+    <li>{{this.user_id}}</li>
+    <li>{{this.status}}</li>
+    <form action="/users/{{this.user_id}}/confirm" method="post">
+        <input type="submit" value="Confirm">
+    </form>
+    <form action="/users/{{this.user_id}}/deny" method="post">
+        <input type="submit" value="Deny">
+    </form>
+  {{/each}}
+</ul>
