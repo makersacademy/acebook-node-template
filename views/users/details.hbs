@@ -8,9 +8,13 @@
   <li><a class="home" href="/posts">Home</a></li>
 </ul>
 
-<form action="/users/{{user._id}}/request" method="post">
-    <input type="submit" value="Send friend request">
-</form>
+{{#if is_session_user}}
+  <li>
+    <form action="/users/{{user._id}}/request" method="post">
+      <input type="submit" value="Send friend request">
+    </form>
+  </li>
+{{/if}}
 
 <form id="link-form" action="/users/{{user._id}}/picture" method="post">
   <label for="picture">Link: </label>
