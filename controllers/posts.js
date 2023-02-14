@@ -1,13 +1,17 @@
 const Post = require("../models/post");
+// const User = require("../models/user");
 
 const PostsController = {
   Index: (req, res) => {
+    // const user = req.session.user;
+    // console.log(user);
     Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts.reverse(), username: req.session.user.username });
-      console.log(req.session.user.username)
+      res.render("posts/index", { posts: posts.reverse(), username: req.session.user.username,
+      });
+      console.log(req.session.user)
     });
   },
   New: (req, res) => {
