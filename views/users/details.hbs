@@ -25,9 +25,9 @@
 <img width="50" height="50" src={{user.picture}}>
 
 
-{{#if is_session_user}}
+{{#unless is_session_user}}
 <p>Your friend requests</p>
-{{/if}}
+{{/unless}}
 
 <ul class="requests">
   {{#each user.friends}}
