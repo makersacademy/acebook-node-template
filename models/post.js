@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema({
   user: String,
   userID: String
 }, { timestamps: true });
- 
+
 
 const Post = mongoose.model("Post", PostSchema);
 
