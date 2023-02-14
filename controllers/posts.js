@@ -1,7 +1,11 @@
 const Post = require("../models/post");
 // const User = require("../models/user");
 
+
 const PostsController = {
+
+  
+
   Index: (req, res) => {
     // const user = req.session.user;
     // console.log(user);
@@ -9,21 +13,24 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.render("posts/index", { posts: posts.reverse(), username: req.session.user.username,
-      });
-      console.log(req.session.user)
-    });
+      // res.render("posts/index", { posts: posts.reverse(), username: req.session.user.username,
+      // });
+      // console.log(req.session.user)
+    // });
+
+      res.render("posts/index", { posts: posts });
+    }).sort( { createdAt: 'desc' } ).exec();
   },
   New: (req, res) => {
     res.render("posts/new", {});
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.user = req.session.user.username
     post.save((err) => {
       if (err) {
         throw err;
       }
-
       res.status(201).redirect("/posts");
     });
   },

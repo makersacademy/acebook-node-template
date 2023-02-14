@@ -3,15 +3,22 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
+<<<<<<< HEAD
   <li>{{this.message}}</li> 
   <li>{{this.likes}} likes</li>
   <br>
+=======
+  {{this.message}} by {{this.user}}<br>
+  {{this.likes}} likes <br><br>
+>>>>>>> main
   {{/each}}
 </ul>
 
 <h1> Create a post </h1>
+<p>{{error}}</p>
 <form id="new-post-form" action="/posts" method="post">
+{{error}}
   <input id="message" type="text" name="message" value="" placeholder = 'type your message'>
-  <input type="submit" value="Submit">
+  <input id="submit_post" type="submit" value="Submit"> 
 </form>
 

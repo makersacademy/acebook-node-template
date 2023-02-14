@@ -3,8 +3,11 @@
 <form id="new-user-form" action="/users" method="post">
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
+  <p>{{error}}</p>
   <label for="password">Password: </label>
   <input id="password" type="password" name="password" value="">
+  <label for="confirm_password"> Confirm Password: </label>
+  <input id="confirm_password" type="password" name="confirm_password" value="">
   <label for="username">Username: </label>
   <input id="username" type="username" name="username" value="">
   <label for="firstName">First Name: </label>

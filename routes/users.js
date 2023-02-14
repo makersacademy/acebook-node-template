@@ -11,4 +11,5 @@ router.get("/notifications", UsersController.Notifications);
 router.get("/profile", UsersController.Profile);
 router.post("/", UsersController.Create);
 
+
 module.exports = router;
