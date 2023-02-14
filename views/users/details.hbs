@@ -22,11 +22,10 @@
   <input type="submit" value="Submit">
 </form>
 
-<img width="50" height="50" src={{user.picture}}>
-
+<img width="200" height="200" src={{user.picture}}>
 
 {{#unless is_session_user}}
-<p>Your friend requests</p>
+<p>Incoming friend requests</p>
 {{/unless}}
 
 <ul class="requests">
