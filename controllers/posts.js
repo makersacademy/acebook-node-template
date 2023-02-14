@@ -10,7 +10,8 @@ const PostsController = {
       if (err) {
         throw err;
       }
-        res.render("posts/index", { posts: posts });
+
+      res.render("posts/index", { posts: posts });
     }).sort( { createdAt: 'desc' } ).exec();
   },
   New: (req, res) => {
@@ -18,11 +19,11 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.user = req.session.user.username
     post.save((err) => {
       if (err) {
         throw err;
       }
-
       res.status(201).redirect("/posts");
     });
   },
