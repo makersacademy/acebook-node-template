@@ -37,9 +37,11 @@ const UsersController = {
       }
   
       const isSessionUser = userId !== sessionId;
-      console.log(isSessionUser);
-  
-      user.friends = user.friends.filter(friend => friend.status === "pending");
+      
+      if(userId != sessionId) {
+        user.friends = [];
+      }
+      user.friends = user.friends.filter(object => object.status === "pending");
   
       res.render("users/details", {
         user: user,
