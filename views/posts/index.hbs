@@ -3,14 +3,8 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-<<<<<<< HEAD
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  <br>
-=======
   {{this.message}} by {{this.user}}<br>
   {{this.likes}} likes <br><br>
->>>>>>> main
   {{/each}}
 </ul>
 
@@ -22,3 +16,16 @@
   <input id="submit_post" type="submit" value="Submit"> 
 </form>
 
+<h1> search users </h1>
+<form class="search" action="/users/search_friends" method="get">
+ <label for="username">Username:</label>
+ <input type="text" id="username" name="username"><br><br>
+ <input type="submit" value="Submit">
+</form>
+
+<h1> search users </h1>
+<form class="search" action="/users/search_friends" method="get">
+ <label for="username">Username:</label>
+ <input type="text" id="username" name="username"><br><br>
+ <input type="submit" value="Submit">
+</form>
