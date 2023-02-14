@@ -17,7 +17,8 @@ const PostsController = {
           }
           let regex = /^\w*[^@]/g;
           let username = user.email.match(regex);
-          collection.push({post: post[i], picture: user.picture, username: username});
+          let isPicture = post[i].picture !== "";
+          collection.push({post: post[i], picture: user.picture, username: username, isPicture: isPicture});
         })
       }
       async function increment(post) {
