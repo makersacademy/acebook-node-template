@@ -6,6 +6,13 @@ const UsersController = {
   },
 
   Create: (req, res) => {
+    const email = req.body.email;
+    User.findOne({ email: email }).then((user) => {
+      if (user) {
+        res.render("users/new", {layout: "users/new", error: "Email already in use"})
+      }
+    });
+
     if (req.body.password == req.body.confirm_password) {
       const user = new User(req.body); 
       user.save((err) => {
