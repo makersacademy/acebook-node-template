@@ -1,8 +1,11 @@
+<p>Hello, {{username}}</p>
+
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li> 
   <li>{{this.likes}} likes</li>
+  <br>
   {{/each}}
 </ul>
 
@@ -11,3 +14,4 @@
   <input id="message" type="text" name="message" value="" placeholder = 'type your message'>
   <input type="submit" value="Submit">
 </form>
+
