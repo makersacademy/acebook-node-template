@@ -7,6 +7,7 @@ describe("Timeline", () => {
     cy.get("#confirm_password").type("password");
     cy.get("#username").type("username");
     cy.get("#submit").click();
+    cy.get("#log_out").click();
 
     // sign in
     cy.url().should("include", "/sessions/new");
