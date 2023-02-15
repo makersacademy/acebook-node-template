@@ -4,7 +4,8 @@
 <ul class="posts">
   {{#each posts}}
   {{this.message}} by {{this.user}}<br>
-  {{this.likes}} likes <br><br>
+  {{this.likes}} likes 
+  <button><a href ="/posts/{{this._id}}">Like</a></button><br><br>
   {{/each}}
 </ul>
 
