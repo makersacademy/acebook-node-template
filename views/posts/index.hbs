@@ -1,13 +1,15 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
+  {{this.message}} by {{this.user}}<br>
+  {{this.likes}} likes <br><br>
   {{/each}}
 </ul>
 
 <h1> Create a post </h1>
+<p>{{error}}</p>
 <form id="new-post-form" action="/posts" method="post">
-  <input id="message" type="text" name="message" placeholder = 'type your message'>
-  <input id="submit_post" type="submit" value="Submit">
+{{error}}
+  <input id="message" type="text" name="message" value="" placeholder = 'type your message'>
+  <input id="submit_post" type="submit" value="Submit"> 
 </form>

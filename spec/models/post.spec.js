@@ -10,6 +10,16 @@ describe("Post model", () => {
     });
   });
 
+  it("has a username", () => {
+    var post = new Post({user: "Bob"});
+    expect(post.user).toEqual("Bob");
+  });
+
+  it("has a userID", () => {
+    var post = new Post({userID: "16ef780"});
+    expect(post.userID).toEqual("16ef780");
+  });
+
   it("has a message", () => {
     var post = new Post({ message: "some message" },  );
     expect(post.message).toEqual("some message");
