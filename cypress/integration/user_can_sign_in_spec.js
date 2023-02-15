@@ -28,6 +28,7 @@ describe("Authentication", () => {
 
 
 
+
 // describe('Email Validator', () => {
 //   it('checks if a string matches a regular expression', () => {
 //     const stringToTest = cy.get("#email");
