@@ -5,8 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <header>
-      <nav>
+    <nav class="nav">
         <ul>
           <li><a href='/posts'>Home</a></li>
           <li><a href='/posts/myposts'>My Posts</a></li>
@@ -14,13 +13,14 @@
           <li><a href='/users/friends'>Friends</a></li>
           <li><a href='/users/notifications'>Notifications</a></li>
           <li><a href='/users/profile'>Profile</a></li>
- 
-        </ul>
-      </nav>
-      <form action='/sessions?_method=DELETE' method='POST'>
+          <div class="nav-right">
+          <li> <form action='/sessions?_method=DELETE' method='POST'>
         <input id="log_out" type="submit" value="Log Out">
-      </form>
-    </header>
+      </form></li>
+        </ul>
+      </div>
+      </nav>
+      </body>
     
     {{{body}}}
     
