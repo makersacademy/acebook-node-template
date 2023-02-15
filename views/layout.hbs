@@ -4,6 +4,7 @@
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
+
   <body>
     <nav class="nav">
         <ul>
@@ -13,7 +14,8 @@
           <li><a href='/users/friends'>Friends</a></li>
           <li><a href='/users/notifications'>Notifications</a></li>
           <li><a href='/users/profile'>Profile</a></li>
-          <div class="nav-right">
+          {{!-- <li>Hello, {{user.firstName}} {{user.lastName}}</li> --}}
+          <div class="nav-right"></div>
           <li> <form action='/sessions?_method=DELETE' method='POST'>
         <input id="log_out" type="submit" value="Log Out">
       </form></li>

@@ -1,25 +1,23 @@
 const { type } = require("os");
 const Post = require("../models/post");
-// const User = require("../models/user");
-
 
 const PostsController = {
 
-  
-
   Index: (req, res) => {
-    // const user = req.session.user;
-    // console.log(user);
+
     Post.find((err, posts) => {
+    // ensure user variable is not empty
+    const user = req.session.user || {
+      username: 'guest',
+      firstName: 'guest',
+      lastName: 'guest',
+    };
+
       if (err) {
         throw err;
       }
-      // res.render("posts/index", { posts: posts.reverse(), username: req.session.user.username,
-      // });
-      // console.log(req.session.user)
-    // });
-
-      res.render("posts/index", { posts: posts });
+      // include user variable to pull name through
+      res.render("posts/index", { posts: posts, user, title: 'Acebook' });
     })
       .sort({ createdAt: "desc" })
       .exec();
