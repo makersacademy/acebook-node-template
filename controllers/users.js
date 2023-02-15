@@ -43,6 +43,12 @@ const UsersController = {
   Profile: (req, res) => {
     res.render("users/profile")
   },
+
+  Search_friends: async (req, res) => {
+    const foundUser = await User.find({username: req.query.username})
+    res.render("users/search_friends", {foundUser: foundUser});
+   },
+
 };
 
 module.exports = UsersController;
