@@ -46,7 +46,12 @@ const UsersController = {
 
   Search_friends: async (req, res) => {
     const foundUser = await User.find({username: req.query.username})
-    res.render("users/search_friends", {foundUser: foundUser});
+    
+    if (req.query.username === req.session.user.username) {
+      res.render("users/search_friends");
+    } else {
+      res.render("users/search_friends", {foundUser: foundUser});
+    }
    },
 
 };
