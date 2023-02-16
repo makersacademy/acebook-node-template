@@ -29,19 +29,33 @@ const UsersController = {
   },
 
   Messages: (req, res) => {
-    res.render("users/messages")
+    const user = req.session.user || {
+      username: 'guest',
+      firstName: 'guest',
+      lastName: 'guest',
+    };
+    res.render("users/messages", {user})
   },
 
   Friends: (req, res) => {
-    res.render("users/friends")
+    const user = req.session.user
+    console.log(user)
+    res.render("users/friends", {user: user})
   },
 
   Notifications: (req, res) => {
-    res.render("users/notifications")
+    const user = req.session.user || {
+      username: 'guest',
+      firstName: 'guest',
+      lastName: 'guest',
+    };
+    res.render("users/notifications", {user})
   },
 
   Profile: (req, res) => {
-    res.render("users/profile")
+    const user = req.session.user
+    console.log(user)
+    res.render("users/profile", {user: user})
   },
 
   Search_friends: async (req, res) => {

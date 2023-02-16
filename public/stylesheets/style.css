@@ -13,6 +13,28 @@ a {
   top: 0;
 }
 
+.username {
+  padding-top: 13px;
+}
+
+.user-card img {
+  border: 1px #111;
+}
+
+.timeline {
+  float:left;
+  margin-right: 400px;
+  width: 450px;
+}
+
+.name {
+  text-decoration: underline;
+}
+
+.timeline-header {
+  text-align: center;
+}
+
 .nav ul {
   list-style-type: none;
   margin: 0px;

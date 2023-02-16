@@ -37,8 +37,13 @@ const PostsController = {
     });
   },
   User_posts: async (req, res) => {
+    const user = req.session.user || {
+      username: 'guest',
+      firstName: 'guest',
+      lastName: 'guest',
+    };
     const userPosts = await Post.find({ userID: req.session.user._id });
-    res.render("posts/myposts", { userPosts: userPosts });
+    res.render("posts/myposts", { userPosts: userPosts, user});
   },
 
   Like: async (req, res) => {
