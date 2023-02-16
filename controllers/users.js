@@ -66,6 +66,7 @@ const UsersController = {
       } else {
         res.render("users/search_friends", {foundUser: foundUser});
       }
+
    },
 };
 
