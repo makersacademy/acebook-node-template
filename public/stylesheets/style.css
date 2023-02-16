@@ -83,11 +83,25 @@ a {
   float: right;
 }
 
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  text-align: center;
+}
+
+
 .nav #log_out:hover {
   background-color: #111;
   color: white;
 }
-
 
 @media screen and (max-width: 500px) {
   .nav a {
