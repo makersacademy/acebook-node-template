@@ -1,25 +1,42 @@
-{{!-- <p>Hello, {{user.firstName}} {{user.lastName}}</p> --}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
 
-<h1>Timeline</h1>
+{{!-- <p>Hello, {{user.firstName}} {{user.lastName}}</p> --}}
+<div class ="timeline">
+<div class="timeline-header"><h1>Timeline</h1></div>
 <ul class="posts">
   {{#each posts}}
-  {{this.message}} by {{this.user}}<br>
+  {{this.user}}:<br>
+  {{this.message}}<br>
   {{this.likes}} likes 
-  <button><a href ="/posts/{{this._id}}">Like</a></button><br><br>
+  <a href ="/posts/{{this._id}}"><img class="like" src="/images/like-icon.jpg"width="15px" height="15px"></a><br><br>
   {{/each}}
 </ul>
+</div>
 
-<h1> Create a post </h1>
+<div class="create_post">
+<h3> Create a post: </h3>
 <p>{{error}}</p>
 <form id="new-post-form" action="/posts" method="post">
 {{error}}
-  <input id="message" type="text" name="message" value="" placeholder = 'type your message'>
+  <input id="message" type="text" name="message">
   <input id="submit_post" type="submit" value="Submit"> 
 </form>
+</div>
 
-<h1> Friends </h1>
+<div class="search_users">
+<h3>Friends: </h3>
 <form class="search" action="/users/search_friends" method="get">
  <label for="username">Username:</label>
- <input type="text" id="username" name="username"><br><br>
+ <input type="text" id="username" name="username">
  <input type="submit" value="Find friends">
 </form>
+</div>
+
+</body>
+
