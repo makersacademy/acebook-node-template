@@ -1,8 +1,11 @@
+{{!-- <p>Hello, {{user.firstName}} {{user.lastName}}</p> --}}
+
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
   {{this.message}} by {{this.user}}<br>
-  {{this.likes}} likes <br><br>
+  {{this.likes}} likes 
+  <button><a href ="/posts/{{this._id}}">Like</a></button><br><br>
   {{/each}}
 </ul>
 
@@ -12,4 +15,11 @@
 {{error}}
   <input id="message" type="text" name="message" value="" placeholder = 'type your message'>
   <input id="submit_post" type="submit" value="Submit"> 
+</form>
+
+<h1> Friends </h1>
+<form class="search" action="/users/search_friends" method="get">
+ <label for="username">Username:</label>
+ <input type="text" id="username" name="username"><br><br>
+ <input type="submit" value="Find friends">
 </form>
