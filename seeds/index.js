@@ -12,7 +12,7 @@ mongoose.connect("mongodb://0.0.0.0/acebook_test", {
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
+db.once("open", () => {
   console.log("Connected to DB");
 });
 
