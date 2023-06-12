@@ -1,3 +1,29 @@
+# Rules For Pushing 
+
+Before making a pull request. From your branch:
+1) stage any changes git add . & git commit -m "meaningful message"
+2) git checkout main
+3) update your local main git pull origin main5
+4) go back to your branch git checkout branch-name
+5) merge your branch with main git merge main
+6) resolve any conflicts locally; speak with the person who wrote the conflicting code if necessary
+7) repeat step 1
+8) open a PR git push origin branch-name
+
+To add, if you ever want to make your branch available for everyone else, simply:
+* git push origin branch-name just don’t open up a PR after, and everyone can then check out your branch
+
+# Collaborator User Names
+
+* Louis - Loo-Ashworth
+* Adrian - adrianHards
+* Laura - Lmason14
+* Joe - Joecunliffe98
+* Terry - terenceroach
+* Lisa - lisaoausb
+* Emma - emmadavids
+* Joan -JoanKalanzi
+
 # Acebook
 
 This is a Node.js template for the Acebook engineering project.
@@ -14,7 +40,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+<a href="https://miro.com/app/board/uXjVM_xqOSQ=/"> Miro Board</a>
 
 ## Quickstart
 
