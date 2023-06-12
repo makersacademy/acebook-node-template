@@ -10,6 +10,26 @@ describe("User model", () => {
     });
   });
 
+  it("has a first name", () => {
+    const user = new User({
+      firstName: "Someone",
+      lastName: "Anyone",
+      email: "someone@example.com",
+      password: "password",
+    });
+    expect(user.firstName).toEqual("Someone");
+  });
+
+  it("has a last name", ()=> {
+    const user = new User({
+      firstName: "Someone",
+      lastName:"Anyone",
+      email: "someone@example.com",
+      password: "password",
+    });
+    expect(user.lastName).toEqual("Anyone");
+  });
+
   it("has an email address", () => {
     const user = new User({
       email: "someone@example.com",
