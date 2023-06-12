@@ -1,8 +1,49 @@
+:root {
+  --main-color: rgb(255, 121, 126);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.parent-container {
+  margin: 20vh 30vh;
+  padding: 15vh;
+  display: flex;
+  justify-content: space-between;
+  /* border-style: solid; */
+}
+
+.left-container, .right-container {
+  padding: 5vh;
+}
+
+.title {
+  color: var(--main-color);
+  font-size: 5em;
+}
+
+.slogan {
+  font-size: 1.5em;
+}
+
+.left-container {
+  text-align: center;
+}
+
+.right-container {
+  border-style: solid; 
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
 }
