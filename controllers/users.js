@@ -11,7 +11,7 @@ const UsersController = {
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
-        res.status(500).render('users/new', {error: err.message}); //fix this 
+        res.status(500).render('users/new', {error: err.message}); //make error message more user friendly 
       } else {
         res.status(201).redirect("/posts");
       }
