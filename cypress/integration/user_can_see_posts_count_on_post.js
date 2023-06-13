@@ -1,3 +1,7 @@
+//THIS TEST NEEDS DEVELOPMENT - UNSURE WHAT POSTS?LIKES COUNT WILL LOOK LIKE IN FINAL PROJECT
+
+
+
 describe("Timeline", () => {
     it("can see likes count on a new post", () => {
       // sign up
