@@ -37,4 +37,30 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("shows post chronologically", (done) => {
+    var post = new Post({ message: "hi"});
+    var post1 = new Post({ message: "hello"});
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "hi" });
+        done();
+      });
+    });
+
+    post1.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((posts) => {
+
+        expect(posts[0]).toMatchObject({ message: "hello" });
+        done();
+      });
+    });
+  })
 });
