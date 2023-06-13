@@ -11,6 +11,8 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+// create a route for users/username
+
 const app = express();
 
 // view engine setup
@@ -47,7 +49,7 @@ app.use((req, res, next) => {
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
-    res.redirect("/sessions/new");
+    res.redirect("/sessions/login");
   } else {
     next();
   }
