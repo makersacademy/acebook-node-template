@@ -18,13 +18,12 @@ db.once("open", () => {
 
 const seedDB = async () => {
   try {
-    console.log("Clearing user data...");
-    await User.deleteMany({});
-    console.log("User data cleared.");
-
     console.log("Clearing post data...");
     await Post.deleteMany({});
     console.log("Post data cleared.");
+    console.log("Clearing user data...");
+    await User.deleteMany({});
+    console.log("User data cleared.");
   } catch (err) {
     console.log(err);
   }
