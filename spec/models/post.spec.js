@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const assert = require("assert");
-const User = require("../../models/user");
 const Post = require("../../models/post");
 require("../mongodb_helper");
 
