@@ -12,7 +12,16 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    match: [/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/, 'Please enter a valid password'],
+    validate: {
+      validator: function(v) {
+        return /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$/.test(v);
+      },
+      message: "Password is not valid. Passwords must contain at least 8 characters, a number and a special character"
+    }
+  },
+  friends: {
+    type: [mongoose.Types.ObjectId], // each friend is represented by their ObjectId
+    default: []
   },
 });
 
