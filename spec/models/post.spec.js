@@ -60,14 +60,4 @@ describe("Post model", () => {
     const posts = await Post.find();
     expect(posts[0]).toMatchObject({ message: "some message" });
   });
-
-  // it("lists all posts in reverse order (most recent first)", async () => {
-  //   const oldPost = new Post({ message: "oldest message" });
-  //   await oldPost.save();
-  //   const newPost = new Post({ message: "newest message" });
-  //   await newPost.save();
-
-  //   const posts = await Post.find();
-  //   expect(posts).toEqual([newPost, oldPost]);
-  // });
 });
