@@ -1,0 +1,14 @@
+
+{{!-- <p>{{post.message}}</p> --}}
+<h1>This is a post</h1>
+
+{{#each post.comments}}
+    <ul>
+        <li>{{this.content}}</li>
+    </ul>
+    <form id="new-post-form" action="/posts/{{this._id}}" method="get">
+        <label for="comment">Comment: </label>
+        <input id="comment" type="text" name="content" value="">
+        <input type="submit" value="Submit">
+    </form>
+{{/each}}

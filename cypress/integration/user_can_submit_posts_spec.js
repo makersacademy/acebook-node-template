@@ -20,5 +20,14 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Hello, world!");
+
+    // // Add a comment
+    // cy.visit("/posts");
+
+
+    // cy.get("#comment-form").find('[type="text"]').type("Hello!");
+    // cy.get("#comment-form").submit();
+
+    // cy.get(".comments").should("contain", "Hello!");
   });
 });
