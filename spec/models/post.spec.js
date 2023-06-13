@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 const assert = require("assert");
-
-require("../mongodb_helper");
+const User = require("../../models/user");
 const Post = require("../../models/post");
+require("../mongodb_helper");
+
+const user = {
+  id: new mongoose.Types.ObjectId(),
+};
 
 const createAndValidatePost = (message) => {
-  const post = new Post({ message });
+  const post = new Post({ message: message, user: user.id });
   return post.validateSync();
 };
 
@@ -54,7 +58,7 @@ describe("Post model", () => {
   });
 
   it("can save a post", async () => {
-    const post = new Post({ message: "some message" });
+    const post = new Post({ message: "some message", user: user.id });
     await post.save();
 
     const posts = await Post.find();
