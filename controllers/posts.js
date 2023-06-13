@@ -6,6 +6,7 @@ const PostsController = {
     try {
       let posts = await Post.find().exec();
       posts = posts.reverse();
+
       for (let post of posts) {
         post.likesCount = await Like.countDocuments({
           post: post._id,
