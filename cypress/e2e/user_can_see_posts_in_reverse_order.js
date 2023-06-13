@@ -20,13 +20,13 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Oldest post");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Old post");
+    cy.get(".posts").should("contain", "Oldest post");
 
     cy.get(".new-post-link").click();
     cy.get("#new-post-form").find('[type="text"]').type("Newest post");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Newer post");
+    cy.get(".posts").should("contain", "Newest post");
 
     let postOrder = [];
     cy.get(".post-message")
