@@ -10,7 +10,8 @@
     "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/acebook_test' npm start",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "jest",
-    "test:integration": "cypress run"
+    "test:integration": "cypress run",
+    "seed": "node ./seeds/cypress.js"
   },
   "engines": {
     "node": ">=18.1.0"
