@@ -4,6 +4,11 @@ const assert = require("assert");
 require("../mongodb_helper");
 const Post = require("../../models/post");
 
+const createAndValidatePost = (message) => {
+  const post = new Post({ message });
+  return post.validateSync();
+};
+
 describe("Post model", () => {
   beforeEach((done) => {
     mongoose.connection.collections.posts.drop(() => {
@@ -11,67 +16,58 @@ describe("Post model", () => {
     });
   });
 
-  it("it does not have a message", async () => {
-    const post = new Post({ message: "" });
-    const error = post.validateSync();
-    assert.equal(error.errors["message"].message, "Post message is required");
+  it("does not have a message", () => {
+    const error = createAndValidatePost("");
+    expect(error.errors["message"].message).toBe("Post message is required");
   });
 
-  it("it has a message > 500 chars", async () => {
+  it("has a message with white spaces", () => {
+    const error = createAndValidatePost("     ");
+    expect(error.errors["message"].message).toBe(
+      "Post message cannot be empty"
+    );
+  });
+
+  it("has a message > 500 chars", () => {
     const longMessage = "a".repeat(501);
-    const post = new Post({ message: longMessage });
-    const error = post.validateSync();
-    assert.equal(
-      error.errors["message"].message,
+    const error = createAndValidatePost(longMessage);
+    expect(error.errors["message"].message).toBe(
       "Post message cannot be longer than 500 characters"
     );
   });
 
-  it("it has a message with the word facebook", async () => {
-    const post = new Post({ message: "FaceBook is the best" });
-    const error = post.validateSync();
-    assert.equal(
-      error.errors["message"].message,
+  it("has a message with the word facebook", () => {
+    const error = createAndValidatePost("FaceBook is the best");
+    expect(error.errors["message"].message).toBe(
       "Post message cannot contain the word 'facebook'"
     );
   });
 
-  it("has a message", () => {
+  it("has a valid message", () => {
     const post = new Post({ message: "some message" });
-    expect(post.message).toEqual("some message");
+    expect(post.message).toBe("some message");
   });
 
-  it("can list all posts", (done) => {
-    Post.find((err, posts) => {
-      expect(err).toBeNull();
-      expect(posts).toEqual([]);
-      done();
-    });
+  it("when there are no posts", async () => {
+    const posts = await Post.find();
+    expect(posts).toEqual([]);
   });
 
-  it("can save a post", (done) => {
+  it("can save a post", async () => {
     const post = new Post({ message: "some message" });
+    await post.save();
 
-    post.save((err) => {
-      expect(err).toBeNull();
+    const posts = await Post.find();
+    expect(posts[0]).toMatchObject({ message: "some message" });
+  });
 
-      Post.find((err, posts) => {
-        expect(err).toBeNull();
+  it("lists all posts in reverse order (most recent first)", async () => {
+    const oldPost = new Post({ message: "oldest message" });
+    await oldPost.save();
+    const newPost = new Post({ message: "newest message" });
+    await newPost.save();
 
-        expect(posts[0]).toMatchObject({ message: "some message" });
-        done();
-      });
-    });
+    const posts = await Post.find();
+    expect(posts).toEqual([newPost, oldPost]);
   });
 });
-
-/*
-as a logged in user
-an empty post is invalid
-and is not posted
-*/
-
-/*
-as a not logged in user
-I cannot create a post
-*/

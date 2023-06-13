@@ -5,17 +5,23 @@ const PostSchema = new mongoose.Schema({
     type: String,
     validate: [
       {
-        validator: function (message) {
+        validator: function lengthValidator(message) {
           return message.length < 500;
         },
         message: "Post message cannot be longer than 500 characters",
       },
       {
-        validator: function (message) {
+        validator: function contentValidator(message) {
           const lowerCaseMessage = message.toLowerCase();
           return !lowerCaseMessage.includes("facebook");
         },
         message: "Post message cannot contain the word 'facebook'",
+      },
+      {
+        validator: function emptyValidator(message) {
+          return message.trim().length > 0;
+        },
+        message: "Post message cannot be empty",
       },
     ],
     required: [true, "Post message is required"],
