@@ -1,7 +1,41 @@
+{{#if error }}
+<div class="error-message">
+    {{error}}
+</div>
+{{/if}}
+
 <form id="new-user-form" action="/users" method="post">
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="first-name" name="firstName" value="">
+  <br>
+  <br>
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="last-name" name="lastName" value="">
+  <br>
+  <br>
+
   <label for="email">Email: </label>
   <input id="email" type="email" name="email" value="">
+  {{!-- {{#if error.email}}
+    <div class="error-message">{{error.email}}</div>
+  {{/if}} --}}
+
+  <br>
+  <br>
+
   <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
+  <input id="password" type="password" name="password" value="" required>
+  {{!-- {{#if error.password}}
+    <div class="error-message">{{error.password}}</div>
+  {{/if}} --}}
+  <br>
+  <br>
+
+  <label for="confirm-password">Confirm Password: </label>
+  <input id="confirm-password" type="password" name="confirm-password" value="" required>
+  <br>
+  <br>
+
   <input id="submit" type="submit" value="Submit">
 </form>
