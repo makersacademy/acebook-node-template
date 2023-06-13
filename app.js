@@ -61,6 +61,20 @@ app.use((req, res, next) => {
   next();
 });
 
+app.post('/signup', async (req, res) => {
+  try {
+    if (req.body.password !== req.body.password2) {
+      throw new Error("Passwords don't match. Try again.");
+    }
+    
+    const user = new User(req.body);
+    await user.save();
+    // Rest of your sign-up logic...
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 
 // route setup
 app.use("/", homeRouter);
