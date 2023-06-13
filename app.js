@@ -53,6 +53,15 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
+app.use((req, res, next) => {
+  // if a user is in the session, make it available in the views
+  if (req.session.user) {
+    res.locals.user = req.session.user;
+  }
+  next();
+});
+
+
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
