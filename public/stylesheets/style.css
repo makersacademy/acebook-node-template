@@ -12,6 +12,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+/* landing page */
+
 .parent-container {
   margin: 20vh 30vh;
   padding: 15vh;
@@ -43,7 +45,22 @@ body {
   border-radius: 5px;
 }
 
-.login-form {
+.login-form, #new-user-form {
   display: flex;
   flex-direction: column;
 }
+
+/* banner */
+.banner {
+  text-align: center;
+  margin: 5vh 0vh;
+}
+
+.banner hr {
+  background-color:  var(--main-color);
+  border: none;
+  height: 1px;
+  margin-top: 2vh;
+}
+
+/* signup page */
