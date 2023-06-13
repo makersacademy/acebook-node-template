@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/user");
 const Post = require("../models/post");
-const users = require("./data/users");
-const posts = require("./data/posts");
 
 mongoose.connect("mongodb://0.0.0.0/acebook_test", {
   useNewUrlParser: true,

@@ -2,7 +2,11 @@
 <ul class="posts">
   {{#each posts}}
     <li class="post-message">{{this.message}}</li>
-    <li class="post-likes">{{this.likes}} likes</li>
+    <li class="post-likes">{{this.likesCount}} likes</li>
+    <form action="/likes" method="post">
+      <input type="hidden" name="postId" value={{this._id}} />
+      <button type="submit" class="like-button">❤️</button>
+    </form>
   {{/each}}
 </ul>
 

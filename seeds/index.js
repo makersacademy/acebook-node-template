@@ -3,7 +3,6 @@ const User = require("../models/user");
 const Post = require("../models/post");
 const Like = require("../models/like");
 const users = require("./data/users");
-const posts = require("./data/posts");
 
 mongoose.connect("mongodb://0.0.0.0/acebook_test", {
   useNewUrlParser: true,
@@ -34,7 +33,6 @@ const seedDB = async () => {
 
       const post = new Post({
         message: "Hello, World!",
-        likes: 10,
         user: user._id,
       });
       await post.save();
