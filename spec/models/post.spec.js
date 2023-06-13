@@ -1,7 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const assert = require("assert");
 
 require("../mongodb_helper");
-var Post = require("../../models/post");
+const Post = require("../../models/post");
 
 describe("Post model", () => {
   beforeEach((done) => {
@@ -10,8 +11,33 @@ describe("Post model", () => {
     });
   });
 
+  it("it does not have a message", async () => {
+    const post = new Post({ message: "" });
+    const error = post.validateSync();
+    assert.equal(error.errors["message"].message, "Post message is required");
+  });
+
+  it("it has a message > 500 chars", async () => {
+    const longMessage = "a".repeat(501);
+    const post = new Post({ message: longMessage });
+    const error = post.validateSync();
+    assert.equal(
+      error.errors["message"].message,
+      "Post message cannot be longer than 500 characters"
+    );
+  });
+
+  it("it has a message with the word facebook", async () => {
+    const post = new Post({ message: "FaceBook is the best" });
+    const error = post.validateSync();
+    assert.equal(
+      error.errors["message"].message,
+      "Post message cannot contain the word 'facebook'"
+    );
+  });
+
   it("has a message", () => {
-    var post = new Post({ message: "some message" });
+    const post = new Post({ message: "some message" });
     expect(post.message).toEqual("some message");
   });
 
@@ -24,7 +50,7 @@ describe("Post model", () => {
   });
 
   it("can save a post", (done) => {
-    var post = new Post({ message: "some message" });
+    const post = new Post({ message: "some message" });
 
     post.save((err) => {
       expect(err).toBeNull();
@@ -38,3 +64,14 @@ describe("Post model", () => {
     });
   });
 });
+
+/*
+as a logged in user
+an empty post is invalid
+and is not posted
+*/
+
+/*
+as a not logged in user
+I cannot create a post
+*/
