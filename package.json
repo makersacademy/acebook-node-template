@@ -11,7 +11,7 @@
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "jest",
     "test:integration": "cypress run",
-    "seed": "node ./seeds/index.js"
+    "seed": "node ./seeds/cypress.js"
   },
   "engines": {
     "node": ">=18.1.0"

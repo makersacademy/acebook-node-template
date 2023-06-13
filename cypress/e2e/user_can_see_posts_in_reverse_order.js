@@ -1,5 +1,6 @@
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
+    cy.exec("npm run seed");
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -16,22 +17,28 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.get(".new-post-link").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("Old post");
+    cy.get("#new-post-form").find('[type="text"]').type("Oldest post");
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Old post");
 
     cy.get(".new-post-link").click();
-    cy.get("#new-post-form").find('[type="text"]').type("Newer post");
+    cy.get("#new-post-form").find('[type="text"]').type("Newest post");
     cy.get("#new-post-form").submit();
 
     cy.get(".posts").should("contain", "Newer post");
 
-    // cy.get(".posts").then((posts) => {
-    //   const postText = posts.text();
-    //   const postOrder = postText.split("\n");
-
-    //   expect(postOrder).to.deep.equal(["Old post", "New post"]);
-    // });
+    let postOrder = [];
+    cy.get(".post-message")
+      .each((post) => {
+        cy.wrap(post)
+          .invoke("text")
+          .then((text) => {
+            postOrder.push(text.trim());
+          });
+      })
+      .then(() => {
+        expect(postOrder).to.deep.equal(["Newest post", "Oldest post"]);
+      });
   });
 });
