@@ -4,12 +4,18 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    
+    
+    {{#if user}}
     <form action="/sessions?_method=DELETE" method="POST">
       <input type="submit" value="Log Out" />
-      <a href="/sessions/new">sign in</a>
-      <a href="/users/new">sign up</a>
       <a href="/posts">posts</a>
     </form>
+    {{else}}
+    <a href="/sessions/new">sign in</a>
+    <a href="/users/new">sign up</a>
+    <a href="/posts">posts</a>
+    {{/if}}
     {{{body}}}
   </body>
 </html>
