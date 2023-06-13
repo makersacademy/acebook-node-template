@@ -1,5 +1,6 @@
 :root {
   --main-color: rgb(255, 121, 126);
+  --hover-color: rgb(255, 186, 180);
 }
 
 * {
@@ -10,6 +11,14 @@
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: var(--main-color);
+}
+
+a:hover {
+  color: var(--hover-color)
 }
 
 /* landing page */
@@ -40,12 +49,34 @@ body {
 }
 
 .right-container {
-  border-style: solid; 
-  border-width: 1px;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
-.login-form, #new-user-form {
+.homepage-button {
+  width: 20vh;
+  background-color: var(--main-color);
+  margin: 1.25vh;
+  padding: 1vh 2vh;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+.homepage-button:hover {
+  color: var(--main-color);
+  background-color:rgb(255, 186, 180);
+}
+
+.right-container hr {
+  background-color:  var(--main-color);
+  border: none;
+  height: 1px;
+}
+
+.login-form, #new-session-form {
   display: flex;
   flex-direction: column;
 }
@@ -64,3 +95,23 @@ body {
 }
 
 /* signup page */
+#parent {
+  display: flex;
+  justify-content: center;
+}
+
+.signup-box {
+  border-style: solid; 
+  border-width: 1px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 45vh;
+  padding: 4vh;
+}
+
+.signup-box p {
+  text-align: center;
+}
