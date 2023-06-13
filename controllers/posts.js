@@ -11,6 +11,18 @@ const PostsController = {
           post: post._id,
           liked: true,
         }).exec();
+
+        const likes = await Like.find({
+          post: post._id,
+          liked: true,
+        })
+          .populate({
+            path: "user",
+            select: "email",
+          })
+          .exec();
+
+        post.likedBy = likes.map((like) => like.user.email);
       }
 
       res.render("posts/index", { posts: posts });

@@ -6,6 +6,7 @@
     <form action="/likes" method="post">
       <input type="hidden" name="postId" value={{this._id}} />
       <button type="submit" class="like-button">❤️</button>
+      <p>{{this.likedBy}}</p>
     </form>
   {{/each}}
 </ul>
