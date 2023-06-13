@@ -15,6 +15,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Start server
-        run: npm run start:test &&
+        run: npm run start:test &
       - name: Cypress run
         uses: cypress-io/github-action@v5
