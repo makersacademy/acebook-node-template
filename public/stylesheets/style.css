@@ -1,8 +1,39 @@
-body {
+ /* body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+} */
+
+/* form {
+  padding: 50px;
+  display:flex;
+  justify-content: center;
 }
 
-a {
-  color: #00B7FF;
+.form-group {
+  display: flex;
+  align-items: center;} */
+/* 
+  .custom-input {
+    height: 45px;
+  } */
+  
+  /* .container {
+    max-width: 500px;
+  } */
+  
+  #submit {
+    background-color: #5c6bc0;
+    border-color: #5c6bc0;
+  }
+  
+  #submit:hover {
+    background-color: #3949ab;
+    border-color: #3949ab;
+  }  
+
+form {
+  padding: 50px;
+  margin-left: 420px;
+  margin-right:420px;
 }
+
