@@ -8,3 +8,6 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
+
+
+// need to add username to the schema
