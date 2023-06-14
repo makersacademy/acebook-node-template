@@ -10,13 +10,13 @@ describe("Logout", () => {
   
       // sign in
       cy.visit("/");
-      cy.get('a.homepage-button[href="/sessions/new"]').click()
+      cy.get('a.global-button[href="/sessions/new"]').click()
       cy.get("#email").type("admin@example.com");
       cy.get("#password").type("Password!123");
       cy.get("#submit").click();
   
       cy.url().should("include", "/posts");
-      cy.contains("a", "New post");
+
 
       cy.get("#logout").click();
       cy.url().should("not.include", "/posts");

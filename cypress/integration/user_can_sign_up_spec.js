@@ -21,7 +21,7 @@ describe("Signup", () => {
 
     // sign up
     cy.visit("/");
-    cy.get('a.homepage-button[href="/users/new"]').click()
+    cy.get('a.global-button[href="/users/new"]').click()
     cy.get("#email").type(new_email);
     cy.get("#password").type("password!234");
     cy.get("#confirm-password").type("password!234");

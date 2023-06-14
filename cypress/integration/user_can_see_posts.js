@@ -11,7 +11,7 @@ describe("User can see posts", () => {
   
       // sign in
       cy.visit("/");
-      cy.get('a.homepage-button[href="/sessions/new"]').click()
+      cy.get('a.global-button[href="/sessions/new"]').click()
       cy.get("#email").type("admin@example.com");
       cy.get("#password").type("Password!123");
       cy.get("#submit").click();
