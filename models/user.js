@@ -30,6 +30,10 @@ const UserSchema = new mongoose.Schema({
       unique: true, 
       trim: true,
       maxlength: 25 },
+  image: { 
+    type: String, 
+    default: '' 
+  },
 });
 
 UserSchema.pre('save', async function (next) {

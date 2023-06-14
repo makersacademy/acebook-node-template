@@ -24,8 +24,8 @@ describe("User model", () => {
       password: "pass2word",
     });
 
-    const hashedPassword1 = await bcrypt.hash(user.password, 8);
-    const hashedPassword2 = await bcrypt.hash(user2.password, 8);
+    const hashedPassword1 = bcrypt.hash(user.password);
+    const hashedPassword2 = bcrypt.hash(user2.password);
 
 
 
@@ -41,12 +41,12 @@ describe("User model", () => {
               expect.objectContaining({
                 username: "peter",
                 email: "someone@example.com",
-                // password: hashedPassword1,
+                password: hashedPassword1,
               }),
               expect.objectContaining({
                 username: "bob",
                 email: "someone2@example.com",
-                // password: hashedPassword2,
+                password: hashedPassword2,
               }),
             ])
           );
