@@ -12,7 +12,9 @@ const UserSchema = new mongoose.Schema({
     validate(value) {
       if (!validator.isEmail(value)) {
         throw new Error('Email is invalid')
-      }},
+      }
+    },
+  },
   password: {
     type: String,
     required: true,
@@ -21,19 +23,8 @@ const UserSchema = new mongoose.Schema({
       if(value.length < 8) {
         throw new Error("Passwords is too short. At least 8 characters.")
       }
-    }}}
+    }}
 });
-
-// UserSchema.pre('save', async function (next) {
-//   const user = this;
-//   if (user.isModified('password')) {
-//     user.password = await bcrypt.hash(user.password, 8);
-//   }
-//   next();
-// });
-// console.log("this:", this)
-// const user = this
-// console.log("password: ", user.password)
 
 UserSchema.pre('save', async function (next) {
   console.log("password: ", this)
