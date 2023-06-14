@@ -1,7 +1,5 @@
-const bcrypt = require("bcrypt");
-
-// Define the salt rounds. The higher the number, the more secure but also more CPU-intensive the hashing.
-const saltRounds = 10;
+// const bcrypt = require("bcrypt");
+// const saltRounds = 10;
 
 module.exports = [
   {
@@ -12,6 +10,11 @@ module.exports = [
   {
     username: "emmaPoke",
     email: "emma@test.com",
+    password: "password123!",
+  },
+  {
+    username: "lisaPoke",
+    email: "lisa@test.com",
     password: "password123!",
   },
 ];

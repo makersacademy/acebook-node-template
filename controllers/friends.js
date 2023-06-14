@@ -43,7 +43,7 @@ const FriendsController = {
         await friendship.save();
       }
 
-      res.redirect("/posts");
+      res.redirect("/friends");
     } catch (err) {
       console.error(err);
       res.status(500).send(err);
@@ -61,12 +61,12 @@ const FriendsController = {
         existingFriendship.friendship = true;
         await existingFriendship.save();
       } else {
-        return res
-          .status(400)
-          .json({ error: "No existing friendship to accept." });
+        return res.status(400).json({
+          error: "No existing friendship to accept",
+        });
       }
 
-      res.redirect("/posts");
+      res.redirect("/friends");
     } catch (err) {
       console.error(err);
       res.status(500).send(err);
@@ -89,7 +89,7 @@ const FriendsController = {
           .json({ error: "No existing friendship to reject." });
       }
 
-      res.redirect("/posts");
+      res.redirect("/friends");
     } catch (err) {
       console.error(err);
       res.status(500).send(err);
