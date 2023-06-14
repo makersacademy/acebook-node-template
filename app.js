@@ -57,11 +57,11 @@ const sessionChecker = (req, res, next) => {
 
 // route setup
 app.use("/", homeRouter);
-app.use("//:postId", sessionChecker, postsRouter)
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
-app.use("/:postId/comments", commentsRouter)
+app.use("/:postId", sessionChecker, postsRouter)
+app.use("/:postId/comments", sessionChecker, commentsRouter)
 
 
 // catch 404 and forward to error handler

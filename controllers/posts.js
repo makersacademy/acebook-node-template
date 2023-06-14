@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+//const Comment = require("./comments");
 
 const PostsController = {
   Index: (req, res) => {
@@ -30,35 +31,13 @@ const PostsController = {
 
   Show: (req, res) => {
     Post
-    .findById(req.params.id).lean().populate('comments')
+    .findById(req.params.postId).populate('comments')
     .then((post) => res.render('posts/show', { post }))
     .catch((err) => {
       console.log(err.message);
-  });
+    });
   }
 };
 
 module.exports = PostsController;
 
-
-
-
-  
-  // CreateComment: (req, res) => {
-  //   const { comment } = req.body; 
-  
-  //   const newComment = {
-  //     content: comment,
-  //     createdAt: new Date()
-  //   };
-  
-  //   const post = new Post();
-  //   post.comment.push(newComment);
-  
-  //   post.save((err) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     res.status(201).redirect("/posts");
-  //   });
-  // }

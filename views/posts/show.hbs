@@ -1,17 +1,21 @@
 <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
+      <input type="submit" value="Log Out"></form>
+
+<h1>{{ post.message }}</h1>
+<p>Author: {{ post.author }}</p>
+<p>Likes: {{ post.likes }}</p>
 
 
-{{!-- <p>{{post.message}}</p> --}}
-<h1>This is a post</h1>
+<ul class="comments">
+  {{#each post.comments}}
+  <li>{{ this.message }}</li>
+  {{/each}}
+</ul>
 
-{{#each post.comments}}
-    <ul>
-        <li>{{this.content}}</li>
-    </ul>
-    <form id="new-post-form" action="/posts/{{this._id}}" method="get">
-        <label for="comment">Comment: </label>
-        <input id="comment" type="text" name="content" value="">
-        <input type="submit" value="Submit">
-    </form>
-{{/each}}
+<form action="/posts/{{ post._id }}/comments" method="POST">
+  <textarea name="message" placeholder="Leave a comment"></textarea>
+  <button type="submit">Submit</button>
+</form>
+
+
+
