@@ -5,9 +5,8 @@ const saltRounds = 10;
 
 module.exports = [
   {
-    email: "test@test.com",
-    password: bcrypt.hashSync("test123!", saltRounds),
-    username: "bob"
+    email: "adrian@test.com",
+    password: "password123!",
   },
 ];
 
