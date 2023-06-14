@@ -19,11 +19,11 @@ const PostsController = {
         })
           .populate({
             path: "user",
-            select: "email",
+            select: "username",
           })
           .exec();
 
-        post.likedBy = likes.map((like) => like.user.email);
+        post.likedBy = likes.map((like) => like.user.username);
       }
 
       res.render("posts/index", { posts: posts });
