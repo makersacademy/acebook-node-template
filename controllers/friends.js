@@ -3,6 +3,13 @@ const Friend = require("../models/friend");
 const FriendsController = {
   Index: async (req, res) => {
     try {
+      const friendshipsRequests = await Friend.find({
+        requester: req.session.user._id,
+        friendship: null,
+      })
+        .populate({ path: "recipient", select: "username" })
+        .exec();
+
       const pendingFriendships = await Friend.find({
         recipient: req.session.user._id,
         friendship: null,
@@ -18,6 +25,7 @@ const FriendsController = {
         .exec();
 
       res.render("friends/index", {
+        friendshipsRequests: friendshipsRequests,
         pendingFriendships: pendingFriendships,
         acceptedFriendships: acceptedFriendships,
       });
@@ -30,8 +38,10 @@ const FriendsController = {
   Create: async (req, res) => {
     try {
       const existingFriendship = await Friend.findOne({
-        requester: req.session.user._id,
-        recipient: req.body.recipientId,
+        $or: [
+          { requester: req.session.user._id, recipient: req.body.recipientId },
+          { requester: req.body.recipientId, recipient: req.session.user._id },
+        ],
       });
 
       if (!existingFriendship) {

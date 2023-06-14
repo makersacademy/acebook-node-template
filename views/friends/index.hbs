@@ -1,3 +1,10 @@
+<p>friendship requests</p>
+<ul class="friendship-requests">
+  {{#each friendshipsRequests}}
+    <p>{{this.recipient.username}}</p>
+  {{/each}}
+</ul>
+
 <p>pending friendships</p>
 <ul class="pending-friendships">
   {{#each pendingFriendships}}
