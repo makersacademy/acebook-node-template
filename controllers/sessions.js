@@ -11,14 +11,14 @@ const SessionsController = {
     console.log("trying to log in");
     const email = req.body.email;
     const password = req.body.password;
-
+    console.log("password entered:", password)
     // Ensure password field is included
     User.findOne({ email: email }).select('+password').then(async (user) => {
       if (!user) {
         res.render("sessions/new", { error: "User not found" });
-      } else if (user.password != password) {
-        res.render("sessions/new", { error: "Incorrect password" });
-      } else {
+      } 
+      else  {
+        
         // Compare the user input password with the hashed password in the database
         const match = await bcrypt.compare(password, user.password);
         
