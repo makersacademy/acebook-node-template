@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const SessionsController = require("../controllers/sessions")
 
 const UsersController = {
   New: (req, res) => {
@@ -8,15 +9,25 @@ const UsersController = {
   //Hash password
 
   Create: (req, res) => {
-    const user = new User(req.body);
-    user.save((err) => {
-      if (err) {
-        res.status(500).render('users/new', {error: err.message}); //make error message more user friendly 
+    User.findOne({ email: req.body.email }, (err, existingUser) => {
+      if (existingUser) {
+        // A user with the same email address already exists.
+        res.status(400).render('users/new', { error: 'Email address already taken' });
       } else {
-        res.status(201).redirect("/posts");
+        const user = new User(req.body);
+        user.save((err) => {
+          if (err) {
+            res.status(500).render('users/new', { error: err.message }); //make error message more user friendly 
+          } else {
+            //create session for new user
+            req.session.user = user;
+            res.status(201).redirect("/posts");
+          }
+        });
       }
     });
-  },
+  }
+  
 }
 
 module.exports = UsersController;
