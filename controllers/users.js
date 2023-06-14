@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const SessionsController = require("../controllers/sessions")
 
 const UsersController = {
   New: (req, res) => {
@@ -12,57 +11,49 @@ const UsersController = {
     User.findOne({ email: req.body.email }, (err, existingUser) => {
       if (existingUser) {
         // A user with the same email address already exists.
-        res.status(400).render('users/new', { error: 'Email address already taken' });
+        res
+          .status(400)
+          .render("users/new", { error: "Email address already taken" });
       } else {
-        const user = new User(req.body);
-        user.save((err) => {
-          if (err) {
-            res.status(500).render('users/new', { error: err.message }); //make error message more user friendly 
-          } else {
-            //create session for new user
-            req.session.user = user;
-            res.status(201).redirect("/posts");
-          }
-        });
+        // Validate the first name to check for punctuation
+        const firstName = req.body.firstName;
+        const hasFirstNamePunctuation = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/.test(
+          firstName
+        );
+
+        // Validate the last name to check for punctuation
+        const lastName = req.body.lastName;
+        const hasLastNamePunctuation = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/.test(
+          lastName
+        );
+
+        if (hasFirstNamePunctuation) {
+          res
+            .status(400)
+            .render("users/new", {
+              error: "First name should not contain punctuation",
+            });
+        } else if (hasLastNamePunctuation) {
+          res
+            .status(400)
+            .render("users/new", {
+              error: "Last name should not contain punctuation",
+            });
+        } else {
+          const user = new User(req.body);
+          user.save((err) => {
+            if (err) {
+              res.status(500).render("users/new", { error: err.message });
+            } else {
+              // Create session for new user
+              req.session.user = user;
+              res.status(201).redirect("/posts"); // Add confirmation message
+            }
+          });
+        }
       }
     });
-  }
-  
-}
+  },
+};
 
 module.exports = UsersController;
-
-/*
-const express = require('express');
-const app = express();
-const exphbs = require('express-handlebars');
-
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
-
-app.get('/signup', (req, res) => {
-  // Render the signup handlebars template
-  res.render('signup', { errorMessage: null });
-});
-
-app.post('/signup', (req, res) => {
-  // Validate the form inputs and check for errors
-  const errors = [];
-  // ... validate form inputs and populate the `errors` array if any
-
-  if (errors.length > 0) {
-    // Render the signup handlebars template with the error message
-    res.render('signup', { errorMessage: 'Please correct the following errors: ' + errors.join(', ') });
-  } else {
-    // Process the successful form submission
-    res.send('Sign up successful!');
-  }
-});
-
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
-
-
-
-*/
