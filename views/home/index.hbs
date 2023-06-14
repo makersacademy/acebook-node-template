@@ -1,2 +1,23 @@
-<h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<html>
+    <head>
+        <title class="title">{{title}}</title>
+        <link rel="stylesheet" href="/public/stylesheets/style.css">
+    </head>
+    <body>
+        <nav>
+            <div class="navbar-title">
+                <h1 id="acebook-title">Welcome to {{title}}</h1>
+            </div>
+                <ul class="navbar-items">
+                    <a href="/users/new"><h3 id="signup-link">Sign Up</h3></a>
+                </ul>
+        </nav>
+        <div id="content-box">
+            <div id="login-box">
+                <h3 id="login-title">Start connecting now!</h3>
+                <img src="/Users/chrishall/Projects/acebook-neutral/public/images/download.png" alt="people connecting image" id="connecting-pic">
+                <a href="/sessions/new"><h3 id="login-link">Click here to login</h3></a>
+            </div>
+        </div>
+    </body>
+</html>
