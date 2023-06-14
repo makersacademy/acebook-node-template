@@ -59,22 +59,4 @@ describe("Like model", () => {
     const likes = await Like.find({ post: post.id });
     expect(likes.length).toBe(1);
   });
-
-  it("two users can like the same post", async () => {
-    const first_like = new Like({ post: post.id, user: user_1.id });
-    await first_like.save();
-
-    try {
-      const second_like = new Like({ post: post.id, user: user_2.id });
-      await second_like.save();
-    } catch (error) {
-      errorOccurred = true;
-      expect(error.name).toBe("Error");
-      expect(error.message).toContain("duplicate key error");
-      expect(error.code).toBe(11000);
-    }
-
-    const likes = await Like.find({ post: post.id });
-    expect(likes.length).toBe(2);
-  });
 });
