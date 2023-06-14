@@ -23,7 +23,13 @@ const UserSchema = new mongoose.Schema({
       if(value.length < 8) {
         throw new Error("Passwords is too short. At least 8 characters.")
       }
-    }}
+    }},
+  username: 
+    { type: String, 
+      required: true, 
+      unique: true, 
+      trim: true,
+      maxlength: 25 },
 });
 
 UserSchema.pre('save', async function (next) {
