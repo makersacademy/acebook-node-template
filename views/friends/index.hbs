@@ -1,15 +1,15 @@
 <p>pending friendships</p>
 <ul class="pending-friendships">
   {{#each pendingFriendships}}
-    <div>{{this.friend.username}}</div>
+    <div>{{this.requester.username}}</div>
 
     <form action="friends/accept" method="post">
-      <input type="hidden" name="friendId" value={{this.friend._id}} />
+      <input type="hidden" name="requesterId" value={{this.requester._id}} />
       <button type="submit" class="like-button">Accept</button>
     </form>
 
     <form action="friends/reject" method="post">
-      <input type="hidden" name="friendId" value={{this.friend._id}} />
+      <input type="hidden" name="requesterId" value={{this.requester._id}} />
       <button type="submit" class="like-button">Reject</button>
     </form>
 
@@ -19,6 +19,6 @@
 <p>you are friends with</p>
 <ul class="accepted-friendships">
   {{#each acceptedFriendships}}
-    <div>{{this.friend.username}}</div>
+    <div>{{this.requester.username}}</div>
   {{/each}}
 </ul>

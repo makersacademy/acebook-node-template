@@ -61,23 +61,23 @@ const seedDB = async () => {
       );
     }
     const accepted_friendship = new Friend({
-      user: createdUsers[1],
-      friend: createdUsers[0],
+      requester: createdUsers[1],
+      recipient: createdUsers[0],
       friendship: true,
     });
     await accepted_friendship.save();
     console.log(
-      `Accepted friendship between "${accepted_friendship.user.username}" and "${accepted_friendship.friend.username}" created successfully.`
+      `Accepted friendship between "${accepted_friendship.requester.username}" and "${accepted_friendship.recipient.username}" created successfully.`
     );
 
     const pending_friendship = new Friend({
-      user: createdUsers[2],
-      friend: createdUsers[0],
+      requester: createdUsers[2],
+      recipient: createdUsers[0],
       friendship: null,
     });
     await pending_friendship.save();
     console.log(
-      `Pending friendship between "${pending_friendship.user.username}" and "${pending_friendship.friend.username}" created successfully.`
+      `Pending friendship between "${pending_friendship.requester.username}" and "${pending_friendship.recipient.username}" created successfully.`
     );
   } catch (err) {
     console.log(err);

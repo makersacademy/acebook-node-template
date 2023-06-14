@@ -4,17 +4,17 @@ const FriendsController = {
   Index: async (req, res) => {
     try {
       const pendingFriendships = await Friend.find({
-        friend: req.session.user._id,
+        recipient: req.session.user._id,
         friendship: null,
       })
-        .populate({ path: "user", select: "username" })
+        .populate({ path: "requester", select: "username" })
         .exec();
 
       const acceptedFriendships = await Friend.find({
-        user: req.session.user._id,
+        recipient: req.session.user._id,
         friendship: true,
       })
-        .populate({ path: "friend", select: "username" })
+        .populate({ path: "requester", select: "username" })
         .exec();
 
       res.render("friends/index", {
@@ -30,14 +30,14 @@ const FriendsController = {
   Create: async (req, res) => {
     try {
       const existingFriendship = await Friend.findOne({
-        user: req.session.user._id,
-        friend: req.body.friendId,
+        requester: req.session.user._id,
+        recipient: req.body.recipientId,
       });
 
       if (!existingFriendship) {
         const friendship = new Friend({
-          user: req.session.user._id,
-          friend: req.body.friendId,
+          requester: req.session.user._id,
+          recipient: req.body.recipientId,
         });
 
         await friendship.save();
@@ -53,8 +53,8 @@ const FriendsController = {
   Accept: async (req, res) => {
     try {
       const existingFriendship = await Friend.findOne({
-        user: req.session.user._id,
-        friend: req.body.friendId,
+        requester: req.body.requesterId,
+        recipient: req.session.user._id,
       });
 
       if (existingFriendship) {
@@ -76,8 +76,8 @@ const FriendsController = {
   Reject: async (req, res) => {
     try {
       const existingFriendship = await Friend.findOne({
-        user: req.session.user._id,
-        friend: req.body.friendId,
+        requester: req.body.requesterId,
+        recipient: req.session.user._id,
       });
 
       if (existingFriendship) {
