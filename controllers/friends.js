@@ -4,10 +4,10 @@ const FriendsController = {
   Index: async (req, res) => {
     try {
       const pendingFriendships = await Friend.find({
-        user: req.session.user._id,
+        friend: req.session.user._id,
         friendship: null,
       })
-        .populate({ path: "friend", select: "username" })
+        .populate({ path: "user", select: "username" })
         .exec();
 
       const acceptedFriendships = await Friend.find({

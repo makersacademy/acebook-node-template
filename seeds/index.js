@@ -61,8 +61,8 @@ const seedDB = async () => {
       );
     }
     const accepted_friendship = new Friend({
-      user: createdUsers[0],
-      friend: createdUsers[1],
+      user: createdUsers[1],
+      friend: createdUsers[0],
       friendship: true,
     });
     await accepted_friendship.save();
@@ -71,8 +71,8 @@ const seedDB = async () => {
     );
 
     const pending_friendship = new Friend({
-      user: createdUsers[0],
-      friend: createdUsers[2],
+      user: createdUsers[2],
+      friend: createdUsers[0],
       friendship: null,
     });
     await pending_friendship.save();
