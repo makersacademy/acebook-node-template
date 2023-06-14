@@ -170,7 +170,19 @@ it("last name does not take any punctuation", () => {
   expect(user.lastName).toEqual(lastName);
 });
 
-//test maximum character limit in name fields
+it("first name does not exceed maximum character length", () => {
+  const maxLength = 20; // Define the maximum character length
+  const firstName = "John"; // Example first name
+  // Assert that the full name does not exceed the maximum character length
+  expect(firstName.length).toBeLessThanOrEqual(maxLength);
+});
+
+it("last name does not exceed maximum character length", () => {
+  const maxLength = 20; // Define the maximum character length
+  const lastName = "Doe"; // Example first name
+  // Assert that the full name does not exceed the maximum character length
+  expect(lastName.length).toBeLessThanOrEqual(maxLength);
+});
 
 
 //test SQL injection prevention

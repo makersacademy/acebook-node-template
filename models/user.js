@@ -4,12 +4,14 @@ const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
     match: /^[A-Za-z ]+$/,
-    required: true
+    required: true,
+    maxLength: 20
   },
   lastName: {
     type: String,
     match: /^[A-Za-z ]+$/,
-    required: true
+    required: true,
+    maxLength: 20
   },
   email: { 
     type: String,
