@@ -8,16 +8,18 @@ class sitePage {
 
         enterEmail : () => cy.get("#email"),
         enterPassword : () => cy.get("#password"),
+        enterUsername : () => cy.get("#username"),
         detailsSubmitButton : () => cy.get("#submit"),
         newPostButton : () => cy.get(".new-post-link"),
         newPostInput : () => cy.get("#new-post-form").find('[type="text"]'),
         newPostSubmit : () => cy.get("#new-post-form").submit()
     }
 
-    signupAndSignInWithInputs(email, password){
+    signupAndSignInWithInputs(email, username, password){
         cy.visit(this.elements.signUpURL);
         this.elements.enterEmail().type(email);
         this.elements.enterPassword().type(password);
+        this.elements.enterUsername().type(username);
         this.elements.detailsSubmitButton().click();
         this.elements.enterEmail().type(email);
         this.elements.enterPassword().type(password);

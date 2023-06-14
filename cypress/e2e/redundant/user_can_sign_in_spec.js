@@ -4,6 +4,7 @@ describe("Authentication", () => {
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
+    cy.get("#username").type("username");
     cy.get("#submit").click();
 
     // sign in

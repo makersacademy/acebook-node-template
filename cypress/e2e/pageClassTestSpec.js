@@ -5,7 +5,7 @@ import sitePage, { LoginAs } from "./site_page"
 
 it('Can sign in and redirect to /posts', () => {
 
-    sitePage.signupAndSignInWithInputs("test@test.com", "password123");
+    sitePage.signupAndSignInWithInputs("test@test.com", "testerman", "password123");
     cy.url().should("include", "/posts");
     
 })
