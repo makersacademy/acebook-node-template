@@ -18,6 +18,10 @@ db.once("open", () => {
 
 const seedDB = async () => {
   try {
+    console.log("Clearing like data...");
+    await Like.deleteMany({});
+    console.log("Like data cleared.");
+
     console.log("Clearing post data...");
     await Post.deleteMany({});
     console.log("Post data cleared.");
@@ -29,7 +33,7 @@ const seedDB = async () => {
     for (let userData of users) {
       const user = new User(userData);
       await user.save();
-      console.log(`User ${user.email} created successfully.`);
+      console.log(`User ${user.username} created successfully.`);
 
       const post = new Post({
         message: "Hello, World!",
