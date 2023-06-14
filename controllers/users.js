@@ -13,7 +13,9 @@ const UsersController = {
       if (err) {
         throw err;
       }
-      res.status(201).redirect("/posts");
+      // Updated the code to redirect the user to the login page after successful sign-up.
+      // This allows the user to log in and ensures that the navbar dynamically adjusts based on the user's login status.
+      res.status(201).redirect("/sessions/login");
     });
   },
 };
