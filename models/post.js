@@ -27,7 +27,6 @@ const PostSchema = new mongoose.Schema({
     ],
     required: [true, "Post message is required"],
   },
-  likes: { type: Number, default: 0 },
 });
 
 const Post = mongoose.model("Post", PostSchema);
