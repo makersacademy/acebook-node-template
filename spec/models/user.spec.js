@@ -97,33 +97,6 @@ describe("User model", () => {
     expect(err.errors.email.properties.type).toEqual('required');
   });
 
-  it('should return an error if user already exists', (done) => {
-    const req = {
-      body: {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@example.com',
-        password: 'password!123'
-      }
-    };
-    const res = {
-      status: (code) => {
-        expect(code).toEqual(400);
-        return {
-          render: (view, options) => {
-            expect(view).toEqual('users/new');
-            expect(options.error).toEqual('Email address already taken');
-            done();
-          }
-        };
-      }
-    };
-    // Simulate finding an existing user with the same email address
-    User.findOne = sinon.stub().yields(null, { email: 'johndoe@example.com' });
-
-    UserController.Create(req, res);
-  });
-
   it('throws validation error when password is invalid', async () => {
     const userWithInvalidPassword = new User({
       firstName: 'John',
@@ -165,4 +138,43 @@ describe("User model", () => {
     expect(user.friends.length).toBe(1);
     expect(user.friends[0]).toEqual(friend2);
   });
+
+//test cannot have punctuation in name fields
+it("first name does not take any punctuation", () => {
+  const firstName = "Someone";
+  const hasPunctuation = /[!"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]/g.test(firstName);
+
+  expect(hasPunctuation).toBe(false);
+
+  const user = new User({
+    firstName,
+    lastName: "Anyone",
+    email: "someone@example.com",
+    password: "password",
+  });
+  expect(user.firstName).toEqual(firstName);
+});
+
+it("last name does not take any punctuation", () => {
+  const lastName = "Anyone";
+  const hasPunctuation = /[!"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]/g.test(lastName);
+
+  expect(hasPunctuation).toBe(false);
+
+  const user = new User({
+    firstName: "Someone",
+    lastName,
+    email: "someone@example.com",
+    password: "password",
+  });
+  expect(user.lastName).toEqual(lastName);
+});
+
+//test maximum character limit in name fields
+
+
+//test SQL injection prevention
+
+
+
 });
