@@ -55,11 +55,16 @@ describe("Post model", () => {
     expect(posts).toEqual([]);
   });
 
-  it("can save a post", async () => {
-    const post = new Post({ message: "some message", user: user.id });
-    await post.save();
+  it("can save multiple posts", async () => {
+    const first_post = new Post({ message: "some message", user: user.id });
+    await first_post.save();
+
+    const second_post = new Post({ message: "another message", user: user.id });
+    await second_post.save();
 
     const posts = await Post.find();
+    expect(posts.length).toBe(2);
     expect(posts[0]).toMatchObject({ message: "some message" });
+    expect(posts[1]).toMatchObject({ message: "another message" });
   });
 });

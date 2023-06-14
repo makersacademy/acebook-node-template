@@ -24,6 +24,8 @@ var mongoDbUrl = process.env.MONGODB_URL || "mongodb://0.0.0.0/acebook";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
+  autoIndex: true,
 });
 
 var db = mongoose.connection;

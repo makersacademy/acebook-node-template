@@ -7,6 +7,8 @@ const users = require("./data/users");
 mongoose.connect("mongodb://0.0.0.0/acebook", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
+  autoIndex: true,
 });
 
 const db = mongoose.connection;
