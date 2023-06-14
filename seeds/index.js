@@ -43,6 +43,7 @@ const seedDB = async () => {
       console.log(`Post "${post.message}" created successfully.`);
 
       const like = new Like({
+        liked: true,
         post: post._id,
         user: user._id,
       });
