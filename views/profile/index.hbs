@@ -1,4 +1,3 @@
-
 <h1>Name</h1>
 <a href="../posts">Timeline</a>
 <form action="/sessions?_method=DELETE" method="POST">
@@ -9,25 +8,22 @@
   <p>Friends</p>
   <ul class="users">
     {{#each friends_names}}
-      <form action="/" method="POST"></form>
-      <li>{{this.firstName}} {{this.lastName}}<input type="submit" value="Remove Friend" />
+      <form action="/profile/remove-friend" method="POST">
+        <input type="hidden" name="friendEmail" value="{{this.email}}">
+        <li>{{this.firstName}} {{this.lastName}}<button type="submit">Remove Friend</button></li>
       </form>
-      {{!-- <li>{{this}}</li> --}}
     {{/each}}
   </ul>
-
-
 </div>
 
 <div>
   <p>Users</p>
   <ul class="users">
     {{#each nonFriends}}
-      {{!-- <li>{{this.email}}</li> --}}
-      <form action="/" method="POST"></form>
-      <li>{{this.firstName}} {{this.lastName}}<input type="submit" value="Add Friend" />
+      <form action="/profile/add-friend" method="POST">
+        <input type="hidden" name="friendEmail" value="{{this.email}}">
+        <li>{{this.firstName}} {{this.lastName}}<button type="submit">Add Friend</button></li>
       </form>
     {{/each}}
   </ul>
-
 </div>
