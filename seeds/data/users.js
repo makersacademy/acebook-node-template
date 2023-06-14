@@ -5,6 +5,7 @@ const saltRounds = 10;
 
 module.exports = [
   {
+    username: 'adrianPoke',
     email: "adrian@test.com",
     password: "password123!",
   },
