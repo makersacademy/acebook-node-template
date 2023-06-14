@@ -4,7 +4,7 @@ const Post = require("../models/post");
 const Like = require("../models/like");
 const users = require("./data/users");
 
-mongoose.connect("mongodb://0.0.0.0/acebook_test", {
+mongoose.connect("mongodb://0.0.0.0/acebook", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
