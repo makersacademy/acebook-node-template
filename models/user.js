@@ -9,32 +9,53 @@ const UserSchema = new mongoose.Schema({
     required: true,
     trim: true,
     lowercase: true,
-    validate(value) {
-      if (!validator.isEmail(value)) {
-        throw new Error('Email is invalid')
-      }
-    },
+    validate: [
+      {
+        validator: function (value) {
+          return validator.isEmail(value);
+        },
+        message: "Email is invalid",
+      },
+      {
+        validator: async function (value) {
+          const user = await User.findOne({ email: value });
+          return !user; // Return false if user with same email already exists
+        },
+        message: "Email address is already in use",
+      },
+    ],
   },
   password: {
     type: String,
     required: true,
     minlength: 8,
-    validate(value) {
-      if(value.length < 8) {
-        throw new Error("Passwords is too short. At least 8 characters.")
-      }
-    }},
-  username: 
-    { type: String, 
-      required: true, 
-      unique: true, 
-      trim: true,
-      maxlength: 25 },
-  image: { 
-    type: String, 
-    default: '' 
+    validate:  [
+      {
+        validator: function (value) {
+          return value.length >= 8;
+        },
+        message: "Password is too short. At least 8 characters.",
+      },
+    ],
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    maxlength: 25,
+    // validate: [
+    //   {
+    //     validator: async function (value) {
+    //       const user = await User.findOne({ username: value });
+    //       return !user; // Return false if user with same username already exists
+    //     },
+    //     message: "Username is already in use",
+    //   },
+    // ],
   },
 });
+
 
 UserSchema.pre('save', async function (next) {
   console.log("password: ", this)

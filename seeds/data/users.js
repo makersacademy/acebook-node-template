@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 module.exports = [
-  {
+  { username: "adrian",
     email: "adrian@test.com",
     password: "password123!",
   },
