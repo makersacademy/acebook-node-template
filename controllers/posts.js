@@ -42,6 +42,7 @@ module.exports = PostsController;
 
 
 
+
   
   // CreateComment: (req, res) => {
   //   const { comment } = req.body; 

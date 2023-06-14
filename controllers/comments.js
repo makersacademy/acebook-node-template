@@ -11,7 +11,7 @@ const CommentsController = {
         post.comments.unshift(comment);
         return post.save();
         })
-        .then(() => res.redirect('/post/:postId'))
+        .then(() => res.redirect('/posts/:postId'))
         .catch((err) => {
         console.log(err);
      });
