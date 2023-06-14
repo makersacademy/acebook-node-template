@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const SessionsController = require("../controllers/sessions")
+const SessionsController = require("../controllers/sessions");
 
 const UsersController = {
   New: (req, res) => {
@@ -9,60 +9,71 @@ const UsersController = {
   //Hash password
 
   Create: (req, res) => {
-    User.findOne({ email: req.body.email }, (err, existingUser) => {
+    const { email, firstName, lastName, password } = req.body;
+    const maxLength = 50; // Define the maximum character limit for the names
+
+    if (firstName.length > maxLength) {
+      return res.status(400).render("users/new", {
+        error: "First name exceeds the character limit",
+      });
+    }
+
+    if (lastName.length > maxLength) {
+      return res.status(400).render("users/new", {
+        error: "Last name exceeds the character limit",
+      });
+    }
+
+    // Validate the first name to check for punctuation
+    const hasFirstNamePunctuation = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/.test(
+      firstName
+    );
+
+    // Validate the last name to check for punctuation
+    const hasLastNamePunctuation = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/.test(
+      lastName
+    );
+
+    if (hasFirstNamePunctuation) {
+      return res.status(400).render("users/new", {
+        error: "First name should not contain punctuation",
+      });
+    } else if (hasLastNamePunctuation) {
+      return res.status(400).render("users/new", {
+        error: "Last name should not contain punctuation",
+      });
+    }
+
+    // Password validation
+    const isPasswordValid = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$/.test(
+      password
+    );
+
+    if (!isPasswordValid) {
+      return res.status(400).render("users/new", {
+        error:
+          "Password is not valid. Passwords must contain at least 8 characters, a number, and a special character",
+      });
+    }
+
+    User.findOne({ email: email }, (err, existingUser) => {
       if (existingUser) {
-        // A user with the same email address already exists.
-        res.status(400).render('users/new', { error: 'Email address already taken' });
-      } else {
-        const user = new User(req.body);
-        user.save((err) => {
-          if (err) {
-            res.status(500).render('users/new', { error: err.message }); //make error message more user friendly 
-          } else {
-            //create session for new user
-            req.session.user = user;
-            res.status(201).redirect("/posts");
-          }
-        });
+        return res
+          .status(400)
+          .render("users/new", { error: "Email address already taken" });
       }
+
+      const user = new User({ email, firstName, lastName, password });
+      user.save((err) => {
+        if (err) {
+          return res.status(500).render("users/new", { error: err.message });
+        }
+
+        req.session.user = user;
+        res.status(201).redirect("/posts");
+      });
     });
-  }
-  
-}
+  },
+};
 
 module.exports = UsersController;
-
-/*
-const express = require('express');
-const app = express();
-const exphbs = require('express-handlebars');
-
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
-
-app.get('/signup', (req, res) => {
-  // Render the signup handlebars template
-  res.render('signup', { errorMessage: null });
-});
-
-app.post('/signup', (req, res) => {
-  // Validate the form inputs and check for errors
-  const errors = [];
-  // ... validate form inputs and populate the `errors` array if any
-
-  if (errors.length > 0) {
-    // Render the signup handlebars template with the error message
-    res.render('signup', { errorMessage: 'Please correct the following errors: ' + errors.join(', ') });
-  } else {
-    // Process the successful form submission
-    res.send('Sign up successful!');
-  }
-});
-
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
-
-
-
-*/

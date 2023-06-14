@@ -13,11 +13,11 @@
   <div class="signup-box">
     <form id="new-user-form" action="/users" method="post">
       <label for="first-name">First Name: </label><br>
-      <input id="first-name" type="first-name" name="firstName" value=""><br>
+      <input id="first-name" type="first-name" name="firstName" value="" required><br>
       <label for="last-name">Last Name: </label><br>
-      <input id="last-name" type="last-name" name="lastName" value=""><br>
+      <input id="last-name" type="last-name" name="lastName" value=""required><br>
       <label for="email">Email: </label><br>
-      <input id="email" type="email" name="email" value=""><br>
+      <input id="email" type="email" name="email" value="" required><br>
       {{!-- {{#if error.email}}
         <div class="error-message">{{error.email}}</div>
       {{/if}} --}}
