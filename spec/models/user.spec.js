@@ -5,7 +5,6 @@ const User = require("../../models/user");
 const UserController = require("../../controllers/users")
 const sinon = require('sinon');
 const request = require("supertest");
-const app = require("../../app");
 const sanitizeInput = require('../../functions/sanitize')
 
 describe("User model", () => {

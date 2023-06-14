@@ -8,7 +8,7 @@ const UsersController = {
   //Hash password
 
   Create: (req, res) => {
-    const { email, firstName, lastName, password } = req.body;
+    const { email, firstName, lastName, password, confirmPassword } = req.body;
     const maxLength = 50; // Define the maximum character limit for the names
 
     if (firstName.length > maxLength) {
@@ -53,6 +53,12 @@ const UsersController = {
         error:
           "Password is not valid. Passwords must contain at least 8 characters, a number, and a special character",
       });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).render("users/new", {
+        error: "Passwords did not match",
+      })
     }
 
     User.findOne({ email: email }, (err, existingUser) => {
