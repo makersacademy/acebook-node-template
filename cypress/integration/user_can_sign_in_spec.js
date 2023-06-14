@@ -1,5 +1,7 @@
 describe("Authentication", () => {
   it("A user signs in and is redirected to /posts", () => {
+    //clearDB drops the DB for a fresh test environment
+    cy.task('clearDb');
     // sign up
     cy.visit("/users/signup");
     cy.get("#email").type("someone@example.com");
