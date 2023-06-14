@@ -11,6 +11,11 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+const mongoose = require('mongoose')
+const User = require("./models/user");
+
+const sanitizeInput = require('./functions/sanitize')
+
 const app = express();
 
 // view engine setup
@@ -73,6 +78,36 @@ app.use((err, req, res) => {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+
+
+
+//prevent harmful scripts??
+app.post("/users/new", async (req, res) => {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+
+    // Sanitize and validate input
+    const sanitizedFirstName = sanitizeInput(firstName);
+    const sanitizedLastName = sanitizeInput(lastName);
+    const sanitizedEmail = sanitizeInput(email);
+    const sanitizedPassword = sanitizeInput(password);
+
+    // Create a new user
+    const user = new User({
+      firstName: sanitizedFirstName,
+      lastName: sanitizedLastName,
+      email: sanitizedEmail,
+      password: sanitizedPassword,
+    });
+
+    // Save the user to the database
+    await user.save();
+
+    res.status(200).json({ message: "Signup successful!" });
+  } catch (error) {
+    res.status(500).json({ message: "Signup failed." });
+  }
 });
 
 module.exports = app;

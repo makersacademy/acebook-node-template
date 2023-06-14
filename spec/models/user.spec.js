@@ -4,6 +4,9 @@ require("../mongodb_helper");
 const User = require("../../models/user");
 const UserController = require("../../controllers/users")
 const sinon = require('sinon');
+const request = require("supertest");
+const app = require("../../app");
+const sanitizeInput = require('../../functions/sanitize')
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -230,9 +233,18 @@ describe("User model", () => {
     expect(lastName.length).toBeLessThanOrEqual(maxLength);
   });
 
+describe("sanitizeInput", () => {
+  it("removes leading and trailing whitespace", () => {
+    const input = "   hello world   ";
+    const output = sanitizeInput(input);
+    expect(output).toBe("hello world");
+  });
 
-//test SQL injection prevention
-
-
+  it("removes special characters", () => {
+    const input = "<>alert('XSS')<''>";
+    const output = sanitizeInput(input);
+    expect(output).toBe("alert(XSS)");
+  });
+})
 
 });
