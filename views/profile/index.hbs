@@ -1,0 +1,29 @@
+<h1>Name</h1>
+<a href="../posts/index.hbs">Timeline</a>
+<form action="/sessions?_method=DELETE" method="POST">
+  <input type="submit" value="Log Out" />
+</form>
+
+<div>
+  <p>Friends</p>
+  <ul class="users">
+
+</ul>
+
+  <form action="/" method="POST">
+    <input type="submit" value="Remove Friend" />
+  </form>
+
+</div>
+
+<div>
+  <p>Users</p>
+    <ul class="users">
+  {{#each users}}
+  <li>{{this.email}}</li> 
+  {{/each}}
+</ul>
+  <form action="/" method="POST">
+    <input type="submit" value="Add Friend" />
+  </form>
+</div>
