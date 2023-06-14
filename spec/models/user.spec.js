@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
+const UserController = require("../../controllers/users")
+const sinon = require('sinon');
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -95,39 +97,32 @@ describe("User model", () => {
     expect(err.errors.email.properties.type).toEqual('required');
   });
 
-  // it('throws error when email is already taken', async () => {
-  //   const firstUser = new User({
-  //     firstName: 'John',
-  //     lastName: 'Doe',
-  //     email: 'test@example.com',
-  //     password: 'P@ssw0rd'
-  //   });
-  //   await firstUser.save();
+  it('should return an error if user already exists', (done) => {
+    const req = {
+      body: {
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'johndoe@example.com',
+        password: 'password!123'
+      }
+    };
+    const res = {
+      status: (code) => {
+        expect(code).toEqual(400);
+        return {
+          render: (view, options) => {
+            expect(view).toEqual('users/new');
+            expect(options.error).toEqual('Email address already taken');
+            done();
+          }
+        };
+      }
+    };
+    // Simulate finding an existing user with the same email address
+    User.findOne = sinon.stub().yields(null, { email: 'johndoe@example.com' });
 
-  //   const secondUser = new User({
-  //     firstName: 'Jane',
-  //     lastName: 'Doe',
-  //     email: 'test@example.com',
-  //     password: 'P@ssw0rd'
-  //   });
-
-  //   try {
-  //     secondUser.save()
-  //   } catch (error) {
-  //     console.log(error.message)
-  //   }
-
-    //E11000 duplicate key error collection: acebook.users index: email_1 dup key: { email: "simon@chipmunks.com" }
-  
-
-    
-    // if (err && err.code === 11000) {
-    //   expect(err.keyPattern.email).toBeDefined();
-    //   // Add any additional expectations for duplicate key errors here...
-    // } else {
-    //   err = null;
-    //   expect(err).toBeNull(); // Or add another expectation for other error types
-    // }
+    UserController.Create(req, res);
+  });
 
   it('throws validation error when password is invalid', async () => {
     const userWithInvalidPassword = new User({
