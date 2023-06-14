@@ -12,9 +12,9 @@ const SessionsController = {
 
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        res.render("sessions/new", { error: 'User not found' });
+        res.render("sessions/new", { error: "User not found" });
       } else if (user.password != password) {
-        res.render("sessions/new", { error: 'Incorrect password' });
+        res.render("sessions/new", { error: "Incorrect password" });
       } else {
         req.session.user = user;
         res.redirect("/posts");

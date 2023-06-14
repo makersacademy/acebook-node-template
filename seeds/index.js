@@ -33,7 +33,7 @@ const seedDB = async () => {
     for (let userData of users) {
       const user = new User(userData);
       await user.save();
-      console.log(`User ${user.username} created successfully.`);
+      console.log(`User ${user.email} created successfully.`);
 
       const post = new Post({
         message: "Hello, World!",
