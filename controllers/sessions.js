@@ -20,10 +20,15 @@ const SessionsController = {
         res.redirect("/sessions/login");
       } else {
         req.session.user = user;
-        res.redirect("/posts");
+        // Implemented authentication logic to dynamically update navbar links based on the user's login status.
+        const isAuthenticated = req.session.user ? true : false;
+        res.render("posts", { isAuthenticated: isAuthenticated });
       }
     });
   },
+
+
+
 
   Destroy: (req, res) => {
     console.log("logging out");
