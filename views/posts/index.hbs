@@ -1,4 +1,29 @@
-<h1>Timeline</h1>
+
+<div class="timeline-navbar fixed-content">
+  <div class="topbar">
+    <div class="initials">Initials</div>
+    <h1 class="title">Acebook</h1>
+    <form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out" class="global-button logout">
+    </form>
+  </div>
+  <div class="bottombar">
+    <a class="global-button new-post-link" href="/posts/new">Create Post</a>
+    <a class="go-top">Back to top</a>
+  </div>
+</div>   
+
+{{!-- <div class="hero">
+  <li></li>
+</div>
+
+<div class="timeline">
+  <div class="comment-box">
+    <textarea  placeholder="What would you like to post?"></textarea>
+    <button input="text"></button>
+  </div>
+</div> --}}
+
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li> 
@@ -6,4 +31,3 @@
   {{/each}}
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
