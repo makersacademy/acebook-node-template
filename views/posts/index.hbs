@@ -5,13 +5,9 @@
 <ul class="posts">
   {{#each posts}}
   <li><a href="/posts/{{this._id}}">{{this.message}}</a></li> 
-  <li>{{this.likes}} likes</li>
+  <li>{{this.likes}} likes</li><button onclick="Likes">Like</button>
   {{/each}}
 </ul>
-{{!-- <ul class="comments">
-  {{#each post.comments}}
-  <li>{{ this.content }} - {{ this.author }}</li>
-  {{/each}}
-</ul> --}}
+
 
 <a class="new-post-link" href="/posts/new">New post</a>

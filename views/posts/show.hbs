@@ -3,7 +3,34 @@
 
 <h1>{{ post.message }}</h1>
 <p>Author: {{ post.author }}</p>
-<p>Likes: {{ post.likes }}</p>
+
+    <button class="likeButton" data-postid="{{ post._id }}">Like</button>
+<span id="likesCount-{{ post._id }}">{{ post.likes.length }}</span> likes
+
+<script>
+  const likeButtons = document.querySelectorAll('.likeButton');
+
+  likeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const postId = button.getAttribute('data-postid');
+      const likesCountElement = document.getElementById(`likesCount-${postId}`);
+
+      fetch(`/posts/${postId}/like`, { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+          likesCountElement.textContent = data.likesCount;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    });
+  });
+</script>
+
+
+
+
+
 
 
 <ul class="comments">
