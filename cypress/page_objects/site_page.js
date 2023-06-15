@@ -15,7 +15,11 @@ class sitePage {
         newPostSubmit : () => cy.get("#new-post-form").submit()
     }
 
-    signupAndSignInWithInputs(email, username, password){
+    seed_db(){
+            cy.exec("npm run seed");
+    }
+
+    signupAndSignInAs(email, username, password){
         cy.visit(this.elements.signUpURL);
         this.elements.enterEmail().type(email);
         this.elements.enterPassword().type(password);
@@ -33,7 +37,7 @@ class sitePage {
         this.elements.detailsSubmitButton().click();
     }
     
-    createPostWithGivenInput(input){
+    createPostWith(input){
         this.elements.newPostButton().click();
         this.elements.newPostInput().type(input);
         this.elements.newPostSubmit();
