@@ -5,7 +5,7 @@ const PostSchema = new mongoose.Schema({
   message: String,
   image_url: String,
   timestamp: { type : Date, default: Date.now },
-  author: Object,
+  postAuthor: Object,
   likes: Array,
   comments: {
     type: [

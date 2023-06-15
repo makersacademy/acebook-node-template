@@ -1,5 +1,6 @@
 const Post = require("../models/post");
-//const Comment = require("./comments");
+const User = require("../models/user");
+
 
 const PostsController = {
   Index: (req, res) => {
@@ -7,6 +8,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      
   
       // Reverse the order of posts array
       const reversedPosts = posts.reverse();
@@ -14,16 +16,29 @@ const PostsController = {
       res.render("posts/index", { posts: reversedPosts });
     });
   },
+
+
+
   New: (req, res) => {
     res.render("posts/new", {});
   },
+
+
+
   Create: (req, res) => {
     const post = new Post(req.body);
+    // const user = req.session.user;
+    
+    
+    // post.postAuthor =  {
+    //   firstName: user.firstName,
+    //   lastName: user.lastName
+    
+    // }
     post.save((err) => {
       if (err) {
         throw err;
       }
-      
       res.status(201).redirect("/posts");
     });
     
@@ -38,22 +53,18 @@ const PostsController = {
     });
   },
 
+
   likePost: (req, res) => {
     const postId = req.params.postId;
-    
+    const userId = req.session.user._id
   
     // Find the post by ID in the database
     Post.findById(postId)
-      .then((post) => {
-        // Add the like to the post
-        if (post.likes.some((like) => like === req.session.user._id)) {
-          return res.status(400).json({ error: "User has already liked the post." });
-      }
-      post.likes.push(req.session.user._id);
-
-      // Add the user to the likes array
-      // Save the updated post
-      return post.save();
+    .updateOne(
+      { _id: postId },
+      { $addToSet: { likes: userId } } )
+      .then(() => {
+        return Post.findById(postId); 
       })
       .then((updatedPost) => {
       const likesCount = updatedPost.likes && Array.isArray(updatedPost.likes)
@@ -63,10 +74,6 @@ const PostsController = {
       res.json({ likesCount });
 
     })
-      .catch(() => {
-        // console.log(err);
-        // res.status(500).json({ error: "An error occurred while processing your request." });
-      });
   },
 
 };
