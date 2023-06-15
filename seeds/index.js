@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const User = require("../models/user");
 const Post = require("../models/post");
 const Like = require("../models/like");
+const Friend = require("../models/friend");
 const users = require("./data/users");
 
 mongoose.connect("mongodb://0.0.0.0/acebook", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
-  autoIndex: true,
 });
 
 const db = mongoose.connection;
@@ -20,6 +20,10 @@ db.once("open", () => {
 
 const seedDB = async () => {
   try {
+    console.log("Clearing friend data...");
+    await Friend.deleteMany({});
+    console.log("Friend data cleared.");
+
     console.log("Clearing like data...");
     await Like.deleteMany({});
     console.log("Like data cleared.");
@@ -32,10 +36,12 @@ const seedDB = async () => {
     await User.deleteMany({});
     console.log("User data cleared.");
 
+    let createdUsers = [];
     for (let userData of users) {
       const user = new User(userData);
       await user.save();
       console.log(`User ${user.email} created successfully.`);
+      createdUsers.push(user);
 
       const post = new Post({
         message: "Hello, World!",
@@ -54,6 +60,25 @@ const seedDB = async () => {
         `Like post_id "${like.post}", Like user_id "${like.user}" created successfully.`
       );
     }
+    const accepted_friendship = new Friend({
+      requester: createdUsers[1],
+      recipient: createdUsers[0],
+      friendship: true,
+    });
+    await accepted_friendship.save();
+    console.log(
+      `Accepted friendship between "${accepted_friendship.requester.username}" and "${accepted_friendship.recipient.username}" created successfully.`
+    );
+
+    const pending_friendship = new Friend({
+      requester: createdUsers[2],
+      recipient: createdUsers[0],
+      friendship: null,
+    });
+    await pending_friendship.save();
+    console.log(
+      `Pending friendship between "${pending_friendship.requester.username}" and "${pending_friendship.recipient.username}" created successfully.`
+    );
   } catch (err) {
     console.log(err);
   }

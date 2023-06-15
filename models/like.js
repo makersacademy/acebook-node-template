@@ -16,23 +16,23 @@ const LikeSchema = new mongoose.Schema({
 
 LikeSchema.index({ user: 1, post: 1 }, { unique: true });
 
-LikeSchema.pre("save", async function (next) {
-  try {
-    const found = await this.model("Like").findOne({
-      user: this.user,
-      post: this.post,
-    });
-    if (found) {
-      const error = new Error("duplicate key error");
-      error.code = 11000;
-      next(error);
-    } else {
-      next();
-    }
-  } catch (error) {
-    next(error);
-  }
-});
+// LikeSchema.pre("save", async function (next) {
+//   try {
+//     const found = await this.model("Like").findOne({
+//       user: this.user,
+//       post: this.post,
+//     });
+//     if (found) {
+//       const error = new Error("duplicate key error");
+//       error.code = 11000;
+//       next(error);
+//     } else {
+//       next();
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 const Like = mongoose.model("Like", LikeSchema);
 
