@@ -34,6 +34,6 @@ before(() => {
   cy.get("#submit").click();
 });
 
-after(() => {
-  cy.clearDb(); // Clear the database after all the tests
-});
+//after(() => {
+//  cy.clearDb(); // Clear the database after all the tests
+//});
