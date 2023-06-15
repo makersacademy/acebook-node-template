@@ -46,18 +46,18 @@ const UserSchema = new mongoose.Schema({
       trim: true,
       maxlength: 25,
       validate: [
-        // {
-        //   validator: function (value) {
-        //     return validator.isEmail(value);
-        //   },
-        //   message: "Email is invalid",
-        // },
         {
           validator: async function (value) {
             const user = await this.model('User').findOne({ username: value })
             return !user; // Return false if user with same email already exists
           },
           message: "Username is already in use",
+        },
+        {
+          validator: function (value) {
+            return !/\s/.test(value); // Disallow whitespace characters
+          },
+          message: "Username cannot have trailing whitespace",
         },
       ],
     }, 

@@ -3,9 +3,10 @@ const bcrypt = require('bcrypt');
 require("../mongodb_helper");
 const User = require("../../models/user");
 
-const createAndValidateUser = (obj) => {
+const createAndValidateUser = async(obj) => {
   const user = new User(obj);
-  return user.validateSync();
+  await user.validate();
+  return user;
 };
 
 describe("User model", () => {
@@ -30,130 +31,135 @@ describe("User model", () => {
       username: "existinguser2",
     });
   
-    // Save the first user
-    await existingUser1.save();
   
-    // Attempt to save the second user and catch the error
+    await existingUser1.save();
+ 
     try {
       await existingUser2.save();
     } catch (error) {
-      // Ensure that the error message is as expected
       expect(error.errors["email"].message).toBe("Email address is already in use");
     }
   });})
   it("requires password to be at least 8 characters", async () => {
-    // Create a user with a password that is less than 8 characters
+
     const user = new User({
       email: "test@example.com",
       password: "pass",
       username: "testuser",
     });
   
-    // Save the user to trigger validation
     try {
       await user.save();
     } catch (error) {
-      // Ensure that the error message is as expected
       expect(error.errors["password"].message).toBe(
-        "Password is too short. At least 8 characters."
+        "Path `password` (`pass`) is shorter than the minimum allowed length (8)."
       );
     }
   });
-//   it("requires username to be unique", () => {
-//     const existingUser = createAndValidateUser(
-//       {
-//         email: "existing@example.com",
-//         password: "password123",
-//         username: "existinguser",
-//       }
-//     );
-//     expect(existingUser.errors["username"].message).toBe(
-//       "Username is already in use"
-//     );
-//   });
-// });
-  // it("should not allow creating a user with an existing username", (done) => {
-  //   const existingUser = new User({
-  //     email: "existing@example.com",
-  //     password: "password123",
-  //     username: "existinguser",
-  //   });
 
-  //   existingUser.save((err) => {
-  //     expect(err).toBeNull();
+  
 
-  //     const newUser = new User({
-  //       email: "new@example.com",
-  //       password: "newpassword",
-  //       username: "existinguser", // Same username as existingUser
-  //     });
+  it("should not allow creating a user with an existing username", async () => {
+  
+  const existingUser1 = new User({
+    email: "existing1@example.com",
+    password: "password123",
+    username: "existinguser",
+  });
 
-  //     newUser.save((err) => {
-  //       expect(err).not.toBeNull();
-  //       expect(err.code).toEqual(11000); // Duplicate key error
+  
+  await existingUser1.save();
 
-  //       done();
-  //     });
-  //   });
-  // });
-
-  // it("should not allow creating a user with a too short password", (done) => {
-  //   const newUser = new User({
-  //     email: "new@example.com",
-  //     password: "short", // Password is too short (less than 8 characters)
-  //     username: "newuser",
-  //   });
-
-  //   newUser.save((err) => {
-  //     expect(err).not.toBeNull();
-  //     expect(err.errors.password.message).toContain(
-  //       "Passwords is too short. At least 8 characters."
-  //     );
-
-  //     done();
-  //   });
-  // });
+ 
+  const existingUser2 = new User({
+    email: "existing2@example.com",
+    password: "password456",
+    username: "existinguser",
+  });
 
 
-  // it("can list several users", async (done) => {
-  //   const user = new User({
-  //     username: "peter",
-  //     email: "someone@example.com",
-  //     password: "password",
-  //   });
+  try {
+    await existingUser2.save();
+  } catch (error) {
+    expect(error.errors["username"].message).toBe("Username is already in use");
+  }
+});
 
-  //   const user2 = new User({
-  //     username: "bob",
-  //     email: "someone2@example.com",
-  //     password: "pass2word",
-  //   });
+it("disallows trailing whitespace in username", async () => {
+  const user = new User({
+    email: "existing2@example.com",
+    password: "password456",
+    username: "banana  ",
+  });
 
-  //   const hashedPassword1 = await bcrypt.hash(user.password, 8);
-  //   const hashedPassword2 = await bcrypt.hash(user2.password, 8)
+  try {
+    await user.validate(); 
+  } catch (error) {
+    expect(error.errors["username"].message).toBe("Username cannot have trailing whitespace");
+  }
+});
 
-  //   user.save((err) => {
-  //     expect(err).toBeNull();
-  //     user2.save((err) => {
-  //       expect(err).toBeNull();
+it("disallows trailing whitespace in password", async () => {
+  const user = new User({
+    email: "existing2@example.com",
+    password: "password456  ",
+    username: "banana",
+  });
 
-  //       User.find((err, users) => {
-  //         expect(err).toBeNull();
-  //         expect(users).toEqual(
-  //           expect.arrayContaining([
-  //             expect.objectContaining({
-  //               username: "peter",
-  //               email: "someone@example.com",
-  //               // password: hashedPassword1,
-  //             }),
-  //             expect.objectContaining({
-  //               username: "bob",
-  //               email: "someone2@example.com",
-  //               // password: hashedPassword2,
-  //             }),
-  //           ])
-  //         );
-  //         done();
-  //       });
-  //     });
-  //   });
-  // });
+  try {
+    await user.validate(); 
+  } catch (error) {
+    expect(error.errors["password"].message).toBe("Password cannot have trailing whitespace");
+  }
+});
+
+it("disallows trailing whitespace in email", async () => {
+  const user = new User({
+    email: "existing2@example.com   ",
+    password: "password456",
+    username: "banana  ",
+  });
+
+  try {
+    await user.validate(); 
+  } catch (error) {
+    expect(error.errors["email"].message).toBe("Email cannot have trailing whitespace");
+  }
+});
+
+
+it("can list several users", async () => {
+  const user = await createAndValidateUser({
+    username: "peter",
+    email: "someone@example.com",
+    password: "password",
+  });
+
+  const user2 = await createAndValidateUser({
+    username: "bob",
+    email: "someone2@example.com",
+    password: "pass2word",
+  });
+
+  await user.save();
+  await user2.save();
+
+  const users = await User.find();
+  const hashedPassword1 = await bcrypt.hash(user.password, 8);
+  const hashedPassword2 = await bcrypt.hash(user2.password, 8);
+
+  expect(users).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        username: "peter",
+        email: "someone@example.com",
+        // password: hashedPassword1,
+      }),
+      expect.objectContaining({
+        username: "bob",
+        email: "someone2@example.com",
+        // password: hashedPassword2,
+      }),
+    ])
+  );
+});
