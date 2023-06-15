@@ -12,6 +12,8 @@ describe("User model", () => {
 
   it("has an email address", () => {
     const user = new User({
+      firstName: "Test",
+      lastName: "Test",
       email: "someone@example.com",
       password: "password",
     });
@@ -20,6 +22,8 @@ describe("User model", () => {
 
   it("has a password", () => {
     const user = new User({
+      firstName: "Test",
+      lastName: "Test",
       email: "someone@example.com",
       password: "password",
     });
@@ -36,6 +40,8 @@ describe("User model", () => {
 
   it("can save a user", (done) => {
     const user = new User({
+      firstName: "Test",
+      lastName: "Test",
       email: "someone@example.com",
       password: "password",
     });
@@ -47,6 +53,8 @@ describe("User model", () => {
         expect(err).toBeNull();
 
         expect(users[0]).toMatchObject({
+          firstName: "Test",
+          lastName: "Test",
           email: "someone@example.com",
           password: "password",
         });
@@ -57,6 +65,8 @@ describe("User model", () => {
 
   test("returns false for empty password", () => {
     const user = new User({
+        firstName: "Test",
+        lastName: "Test",
         email: "someone@example.com",
         password: "",
     });
@@ -65,6 +75,8 @@ describe("User model", () => {
 
   test("returns false for password without numbers", () => {
     const user = new User({
+        firstName: "Test",
+        lastName: "Test",
         email: "someone@example.com",
         password: "aksfhigto",
     });
@@ -73,6 +85,8 @@ describe("User model", () => {
 
   test("returns false for password without letters", () => {
     const user = new User({
+        firstName: "Test",
+        lastName: "Test",
         email: "someone@example.com",
         password: "12341234",
     });
@@ -81,6 +95,8 @@ describe("User model", () => {
 
   test("returns false for password without letters", () => {
     const user = new User({
+        firstName: "Test",
+        lastName: "Test",
         email: "someone@example.com",
         password: "12341234",
     });
@@ -89,6 +105,8 @@ describe("User model", () => {
 
   test("returns true for password with numbers, letters and 8 or more chars", () => {
     const user = new User({
+        firstName: "Test",
+        lastName: "Test",
         email: "someone@example.com",
         password: "password1",
     });
@@ -97,6 +115,8 @@ describe("User model", () => {
 
   test("returns false for password with numbers, letters but less than 8 chars", () => {
     const user = new User({
+        firstName: "Test",
+        lastName: "Test",
         email: "someone@example.com",
         password: "pass1",
     });
@@ -105,6 +125,8 @@ describe("User model", () => {
 
   test("returns true for password with numbers, caps and 8 or more chars", () => {
     const user = new User({
+        firstName: "Test",
+        lastName: "Test",
         email: "someone@example.com",
         password: "1234ABCD",
     });
@@ -113,6 +135,8 @@ describe("User model", () => {
 
   test("returns true for password with numbers, letters caps and lower with 8 or more chars", () => {
     const user = new User({
+        firstName: "Test",
+        lastName: "Test",
         email: "someone@example.com",
         password: "1234ABab",
     });
