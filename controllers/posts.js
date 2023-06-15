@@ -48,7 +48,7 @@ const PostsController = {
     });
     post.save((err) => {
       if (err) {
-        throw err;
+        return res.status(400).render("posts/new", { error: err.message });
       }
 
       res.status(201).redirect("/posts");
