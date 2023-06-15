@@ -8,15 +8,17 @@ const CommentsController = {
       content: req.body.commentContent,
     });
 
-    // const error = await comment.save().catch((err) => err);
-    comment.save((err) => {
-    if (err) {
-      return res.status(400).render("posts/new", { error: err.message });
-    }
+    const err = await comment.save().catch((err) => err);
+    res.redirect("/posts");
 
-    res.status(201).redirect("/posts");
-    }),
-  };
+    // comment.save((err) => {
+    //   if (err) {
+    //     return res.redirect(404, "/posts", { error: err.message });
+    //   }
+
+    //   res.redirect("/posts");
+    // });
+  },
 };
 
 module.exports = CommentsController;
