@@ -16,28 +16,49 @@ describe("User model", () => {
   });
 
 
-  it("requires email to be unique", () => {
-    const existingUser = createAndValidateUser({
+  it("requires email to be unique", async () => {
+    const existingUser1 = new User({
       email: "existing@example.com",
       password: "password123",
-      username: "existinguser",
+      username: "existinguser1",
     });
-    expect(existingUser.errors["email"].message).toBe(
-      "Email address is already in use"
-    );
+  
+    // Create another user with the same email
+    const existingUser2 = new User({
+      email: "existing@example.com",
+      password: "password456",
+      username: "existinguser2",
+    });
+  
+    // Save the first user
+    await existingUser1.save();
+  
+    // Attempt to save the second user and catch the error
+    try {
+      await existingUser2.save();
+    } catch (error) {
+      // Ensure that the error message is as expected
+      expect(error.errors["email"].message).toBe("Email address is already in use");
+    }
+  });})
+  it("requires password to be at least 8 characters", async () => {
+    // Create a user with a password that is less than 8 characters
+    const user = new User({
+      email: "test@example.com",
+      password: "pass",
+      username: "testuser",
+    });
+  
+    // Save the user to trigger validation
+    try {
+      await user.save();
+    } catch (error) {
+      // Ensure that the error message is as expected
+      expect(error.errors["password"].message).toBe(
+        "Password is too short. At least 8 characters."
+      );
+    }
   });
-})
-  // it("requires password to be at least 8 characters", () => {
-  //   const error = createAndValidateUser( {
-  //     "test@example.com",
-  //     "pass",
-  //     "testuser" }
-  //   );
-  //   expect(error.errors["password"].message).toBe(
-  //     "Password is too short. At least 8 characters."
-  //   );
-  // });
-
 //   it("requires username to be unique", () => {
 //     const existingUser = createAndValidateUser(
 //       {

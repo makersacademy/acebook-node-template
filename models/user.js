@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 
+let User;
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -18,7 +19,7 @@ const UserSchema = new mongoose.Schema({
       },
       {
         validator: async function (value) {
-          const user = await User.findOne({ email: value });
+          const user = await this.model('User').findOne({ email: value })
           return !user; // Return false if user with same email already exists
         },
         message: "Email address is already in use",
@@ -38,32 +39,43 @@ const UserSchema = new mongoose.Schema({
       },
     ],
   },
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    maxlength: 25,
-    // validate: [
-    //   {
-    //     validator: async function (value) {
-    //       const user = await User.findOne({ username: value });
-    //       return !user; // Return false if user with same username already exists
-    //     },
-    //     message: "Username is already in use",
-    //   },
-    // ],
+  username: 
+    { type: String, 
+      required: true, 
+      unique: true, 
+      trim: true,
+      maxlength: 25,
+      validate: [
+        // {
+        //   validator: function (value) {
+        //     return validator.isEmail(value);
+        //   },
+        //   message: "Email is invalid",
+        // },
+        {
+          validator: async function (value) {
+            const user = await this.model('User').findOne({ username: value })
+            return !user; // Return false if user with same email already exists
+          },
+          message: "Username is already in use",
+        },
+      ],
+    }, 
+  image: { 
+    type: String, 
+    default: '' 
   },
 });
 
-
 UserSchema.pre('save', async function (next) {
-  console.log("password: ", this)
+  // Pre-save hook logic
+  if (!User) {
+    User = mongoose.model('User'); // Assign User model if not defined
+  }
   const user = this;
   if (user.isModified('password')) {
-    console.log('Hashing password...');
+    // Hash password logic
     user.password = await bcrypt.hash(user.password, 8);
-    console.log('Hashed password:', user.password);
   }
   next();
 });
