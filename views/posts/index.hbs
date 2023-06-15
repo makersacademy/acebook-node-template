@@ -5,10 +5,12 @@
         <div class="post-message">{{this.message}}</div>
         <p class="post-author">Written by {{this.username}}</p>
         <div class="actions">
-          <form action="/friends" method="post">
-            <input type="hidden" name="recipientId" value={{this.user}} />
-            <button type="submit" class="befriend-button">Poke</button>
-          </form>
+          {{#unless this.currentUser}}
+            <form action="/friends" method="post">
+              <input type="hidden" name="recipientId" value={{this.user}} />
+              <button type="submit" class="befriend-button">Poke</button>
+            </form>
+          {{/unless}}
           <form action="/likes" method="post">
             <input type="hidden" name="postId" value={{this._id}} />
             <button type="submit" class="like-button">❤️</button>

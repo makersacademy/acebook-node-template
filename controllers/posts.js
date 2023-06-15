@@ -5,6 +5,7 @@ const Like = require("../models/like");
 const PostsController = {
   Index: async (req, res) => {
     try {
+      const currentUser = await User.findById(req.session.user._id);
       let posts = await Post.find().exec();
       posts = posts.reverse();
 
@@ -16,6 +17,8 @@ const PostsController = {
 
         const user = await User.findById(post.user);
         post.username = user.username;
+
+        post.currentUser = currentUser.username === post.username;
 
         const likes = await Like.find({
           post: post._id,
