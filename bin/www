@@ -1,5 +1,6 @@
 // #!/usr/bin/env node
 
+
 /**
  * Module dependencies.
  */
@@ -80,15 +81,18 @@ function onError(error) {
 	switch (error.code) {
 		case "EACCES":
 			console.error(bind + " requires elevated privileges");
+			// eslint-disable-next-line no-process-exit
 			process.exit(1);
 			break;
 		case "EADDRINUSE":
 			console.error(bind + " is already in use");
+			// eslint-disable-next-line no-process-exit
 			process.exit(1);
 			break;
 		default:
 			throw error;
 	}
+
 }
 
 /**
