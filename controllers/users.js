@@ -59,7 +59,7 @@ const UsersController = {
     if (password !== confirmPassword) {
       return res.status(400).render("users/new", {
         error: "Passwords did not match",
-      })
+      });
     }
 
     // Check email is unique
