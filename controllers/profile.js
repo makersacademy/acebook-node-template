@@ -22,6 +22,10 @@ const ProfileController = {
         currentUser.friendRequests.includes(user.email)
       );
 
+      console.log("friends_names:", friends_names);
+      console.log("nonFriends:", nonFriends);
+      console.log("friendRequests:", friendRequests);
+
       res.render("profile/index", {
         friends_names: friends_names,
         nonFriends: nonFriends,
@@ -57,6 +61,9 @@ const ProfileController = {
             (user) =>
               !friends.includes(user.email) && user.email !== updatedUser.email
           );
+
+          console.log("friends_names:", friends_names);
+          console.log("nonFriends:", nonFriends);
 
           res.render("profile/index", {
             friends_names: friends_names,
@@ -96,7 +103,6 @@ const ProfileController = {
       });
     });
   },
-
   AcceptFriendRequest: (req, res) => {
     const currentUser = req.session.user;
     const friendEmail = req.body.friendEmail;
@@ -107,31 +113,33 @@ const ProfileController = {
         $pull: { friendRequests: friendEmail },
         $push: { friends: friendEmail },
       },
-      { new: true },
-      (err, updatedUser) => {
-        if (err) {
-          throw err;
-        }
+      { new: true }
+    )
+      .then((user) => {
+        // Update the session with the updated user information
+        req.session.user = user;
   
         // Update the friend user's friends list
-        User.findOneAndUpdate(
+        return User.findOneAndUpdate(
           { email: friendEmail },
           { $push: { friends: currentUser.email } },
-          { new: true },
-          (err, updatedFriendUser) => {
-            if (err) {
-              throw err;
-            }
-  
-            res.json({ message: "Friend request accepted", updatedUser, updatedFriendUser });
-          }
+          { new: true }
         );
-      }
-    );
-  },
+      })
+      .then((updatedFriendUser) => {
+        console.log("Updated Friend User:", updatedFriendUser);
+  
+        // Send a response to the client-side indicating success
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
   
   
-
+  
+  
 };
 
 module.exports = ProfileController;

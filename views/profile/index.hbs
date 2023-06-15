@@ -12,6 +12,8 @@
         <input type="hidden" name="friendEmail" value="{{this.email}}">
         <li>{{this.firstName}} {{this.lastName}}<button type="submit">Remove Friend</button></li>
       </form>
+    {{else}}
+      <li>No friends found.</li>
     {{/each}}
   </ul>
 </div>
@@ -24,6 +26,8 @@
         <input type="hidden" name="friendEmail" value="{{this.email}}">
         <li>{{this.firstName}} {{this.lastName}}<button class="addFriendButton" type="button">Add Friend</button></li>
       </form>
+    {{else}}
+      <li>No non-friends found.</li>
     {{/each}}
   </ul>
 </div>
@@ -33,12 +37,12 @@
   {{#if friendRequests.length}}
     <ul>
       {{#each friendRequests}}
-        <li>{{this.firstName}} {{this.lastName}} ({{this.email}})
-          <form class="acceptFriendRequestForm" action="/profile/acceptFriendRequest" method="POST">
-            <input type="hidden" name="friendEmail" value="{{this.email}}">
-            <button class="acceptFriendRequestButton" type="submit">Accept</button>
-          </form>
-          <form class="rejectFriendRequestForm" action="/profile/rejectFriendRequest" method="POST">
+        <li data-email="{{this.email}}">{{this.firstName}} {{this.lastName}} ({{this.email}})
+<form class="acceptFriendRequestForm" action="/profile/accept-friend-request" method="POST">
+  <input type="hidden" name="friendEmail" value="{{this.email}}">
+  <button class="acceptFriendRequestButton" type="submit">Accept</button>
+</form>
+          <form class="rejectFriendRequestForm" action="/profile/reject-friend-request" method="POST">
             <input type="hidden" name="friendEmail" value="{{this.email}}">
             <button class="rejectFriendRequestButton" type="submit">Reject</button>
           </form>
@@ -66,23 +70,31 @@
     });
   });
 
-  // Handle Accept Friend Request button click event
-  $('.acceptFriendRequestButton').click(function (event) {
+  // Handle Accept Friend Request form submission
+  $('.friendRequests').on('submit', '.acceptFriendRequestForm', function (event) {
     event.preventDefault(); // Prevent the default form submission
 
-    const friendEmail = $(this).closest('.acceptFriendRequestForm').find('input[name="friendEmail"]').val();
-    const listItem = $(this).closest('li');
+    const form = $(this);
+    const friendEmail = form.find('input[name="friendEmail"]').val();
+    const listItem = form.closest('li');
 
     $.post('/profile/accept-friend-request', { friendEmail: friendEmail }, function (response) {
-      if (response.message === 'Friend request accepted') {
-        // Fetch updated data and update the profile page
-        $.get('/profile', function (data) {
-          $('body').html(data);
-        });
+      if (response.success) {
+        // Remove the accepted friend request from the list
+        listItem.remove();
+
+        // If no more friend requests, show the "No pending friend requests" message
+        const friendRequestsList = $('.friendRequests ul');
+        if (friendRequestsList.children().length === 0) {
+          friendRequestsList.append('<li>No pending friend requests.</li>');
+        }
+
+        // Reload the page
+        location.reload();
       } else {
         // Handle other response messages if needed
       }
     });
   });
-  
 </script>
+
