@@ -1,2 +1,10 @@
+{{#if messages.success}}
+  <ul class="messages">
+    {{#each messages.success}}
+      <p class="message">{{this}}</p>
+    {{/each}}
+  </ul>
+{{/if}}
+
 <h1 class="title">{{title}}</h1>
 <p>Welcome to {{title}}</p>
