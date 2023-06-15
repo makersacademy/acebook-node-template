@@ -29,10 +29,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
-        run: npm run test
-
+# run the unit tests but exclude the selenium tests.
+      - name: Run unit tests
+        run: npm run test:unit
+# run the cypress tests using cypress actions.
       - name: Start test server
         run: npm run start:test &
 
