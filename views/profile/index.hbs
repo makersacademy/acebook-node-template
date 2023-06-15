@@ -1,0 +1,100 @@
+<h1>Name</h1>
+<a href="../posts">Timeline</a>
+<form action="/sessions?_method=DELETE" method="POST">
+  <input type="submit" value="Log Out" />
+</form>
+
+<div>
+  <p>Friends</p>
+  <ul class="users">
+    {{#each friends_names}}
+      <form action="/profile/remove-friend" method="POST">
+        <input type="hidden" name="friendEmail" value="{{this.email}}">
+        <li>{{this.firstName}} {{this.lastName}}<button type="submit">Remove Friend</button></li>
+      </form>
+    {{else}}
+      <li>No friends found.</li>
+    {{/each}}
+  </ul>
+</div>
+
+<div>
+  <p>Users</p>
+  <ul class="users">
+    {{#each nonFriends}}
+      <form class="addFriendForm" data-friend-email="{{this.email}}">
+        <input type="hidden" name="friendEmail" value="{{this.email}}">
+        <li>{{this.firstName}} {{this.lastName}}<button class="addFriendButton" type="button">Add Friend</button></li>
+      </form>
+    {{else}}
+      <li>No non-friends found.</li>
+    {{/each}}
+  </ul>
+</div>
+
+<div class="friendRequests">
+  <h2>Friend Requests</h2>
+  {{#if friendRequests.length}}
+    <ul>
+      {{#each friendRequests}}
+        <li data-email="{{this.email}}">{{this.firstName}} {{this.lastName}} ({{this.email}})
+<form class="acceptFriendRequestForm" action="/profile/accept-friend-request" method="POST">
+  <input type="hidden" name="friendEmail" value="{{this.email}}">
+  <button class="acceptFriendRequestButton" type="submit">Accept</button>
+</form>
+          <form class="rejectFriendRequestForm" action="/profile/reject-friend-request" method="POST">
+            <input type="hidden" name="friendEmail" value="{{this.email}}">
+            <button class="rejectFriendRequestButton" type="submit">Reject</button>
+          </form>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No pending friend requests.</p>
+  {{/if}}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Handle Add Friend button click event
+  $('.addFriendButton').click(function () {
+    const friendEmail = $(this).closest('.addFriendForm').data('friend-email');
+    const addButton = $(this);
+
+    $.post('/profile/add-friend', { friendEmail: friendEmail }, function (response) {
+      if (response.message === 'Friend request sent') {
+        addButton.text('Friend Request Sent').prop('disabled', true);
+      } else {
+        // Handle other response messages if needed
+      }
+    });
+  });
+
+  // Handle Accept Friend Request form submission
+  $('.friendRequests').on('submit', '.acceptFriendRequestForm', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const form = $(this);
+    const friendEmail = form.find('input[name="friendEmail"]').val();
+    const listItem = form.closest('li');
+
+    $.post('/profile/accept-friend-request', { friendEmail: friendEmail }, function (response) {
+      if (response.success) {
+        // Remove the accepted friend request from the list
+        listItem.remove();
+
+        // If no more friend requests, show the "No pending friend requests" message
+        const friendRequestsList = $('.friendRequests ul');
+        if (friendRequestsList.children().length === 0) {
+          friendRequestsList.append('<li>No pending friend requests.</li>');
+        }
+
+        // Reload the page
+        location.reload();
+      } else {
+        // Handle other response messages if needed
+      }
+    });
+  });
+</script>
+
