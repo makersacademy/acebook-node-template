@@ -14,7 +14,19 @@ const PostsController = {
     res.render("posts/new", {isAuthenticated: true});
   },
   Create: (req, res) => {
-    const post = new Post(req.body);
+    const { message, likes } = req.body;
+  const username = req.session.user.username;
+  const now = new Date();
+  const options = { 
+    weekday: 'short', 
+    month: 'short', 
+    day: 'numeric', 
+    year: 'numeric', 
+    hour: 'numeric', 
+    minute: 'numeric' 
+  };
+  const currentDate = now.toLocaleString('en-US', options);
+  const post = new Post({ username, message, likes, currentDate });
     post.save((err) => {
       if (err) {
         throw err;
@@ -24,5 +36,6 @@ const PostsController = {
     });
   },
 };
+
 
 module.exports = PostsController;

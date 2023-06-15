@@ -1,9 +1,12 @@
 <h1>Timeline</h1>
 <ul class="posts"> 
-  <li>{{{this.username}}}</li>
   {{#each posts}}
-  <li>{{{this.message}}}</li>
+  <li>Created at: {{this.currentDate}}</li>
+  <br>
+  <li>{{{this.username}}}</li>
   <br> 
+  <li>{{{this.message}}}</li>
+  <br>
   <li>{{{this.likes}}} likes</li>
   <br>
   {{/each}}
