@@ -1,7 +1,7 @@
 <html>
     <head>
         <title class="title">{{title}}</title>
-        <link rel="stylesheet" href="/public/stylesheets/master.css">
+        <link rel="stylesheet" href="/stylesheets/master.css">
     </head>
     <body>
         <nav>
@@ -9,7 +9,7 @@
                 <h1 id="acebook-title">Welcome to Acebook</h1>
             </div>
                 <ul class="navbar-items">
-                  <li><a href="/"><h3 id="home-link">Return to <br>Homepage</h3></a></li>
+                    <li><a href="/"><h3 id="home-link">Return to <br>Homepage</h3></a></li>
                     <a href="/sessions/new"><h3 id="signup-link">Login</h3></a>
                 </ul>
         </nav>
@@ -17,10 +17,10 @@
             <div id="login-box">
                 <h4 id="login-text">Please fill in your details below to register:</h4>
                 <form id="new-user-form" action="/users" method="post">
-                    <input id="firstName" type="text" name="firstName" value="" placeholder="first name"><br><br>
-                    <input id="lastName" type="text" name="lastName" value="" placeholder="last name"><br><br>
-                    <input type="text" name="email" placeholder="email" id="email"><br><br>
-                    <input type="password" name="password" placeholder="password" id="password"><br><br>
+                    <input id="firstName" type="text" name="firstName" value="" placeholder="first name" required><br><br>
+                    <input id="lastName" type="text" name="lastName" value="" placeholder="last name" required><br><br>
+                    <input type="text" name="email" placeholder="email" id="email" required><br><br>
+                    <input type="password" name="password" placeholder="password" id="password" required><br><br>
                     <input id="submit" type="submit" value="Click to register!">
                 </form>
             </div>
