@@ -6,8 +6,11 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts });
+  
+      // Reverse the order of posts array
+      const reversedPosts = posts.reverse();
+  
+      res.render("posts/index", { posts: reversedPosts });
     });
   },
   New: (req, res) => {
