@@ -30,7 +30,7 @@ it('3) Can Make a Post and See It', () => {
 })
 
 it('4) Can See Likes Counts On Post', () => {
-    sitePage.LoginAs("test@test.com", "password123")
+    sitePage.LoginAs("test@test.com", "password123");
     sitePage.createPostWith("THIS IS NEWER");
     cy.get(".posts").should("contain", "THIS IS NEWER")
     sitePage.likeLatestPost()
@@ -40,4 +40,15 @@ it('4) Can See Likes Counts On Post', () => {
 // it('5) Can See Posts In Reverse Order, () => {
 
 //})
+
+it('6) Can See Multiple Different Likes Counts On Posts', () => {
+    sitePage.LoginAs("test@test.com", "password123")
+    sitePage.createPostWith("THIS IS OLDER");
+    sitePage.createPostWith("THIS IS NEWER");
+    cy.get(".posts").should("contain", "THIS IS OLDER")
+    cy.get(".posts").should("contain", "THIS IS NEWER")
+    sitePage.likeLatestPost()
+    cy.get(".post-likes").eq(0).should("contain", "1 likes")
+    cy.get(".post-likes").eq(1).should("contain", "0 likes")
+})
 });
