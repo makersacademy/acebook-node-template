@@ -61,4 +61,15 @@ it('6) Can See Multiple Different Likes Counts On Posts', () => {
     cy.get(".post-likes").eq(0).should("contain", "1 likes")
     cy.get(".post-likes").eq(1).should("contain", "0 likes")
 })
+
+it('7) User can like another users post & Likes add up', () => {
+    sitePage.seed_db();
+    sitePage.signupAndSignInAs("test1@test.com", "tester1", "password123");
+    sitePage.createPostWith("TEST 1 POST");
+    sitePage.likeLatestPost()
+    sitePage.logOut()
+    sitePage.signupAndSignInAs("test2@test.com", "tester2", "password123");
+    sitePage.likeLatestPost()
+    cy.get(".post-likes").eq(0).should("contain", "2 likes")
+})
 });

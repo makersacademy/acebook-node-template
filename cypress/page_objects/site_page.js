@@ -14,8 +14,8 @@ class sitePage {
         newPostInput : () => cy.get("#new-post-form").find('[type="text"]'),
         newPostSubmit : () => cy.get("#new-post-form").submit(),
         likeButton : () => cy.get('button[class="like-button"]'),
-        //likeButtonSubmit : () => cy.get("#like-button").submit(),
-        numberOfLikes : () => cy.get(".post-likes")
+        numberOfLikes : () => cy.get(".post-likes"),
+        logOutButton : () => cy.get("a.nav-link:nth-child(2)")
     }
 
     seed_db(){
@@ -48,6 +48,10 @@ class sitePage {
 
     likeLatestPost(){
         this.elements.likeButton().eq(0).click({ multiple: true });
+    }
+
+    logOut() {
+        this.elements.logOutButton().click();
     }
 }
 module.exports = new sitePage();
