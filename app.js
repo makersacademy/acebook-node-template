@@ -10,8 +10,10 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const profileRouter = require("./routes/profile");
 const commentsRouter = require("./routes/posts");
 const { AsyncLocalStorage } = require("async_hooks");
+
 
 const app = express();
 
@@ -60,6 +62,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/profile", profileRouter);
 app.use("/:postId", sessionChecker, postsRouter);
 app.use("/:postId/comments", sessionChecker, commentsRouter);
 app.use("/:postId/like", sessionChecker, postsRouter);
@@ -87,3 +90,4 @@ app.use((err, req, res) => {
 });
 
 module.exports = app;
+module.exports.sessionChecker = sessionChecker;
