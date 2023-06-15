@@ -1,5 +1,5 @@
 const Post = require("../models/post");
-const User = require("../models/user");
+//const User = require("../models/user");
 
 
 const PostsController = {
@@ -76,21 +76,5 @@ const PostsController = {
     })
   },
 };
-
-
-
-//   Likes: (req, res) => {
-//     Post.findByIdAndUpdate(req.params.postId, { $inc: { likesCount: 1 } }, { new: true })
-//   .populate('likes')
-//   .then((post) => {
-//     res.render('posts/show', { post });
-//   })
-//   .catch((err) => {
-//     console.log(err.message);
-//   });
-    
-//   }
-  
-// };
 
 module.exports = PostsController;

@@ -4,13 +4,19 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
-  <li><a href="/posts/{{this._id}}">{{this.message}}</a></li> 
+  <li>
+    <a href="/posts/{{this._id}}">{{this.message}}</a>
+    <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
+    <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
+  </li>
+  {{/each}}
+</ul>
   
-  <button class="likeButton" data-postid="{{ post._id }}">Like</button>
+  <button class="likeButtonTimeline" data-postid="{{ post._id }}">Like</button>
 <span id="likesCount-{{ post._id }}">{{ post.likes.length }}</span> likes
 
 <script>
-  const likeButtons = document.querySelectorAll('.likeButton');
+  const likeButtonsTimeline = document.querySelectorAll('.likeButton');
 
   likeButtons.forEach(button => {
     button.addEventListener('click', () => {
