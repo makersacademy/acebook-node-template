@@ -22,6 +22,10 @@ class sitePage {
             cy.exec("npm run seed");
     }
 
+    shouldContain(element, value){
+        cy.get(element).should("contain", value)
+    }
+
     signupAndSignInAs(email, username, password){
         cy.visit(this.elements.signUpURL);
         this.elements.enterEmail().type(email);
@@ -46,8 +50,8 @@ class sitePage {
         this.elements.newPostSubmit();
     }
 
-    likeLatestPost(){
-        this.elements.likeButton().eq(0).click({ multiple: true });
+    likePost(arrayPosition){
+        this.elements.likeButton().eq(arrayPosition).click({ multiple: true });
     }
 
     logOut() {
