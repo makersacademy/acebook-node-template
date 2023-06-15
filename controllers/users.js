@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const SessionsController = require("../controllers/sessions")
 
 const UsersController = {
   New: (req, res) => {
