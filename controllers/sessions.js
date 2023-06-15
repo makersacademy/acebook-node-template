@@ -13,7 +13,7 @@ const SessionsController = {
 
 		User.findOne({ email: email }).then((user) => {
 			if (!user) {
-				const errorMessage = "Invalid user/password.";
+				const errorMessage = "Invalid email/password.";
 				res.status(404);
 				res.render("sessions/new", { errorMessage: errorMessage });
 			} else {
@@ -21,7 +21,7 @@ const SessionsController = {
 					if (error) {
 						throw error;
 					} else if (!isMatch) {
-						const errorMessage = "Invalid user/password.";
+						const errorMessage = "Invalid email/password.";
 						res.status(404);
 						res.render("sessions/new", { errorMessage: errorMessage });
 					} else {
