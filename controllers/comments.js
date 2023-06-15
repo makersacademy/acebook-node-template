@@ -13,10 +13,9 @@ const CommentsController = {
 
     // comment.save((err) => {
     //   if (err) {
-    //     return res.redirect(404, "/posts", { error: err.message });
+    //     return res.render("posts/inde", { error: err.message });
     //   }
-
-    //   res.redirect("/posts");
+    //   res.status(201).redirect("/posts");
     // });
   },
 };
