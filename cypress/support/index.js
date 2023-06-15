@@ -21,15 +21,19 @@ require('./commands')
 
 
 before(() => {
-    const email = "admin@example.com";
-    const password = "Password!123";
-  
-    cy.visit("/");
-    cy.get('a.global-button[href="/users/new"]').contains('Sign Up').click();
-    cy.get("#email").type(email);
-    cy.get("#password").type(password);
-    cy.get("#confirm-password").type(password);
-    cy.get("#first-name").type("Mrtest");
-    cy.get("#last-name").type("Testtest");
-    cy.get("#submit").click();
-  });
+  const email = "admin@example.com";
+  const password = "Password!123";
+
+  cy.visit("/");
+  cy.get('a.global-button[href="/users/new"]').contains('Sign Up').click();
+  cy.get("#email").type(email);
+  cy.get("#password").type(password);
+  cy.get("#confirm-password").type(password);
+  cy.get("#first-name").type("Mrtest");
+  cy.get("#last-name").type("Testtest");
+  cy.get("#submit").click();
+});
+
+after(() => {
+  cy.clearDb(); // Clear the database after all the tests
+});
