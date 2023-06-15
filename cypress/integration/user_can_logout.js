@@ -9,16 +9,13 @@ describe("Logout", () => {
 
   
       // sign in
-      cy.visit("/");
-      cy.get('a.global-button[href="/sessions/new"]').click()
-      cy.get("#email").type("admin@example.com");
-      cy.get("#password").type("Password!123");
-      cy.get("#submit").click();
+      cy.signIn();
   
       cy.url().should("include", "/posts");
 
 
-      cy.get("#logout").click();
+      cy.get('input[type="submit"][value="Log Out"].global-button.logout').click();
+
       cy.url().should("not.include", "/posts");
 
     });

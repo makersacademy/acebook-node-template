@@ -23,3 +23,24 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+
+const mongoose = require('mongoose');
+
+Cypress.Commands.add('clearDb', () => {
+  return cy.task('clearDb').then(() => {
+    return new Promise((resolve) => {
+      mongoose.connection.once('open', () => {
+        resolve();
+      });
+    });
+  });
+});
+
+Cypress.Commands.add('signIn', () => {
+  cy.visit("/");
+  cy.get('a.global-button[href="/sessions/new"]').click();
+  cy.get("#email").type("admin@example.com");
+  cy.get("#password").type("Password!123");
+  cy.get("#submit").click();
+});
