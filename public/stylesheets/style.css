@@ -1,9 +1,53 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: rgb(238, 208, 170);
+  background-color: whitesmoke;
 }
 
 a {
   color: #00B7FF;
 }
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 5%;
+  align-items: center;
+  background-color: #006d77;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  display: inline-block;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #ffddd2;
+  padding: 8px 30px;
+  border-radius: 7px;
+  transition: all .3s ease;
+}
+
+ul li a:hover,
+ul li a.active {
+  color: #ffddd2;
+  background: #83c5be;
+}
+
+/* Signup page */
+#new-user-form{
+  padding-top: 5rem;
+  color: red;
+}
+
+
+/* Login age */
+#new-session-form{
+  padding-top: 5rem;
+}
+

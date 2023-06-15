@@ -1,5 +1,8 @@
 describe("Timeline", () => {
   it("can submit posts, when signed in, and view them", () => {
+    //clearDB drops the DB for a fresh test environment
+    cy.task('clearDb');
+    
     // sign up
     cy.visit("/users/signup");
     cy.get("#email").type("someone@example.com");
