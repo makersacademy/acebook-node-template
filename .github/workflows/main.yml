@@ -29,10 +29,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run unit tests
-        run: npm run test:unit
-
+        
       - name: Start test server
         run: npm run start:test &
 
@@ -43,3 +40,8 @@ jobs:
           record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+
