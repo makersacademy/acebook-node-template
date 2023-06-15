@@ -27,7 +27,7 @@ const UsersController = {
       if (err) {
         throw err;
       }
-      res.render("users/profile", { user });
+      res.render("users/profile", { user, isAuthenticated: true });
     });
   },
 
