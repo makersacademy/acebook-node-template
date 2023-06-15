@@ -37,12 +37,22 @@ it('4) Can See Likes Counts On Post', () => {
     cy.get(".post-likes").eq(0).should("contain", "1 likes")
 })
 
-// it('5) Can See Posts In Reverse Order, () => {
-
-//})
+it('5) Can See Posts In Reverse Order', () => {
+    sitePage.seed_db();
+    sitePage.signupAndSignInAs("test@test.com", "testerman", "password123");
+    sitePage.createPostWith("THIS IS OLDER");
+    cy.get(".posts").should("contain", "THIS IS OLDER")
+    sitePage.createPostWith("THIS IS NEWER");
+    cy.get(".posts").should("contain", "THIS IS NEWER")
+    cy.get('.post-message').then($elements => {
+        const textArray = Array.from($elements).map(element => Cypress.$(element).text());
+    expect(textArray).to.deep.equal(['THIS IS NEWER', 'THIS IS OLDER']);
+    })
+})
 
 it('6) Can See Multiple Different Likes Counts On Posts', () => {
-    sitePage.LoginAs("test@test.com", "password123")
+    sitePage.seed_db();
+    sitePage.signupAndSignInAs("test@test.com", "testerman", "password123");
     sitePage.createPostWith("THIS IS OLDER");
     sitePage.createPostWith("THIS IS NEWER");
     cy.get(".posts").should("contain", "THIS IS OLDER")
