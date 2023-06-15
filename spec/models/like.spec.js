@@ -16,10 +16,8 @@ const post = {
 };
 
 describe("Like model", () => {
-  beforeEach((done) => {
-    mongoose.connection.collections.likes.drop(() => {
-      done();
-    });
+  beforeEach(async () => {
+    await mongoose.connection.collections.likes.drop();
   });
 
   it("a new Like is not liked by default", async () => {
@@ -44,6 +42,7 @@ describe("Like model", () => {
   // it("a user cannot like the same post more than once", async () => {
   //   const first_like = new Like({ post: post.id, user: user_1.id });
   //   await first_like.save();
+  //   let errorOccurred = false;
 
   //   try {
   //     const second_like = new Like({ post: post.id, user: user_1.id });
