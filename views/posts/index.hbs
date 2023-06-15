@@ -1,3 +1,11 @@
+{{#if messages.success}}
+  <ul class="messages">
+    {{#each messages.success}}
+      <p class="message">{{this}}</p>
+    {{/each}}
+  </ul>
+{{/if}}
+
 <a class="new-post-link" href="/posts/new">New Post</a>
 
 <section class="timeline-section">
