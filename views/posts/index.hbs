@@ -11,6 +11,21 @@
         {{/each}}
       </div>
     </li>
+    {{!-- Displaying Comments --}}
+    {{#each this.comments}}
+    <p>&gt;&gt;&gt;"{{this.content}}"<br>
+    <span class="comment-author">Posted by {{this.user}}</p></li></span>
+    {{/each}}
+
+
+{{!-- Comment section --}}
+    <form action="/comments" method="post" class="comment-form">
+    <input type="hidden" name="postId" value={{this._id}} />
+    <input type="text" value="" name="commentContent" placeholder="Type comment here ..." required>
+    <button type="submit" class="comment-button">Comment</button>
+    </form>
+
+{{!-- Like button --}}
     <form action="/likes" method="post">
       <input type="hidden" name="postId" value={{this._id}} />
       <button type="submit" class="like-button">❤️</button>

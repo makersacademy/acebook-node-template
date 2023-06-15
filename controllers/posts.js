@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Like = require("../models/like");
+const Comment = require("../models/comment");
 
 const PostsController = {
   Index: async (req, res) => {
@@ -24,6 +25,11 @@ const PostsController = {
           .exec();
 
         post.likedBy = likes.map((like) => like.user.email);
+
+        post.comments = await Comment.find(
+          { post: post._id },
+          { _id: 0, content: 1, user: 1 }
+        ).exec();
       }
 
       res.render("posts/index", { posts: posts });

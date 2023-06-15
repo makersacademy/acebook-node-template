@@ -11,6 +11,7 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const likesRouter = require("./routes/likes");
+const commentsRouter = require("./routes/comments");
 
 const app = express();
 
@@ -62,12 +63,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/signup', async (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
     if (req.body.password !== req.body.password2) {
       throw new Error("Passwords don't match. Try again.");
     }
-    
+
     const user = new User(req.body);
     await user.save();
     // Rest of your sign-up logic...
@@ -76,13 +77,13 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/likes", likesRouter);
+app.use("/comments", commentsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
