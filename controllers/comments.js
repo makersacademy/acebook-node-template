@@ -8,10 +8,15 @@ const CommentsController = {
       content: req.body.commentContent,
     });
 
-    await comment.save();
+    // const error = await comment.save().catch((err) => err);
+    comment.save((err) => {
+    if (err) {
+      return res.status(400).render("posts/new", { error: err.message });
+    }
 
-    res.redirect("/posts");
-  },
+    res.status(201).redirect("/posts");
+    }),
+  };
 };
 
 module.exports = CommentsController;

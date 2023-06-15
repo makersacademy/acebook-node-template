@@ -20,15 +20,16 @@ const CommentSchema = new mongoose.Schema({
         validator: function lengthValidator(content) {
           return content.length < 100;
         },
-        content: "Comment cannot be longer than 100 characters",
+        message: "Comment cannot be longer than 100 characters",
       },
       {
         validator: function emptyValidator(content) {
           return content.trim().length > 0;
         },
-        content: "Comment cannot be empty",
+        message: "Comment cannot be empty",
       },
     ],
+    required: [true, "Comment is required"],
   },
 });
 
