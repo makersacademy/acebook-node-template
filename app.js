@@ -7,6 +7,11 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
 
+
+///adding cloudinary stuff
+const multer = require('multer');
+const cloudinary = require('./cloudinary.config.js');
+
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
@@ -113,4 +118,40 @@ app.use((err, req, res, next) => {
   });
 });
 
+
+//img stuff 
+
+
+
+const port = 3001;
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Set the directory where uploaded files will be stored
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Set the file name to be unique
+  }
+});
+
+const upload = multer({ storage: storage });
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  // Use the cloudinary.uploader.upload() method to upload the image
+  cloudinary.uploader.upload(req.file.path, (error, result) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Image upload failed');
+    } else {
+      console.log(result);
+      res.send('Image uploaded successfully');
+    }
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
 module.exports = app;
+
