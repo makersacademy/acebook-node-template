@@ -115,7 +115,7 @@ nav {
   font-size: larger;
 }
 
-#name, #email, #password, #price, #location, #available_on, #description, #date_filter {
+#name, #email, #password, #price, #location, #available_on, #description, #date_filter, #firstName, #lastName {
   padding: 5px;
   border-radius: 8px;
   border-width: 1px;
