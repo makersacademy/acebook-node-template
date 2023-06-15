@@ -3,7 +3,7 @@
 <html>
     <head>
         <title class="title">{{title}}</title>
-        <link rel="stylesheet" href="/stylesheets/master.css">
+        <link rel="stylesheet" href="/stylesheets/style.css">
     </head>
     <body>
         <nav>
@@ -18,15 +18,17 @@
         <div id="content-box">
             <div id="login-box">
                 <h4 id="login-text">Please fill in your details below to login:</h4>
-                <form id="new-session-form" action="/sessions" method="post">
+                <form id="new-session-form" action="/sessions/new" method="post">
                     <input type="text" name="email" placeholder="email" id="email" required><br><br>
                     <input type="password" name="password" placeholder="password" id="password" required><br><br>
+
+                    {{#if errorMessage}}
+                    <p>{{errorMessage}}</p>
+                    {{/if}}
+
                     <input id="submit" type="submit" value="Click to login!">
                 </form>
             </div>
-            <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
         </div>
     </body>
 </html>
