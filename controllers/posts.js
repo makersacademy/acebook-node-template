@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 const Like = require("../models/like");
 
 const PostsController = {
@@ -12,6 +13,9 @@ const PostsController = {
           post: post._id,
           liked: true,
         }).exec();
+
+        const user = await User.findById(post.user);
+        post.username = user.username;
 
         const likes = await Like.find({
           post: post._id,
