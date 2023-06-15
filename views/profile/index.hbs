@@ -20,10 +20,69 @@
   <p>Users</p>
   <ul class="users">
     {{#each nonFriends}}
-      <form action="/profile/add-friend" method="POST">
+      <form class="addFriendForm" data-friend-email="{{this.email}}">
         <input type="hidden" name="friendEmail" value="{{this.email}}">
-        <li>{{this.firstName}} {{this.lastName}}<button type="submit">Add Friend</button></li>
+        <li>{{this.firstName}} {{this.lastName}}<button class="addFriendButton" type="button">Add Friend</button></li>
       </form>
     {{/each}}
   </ul>
 </div>
+
+<div class="friendRequests">
+  <h2>Friend Requests</h2>
+  {{#if friendRequests.length}}
+    <ul>
+      {{#each friendRequests}}
+        <li>{{this.firstName}} {{this.lastName}} ({{this.email}})
+          <form class="acceptFriendRequestForm" action="/profile/acceptFriendRequest" method="POST">
+            <input type="hidden" name="friendEmail" value="{{this.email}}">
+            <button class="acceptFriendRequestButton" type="submit">Accept</button>
+          </form>
+          <form class="rejectFriendRequestForm" action="/profile/rejectFriendRequest" method="POST">
+            <input type="hidden" name="friendEmail" value="{{this.email}}">
+            <button class="rejectFriendRequestButton" type="submit">Reject</button>
+          </form>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No pending friend requests.</p>
+  {{/if}}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Handle Add Friend button click event
+  $('.addFriendButton').click(function () {
+    const friendEmail = $(this).closest('.addFriendForm').data('friend-email');
+    const addButton = $(this);
+
+    $.post('/profile/add-friend', { friendEmail: friendEmail }, function (response) {
+      if (response.message === 'Friend request sent') {
+        addButton.text('Friend Request Sent').prop('disabled', true);
+      } else {
+        // Handle other response messages if needed
+      }
+    });
+  });
+
+  // Handle Accept Friend Request button click event
+  $('.acceptFriendRequestButton').click(function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const friendEmail = $(this).closest('.acceptFriendRequestForm').find('input[name="friendEmail"]').val();
+    const listItem = $(this).closest('li');
+
+    $.post('/profile/accept-friend-request', { friendEmail: friendEmail }, function (response) {
+      if (response.message === 'Friend request accepted') {
+        // Fetch updated data and update the profile page
+        $.get('/profile', function (data) {
+          $('body').html(data);
+        });
+      } else {
+        // Handle other response messages if needed
+      }
+    });
+  });
+  
+</script>
