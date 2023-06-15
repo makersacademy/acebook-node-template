@@ -4,6 +4,7 @@
       <li class="post-item">
         <div class="post-message">{{this.message}}</div>
         <p class="post-author">Written by {{this.username}}</p>
+        <p class="post-date">Posted on {{this.formattedCreatedAt}}</p>
         <div class="actions">
           {{#unless this.currentUser}}
             <form action="/friends" method="post">

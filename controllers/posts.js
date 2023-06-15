@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const User = require("../models/user");
 const Like = require("../models/like");
+const moment = require("moment");
 
 const PostsController = {
   Index: async (req, res) => {
@@ -17,8 +18,10 @@ const PostsController = {
 
         const user = await User.findById(post.user);
         post.username = user.username;
-
         post.currentUser = currentUser.username === post.username;
+        post.formattedCreatedAt = moment(post.createdAt).format(
+          "DD/MM/YYYY HH:mm"
+        );
 
         const likes = await Like.find({
           post: post._id,
