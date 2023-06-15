@@ -1,21 +1,42 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-    <li class="post-message">{{this.message}}</li>
-    <li class="post-likes">
-      {{this.likesCount}}
-      likes
-      <div class="liked-by-tooltip">
-        {{#each this.likedBy}}
-          <div>{{this}}</div>
-        {{/each}}
-      </div>
-    </li>
-    <form action="/likes" method="post">
-      <input type="hidden" name="postId" value={{this._id}} />
-      <button type="submit" class="like-button">❤️</button>
-    </form>
-  {{/each}}
-</ul>
+{{#if messages.success}}
+  <ul class="messages">
+    {{#each messages.success}}
+      <p class="message">{{this}}</p>
+    {{/each}}
+  </ul>
+{{/if}}
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<a class="new-post-link" href="/posts/new">New Post</a>
+
+<section class="timeline-section">
+  <ul class="posts">
+    {{#each posts}}
+      <li class="post-item">
+        <div class="post-message">{{this.message}}</div>
+        <p class="post-author">Written by {{this.username}}</p>
+        <p class="post-date">Posted on {{this.formattedCreatedAt}}</p>
+        <div class="actions">
+          {{#unless this.currentUser}}
+            <form action="/friends" method="post">
+              <input type="hidden" name="recipientId" value={{this.user}} />
+              <button type="submit" class="befriend-button">Poke</button>
+            </form>
+          {{/unless}}
+          <form action="/likes" method="post">
+            <input type="hidden" name="postId" value={{this._id}} />
+            <button type="submit" class="like-button">❤️</button>
+          </form>
+        </div>
+        <div class="post-likes">
+          {{this.likesCount}}
+          likes
+          <div class="liked-by-tooltip">
+            {{#each this.likedBy}}
+              <div>{{this}}</div>
+            {{/each}}
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</section>
