@@ -12,7 +12,10 @@ class sitePage {
         detailsSubmitButton : () => cy.get("#submit"),
         newPostButton : () => cy.get(".new-post-link"),
         newPostInput : () => cy.get("#new-post-form").find('[type="text"]'),
-        newPostSubmit : () => cy.get("#new-post-form").submit()
+        newPostSubmit : () => cy.get("#new-post-form").submit(),
+        likeButton : () => cy.get('button[class="like-button"]'),
+        //likeButtonSubmit : () => cy.get("#like-button").submit(),
+        numberOfLikes : () => cy.get(".post-likes")
     }
 
     seed_db(){
@@ -41,6 +44,10 @@ class sitePage {
         this.elements.newPostButton().click();
         this.elements.newPostInput().type(input);
         this.elements.newPostSubmit();
+    }
+
+    likeLatestPost(){
+        this.elements.likeButton().eq(0).click({ multiple: true });
     }
 }
 module.exports = new sitePage();

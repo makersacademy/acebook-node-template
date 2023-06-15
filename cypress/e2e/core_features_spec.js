@@ -26,13 +26,18 @@ it('2) Can Signup and Signin', () => {
 it('3) Can Make a Post and See It', () => {
     sitePage.LoginAs("test@test.com", "password123")
     sitePage.createPostWith("THIS IS NEWER");
+    cy.get(".posts").should("contain", "THIS IS NEWER")
 })
 
-// it('4) Can See Post Counts On Post, () => {
-// })
+it('4) Can See Likes Counts On Post', () => {
+    sitePage.LoginAs("test@test.com", "password123")
+    sitePage.createPostWith("THIS IS NEWER");
+    cy.get(".posts").should("contain", "THIS IS NEWER")
+    sitePage.likeLatestPost()
+    cy.get(".post-likes").eq(0).should("contain", "1 likes")
+})
 
 // it('5) Can See Posts In Reverse Order, () => {
 
-})
-// });
-
+//})
+});
