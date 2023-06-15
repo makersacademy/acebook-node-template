@@ -5,11 +5,9 @@ const UsersController = {
     res.render("users/new", {});
   },
 
-  //Hash password
-
   Create: (req, res) => {
     const { email, firstName, lastName, password, confirmPassword } = req.body;
-    const maxLength = 50; // Define the maximum character limit for the names
+    const maxLength = 50;
 
     if (firstName.length > maxLength) {
       return res.status(400).render("users/new", {
@@ -33,6 +31,7 @@ const UsersController = {
       lastName
     );
 
+    // Display error messages if names contain punctuation
     if (hasFirstNamePunctuation) {
       return res.status(400).render("users/new", {
         error: "First name should not contain punctuation",
@@ -55,12 +54,14 @@ const UsersController = {
       });
     }
 
+    // Confirm password
     if (password !== confirmPassword) {
       return res.status(400).render("users/new", {
         error: "Passwords did not match",
       })
     }
 
+    // Check email is unique
     User.findOne({ email: email }, (err, existingUser) => {
       if (existingUser) {
         return res
@@ -74,6 +75,7 @@ const UsersController = {
           return res.status(500).render("users/new", { error: err.message });
         }
 
+        // Successful sign up redirects to /posts page
         req.session.user = user;
         res.status(201).redirect("/posts");
       });

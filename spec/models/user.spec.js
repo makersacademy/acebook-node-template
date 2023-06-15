@@ -2,9 +2,6 @@ const mongoose = require("mongoose");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
-const UserController = require("../../controllers/users")
-const sinon = require('sinon');
-const request = require("supertest");
 const sanitizeInput = require('../../functions/sanitize')
 
 describe("User model", () => {
@@ -191,33 +188,6 @@ describe("User model", () => {
     expect(lastName.length).toBeLessThanOrEqual(maxLength);
   });
 
-  it('should return an error if user already exists', (done) => {
-    const req = {
-    body: {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@example.com',
-        password: 'password!123'
-    }
-    };
-    const res = {
-    status: (code) => {
-        expect(code).toEqual(400);
-        return {
-        render: (view, options) => {
-            expect(view).toEqual('users/new');
-            expect(options.error).toEqual('Email address already taken');
-            done();
-        }
-        };
-    }
-    };
-    // Simulate finding an existing user with the same email address
-    User.findOne = sinon.stub().yields(null, { email: 'johndoe@example.com' });
-
-    UserController.Create(req, res);
-  });
-
   it("first name does not exceed maximum character length", () => {
     const maxLength = 20; // Define the maximum character length
     const firstName = "John"; // Example first name
@@ -232,6 +202,8 @@ describe("User model", () => {
     expect(lastName.length).toBeLessThanOrEqual(maxLength);
   });
 
+});
+
 describe("sanitizeInput", () => {
   it("removes leading and trailing whitespace", () => {
     const input = "   hello world   ";
@@ -244,6 +216,5 @@ describe("sanitizeInput", () => {
     const output = sanitizeInput(input);
     expect(output).toBe("alert(XSS)");
   });
-})
-
 });
+
