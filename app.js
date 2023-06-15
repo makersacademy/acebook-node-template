@@ -5,12 +5,14 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const flash = require("connect-flash");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const likesRouter = require("./routes/likes");
+const friendsRouter = require("./routes/friends");
 
 const app = express();
 
@@ -37,6 +39,11 @@ app.use(
   })
 );
 
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.messages = req.flash();
+  next();
+});
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
@@ -62,12 +69,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/signup', async (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
     if (req.body.password !== req.body.password2) {
       throw new Error("Passwords don't match. Try again.");
     }
-    
+
     const user = new User(req.body);
     await user.save();
     // Rest of your sign-up logic...
@@ -76,13 +83,13 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/likes", likesRouter);
+app.use("/friends", friendsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -90,14 +97,20 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use((err, req, res, next) => {
+  // Save session before handling error
+  req.session.save((err2) => {
+    if (err2) {
+      return next(err2);
+    }
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+    // render the error page
+    res.status(err.status || 500);
+    res.render("error");
+  });
 });
 
 module.exports = app;

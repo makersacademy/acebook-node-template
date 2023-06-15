@@ -1,9 +1,12 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 const Like = require("../models/like");
+const moment = require("moment");
 
 const PostsController = {
   Index: async (req, res) => {
     try {
+      const currentUser = await User.findById(req.session.user._id);
       let posts = await Post.find().exec();
       posts = posts.reverse();
 
@@ -13,17 +16,24 @@ const PostsController = {
           liked: true,
         }).exec();
 
+        const user = await User.findById(post.user);
+        post.username = user.username;
+        post.currentUser = currentUser.username === post.username;
+        post.formattedCreatedAt = moment(post.createdAt).format(
+          "DD/MM/YYYY HH:mm"
+        );
+
         const likes = await Like.find({
           post: post._id,
           liked: true,
         })
           .populate({
             path: "user",
-            select: "email",
+            select: "username",
           })
           .exec();
 
-        post.likedBy = likes.map((like) => like.user.email);
+        post.likedBy = likes.map((like) => like.user.username);
       }
 
       res.render("posts/index", { posts: posts });
@@ -41,7 +51,7 @@ const PostsController = {
     });
     post.save((err) => {
       if (err) {
-        throw err;
+        return res.status(400).render("posts/new", { error: err.message });
       }
 
       res.status(201).redirect("/posts");
