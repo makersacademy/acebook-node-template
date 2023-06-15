@@ -117,7 +117,7 @@ it("disallows trailing whitespace in email", async () => {
   const user = new User({
     email: "existing2@example.com   ",
     password: "password456",
-    username: "banana  ",
+    username: "banana",
   });
 
   try {
