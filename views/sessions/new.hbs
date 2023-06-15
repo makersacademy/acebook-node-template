@@ -10,10 +10,10 @@
     {{/if}}
     <form id="new-session-form" action="/sessions" method="post">
       <label for="email">Email: </label>
-      <input id="email" type="email" name="email" value="">
+      <input id="email" type="email" name="email" value="" required>
       <label for="password">Password: </label>
-      <input id="password" type="password" name="password" value="">
-      <input id="submit" type="submit" value="Submit" class="global-button">
+      <input id="password" type="password" name="password" value="" required>
+      <input id="submit" type="submit" value="Submit class="global-button">
     </form>
     <br>
     <p>Did you mean <a href="/users/new">signup</a>?</p>
