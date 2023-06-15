@@ -21,7 +21,7 @@ describe("Timeline", () => {
 
     cy.get("#new-post-form").find('[type="text"]').type("😊");
     cy.get("#new-post-form").submit();
-    cy.url().should('include', 'posts');
+    cy.get(".posts").should("contain", "😊");
 
       });
 });
