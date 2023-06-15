@@ -1,0 +1,48 @@
+<div class="friends-container">
+  <section class="friendship-section">
+    <h2>Friendship Requests</h2>
+    <ul class="friendship-requests">
+      {{#each friendshipsRequests}}
+        <li>{{this.recipient.username}}</li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section class="pending-section">
+    <h2>Pending Friendships</h2>
+    <ul class="pending-friendships">
+      {{#each pendingFriendships}}
+        <li>
+          <p class="username">{{this.requester.username}}</p>
+          <div class="actions">
+            <form action="friends/accept" method="post">
+              <input
+                type="hidden"
+                name="requesterId"
+                value={{this.requester._id}}
+              />
+              <button type="submit" class="accept-button">Accept</button>
+            </form>
+            <form action="friends/reject" method="post">
+              <input
+                type="hidden"
+                name="requesterId"
+                value={{this.requester._id}}
+              />
+              <button type="submit" class="reject-button">Reject</button>
+            </form>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section class="accepted-section">
+    <h2>You are friends with</h2>
+    <ul class="accepted-friendships">
+      {{#each acceptedFriendships}}
+        <li>{{this.requester.username}}</li>
+      {{/each}}
+    </ul>
+  </section>
+</div>

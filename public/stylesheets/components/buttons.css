@@ -1,0 +1,7 @@
+.like-button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 1.5em;
+  cursor: pointer;
+}
