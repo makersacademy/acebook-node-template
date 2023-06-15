@@ -1,7 +1,7 @@
 <html>
     <head>
         <title class="title">{{title}}</title>
-        <link rel="stylesheet" href="/public/stylesheets/master.css">
+        <link rel="stylesheet" href="/stylesheets/master.css">
     </head>
     <body>
         <nav>
@@ -9,7 +9,7 @@
                 <h1 id="acebook-title">Welcome to {{title}}</h1>
             </div>
                 <ul class="navbar-items">
-                  <li><a href="/"><h3 id="home-link">Return to <br>Homepage</h3></a></li>
+                    <li><a href="/"><h3 id="home-link">Return to <br>Homepage</h3></a></li>
                     <a href="/users/new"><h3 id="signup-link">Sign Up</h3></a>
                 </ul>
         </nav>
@@ -17,8 +17,8 @@
             <div id="login-box">
                 <h4 id="login-text">Please fill in your details below to login:</h4>
                 <form id="new-session-form" action="/sessions" method="post">
-                    <input type="text" name="email" placeholder="email" id="email"><br><br>
-                    <input type="password" name="password" placeholder="password" id="password"><br><br>
+                    <input type="text" name="email" placeholder="email" id="email" required><br><br>
+                    <input type="password" name="password" placeholder="password" id="password" required><br><br>
                     <input id="submit" type="submit" value="Click to login!">
                 </form>
             </div>
