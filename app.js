@@ -9,7 +9,8 @@ const methodOverride = require("method-override");
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
-const usersRouter = require("./routes/users");
+const usersRouter = require("./routes/users"); 
+const userPostsRouter = require("./routes/userPosts");
 
 // create a route for users/username
 
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+app.use("/users/:username/posts", userPostsRouter);
 
 app.use(
   session({
@@ -60,6 +62,8 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/users/:username/posts", userPostsRouter); 
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

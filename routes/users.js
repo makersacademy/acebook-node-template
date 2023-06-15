@@ -7,4 +7,11 @@ const UsersController = require("../controllers/users");
 router.get("/signup", UsersController.New);
 router.post("/", UsersController.Create);
 
-module.exports = router;
+router.get("/:username", UsersController.UserProfile);
+router.post("/:username/posts", UsersController.CreatePost);
+router.get("/:username", UsersController.Show);
+router.get("/:username/posts/:postId/edit", UsersController.EditPost);
+
+
+
+module.exports = router; 

@@ -1,0 +1,14 @@
+<h1>Profile Page</h1>
+<p>Username: {{ user.username }}</p>
+<p>Email: {{ user.email }}</p>
+
+{{!-- add all other profile information needed above--}}
+
+<h2>Create Post</h2>
+<form action="/users/{{ user.username }}/posts" method="POST"> 
+  <textarea name="content" rows="4" cols="50"></textarea>
+  <button type="submit">Post</button>
+</form>
+
+
+{{!-- mabye can display all current posts made by users under create posts --}}
