@@ -25,6 +25,9 @@ const SessionsController = {
     });
   },
 
+
+
+
   Destroy: (req, res) => {
     console.log("logging out");
     if (req.session.user && req.cookies.user_sid) {

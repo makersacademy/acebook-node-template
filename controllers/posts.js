@@ -6,12 +6,12 @@ const PostsController = {
       if (err) {
         throw err;
       }
-
-      res.render("posts/index", { posts: posts });
+        // Implemented authentication logic to dynamically update navbar links based on the user's login status.
+      res.render("posts/index", { posts: posts, isAuthenticated: true});
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {});
+    res.render("posts/new", {isAuthenticated: true});
   },
   Create: (req, res) => {
     const post = new Post(req.body);
