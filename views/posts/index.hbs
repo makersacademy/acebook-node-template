@@ -18,7 +18,7 @@
 <script>
   const likeButtonsTimeline = document.querySelectorAll('.likeButton');
 
-  likeButtons.forEach(button => {
+  likeButtonsTimeline.forEach(button => {
     button.addEventListener('click', () => {
       const postId = button.getAttribute('data-postid');
       const likesCountElement = document.getElementById(`likesCount-${postId}`);
