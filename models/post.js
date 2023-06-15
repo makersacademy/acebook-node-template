@@ -11,7 +11,8 @@ const PostSchema = new mongoose.Schema({
     type: [
       {
         message: String,
-        author: String
+        author: String,
+        commentTime: { type : Date, default: Date.now },
       }
     ],
     default: []

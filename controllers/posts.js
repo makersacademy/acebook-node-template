@@ -4,11 +4,13 @@ const Post = require("../models/post");
 
 const PostsController = {
   Index: (req, res) => {
+    const postId = req.params.postId;
+    const userId = req.session.user._id;
+
     Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-      
   
       // Reverse the order of posts array
       const reversedPosts = posts.reverse();

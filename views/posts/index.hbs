@@ -2,6 +2,7 @@
       <input type="submit" value="Log Out">
     </form>
 <h1>Timeline</h1>
+
 <ul class="posts">
   {{#each posts}}
   <li>
@@ -11,12 +12,9 @@
   </li>
   {{/each}}
 </ul>
-  
-  <button class="likeButtonTimeline" data-postid="{{ post._id }}">Like</button>
-<span id="likesCount-{{ post._id }}">{{ post.likes.length }}</span> likes
 
 <script>
-  const likeButtonsTimeline = document.querySelectorAll('.likeButton');
+  const likeButtonsTimeline = document.querySelectorAll('.likeButtonTimeline');
 
   likeButtonsTimeline.forEach(button => {
     button.addEventListener('click', () => {
@@ -41,8 +39,7 @@
     });
   });
 </script>
-  {{/each}}
-</ul>
+
 
 
 <a class="new-post-link" href="/posts/new">New post</a>
