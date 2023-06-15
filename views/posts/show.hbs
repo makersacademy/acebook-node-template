@@ -15,6 +15,9 @@
       const postId = button.getAttribute('data-postid');
       const likesCountElement = document.getElementById(`likesCount-${postId}`);
 
+      // Disable the like button
+      button.disabled = true;
+
       fetch(`/posts/${postId}/like`, { method: 'POST' })
         .then(response => response.json())
         .then(data => {
@@ -22,6 +25,10 @@
         })
         .catch(error => {
           console.log(error);
+        })
+        .finally(() => {
+          // Re-enable the like button after the request is completed
+          button.disabled = false;
         });
     });
   });
