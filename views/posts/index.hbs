@@ -1,8 +1,11 @@
 <h1>Timeline</h1>
-<ul class="posts">
+<ul class="posts"> 
+  <li>{{{this.username}}}</li>
   {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
+  <li>{{{this.message}}}</li>
+  <br> 
+  <li>{{{this.likes}}} likes</li>
+  <br>
   {{/each}}
 </ul>
 
