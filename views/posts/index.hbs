@@ -1,7 +1,15 @@
 <h1>Timeline</h1>
 <ul class="posts">
   {{#each posts}}
+
     <li class="post-message">{{this.message}}</li>
+    <p>written by {{this.user}}</p>
+    <span>
+      <form action="/friends" method="post">
+        <input type="hidden" name="recipientId" value={{this.user}} />
+        <button type="submit" class="befriend-button">poke</button>
+      </form>
+    </span>
     <li class="post-likes">
       {{this.likesCount}}
       likes
