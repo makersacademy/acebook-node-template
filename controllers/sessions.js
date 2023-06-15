@@ -13,17 +13,18 @@ const SessionsController = {
 
 		User.findOne({ email: email }).then((user) => {
 			if (!user) {
-				console.log("User doesn't exist!");
-				res.redirect("/sessions/new");
+				const errorMessage = "Invalid user/password.";
+				res.status(404);
+				res.render("sessions/new", { errorMessage: errorMessage });
 			} else {
 				bcrypt.compare(password, user.password, function (error, isMatch) {
 					if (error) {
 						throw error;
 					} else if (!isMatch) {
-						console.log("Password doesn't match!");
-						res.redirect("/sessions/new");
+						const errorMessage = "Invalid user/password.";
+						res.status(404);
+						res.render("sessions/new", { errorMessage: errorMessage });
 					} else {
-						console.log("Password matches!");
 						req.session.user = user;
 						res.redirect("/posts");
 					}
