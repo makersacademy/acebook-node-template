@@ -74,7 +74,6 @@ app.post("/signup", async (req, res) => {
 
     const user = new User(req.body);
     await user.save();
-    // Rest of your sign-up logic...
   } catch (error) {
     res.status(400).send(error);
   }

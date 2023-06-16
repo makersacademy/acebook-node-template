@@ -7,10 +7,8 @@ const SessionsController = {
   },
 
   Create: (req, res) => {
-    console.log("trying to log in");
     const email = req.body.email;
     const password = req.body.password;
-    console.log("password entered:", password);
 
     User.findOne({ email: email })
       .select("+password")
