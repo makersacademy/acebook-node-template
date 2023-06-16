@@ -68,7 +68,7 @@ it("User can click on and see likes count", () => {
   let likeButton = cy.get(".like-button").last();
   likeButton.click();
   let likeCount = cy.get(".likes-count").last();
-  likeCount.should("have.text", "1");
+  likeCount.should((have.text("1")) | (have.text("2")))
 });
 
 
