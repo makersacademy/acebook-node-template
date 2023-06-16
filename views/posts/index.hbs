@@ -5,10 +5,14 @@
 <ul class="posts">
   {{#each posts}}
   <li>
+    <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
     <a href="/posts/{{this._id}}">{{this.message}}</a>
+    
     <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
     <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
   </li>
+{{!-- <li>{{this.timestamp}}</li> --}}
+  <li><a class="edit">Posted: {{timeSince(this.timestamp)}} ago | {{this.createdAt}}</a></li>
   {{/each}}
 </ul>
 
