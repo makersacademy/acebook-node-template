@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
@@ -15,10 +14,7 @@ const commentsRouter = require("./routes/posts");
 const { AsyncLocalStorage } = require("async_hooks");
 const { handlebars } = require("hbs");
 const moment = require("./public/javascripts/moment.min");
-
-
 const app = express();
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -30,7 +26,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-
 
 app.use(
 	session({
@@ -44,7 +39,6 @@ app.use(
 	})
 );
 
-
 // clear the cookies after user logs out
 app.use((req, res, next) => {
 	if (req.cookies.user_sid && !req.session.user) {
@@ -53,7 +47,6 @@ app.use((req, res, next) => {
 	}
 	next();
   });
-
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
