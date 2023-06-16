@@ -1,10 +1,6 @@
 describe("a user can like a post", () => {
     it("by clicking on the like button", () => {
-        cy.visit("/");
-        cy.get('a.global-button[href="/sessions/new"]').click()
-        cy.get("#email").type("admin@example.com");
-        cy.get("#password").type("Password!123");
-        cy.get("#submit").click();
+        cy.signIn();
 
         cy.visit("/posts/new")
         cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
