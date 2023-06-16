@@ -3,6 +3,7 @@ const User = require("../models/user");
 const Like = require("../models/like");
 const Comment = require("../models/comment");
 const moment = require("moment");
+const cloudinary = require("cloudinary").v2;
 
 const PostsController = {
   Index: async (req, res) => {
@@ -49,18 +50,39 @@ const PostsController = {
   New: (req, res) => {
     res.render("posts/new", {});
   },
-  Create: (req, res) => {
+  Create: async (req, res) => {
+    const { message } = req.body;
+
+    let image = "";
+    try {
+      if (req.file) {
+        console.log(req.file.path);
+        const result = await cloudinary.uploader.upload(req.file.path);
+
+        if (!result) {
+          return res.status(500).send("An error occurred during upload.");
+        }
+        image = result.url;
+      }
+    } catch (error) {
+      console.log("Error uploading the image.");
+      return res.status(500).send("An error occurred: " + error.message);
+    }
+
     const post = new Post({
-      message: req.body.message,
+      message,
+      image,
       user: req.session.user,
     });
-    post.save((err) => {
-      if (err) {
-        return res.status(400).render("posts/new", { error: err.message });
-      }
 
-      res.status(201).redirect("/posts");
-    });
+    try {
+      await post.save();
+      return res.status(201).redirect("/posts");
+    } catch (error) {
+      return res.status(400).render("posts/new", {
+        error: "An error occurred while creating the post.",
+      });
+    }
   },
 };
 

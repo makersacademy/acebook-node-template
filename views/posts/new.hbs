@@ -1,8 +1,37 @@
-<form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <textarea id="message" name="message"></textarea>
+<form
+  id="new-post-form"
+  action="/posts"
+  method="post"
+  enctype="multipart/form-data"
+>
+  <div class="form-message">
+    <label for="message">Message: </label>
+    <textarea
+      id="message"
+      class="form-control custom-input"
+      name="message"
+    ></textarea>
+  </div>
+
+  <div class="form-image">
+    <label for="image">Image:</label>
+    <input
+      type="file"
+      class="form-control custom-input"
+      id="image"
+      name="image"
+    />
+  </div>
+
   {{#if error}}
     <p><strong>Error:</strong> {{error}}</p>
   {{/if}}
-  <input type="submit" value="Submit" />
+
+  <div class="form-submit">
+    <input
+      type="submit"
+      class="btn btn-primary btn-block"
+      id="#new-post-form"
+    >Submit</input>
+  </div>
 </form>
