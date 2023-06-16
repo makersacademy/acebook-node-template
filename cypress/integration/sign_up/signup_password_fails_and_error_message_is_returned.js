@@ -1,11 +1,13 @@
 describe('User Sign Up - Password Boundary Value', () => {
     it('should display an error message for an invalid password length', () => {
+        const username = 'Tester1'
         const validEmail = 'someone@example.com';
         const invalidPassword = 'no';
 
         cy.visit('/users/signup');
 
         //sign up
+        cy.get("#username").type(username);
         cy.get("#email").type(validEmail);
         cy.get("#password").type(invalidPassword);
         cy.get("#submit").click();
