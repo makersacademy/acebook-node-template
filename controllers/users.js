@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const cloudinary = require("cloudinary").v2;
 
 const UsersController = {
   New: (req, res) => {
@@ -6,7 +7,7 @@ const UsersController = {
   },
 
   Create: async (req, res) => {
-    const { username, email } = req.body;
+    const { username, email, password } = req.body;
     try {
       const usernameExists = await User.findOne({ username: username });
       if (usernameExists) {
@@ -20,7 +21,30 @@ const UsersController = {
           .status(422)
           .render("users/new", { error: "Email already exists!" });
       }
-      const user = new User(req.body);
+
+      let image = "";
+      try {
+        if (req.file) {
+          console.log(req.file.path);
+          const result = await cloudinary.uploader.upload(req.file.path);
+
+          if (!result) {
+            return res.status(500).send("An error occurred during upload.");
+          }
+          image = result.url;
+        }
+      } catch (error) {
+        console.log("error!");
+        return res.status(500).send("An error occurred: " + error.message);
+      }
+
+      const user = new User({
+        username,
+        email,
+        password,
+        image,
+      });
+
       await user.save();
       return res.status(201).redirect("/sessions/new");
     } catch (error) {

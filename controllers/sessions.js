@@ -22,7 +22,6 @@ const SessionsController = {
             res.render("sessions/new", { error: "Incorrect password" });
           } else {
             req.session.user = user;
-            req.flash("success", "You are now signed in!");
             res.redirect("/posts");
           }
         }

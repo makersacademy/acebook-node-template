@@ -64,12 +64,6 @@ const seedDB = async () => {
       console.log(
         `Like post_id "${like.post}", Like user_id "${like.user}" created successfully.`
       );
-
-      const comment = new Comment({
-        post: post._id,
-        user: user.username,
-        content: "Hey,there!",
-      });
     }
     const accepted_friendship = new Friend({
       requester: createdUsers[1],

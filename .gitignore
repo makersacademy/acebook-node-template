@@ -64,5 +64,4 @@ typings/
 cypress/screenshots
 cypress/videos
 
-# Cloudinary API credentials
-/cloudinary.config.json
+.DS_Store
