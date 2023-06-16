@@ -3,13 +3,13 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    match: /^[A-Za-z ]+$/,
+    match: /^[A-Za-z\- ]+$/,
     required: true,
     maxLength: 20,
   },
   lastName: {
     type: String,
-    match: /^[A-Za-z ]+$/,
+    match: /^[A-Za-z\- ]+$/,
     required: true,
     maxLength: 20,
   },

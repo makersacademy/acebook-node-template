@@ -23,23 +23,19 @@ const UsersController = {
     }
 
     // Validate the first name to check for punctuation
-    const hasFirstNamePunctuation = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/.test(
-      firstName
-    );
+    const hasFirstNamePunctuation = /[!"#$%&'()*+,./:;<=>?@[\]^_`{|}~]/.test(firstName);
 
     // Validate the last name to check for punctuation
-    const hasLastNamePunctuation = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/.test(
-      lastName
-    );
+    const hasLastNamePunctuation = /[!"#$%&'()*+,./:;<=>?@[\]^_`{|}~]/.test(lastName);
 
     // Display error messages if names contain punctuation
-    if (hasFirstNamePunctuation) {
+    if (hasFirstNamePunctuation && !firstName.includes("-")) {
       return res.status(400).render("users/new", {
-        error: "First name should not contain punctuation",
+        error: "First name should not contain punctuation (except dashes)",
       });
-    } else if (hasLastNamePunctuation) {
+    } else if (hasLastNamePunctuation && !lastName.includes("-")) {
       return res.status(400).render("users/new", {
-        error: "Last name should not contain punctuation",
+        error: "Last name should not contain punctuation (except dashes)",
       });
     }
 

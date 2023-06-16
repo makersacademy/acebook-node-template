@@ -18,6 +18,13 @@ const PostController = {
   },
 
   Create: (req, res) => {
+    if (req.body.message.trim() === "") {
+      return res.status(400).render("posts/new", {
+        error:
+        "Post content cannot be blank"
+      })
+    }
+
     const firstName = req.session.user.firstName;
     const lastName = req.session.user.lastName;
     const author = `${firstName} ${lastName}`;

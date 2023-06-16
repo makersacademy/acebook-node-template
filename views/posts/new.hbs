@@ -9,7 +9,13 @@
   <div class="bottombar">
     <a href="/posts" class="go-top">Back to Posts</a>
   </div>
-</div> 
+</div>
+
+{{#if error }}
+<div class="error-message">
+    {{error}}
+</div>
+{{/if}}
 
 <div class="new-post-parent">
   <div class="new-postbox">
