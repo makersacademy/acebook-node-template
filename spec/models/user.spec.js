@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
 require("../mongodb_helper");
 const User = require("../../models/user");
 
@@ -15,6 +14,9 @@ describe("User model", () => {
     });
   });
 
+  afterAll(() => {
+    mongoose.connection.close();
+  });
 
   describe("User creation", () => {
     it("requires password to be at least 8 characters", () => {
@@ -28,30 +30,44 @@ describe("User model", () => {
       );
     });
 
+    it("throws a duplicate key error when saving a user with an existing email", async () => {
+      const user1 = new User({
+        email: "test@google.com",
+        password: "password",
+        username: "banana",
+      });
+
+      await user1.save();
+
+      const user2 = new User({
+        email: "test@google.com",
+        password: "password",
+        username: "hello",
+      });
+
+      await expect(user2.save()).rejects.toThrow("Email already in use.");
+    });
+
+    it("throws a duplicate key error when saving a user with an existing username", async () => {
+      const user1 = new User({
+        email: "test123@google.com",
+        password: "password",
+        username: "banana",
+      });
+
+      await user1.save();
+
+      const user2 = new User({
+        email: "test@google.com",
+        password: "password",
+        username: "banana",
+      });
+
+      await expect(user2.save()).rejects.toThrow("Username already in use.");
+    });
   });
 
-//can't get these two tests to pass
-
-// describe("User creation duplicate email", () => {
-//   it("throws a duplicate key error when saving a user with an existing email", async () => {
-//     const user1 = new User({ email: "test@google.com", password: "password", username: "banana" });
-//     await user1.save();
-
-//     const user2 = new User({ email: "test@google.com", password: "password", username: "hello" });
-//     await expect(user2.save()).rejects.toThrowError(/E11000 duplicate key error/);
-//   });
-// });
-
-// describe("User creation duplicate username", () => {
-//     it("throws a duplicate key error when saving a user with an existing username", async () => {  
-//       await expect(User.create([
-//         { email: "test123@google.com", password: "password", username: "banana" },
-//         { email: "test@google.com", password: "password", username: "banana" }
-//       ])).rejects.toThrowError(/E11000 duplicate key error/);
-//     });
-//   });
-
-describe("User validation", () => {
+  describe("User validation", () => {
     it("trailing whitespace is ignored in email", async () => {
       const user = new User({
         email: "existing2@example.com   ",
@@ -59,10 +75,8 @@ describe("User validation", () => {
         username: "banana",
       });
 
-      await user.save(); 
-
+      await user.save();
       const retrievedUser = await User.findOne({ username: "banana" });
-
       expect(retrievedUser.email).toBe("existing2@example.com");
     });
 
@@ -73,19 +87,18 @@ describe("User validation", () => {
         username: "banana   ",
       });
 
-      await user.save(); // Save the user to the database
+      await user.save();
 
-      // Retrieve the user from the database
-      const retrievedUser = await User.findOne({ email: "existing2@example.com" });
+      const retrievedUser = await User.findOne({
+        email: "existing2@example.com",
+      });
 
-      // Assert that the username has been trimmed
       expect(retrievedUser.username).toBe("banana");
     });
   });
 
   describe("User listing", () => {
     it("can list several users", async () => {
-      await User.deleteMany();
       const user1 = new User({
         username: "peter",
         email: "someone@example.com",
@@ -100,20 +113,23 @@ describe("User validation", () => {
 
       const users = [user1, user2];
 
-      // Save the users to the database
       for (const user of users) {
         await user.save();
       }
 
-      // Retrieve all users from the database
       const retrievedUsers = await User.find({}, "username email");
 
-      // Assert the retrieved users
       expect(retrievedUsers).toContainEqual(
-        expect.objectContaining({ username: "peter", email: "someone@example.com" })
+        expect.objectContaining({
+          username: "peter",
+          email: "someone@example.com",
+        })
       );
       expect(retrievedUsers).toContainEqual(
-        expect.objectContaining({ username: "bob", email: "someone2@example.com" })
+        expect.objectContaining({
+          username: "bob",
+          email: "someone2@example.com",
+        })
       );
     });
   });
