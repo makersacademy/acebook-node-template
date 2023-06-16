@@ -44,6 +44,28 @@ a:hover {
   font-size: 1.5em;
 }
 
+@media screen and (max-width: 768px) {
+  .parent-container {
+    flex-direction: column;
+    margin: 10vh;
+    padding: 5vh;
+  }
+
+  .left-container,
+  .right-container {
+    padding: 2vh;
+    align-items: center; /* Add this to center align the content */
+  }
+
+  .title {
+    font-size: 3em; /* Reduce the font size for smaller screens */
+  }
+
+  .slogan {
+    font-size: 1em; /* Reduce the font size for smaller screens */
+  }
+}
+
 .left-container {
   text-align: center;
 }

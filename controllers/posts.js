@@ -13,7 +13,9 @@ const PostController = {
         if (err) {
           throw err;
         }
-        res.render("posts/index", { posts: posts, initials: initials});
+        const reversedPosts = posts.slice().reverse();
+
+        res.render("posts/index", { posts: reversedPosts, initials: initials });
       });
   },
 
