@@ -1,5 +1,7 @@
 const Post = require("../models/post");
-//const User = require("../models/user");
+const User = require("../models/user");
+const helpers = require('handlebars-helpers')();
+
 
 
 const PostsController = {
@@ -14,8 +16,9 @@ const PostsController = {
   
       // Reverse the order of posts array
       const reversedPosts = posts.reverse();
+      const timeSince = helpers.timeSince;
   
-      res.render("posts/index", { posts: reversedPosts });
+      res.render("posts/index", { posts: reversedPosts, timeSince: timeSince });
     });
   },
 
@@ -29,14 +32,16 @@ const PostsController = {
 
   Create: (req, res) => {
     const post = new Post(req.body);
-    // const user = req.session.user;
+    const user = req.session.user;
+ 
     
-    
-    // post.postAuthor =  {
-    //   firstName: user.firstName,
-    //   lastName: user.lastName
-    
-    // }
+    post.postAuthor =  {
+      firstName: user.firstName,
+      lastName: user.lastName
+    }
+      
+    post.timestamp = new Date();
+
     post.save((err) => {
       if (err) {
         throw err;

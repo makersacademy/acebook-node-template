@@ -3,6 +3,7 @@
 
 <h1>{{ post.message }}</h1>
 <p>Author: {{ post.postAuthor.firstName }} {{ post.postAuthor.lastName }}</p>
+<p>Posted at: {{post.timestamp}}</p>
 
     <button class="likeButton" data-postid="{{ post._id }}">Like</button>
 <span id="likesCount-{{ post._id }}">{{ post.likes.length }}</span> likes
@@ -29,8 +30,10 @@
 
 <ul class="comments">
   {{#each post.comments}}
-  <li>{{this.author}}</li>
-  <li>{{ this.message }}</li>
+ 
+  <span>{{ this.message }}</span>
+  <span>{{this.author}}</span>
+  <span>{{ timeAgo this.commentTime }}</span><br>
   {{/each}}
 </ul>
 

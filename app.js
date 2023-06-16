@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
@@ -13,8 +12,8 @@ const usersRouter = require("./routes/users");
 const profileRouter = require("./routes/profile");
 const commentsRouter = require("./routes/posts");
 const { AsyncLocalStorage } = require("async_hooks");
-
-
+const { handlebars } = require("hbs");
+const moment = require("./public/javascripts/moment.min");
 const app = express();
 
 // view engine setup
@@ -68,6 +67,7 @@ app.use("/:postId", sessionChecker, postsRouter);
 app.use("/:postId/comments", sessionChecker, commentsRouter);
 app.use("/:postId/like", sessionChecker, postsRouter);
 
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
 	console.log("Hellooooooo");
@@ -89,6 +89,8 @@ app.use((err, req, res) => {
 	res.status(err.status || 500);
 	res.render("error");
 });
+
+handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow());
 
 module.exports = app;
 module.exports.sessionChecker = sessionChecker;
