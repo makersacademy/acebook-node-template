@@ -4,12 +4,19 @@ const Post = require("../models/post");
 const CommentsController = {
       CreateComment: (req, res) => {
         const { message } = req.body; // Extract the comment data from the request body
+        const user = req.session.user;
+        console.log(user);
         
         Post.findById(req.params.postId)
         .then((post) => {
           post.comments = post.comments || [];
           // Create a new comment object
-          const newComment = { message };
+          const author = `${user.firstName} ${user.lastName}`
+          console.log(author)
+          const newComment = { message, author };
+          post.commentTime = new Date();
+          
+          // post.comments.author = user.firstName + user.lastName
           
           // Add the new comment to the comments array of the post
           post.comments.unshift(newComment);
