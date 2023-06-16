@@ -1,3 +1,5 @@
+//Test Suite that checks the expected elements are on the page upon loading
+
 describe("Home Page", () => {
   it("has a title", () => {
     cy.visit("/");
@@ -5,8 +7,8 @@ describe("Home Page", () => {
   });
 });
 
-describe("Home Page - Login Button Check", () => {
-  it("has a link to sign-up", () => {
+describe("Home Page - Log-in Button Check", () => {
+  it("has a link to log-in", () => {
     cy.get('a[href="/users/new"]').should('be.visible');
   });
 });

@@ -17,3 +17,24 @@ describe("Home Page > Sign-up Page", () => {
     });
 });
 
+describe("Sign-up Page", () => {
+    it("allows user to create account", () =>{
+    cy.get("#firstName").type("Cypress");
+    cy.get("#lastName").type("Test");
+    cy.get("#email").type("tester@example.com");
+    cy.get("#password").type("password1");
+    cy.get("#submit").click();
+    cy.url().should("include", "/sessions/new")
+    });
+});
+
+describe("Log-in Page", () => {
+    it("allows user to log in", () =>{
+    cy.get("#email").type("tester@example.com");
+    cy.get("#password").type("password1");
+    cy.get("#submit").click();
+    cy.url().should("include", "/posts");
+    cy.contains("a", "New post");
+    });
+});
+
