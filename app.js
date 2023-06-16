@@ -15,9 +15,7 @@ const likesRouter = require("./routes/likes");
 const imagesRouter = require('./routes/images');
 const friendsRouter = require("./routes/friends");
 
-//adding cloudinary
-const multer = require('multer');
-const cloudinary = require('./cloudinary.config.js');
+
 
 const app = express();
 
@@ -84,7 +82,6 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/likes", likesRouter);
-const friendsRouter = require("./routes/friends");
 app.use('/images', imagesRouter);
 
 app.use((req, res, next) => {
@@ -107,43 +104,9 @@ app.use((err, req, res, next) => {
   res.render("error");
 });
 
-//cloudinary
-const port = 3001;
 
 
-//setting up storage for images 
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Set the directory where uploaded files will be stored
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // Set the file name to be unique
-  }
-});
 
-const upload = multer({ storage: storage });
-
-//creating a route to handle image uploads
-
-app.get('/images', (req, res) => {
-  // Render the desired page or send a response
-  res.send('This is the images page');
-});
-
-app.post('/upload', upload.single('image'), (req, res) => {
-  // Use the cloudinary.uploader.upload() method to upload the image
-  cloudinary.uploader.upload(req.file.path, (error, result) => {
-    if (error) {
-      console.error(error);
-      const message = 'Image upload failed';
-      res.render('upload', { message }); // Pass the message to the template
-    } else {
-      console.log(result);
-      const message = 'Image uploaded successfully';
-      res.render('upload', { message }); // Pass the message to the template
-    }
-  });
-});
 
 module.exports = app;
