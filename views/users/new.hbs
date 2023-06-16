@@ -1,8 +1,6 @@
 <html>
   <head>
     <title>Sign Up</title>
-    {{!-- <link rel="stylesheet" href="/stylesheets/style.css" /> --}}
-
   </head>
   <body>
 {{#if error}}
@@ -10,7 +8,7 @@
 {{/if}}
 
   <h1 class="text-center mb-4">Sign Up</h1>
-  <form id="new-user-form" action="/users" method="post">
+  <form id="new-user-form" action="/users" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="username" class="form-control custom-input" id="username" name="username" placeholder="Enter your username" required>
