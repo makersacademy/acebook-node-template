@@ -11,7 +11,7 @@ class sitePage {
         enterUsername : () => cy.get("#username"),
         detailsSubmitButton : () => cy.get("#submit"),
         newPostButton : () => cy.get(".new-post-link"),
-        newPostInput : () => cy.get("#new-post-form").find('[type="text"]'),
+        newPostInput : () => cy.get("#message"),
         newPostSubmit : () => cy.get("#new-post-form").submit(),
         likeButton : () => cy.get('button[class="like-button"]'),
         numberOfLikes : () => cy.get(".post-likes"),
