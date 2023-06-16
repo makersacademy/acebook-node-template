@@ -69,3 +69,74 @@ test('Sign in and check Create Post button visible', async () => {
     //expects the text of the button to be "Create Post"
     expect(buttonText).toBe("Create Post");
 });
+
+test('Signed in user can create a post and it is displayed on timeline', async () => {
+    //navigates to posts page
+    await driver.get('http://localhost:3030/posts');
+
+    //clicks on the Create Post button to go to posts/new page
+    await driver.findElement(By.css('body > div.timeline-navbar.fixed-content > div.bottombar > a.global-button.new-post-link')).click();
+
+    //once on the posts page, enters My first post and submits
+    await driver.findElement(By.name('message')).sendKeys('My first post');
+    await driver.findElement(By.css('#new-post-form > div.new-post-controls > input[type=submit]')).click();
+
+    //waits until the navigation to posts page
+    await driver.wait(until.urlIs('http://localhost:3030/posts'), 10000);
+
+    //checks if the post is created
+    let myFirstPost = await driver.findElement(By.css('body > div.timeline > div > div.post-sec > div.post-details > p'));
+    let postText = await myFirstPost.getText();
+
+    //expects the text of comment to be My first post
+    expect(postText).toBe("My first post");
+});
+
+test('Signed in user can like a post', async () => {
+    //navigates to posts page
+    await driver.get('http://localhost:3030/posts');
+
+    //clicks on like button for My first post
+    await driver.findElement(By.css('#like-post > input')).click();
+
+    //checks if the like is registered
+    let likeCount = await driver.findElement(By.css('#like-post > p'));
+    let likeNumber = await likeCount.getText();
+
+    //expects like number to be 1
+    expect(likeNumber).toBe("1");
+});
+
+test('Signed in user can comment on existing post', async () => {
+    //navigates to posts page
+    await driver.get('http://localhost:3030/posts');
+
+    //once on the posts page, enters My first comment and submits
+    await driver.findElement(By.name('comment')).sendKeys('My first comment');
+    await driver.findElement(By.css('#new-comment-form > input.global-button')).click();
+
+    //checks if the post is created
+    let myFirstComment = await driver.findElement(By.css('body > div.timeline > div > div.comments-sec > div > p'));
+    let commentText = await myFirstComment.getText();
+
+    //expects the text of comment to be My first comment
+    expect(commentText).toBe("My first comment");
+});
+
+test('Signed in user logs out', async () => {
+    //navigates to posts page
+    await driver.get('http://localhost:3030/posts');
+
+    //clicks on log out button
+    await driver.findElement(By.css('body > div.timeline-navbar.fixed-content > div.topbar > form > input')).click();
+
+    //waits until the navigation to sessions new
+    await driver.wait(until.urlIs('http://localhost:3030/sessions/new'), 10000);
+
+    //checks if the signup is there
+    let signUp = await driver.findElement(By.css('#parent > div > p > a'));
+    let footerText = await signUp.getText();
+
+    //expects the text of footer to contain signup
+    expect(footerText).toBe("signup");
+});
