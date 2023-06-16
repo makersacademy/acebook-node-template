@@ -3,18 +3,25 @@ const Comment = require("../models/comment");
 
 const PostController = {
   Index: (req, res) => {
+    const firstName = req.session.user.firstName;
+    const lastName = req.session.user.lastName;
+    const initials = `${firstName[0]}${lastName[0]}`
+
     Post.find()
       .populate("comments")
       .exec((err, posts) => {
         if (err) {
           throw err;
         }
-        res.render("posts/index", { posts: posts });
+        res.render("posts/index", { posts: posts, initials: initials});
       });
   },
 
   New: (req, res) => {
-    res.render("posts/new", {});
+    const firstName = req.session.user.firstName;
+    const lastName = req.session.user.lastName;
+    const initials = `${firstName[0]}${lastName[0]}`
+    res.render("posts/new", {initials: initials});
   },
 
   Create: (req, res) => {
@@ -28,7 +35,17 @@ const PostController = {
     const firstName = req.session.user.firstName;
     const lastName = req.session.user.lastName;
     const author = `${firstName} ${lastName}`;
+    const initials = `${firstName[0]}${lastName[0]}`
+    
+    if (req.body.message.trim() === "") {
+      return res.status(400).render("posts/new", {
+        initials: initials,
+        error:
+        "Post content cannot be blank"
+      })
+    }
 
+    
     const post = new Post({
       author: author,
       message: req.body.message
