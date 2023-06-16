@@ -18,14 +18,12 @@ describe("Timeline", () => {
 
     // submit a post
     cy.visit("/posts");
-    cy.contains("New post").click();
+    cy.visit("/users/user1");
+    //cy.get("#content").click();
+    cy.get('textarea[name="content"]').type("Profile Post Test");
+    //cy.get("#textarea").type("Profile Post Test");
+    cy.get('button[type="submit"]').click()
 
-    cy.get("#new-post-form").find('[type="text"]').type("self like test");
-    cy.get("#new-post-form").submit();
-
-    //clikc like
-    cy.get("#like").click();
-    cy.get(".posts").should("contain", "1 like");
-
-      });
+    cy.get(".posts").should("contain", "Hello, world!");
+  });
 });

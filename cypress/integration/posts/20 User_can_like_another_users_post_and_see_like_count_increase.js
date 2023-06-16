@@ -5,6 +5,7 @@ describe("Timeline", () => {
     
     // sign up
     cy.visit("/users/signup");
+    cy.get("#username").type("User1");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
@@ -24,6 +25,7 @@ describe("Timeline", () => {
 
     // sign up
     cy.visit("/users/signup");
+    cy.get("#username").type("User2");
     cy.get("#email").type("someoneelse@example.com");
     cy.get("#password").type("password2");
     cy.get("#submit").click();
