@@ -11,6 +11,8 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const likesRouter = require("./routes/likes");
+const commentsRouter = require("./routes/comments");
+const friendsRouter = require("./routes/friends");
 
 const app = express();
 
@@ -76,7 +78,8 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/likes", likesRouter);
-app.use("/friends", likesRouter);
+app.use("/comments", commentsRouter);
+app.use("/friends", friendsRouter);
 
 app.use((req, res, next) => {
   next(createError(404));
@@ -93,7 +96,6 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render("error");
   });
-  // render the error page
   res.status(err.status || 500);
   res.render("error");
 });

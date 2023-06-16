@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const User = require("../models/user");
 const Post = require("../models/post");
 const Like = require("../models/like");
+const Comment = require("../models/comment");
 const Friend = require("../models/friend");
 const users = require("./data/users");
-const cloudinary = require('cloudinary').v2;
 
 mongoose.connect("mongodb://0.0.0.0/acebook", {
   useNewUrlParser: true,
@@ -28,6 +28,10 @@ const seedDB = async () => {
     console.log("Clearing like data...");
     await Like.deleteMany({});
     console.log("Like data cleared.");
+
+    console.log("Clearing comment data...");
+    await Comment.deleteMany({});
+    console.log("Comment data cleared.");
 
     console.log("Clearing post data...");
     await Post.deleteMany({});
