@@ -5,6 +5,7 @@ describe("Session Handling", () => {
         
         // sign up
         cy.visit("/users/signup");
+        cy.get("#username").type("User1");
         cy.get("#email").type("someone@example.com");
         cy.get("#password").type("mPgaN5s51g!");
         cy.get("#submit").click();

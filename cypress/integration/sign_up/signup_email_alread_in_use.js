@@ -1,11 +1,13 @@
 describe('User Sign Up - Already Used Email', () => {
     it('should display an error message for an already used email', () => {
+        const username = 'someone1'
         const existingEmail = 'someone@example.com';
         const validPassword = 'Thisisaccepabl3';
 
         cy.visit('/users/signup');
 
         //sign up
+        cy.get("#username").type(username);
         cy.get("#email").type(existingEmail);
         cy.get("#password").type(validPassword);
         cy.get("#submit").click();

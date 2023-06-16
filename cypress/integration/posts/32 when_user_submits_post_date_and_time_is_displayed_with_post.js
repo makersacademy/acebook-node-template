@@ -5,6 +5,7 @@ describe("Timeline", () => {
     
     // sign up
     cy.visit("/users/signup");
+    cy.get("#username").type("User1");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
     cy.get("#submit").click();
@@ -21,7 +22,15 @@ describe("Timeline", () => {
 
     cy.get("#new-post-form").find('[type="text"]').type("test");
     const now = new Date();
-  const currentDate = now.getDate() + '/' + (now.getMonth()+1) + '/' + now.getFullYear() + '-' + now.getHours() + ':' + now.getMinutes();
+    const options = {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric'
+    };
+    const currentDate = now.toLocaleString('en-US', options);
     cy.get("#new-post-form").submit();
     // check for error message, NOTE: this checks the entire page and as such will fail if this text is anywhere on the page. Potential area for refactoring
     cy.contains(currentDate);
