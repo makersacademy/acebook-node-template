@@ -5,17 +5,12 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const flash = require("connect-flash");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const likesRouter = require("./routes/likes");
-const imagesRouter = require('./routes/images');
-const friendsRouter = require("./routes/friends");
-
-
 
 const app = express();
 
@@ -41,7 +36,6 @@ app.use(
   })
 );
 
-// clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
     res.clearCookie("user_sid");
@@ -64,12 +58,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/signup', async (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
     if (req.body.password !== req.body.password2) {
       throw new Error("Passwords don't match. Try again.");
     }
-    
+
     const user = new User(req.body);
     await user.save();
   } catch (error) {
@@ -82,7 +76,7 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/likes", likesRouter);
-app.use('/images', imagesRouter);
+app.use("/friends", likesRouter);
 
 app.use((req, res, next) => {
   next(createError(404));
@@ -103,10 +97,5 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render("error");
 });
-
-
-
-
-
 
 module.exports = app;
