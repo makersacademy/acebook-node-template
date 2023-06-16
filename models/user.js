@@ -99,6 +99,13 @@ const usersData = [
 		password: "$2b$10$g9/cBqkFlsE.FLc1wH6kPOf0aUnKpEZjUAaxLcIP9iCOLAc0F4OAG", // password1
 		friends: [],
 	},
+	{
+		firstName: "Test",
+		lastName: "Test",
+		email: "test@test.com",
+		password: "$2b$10$T7gwCG2ZcVmgB8SCaLpGf.BvTjEX70yzgbh3mPT6gZ5oS3cK/GGUq", // Testtest1
+		friends: [],
+	},
 ];
 
 User.insertMany(usersData, (error, users) => {
