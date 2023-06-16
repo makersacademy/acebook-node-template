@@ -3,35 +3,40 @@ const User = require("../models/user");
 const ProfileController = {
   Index: (req, res) => {
     const currentUser = req.session.user;
-    const friendRequestSent = req.session.friendRequestSent; // Retrieve friendRequestSent value
-
+  
     User.find({}, (err, allUsers) => {
       if (err) {
         throw err;
       }
-
+  
       const friends = currentUser.friends;
       const friends_names = allUsers.filter((user) =>
         friends.includes(user.email)
       );
       const nonFriends = allUsers.filter(
         (user) =>
-          !friends.includes(user.email) && user.email !== currentUser.email
+          !friends.includes(user.email) &&
+          user.email !== currentUser.email
       );
-
+  
       const friendRequests = allUsers.filter((user) =>
         currentUser.friendRequests.includes(user.email)
       );
-
+  
+      // Check if friendRequestSent exists in currentUser.sentFriendRequests
+      const friendRequestSent =
+        currentUser.sentFriendRequests.includes(req.session.friendRequestSent)
+          ? req.session.friendRequestSent
+          : null;
+  
       res.render("profile/index", {
         friends_names: friends_names,
         nonFriends: nonFriends,
         friendRequests: friendRequests,
-        friendRequestSent: friendRequestSent, // Pass friendRequestSent to the template data
+        friendRequestSent: friendRequestSent,
       });
     });
   },
-
   RemoveFriend: (req, res) => {
     const currentUser = req.session.user;
     const friendEmail = req.body.friendEmail;
@@ -78,6 +83,7 @@ const ProfileController = {
               res.render("profile/index", {
                 friends_names: friends_names,
                 nonFriends: nonFriends,
+                friendRequests: [],
               });
             });
           }
@@ -86,9 +92,15 @@ const ProfileController = {
     );
   },
 
-  AddFriend: (req, res) => {
-    const currentUser = req.session.user;
-    const friendEmail = req.body.friendEmail;
+// AddFriend function in ProfileController
+AddFriend: (req, res) => {
+  const currentUserEmail = req.session.user.email;
+  const friendEmail = req.body.friendEmail;
+
+  User.findOne({ email: currentUserEmail }, (err, currentUser) => {
+    if (err) {
+      throw err;
+    }
 
     User.findOne({ email: friendEmail }, (err, friendUser) => {
       if (err) {
@@ -97,26 +109,32 @@ const ProfileController = {
 
       if (!friendUser) {
         res.json({ message: "User not found" });
-      }
-
-      // Check if friend request already exists
-      if (friendUser.friendRequests.includes(currentUser.email)) {
+      } else if (friendUser.friendRequests.includes(currentUser.email)) {
+        res.json({ message: "Friend request already sent" });
+      } else if (currentUser.sentFriendRequests.includes(friendEmail)) {
         res.json({ message: "Friend request already sent" });
       } else {
-        // Add friend request to the recipient's friendRequests array
         friendUser.friendRequests.push(currentUser.email);
         friendUser.save((err) => {
           if (err) {
             throw err;
           }
 
-          req.session.friendRequestSent = friendEmail; // Store friendEmail in session
+          currentUser.sentFriendRequests.push(friendEmail);
+          currentUser.save((err) => {
+            if (err) {
+              throw err;
+            }
 
-          res.json({ message: "Friend request sent" });
+            req.session.friendRequestSent = friendEmail; // Update the session
+            res.json({ message: "Friend request sent" });
+          });
         });
       }
     });
-  },
+  });
+},
+
 
   AcceptFriendRequest: (req, res) => {
     const currentUser = req.session.user;

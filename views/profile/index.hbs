@@ -26,7 +26,7 @@
         <input type="hidden" name="friendEmail" value="{{this.email}}">
         <li>{{this.firstName}} {{this.lastName}}
           {{#if friendRequestSent}}
-            {{#if (eq this.email friendRequestSent)}}
+            {{#if (currentUser.sentFriendRequests.includes this.email)}}
               <button class="addFriendButton" type="button" disabled>Friend Request Sent</button>
             {{else}}
               <button class="addFriendButton" type="button">Add Friend</button>
