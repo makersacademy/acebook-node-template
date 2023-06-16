@@ -1,0 +1,20 @@
+const ImagesController = {
+    Index: (req, res) => {
+        res.render("images/uploads");
+    },
+    Upload: (req, res) => {
+        cloudinary.uploader.upload(req.file.path, (error, result) => {
+        if (error) {
+            console.error(error);
+            const message = 'Image upload failed';
+            res.render('upload', { message }); // Pass the message to the template
+        } else {
+            console.log(result);
+            const message = 'Image uploaded successfully';
+            res.render('upload', { message }); // Pass the message to the template
+        }
+        });
+    },
+    };
+    
+module.exports = ImagesController;

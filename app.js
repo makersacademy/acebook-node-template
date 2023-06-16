@@ -5,19 +5,15 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const flash = require("connect-flash");
-
-
-///adding cloudinary stuff
 const multer = require('multer');
-const cloudinary = require('./cloudinary.config.js');
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const likesRouter = require("./routes/likes");
-const friendsRouter = require("./routes/friends");
+const imagesRouter = require('./routes/images');
+
 
 const app = express();
 
@@ -44,11 +40,6 @@ app.use(
   })
 );
 
-app.use(flash());
-app.use((req, res, next) => {
-  res.locals.messages = req.flash();
-  next();
-});
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
@@ -74,12 +65,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/signup", async (req, res) => {
+app.post('/signup', async (req, res) => {
   try {
     if (req.body.password !== req.body.password2) {
       throw new Error("Passwords don't match. Try again.");
     }
-
+    
     const user = new User(req.body);
     await user.save();
     // Rest of your sign-up logic...
@@ -88,13 +79,14 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/likes", likesRouter);
-app.use("/friends", friendsRouter);
+app.use('/images', imagesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -102,28 +94,21 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
-  // Save session before handling error
-  req.session.save((err2) => {
-    if (err2) {
-      return next(err2);
-    }
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use((err, req, res) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render("error");
-  });
+  // render the error page
+  res.status(err.status || 500);
+  res.render("error");
 });
 
-
-//img stuff 
-
-
-
+//cloudinary
 const port = 3001;
+
+
+//setting up storage for images 
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -136,22 +121,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+//creating a route to handle image uploads
+
+app.get('/images', (req, res) => {
+  // Render the desired page or send a response
+  res.send('This is the images page');
+});
+
 app.post('/upload', upload.single('image'), (req, res) => {
   // Use the cloudinary.uploader.upload() method to upload the image
   cloudinary.uploader.upload(req.file.path, (error, result) => {
     if (error) {
       console.error(error);
-      res.status(500).send('Image upload failed');
+      const message = 'Image upload failed';
+      res.render('upload', { message }); // Pass the message to the template
     } else {
       console.log(result);
-      res.send('Image uploaded successfully');
+      const message = 'Image uploaded successfully';
+      res.render('upload', { message }); // Pass the message to the template
     }
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
-
 module.exports = app;
-
