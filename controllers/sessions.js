@@ -11,7 +11,7 @@ const SessionsController = {
     const email = req.body.email;
     const password = req.body.password;
     console.log("password entered:", password);
-    // Ensure password field is included
+
     User.findOne({ email: email })
       .select("+password")
       .then(async (user) => {
@@ -30,12 +30,19 @@ const SessionsController = {
         }
       });
   },
+
   Destroy: (req, res) => {
-    if (req.session.user && req.cookies.user_sid) {
-      res.clearCookie("user_sid");
+    if (req.session.user) {
+      req.session.destroy((err) => {
+        if (err) {
+          return next(err);
+        }
+        res.clearCookie("user_sid");
+        res.redirect("/");
+      });
+    } else {
+      res.redirect("/");
     }
-    req.flash("success", "You are now signed out!");
-    res.redirect("/");
   },
 };
 
