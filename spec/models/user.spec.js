@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
+const validator = require("../../src/validator");
 
 describe("User model", () => {
   beforeEach((done) => {
@@ -43,7 +44,7 @@ describe("User model", () => {
       firstName: "Test",
       lastName: "Test",
       email: "someone@example.com",
-      password: "password",
+      password: "password1",
     });
 
     user.save((err) => {
@@ -63,83 +64,80 @@ describe("User model", () => {
     });
   });
 
-  test("returns false for empty password", () => {
+  test("returns invalid for empty password", () => {
     const user = new User({
         firstName: "Test",
         lastName: "Test",
         email: "someone@example.com",
         password: "",
     });
-    expect(user.password).toBe(false)
+    const result = validator(user.firstName, user.lastName, user.email, user.password);
+    expect(result).toEqual(["Password is invalid: Must contain at least 8 characters, a letter and a number."]);
   })
 
-  test("returns false for password without numbers", () => {
+  test("returns invalid for password without numbers", () => {
     const user = new User({
         firstName: "Test",
         lastName: "Test",
         email: "someone@example.com",
         password: "aksfhigto",
     });
-    expect(user.password).toBe(false)
+    const result = validator(user.firstName, user.lastName, user.email, user.password);
+    expect(result).toEqual(["Password is invalid: Must contain at least 8 characters, a letter and a number."]);
   })
 
-  test("returns false for password without letters", () => {
+  test("returns invalid for password without letters", () => {
     const user = new User({
         firstName: "Test",
         lastName: "Test",
         email: "someone@example.com",
         password: "12341234",
     });
-    expect(user.password).toBe(false)
+    const result = validator(user.firstName, user.lastName, user.email, user.password);
+    expect(result).toEqual(["Password is invalid: Must contain at least 8 characters, a letter and a number."]);
   })
 
-  test("returns false for password without letters", () => {
-    const user = new User({
-        firstName: "Test",
-        lastName: "Test",
-        email: "someone@example.com",
-        password: "12341234",
-    });
-    expect(user.password).toBe(false)
-  })
-
-  test("returns true for password with numbers, letters and 8 or more chars", () => {
+  test("returns valid for password with numbers, letters and 8 or more chars", () => {
     const user = new User({
         firstName: "Test",
         lastName: "Test",
         email: "someone@example.com",
         password: "password1",
     });
-    expect(user.password).toBe(true)
+    const result = validator(user.firstName, user.lastName, user.email, user.password);
+    expect(result).toEqual([]);
   })
 
-  test("returns false for password with numbers, letters but less than 8 chars", () => {
+  test("returns invalid for password with numbers, letters but less than 8 chars", () => {
     const user = new User({
         firstName: "Test",
         lastName: "Test",
         email: "someone@example.com",
         password: "pass1",
     });
-    expect(user.password).toBe(false)
+    const result = validator(user.firstName, user.lastName, user.email, user.password);
+    expect(result).toEqual(["Password is invalid: Must contain at least 8 characters, a letter and a number."]);
   })
 
-  test("returns true for password with numbers, caps and 8 or more chars", () => {
+  test("returns valid for password with numbers, caps and 8 or more chars", () => {
     const user = new User({
         firstName: "Test",
         lastName: "Test",
         email: "someone@example.com",
         password: "1234ABCD",
     });
-    expect(user.password).toBe(true)
+    const result = validator(user.firstName, user.lastName, user.email, user.password);
+    expect(result).toEqual([]);
   })
 
-  test("returns true for password with numbers, letters caps and lower with 8 or more chars", () => {
+  test("returns valid for password with numbers, letters caps and lower with 8 or more chars", () => {
     const user = new User({
         firstName: "Test",
         lastName: "Test",
         email: "someone@example.com",
         password: "1234ABab",
     });
-    expect(user.isValid).toBe(true)
+    const result = validator(user.firstName, user.lastName, user.email, user.password);
+    expect(result).toEqual([]);
   })
 });
