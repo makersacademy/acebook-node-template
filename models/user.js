@@ -37,12 +37,10 @@ const userSchema = new mongoose.Schema({
 userSchema.pre("save", async function (next) {
   const user = this;
 
-  // Password hashing
   if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
   }
 
-  // Unique check for email
   const foundEmail = await this.model("User").findOne({ email: user.email });
   if (foundEmail && foundEmail._id.toString() !== user._id.toString()) {
     const error = new Error("Email already in use.");
@@ -50,7 +48,6 @@ userSchema.pre("save", async function (next) {
     return next(error);
   }
 
-  // Unique check for username
   const foundUsername = await this.model("User").findOne({
     username: user.username,
   });
