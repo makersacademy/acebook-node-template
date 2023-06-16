@@ -61,42 +61,42 @@ const usersData = [
 		firstName: "Alex",
 		lastName: "Buzea",
 		email: "alex@alex.com",
-		password: "123",
+		password: "$2b$10$1xNFZD.MzQ50PA79QMs/TOhCQAa1wnih/IufG0AQ0lRKxfKg.ed7W", // password1
 		friends: ["joe@joe.com", "chris@chris.com", "sue@sue.com"],
 	},
 	{
 		firstName: "Joe",
 		lastName: "Brown",
 		email: "joe@joe.com",
-		password: "123",
+		password: "$2b$10$X1zkDaZMR7.s9PTS/IzK5eCkBkDQxdcxJa90OrwgGiPjjQ00CK.Z6", // password1
 		friends: ["alex@alex.com", "chris@chris.com", "peter@peter.com"],
 	},
 	{
 		firstName: "Chris",
 		lastName: "Robinson",
 		email: "chris@chris.com",
-		password: "123",
+		password: "$2b$10$Zk40SU.AGeyaQctsEjwRA.cjD6pKb7kqoWDciHFpQm0zCKn4uxrt.", // password1
 		friends: ["susie@susie.com", "joe@joe.com"],
 	},
 	{
 		firstName: "Sue",
 		lastName: "Mason",
 		email: "sue@sue.com",
-		password: "123",
+		password: "$2b$10$STIfhgfqBgRI7ocwv5w0ZOH6RM8aLMIdPYiC/URiqqs7NG2HEs/vO", // password1
 		friends: ["alex@alex.com", "chris@chris.com", "joe@joe.com"],
 	},
 	{
 		firstName: "Susie",
 		lastName: "Smith",
 		email: "susie@susie.com",
-		password: "123",
+		password: "$2b$10$YzSIz6AGYa8aM/38S4mPSuaFhBcIF9ziA0Vm2MA84ZUJBx5KVHpG.", // password1
 		friends: [],
 	},
 	{
 		firstName: "Peter",
 		lastName: "Smith",
 		email: "peter@peter.com",
-		password: "123",
+		password: "$2b$10$g9/cBqkFlsE.FLc1wH6kPOf0aUnKpEZjUAaxLcIP9iCOLAc0F4OAG", // password1
 		friends: [],
 	},
 ];
