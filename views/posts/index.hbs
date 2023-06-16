@@ -1,4 +1,3 @@
-
 <div class="timeline-navbar fixed-content">
   <div class="topbar">
     <div class="initials">Initials</div>
@@ -13,21 +12,35 @@
   </div>
 </div>   
 
-{{!-- <div class="hero">
-  <li></li>
-</div>
-
 <div class="timeline">
-  <div class="comment-box">
-    <textarea  placeholder="What would you like to post?"></textarea>
-    <button input="text"></button>
-  </div>
-</div> --}}
-
-<ul class="posts">
   {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
+  <div class="posts">
+    <div class="post-sec">
+      <div class="initials">{{this.author}}</div>
+      <div class="post-details">
+        <p class="message">{{this.message}}</p>
+        <div class="likes">
+          <form action="/posts/{{this._id}}/likes" method="POST" id="like-post">
+            <p class="likes-count">{{this.likes}}</p>
+            <input type="submit" value="Like" class="global-button like-button">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="comments-sec">
+      {{#each this.comments}}
+        <div class="comment">
+          <div class="commenter-initials">{{this.author}}</div>
+          <p class="comment-content">{{this.content}}</p>
+        </div>
+      {{/each}}
+    </div>
+    <div class="post-comment-sec">
+      <form action="/posts/{{this._id}}/comments" method="POST" id="new-comment-form">
+        <input id="comment" type="text" name="comment" value="" placeholder="Say something...">
+        <input type="submit" value="Submit" class="global-button">
+      </form>
+    </div>
+  </div>
   {{/each}}
-</ul>
-
+</div>

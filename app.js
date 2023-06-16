@@ -40,6 +40,8 @@ app.use(
     cookie: {
       expires: 1200000,
     },
+    rolling: true, // Extend the session expiration on each request
+    rollingTimeout: 1200000, // Set the rolling timeout to 10 minutes
   })
 );
 
@@ -60,8 +62,9 @@ const sessionChecker = (req, res, next) => {
   } else {
     next();
   }
-};
 
+  
+};
 
 // route setup
 app.use("/", homeRouter);

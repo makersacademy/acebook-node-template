@@ -77,7 +77,11 @@ const UsersController = {
         }
 
         // Successful sign up redirects to /posts page
-        req.session.user = user;
+        req.session.user = {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+        }
         res.status(201).redirect("/posts");
       });
     });

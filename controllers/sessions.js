@@ -20,8 +20,14 @@ const SessionsController = {
         return res.render('sessions/new', { error: 'Invalid email or password' });
       }
 
-      req.session.user = user;
+      req.session.user = {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      }
+
       return res.redirect('/posts');
+      
     } catch (err) {
       console.error(`Error while logging in: ${err}`);
       return res.status(500).send('Internal server error');

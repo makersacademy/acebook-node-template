@@ -69,6 +69,7 @@ a:hover {
 .global-button:hover {
   color: var(--main-color);
   background-color:rgb(255, 186, 180);
+  cursor: pointer;
 }
 
 .right-container hr {
@@ -200,4 +201,66 @@ a:hover {
 
 .new-post-controls {
 
+}
+
+/* Creating a new post  */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 1vh;
+  padding: 1vh;
+  margin: 1vh 0vh;
+}
+
+.post-sec {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.post-details {
+  display: grid;
+  grid-template-rows: 50% 50%;
+}
+
+.message {
+  grid-row: 1;
+  max-width: 20vh;
+  padding: 1vh;
+  word-wrap: break-word;
+}
+
+.likes {
+  grid-row: 2;
+  display: flex;
+  width: auto;
+  justify-content: end;
+  align-items: center;
+}
+
+#like-post {
+  display: flex;
+  align-items: center;
+}
+
+.like-button {
+  width: auto;
+}
+
+.comments-sec {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-comment-sec {
+  display: flex;
+  flex-direction: column;
 }

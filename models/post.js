@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
+const Comment = require("./Comment");
 
 const PostSchema = new mongoose.Schema({
   author: String,
   message: {
     type: String,
+    maxLength: 500
     required: true,
-    maxLength: 33000
   },
   likes: { type: Number, default: 0 },
-  comments: Array
-});
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }]
+}, { timestamps: true });
 
 const Post = mongoose.model("Post", PostSchema);
 
