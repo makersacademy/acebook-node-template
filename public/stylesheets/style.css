@@ -18,7 +18,7 @@ a {
 }
 
 a:hover {
-  color: var(--hover-color)
+  color: var(--hover-color);
 }
 
 /* landing page */
@@ -31,7 +31,8 @@ a:hover {
   /* border-style: solid; */
 }
 
-.left-container, .right-container {
+.left-container,
+.right-container {
   padding: 5vh;
 }
 
@@ -77,6 +78,34 @@ a:hover {
   text-align: center;
 }
 
+/*
+media query 
+*/
+@media screen and (max-width: 768px) {
+  .parent-container {
+    flex-direction: column; /* Stack containers vertically */
+    align-items: center; /* Center align the content horizontally */
+    margin: 10vh;
+    padding: 5vh;
+  }
+
+  .left-container,
+  .right-container {
+    padding: 2vh;
+  }
+
+  .right-container {
+    margin-top: -2em;
+  }
+  .title {
+    font-size: 3em; /* Adjust the font size for smaller screens */
+  }
+
+  .slogan {
+    font-size: 1.2em;
+  }
+}
+
 .global-button {
   width: 20vh;
   background-color: var(--main-color);
@@ -90,17 +119,18 @@ a:hover {
 
 .global-button:hover {
   color: var(--main-color);
-  background-color:rgb(255, 186, 180);
+  background-color: rgb(255, 186, 180);
   cursor: pointer;
 }
 
 .right-container hr {
-  background-color:  var(--main-color);
+  background-color: var(--main-color);
   border: none;
   height: 1px;
 }
 
-.login-form, #new-session-form {
+.login-form,
+#new-session-form {
   display: flex;
   flex-direction: column;
 }
@@ -112,7 +142,7 @@ a:hover {
 }
 
 .banner hr {
-  background-color:  var(--main-color);
+  background-color: var(--main-color);
   border: none;
   height: 1px;
   margin-top: 2vh;
@@ -125,7 +155,7 @@ a:hover {
 }
 
 .signup-box {
-  border-style: solid; 
+  border-style: solid;
   border-width: 1px;
   border-radius: 5px;
   display: flex;
@@ -156,7 +186,8 @@ a:hover {
   flex-direction: column;
 }
 
-.topbar, .bottombar {
+.topbar,
+.bottombar {
   display: flex;
   align-items: center;
   width: 88%;
@@ -208,7 +239,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   text-align: center;
-  border-style: solid; 
+  border-style: solid;
   border-width: 1px;
   border-radius: 5px;
   justify-content: center;
@@ -222,7 +253,6 @@ a:hover {
 }
 
 .new-post-controls {
-
 }
 
 /* Creating a new post  */
