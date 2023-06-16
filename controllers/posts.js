@@ -40,7 +40,7 @@ const PostsController = {
       lastName: user.lastName
     }
       
-    post.timestamp = new Date.now();
+    post.timestamp = new Date();
 
     post.save((err) => {
       if (err) {

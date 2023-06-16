@@ -11,8 +11,7 @@
     <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
     <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
   </li>
-{{!-- <li>{{this.timestamp}}</li> --}}
-  <li><a class="edit">Posted: {{timeSince(this.timestamp)}} ago | {{this.createdAt}}</a></li>
+  <span class="time-ago">Posted {{timeAgo this.timestamp}}</span><br/>
   {{/each}}
 </ul>
 
