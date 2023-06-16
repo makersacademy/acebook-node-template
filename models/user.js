@@ -1,48 +1,63 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
-const validator = require('validator');
+const bcrypt = require("bcrypt");
 
-const UserSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
     required: true,
     trim: true,
     lowercase: true,
-    validate(value) {
-      if (!validator.isEmail(value)) {
-        throw new Error('Email is invalid')
-      }
-    },
   },
   password: {
     type: String,
     required: true,
-    minlength: 8,
-    validate(value) {
-      if(value.length < 8) {
-        throw new Error("Passwords is too short. At least 8 characters.")
-      }
-    }},
-  username: 
-    { type: String, 
-      required: true, 
-      unique: true, 
-      trim: true,
-      maxlength: 25 },
+    validate: [
+      {
+        validator: function lengthValidator(value) {
+          return value.length >= 8;
+        },
+        message: "Password is too short. At least 8 characters.",
+      },
+    ],
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    maxlength: 25,
+  },
+  image: {
+    type: String,
+    default: "",
+  },
 });
 
-UserSchema.pre('save', async function (next) {
-  console.log("password: ", this)
+userSchema.pre("save", async function (next) {
   const user = this;
-  if (user.isModified('password')) {
-    console.log('Hashing password...');
+
+  if (user.isModified("password")) {
     user.password = await bcrypt.hash(user.password, 8);
-    console.log('Hashed password:', user.password);
   }
+
+  const foundEmail = await this.model("User").findOne({ email: user.email });
+  if (foundEmail && foundEmail._id.toString() !== user._id.toString()) {
+    const error = new Error("Email already in use.");
+    error.code = 11000;
+    return next(error);
+  }
+
+  const foundUsername = await this.model("User").findOne({
+    username: user.username,
+  });
+  if (foundUsername && foundUsername._id.toString() !== user._id.toString()) {
+    const error = new Error("Username already in use.");
+    error.code = 11000;
+    return next(error);
+  }
+
   next();
 });
 
-module.exports = mongoose.model("User", UserSchema);
-
-
+module.exports = mongoose.model("User", userSchema);
