@@ -1,9 +1,29 @@
+
+
+{{#if messages.success}}
+  <ul class="messages">
+    {{#each messages.success}}
+      <p class="message">{{this}}</p>
+    {{/each}}
+  </ul>
+{{/if}}
+{{#if messages.error}}
+  <ul class="errors">
+    Error: {{#each messages.error}}
+      <p class="error">{{this}}</p>
+    {{/each}}
+  </ul>
+{{/if}}
+
+<a class="new-post-link" href="/posts/new">New Post</a>
+
 <section class="timeline-section">
   <ul class="posts">
     {{#each posts}}
       <li class="post-item">
         <div class="post-message">{{this.message}}</div>
         <p class="post-author">Written by {{this.username}}</p>
+        <p class="post-date">Posted on {{this.formattedCreatedAt}}</p>
         <div class="actions">
           {{#unless this.currentUser}}
             <form action="/friends" method="post">
@@ -11,6 +31,19 @@
               <button type="submit" class="befriend-button">Poke</button>
             </form>
           {{/unless}}
+
+          {{#each this.comments}}
+          <p><i>{{this.content}}</i><br>
+          <span class="comment-author">Posted by {{this.user}}</p></li></span>
+          {{/each}}
+
+          <form action="/comments" method="post" class="comment-form">
+          <label for="comment"></label>
+          <input type="hidden" name="postId" value={{this._id}} />
+          <input id="comment" type="text" value="" name="commentContent" placeholder="Type your comment here ..." required>
+          <button type="submit" class="comment-button">Comment</button>
+          </form>
+
           <form action="/likes" method="post">
             <input type="hidden" name="postId" value={{this._id}} />
             <button type="submit" class="like-button">❤️</button>
@@ -27,6 +60,4 @@
       </li>
     {{/each}}
   </ul>
-
-  <a class="new-post-link" href="/posts/new">New Post</a>
 </section>
