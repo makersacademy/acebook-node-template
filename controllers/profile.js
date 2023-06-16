@@ -37,7 +37,8 @@ const ProfileController = {
   RemoveFriend: (req, res) => {
     const currentUser = req.session.user;
     const friendEmail = req.body.friendEmail;
-
+  
+    // Remove the friend from the current user's friends list
     User.findOneAndUpdate(
       { email: currentUser.email },
       { $pull: { friends: friendEmail } },
@@ -46,30 +47,43 @@ const ProfileController = {
         if (err) {
           throw err;
         }
-
-        // Re-query the user data with updated friends list
-        User.find({}, (err, allUsers) => {
-          if (err) {
-            throw err;
+  
+        // Remove the current user from the friend's friends list
+        User.findOneAndUpdate(
+          { email: friendEmail },
+          { $pull: { friends: currentUser.email } },
+          { new: true },
+          (err, updatedFriendUser) => {
+            if (err) {
+              throw err;
+            }
+  
+            // Re-query the user data with updated friends list
+            User.find({}, (err, allUsers) => {
+              if (err) {
+                throw err;
+              }
+  
+              const friends = updatedUser.friends;
+              const friends_names = allUsers.filter((user) =>
+                friends.includes(user.email)
+              );
+              const nonFriends = allUsers.filter(
+                (user) =>
+                  !friends.includes(user.email) &&
+                  user.email !== updatedUser.email
+              );
+  
+              console.log("friends_names:", friends_names);
+              console.log("nonFriends:", nonFriends);
+  
+              res.render("profile/index", {
+                friends_names: friends_names,
+                nonFriends: nonFriends,
+              });
+            });
           }
-
-          const friends = updatedUser.friends;
-          const friends_names = allUsers.filter((user) =>
-            friends.includes(user.email)
-          );
-          const nonFriends = allUsers.filter(
-            (user) =>
-              !friends.includes(user.email) && user.email !== updatedUser.email
-          );
-
-          console.log("friends_names:", friends_names);
-          console.log("nonFriends:", nonFriends);
-
-          res.render("profile/index", {
-            friends_names: friends_names,
-            nonFriends: nonFriends,
-          });
-        });
+        );
       }
     );
   },
