@@ -1,7 +1,7 @@
 <h1>Timeline</h1>
 <ul class="posts"> 
   {{#each posts}}
-  <li>Created at: {{this.currentDate}}</li>
+  <li>Created at: {{this.createdAt}}</li>
   <br>
   <li>{{{this.username}}}</li>
   <br> 
@@ -9,6 +9,9 @@
   <br>
   <li>{{{this.likes}}} likes</li>
   <br>
+  <form id="likes-form" action="/posts/{{this._id}}/likes" method="post">
+  <input type="submit" value="like">
+</form>
   {{/each}}
 </ul>
 
