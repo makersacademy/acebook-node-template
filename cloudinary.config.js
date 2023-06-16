@@ -9,14 +9,14 @@ cloudinary.config({
     });
 
 const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: 'profile_images',
-        format: async (req, file) => 'png', // supports promises as well
-        public_id: (req, file) => file.originalname,
-    },
-});
-
+        cloudinary: cloudinary,
+        folder: 'uploads', // Specify the folder in Cloudinary where the images will be stored
+        allowedFormats: ['jpg', 'png', 'jpeg'],
+        transformation: [{ width: 500, height: 500, crop: 'limit' }] // Optional: Set desired image transformations
+      });
+      
+      // Create the multer middleware using the storage adapter
 const parser = multer({ storage: storage });
+
 
 module.exports = { cloudinary, parser };

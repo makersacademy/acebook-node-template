@@ -27,6 +27,7 @@ const UsersController = {
 
       if (req.file) {
         await cloudinary.uploader.upload(req.file.path, (error, result) => {
+          console.log(result);
           if (error) {
             return res.status(500).send('An error occurred: ' + error);
           } else {
