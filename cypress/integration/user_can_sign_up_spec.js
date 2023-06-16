@@ -26,7 +26,7 @@ describe("Signup", () => {
     cy.get('a.global-button[href="/users/new"]').click()
     cy.get("#email").type(new_email);
     cy.get("#password").type("Password!234");
-    cy.get("#confirm-password").type("Password!234");
+    cy.get("#confirmPassword").type("Password!234");
     cy.get("#first-name").type("Mrtest")
     cy.get("#last-name").type("Testtest")
     cy.get("#submit").click();
@@ -44,7 +44,7 @@ describe("Signup", () => {
     cy.get('a.global-button[href="/users/new"]').click();
     cy.get("#email").type(new_email);
     cy.get("#password").type("Password!234");
-    cy.get("#confirm-password").type("Password!345");
+    cy.get("#confirmPassword").type("Password!345");
     cy.get("#first-name").type("Mrtest")
     cy.get("#last-name").type("Testtest")
     cy.get("#submit").click();
@@ -62,7 +62,7 @@ describe("Signup", () => {
     cy.get('a.global-button[href="/users/new"]').click();
     cy.get("#email").type("admin@example.com");
     cy.get("#password").type("Password!234");
-    cy.get("#confirm-password").type("Password!345");
+    cy.get("#confirmPassword").type("Password!345");
     cy.get("#first-name").type("Mrtest")
     cy.get("#last-name").type("Testtest")
     cy.get("#submit").click();
