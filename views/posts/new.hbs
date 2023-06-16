@@ -4,7 +4,7 @@
   method="post"
   enctype="multipart/form-data"
 >
-  <div class="form-group">
+  <div class="form-message">
     <label for="message">Message: </label>
     <textarea
       id="message"
@@ -13,7 +13,7 @@
     ></textarea>
   </div>
 
-  <div class="form-group">
+  <div class="form-image">
     <label for="image">Image:</label>
     <input
       type="file"
@@ -27,11 +27,11 @@
     <p><strong>Error:</strong> {{error}}</p>
   {{/if}}
 
-  <div class="form-group">
-    <button
+  <div class="form-submit">
+    <input
       type="submit"
       class="btn btn-primary btn-block"
-      id="submit"
-    >Submit</button>
+      id="#new-post-form"
+    >Submit</input>
   </div>
 </form>
