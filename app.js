@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const multer = require('multer');
+const flash = require("connect-flash");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -13,11 +13,14 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const likesRouter = require("./routes/likes");
 const imagesRouter = require('./routes/images');
+const friendsRouter = require("./routes/friends");
 
+//adding cloudinary
+const multer = require('multer');
+const cloudinary = require('./cloudinary.config.js');
 
 const app = express();
 
-// view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
@@ -48,7 +51,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
     res.redirect("/sessions/new");
@@ -58,7 +60,6 @@ const sessionChecker = (req, res, next) => {
 };
 
 app.use((req, res, next) => {
-  // if a user is in the session, make it available in the views
   if (req.session.user) {
     res.locals.user = req.session.user;
   }
@@ -73,32 +74,34 @@ app.post('/signup', async (req, res) => {
     
     const user = new User(req.body);
     await user.save();
-    // Rest of your sign-up logic...
   } catch (error) {
     res.status(400).send(error);
   }
 });
 
-
-// route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 app.use("/likes", likesRouter);
+const friendsRouter = require("./routes/friends");
 app.use('/images', imagesRouter);
 
-// catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
-app.use((err, req, res) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use((err, req, res, next) => {
+  req.session.save((err2) => {
+    if (err2) {
+      return next(err2);
+    }
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
 
+    res.status(err.status || 500);
+    res.render("error");
+  });
   // render the error page
   res.status(err.status || 500);
   res.render("error");
