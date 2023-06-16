@@ -1,14 +1,5 @@
 const User = require("../models/user");
-const dotenv = require("dotenv");
 const cloudinary = require("cloudinary").v2;
-
-dotenv.config();
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 const UsersController = {
   New: (req, res) => {
@@ -34,14 +25,16 @@ const UsersController = {
       let image = "";
       try {
         if (req.file) {
-          console.log(req.file);
+          console.log(req.file.path);
           const result = await cloudinary.uploader.upload(req.file.path);
+
           if (!result) {
             return res.status(500).send("An error occurred during upload.");
           }
           image = result.url;
         }
       } catch (error) {
+        console.log("error!");
         return res.status(500).send("An error occurred: " + error.message);
       }
 
