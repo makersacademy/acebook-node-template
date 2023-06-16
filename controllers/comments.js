@@ -8,15 +8,13 @@ const CommentsController = {
       content: req.body.commentContent,
     });
 
-    const err = await comment.save().catch((err) => err);
-    res.redirect("/posts");
-
-    // comment.save((err) => {
-    //   if (err) {
-    //     return res.render("posts/inde", { error: err.message });
-    //   }
-    //   res.status(201).redirect("/posts");
-    // });
+    try {
+      await comment.save();
+      res.redirect("/posts");
+    } catch (err) {
+      req.flash("error", err.message);
+      res.redirect("/posts");
+    }
   },
 };
 

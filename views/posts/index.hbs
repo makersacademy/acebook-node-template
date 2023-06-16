@@ -7,6 +7,13 @@
     {{/each}}
   </ul>
 {{/if}}
+{{#if messages.error}}
+  <ul class="errors">
+    Error: {{#each messages.error}}
+      <p class="error">{{this}}</p>
+    {{/each}}
+  </ul>
+{{/if}}
 
 <a class="new-post-link" href="/posts/new">New Post</a>
 
@@ -35,9 +42,6 @@
           <input type="hidden" name="postId" value={{this._id}} />
           <input id="comment" type="text" value="" name="commentContent" placeholder="Type your comment here ..." required>
           <button type="submit" class="comment-button">Comment</button>
-          {{#if error}}
-            <p>Error: {{error}}</p>
-          {{/if}}
           </form>
 
           <form action="/likes" method="post">
