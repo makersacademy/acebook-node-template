@@ -18,25 +18,11 @@ const ProfileController = {
           !friends.includes(user.email) &&
           user.email !== currentUser.email
       );
-      
-      // create a list of users who have sent a friend request to current user
-      const friendRequests = await allUsers.filter((user) =>
+
+      const friendRequests = allUsers.filter((user) =>
         currentUser.friendRequests.includes(user.email)
       );
 
-      // Check if friendRequestSent exists in currentUser.sentFriendRequests
-      const friendRequestSent = allUsers.filter((user) =>
-      currentUser.sentFriendRequests.includes(user.email)
-    );
-
-      nonFriends = nonFriends.map((user) => {
-        return {
-          email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          friendRequested: currentUser.sentFriendRequests.includes(user.email)
-        }
-      })
       res.render("profile/index", {
         friends_names: friends_names,
         nonFriends: nonFriends,
@@ -45,8 +31,6 @@ const ProfileController = {
       });
     });
   },
-
-  
 
   RemoveFriend: (req, res) => {
     const currentUser = req.session.user;
@@ -89,16 +73,11 @@ const ProfileController = {
       }
     );
   },
-  
-  
-// AddFriend function in ProfileController
-AddFriend: (req, res) => {
-  const currentUserEmail = req.session.user.email;
-  const friendEmail = req.body.friendEmail;
-  User.findOne({ email: currentUserEmail }, (err, currentUser) => {
-    if (err) {
-      throw err;
-    }
+
+  AddFriend: (req, res) => {
+    const currentUser = req.session.user;
+    const friendEmail = req.body.friendEmail;
+
     User.findOne({ email: friendEmail }, (err, friendUser) => {
       if (err) {
         throw err;
@@ -115,15 +94,10 @@ AddFriend: (req, res) => {
           if (err) {
             throw err;
           }
-          currentUser.sentFriendRequests.push(friendEmail);
-          currentUser.save((err) => {
-            if (err) {
-              throw err;
-            }
-            req.session.user = currentUser
-            req.session.friendRequestSent = friendEmail; // Update the session
-            res.json({ message: "Friend request sent" });
-          });
+
+          req.session.friendRequestSent = friendEmail; // Store friendEmail in session
+
+          res.json({ message: "Friend request sent" });
         });
       }
     });
