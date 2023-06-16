@@ -11,10 +11,30 @@ const PostsController = {
     });
   },
   New: (req, res) => {
-    res.render("posts/new", {isAuthenticated: true});
+    res.render("posts/new", {user: req.session.user, isAuthenticated: true});
   },
+
+  AddLike: (req, res) => {
+    const post_id = req.params.id;
+    console.log(post_id);
+    console.log("xxxxxxx");
+    // const user_id = req.session.user._id;
+    // const post = Post.findOne({ _id: post_id });
+    // const likes = post.like + 1;
+
+  
+      Post.findOneAndUpdate(
+        { _id: post_id },
+        { $inc: { likes: 1 }},
+        { new: true, useFindAndModify: false }, 
+        () => {res.status(201).redirect("/posts");}
+
+      );
+
+  },
+
   Create: (req, res) => {
-    const { message, likes } = req.body;
+  const { message, likes } = req.body;
   const username = req.session.user.username;
   const now = new Date();
   const options = { 
