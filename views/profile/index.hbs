@@ -24,7 +24,17 @@
     {{#each nonFriends}}
       <form class="addFriendForm" data-friend-email="{{this.email}}">
         <input type="hidden" name="friendEmail" value="{{this.email}}">
-        <li>{{this.firstName}} {{this.lastName}}<button class="addFriendButton" type="button">Add Friend</button></li>
+        <li>{{this.firstName}} {{this.lastName}}
+          {{#if friendRequestSent}}
+            {{#if (currentUser.sentFriendRequests.includes this.email)}}
+              <button class="addFriendButton" type="button" disabled>Friend Request Sent</button>
+            {{else}}
+              <button class="addFriendButton" type="button">Add Friend</button>
+            {{/if}}
+          {{else}}
+            <button class="addFriendButton" type="button">Add Friend</button>
+          {{/if}}
+        </li>
       </form>
     {{else}}
       <li>No non-friends found.</li>
@@ -38,10 +48,10 @@
     <ul>
       {{#each friendRequests}}
         <li data-email="{{this.email}}">{{this.firstName}} {{this.lastName}} ({{this.email}})
-<form class="acceptFriendRequestForm" action="/profile/accept-friend-request" method="POST">
-  <input type="hidden" name="friendEmail" value="{{this.email}}">
-  <button class="acceptFriendRequestButton" type="submit">Accept</button>
-</form>
+          <form class="acceptFriendRequestForm" action="/profile/accept-friend-request" method="POST">
+            <input type="hidden" name="friendEmail" value="{{this.email}}">
+            <button class="acceptFriendRequestButton" type="submit">Accept</button>
+          </form>
           <form class="rejectFriendRequestForm" action="/profile/reject-friend-request" method="POST">
             <input type="hidden" name="friendEmail" value="{{this.email}}">
             <button class="rejectFriendRequestButton" type="submit">Reject</button>
@@ -97,4 +107,3 @@
     });
   });
 </script>
-

@@ -40,13 +40,14 @@ app.use(
 	})
 );
 
-// clear the cookies after user logs out
+// clear the cookies and session after user logs out
 app.use((req, res, next) => {
 	if (req.cookies.user_sid && !req.session.user) {
-		res.clearCookie("user_sid");
+	  res.clearCookie("user_sid");
+	  req.session.friendRequestSent = null; // Clear the friendRequestSent value
 	}
 	next();
-});
+  });
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
