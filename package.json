@@ -10,16 +10,19 @@
     "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/acebook_test' npm start",
     "test": "npm run lint && npm run test:unit && npm run test:integration",
     "test:unit": "jest",
-    "test:integration": "cypress run"
+    "test:integration": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:firefox": "cypress run --browser firefox"
   },
   "engines": {
     "node": ">=18.1.0"
   },
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "express-session": "^1.17.2",
+    "express-session": "^1.17.3",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
