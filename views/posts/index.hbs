@@ -1,9 +1,64 @@
 <h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  {{/each}}
-</ul>
 
 <a class="new-post-link" href="/posts/new">New post</a>
+<ul class="posts">
+  {{#each posts}}
+  <div class="post-format">
+  <li class="post-user">{{this.user_id.first_name}}</li>
+  <li class="post-date">{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  
+  <li>{{this.message}}</li> 
+  <li class="post-likes">{{this.likes}} likes</li> 
+
+  <li>{{this.likes}} likes</li>
+  <li>{{this.user_id.first_name}}</li>
+  <li>{{dateFormat this.createdAt "dddd, MMMM Do YYYY, h:mm:ss a"}}</li>
+  <button>Like</button>
+  <input type="button" name="answer" value="Comment" onclick="showDiv(event)" />
+  <div id="{{this._id}}"  style="display:none;" class="answer_list" > 
+    <form id="new-comment-form" action="/posts/comments" method="post">
+     <textarea placeholder="Enter a comment!" id="message" type="text" name="comments" value=""rows="4" cols="50" required></textarea>
+      <input type="hidden" id="hiddenbutton" name="id" value={{this._id}}>
+      {{!-- <input type="hidden" id="hiddenbutton" name="comments" value={{this.comments.comment}}> --}}
+      <input type="hidden" id="hiddenbutton" name="commenter" value={{this.comments.commenter}}>
+     <button type="submit" id="comment_button">Submit</button>
+     </form>
+     <p id="demo"></p>
+  </div>
+
+<li>{{comments}}</li>
+    {{!-- {{#each comments}}
+    <li>{{this}}</li>
+    {{/each}} --}}
+
+  <br>
+  <br>
+  <li>
+    <form action="/posts/like" method = "POST">
+    <input type="hidden" id="hiddenbutton" name="id" value={{this.id}}>  
+    <input type="hidden" id="hiddenbutton" name="likers" value={{this.likers}}> 
+    <button id="likeButton" type="submit">Like!</button>
+    </form>
+  </li>
+  <br>
+  </div>
+  {{/each}}
+
+
+<script> 
+  function showDiv(event) {
+    console.log(event)
+
+   event.target.nextElementSibling.style.display = "block";
+}
+
+function submitComment(event){
+   var x = event.target.previousElementSibling.value;
+  post.comment.$push(x)
+}
+
+
+</script>
+
+
+

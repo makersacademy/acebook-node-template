@@ -14,7 +14,7 @@ It uses:
 
 ## Card wall
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+[Team Sleep Trello](https://trello.com/b/YvAr6yCq/acebook-sleep)
 
 ## Quickstart
 
