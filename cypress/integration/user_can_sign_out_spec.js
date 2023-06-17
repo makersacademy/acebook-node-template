@@ -1,5 +1,5 @@
-describe("Authentication", () => {
-  it("A user signs in and is redirected to /posts", () => {
+describe("Deauthentication", () => {
+  it("A user can log out and is redirected to homepage", () => {
     // sign up
     cy.visit("/users/new");
     cy.get("#email").type("someone@example.com");
@@ -14,5 +14,12 @@ describe("Authentication", () => {
 
     cy.url().should("include", "/posts");
     cy.contains("a", "New post");
+    // cy.contains("form", "POST");
+
+    // log out
+    cy.get("#logout").click();
+
+    cy.get(".title").should("contain", "Acebook");
+    cy.url().should("include", "/");
   });
 });
