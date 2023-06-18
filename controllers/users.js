@@ -22,22 +22,6 @@ const UsersController = {
     });
   },
 
-<<<<<<< Updated upstream
-    UserProfile: async (req, res) => {
-    const username = req.params.username; 
-
-    let posts = await Post.find({username}) 
-    let user = await User.findOne({username}) 
-    console.log(posts)   
-    res.render("users/profile", {user, isAuthenticated: true, posts: posts});
-
-    // User.findOne({ username }, (err, user) => {
-    //   if (err) {
-    //     throw err;
-    //   }
-    //   res.render("users/profile", { user, isAuthenticated: true });
-    // });
-=======
   Authenticate: function (req, res) {
     var form = req.body;
     User.findOne({ username: form.username }, function (err, user) {
@@ -59,7 +43,6 @@ const UsersController = {
         }
       }
     });
->>>>>>> Stashed changes
   },
 
   UserProfile: async (req, res) => {
