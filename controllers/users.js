@@ -21,7 +21,6 @@ const UsersController = {
     });
   },
 
-
     UserProfile: async (req, res) => {
     const username = req.params.username; 
 
