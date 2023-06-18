@@ -56,6 +56,11 @@
       }
     }).then(data => {
       console.log(data);
+      const newPost = document.createElement('li');
+      newPost.classList.add('post-item');
+      newPost.innerHTML = data.html;
+      const postsList = document.querySelector('.posts');
+      postsList.insertAdjacentElement('afterbegin', newPost);
     }).catch(error => {
       console.error(error);
     });

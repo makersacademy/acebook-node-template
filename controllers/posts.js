@@ -41,7 +41,7 @@ const PostsController = {
           { _id: 0, content: 1, user: 1 }
         ).exec();
       }
-
+      posts = posts.map((post) => ({ post }));
       res.render("posts/index", { posts: posts });
     } catch (err) {
       throw err;
@@ -69,7 +69,7 @@ const PostsController = {
       return res.status(500).send("An error occurred: " + error.message);
     }
 
-    const post = new Post({
+    let post = new Post({
       message,
       image,
       user: req.session.user,
@@ -78,7 +78,23 @@ const PostsController = {
     try {
       await post.save();
       if (req.accepts("json")) {
-        return res.status(201).json({ post: post });
+        post = {
+          username: req.session.user.username,
+          message: message,
+          image: image,
+          formattedCreatedAt: moment(post.createdAt).format("DD/MM/YYYY HH:mm"),
+        };
+        res.render(
+          "partials/posts/post",
+          { layout: false, post },
+          (err, html) => {
+            if (err) {
+              res.status(500).json({ error: "Could not render post" });
+            } else {
+              res.json({ html });
+            }
+          }
+        );
       } else {
         return res.status(201).redirect("/posts");
       }
