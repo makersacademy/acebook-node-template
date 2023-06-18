@@ -1,23 +1,25 @@
 <form id="new-session-form" action="/sessions" method="post">
-  
+
   <label for="email">Email: </label>
-  <input 
-  id="email" 
-  type="email" 
-  name="email" 
-  value="" 
-  maxlength="30" 
-  oninvalid="alert('Please enter your email address')"
-  required>
-  
+  <input
+    id="email"
+    type="email"
+    name="email"
+    value=""
+    maxlength="30"
+    oninvalid="alert('Please enter your email address')"
+    required
+  />
+
   <label for="password">Password: </label>
-  <input 
-  id="password"
-  type="password"
-  name="password"
-  value=""
-  oninvalid="alert('You must enter a valid password')" 
-  required>
-  
-  <input id="submit" type="submit" value="Submit">
+  <input
+    id="password"
+    type="password"
+    name="password"
+    value=""
+    oninvalid="alert('You must enter a valid password')"
+    required
+  />
+
+  <input id="submit" type="submit" value="Submit" />
 </form>

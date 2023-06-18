@@ -35,7 +35,7 @@ const UsersController = {
       }
       if (user) {
         if (form.password == user.password) {
-          // res.cookie("userId", user.id);
+          res.cookie("userId", user.id);
           res.cookie("email", user.email);
           res.redirect("/posts");
         } else {
