@@ -6,6 +6,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 require("dotenv").config();
+const hbs = require("hbs");
 
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
@@ -19,6 +20,7 @@ const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+hbs.registerPartials(path.join(__dirname, "views/partials"));
 
 app.use(logger("dev"));
 app.use(express.json());

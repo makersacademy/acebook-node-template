@@ -35,3 +35,29 @@
     >Submit</input>
   </div>
 </form>
+
+<script>
+  document.getElementById('new-post-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    console.log('hello')
+    fetch(event.target.action, {
+      method: event.target.method,
+      headers: {
+        "Accept": "application/json"
+      },
+      body: formData
+    }).then(response => {
+      if(response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Error: ' + response.statusText);
+      }
+    }).then(data => {
+      console.log(data);
+    }).catch(error => {
+      console.error(error);
+    });
+  });
+</script>

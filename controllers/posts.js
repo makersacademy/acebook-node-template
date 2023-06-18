@@ -77,7 +77,11 @@ const PostsController = {
 
     try {
       await post.save();
-      return res.status(201).redirect("/posts");
+      if (req.accepts("json")) {
+        return res.status(201).json({ post: post });
+      } else {
+        return res.status(201).redirect("/posts");
+      }
     } catch (error) {
       return res.status(400).render("posts/new", {
         error: "An error occurred while creating the post.",

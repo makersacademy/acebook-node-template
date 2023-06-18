@@ -1,0 +1,15 @@
+<li class="post-item">
+  <div class="post-message">{{this.message}}</div>
+  <p class="post-author">Written by {{this.username}}</p>
+  <p class="post-date">Posted on {{this.formattedCreatedAt}}</p>
+  <div class="actions">
+    {{#unless this.currentUser}}
+      <form action="/friends" method="post">
+        <input type="hidden" name="recipientId" value={{this.user}} />
+        <button type="submit" class="befriend-button">Poke</button>
+      </form>
+    {{/unless}}
+    {{> posts/comment this}}
+    {{> posts/likes this}}
+  </div>
+</li>
