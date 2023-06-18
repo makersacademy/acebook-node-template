@@ -1,11 +1,37 @@
-<form id="new-user-form" action="/users" method="post">
-  <label for="username">Username: </label>  
-  <input id="username" type="username" name="username" value="">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+<section>
+  <form id="new-user-form" action="/users" method="post">
 
+    <label for="username">Username: </label>
+    <input 
+    id="username" 
+    type="username" 
+    name="username" 
+    value="" 
+    maxlength="20" 
+    oninvalid="alert('You must enter your username')"
+    required/>
+
+    <label for="email">Email: </label>
+    <input 
+    id="email" 
+    type="email" 
+    name="email" 
+    value="" maxlength="30" 
+    oninvalid="alert('You must enter a valid email address')"
+    required />
+
+    <label for="password">Password: </label>
+    <input 
+    id="password" 
+    type="password" 
+    name="password" 
+    value="" 
+    oninvalid="alert('You must enter a valid password')" 
+    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+    required/>
+
+    <input id="submit" type="submit" value="Submit" />
+  </form>
+</section>
 

@@ -1,26 +1,28 @@
 const User = require("../models/user");
-const Post = require("../models/post"); 
-
+const Post = require("../models/post");
 
 const UsersController = {
-  New: (req, res) => {
-    // res.render("users/new", {});
-    res.render("users/signup", {});
 
+  New: (req, res) => {
+    res.render("users/signup", {});
   },
 
   Create: (req, res) => {
-    const user = new User(req.body);
+    const user = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
     user.save((err) => {
       if (err) {
         throw err;
+      } else {
+        res.status(201).redirect("/sessions/login");
       }
-      // Updated the code to redirect the user to the login page after successful sign-up.
-      // This allows the user to log in and ensures that the navbar dynamically adjusts based on the user's login status.
-      res.status(201).redirect("/sessions/login");
     });
   },
 
+<<<<<<< Updated upstream
     UserProfile: async (req, res) => {
     const username = req.params.username; 
 
@@ -35,60 +37,83 @@ const UsersController = {
     //   }
     //   res.render("users/profile", { user, isAuthenticated: true });
     // });
+=======
+  Authenticate: function (req, res) {
+    var form = req.body;
+    User.findOne({ username: form.username }, function (err, user) {
+      if (err) {
+        throw err;
+      }
+      if (!user) {
+        res.render("/login", {
+          error: "Error: User not found",
+        });
+      }
+      if (user) {
+        if (form.password == user.password) {
+          res.cookie("userId", user.id);
+          res.cookie("username", user.username);
+          res.redirect("/posts");
+        } else {
+          res.redirect("/login");
+        }
+      }
+    });
+>>>>>>> Stashed changes
   },
 
-
-    CreatePost: (req, res) => {
-      const username = req.params.username;
-      const postContent = req.body.content;
-
-      User.findOne({ username }, (err, user) => {
-        if (err || !user) {
-          res.status(404).send("User not found");
-        } else {
-          const post = {
-            content: postContent,
-            author: user._id,
-          };
-          user.posts.push(post);
-
-          user.save((err) => {
-            if (err) {
-              throw err;
-            }
-            res.status(201).redirect(`/users/${username}`);
-          });
-        }
-      });
+  UserProfile: async (req, res) => {
+    const username = req.params.username;
+    let posts = await Post.find({ username });
+    let user = await User.findOne({ username });
+    console.log(posts);
+    res.render("users/profile", { user, isAuthenticated: true, posts: posts });
   },
 
-    Show: (req, res) => {
-      const username = req.params.username;
-      User.findOne({ username }, (err, user) => {
-        if (err || !user) {
-  
-          res.status(404).send("User not found");
-        } else {
-  
-          res.render("users/profile", { user });
-        }
-      });
-    },
+  CreatePost: (req, res) => {
+    const username = req.params.username;
+    const postContent = req.body.content;
+    User.findOne({ username }, (err, user) => {
+      if (err || !user) {
+        res.status(404).send("User not found");
+      } else {
+        const post = {
+          content: postContent,
+          author: user._id,
+        };
+        user.posts.push(post);
 
-    EditPost: (req, res) => {
-      const postId = req.params.postId;
- // Fetch the post from the database based on the provided postId 
-      Post.findOne({ _id: postId }, (err, post) => {
-        if (err || !post) {
-          res.status(404).send("Post not found");
-        } else {
-          res.render("posts/edit", { post });
-        }
-      });
-    },
+        user.save((err) => {
+          if (err) {
+            throw err;
+          }
+          res.status(201).redirect(`/users/${username}`);
+        });
+      }
+    });
+  },
+
+  Show: (req, res) => {
+    const username = req.params.username;
+    User.findOne({ username }, (err, user) => {
+      if (err || !user) {
+        res.status(404).send("User not found");
+      } else {
+        res.render("users/profile", { user });
+      }
+    });
+  },
   
+  EditPost: (req, res) => {
+    const postId = req.params.postId;
+    Post.findOne({ _id: postId }, (err, post) => {
+      if (err || !post) {
+        res.status(404).send("Post not found");
+      } else {
+        res.render("posts/edit", { post });
+      }
+    });
+  },
 };
-
-  
 
 module.exports = UsersController;
