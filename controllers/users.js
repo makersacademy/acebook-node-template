@@ -29,17 +29,17 @@ const UsersController = {
         throw err;
       }
       if (!user) {
-        res.render("/login", {
+        res.render("/sessions/login", {
           error: "Error: User not found",
         });
       }
       if (user) {
         if (form.password == user.password) {
-          res.cookie("userId", user.id);
-          res.cookie("username", user.username);
+          // res.cookie("userId", user.id);
+          res.cookie("email", user.email);
           res.redirect("/posts");
         } else {
-          res.redirect("/login");
+          res.redirect("/sessions/login");
         }
       }
     });

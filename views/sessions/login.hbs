@@ -6,6 +6,8 @@
   type="email" 
   name="email" 
   value="" 
+  maxlength="30" 
+  oninvalid="alert('Please enter your email address')"
   required>
   
   <label for="password">Password: </label>
@@ -14,6 +16,7 @@
   type="password"
   name="password"
   value=""
+  oninvalid="alert('You must enter a valid password')" 
   required>
   
   <input id="submit" type="submit" value="Submit">
