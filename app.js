@@ -5,22 +5,15 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const multer  = require('multer')
-
-
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 const profileRouter = require("./routes/profile");
 const commentsRouter = require("./routes/posts");
-const { AsyncLocalStorage } = require("async_hooks");
 const { handlebars } = require("hbs");
 const moment = require("./public/javascripts/moment.min");
-
-
 const app = express();
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -32,7 +25,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-
 
 app.use(
 	session({
@@ -46,15 +38,14 @@ app.use(
 	})
 );
 
-
-// clear the cookies after user logs out
+// clear the cookies and session after user logs out
 app.use((req, res, next) => {
 	if (req.cookies.user_sid && !req.session.user) {
 		res.clearCookie("user_sid");
+		req.session.friendRequestSent = null; // Clear the friendRequestSent value
 	}
 	next();
 });
-
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
@@ -74,18 +65,11 @@ app.use("/profile", profileRouter);
 app.use("/:postId", sessionChecker, postsRouter);
 app.use("/:postId/comments", sessionChecker, commentsRouter);
 app.use("/:postId/like", sessionChecker, postsRouter);
-app.use("/posts/new", sessionChecker, postsRouter)
-
+app.use("/posts/new", sessionChecker, postsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-	console.log("Hellooooooo");
 	next(createError(404));
-});
-
-app.use((req, res, next) => {
-	console.log("Hellooooooo");
-	next(createError(400));
 });
 
 // error handler

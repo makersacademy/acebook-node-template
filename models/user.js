@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
 		type: [String],
 		default: [],
 	},
+	sentFriendRequests: {
+		type: [String],
+		default: [],
+	},
 });
 
 UserSchema.pre("save", function (next) {
@@ -52,9 +56,8 @@ UserSchema.pre("save", function (next) {
 
 const User = mongoose.model("User", UserSchema);
 
+// Seed data
 User.collection.drop();
-
-//fake Users
 
 const usersData = [
 	{
@@ -62,49 +65,67 @@ const usersData = [
 		lastName: "Buzea",
 		email: "alex@alex.com",
 		password: "$2b$10$1xNFZD.MzQ50PA79QMs/TOhCQAa1wnih/IufG0AQ0lRKxfKg.ed7W", // password1
-		friends: ["joe@joe.com", "chris@chris.com", "sue@sue.com"],
+		friends: ["joe@joe.com", "chris@chris.com", "sue@sue.com", "test@test.com"],
 	},
 	{
 		firstName: "Joe",
 		lastName: "Brown",
 		email: "joe@joe.com",
 		password: "$2b$10$X1zkDaZMR7.s9PTS/IzK5eCkBkDQxdcxJa90OrwgGiPjjQ00CK.Z6", // password1
-		friends: ["alex@alex.com", "chris@chris.com", "peter@peter.com"],
+		friends: [
+			"alex@alex.com",
+			"chris@chris.com",
+			"peter@peter.com",
+			"sue@sue.com",
+			"test@test.com",
+		],
 	},
 	{
 		firstName: "Chris",
 		lastName: "Robinson",
 		email: "chris@chris.com",
 		password: "$2b$10$Zk40SU.AGeyaQctsEjwRA.cjD6pKb7kqoWDciHFpQm0zCKn4uxrt.", // password1
-		friends: ["susie@susie.com", "joe@joe.com"],
+		friends: ["joe@joe.com", "alex@alex.com", "sue@sue.com", "test@test.com"],
 	},
 	{
 		firstName: "Sue",
 		lastName: "Mason",
 		email: "sue@sue.com",
 		password: "$2b$10$STIfhgfqBgRI7ocwv5w0ZOH6RM8aLMIdPYiC/URiqqs7NG2HEs/vO", // password1
-		friends: ["alex@alex.com", "chris@chris.com", "joe@joe.com"],
+		friends: [
+			"alex@alex.com",
+			"chris@chris.com",
+			"joe@joe.com",
+			"test@test.com",
+		],
 	},
 	{
 		firstName: "Susie",
 		lastName: "Smith",
 		email: "susie@susie.com",
 		password: "$2b$10$YzSIz6AGYa8aM/38S4mPSuaFhBcIF9ziA0Vm2MA84ZUJBx5KVHpG.", // password1
-		friends: [],
+		friends: ["test@test.com"],
 	},
 	{
 		firstName: "Peter",
 		lastName: "Smith",
 		email: "peter@peter.com",
 		password: "$2b$10$g9/cBqkFlsE.FLc1wH6kPOf0aUnKpEZjUAaxLcIP9iCOLAc0F4OAG", // password1
-		friends: [],
+		friends: ["joe@joe.com", "test@test.com"],
 	},
 	{
 		firstName: "Test",
 		lastName: "Test",
 		email: "test@test.com",
 		password: "$2b$10$T7gwCG2ZcVmgB8SCaLpGf.BvTjEX70yzgbh3mPT6gZ5oS3cK/GGUq", // Testtest1
-		friends: [],
+		friends: [
+			"alex@alex.com",
+			"joe@joe.com",
+			"chris@chris.com",
+			"sue@sue.com",
+			"susie@susie.com",
+			"peter@peter.com",
+		],
 	},
 ];
 
