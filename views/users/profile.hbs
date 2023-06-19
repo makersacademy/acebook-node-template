@@ -4,11 +4,19 @@
 
 {{!-- add all other profile information needed above--}}
 
-<h2>Create Post</h2>
+{{!-- <h2>Create Post</h2>
 <form action="/users/{{ user.username }}/posts" method="POST"> 
   <textarea name="content" rows="4" cols="50"></textarea>
   <button type="submit">Post</button>
-</form>
+</form> --}}
 
+<a class="new-post-link" href="/posts/new">New post</a>
+
+<h2>Posts:</h2>
+<ul>
+  {{#each posts}}
+    <li>{{this.message}}</li>
+  {{/each}}
+</ul>
 
 {{!-- mabye can display all current posts made by users under create posts --}}

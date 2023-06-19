@@ -20,16 +20,24 @@ const UsersController = {
       res.status(201).redirect("/sessions/login");
     });
   },
-    UserProfile: (req, res) => {
+
+
+    UserProfile: async (req, res) => {
     const username = req.params.username; 
-  
-    User.findOne({ username }, (err, user) => {
-      if (err) {
-        throw err;
-      }
-      res.render("users/profile", { user, isAuthenticated: true });
-    });
+
+    let posts = await Post.find({username}) 
+    let user = await User.findOne({username}) 
+    console.log(posts)   
+    res.render("users/profile", {user, isAuthenticated: true, posts: posts});
+
+    // User.findOne({ username }, (err, user) => {
+    //   if (err) {
+    //     throw err;
+    //   }
+    //   res.render("users/profile", { user, isAuthenticated: true });
+    // });
   },
+
 
     CreatePost: (req, res) => {
       const username = req.params.username;
