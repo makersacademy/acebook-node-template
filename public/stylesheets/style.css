@@ -182,7 +182,23 @@ hr {
 }
 
 .right-container a {
-  padding: 1vh 1vh;
+  padding: 1vh;
+}
+/* Media Query for Responsive Layout */
+@media (max-width: 768px) {
+  .left-container,
+  .right-container {
+    height: auto;
+    width: 90vw; /* Adjusted width for smaller screens */
+    margin: 2vh 0;
+  }
+
+  .homepage-content {
+    flex-direction: column; /* Stacking containers as column */
+  }
+  .title {
+    font-size: 7vh; /* Adjusted font size for smaller screens */
+  }
 }
 /* Media Query for Responsive Layout */
 @media (max-width: 768px) {
