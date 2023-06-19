@@ -1,4 +1,4 @@
-[### Security & Trust
+### Security & Trust
 When the app is used live, we have considered various security features  
 to ensure that users can interact with the app safely.
 
