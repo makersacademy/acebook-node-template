@@ -43,8 +43,8 @@ jobs:
           start: npm start
           record: true
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }
-          
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
       - name: Run all Cypress tests on Firefox
         uses: cypress-io/github-action@v5
         with:
@@ -53,6 +53,7 @@ jobs:
           record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
       - name: Run all Cypress tests on Edge
         uses: cypress-io/github-action@v5
         with:
@@ -60,5 +61,5 @@ jobs:
           start: npm start
           record: true
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           
