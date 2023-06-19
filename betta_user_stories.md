@@ -16,7 +16,7 @@ Acebook will connect people and make their lives betta.
   When I am on homepage I want to be able click login,  
   So that I can be taken to the login page,  
   And be able to enter my account details,
-  So that I can be taken to my homepage
+  So that I can be taken to my homepage with my initials displayed.
 
 **Feature:** Logout
 - As a user,  
@@ -27,14 +27,14 @@ Acebook will connect people and make their lives betta.
 **Feature:** Posts Page
 - As a logged-in user,  
   I want to be able to see posts,
-  See comments on posts, and number of likes,
-  So that I can connect with friends.
+  See comments on posts, and number of likes, and the initials of the author user,
+  So that I can connect with other users.
 
 **Feature:** Create Post
 - As a logged-in user,
   I want to be able to click create post,
   And be taken to new post page,
-  Enter some content and upload an image,
+  Enter some content or upload an image,
   So that I can create a post.
 
 **Feature:** Comment on Post
@@ -49,7 +49,3 @@ Acebook will connect people and make their lives betta.
   By clicking a like button,
   So that I can see my like is reflected on the post.
 
-**Feature:** Upload Profile Picture
-- As a logged-in user,
-  I want to be able to upload a profile picture,
-  So that it is displayed to other users across pages.
