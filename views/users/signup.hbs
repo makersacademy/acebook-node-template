@@ -2,45 +2,45 @@
   <form id="new-user-form" action="/users" method="post">
 
     <label for="username">Username: </label>
-    <input 
-    id="username" 
-    type="username" 
-    name="username" 
-    value="" 
-    maxlength="20" 
-    oninvalid="alert('You must enter your username')"
-    required/>
+    <input
+      id="username"
+      type="username"
+      name="username"
+      value=""
+      maxlength="20"
+      oninvalid="alert('You must enter your username')"
+      required
+    />
 
     <label for="email">Email: </label>
-    <input 
-    id="email" 
-    type="email" 
-    name="email" 
-    value="" 
-    maxlength="30" 
-    oninvalid="alert('You must enter a valid email address')"
-    required />
+    <input
+      id="email"
+      type="email"
+      name="email"
+      value=""
+      maxlength="30"
+      oninvalid="alert('You must enter a valid email address')"
+      required
+    />
 
     <label for="password">Password: </label>
-    <input 
-    id="password" 
-    type="password" 
-    name="password" 
-    value="" 
-    oninvalid="alert('You must enter a valid password')" 
-    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-    required/>
+    <input
+      id="password"
+      type="password"
+      name="password"
+      value=""
+      oninvalid="alert('You must enter a valid password')"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+      required
+    />
 
     <input id="submit-signup-button" type="submit" value="Submit" />
+    <input id="cancel" type="reset" value="Cancel" />
+
+    <div class="made-user">
+      <a href="/sessions/login">Already have an account? Log in here</a>
+    </div>
   </form>
 
-  <form id="cancel-signup-button" action="/">
-    <input id="cancel" type="submit" value="Cancel" />
-  </form>
-
-  <div class="made-user">
-    <a href="/sessions/login">Already have an account? Log in here</a>
-  </div>
 </section>
-
