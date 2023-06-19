@@ -14,7 +14,7 @@ const CommentSchema = new mongoose.Schema({
   content: {
     type: String,
     ref: "CommentContent",
-    required: true,
+    required: [true, "Comment is required"],
     validate: [
       {
         validator: function lengthValidator(content) {
