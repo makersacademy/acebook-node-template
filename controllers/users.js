@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const userService = require("../services/userService");
 const cloudinary = require("cloudinary").v2;
 
 const UsersController = {
@@ -9,13 +9,13 @@ const UsersController = {
   Create: async (req, res) => {
     const { username, email, password } = req.body;
     try {
-      const usernameExists = await User.findOne({ username: username });
+      const usernameExists = await userService.usernameExists(username);
       if (usernameExists) {
         return res
           .status(422)
           .render("users/new", { error: "Username already exists!" });
       }
-      const emailExists = await User.findOne({ email: email });
+      const emailExists = await userService.emailExists(email);
       if (emailExists) {
         return res
           .status(422)
@@ -38,14 +38,15 @@ const UsersController = {
         return res.status(500).send("An error occurred: " + error.message);
       }
 
-      const user = new User({
+      const userData = {
         username,
         email,
         password,
         image,
-      });
+      };
 
-      await user.save();
+      await userService.createUser(userData);
+
       return res.status(201).redirect("/sessions/new");
     } catch (error) {
       res.status(400).render("users/new", {
