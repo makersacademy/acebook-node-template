@@ -15,7 +15,7 @@ const PostController = {
         }
         const reversedPosts = posts.slice().reverse();
 
-        res.render("posts/index", { posts: reversedPosts, initials: initials });
+        res.render("posts/index", { posts: reversedPosts, initials: initials});
       });
   },
 
@@ -27,12 +27,6 @@ const PostController = {
   },
 
   Create: (req, res) => {
-    if (req.body.message.trim() === "") {
-      return res.status(400).render("posts/new", {
-        error:
-        "Post content cannot be blank"
-      })
-    }
 
     const firstName = req.session.user.firstName;
     const lastName = req.session.user.lastName;
@@ -46,9 +40,12 @@ const PostController = {
         "Post content cannot be blank"
       })
     }
+
+    const messageWithParagraphs = req.body.message.replace(/\r?\n/g, "<br>");
+
     const post = new Post({
       author: author,
-      message: req.body.message
+      message: `${messageWithParagraphs}`,
     });
 
     post.save((err) => {
@@ -75,16 +72,41 @@ const PostController = {
       const firstName = req.session.user.firstName;
       const lastName = req.session.user.lastName;
       const author = `${firstName} ${lastName}`;
+      const initials = `${firstName[0]}${lastName[0]}`
+      
+      if (req.body.comment.trim() === "") {
+        Post.find()
+        .populate("comments")
+        .exec((err, posts) => {
+          if (err) {
+            throw err;
+          }
+          const reversedPosts = posts.slice().reverse();
+
+        
+          return res.status(400).render("posts/index", {
+            posts: reversedPosts,
+            initials: initials,
+          })
+        });
+      
+      } else {
 
       const post = await Post.findById(req.params.id);
       const comment = new Comment({
         author: author,
         content: req.body.comment
       });
+
+      
+      
       await comment.save();
       post.comments.push(comment);
       await post.save();
       res.status(201).redirect("/posts");
+
+      }
+      
     } catch (err) {
       throw err;
     }

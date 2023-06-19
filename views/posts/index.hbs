@@ -18,7 +18,7 @@
     <div class="post-sec">
       <div class="author">{{this.author}}</div> 
       <div class="post-details">
-        <p class="message">{{this.message}}</p>
+        <p class="message">{{{this.message}}}</p>
         <div class="likes">
           <form action="/posts/{{this._id}}/likes" method="POST" id="like-post">
             <input type="submit" value="Like" class="global-button like-button">
@@ -27,6 +27,7 @@
         </div>
       </div>
     </div>
+
     <div class="comments-sec">
       {{#each this.comments}}
         <div class="comment">
@@ -37,13 +38,15 @@
     </div>
     <div class="post-comment-sec">
       <form action="/posts/{{this._id}}/comments" method="POST" id="new-comment-form">
-        <input id="comment" type="text" name="comment" value="" placeholder="Say something..." class="comment-box input-box">
+        <input id="comment" type="text" name="comment" value="" placeholder="Say something..." class="comment-box input-box" required>
         <input type="submit" value="Submit" class="global-button">
       </form>
     </div>
   </div>
   {{/each}}
 </div>
+
+
 
 <script>
   window.addEventListener('beforeunload', function() {
