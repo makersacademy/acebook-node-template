@@ -59,6 +59,8 @@ const PostsController = {
       
     post.timestamp = new Date();
     const imageData = post.image.data ? post.image.data.toString('base64') : null;
+
+    
   
     post.save((err) => {
       if (err) {
@@ -77,6 +79,7 @@ const PostsController = {
         return res.status(404).send("Image not found");
       }
       res.set("Content-Type", post.image.contentType);
+      console.log(post.image.contentType)
 
       res.send(Buffer.from(post.image.data, "base64"));
 
