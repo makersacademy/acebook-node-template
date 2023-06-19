@@ -7,13 +7,13 @@ describe("Authentication", () => {
     cy.get("#username").type("User1");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("mPgaN5s51g!");
-    cy.get("#submit").click();
+    cy.get("#submit-signup-button").click();
 
     // sign in
     cy.visit("/sessions/login");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("mPgaN5s51g!");
-    cy.get("#submit").click();
+    cy.get("#submit-login-button").click();
 
     cy.url().should("not.equal", "/sessions/login");
   });
