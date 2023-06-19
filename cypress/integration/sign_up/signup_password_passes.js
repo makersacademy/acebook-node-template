@@ -2,8 +2,8 @@ describe('User Sign Up - Password Boundary Value', () => {
     it('should test a variety of passwords on and over the character boundry', () => {
         const username = 'Tester1'
         const validEmail = 'tester@example.com';
-        const validPassword = 'hi345678';
-        const alsovalidPassword = 'hi23456789';
+        const validPassword = 'H!i345678';
+        const alsovalidPassword = 'H!i23456789';
 
         cy.visit('/users/signup');
 
