@@ -18,21 +18,17 @@ const ProfileController = {
           !friends.includes(user.email) &&
           user.email !== currentUser.email
       );
-      console.log("current user friend req ", currentUser.friendRequests)
+      
       // create a list of users who have sent a friend request to current user
       const friendRequests = await allUsers.filter((user) =>
         currentUser.friendRequests.includes(user.email)
       );
-      console.log(`friendRequests: ${friendRequests}`)
-      // console.log(allUsers)
+
       // Check if friendRequestSent exists in currentUser.sentFriendRequests
       const friendRequestSent = allUsers.filter((user) =>
       currentUser.sentFriendRequests.includes(user.email)
     );
-        // currentUser.sentFriendRequests.includes(req.session.friendRequestSent)
-        //   ? req.session.friendRequestSent
-        //   : null;
-      console.log(`friend requests sent: ${friendRequestSent}`);
+
       nonFriends = nonFriends.map((user) => {
         return {
           email: user.email,
