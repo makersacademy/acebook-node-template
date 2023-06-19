@@ -25,19 +25,20 @@
       <form class="addFriendForm" data-friend-email="{{this.email}}">
         <input type="hidden" name="friendEmail" value="{{this.email}}">
         <li>{{this.firstName}} {{this.lastName}}
-          {{#if friendRequestSent}}
-            {{#if (currentUser.sentFriendRequests.includes this.email)}}
+          {{!-- {{#if sentFriendRequest}} --}}
+          {{!-- falsy --}}
+            {{#if this.friendRequested }}
               <button class="addFriendButton" type="button" disabled>Friend Request Sent</button>
             {{else}}
               <button class="addFriendButton" type="button">Add Friend</button>
             {{/if}}
-          {{else}}
+          {{!-- {{else}}
             <button class="addFriendButton" type="button">Add Friend</button>
-          {{/if}}
+          {{/if}} --}}
         </li>
       </form>
-    {{else}}
-      <li>No non-friends found.</li>
+    {{!-- {{else}}
+      <li>No non-friends found.</li> --}}
     {{/each}}
   </ul>
 </div>
