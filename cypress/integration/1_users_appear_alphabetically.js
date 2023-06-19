@@ -1,4 +1,4 @@
-describe("Friends list appearing alphabetically", () => {
+describe("Users list appearing alphabetically", () => {
     it("A user signs in and goes to their profile to view friends", () => {
       // sign in
         cy.visit("/sessions/new");
@@ -9,10 +9,10 @@ describe("Friends list appearing alphabetically", () => {
       // go to my profile
         cy.contains("My profile").click();
 
-        cy.get('.friends')
+        cy.get('.users')
         .then($items => {
         return $items.map((index, html) => Cypress.$(html).text()).get()
         })
-        .should('deep.eq', [ '\n      \n        \n        Chris RobinsonRemove Friend\n      \n      \n        \n        Joe BrownRemove Friend\n      \n      \n        \n        Sue MasonRemove Friend\n      \n  ' ])
+        .should('deep.eq', [ '\n      \n        \n        Peter SmithAdd Friend\n      \n      \n        \n        Susie SmithAdd Friend\n      \n      \n        \n        Test TestAdd Friend\n      \n  ' ])
         });
 });
