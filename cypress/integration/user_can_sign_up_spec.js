@@ -23,7 +23,7 @@ describe("Signup", () => {
 
     // sign up
     cy.visit("/");
-    cy.get('a.global-button[href="/users/new"]').click()
+    cy.get('a[href="/users/new"]').click();
     cy.get("#email").type(new_email);
     cy.get("#password").type("Password!234");
     cy.get("#confirmPassword").type("Password!234");
@@ -41,7 +41,7 @@ describe("Signup", () => {
 
     // sign up
     cy.visit("/");
-    cy.get('a.global-button[href="/users/new"]').click();
+    cy.get('a[href="/users/new"]').click();
     cy.get("#email").type(new_email);
     cy.get("#password").type("Password!234");
     cy.get("#confirmPassword").type("Password!345");
@@ -59,8 +59,24 @@ describe("Signup", () => {
 
     // sign up
     cy.visit("/");
-    cy.get('a.global-button[href="/users/new"]').click();
+    cy.get('a[href="/users/new"]').click();
     cy.get("#email").type("admin@example.com");
+    cy.get("#password").type("Password!234");
+    cy.get("#confirmPassword").type("Password!345");
+    cy.get("#first-name").type("Mrtest")
+    cy.get("#last-name").type("Testtest")
+    cy.get("#submit").click();
+
+    cy.url().should("not.include", "/posts");
+  });
+
+  it("A user navigates from homepage to signup and creates a new account with an email that is invalid", () => {
+    const new_email = chance.email();
+
+    // sign up
+    cy.visit("/");
+    cy.get('a[href="/users/new"]').click();
+    cy.get("#email").type("helloexample.com");
     cy.get("#password").type("Password!234");
     cy.get("#confirmPassword").type("Password!345");
     cy.get("#first-name").type("Mrtest")

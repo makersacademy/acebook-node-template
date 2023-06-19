@@ -39,7 +39,7 @@
 
 Cypress.Commands.add('signIn', () => {
   cy.visit("/");
-  cy.get('a.global-button[href="/sessions/new"]').click();
+  cy.get('a[href="/sessions/new"]').click();
   cy.get("#email").type("admin@example.com");
   cy.get("#password").type("Password!123");
   cy.get("#submit").click();
