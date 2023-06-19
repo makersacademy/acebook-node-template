@@ -1,3 +1,45 @@
+const attachLikeButtonListeners = () => {
+  const likeButtons = document.querySelectorAll(".like-button");
+
+  likeButtons.forEach((button) => {
+    button.removeEventListener("click", handleLikeButtonClick);
+    button.addEventListener("click", handleLikeButtonClick);
+  });
+};
+
+const handleLikeButtonClick = (event) => {
+  event.preventDefault();
+  console.log(event.currentTarget);
+
+  const likeForm = event.target.closest("form");
+  const formData = new FormData(likeForm);
+  const dataObject = Object.fromEntries(formData);
+  const json = JSON.stringify(dataObject);
+
+  fetch(likeForm.action, {
+    method: likeForm.method,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: json,
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Error: " + response.statusText);
+      }
+    })
+    .then((data) => {
+      const postLikes = likeForm.nextElementSibling;
+      postLikes.textContent = `${data.likesCount} likes`;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 const attachCommentFormListeners = () => {
   const commentForms = document.querySelectorAll(".comment-form");
   console.log(commentForms);
@@ -49,6 +91,7 @@ const handleCommentFormSubmit = (event) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  attachLikeButtonListeners();
   attachCommentFormListeners();
 
   document
