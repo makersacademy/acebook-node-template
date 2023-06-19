@@ -8,6 +8,7 @@
 - Validation - Should the names be allowed with any capitalization and then be manipulated to always follow capital first letter structure?
 - Validation - Check database for duplicate emails
 - Feature suggestion - After signing up successfully, an alert pops up after the redirect to the login page that lets the user know their account was created successfully
+- HTML - Consistency with element tagging - Title has a class on home page but not on sign up
 
 ## Single Post
 
@@ -21,4 +22,3 @@
 ## Profile
 
 - BUG - Name coming through as 'Name' instead of user name
-- Feature Missing / Bug - Reject friend request
