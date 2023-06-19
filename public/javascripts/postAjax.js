@@ -41,7 +41,6 @@ const handleLikeButtonClick = (event) => {
 
 const attachCommentFormListeners = () => {
   const commentForms = document.querySelectorAll(".comment-form");
-  console.log(commentForms);
 
   commentForms.forEach((form) => {
     form.removeEventListener("submit", handleCommentFormSubmit);
@@ -98,12 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const commentsContainer = event.currentTarget.closest("ul");
-      const ulId = commentsContainer.id;
-      const postId = ulId.replace("comments-", "");
-
       const formData = new FormData(event.target);
-      console.log(formData);
 
       fetch(event.target.action, {
         method: event.target.method,
@@ -120,6 +114,20 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .then((data) => {
+          const parser = new DOMParser();
+          const htmlDocument = parser.parseFromString(data.html, "text/html");
+          let likeCount = htmlDocument.querySelector("#like-count");
+          console.log(htmlDocument);
+          console.log(likeCount);
+          likeCount.innerText = "0";
+          likeCount.innerText = 0;
+          likeCount.value = "0";
+
+          const postComment = htmlDocument.querySelector(".post-comment");
+          let fullId = postComment.id;
+          let splitId = fullId.split("-");
+          let postId = splitId[1];
+
           const newPost = document.createElement("li");
           newPost.classList.add("post-item");
           newPost.innerHTML = data.html;
@@ -129,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const hiddenInput = newPost.querySelector(
             "#like-form input[name='postId']"
           );
-
           hiddenInput.value = postId;
 
           attachLikeButtonListeners();

@@ -21,9 +21,13 @@ const LikesController = {
 
         await like.save();
       }
-      const likesCount = await likeService.getLikesCount(req.body.postId);
-      return res.json({ likesCount });
-      res.redirect("/posts");
+
+      if (req.accepts("json")) {
+        const likesCount = await likeService.getLikesCount(req.body.postId);
+        return res.json({ likesCount });
+      } else {
+        res.redirect("/posts");
+      }
     } catch (err) {
       console.error(err);
       res.status(500).send(err);

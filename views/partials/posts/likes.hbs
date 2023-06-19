@@ -1,12 +1,12 @@
 <form action="/likes" method="post" id="like-form">
-  <input type="hidden" name="postId" value={{this._id}} />
+  <input type="hidden" name="postId" value={{_id}} />
   <button type="submit" class="like-button">❤️</button>
 </form>
 <div class="post-likes">
-  {{this.likesCount}}
+  <span id="like-count">{{likesCount}}</span>
   likes
   <div class="liked-by-tooltip">
-    {{#each this.likedBy}}
+    {{#each likedBy}}
       <div>{{this}}</div>
     {{/each}}
   </div>

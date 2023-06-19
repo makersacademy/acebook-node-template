@@ -10,7 +10,7 @@
       </form>
     {{/unless}}
 
-    <ul id="comments-{{post.id}}">
+    <ul class="post-comment" id="comments-{{post.id}}">
       {{> posts/new_comment post}}
       {{> posts/likes post}}
       {{#each post.comments}}
