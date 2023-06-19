@@ -11,10 +11,11 @@ exports.savePost = async (postData) => {
   let post = new Post(postData);
   await post.save();
 
-  post = {
+  postObj = {
     ...postData,
+    id: post._id,
     formattedCreatedAt: moment(post.createdAt).format("DD/MM/YYYY HH:mm"),
   };
 
-  return post;
+  return postObj;
 };

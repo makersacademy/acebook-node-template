@@ -28,7 +28,6 @@ const CommentsController = {
         return res.status(201).redirect("/posts");
       }
     } catch (err) {
-      req.flash("error", err.message);
       res.redirect("/posts");
     }
   },
