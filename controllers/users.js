@@ -9,31 +9,31 @@ const UsersController = {
   },
 
   // ensure email is unique
-  // ensure username is unique 
+  // ensure username is unique
+  
   Create: (req, res) => {
-    // let query = {}
-    // if (req.body.Create) {
-    //   query = {$or:[{username:{$regex: req.body.Create, $options: 'i'}},{email:{$regex: req.body.Create, $options: 'i'}}]}
-    // }
-    const user = new User({
+     let query = {$or:[{username:{$regex: new RegExp('^' + req.body.username + '$', 'i')}},{email:{$regex: new RegExp('^' + req.body.email + '$', 'i')}}]}
+    
+    console.log("hello", query)
+    const newUser = new User({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     });
-  //   user.findOne(query , function (err, data) {
-  //     if(err) {
-  //       throw err
-  //     } else {
-  //       return data
-  //     }
-  //  });
-    user.save((err) => {
-      if (err) {
-        throw err;
+    User.findOne(query , function (err, user) {
+      if(user) {
+        console.log(user)
+        res.render('users/signup', {error: "User account already exists"});
       } else {
-        res.status(201).redirect("/sessions/login");
+        newUser.save((err) => {
+          if (err) {
+            throw err;
+          } else {
+            res.status(201).redirect("/sessions/login");
+          }
+        });  
       }
-    });
+   });
   },
 
   Authenticate: function (req, res) {
