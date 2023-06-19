@@ -2,14 +2,16 @@ describe("Feed Page", () => {
     it("can view post on main feed", () => {
     // sign up
     cy.visit("/users/new");
+    cy.get('#firstName').type("Someone");
+    cy.get('#lastName').type("Someone")
     cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("password1");
     cy.get("#submit").click();
 
     // sign in
     cy.visit("/sessions/new");
     cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
+    cy.get("#password").type("password1");
     cy.get("#submit").click();
 
     // submit a post

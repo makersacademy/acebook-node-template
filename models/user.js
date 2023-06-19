@@ -108,7 +108,7 @@ const usersData = [
 	},
 ];
 
-User.insertMany(usersData, (error, users) => {
+User.insertMany(usersData, (error) => {
 	if (error) {
 		console.log(error);
 	} else {

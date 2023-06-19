@@ -6,7 +6,7 @@
 
 <div>
   <p>Friends</p>
-  <ul class="users">
+  <ul class="friends">
     {{#each friends_names}}
       <form action="/profile/remove-friend" method="POST">
         <input type="hidden" name="friendEmail" value="{{this.email}}">
