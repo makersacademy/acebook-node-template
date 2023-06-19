@@ -65,16 +65,6 @@ const sessionChecker = (req, res, next) => {
 	}
 };
 
-const storage = multer.diskStorage({
-    destination: 'uploads/', // Specify the destination folder where uploaded files will be stored
-    filename: (req, file, cb) => {
-      // Generate a unique filename for the uploaded file (e.g., using a timestamp or UUID)
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.fieldname + '-' + uniqueSuffix);
-    }
-  });
-
-
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
@@ -84,7 +74,7 @@ app.use("/profile", profileRouter);
 app.use("/:postId", sessionChecker, postsRouter);
 app.use("/:postId/comments", sessionChecker, commentsRouter);
 app.use("/:postId/like", sessionChecker, postsRouter);
-// app.use("/posts/new", sessionChecker, postsRouter)
+app.use("/posts/new", sessionChecker, postsRouter)
 
 
 // catch 404 and forward to error handler
@@ -111,5 +101,5 @@ app.use((err, req, res) => {
 
 handlebars.registerHelper("timeAgo", (date) => moment(date).fromNow());
 
-module.exports = { app, storage };
+module.exports = app;
 module.exports.sessionChecker = sessionChecker;

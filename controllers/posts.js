@@ -1,10 +1,10 @@
 const Post = require("../models/post");
 const User = require("../models/user");
 const helpers = require('handlebars-helpers')();
+const fs = require('fs');
 
 const multer = require('multer');
 
-// ... other imports ...
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage }).single('image');
@@ -37,29 +37,35 @@ const PostsController = {
 
 
   Create: (req, res) => {
+
     // const post = new Post(req.body);
     const user = req.session.user;
     
     const post = new Post({
-      title: req.body.title,
-      content: req.body.content,
+
+      content: req.body.message,
       image: {
-        data: req.file ? req.file.buffer : null, // Store the file buffer in the database
-        contentType: req.file ? req.file.mimetype : null, // Store the file mimetype in the database
+    data: req.file ? fs.readFileSync('uploads/' + req.file.filename, 'base64') : null, // Read and encode the file as base64
+    contentType: req.file ? req.file.mimetype : null, // Store the file mimetype in the database
       },
     });
-    
+    console.log('Post:', post);
+  console.log('Post image data:', post.image.data ? post.image.data.toString('base64') : null);
+
     post.postAuthor =  {
       firstName: user.firstName,
       lastName: user.lastName
     }
       
     post.timestamp = new Date();
-
+    const imageData = post.image.data ? post.image.data.toString('base64') : null;
+  
     post.save((err) => {
       if (err) {
         throw err;
       }
+      console.log('Post saved:', post);
+
       res.status(201).redirect("/posts");
     });
     
@@ -71,7 +77,11 @@ const PostsController = {
         return res.status(404).send("Image not found");
       }
       res.set("Content-Type", post.image.contentType);
-      res.send(post.image.data);
+
+      res.send(Buffer.from(post.image.data, "base64"));
+
+      console.log('Sending image data:', post.image.data);
+
     });
   },
 

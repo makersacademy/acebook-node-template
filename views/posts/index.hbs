@@ -6,18 +6,33 @@
   {{#each posts}}
   <li>
     <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
+
+{{#if this.image.contentType}}
+  <a href="/posts/{{this._id}}">
+    <img src="/posts/{{this._id}}/image">
+  </a>
+
+    {{/if}}
+    <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
+    <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
+  </li>
+  <span class="time-ago">Posted {{timeAgo this.timestamp}}</span><br/>
+{{/each}}
+  {{!-- {{#each posts}}
+  <li>
+    <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
    <a href="/posts/{{this._id}}">
       {{#if this.image.contentType}}
-        <img src="/posts/{{this._id}}/image" alt="Post Image" />
+        <img src="/posts/{{this._id}}/image"/>
       {{/if}}
     </a>
-     <a href="/posts/{{this._id}}">{{this.message}}</a>
+
     
     <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
     <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
   </li>
   <span class="time-ago">Posted {{timeAgo this.timestamp}}</span><br/>
-  {{/each}}
+  {{/each}} --}}
 </ul>
 
 

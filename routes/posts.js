@@ -1,19 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const multer = require('multer');
-const storage = require('../app')
+// const storage = require('../ao')
+const path = require('path');
+
 
 const PostsController = require("../controllers/posts");
 const CommentController = require("../controllers/comments");
 
-// const storage = multer.diskStorage({
-//     destination: 'uploads/', // Specify the destination folder where uploaded files will be stored
-//     filename: (req, file, cb) => {
-//       // Generate a unique filename for the uploaded file (e.g., using a timestamp or UUID)
-//       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-//       cb(null, file.fieldname + '-' + uniqueSuffix);
-//     }
-//   });
+const storage = multer.diskStorage({
+    destination: 'uploads/', // Specify the destination folder where uploaded files will be stored
+    filename: (req, file, cb) => {
+      // Generate a unique filename for the uploaded file (e.g., using a timestamp or UUID)
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const fileExtension = path.extname(file.originalname);
+    const fileName = file.fieldname + '-' + uniqueSuffix + fileExtension;
+    cb(null, fileName);
+    }
+  });
   
 const upload = multer({ storage: storage });
 

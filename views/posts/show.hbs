@@ -2,7 +2,8 @@
       <input type="submit" value="Log Out"></form>
 
 {{!-- <h1>{{ post.message }}</h1> --}}
-<img src="/posts/{{post._id}}/image" alt="Post Image">
+
+<img src="/posts/{{post._id}}/image">
 <p>Author: {{ post.postAuthor.firstName }} {{ post.postAuthor.lastName }}</p>
 <p>Posted at: {{post.timestamp}}</p>
 
