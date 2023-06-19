@@ -1,45 +1,28 @@
-const Post = require("../models/post");
-const User = require("../models/user");
-const Like = require("../models/like");
-const Comment = require("../models/comment");
-const moment = require("moment");
-const cloudinary = require("cloudinary").v2;
+const postService = require("../services/postService");
+const userService = require("../services/userService");
+const likeService = require("../services/likeService");
+const commentService = require("../services/commentService");
+const cloudinaryService = require("../services/cloudinaryService");
 
 const PostsController = {
   Index: async (req, res) => {
     try {
-      const currentUser = await User.findById(req.session.user._id);
-      let posts = await Post.find().exec();
-      posts = posts.reverse();
+      const currentUser = await userService.getCurrentUser(
+        req.session.user._id
+      );
+      let posts = await postService.getPosts();
 
       for (let post of posts) {
-        post.likesCount = await Like.countDocuments({
-          post: post._id,
-          liked: true,
-        }).exec();
+        post.likesCount = await likeService.getLikesCount(post._id);
 
-        const user = await User.findById(post.user);
+        const user = await userService.getUserById(post.user);
         post.username = user.username;
         post.currentUser = currentUser.username === post.username;
-        post.formattedCreatedAt = moment(post.createdAt).format(
-          "DD/MM/YYYY HH:mm"
-        );
 
-        const likes = await Like.find({
-          post: post._id,
-          liked: true,
-        })
-          .populate({
-            path: "user",
-            select: "username",
-          })
-          .exec();
+        const likes = await likeService.getLikesByPostId(post._id);
         post.likedBy = likes.map((like) => like.user.username);
 
-        post.comments = await Comment.find(
-          { post: post._id },
-          { _id: 0, content: 1, user: 1 }
-        ).exec();
+        post.comments = await commentService.getCommentsByPostId(post._id);
       }
       posts = posts.map((post) => ({ post }));
       res.render("posts/index", { posts: posts });
@@ -53,37 +36,20 @@ const PostsController = {
   Create: async (req, res) => {
     const { message } = req.body;
 
-    let image = "";
-    try {
-      if (req.file) {
-        console.log(req.file.path);
-        const result = await cloudinary.uploader.upload(req.file.path);
+    const image = req.file
+      ? await cloudinaryService.uploadImage(req.file.path)
+      : "";
 
-        if (!result) {
-          return res.status(500).send("An error occurred during upload.");
-        }
-        image = result.url;
-      }
-    } catch (error) {
-      console.log("Error uploading the image.");
-      return res.status(500).send("An error occurred: " + error.message);
-    }
-
-    let post = new Post({
+    const postData = {
       message,
       image,
       user: req.session.user,
-    });
+    };
 
     try {
-      await post.save();
+      const post = await postService.savePost(postData);
+
       if (req.accepts("json")) {
-        post = {
-          username: req.session.user.username,
-          message: message,
-          image: image,
-          formattedCreatedAt: moment(post.createdAt).format("DD/MM/YYYY HH:mm"),
-        };
         res.render(
           "partials/posts/post",
           { layout: false, post },

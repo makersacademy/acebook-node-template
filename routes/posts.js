@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { parser } = require("../cloudinary");
+const { parser } = require("../services/cloudinaryService");
 const PostsController = require("../controllers/posts");
 
 router.get("/", PostsController.Index);
