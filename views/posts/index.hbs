@@ -32,10 +32,19 @@
             </form>
           {{/unless}}
 
+          {{#if this.currentUser}}
+          <a href="/posts/{{this._id}}/edit" class="edit-button">Edit</a> 
+          
+              <form action="/posts/{{this._id}}/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete">
+              </form>
+          {{/if}}
           {{#each this.comments}}
           <p><i>{{this.content}}</i><br>
           <span class="comment-author">Posted by {{this.user}}</p></li></span>
           {{/each}}
+          
 
           <form action="/comments" method="post" class="comment-form">
           <label for="comment"></label>
