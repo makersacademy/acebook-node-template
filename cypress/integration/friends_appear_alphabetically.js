@@ -9,7 +9,7 @@ describe("Friends list appearing alphabetically", () => {
       // go to my profile
         cy.contains("My profile").click();
 
-        cy.get('.friends > ul')
+        cy.get('.list-items')
         .then($items => {
         return $items.map((index, html) => Cypress.$(html).text()).get()
         })
