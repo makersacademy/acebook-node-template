@@ -1,4 +1,3 @@
-// Function to add event listeners to comment forms
 const attachCommentFormListeners = () => {
   const commentForms = document.querySelectorAll(".comment-form");
   console.log(commentForms);
@@ -9,7 +8,6 @@ const attachCommentFormListeners = () => {
   });
 };
 
-// Function to handle comment form submission
 const handleCommentFormSubmit = (event) => {
   event.preventDefault();
 
@@ -50,7 +48,6 @@ const handleCommentFormSubmit = (event) => {
     });
 };
 
-// Attach event listeners when document is ready
 document.addEventListener("DOMContentLoaded", () => {
   attachCommentFormListeners();
 
