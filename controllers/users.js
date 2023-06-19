@@ -10,7 +10,17 @@ const UsersController = {
   // ensure email is unique
   // ensure username is unique 
   Create: (req, res) => {
-    
+  //   let query = {}
+  //   if (req.body.Create) {
+  //     query = {$or:[{username:{$regex: req.body.username, $options: 'i'}},{email:{$regex: req.body.email, $options: 'i'}}]}
+  //   }
+  //   this.Create.find(query , function (err, data) {
+  //     if(err) {
+  //       throw err
+  //     } else {
+  //       return data
+  //     }
+  //  });
     const user = new User({
       username: req.body.username,
       email: req.body.email,

@@ -8,7 +8,6 @@ a {
   color: #00B7FF;
 }
 
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -46,8 +45,12 @@ ul li a.active {
 }
 
 
-/* Login age */
+/* Login page */
 #new-session-form{
   padding-top: 5rem;
+  
 }
-
+/* 
+.error {
+  
+} */

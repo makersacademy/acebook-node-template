@@ -1,31 +1,41 @@
-{{#if error}}
-  <div>
-    {{error}}
+<section>
+
+  <div class="error">
+    {{#if error}}
+      {{error}}
+    {{/if}}
   </div>
-{{/if}}
 
-<form id="new-session-form" action="/sessions" method="post">
+  <form id="new-session-form" action="/sessions" method="post">
+    <label for="email">Email: </label>
+    <input
+      id="email"
+      type="email"
+      name="email"
+      value=""
+      maxlength="30"
+      oninvalid="alert('Please enter your email address')"
+      required
+    />
 
-  <label for="email">Email: </label>
-  <input
-    id="email"
-    type="email"
-    name="email"
-    value=""
-    maxlength="30"
-    oninvalid="alert('Please enter your email address')"
-    required
-  />
+    <label for="password">Password: </label>
+    <input
+      id="password"
+      type="password"
+      name="password"
+      value=""
+      oninvalid="alert('You must enter a valid password')"
+      required
+    />
 
-  <label for="password">Password: </label>
-  <input
-    id="password"
-    type="password"
-    name="password"
-    value=""
-    oninvalid="alert('You must enter a valid password')"
-    required
-  />
+    <input id="submit-login-button" type="submit" value="Submit" />
+  </form>
 
-  <input id="submit" type="submit" value="Submit" />
-</form>
+  <form id="cancel-login-button" action="/">
+    <input id="cancel" type="submit" value="Cancel" />
+  </form>
+
+  <div class="new-user">
+    <a href="/users/signup">New to Acebook? Create a new account here</a>
+  </div>
+</section>
