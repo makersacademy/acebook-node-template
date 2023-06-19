@@ -22,12 +22,21 @@ const ProfileController = {
       const friendRequests = allUsers.filter((user) =>
         currentUser.friendRequests.includes(user.email)
       );
+      console.log(`friendRequests: ${friendRequests}`)
+      // console.log(allUsers)
+   
   
       // Check if friendRequestSent exists in currentUser.sentFriendRequests
-      const friendRequestSent =
-        currentUser.sentFriendRequests.includes(req.session.friendRequestSent)
-          ? req.session.friendRequestSent
-          : null;
+      const friendRequestSent = allUsers.filter((user) =>
+      currentUser.sentFriendRequests.includes(user.email)
+    );
+
+
+        // currentUser.sentFriendRequests.includes(req.session.friendRequestSent)
+        //   ? req.session.friendRequestSent
+        //   : null;
+
+      console.log(`friend requests sent: ${friendRequestSent}`);
   
       res.render("profile/index", {
         friends_names: friends_names,
@@ -77,8 +86,8 @@ const ProfileController = {
                   user.email !== updatedUser.email
               );
 
-              console.log("friends_names:", friends_names);
-              console.log("nonFriends:", nonFriends);
+              // console.log("friends_names:", friends_names);
+              // console.log("nonFriends:", nonFriends);
 
               res.render("profile/index", {
                 friends_names: friends_names,
