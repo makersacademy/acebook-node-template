@@ -26,8 +26,7 @@ const UsersController = {
     const username = req.params.username; 
 
     let posts = await Post.find({username}) 
-    let user = await User.findOne({username}) 
-    console.log(posts)   
+    let user = await User.findOne({username})  
     res.render("users/profile", {user, isAuthenticated: true, posts: posts});
 
     // User.findOne({ username }, (err, user) => {
