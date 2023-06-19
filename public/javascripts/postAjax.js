@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .then((data) => {
-          console.log(data);
           const newPost = document.createElement("li");
           newPost.classList.add("post-item");
           newPost.innerHTML = data.html;

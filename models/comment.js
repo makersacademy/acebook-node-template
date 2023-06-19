@@ -29,7 +29,6 @@ const CommentSchema = new mongoose.Schema({
         message: "Comment cannot be empty",
       },
     ],
-    required: [true, "Comment is required"],
   },
 });
 
