@@ -22,4 +22,3 @@
 ## Profile
 
 - BUG - Name coming through as 'Name' instead of user name
-- Feature Missing / Bug - Reject friend request
