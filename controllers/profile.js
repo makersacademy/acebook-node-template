@@ -45,10 +45,13 @@ const ProfileController = {
       });
     });
   },
+
+  
+
   RemoveFriend: (req, res) => {
     const currentUser = req.session.user;
     const friendEmail = req.body.friendEmail;
-    
+  
     // Remove the friend from the current user's friends list
     User.findOneAndUpdate(
       { email: currentUser.email },
@@ -58,49 +61,35 @@ const ProfileController = {
         if (err) {
           throw err;
         }
-        
+  
         // Remove the current user from the friend's friends list
         User.findOneAndUpdate(
           { email: friendEmail },
           { $pull: { friends: currentUser.email } },
           { new: true },
-          (err, updatedFriendUser) => {
+          (err) => {
             if (err) {
               throw err;
             }
-            
+  
             // Re-query the user data with updated friends list
-            User.find({}, (err, allUsers) => {
+            User.find({}, (err) => {
               if (err) {
                 throw err;
               }
-              
+  
               // Update the friend lists in the session
               currentUser.friends = updatedUser.friends;
-              updatedFriendUser.friends = updatedFriendUser.friends;
-              
-              const friends_names = allUsers.filter((user) =>
-                updatedUser.friends.includes(user.email)
-              );
-              
-              const nonFriends = allUsers.filter(
-                (user) =>
-                  !updatedUser.friends.includes(user.email) &&
-                  user.email !== updatedUser.email
-              );
-              
-              // Render the updated data
-              res.render("profile/index", {
-                friends_names: friends_names,
-                nonFriends: nonFriends,
-                friendRequests: [],
-              });
+  
+              // Redirect to the Index route to render the updated data
+              res.redirect('/profile');
             });
           }
         );
       }
     );
   },
+  
   
 // AddFriend function in ProfileController
 AddFriend: (req, res) => {
