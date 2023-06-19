@@ -6,7 +6,6 @@ const SessionsController = {
   New: (req, res) => {
     res.render('sessions/login', {});
   },
-
   Create: (req, res) => {
     console.log('trying to log in');
     const email = req.body.email;
@@ -14,7 +13,7 @@ const SessionsController = {
     
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        res.redirect('/sessions/login');
+        res.render('sessions/login', {error: "Email and/or password doesn't work"});
       } else {
         bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
@@ -24,7 +23,7 @@ const SessionsController = {
             req.session.user = user;
             res.redirect('/posts');
           } else {
-            res.redirect('/sessions/login');
+            res.render('sessions/login', {error: "Email and/or password doesn't work"});
           }
         });
       }

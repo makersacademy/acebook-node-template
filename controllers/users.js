@@ -7,7 +7,10 @@ const UsersController = {
     res.render("users/signup", {});
   },
 
+  // ensure email is unique
+  // ensure username is unique 
   Create: (req, res) => {
+    
     const user = new User({
       username: req.body.username,
       email: req.body.email,
