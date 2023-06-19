@@ -16,24 +16,17 @@ const handleCommentFormSubmit = (event) => {
   const formData = new FormData(event.currentTarget);
   const dataObject = Object.fromEntries(formData);
   const commentsContainer = event.currentTarget.closest("ul");
-  console.log(commentsContainer);
-
   const ulId = commentsContainer.id;
-  console.log(ulId);
-
   const postId = ulId.replace("comments-", "");
   dataObject.postId = postId;
 
-  console.log(postId);
-  console.log(dataObject);
-
   const json = JSON.stringify(dataObject);
-  console.log(json);
 
   fetch(event.currentTarget.action, {
     method: event.currentTarget.method,
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
     },
     body: json,
   })
@@ -45,9 +38,6 @@ const handleCommentFormSubmit = (event) => {
       }
     })
     .then((data) => {
-      console.log(data.headers.get("Content-Type"));
-      console.log(data.headers.get("Accept"));
-      data.text().then((text) => console.log(text));
       const postId = dataObject.postId;
       const newComment = document.createElement("li");
       newComment.classList.add("comment-item");

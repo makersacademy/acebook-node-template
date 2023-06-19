@@ -10,6 +10,7 @@ const CommentsController = {
 
     try {
       await commentData.save();
+      console.log("saved");
       const comment = commentData.toObject();
 
       if (req.accepts("json")) {
