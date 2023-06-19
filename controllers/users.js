@@ -7,9 +7,6 @@ const UsersController = {
   New: (req, res) => {
     res.render("users/signup", {});
   },
-
-  // ensure email is unique
-  // ensure username is unique
   
   Create: (req, res) => {
      let query = {$or:[{username:{$regex: new RegExp('^' + req.body.username + '$', 'i')}},{email:{$regex: new RegExp('^' + req.body.email + '$', 'i')}}]}
