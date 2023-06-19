@@ -1,15 +1,9 @@
 describe("Feed Page", () => {
-    it("can view post on main feed", () => {
-    // sign up
-    cy.visit("/users/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
-
+    it("can view post details", () => {
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
+    cy.get("#email").type("test@test.com");
+    cy.get("#password").type("Testtest1");
     cy.get("#submit").click();
 
     // submit a post
@@ -21,5 +15,6 @@ describe("Feed Page", () => {
 
     cy.contains("Testing Post Details").click();
     cy.get('h1').should("contain", "Testing Post Details");
+    cy.get('p').should("contain", "Author: Test Test")
     });
 });
