@@ -9,7 +9,6 @@ const attachLikeButtonListeners = () => {
 
 const handleLikeButtonClick = (event) => {
   event.preventDefault();
-  console.log(event.currentTarget);
 
   const likeForm = event.target.closest("form");
   const formData = new FormData(likeForm);
@@ -99,7 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", (event) => {
       event.preventDefault();
 
+      const commentsContainer = event.currentTarget.closest("ul");
+      const ulId = commentsContainer.id;
+      const postId = ulId.replace("comments-", "");
+
       const formData = new FormData(event.target);
+      console.log(formData);
+
       fetch(event.target.action, {
         method: event.target.method,
         headers: {
@@ -121,6 +126,13 @@ document.addEventListener("DOMContentLoaded", () => {
           const postsList = document.querySelector(".posts");
           postsList.insertAdjacentElement("afterbegin", newPost);
 
+          const hiddenInput = newPost.querySelector(
+            "#like-form input[name='postId']"
+          );
+
+          hiddenInput.value = postId;
+
+          attachLikeButtonListeners();
           attachCommentFormListeners();
         })
         .catch((error) => {

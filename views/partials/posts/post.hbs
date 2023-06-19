@@ -11,12 +11,11 @@
     {{/unless}}
 
     <ul id="comments-{{post.id}}">
+      {{> posts/new_comment post}}
+      {{> posts/likes post}}
       {{#each post.comments}}
         {{> posts/comment this}}
       {{/each}}
-
-      {{> posts/new_comment post}}
-      {{> posts/likes post}}
     </ul>
   </div>
 </li>

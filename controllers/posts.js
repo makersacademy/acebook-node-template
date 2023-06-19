@@ -18,7 +18,6 @@ const PostsController = {
         const user = await userService.getUserById(post.user);
         post.username = user.username;
         post.currentUser = currentUser.username === post.username;
-        post.id = post._id;
 
         const likes = await likeService.getLikesByPostId(post._id);
         post.likedBy = likes.map((like) => like.user.username);
