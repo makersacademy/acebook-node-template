@@ -46,3 +46,22 @@
   {{/each}}
 </div>
 
+
+
+<script>
+  window.addEventListener('beforeunload', function() {
+    // Store the scroll position in sessionStorage
+    sessionStorage.setItem('scrollPosition', window.pageYOffset || document.documentElement.scrollTop);
+  });
+
+  window.addEventListener('load', function() {
+    // Retrieve the stored scroll position from sessionStorage
+    var scrollPosition = sessionStorage.getItem('scrollPosition');
+
+    // Restore the scroll position
+    if (scrollPosition) {
+      window.scrollTo(0, scrollPosition);
+    }
+  });
+</script>
+
