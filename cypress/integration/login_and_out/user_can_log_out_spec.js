@@ -8,19 +8,19 @@ describe("Session Handling", () => {
         cy.get("#username").type("User1");
         cy.get("#email").type("someone@example.com");
         cy.get("#password").type("mPgaN5s51g!");
-        cy.get("#submit").click();
+        cy.get("#submit-signup-button").click();
 
         // sign in
         cy.visit("/sessions/login");
         cy.get("#email").type("someone@example.com");
         cy.get("#password").type("mPgaN5s51g!");
-        cy.get("#submit").click();
+        cy.get("#submit-login-button").click();
 
         // log out
         cy.get('nav > ul > li').contains('Logout').click();
 
         // check redirect to log in
-        cy.url().should('include', '/sessions/login');
+        cy.url().should('contain', '/sessions/login');
 
     });
 });
