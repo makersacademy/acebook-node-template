@@ -11,11 +11,17 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+const mongoose = require('mongoose')
+const User = require("./models/user");
+
+const sanitizeInput = require('./functions/sanitize')
+
 const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -24,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
+
 app.use(
   session({
     key: "user_sid",
@@ -31,10 +38,13 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000,
+      expires: 1200000,
     },
+    rolling: true, // Extend the session expiration on each request
+    rollingTimeout: 1200000, // Set the rolling timeout to 10 minutes
   })
 );
+
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {
@@ -44,6 +54,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
@@ -51,6 +62,8 @@ const sessionChecker = (req, res, next) => {
   } else {
     next();
   }
+
+  
 };
 
 // route setup
@@ -59,10 +72,12 @@ app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
 
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
+
 
 // error handler
 app.use((err, req, res) => {
@@ -73,6 +88,33 @@ app.use((err, req, res) => {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+
+
+app.post("/users/new", async (req, res) => {
+  try {
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
+
+    // Sanitize and validate input
+    const sanitizedFirstName = sanitizeInput(firstName);
+    const sanitizedLastName = sanitizeInput(lastName);
+    const sanitizedEmail = sanitizeInput(email);
+
+    // Create a new user
+    const user = new User({
+      firstName: sanitizedFirstName,
+      lastName: sanitizedLastName,
+      email: sanitizedEmail,
+      password: password,
+    });
+
+    // Save the user to the database
+    await user.save();
+
+    res.status(200).json({ message: "Signup successful!" });
+  } catch (error) {
+    res.status(500).json({ message: "Signup failed." });
+  }
 });
 
 module.exports = app;

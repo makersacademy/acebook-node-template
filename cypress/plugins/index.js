@@ -12,6 +12,20 @@
 // the project's config changing)
 
 module.exports = function() {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  
 }
+
+//
+//const mongoose = require('mongoose');
+//
+//module.exports = (on) => {
+//  on('task', {
+//    async clearDb() {
+//      await mongoose.connect('mongodb://0.0.0.0/acebook_test');
+//      await mongoose.connection.db.dropDatabase();
+//      await mongoose.connection.close();
+//      return null;
+//    }
+//  });
+//};
+//

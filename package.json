@@ -8,33 +8,47 @@
     "lint": "eslint .",
     "start": "nodemon ./bin/www",
     "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/acebook_test' npm start",
+    "test:unit": "jest --testMatch '**/spec/models/**/*.[jt]s?(x)'",
+    "test:e2e": "jest --testMatch '**/test/**/*.[jt]s?(x)'",
+    "test:integration": "cypress run",
     "test": "npm run lint && npm run test:unit && npm run test:integration",
-    "test:unit": "jest",
-    "test:integration": "cypress run"
+    "test:all": "npm run test && npm run test:e2e"
   },
   "engines": {
     "node": ">=18.1.0"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "chance": "1.1.11",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "express-session": "^1.17.2",
+    "dompurify": "^3.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
+    "jsdom": "^22.1.0",
+    "lint": "^0.8.19",
     "method-override": "^3.0.0",
     "mongodb": "^3.4.1",
     "mongoose": "^5.8.11",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "sanitize-html": "^2.10.0",
+    "supertest": "^6.3.3",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "cypress": "^9.5.1",
-    "eslint": "^8.10.0",
+    "eslint": "^8.42.0",
     "eslint-plugin-cypress": "^2.8.1",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^10.0.0",
-    "jest": "^27.5.1"
+    "eslint-plugin-react": "^7.32.2",
+    "geckodriver": "^4.0.4",
+    "jest": "^27.5.1",
+    "selenium-webdriver": "^4.10.0",
+    "sinon": "^15.1.2"
   },
   "nodemonConfig": {
     "ext": "js,hbs"

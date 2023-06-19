@@ -1,5 +1,31 @@
-<form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
-  <input type="submit" value="Submit">
-</form>
+<div class="timeline-navbar fixed-content">
+  <div class="topbar">
+    <div class="initials">{{initials}}</div>
+    <h1 class="title">Acebook</h1>
+    <form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out" class="global-button logout">
+    </form>
+  </div>
+  <div class="bottombar">
+    <a href="/posts" class="go-top">Back to Posts</a>
+  </div>
+</div>
+
+{{#if error }}
+<div class="error-message">
+    {{error}}
+</div>
+{{/if}}
+
+<div class="new-post-parent">
+  <div class="new-postbox">
+    <form id="new-post-form" action="/posts" method="post">
+      <div class="new-post-content">
+        <textarea id="message" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
+      </div>
+      <div class="new-post-controls">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+</div>

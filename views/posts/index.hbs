@@ -1,9 +1,46 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  {{/each}}
-</ul>
+<div class="timeline-navbar fixed-content">
+  <div class="topbar">
+    <div class="initials">{{initials}}</div>
+    <h1 class="title">Acebook</h1>
+    <form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out" class="global-button logout">
+    </form>
+  </div>
+  <div class="bottombar">
+    <a class="global-button new-post-link" href="/posts/new">Create Post</a>
+    <a class="go-top">Back to top</a>
+  </div>
+</div>   
 
-<a class="new-post-link" href="/posts/new">New post</a>
+<div class="timeline">
+  {{#each posts}}
+  <div class="posts">
+    <div class="post-sec">
+      <div class="initials">{{this.author}}</div>
+      <div class="post-details">
+        <p class="message">{{this.message}}</p>
+        <div class="likes">
+          <form action="/posts/{{this._id}}/likes" method="POST" id="like-post">
+            <p class="likes-count">{{this.likes}}</p>
+            <input type="submit" value="Like" class="global-button like-button">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="comments-sec">
+      {{#each this.comments}}
+        <div class="comment">
+          <div class="commenter-initials">{{this.author}}</div>
+          <p class="comment-content">{{this.content}}</p>
+        </div>
+      {{/each}}
+    </div>
+    <div class="post-comment-sec">
+      <form action="/posts/{{this._id}}/comments" method="POST" id="new-comment-form">
+        <input id="comment" type="text" name="comment" value="" placeholder="Say something...">
+        <input type="submit" value="Submit" class="global-button">
+      </form>
+    </div>
+  </div>
+  {{/each}}
+</div>

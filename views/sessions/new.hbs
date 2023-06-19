@@ -1,7 +1,21 @@
-<form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+<div class="banner">
+  <a><h1 class="title">Acebook</h1></a>
+  <hr>
+</div>
+
+<div id="parent">
+  <div class="signup-box">
+    {{#if error}}
+      <div style="color: red;">{{error}}</div><br>
+    {{/if}}
+    <form id="new-session-form" action="/sessions" method="post">
+      <label for="email">Email: </label>
+      <input id="email" type="email" name="email" value="" required>
+      <label for="password">Password: </label>
+      <input id="password" type="password" name="password" value="" required>
+      <input id="submit" type="submit" value="Submit" class="global-button">
+    </form>
+    <br>
+    <p>Did you mean <a href="/users/new">signup</a>?</p>
+  </div>
+</div>
