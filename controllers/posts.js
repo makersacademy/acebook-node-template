@@ -1,14 +1,9 @@
 const Post = require("../models/post");
-const User = require("../models/user");
 const helpers = require("handlebars-helpers")();
 
 const PostsController = {
 	Index: (req, res) => {
-		const postId = req.params.postId;
-		const userId = req.session.user._id;
 		const usersFriends = req.session.user.friends;
-		// usersFriends.push(req.session.user.email);
-		// console.log(usersFriends, "<<<<<< USERS FRIENDS");
 
 		Post.find(
 			{
@@ -21,7 +16,6 @@ const PostsController = {
 				if (err) {
 					throw err;
 				}
-				console.log(posts, "<<<<<< POSTS");
 
 				const reversedPosts = posts.reverse();
 				const timeSince = helpers.timeSince;
@@ -32,56 +26,6 @@ const PostsController = {
 				});
 			}
 		);
-
-		// User.find({ email: { $in: usersFriends } }, (err, users) => {
-		// 	if (err) {
-		// 		throw err;
-		// 	}
-
-		// 	const userIds = users.map((user) => user._id.toString());
-		// 	console.log(userIds, "<<<<<<< USERS IDS");
-
-		// 	Post.find({ "postAuthor.id": { $in: userIds } }, (err, posts) => {
-		// 		if (err) {
-		// 			throw err;
-		// 		}
-		// 		console.log(posts, "<<<<<< POSTS");
-
-		// 		const reversedPosts = posts.reverse();
-		// 		const timeSince = helpers.timeSince;
-
-		// 		res.render("posts/index", {
-		// 			posts: reversedPosts,
-		// 			timeSince: timeSince,
-		// 		});
-		// 	});
-		// });
-
-		// .then((users) => {
-		// 	console.log(users, "<<<<<< USERS FRIENDS IDS");
-		// Post.find({ postAuthor: { id: { $in: users } } }).then((posts) =>
-		// 	console.log(posts, "<<<<<<< POSTS")
-		// );
-
-		// 	Post.find((posts) => {
-		// 		console.log(posts);
-		// 		const filteredPosts = posts.filter((post) =>
-		// 			users.includes(post.postAuthor.id)
-		// 		);
-		// 		console.log(filteredPosts);
-		// 	});
-		// });
-
-		// Post.find({ postAuthor: { id: { $in: usersIds } } }).then((posts) =>
-		// 	console.log(posts)
-		// );
-
-		// Reverse the order of posts array
-		// 	const reversedPosts = posts.reverse();
-		// 	const timeSince = helpers.timeSince;
-
-		// 	res.render("posts/index", { posts: reversedPosts, timeSince: timeSince });
-		// };
 	},
 
 	New: (req, res) => {
