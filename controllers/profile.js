@@ -31,11 +31,6 @@ const ProfileController = {
       currentUser.sentFriendRequests.includes(user.email)
     );
 
-
-        // currentUser.sentFriendRequests.includes(req.session.friendRequestSent)
-        //   ? req.session.friendRequestSent
-        //   : null;
-
       console.log(`friend requests sent: ${friendRequestSent}`);
   
       res.render("profile/index", {
