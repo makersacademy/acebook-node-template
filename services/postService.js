@@ -15,6 +15,7 @@ exports.savePost = async (postData) => {
     ...postData,
     id: post._id,
     formattedCreatedAt: moment(post.createdAt).format("DD/MM/YYYY HH:mm"),
+    currentUser: true,
   };
 
   return postObj;
