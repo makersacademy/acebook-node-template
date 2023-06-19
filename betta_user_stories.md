@@ -4,6 +4,15 @@ Acebook aims to be an easy-to-use and accessible platform that simplifies stayin
 Acebook will connect people and make their lives betta.
 
 ## User Stories
+
+**Feature:** Homepage
+- As a new user,
+
+  When I navigate to the site,
+
+  I want to see the logo, signup, and login buttons.
+
+
 **Feature:** Signup
 - As a new user,  
   When I am on homepage and I click on sign up,  

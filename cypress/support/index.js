@@ -24,7 +24,7 @@ before(() => {
   const password = "Password!123";
 
   cy.visit("/");
-  cy.get('a.global-button[href="/users/new"]').contains('Sign Up').click();
+  cy.get('a[href="/users/new"]').click();
   cy.get("#email").type(email);
   cy.get("#password").type(password);
   cy.get("#confirmPassword").type(password);
