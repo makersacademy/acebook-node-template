@@ -1,7 +1,9 @@
+
 var mongoose = require("mongoose");
 
 require("../mongodb_helper");
 var Post = require("../../models/post");
+// const { text } = require('express');
 
 describe("Post model", () => {
   beforeEach((done) => {
@@ -50,7 +52,7 @@ describe("Post model", () => {
   });
 
 
-  it("can save a post", (done) => {
+  it("can create a post", (done) => {
     var post = new Post({ message: "some message" });
 
     post.save((err) => {
@@ -64,6 +66,37 @@ describe("Post model", () => {
       });
     });
   });
+
+  it("can create a post with an emoji", (done) => {
+    var post = new Post({ message: "😂" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "😂" });
+        done();
+      });
+    });
+  });
+
+  it("can create a post with special characters", (done) => {
+    var post = new Post({ message: "!@£$%^&*()" });
+
+    post.save((err) => {
+      expect(err).toBeNull();
+
+      Post.find((err, posts) => {
+        expect(err).toBeNull();
+
+        expect(posts[0]).toMatchObject({ message: "!@£$%^&*()" });
+        done();
+      });
+    });
+  });
+
 
   it("can comment on a post", (done) => {
     let post = new Post({ message: "message to be commented on", comments: {message: "great comment", author: "somebody"} });
