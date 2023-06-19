@@ -8,13 +8,13 @@ describe("Timeline", () => {
     cy.get("#username").type("User1");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#Submit").click();
+    cy.get("#submit-signup-button").click();
 
     // sign in
     cy.visit("/sessions/login");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#Submit").click();
+    cy.get("#submit-login-button").click();
 
     // submit a post
     cy.visit("/posts");
