@@ -1,13 +1,12 @@
 const User = require("../models/user");
 const Post = require("../models/post");
-// var RegexParser = require("regex-parser");
 
 const UsersController = {
 
   New: (req, res) => {
     res.render("users/signup", {});
   },
-  
+
   Create: (req, res) => {
      let query = {$or:[{username:{$regex: new RegExp('^' + req.body.username + '$', 'i')}},{email:{$regex: new RegExp('^' + req.body.email + '$', 'i')}}]}
     
