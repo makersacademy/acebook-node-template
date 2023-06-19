@@ -1,19 +1,19 @@
 :root {
-  --main-color: rgb(255, 121, 126);
-  --hover-color: rgb(255, 186, 180);
+  --main-color: #e30b5d;
+  --hover-color: #aa114c;
+  --main-grey: rgb(236, 236, 236);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
+/* Global Tags */
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
+  text-decoration: none;
   color: var(--main-color);
 }
 
@@ -21,298 +21,251 @@ a:hover {
   color: var(--hover-color);
 }
 
-/* landing page */
+hr {
+  height: 1px;
+  border: none;
+  background-color: black;
+}
 
-.parent-container {
-  margin: 20vh 30vh;
-  padding: 15vh;
+.input-box {
+  padding: 1vh;
+  margin: 0.5vh;
+  border-radius: 30vh;
+  border: none;
+  background-color: var(--main-grey);
+}
+
+.global-button {
+  padding: 1vh 2vh;
+  margin: 0.5vh;
+  border-radius: 30vh;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+}
+
+.global-button:hover {
+  background-color: var(--hover-color);
+  cursor: pointer;
+}
+
+.logout {
+  margin-right: 4vh;
+}
+
+.new-content, .timeline {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+
+.timeline {
+  margin-top: 35vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background-color: var(--main-grey);
+  min-height: 68vh;
+}
+
+/* Banner */
+.banner {
+  text-align: center;
+}
+
+/* Navbar */ 
+.timeline-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 1vh;
+  border-width: 1px;
+  background-color: white;
+  position: fixed;
+}
+
+.topbar, .bottombar {
+  display: flex;
+  align-items: center; 
+}
+
+.topbar {
   justify-content: space-between;
-  /* border-style: solid; */
+}
+
+.bottombar {
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 2vh;
+}
+
+/* Initials Icon */
+.initials {
+  display: flex;
+  margin: 0.5vh;
+  padding: 3vh;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 40vh;
+  height: 4vh;
+  width: 4vh;
+  justify-content: center;
+  align-items: center; 
+}
+
+/* Landing Page */
+.title {
+  font-size: 10vh;
+  color: var(--main-color);
+}
+
+.homepage-content {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 97vh;
 }
 
 .left-container,
 .right-container {
-  padding: 5vh;
-}
-
-.title {
-  color: var(--main-color);
-  font-size: 5em;
-}
-
-.slogan {
-  font-size: 1.5em;
-}
-
-@media screen and (max-width: 768px) {
-  .parent-container {
-    flex-direction: column;
-    margin: 10vh;
-    padding: 5vh;
-  }
-
-  .left-container,
-  .right-container {
-    padding: 2vh;
-    align-items: center; /* Add this to center align the content */
-  }
-
-  .title {
-    font-size: 3em; /* Reduce the font size for smaller screens */
-  }
-
-  .slogan {
-    font-size: 1em; /* Reduce the font size for smaller screens */
-  }
-}
-
-.left-container {
-  text-align: center;
-}
-
-.right-container {
+  height: 50vh;
+  width: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  margin: 0 10vh;
 }
 
-/*
-media query 
-*/
-@media screen and (max-width: 768px) {
-  .parent-container {
-    flex-direction: column; /* Stack containers vertically */
-    align-items: center; /* Center align the content horizontally */
-    margin: 10vh;
-    padding: 5vh;
-  }
-
-  .left-container,
-  .right-container {
-    padding: 2vh;
-  }
-
-  .right-container {
-    margin-top: -2em;
-  }
-  .title {
-    font-size: 3em; /* Adjust the font size for smaller screens */
-  }
-
-  .slogan {
-    font-size: 1.2em;
-  }
-}
-
-.global-button {
-  width: 20vh;
-  background-color: var(--main-color);
-  margin: 1.25vh;
-  padding: 1vh 2vh;
-  border-radius: 5px;
-  text-decoration: none;
-  color: white;
-  border: none;
-}
-
-.global-button:hover {
-  color: var(--main-color);
-  background-color: rgb(255, 186, 180);
-  cursor: pointer;
+.left-container h1, .left-container p {
+  margin: -0.1em 0;
 }
 
 .right-container hr {
-  background-color: var(--main-color);
-  border: none;
-  height: 1px;
+  width: 20vh;
 }
 
-.login-form,
+.right-container a {
+  padding: 1vh 1vh;
+}
+
+/* New Session Page */
 #new-session-form {
   display: flex;
   flex-direction: column;
 }
 
-/* banner */
-.banner {
-  text-align: center;
-  margin: 5vh 0vh;
-}
-
-.banner hr {
-  background-color: var(--main-color);
-  border: none;
-  height: 1px;
-  margin-top: 2vh;
-}
-
-/* Views --> Sessions --> new.hbs */
-#parent {
-  display: flex;
-  justify-content: center;
-}
-
-.signup-box {
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 45vh;
-  padding: 4vh;
-}
-
-.signup-box p {
-  text-align: center;
-}
-
-/* Views --> Posts --> Navbar timeline */
-/* Fixes the navbar when a user scrolls down */
-.timeline-navbar {
-  background-color: white;
-  width: 100%;
-  height: auto;
-  margin: auto;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: var(--main-color);
-  text-align: center;
-  align-items: center;
+/* New User Page */
+#new-user-form {
   display: flex;
   flex-direction: column;
 }
 
-.topbar,
-.bottombar {
-  display: flex;
-  align-items: center;
-  width: 88%;
+.password-requirement {
+  font-size: 12px;
 }
 
-.topbar {
-  justify-content: space-between;
-  padding-top: 5vh;
-}
-
-.bottombar {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 5vh 0vh;
-}
-
-.initials {
-  display: flex;
-  padding: 2vh;
-  border-radius: 100%;
-  border-style: solid;
-  height: 9vh;
-  width: 9vh;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.logout {
-  width: auto;
-  margin: 0;
-}
-
-.comment-box {
-  margin-top: 10vh;
-}
-
-/* Creating a new post  */
-.new-post-parent {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 10vh;
-}
-
-.new-postbox {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  width: 45vh;
-  padding: 4vh;
-}
-
-.new-post-content {
-  margin-bottom: 2vh;
-}
-
-.new-post-controls {
-}
-
-/* Creating a new post  */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-}
-
+/* Posts Page */
 .posts {
   display: flex;
   flex-direction: column;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 1vh;
-  padding: 1vh;
-  margin: 1vh 0vh;
+  margin: 5vh;
+  padding: 2vh;
+  width: 60vh;
+  border-radius: 3vh;
+  background-color: white;
 }
 
 .post-sec {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-rows: 30% 70%;
+}
+
+.author {
+  display: flex;
+  padding: 2vh;
+  border-radius: 100%;
+  border-style: solid;
+  border-width: 1px;
+  height: 7vh;
+  width: 7vh;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .post-details {
-  display: grid;
-  grid-template-rows: 50% 50%;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .message {
+  width: 40vh;
   grid-row: 1;
-  max-width: 20vh;
+  max-width: 40vh;
   padding: 1vh;
   word-wrap: break-word;
+  border-radius: 1vh;
+  background-color: rgb(236, 236, 236);
 }
 
 .likes {
-  grid-row: 2;
   display: flex;
   width: auto;
-  justify-content: end;
+  justify-content: start;
   align-items: center;
 }
 
 #like-post {
   display: flex;
   align-items: center;
+  margin-left: 0;
 }
 
-.like-button {
-  width: auto;
-}
-
-.comments-sec {
+.comment-sec {
   display: flex;
   flex-direction: column;
 }
 
+.comment {
+  display: flex;
+  align-items: center;
+}
+
+.commentor-name {
+  margin-right: 1vh;
+  color: var(--main-color);
+}
+
+.comment-content {
+  max-width: 40vh;
+  word-wrap: break-word;
+}
+
 .post-comment-sec {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+}
+
+.comment-box {
+  width: 40vh;
+}
+
+/* New Post Page */
+.new-post-box {
+  margin-top: 40vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#new-post-form {
   display: flex;
   flex-direction: column;
 }

@@ -1,35 +1,28 @@
 <div class="banner">
   <a><h1 class="title">Acebook</h1></a>
-  <hr>
 </div>
 
-{{#if error }}
-<div class="error-message">
-    {{error}}
-</div>
-{{/if}}
-
-<div id="parent">
-  <div class="signup-box">
-    <form id="new-user-form" action="/users" method="post">
-      <label for="first-name">First Name: </label><br>
-      <input id="first-name" type="first-name" name="firstName" maxlength="20" value="" required><br>
-      <label for="last-name">Last Name: </label><br>
-      <input id="last-name" type="last-name" name="lastName" maxlength="20" value="" required><br>
-      <label for="email">Email: </label><br>
-      <input id="email" type="email" name="email" value="" required><br>
-      <ul>
-        Passwords must contain:
-        <li>At least 8 characters (A-Z)</li>
-        <li>At least one number</li> 
-        <li>At least one special characters</li> 
-      </ul>
-      <label for="password">Password: </label><br>
-      <input id="password" type="password" name="password" value="" required><br>
-      <label for="confirmPassword">Confirm Password: </label><br>
-      <input id="confirmPassword" type="password" name="confirmPassword" value="" required><br>
-      <input id="submit" type="submit" value="Submit" class="global-button">
-    </form>
-    <p>Did you mean <a href="/sessions/new">login</a>?</p>
-  </div>
+<div class="new-content">
+  <h1>Signup</h1>
+  <form id="new-user-form" action="/users" method="post">
+    {{#if error }}
+      <div class="error-message">
+      {{error}}
+      </div>
+    {{/if}}
+    <input id="first-name" type="first-name" name="firstName" maxlength="20" placeholder="first name" required class="input-box">
+    <input id="last-name" type="last-name" name="lastName" maxlength="20" placeholder="last name" required class="input-box">
+    <input id="email" type="email" name="email" placeholder="email" required class="input-box">
+    <ul class="password-requirement">
+      Passwords must contain:
+      <li>At least 8 characters (A-Z)</li>
+      <li>At least one number</li> 
+      <li>At least one special characters</li> 
+    </ul>
+    <input id="password" type="password" name="password" placeholder="password" required class="input-box">
+    <input id="confirmPassword" type="password" name="confirmPassword" placeholder="confirm password" required class="input-box">
+    <input id="submit" type="submit" value="Submit" class="global-button">
+  </form>
+  <br>
+  <p>Did you mean <a href="/sessions/new">login</a>?</p>
 </div>
