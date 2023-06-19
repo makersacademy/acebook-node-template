@@ -36,9 +36,10 @@ jobs:
       - name: Start test server
         run: npm run start:test &
 
-      - name: Run all Cypress tests
+      - name: Run all Cypress tests on chrome
         uses: cypress-io/github-action@v5
         with:
+          browser: chrome
           start: npm start
           record: true
         env:
