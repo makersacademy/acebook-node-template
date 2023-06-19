@@ -114,27 +114,21 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .then((data) => {
-          const parser = new DOMParser();
-          const htmlDocument = parser.parseFromString(data.html, "text/html");
-          let likeCount = htmlDocument.querySelector("#like-count");
-          console.log(htmlDocument);
-          console.log(likeCount);
-          likeCount.innerText = "0";
-          likeCount.innerText = 0;
-          likeCount.value = "0";
-
-          const postComment = htmlDocument.querySelector(".post-comment");
-          let fullId = postComment.id;
-          let splitId = fullId.split("-");
-          let postId = splitId[1];
-
           const newPost = document.createElement("li");
           newPost.classList.add("post-item");
           newPost.innerHTML = data.html;
           const postsList = document.querySelector(".posts");
           postsList.insertAdjacentElement("afterbegin", newPost);
 
-          const hiddenInput = newPost.querySelector(
+          let postComment = newPost.querySelector(".post-comment");
+          let fullId = postComment.id;
+          let splitId = fullId.split("-");
+          let postId = splitId[1];
+
+          let likeCount = newPost.querySelector(".post-likes");
+          likeCount.textContent = "0 likes";
+
+          let hiddenInput = newPost.querySelector(
             "#like-form input[name='postId']"
           );
           hiddenInput.value = postId;
