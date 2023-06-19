@@ -1,13 +1,47 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/posts">Acebook</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          {{#if user}}
+            <li class="nav-item">
+              <form
+                id="logout-form"
+                action="/sessions?_method=DELETE"
+                method="POST"
+                style="display: none;"
+              ></form>
+              <a
+                href="#"
+                class="nav-link"
+                onclick="document.getElementById('logout-form').submit();"
+              >Log Out</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/friends">Friends</a>
+            </li>
+          {{else}}
+            <li class="nav-item">
+              <a class="nav-link" href="/sessions/new">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/new">Sign Up</a>
+            </li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
   </head>
   <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
     {{{body}}}
   </body>
+
 </html>
