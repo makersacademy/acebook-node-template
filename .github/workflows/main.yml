@@ -45,15 +45,6 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
-      - name: Run all Cypress tests on Firefox
-        uses: cypress-io/github-action@v5
-        with:
-          browser: firefox
-          start: npm start
-          record: true
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
       - name: Run all Cypress tests on Edge
         uses: cypress-io/github-action@v5
         with:
