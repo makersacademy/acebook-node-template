@@ -8,13 +8,13 @@ describe("Timeline", () => {
     cy.get("#username").type("User1");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#Submit").click();
 
     // sign in
     cy.visit("/sessions/login");
     cy.get("#email").type("someone@example.com");
     cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#Submit").click();
 
     // submit a post
     cy.visit("/posts");
@@ -25,7 +25,7 @@ describe("Timeline", () => {
     // check for error message, NOTE: this checks the entire page and as such will fail if this text is anywhere on the page. Potential area for refactoring
     //cy.contains('post must be populated');
     // tempory test to assert still on new post page
-    cy.url().should('include', '/posts/new');
+    cy.url().should('eq', '/posts/new');
 
       });
 });
