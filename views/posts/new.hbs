@@ -1,4 +1,4 @@
-<div class="timeline-navbar fixed-content">
+<div class="timeline-navbar">
   <div class="topbar">
     <div class="initials">{{initials}}</div>
     <h1 class="title">Acebook</h1>
@@ -11,21 +11,17 @@
   </div>
 </div>
 
-{{#if error }}
-<div class="error-message">
-    {{error}}
-</div>
-{{/if}}
-
-<div class="new-post-parent">
-  <div class="new-postbox">
+<div class="new-content">
+  <div class="new-post-box">
+    <h1>Create your Post</h1>
+    {{#if error }}
+      <div class="error-message">
+      {{error}}
+      </div>
+    {{/if}}
     <form id="new-post-form" action="/posts" method="post">
-      <div class="new-post-content">
-        <textarea id="message" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
-      </div>
-      <div class="new-post-controls">
-        <input type="submit" value="Submit">
-      </div>
+      <textarea id="message" class="input-area" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
+      <input type="submit" value="Submit" class="global-button">
     </form>
   </div>
 </div>

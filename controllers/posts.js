@@ -46,8 +46,6 @@ const PostController = {
         "Post content cannot be blank"
       })
     }
-
-    
     const post = new Post({
       author: author,
       message: req.body.message
