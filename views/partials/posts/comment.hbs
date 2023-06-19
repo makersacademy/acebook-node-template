@@ -1,19 +1,3 @@
-{{#each this.comments}}
-  <p><i>{{this.content}}</i><br />
-    <span class="comment-author">Posted by {{this.user}}</span>
-  </p>
-{{/each}}
-
-<form action="/comments" method="post" class="comment-form">
-  <label for="comment"></label>
-  <input type="hidden" name="postId" value={{this._id}} />
-  <input
-    id="comment"
-    type="text"
-    value=""
-    name="commentContent"
-    placeholder="Type your comment here ..."
-    required
-  />
-  <button type="submit" class="comment-button">Comment</button>
-</form>
+<p><i>{{this.content}}</i><br />
+  <span class="comment-author">Posted by {{this.user}}</span>
+</p>

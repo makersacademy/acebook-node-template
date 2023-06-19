@@ -9,7 +9,12 @@
         <button type="submit" class="befriend-button">Poke</button>
       </form>
     {{/unless}}
-    {{> posts/comment post}}
+
+    {{#each post.comments}}
+      {{> posts/comment this}}
+    {{/each}}
+
+    {{> posts/comment_form post}}
     {{> posts/likes post}}
   </div>
 </li>
