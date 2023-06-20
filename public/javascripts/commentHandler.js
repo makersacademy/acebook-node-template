@@ -3,6 +3,7 @@ import { postJson } from "./api.js";
 export const handleCommentFormSubmit = async (event) => {
   event.preventDefault();
 
+  const form = event.target;
   const formData = new FormData(event.currentTarget);
   const dataObject = Object.fromEntries(formData);
   const commentsContainer = event.currentTarget.closest("ul");
@@ -23,5 +24,7 @@ export const handleCommentFormSubmit = async (event) => {
     postsList.insertAdjacentElement("afterbegin", newComment);
   } catch (error) {
     console.error(error);
+  } finally {
+    form.reset();
   }
 };

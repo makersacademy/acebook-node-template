@@ -6,6 +6,7 @@ import { handleCommentFormSubmit } from "./commentHandler.js";
 export const handleNewPostFormSubmit = async (event) => {
   event.preventDefault();
 
+  const form = event.target;
   const formData = new FormData(event.target);
 
   try {
@@ -33,6 +34,8 @@ export const handleNewPostFormSubmit = async (event) => {
     hiddenInput.value = postId;
   } catch (error) {
     console.error(error);
+  } finally {
+    form.reset();
   }
   attachFormListeners(".like-button", "click", handleLikeButtonClick);
   attachFormListeners(".comment-form", "submit", handleCommentFormSubmit);
