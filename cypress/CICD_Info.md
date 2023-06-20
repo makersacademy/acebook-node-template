@@ -1,6 +1,6 @@
 # CI/CD Pipeline Information
 
-This project utilises Cypress, Github Actions and Cypress Cloud.
+This project utilises Cypress, Github Actions, Cypress Cloud, Render and MongoDB Atlas for CI/CD and deployment.
 
 - Cypress is used to run the integration tests, including some end-to-end testing.
 
@@ -8,7 +8,10 @@ This project utilises Cypress, Github Actions and Cypress Cloud.
 
 - Cypress Cloud stores the test data and allows for tracking and analytics in our bug reporting.
 
-At the moment, the project is not deployed in production, We aim to implement continuos development once this has been achieved.
+- Render hosts and deploys the NodeJS Project.
+
+- MongoDB Atlas hosts the live database for the production deployment.
+
 
 
 ## Pipeline steps:
@@ -20,15 +23,25 @@ At the moment, the project is not deployed in production, We aim to implement co
 5. The test server starts and Cypress begins its test run.
 6. The Cypress test begins by attempting a signup and creating an admin profile, which is then used for later tests.
 7. At the end of the tests, the test database is dropped.
-8The test run completes and test data is stored in Cypress Cloud for analysis.
-
-At this point we aim to implement the automatic deployment to Render.
+8. The test run completes and test data is stored in Cypress Cloud for analysis.
+9. Render acknowledges the new commit and rebuilds the deployment, connecting to the live database on MongoDB Atlas. 
 
 ## Test Scope
 
-As written in the test plan, we aim for the Cypress Integration tests to have total coverage of functionality,
-as well as some coverage for performance if we have time.
+### Unit: ###
+- 20 Tests covering all base classes
 
-We utilise random data generation for login, as well as 
+### Integration and End-To-End: ###
+- 6 Selenium tests, running on Firefox and Chrome, covering most functionality
+- 14 Cypress tests, running on Chrome and Edge, covering most functionality
+
+
+## Other notes and screenshots
+
+Cypress Cloud
+
+<img src="../assets/images/acebook_betta_cloud.png" width="600">
+
+
 
 
