@@ -25,8 +25,8 @@
         <input type="submit" value="Search" class="global-button">
       </div>
     </form>
-    <form id="new-post-form" action="/posts" method="post"
-    <div class="gif-results">
+    <form id="new-post-form" action="/posts" method="post">
+      <div class="gif-results">
         {{#if gifs}}
           <ul class="gif-list">
             {{#each gifs}}
@@ -42,8 +42,8 @@
           <p>No GIFs found.</p>
         {{/if}}
       </div>
-      <textarea id="message" class="input-area" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
-      <input type="submit" value="Submit" class="global-button">
+        <textarea id="message" class="input-area" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
+        <input type="submit" value="Submit" class="global-button">
     </form>
   </div>
 </div>
