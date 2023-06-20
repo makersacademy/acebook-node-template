@@ -1,4 +1,11 @@
-<div class="timeline-navbar">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    
+    <div class="timeline-navbar">
+      <i id="dark-mode-toggle" class="fas fa-moon toggle-button"></i>
   <div class="topbar">
     <div class="icon large-icon">{{icon}}</div>
     <h1 class="title">Acebook</h1>
@@ -13,7 +20,7 @@
 
 <div class="new-content">
   <div class="new-post-box">
-    <h1>Create your Post</h1>
+    <h1 class="create-title">Create your Post</h1>
     {{#if error }}
       <div class="error-message">
       {{error}}
@@ -39,7 +46,7 @@
           {{/each}}
           </ul>
         {{else}}
-          <p>No GIFs found.</p>
+          <p class="no-gif-line">No GIFs found.</p>
         {{/if}}
       </div>
         <textarea id="message" class="input-area" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
@@ -47,3 +54,38 @@
     </form>
   </div>
 </div>
+
+</body>
+
+<script>
+// Get the dark mode toggle button element
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Check if the user's preference is stored in localStorage
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Set the initial state of dark mode based on the user's preference
+if (isDarkMode) {
+  document.body.classList.add('dark-mode');
+  darkModeToggle.classList.add('fa-sun');
+} else {
+  document.body.classList.remove('dark-mode');
+  darkModeToggle.classList.add('fa-moon');
+}
+
+// Toggle dark mode when the button is clicked
+darkModeToggle.addEventListener('click', () => {
+  // Toggle the dark mode class on the body element
+  document.body.classList.toggle('dark-mode');
+  darkModeToggle.classList.toggle('fa-sun');
+  darkModeToggle.classList.toggle('fa-moon');
+
+  // Update the button text and store the dark mode preference
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'true');
+  } else {
+    localStorage.setItem('darkMode', 'false');
+  }
+});
+
+</script> 

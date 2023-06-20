@@ -1,9 +1,15 @@
-<div class="banner">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+  <div class="banner">
+      <i id="dark-mode-toggle" class="fas fa-moon toggle-button"></i>
   <a><h1 class="title">Acebook</h1></a>
 </div>
 
 <div class="new-content white-box">
-  <h1>Login</h1>
+  <h1 class="login-title">Login</h1>
   <em>
   {{#if error}}
     <div>{{error}}</div><br>
@@ -15,5 +21,38 @@
     <input id="submit" type="submit" value="Login" class="global-button">
   </form>
   <br>
-  <p>Did you mean <a href="/users/new">signup</a>?</p>
+  <p class="divert-text">Did you mean <a href="/users/new">signup</a>?</p>
 </div>
+</body>
+<script>
+// Get the dark mode toggle button element
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Check if the user's preference is stored in localStorage
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Set the initial state of dark mode based on the user's preference
+if (isDarkMode) {
+  document.body.classList.add('dark-mode');
+  darkModeToggle.classList.add('fa-sun');
+} else {
+  document.body.classList.remove('dark-mode');
+  darkModeToggle.classList.add('fa-moon');
+}
+
+// Toggle dark mode when the button is clicked
+darkModeToggle.addEventListener('click', () => {
+  // Toggle the dark mode class on the body element
+  document.body.classList.toggle('dark-mode');
+  darkModeToggle.classList.toggle('fa-sun');
+  darkModeToggle.classList.toggle('fa-moon');
+
+  // Update the button text and store the dark mode preference
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'true');
+  } else {
+    localStorage.setItem('darkMode', 'false');
+  }
+});
+
+</script> 

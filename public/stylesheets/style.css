@@ -4,7 +4,108 @@
   --main-grey: rgb(236, 236, 236);
 }
 
-/* Global Tags */
+/*
+dark mode css
+*/
+body.dark-mode {
+  --main-color: #9171f8;
+  --hover-color: #ba9ffb;
+  --main-grey: #11111;
+  --second-grey: #282828;
+  --third-grey: #3f3f3f;
+  --fourth-grey: #717171;
+  --text-color: white;
+  background-color: #111111;
+}
+
+body.dark-mode .timeline-navbar {
+  background-color: #111111;
+}
+
+body.dark-mode .posts {
+  background-color: var(--second-grey);
+  color: var(--fourth-grey);
+}
+
+body.dark-mode .input-box {
+  background-color: var(--third-grey);
+}
+
+body.dark-mode .message {
+  background-color: var(--fourth-grey);
+  color: black;
+}
+
+body.dark-mode .icon {
+  background-color: var(--main-color);
+}
+
+body.dark-mode .post-icon {
+  color: #111111;
+}
+
+body.dark-mode .white-box {
+  background-color: #111111;
+}
+
+body.dark-mode h1.login-title {
+  color: var(--text-color);
+}
+
+body.dark-mode p.divert-text {
+  color: var(--text-color);
+}
+
+body.dark-mode h1.create-title {
+  color: var(--text-color);
+}
+
+body.dark-mode p.no-gif-line {
+  color: var(--text-color);
+}
+
+.toggle-button {
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+body.dark-mode .toggle-button {
+  color: white;
+  cursor: pointer;
+}
+
+body.dark-mode h1.signup-title {
+  color: white;
+}
+body.dark-mode ul.password-requirement {
+  color: white;
+}
+
+body.dark-mode .new-post-box {
+  background-color: #282828;
+}
+
+body.dark-mode .input-area {
+  background-color: var(--third-grey);
+}
+
+body.dark-mode .slogan {
+  color: white;
+}
+
+body.dark-mode hr.line {
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+  body.dark-mode .toggle-button {
+    margin-bottom: 10px;
+  }
+  .toggle-button {
+    margin-bottom: 10px;
+  }
+}
+
 body {
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -67,14 +168,14 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   background-color: var(--main-grey);
 }
 
 .new-content {
   height: auto;
   padding: 10vh;
-} 
+}
 
 .white-box {
   background-color: white;
@@ -127,7 +228,6 @@ hr {
 .bottombar {
   font-size: 1.3vh;
 }
-
 
 /* Initials Icon */
 .initials {
@@ -209,7 +309,7 @@ hr {
   padding: 1vh;
 }
 /* Media Query for Responsive Layout */
-@media (max-width: 768px) {
+@media (max-width: 1022px) {
   .left-container,
   .right-container {
     height: auto;
@@ -473,5 +573,30 @@ hr {
 .input-area {
   resize: none;
   width: 400px;
-  height: 500px;
+  height: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .new-post-box {
+    width: 60vw; /* Adjust the width to fit smaller screens */
+  }
+  .gif-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gif-thumbnail {
+    height: 5vh;
+  }
+
+  .input-area {
+    max-width: 70%;
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .post-gif {
+    width: 80%; /* Expand the message to fit the container */
+    max-width: none;
+  }
 }
