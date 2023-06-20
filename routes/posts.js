@@ -19,7 +19,7 @@ router.post('/gif', async (req, res) => {
     try {
         const response = await axios.get(url);
         const { data } = response.data;
-        res.render('./posts/new', { gifs: data });
+        res.render('./posts/new', { icon: req.session.user.icon, gifs: data });
     } catch (error) {
         console.error(error);
         res.status(500).send(error.message);
