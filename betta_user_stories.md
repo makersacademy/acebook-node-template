@@ -17,7 +17,8 @@ Acebook will connect people and make their lives betta.
 - As a new user,  
   When I am on homepage and I click on sign up,  
   I want to be taken to the sign up page,
-  I want to see the option to enter my first name, last name, email, password, confirm password
+  I want to see the option to enter my first name, last name, email, password, confirm password,
+  I want to choose an Emoji Avatar,
   So that I can signup.
 
 **Feature:** Login
@@ -25,7 +26,7 @@ Acebook will connect people and make their lives betta.
   When I am on homepage I want to be able click login,  
   So that I can be taken to the login page,  
   And be able to enter my account details,
-  So that I can be taken to my homepage with my initials displayed.
+  So that I can be taken to my homepage with my emoji displayed.
 
 **Feature:** Logout
 - As a user,  
@@ -36,14 +37,14 @@ Acebook will connect people and make their lives betta.
 **Feature:** Posts Page
 - As a logged-in user,  
   I want to be able to see posts,
-  See comments on posts, and number of likes, and the initials of the author user,
+  See comments on posts, and number of likes, and the emoji of the author user,
   So that I can connect with other users.
 
 **Feature:** Create Post
 - As a logged-in user,
   I want to be able to click create post,
   And be taken to new post page,
-  Enter some content or upload an image,
+  Enter some content and add an optional Gif,
   So that I can create a post.
 
 **Feature:** Comment on Post
