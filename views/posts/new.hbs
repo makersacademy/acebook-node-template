@@ -2,13 +2,6 @@
       <input type="submit" value="Log Out">
     </form>
 
-{{!-- <form id="new-post-form" action="/posts" method="post">
-<form action="/action_page.php">
-  <input type="file" id="myFile" name="filename">
-  <label for="message">Message: </label>
-  <input id="message" type="text" name="message" value="">
-  <input type="submit">
-</form> --}}
 <form id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
   <input type="file" name="image" id="file" >
   <label for="message">Message:</label>
@@ -16,6 +9,9 @@
   <input type="submit">
 </form>
 
+    {{#if error}}
+    <p style="color: red;">{{error}}</p>
+    {{/if}}
 
-{{!-- <img src="data:{{post.image.contentType}};base64,{{post.image.data.toString('base64')}}" alt="Post Image" /> --}}
+
 
