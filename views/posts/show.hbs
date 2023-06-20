@@ -3,7 +3,9 @@
 
 <h1>{{ post.message }}</h1>
 
-<img src="/posts/{{post._id}}/image" width="1000px">
+{{#if post.image.data}}
+  <img src="/posts/{{post._id}}/image" width="1000px">
+{{/if}}
 <p>Author: {{ post.postAuthor.firstName }} {{ post.postAuthor.lastName }}</p>
 <p>Posted at: {{post.timestamp}}</p>
 
