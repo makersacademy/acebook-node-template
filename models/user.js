@@ -55,6 +55,7 @@ const UserSchema = new mongoose.Schema({
     type: [mongoose.Types.ObjectId], // each friend is represented by their ObjectId
     default: [],
   },
+  icon: String
 });
 
 const User = mongoose.model("User", UserSchema);

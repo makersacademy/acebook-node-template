@@ -1,11 +1,12 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 
+
 const PostController = {
   Index: (req, res) => {
     const firstName = req.session.user.firstName;
     const lastName = req.session.user.lastName;
-    const initials = `${firstName[0]}${lastName[0]}`
+    const icon = req.session.user.icon;
 
     Post.find()
       .populate("comments")
@@ -14,28 +15,34 @@ const PostController = {
           throw err;
         }
         const reversedPosts = posts.slice().reverse();
-
-        res.render("posts/index", { posts: reversedPosts, initials: initials});
+        res.render("posts/index", { posts: reversedPosts, icon: icon });
       });
   },
 
   New: (req, res) => {
     const firstName = req.session.user.firstName;
     const lastName = req.session.user.lastName;
-    const initials = `${firstName[0]}${lastName[0]}`
-    res.render("posts/new", {initials: initials});
+    const icon = req.session.user.icon
+
+    res.render("posts/new", {icon: icon});
   },
 
-  Create: (req, res) => {
+  Create: (req, res, gifUrl) => {
+    if (req.body.message.trim() === "") {
+      return res.status(400).render("posts/new", {
+        error:
+        "Post content cannot be blank"
+      })
+    }
 
     const firstName = req.session.user.firstName;
     const lastName = req.session.user.lastName;
     const author = `${firstName} ${lastName}`;
-    const initials = `${firstName[0]}${lastName[0]}`
+    const icon = req.session.user.icon;
     
     if (req.body.message.trim() === "") {
       return res.status(400).render("posts/new", {
-        initials: initials,
+        icon: icon,
         error:
         "Post content cannot be blank"
       })
@@ -45,6 +52,8 @@ const PostController = {
 
     const post = new Post({
       author: author,
+      authorIcon: icon,
+      gifUrl: req.body.gifUrl
       message: `${messageWithParagraphs}`,
     });
 
@@ -98,8 +107,6 @@ const PostController = {
         content: req.body.comment
       });
 
-      
-      
       await comment.save();
       post.comments.push(comment);
       await post.save();

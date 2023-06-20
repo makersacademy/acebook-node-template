@@ -4,6 +4,7 @@ const Comment = require("./comment");
 const PostSchema = new mongoose.Schema(
   {
     author: String,
+    authorIcon: String,
     message: {
       type: String,
       maxLength: 500,
@@ -11,6 +12,7 @@ const PostSchema = new mongoose.Schema(
     },
     likes: { type: Number, default: 0 },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+    gifUrl: String,
   },
   { timestamps: true }
 );

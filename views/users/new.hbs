@@ -2,7 +2,7 @@
   <a><h1 class="title">Acebook</h1></a>
 </div>
 
-<div class="new-content">
+<div class="new-content white-box">
   <h1>Signup</h1>
   <form id="new-user-form" action="/users" method="post">
     {{#if error }}
@@ -22,6 +22,18 @@
     </ul>
     <input id="password" type="password" name="password" placeholder="password" required class="input-box">
     <input id="confirmPassword" type="password" name="confirmPassword" placeholder="confirm password" required class="input-box">
+    <div class="icon-select">
+      <input type="radio" name="icon" value=":)" class="icon-radio"><div class="icon">:)</div>
+      <input type="radio" name="icon" value=":o" class="icon-radio"><div class="icon">:o</div>
+      <input type="radio" name="icon" value=":D" class="icon-radio"><div class="icon">:D</div>
+      <input type="radio" name="icon" value=":3" class="icon-radio"><div class="icon">:3</div>
+    </div>
+    <div class="icon-select">
+      <input type="radio" name="icon" value=";)" class="icon-radio"><div class="icon">;)</div>
+      <input type="radio" name="icon" value=":b" class="icon-radio"><div class="icon">:b</div>
+      <input type="radio" name="icon" value=":s" class="icon-radio"><div class="icon">:s</div>
+      <input type="radio" name="icon" value=":|" class="icon-radio"><div class="icon">:|</div>
+    </div>
     <input id="submit" type="submit" value="Submit" class="global-button">
   </form>
   <br>

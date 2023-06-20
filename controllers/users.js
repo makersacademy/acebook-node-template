@@ -1,15 +1,15 @@
 const User = require("../models/user");
-const SessionsController = require("../controllers/sessions")
-
+const SessionsController = require("../controllers/sessions");
+const bcrypt = require("bcryptjs");
 const UsersController = {
+
   New: (req, res) => {
     res.render("users/new", {});
   },
 
   Create: (req, res) => {
-    const { email, firstName, lastName, password, confirmPassword } = req.body;
+    const { email, firstName, lastName, password, confirmPassword, icon } = req.body;
     const maxLength = 50;
-
     if (firstName.length > maxLength) {
       return res.status(400).render("users/new", {
         error: "First name exceeds the character limit",
@@ -66,22 +66,37 @@ const UsersController = {
           .render("users/new", { error: "Email address already taken" });
       }
 
-      const user = new User({ email, firstName, lastName, password });
-      user.save((err) => {
+      // Hash password using bcryptjs
+      const saltRounds = 10; // Increase this value for better security, but slower performance
+      bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
         if (err) {
           return res.status(500).render("users/new", { error: err.message });
         }
+        
+        const user = new User({
+          email,
+          firstName,
+          lastName,
+          password: hashedPassword,
+          icon: icon
+        });
 
-        // Successful sign up redirects to /posts page
-        req.session.user = {
-          _id: user._id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-        }
-        res.status(201).redirect("/posts");
+        user.save((err) => {
+          if (err) {
+            return res.status(500).render("users/new", { error: err.message });
+          }
+
+          // Successful sign up redirects to /posts page
+          req.session.user = {
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            icon: user.icon
+          };
+          res.status(201).redirect("/posts");
+        });
       });
     });
   },
 };
-
 module.exports = UsersController;
