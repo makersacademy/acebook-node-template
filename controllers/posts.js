@@ -6,47 +6,68 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      // const dateFormatted = `${posts[0].date.getHours()}:${posts[0].date.getMinutes()}, ${posts[0].date.toDateString()}`;
+      // console.log(dateFormatted);
+
+      
+      const sortedPosts = posts.flat().sort((a, b) => b.date - a.date);
+      // sortedPosts[0].date = dateFormatted;
         // Implemented authentication logic to dynamically update navbar links based on the user's login status.
-      res.render("posts/index", { posts: posts, user: req.session.user, isAuthenticated: true});
+      res.render("posts/index", { posts: sortedPosts, user: req.session.user, isAuthenticated: true});
     });
+    
   },
   New: (req, res) => {
     res.render("posts/new", {user: req.session.user, isAuthenticated: true});
   },
 
-  AddLike: (req, res) => {
+
+  AddLike: async (req, res) => {
+    // get the post_id for the 
     const post_id = req.params.id;
-    console.log(post_id);
-    console.log("xxxxxxx");
-    // const user_id = req.session.user._id;
-    // const post = Post.findOne({ _id: post_id });
-    // const likes = post.like + 1;
+    console.log(`Post_id ${post_id}`);
 
-  
-      Post.findOneAndUpdate(
-        { _id: post_id },
-        { $inc: { likes: 1 }},
-        { new: true, useFindAndModify: false }, 
+    const user_id = req.session.user._id;
+    console.log(`user_id ${user_id}`);
+
+    const post = await Post.findOne({ _id: post_id });
+    console.log(`post ${post}`);
+
+    const likes = post.like;
+    console.log(`likes ${likes}`);
+
+    const liked = post.like.map((like) => like.likeAuthor).includes(user_id);
+    console.log(`liked ${liked}`);
+    
+    if (!liked) {
+      likes.push({ likeAuthor: user_id });
+      post.save(
         () => {res.status(201).redirect("/posts");}
-
       );
-
+    } else {
+      likes.splice(likes.map((like) => like.likeAuthor).indexOf(user_id), 1);
+      post.save(
+        () => {res.status(201).redirect("/posts");}
+      );
+    }
+    // res.json({ post: post_id, likes: updated_post.like.length });
+    // () => {res.status(201).redirect("/posts");
   },
 
   Create: (req, res) => {
   const { message, likes } = req.body;
   const username = req.session.user.username;
-  const now = new Date();
-  const options = { 
-    weekday: 'short', 
-    month: 'short', 
-    day: 'numeric', 
-    year: 'numeric', 
-    hour: 'numeric', 
-    minute: 'numeric' 
-  };
-  const currentDate = now.toLocaleString('en-US', options);
-  const post = new Post({ username, message, likes, currentDate });
+  // const now = new Date();
+  // const options = { 
+  //   weekday: 'short', 
+  //   month: 'short', 
+  //   day: 'numeric', 
+  //   year: 'numeric', 
+  //   hour: 'numeric', 
+  //   minute: 'numeric' 
+  // };
+  // const currentDate = now.toLocaleString('en-US', options);
+  const post = new Post({ username, message, likes });
     post.save((err) => {
       if (err) {
         throw err;

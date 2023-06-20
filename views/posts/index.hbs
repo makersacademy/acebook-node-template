@@ -1,17 +1,29 @@
 <h1>Timeline</h1>
 <ul class="posts"> 
   {{#each posts}}
-  <li>Created at: {{this.createdAt}}</li>
-  <br>
-  <li>{{{this.username}}}</li>
-  <br> 
-  <li>{{{this.message}}}</li>
-  <br>
-  <li>{{{this.likes}}} likes</li>
-  <br>
-  <form id="likes-form" action="/posts/{{this._id}}/likes" method="post">
-  <input type="submit" value="like">
-</form>
+    {{!-- {{#if _id in this.like}} --}}
+      <li class="date">Created at: {{this.date}}</li>
+      <br>
+      <li class="username">Created By: {{{this.username}}}</li>
+      <br> 
+      <li class="content">Post Content: {{{this.message}}}</li>
+      <br>
+      {{!-- if the likes = 1 then the button is like --}}
+      {{!-- {{#if (this.like.length == 1)}} --}}
+          {{!-- <li class="likes">{{{this.like.length}}} like</li>
+
+          <form id="likes-form" action="/posts/{{this._id}}/likes" method="post">
+            <input type="submit" value="like 👍">
+          </form> --}}
+        {{!-- {{else}} --}}
+      <li class="likes">{{{this.like.length}}} likes</li>
+
+        <form id="likes-form" action="/posts/{{this._id}}/likes" method="post">
+          <input type="submit" value="like 👍">
+        </form>
+      <br>
+      {{!-- {{/if}} --}}
+    {{!-- {{/if}} --}}
   {{/each}}
 </ul>
 
