@@ -1,12 +1,6 @@
 const Post = require("../models/post");
-const User = require("../models/user");
 const helpers = require("handlebars-helpers")();
 const fs = require("fs");
-
-const multer = require("multer");
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage }).single("image");
 
 const PostsController = {
 	Index: (req, res) => {
@@ -48,7 +42,6 @@ const PostsController = {
 			postAuthor: {
 				firstName: user.firstName,
 				lastName: user.lastName,
-				// id: user._id,
 				email: user.email,
 			},
 			image: {
@@ -78,14 +71,11 @@ const PostsController = {
 				return res.status(404).send("Image not found");
 			}
 			res.set("Content-Type", post.image.contentType);
-			// console.log(post.image.data.toString(), "<<<<<<< post.image.data");
 
 			let stringData = post.image.data.toString();
 			let imageData = stringData.replace(/^data:image\/png;base64,/, "");
 
 			res.send(Buffer.from(imageData, "base64"));
-
-			console.log("Sending image data:", post.image.data);
 		});
 	},
 
