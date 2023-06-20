@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const fs = require("fs");
+const uploadProfile = require("../multerConfig");
 
 const ProfileController = {
   Index: (req, res) => {
@@ -46,8 +48,6 @@ const ProfileController = {
     });
   },
 
-  
-
   RemoveFriend: (req, res) => {
     const currentUser = req.session.user;
     const friendEmail = req.body.friendEmail;
@@ -91,44 +91,45 @@ const ProfileController = {
   },
   
   
-// AddFriend function in ProfileController
-AddFriend: (req, res) => {
-  const currentUserEmail = req.session.user.email;
-  const friendEmail = req.body.friendEmail;
-  User.findOne({ email: currentUserEmail }, (err, currentUser) => {
-    if (err) {
-      throw err;
-    }
-    User.findOne({ email: friendEmail }, (err, friendUser) => {
+  // AddFriend function in ProfileController
+  AddFriend: (req, res) => {
+    const currentUserEmail = req.session.user.email;
+    const friendEmail = req.body.friendEmail;
+    User.findOne({ email: currentUserEmail }, (err, currentUser) => {
       if (err) {
         throw err;
       }
-      if (!friendUser) {
-        res.json({ message: "User not found" });
-      } else if (friendUser.friendRequests.includes(currentUser.email)) {
-        res.json({ message: "Friend request already sent" });
-      } else if (currentUser.sentFriendRequests.includes(friendEmail)) {
-        res.json({ message: "Friend request already sent" });
-      } else {
-        friendUser.friendRequests.push(currentUser.email);
-        friendUser.save((err) => {
-          if (err) {
-            throw err;
-          }
-          currentUser.sentFriendRequests.push(friendEmail);
-          currentUser.save((err) => {
+      User.findOne({ email: friendEmail }, (err, friendUser) => {
+        if (err) {
+          throw err;
+        }
+        if (!friendUser) {
+          res.json({ message: "User not found" });
+        } else if (friendUser.friendRequests.includes(currentUser.email)) {
+          res.json({ message: "Friend request already sent" });
+        } else if (currentUser.sentFriendRequests.includes(friendEmail)) {
+          res.json({ message: "Friend request already sent" });
+        } else {
+          friendUser.friendRequests.push(currentUser.email);
+          friendUser.save((err) => {
             if (err) {
               throw err;
             }
-            req.session.user = currentUser
-            req.session.friendRequestSent = friendEmail; // Update the session
-            res.json({ message: "Friend request sent" });
+            currentUser.sentFriendRequests.push(friendEmail);
+            currentUser.save((err) => {
+              if (err) {
+                throw err;
+              }
+              req.session.user = currentUser
+              req.session.friendRequestSent = friendEmail; // Update the session
+              res.json({ message: "Friend request sent" });
+            });
           });
-        });
-      }
+        }
+      });
     });
-  });
-},
+  },
+
   AcceptFriendRequest: (req, res) => {
     const currentUser = req.session.user;
     const friendEmail = req.body.friendEmail;
@@ -161,5 +162,78 @@ AddFriend: (req, res) => {
         throw err;
       });
   },
-};
+
+  AddProfilePicture: (req, res) => {
+    const currentUserEmail = req.session.user.email;
+
+    User.findOne({ email: currentUserEmail })
+    .then((user) => {
+      console.log(user, "<<<<<< THIS IS A USER # 1");
+      user.image = {
+				data: req.file
+					? fs.readFileSync("public/images/profileUploads/" + req.file.filename, "base64")
+					: null, // Read and encode the file as base64
+				contentType: req.file ? req.file.mimetype : null, // Store the file mimetype in the database
+			}
+      return user
+    })
+    .then((user) => {
+      console.log(user, "<<<<<< THIS IS A USER # 2");
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        console.log("Profile photo saved:", user);
+
+        res.status(201).redirect("/profile");
+      })
+		})
+
+    // uploadProfile.single("profileImage")(req, res, async (err) => {
+    //   if (err) {
+    //     res.status(400).json({ message: "Failed to upload profile picture" });
+    //   } else {
+    //     try {
+    //       const user = await User.findOne({ email: currentUserEmail });
+
+    //       if (!user) {
+    //         res.status(404).json({ message: "User not found" });
+    //       } else {
+    
+    //         user.profileImage = {
+    //           data: req.file
+    //             ? fs.readFileSync(req.file.path, "base64")
+    //             : null,
+    //           contentType: req.file ? req.file.mimetype : null,
+    //         };
+
+    //         await user.save();
+
+    //         res.json({ message: "Profile picture uploaded successfully" });
+    //       }
+    //     } catch (err) {
+    //       console.log(err);
+    //       res.status(500).json({ message: "Internal server error" });
+    //     }
+    //   }
+    // });
+
+  },
+
+  getImage: (req, res) => {
+    User.findById(req.params.postId, (err, user) => {
+      if (err || !user || !user.image.data) {
+        return res.status(404).send("Image not found");
+      }
+      res.set("Content-Type", user.profileImage.contentType);
+
+      let stringData = user.profileImage.data.toString();
+      let imageData = stringData.replace(/^data:image\/png;base64,/, "");
+
+      res.send(Buffer.from(imageData, "base64"))
+    })
+  }
+}
+
 module.exports = ProfileController;
+

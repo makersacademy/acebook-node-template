@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const uploadProfile = require("../multerConfig")
 
 const ProfileController = require("../controllers/profile");
 
@@ -16,6 +17,8 @@ router.get("/", sessionChecker, ProfileController.Index);
 router.post("/remove-friend", sessionChecker, ProfileController.RemoveFriend);
 router.post("/add-friend", sessionChecker, ProfileController.AddFriend);
 router.post("/accept-friend-request", sessionChecker, ProfileController.AcceptFriendRequest);
+router.post("/", uploadProfile.single("profileImage"), ProfileController.AddProfilePicture);
+router.get("/profile", ProfileController.getImage);
 
 
 module.exports = router;
