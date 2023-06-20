@@ -19,20 +19,6 @@ const PostsController = {
   },
   
   New: (req, res) => {
-    // const newPost = new Post({
-    //   username: req.session.username,
-    //   userID: req.session.userId,
-    //   message: req.body.message,
-    //   like: [],
-    //   date: "something",
-    // });
-    // const message = '';
-    // console.log(`message ${message}`);
-
-    // if(message == '') {
-    //   console.log(message)
-    //   res.render('posts/new', {error: "The post cannot be left blank!"});
-    // } else {
       res.render("posts/new", {user: req.session.user, isAuthenticated: true});
     // }
 },
@@ -100,26 +86,22 @@ const PostsController = {
   Create: (req, res) => {
   const { message, likes } = req.body;
   const username = req.session.user.username;
-  // const now = new Date();
-  // const options = { 
-  //   weekday: 'short', 
-  //   month: 'short', 
-  //   day: 'numeric', 
-  //   year: 'numeric', 
-  //   hour: 'numeric', 
-  //   minute: 'numeric' 
-  // };
-  // const currentDate = now.toLocaleString('en-US', options);
   const post = new Post({ username, message, likes });
-    post.save((err) => {
-      if (err) {
-        throw err;
-      }
+  
+  console.log(`message ${post.message}`)
 
-      res.status(201).redirect("/posts");
-    });
+    if (post.message == '' ) {
+      res.render('posts/new', {error: "The post cannot be left blank!"});
+    } else {
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+
+        res.status(201).redirect("/posts");
+      });
+    }
   },
 };
-
 
 module.exports = PostsController;
