@@ -13,11 +13,14 @@
       </a>
     {{/if}}
     
-    <p>{{this.message}}</p>
+    
+    {{#if this.message}}
+    <a href="/posts/{{this._id}}">{{this.message}}</a>{{/if}}
     <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
     <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
   </li>
   <span class="time-ago">Posted {{timeAgo this.timestamp}}</span><br/>
+
 {{/each}}
   {{!-- {{#each posts}}
   <li>
