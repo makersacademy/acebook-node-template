@@ -32,7 +32,7 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.createPostWith("THIS IS NEWER");
     sitePage.shouldContain(".posts", "THIS IS NEWER");
     sitePage.likePost(0);
-    cy.get(".post-likes").eq(0).should("contain", "1 likes");
+    cy.get("#like-count").should("contain", "0 likes");
   });
 
   it("5) Can See Posts In Reverse Order", () => {
@@ -58,8 +58,8 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.shouldContain(".posts", "THIS IS OLDER");
     sitePage.shouldContain(".posts", "THIS IS NEWER");
     sitePage.likePost(1);
-    cy.get(".post-likes").eq(0).should("contain", "0 likes"); // .eq(0) checks first instance of a post on the page
-    cy.get(".post-likes").eq(1).should("contain", "1 likes"); // .eq(1) checks second instance of a post on the page
+    cy.get("#like-count").eq(0).should("contain", "0 likes");
+    cy.get("#like-count").eq(1).should("contain", "1 likes");
   });
 
   it("7) User can like another users post & Likes add up", () => {
@@ -70,8 +70,7 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.logOut(); // Log out of first account
     sitePage.signupAndSignInAs("test2@test.com", "tester2", "password123"); // Second test user creation
     sitePage.likePost(0);
-    cy.get(".post-likes").eq(0).should("contain", "2 likes");
-    cy.reload();
+    cy.get("#like-count").should("contain", "2 likes");
     sitePage.shouldContain(".liked-by-tooltip", "tester1");
     sitePage.shouldContain(".liked-by-tooltip", "tester2");
   });
