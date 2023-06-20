@@ -1,0 +1,29 @@
+<li class="post-item">
+  <div class="post-message">{{post.message}}</div>
+  <p class="post-author">Written by {{post.username}} </p>
+  <p class="post-date">Posted on {{post.formattedCreatedAt}}</p>
+  <div class="actions">
+    {{#unless post.currentUser}}
+      <form action="/friends" method="post">
+        <input type="hidden" name="recipientId" value={{post.user}} />
+        <button type="submit" class="befriend-button">Poke</button>
+      </form>
+    {{/unless}}
+
+    {{#if post.currentUser}}
+      <a href="/posts/{{post._id}}/edit" class="edit-button">Edit</a>
+      <form action="/posts/{{post._id}}/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
+      </form>
+    {{/if}}
+
+    <ul class="post-comment" id="comments-{{post.id}}">
+      {{> posts/new_comment post}}
+      {{> posts/likes post}}
+      {{#each post.comments}}
+        {{> posts/comment this}}
+      {{/each}}
+    </ul>
+  </div>
+</li>

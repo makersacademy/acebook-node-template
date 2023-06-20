@@ -14,5 +14,17 @@ const storage = new CloudinaryStorage({
   allowedFormats: ["jpg", "png", "jpeg"],
 });
 
-const parser = multer({ storage: storage });
-module.exports = { cloudinary, parser };
+exports.parser = multer({ storage: storage });
+
+exports.uploadImage = async (imagePath) => {
+  try {
+    const result = await cloudinary.uploader.upload(imagePath);
+    if (!result) {
+      throw new Error("An error occurred during upload.");
+    }
+    return result.url;
+  } catch (error) {
+    console.log("Error uploading the image.");
+    throw error;
+  }
+};

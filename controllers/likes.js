@@ -1,4 +1,5 @@
 const Like = require("../models/like");
+const likeService = require("../services/likeService");
 
 const LikesController = {
   Create: async (req, res) => {
@@ -21,7 +22,15 @@ const LikesController = {
         await like.save();
       }
 
-      res.redirect("/posts");
+      if (req.accepts("json")) {
+        const likes = await likeService.getLikesByPostId(req.body.postId);
+        console.log(likes);
+        const likedBy = likes.map((like) => like.user.username);
+        const likesCount = await likeService.getLikesCount(req.body.postId);
+        return res.json({ likesCount, likedBy });
+      } else {
+        res.redirect("/posts");
+      }
     } catch (err) {
       console.error(err);
       res.status(500).send(err);

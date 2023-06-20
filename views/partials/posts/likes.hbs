@@ -1,0 +1,16 @@
+<form action="/likes" method="post" id="like-form">
+  <input type="hidden" name="postId" value={{_id}} />
+  <button type="submit" class="like-button">❤️</button>
+</form>
+<div class="post-likes">
+  <div class="like-count">
+    {{likesCount}}
+    likes
+  </div>
+
+  <div class="liked-by-tooltip">
+    {{#each likedBy}}
+      <div>{{this}}</div>
+    {{/each}}
+  </div>
+</div>

@@ -1,123 +1,112 @@
-const Post = require("../models/post");
-const User = require("../models/user");
-const Like = require("../models/like");
-const Comment = require("../models/comment");
-const moment = require("moment");
-const cloudinary = require("cloudinary").v2;
+const postService = require("../services/postService");
+const userService = require("../services/userService");
+const likeService = require("../services/likeService");
+const commentService = require("../services/commentService");
+const cloudinaryService = require("../services/cloudinaryService");
 
 const PostsController = {
   Index: async (req, res) => {
-
     try {
-      const currentUser = await User.findById(req.session.user._id);
-      let posts = await Post.find().exec();
-      posts = posts.reverse();
+      if (!req.session.user) {
+        return res.redirect("/sessions/new");
+      }
+      const currentUser = await userService.getCurrentUser(
+        req.session.user._id
+      );
+      let posts = await postService.getPosts();
 
       for (let post of posts) {
-        post.likesCount = await Like.countDocuments({
-          post: post._id,
-          liked: true,
-        }).exec();
+        post.likesCount = await likeService.getLikesCount(post._id);
 
-        const user = await User.findById(post.user);
+        const user = await userService.getUserById(post.user);
         post.username = user.username;
         post.currentUser = currentUser.username === post.username;
-        post.formattedCreatedAt = moment(post.createdAt).format(
-          "DD/MM/YYYY HH:mm"
-        );
 
-        const likes = await Like.find({
-          post: post._id,
-          liked: true,
-        })
-          .populate({
-            path: "user",
-            select: "username",
-          })
-          .exec();
+        const likes = await likeService.getLikesByPostId(post._id);
         post.likedBy = likes.map((like) => like.user.username);
 
-        post.comments = await Comment.find(
-          { post: post._id },
-          { _id: 0, content: 1, user: 1 }
-        ).exec();
+        post.comments = await commentService.getCommentsByPostId(post._id);
+        post.comments = post.comments.map((comment) => ({ comment }));
       }
-
+      posts = posts.map((post) => ({ post }));
       res.render("posts/index", { posts: posts });
     } catch (err) {
       throw err;
     }
   },
-  New: (req, res) => {
-    res.render("posts/new", {});
-  },
   Create: async (req, res) => {
     const { message } = req.body;
 
-    let image = "";
-    try {
-      if (req.file) {
-        console.log(req.file.path);
-        const result = await cloudinary.uploader.upload(req.file.path);
+    const image = req.file
+      ? await cloudinaryService.uploadImage(req.file.path)
+      : "";
 
-        if (!result) {
-          return res.status(500).send("An error occurred during upload.");
-        }
-        image = result.url;
-      }
-    } catch (error) {
-      console.log("Error uploading the image.");
-      return res.status(500).send("An error occurred: " + error.message);
-    }
-
-    const post = new Post({
+    const postData = {
       message,
       image,
       user: req.session.user,
-    });
+    };
 
     try {
-      await post.save();
-      return res.status(201).redirect("/posts");
+      const post = await postService.savePost(postData);
+
+      if (req.accepts("json")) {
+        res.render(
+          "partials/posts/post",
+          { layout: false, post },
+          (err, html) => {
+            if (err) {
+              res.status(500).json({ error: "Could not render post" });
+            } else {
+              res.json({ html });
+            }
+          }
+        );
+      } else {
+        return res.status(201).redirect("/posts");
+      }
     } catch (error) {
       return res.status(400).render("posts/new", {
         error: "An error occurred while creating the post.",
       });
     }
   },
-  Edit: (req, res) => {
+  Edit: async (req, res) => {
     const postId = req.params.id;
-
-    Post.findById(postId, (err, post) => {
-      if (err) {
-        return res.status(500).json({ error: err.message})
+    try {
+      const post = await postService.getPostById(postId);
+      if (!post) {
+        return res.status(404).json({ error: "Post not found" });
       }
-      res.render('posts/edit', {post})
-    })
+      res.render("posts/edit", { post });
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
   },
-  Update: (req, res) => {
+  Update: async (req, res) => {
     const postId = req.params.id;
     const updatedData = req.body;
-  
-    Post.findByIdAndUpdate(postId, updatedData, { new: true }, (err) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
+
+    try {
+      const post = await postService.updatePostById(postId, updatedData);
+      if (!post) {
+        return res.status(404).json({ error: "Post not found" });
       }
       res.redirect(`/posts`);
-    });
-  }, 
-  Delete: (req, res) => {
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
+  },
+  Delete: async (req, res) => {
     const postId = req.params.id;
-  
-    Post.findByIdAndDelete(postId, (err) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.redirect('/posts');
-    });
-  }
-  }
-  
 
+    try {
+      await postService.deletePostById(postId);
+      res.redirect("/posts");
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
+  },
+};
 
 module.exports = PostsController;

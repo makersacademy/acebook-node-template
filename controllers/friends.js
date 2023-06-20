@@ -1,33 +1,22 @@
-const Friend = require("../models/friend");
+const friendService = require("../services/friendService");
 
 const FriendsController = {
   Index: async (req, res) => {
     try {
-      const friendshipsRequests = await Friend.find({
-        requester: req.session.user._id,
-        friendship: null,
-      })
-        .populate({ path: "recipient", select: "username" })
-        .exec();
-
-      const pendingFriendships = await Friend.find({
-        recipient: req.session.user._id,
-        friendship: null,
-      })
-        .populate({ path: "requester", select: "username" })
-        .exec();
-
-      const acceptedFriendships = await Friend.find({
-        recipient: req.session.user._id,
-        friendship: true,
-      })
-        .populate({ path: "requester", select: "username" })
-        .exec();
+      const friendshipsRequests = await friendService.getFriendshipRequests(
+        req.session.user._id
+      );
+      const pendingFriendships = await friendService.getPendingFriendships(
+        req.session.user._id
+      );
+      const acceptedFriendships = await friendService.getAcceptedFriendships(
+        req.session.user._id
+      );
 
       res.render("friends/index", {
-        friendshipsRequests: friendshipsRequests,
-        pendingFriendships: pendingFriendships,
-        acceptedFriendships: acceptedFriendships,
+        friendshipsRequests,
+        pendingFriendships,
+        acceptedFriendships,
       });
     } catch (err) {
       console.error(err);
@@ -37,20 +26,16 @@ const FriendsController = {
 
   Create: async (req, res) => {
     try {
-      const existingFriendship = await Friend.findOne({
-        $or: [
-          { requester: req.session.user._id, recipient: req.body.recipientId },
-          { requester: req.body.recipientId, recipient: req.session.user._id },
-        ],
-      });
+      const existingFriendship = await friendService.getExistingFriendship(
+        req.session.user._id,
+        req.body.recipientId
+      );
 
       if (!existingFriendship) {
-        const friendship = new Friend({
-          requester: req.session.user._id,
-          recipient: req.body.recipientId,
-        });
-
-        await friendship.save();
+        await friendService.createFriendship(
+          req.session.user._id,
+          req.body.recipientId
+        );
       }
 
       res.redirect("/friends");
@@ -62,15 +47,12 @@ const FriendsController = {
 
   Accept: async (req, res) => {
     try {
-      const existingFriendship = await Friend.findOne({
-        requester: req.body.requesterId,
-        recipient: req.session.user._id,
-      });
+      const existingFriendship = await friendService.acceptFriendship(
+        req.body.requesterId,
+        req.session.user._id
+      );
 
-      if (existingFriendship) {
-        existingFriendship.friendship = true;
-        await existingFriendship.save();
-      } else {
+      if (!existingFriendship) {
         return res.status(400).json({
           error: "No existing friendship to accept",
         });
@@ -85,15 +67,12 @@ const FriendsController = {
 
   Reject: async (req, res) => {
     try {
-      const existingFriendship = await Friend.findOne({
-        requester: req.body.requesterId,
-        recipient: req.session.user._id,
-      });
+      const existingFriendship = await friendService.rejectFriendship(
+        req.body.requesterId,
+        req.session.user._id
+      );
 
-      if (existingFriendship) {
-        existingFriendship.friendship = false;
-        await existingFriendship.save();
-      } else {
+      if (!existingFriendship) {
         return res
           .status(400)
           .json({ error: "No existing friendship to reject." });
