@@ -11,14 +11,29 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users"); 
 const userPostsRouter = require("./routes/userPosts");
+const expressHbs =  require('express-handlebars');
 
 // create a route for users/username
 
 const app = express();
 
+app.engine('.hbs', expressHbs.engine({ defaultLayout: 'layout', extname: '.hbs',runtimeOptions: {
+  allowProtoPropertiesByDefault: true,
+  allowProtoMethodsByDefault: true
+} }))
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+
+const hbs = expressHbs.create({});
+
+hbs.handlebars.registerHelper('formatDate', function(posts) {
+    const options = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric' };
+    const formattedDate = posts.date.toLocaleDateString('en-US', options);
+    return formattedDate;
+});
+
 
 app.use(logger("dev"));
 app.use(express.json());

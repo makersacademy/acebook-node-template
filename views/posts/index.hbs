@@ -2,7 +2,7 @@
 <ul class="posts"> 
   {{#each posts}}
     {{!-- {{#if _id in this.like}} --}}
-      <li class="date">Created at: {{this.date}}</li>
+      <li class="date">Created at: {{{formatDate this}}}</li>
       <br>
       <li class="username">Created By: {{{this.username}}}</li>
       <br> 
