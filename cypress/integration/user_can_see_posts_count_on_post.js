@@ -1,17 +1,19 @@
 describe("Timeline", () => {
-    it("can see likes count on a new post", () => {
+  it("can see likes count on a new post", () => {
       // sign up
       cy.visit("/users/new");
+      cy.get('#firstName').type("Someone");
+      cy.get('#lastName').type("Someone")
       cy.get("#email").type("someone@example.com");
-      cy.get("#password").type("password");
+      cy.get("#password").type("password1");
       cy.get("#submit").click();
-  
+
       // sign in
       cy.visit("/sessions/new");
       cy.get("#email").type("someone@example.com");
-      cy.get("#password").type("password");
+      cy.get("#password").type("password1");
       cy.get("#submit").click();
-  
+
       // submit a post
       cy.visit("/posts");
       cy.contains("New post").click();

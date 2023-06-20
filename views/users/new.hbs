@@ -1,7 +1,40 @@
-<form id="new-user-form" action="/users" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+
+<html>
+    <head>
+        <title class="title">{{title}}</title>
+        <link rel="stylesheet" href="/stylesheets/master.css">
+    </head>
+    <body>
+        <nav>
+            <div class="navbar-title">
+                <h1 id="acebook-title">Welcome to Acebook</h1>
+            </div>
+                <ul class="navbar-items">
+                    <li><a href="/"><h3 id="home-link">Return to <br>Homepage</h3></a></li>
+                    <a href="/sessions/new"><h3 id="signup-link">Login</h3></a>
+                </ul>
+        </nav>
+        
+        <div id="content-box">
+            <div id="login-box">
+                <h4 id="login-text">Please fill in your details below to register:</h4>
+                <form id="new-user-form" action="/users/new" method="post">
+                    <input id="firstName" type="text" name="firstName" value="" placeholder="first name" required><br><br>
+                    <input id="lastName" type="text" name="lastName" value="" placeholder="last name" required><br><br>
+                    <input type="text" name="email" placeholder="email" id="email" required><br><br>
+                    <input type="password" name="password" placeholder="password" id="password" required><br><br>
+                    {{#if errorMessages}}
+                    <p>The following errors occurred:</p>
+                    <ul>
+                      {{#each errorMessages}}
+                        <li>{{this}}</li>
+                      {{/each}}
+                    </ul>
+                    {{/if}}
+                    <input id="submit" type="submit" value="Click to register!">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+

@@ -1,7 +1,36 @@
-<form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+
+
+<html>
+    <head>
+        <title class="title">{{title}}</title>
+        <link rel="stylesheet" href="/stylesheets/master.css">
+    </head>
+    <body>
+        <nav>
+            <div class="navbar-title">
+                <h1 id="acebook-title">Welcome to {{title}}</h1>
+            </div>
+                <ul class="navbar-items">
+                    <li><a href="/"><h3 id="home-link">Return to <br>Homepage</h3></a></li>
+                    <a href="/users/new"><h3 id="signup-link">Sign Up</h3></a>
+                </ul>
+        </nav>
+        <div id="content-box">
+            <div id="login-box">
+                <h4 id="login-text">Please fill in your details below to login:</h4>
+                <form id="new-session-form" action="/sessions/new" method="post">
+                    <input type="text" name="email" placeholder="email" id="email" required><br><br>
+                    <input type="password" name="password" placeholder="password" id="password" required><br><br>
+
+                    {{#if errorMessage}}
+                    <p>{{errorMessage}}</p>
+                    {{/if}}
+
+                    <input id="submit" type="submit" value="Click to login!">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+
+
