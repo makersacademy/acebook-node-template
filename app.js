@@ -6,7 +6,6 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 
-
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
@@ -14,18 +13,12 @@ const usersRouter = require("./routes/users");
 const profileRouter = require("./routes/profile");
 const commentsRouter = require("./routes/posts");
 const { AsyncLocalStorage } = require("async_hooks");
-const handlebars = require('handlebars');
-const timeagoHelper = require('handlebars-helper-timeago');
-
-app.engine('hbs', exphbs({ /* configuration options */ }));
-app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
-
-// Register the timeSince helper
-handlebars.registerHelper('timeSince', timeagoHelper());
+const { handlebars } = require("hbs");
+const moment = require("./public/javascripts/moment.min");
 
 
 const app = express();
+
 
 
 // view engine setup
@@ -38,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+
 
 app.use(
 	session({
