@@ -29,8 +29,9 @@ export const handleNewPostFormSubmit = async (event) => {
 
     let htmlString = `
       <div class="post-likes">
-        <span id="like-count">0</span>
-        likes
+        <div id="like-count">
+          0 likes
+        </div>
         <div class="liked-by-tooltip"></div>
       </div>
     `;
