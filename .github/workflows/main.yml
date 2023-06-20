@@ -36,10 +36,21 @@ jobs:
       - name: Start test server
         run: npm run start:test &
 
-      - name: Run all Cypress tests
+      - name: Run all Cypress tests on Chrome
         uses: cypress-io/github-action@v5
         with:
+          browser: chrome
           start: npm start
-          record: true
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#           record: true
+#         env:
+#           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+      - name: Run all Cypress tests on Edge
+        uses: cypress-io/github-action@v5
+        with:
+          browser: edge
+          start: npm start
+#           record: true
+#         env:
+#           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          

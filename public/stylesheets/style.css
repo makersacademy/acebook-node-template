@@ -7,7 +7,7 @@
 /* Global Tags */
 body {
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -62,7 +62,8 @@ hr {
   margin-right: 4vh;
 }
 
-.new-content, .timeline {
+.new-content,
+.timeline {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,7 +94,7 @@ hr {
   text-align: center;
 }
 
-/* Navbar */ 
+/* Navbar */
 .timeline-navbar {
   position: fixed;
   top: 0;
@@ -107,9 +108,10 @@ hr {
   position: fixed;
 }
 
-.topbar, .bottombar {
+.topbar,
+.bottombar {
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
 .topbar {
@@ -138,7 +140,36 @@ hr {
   height: 4vh;
   width: 4vh;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
+}
+
+/* navbar media query */
+@media (max-width: 768px) {
+  .timeline-navbar {
+    flex-direction: column; /* Stack elements as a column */
+    align-items: center; /* Center align items */
+    padding: 0.3rem; /* Adjust the padding to make the navbar smaller */
+    margin-bottom: 5vh;
+    /* Reduce the margin-bottom to decrease the gap */
+  }
+
+  .topbar {
+    flex-direction: column; /* Stack items as a column */
+    align-items: center; /* Center align items */
+  }
+
+  .bottombar {
+    margin-bottom: 1vh; /* Reduce the margin-bottom to decrease the gap */
+  }
+
+  .logout {
+    margin-top: 0;
+    margin-left: 5vh; /* Reduce the margin-left to decrease the gap */
+    font-size: 0.8rem; /* Reduce the font size of the logout button */
+  }
+  .title {
+    margin: 20px 0 20px 0;
+  }
 }
 
 /* Landing Page */
@@ -150,7 +181,7 @@ hr {
 .homepage-content {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   height: 97vh;
 }
 
@@ -165,7 +196,8 @@ hr {
   margin: 0 10vh;
 }
 
-.left-container h1, .left-container p {
+.left-container h1,
+.left-container p {
   margin: -0.1em 0;
 }
 
@@ -174,7 +206,39 @@ hr {
 }
 
 .right-container a {
-  padding: 1vh 1vh;
+  padding: 1vh;
+}
+/* Media Query for Responsive Layout */
+@media (max-width: 768px) {
+  .left-container,
+  .right-container {
+    height: auto;
+    width: 90vw; /* Adjusted width for smaller screens */
+    margin: 2vh 0;
+  }
+
+  .homepage-content {
+    flex-direction: column; /* Stacking containers as column */
+  }
+  .title {
+    font-size: 7vh; /* Adjusted font size for smaller screens */
+  }
+}
+/* Media Query for Responsive Layout */
+@media (max-width: 768px) {
+  .left-container,
+  .right-container {
+    height: auto;
+    width: 90vw; /* Adjusted width for smaller screens */
+    margin: 2vh 0;
+  }
+
+  .homepage-content {
+    flex-direction: column; /* Stacking containers as column */
+  }
+  .title {
+    font-size: 7vh; /* Adjusted font size for smaller screens */
+  }
 }
 
 /* New Session Page */
@@ -323,6 +387,47 @@ hr {
   width: 40vh;
 }
 
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .posts {
+    width: 70vw; /* Adjust the width to fit smaller screens */
+    margin: 2vh auto; /* Add some margin to center the main box */
+  }
+
+  .post-sec {
+    grid-template-rows: auto; /* Reset grid template rows to allow stacking */
+  }
+
+  .author {
+    margin: auto; /* Center the author element */
+    height: 5vh; /* Reduce the height of the author circle */
+    width: 5vh; /* Reduce the width of the author circle */
+    font-size: 12px; /* Adjust the font size for the author */
+  }
+
+  .post-details {
+    align-items: center; /* Center align the post details */
+  }
+
+  .message {
+    width: 80%; /* Expand the message to fit the container */
+    max-width: none; /* Reset the max-width */
+    overflow-wrap: break-word; /* Add this line to wrap long words */
+  }
+
+  .likes {
+    justify-content: center; /* Center align the likes */
+  }
+
+  .comment-sec {
+    align-items: center; /* Center align the comment section */
+  }
+
+  .comment-box {
+    width: 100%; /* Expand the comment box to fit the container */
+  }
+}
+
 /* New Post Page */
 .new-post-box {
   margin-top: 30vh;
@@ -337,7 +442,6 @@ hr {
 #new-post-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .gif-finder {
@@ -363,4 +467,10 @@ hr {
 .gif-thumbnail {
   height: 10vh;
   width: auto;
+}
+
+.input-area {
+  resize: none;
+  width: 400px;
+  height: 500px;
 }

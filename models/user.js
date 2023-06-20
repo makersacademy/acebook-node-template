@@ -3,15 +3,33 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    match: /^[A-Za-z\- ]+$/,
+    match: /^[A-Za-z\u00C0-\u00FF\-'. ]+$/,
     required: true,
-    maxLength: 20,
+    minLength: [1, 'First name must have at least 1 character'],
+    maxLength: [20, 'First name cannot exceed 20 characters'],
+    validate: [{
+      validator: function(value) {
+        // Count the number of letters (including accented ones).
+        const letterCount = (value.match(/[A-Za-z\u00C0-\u00FF]/g) || []).length;
+        return letterCount >= 2 && letterCount <= 20;
+      },
+      message: 'First name must have between 2 and 20 letters (including accented ones)'
+    }]
   },
   lastName: {
     type: String,
-    match: /^[A-Za-z\- ]+$/,
+    match: /^[A-Za-z\u00C0-\u00FF\-'. ]+$/,
     required: true,
-    maxLength: 20,
+    minLength: [1, 'Last name must have at least 1 character'],
+    maxLength: [20, 'Last name cannot exceed 20 characters'],
+    validate: [{
+      validator: function(value) {
+        // Count the number of letters (including accented ones).
+        const letterCount = (value.match(/[A-Za-z\u00C0-\u00FF]/g) || []).length;
+        return letterCount >= 2 && letterCount <= 20;
+      },
+      message: 'Last name must have between 2 and 20 letters (including accented ones)'
+    }]
   },
   email: {
     type: String,

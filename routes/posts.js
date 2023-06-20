@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
+const isAuthenticated = require('../authMiddleware');
 const PostsController = require("../controllers/posts");
 const axios = require('axios');
 
 const YOUR_API_KEY = "eLyYwLxVEXe3Jzab51w6OoNKOXhG4byS";
 
-router.get("/", PostsController.Index);
-router.post("/", PostsController.Create);
-router.get("/new", PostsController.New);
-router.post("/:id/likes", PostsController.Like);
-router.post("/:id/comments", PostsController.Comment);
+router.get("/", isAuthenticated, PostsController.Index);
+router.post("/", isAuthenticated, PostsController.Create);
+router.get("/new", isAuthenticated, PostsController.New);
+router.post("/:id/likes", isAuthenticated, PostsController.Like);
+router.post("/:id/comments", isAuthenticated, PostsController.Comment);
 
 router.post('/gif', async (req, res) => {
     const { searchQuery } = req.body;

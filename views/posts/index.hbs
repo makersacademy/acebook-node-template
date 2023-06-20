@@ -31,6 +31,7 @@
         </div>
       </div>
     </div>
+
     <div class="comments-sec">
       {{#each this.comments}}
         <div class="comment">
@@ -41,10 +42,30 @@
     </div>
     <div class="post-comment-sec">
       <form action="/posts/{{this._id}}/comments" method="POST" id="new-comment-form">
-        <input id="comment" type="text" name="comment" value="" placeholder="Say something..." class="comment-box input-box">
+        <input id="comment" type="text" name="comment" value="" placeholder="Say something..." class="comment-box input-box" required>
         <input type="submit" value="Submit" class="global-button">
       </form>
     </div>
   </div>
   {{/each}}
 </div>
+
+
+
+<script>
+  window.addEventListener('beforeunload', function() {
+    // Store the scroll position in sessionStorage
+    sessionStorage.setItem('scrollPosition', window.pageYOffset || document.documentElement.scrollTop);
+  });
+
+  window.addEventListener('load', function() {
+    // Retrieve the stored scroll position from sessionStorage
+    var scrollPosition = sessionStorage.getItem('scrollPosition');
+
+    // Restore the scroll position
+    if (scrollPosition) {
+      window.scrollTo(0, scrollPosition);
+    }
+  });
+</script>
+

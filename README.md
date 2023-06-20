@@ -1,8 +1,28 @@
-# Acebook
+# **Acebook Betta - Final Engineering Project**
+Acebook aims to be an easy-to-use and accessible platform that simplifies staying in touch with friends.  
+Acebook will connect people and make their lives betta.
 
-This is a Node.js template for the Acebook engineering project.
+## **Motivation and Purpose**
+  
+  An opportunity to work alongside a team to build an engineering project as part of the bootcamp and get close to real-life exposure to agile working practice.  
+  Also an opportunity to use all of the skills that we learned so far in bootcamp.
 
-It uses:
+## **Outcome** 
+
+  Over the 2 weeks of development we not only built a project and repository,  
+  but used and learnt about a very large variety of tools and working practices, including standups, agile,  
+  teamwork, sprints, retro's and conflict resolution, version-control, bug reporting, CI pipelines,  
+  Trello boards, planning and execution, Unit and Integration testing, end-to-end testing, hosting,  
+  working with an existing codebase, new languages, picking up new tools quickly, dividing up labor and tasks,  
+  time management, strong communication practices, including messaging through slack and frequent meetings,  
+  and most importantly working with a multi-discplinary team.
+  
+  In terms of the final product, we built and hosted live an MVP of the project as initially concieved in early planning stages,  
+  as well as a variety of planning documents and test reports.  
+  Our final version of the project encompassed all functionality that we initially aimed to have developed by the end of the timeframe,  
+  although we had a large amount of 'Nice to Have' functions that were in the timeline. 
+
+## **Tools used in this Project** 
 
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
@@ -10,86 +30,35 @@ It uses:
 - [Mongoose](https://mongoosejs.com) to model objects in MongoDB.
 - [ESLint](https://eslint.org) for linting.
 - [Jest](https://jestjs.io/) for testing.
-- [Cypress](https://www.cypress.io/) for end-to-end testing.
+- [Cypress](https://www.cypress.io/) for end-to-end and integration testing.
+- [Cypress Cloud](https://www.cypress.io/) for tracking testing, reporting and bug tracing.
+- [Selenium](https://www.selenium.dev/documentation/webdriver/) for end-to-end testing.
+- [Render](https://render.com/) for live hosting and CD Pipeline.
+- [GitHub Actions](https://github.com/) for CI Pipeline and testing.
+- [Trello Board](https://trello.com/b/ZcUWX9qo/betta-acebook) for tracking agile processes.
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) for database hosting.
+- [VSCode](https://code.visualstudio.com/) for development and shared coding.
 
-## Card wall
 
-[Trello Board](https://trello.com/b/ZcUWX9qo/betta-acebook)
+## **Useful Links**
 
-## Quickstart
+- [Installation Guide](INSTALLATION.md)
+- [User Stories](betta_user_stories.md)
+- [Test Scenarios](betta_test_scenarios.md)
+- [Security Report](betta_security_report.md)
+- [Accessibility Report](https://docs.google.com/document/d/1rBMSxzNgXs747tmHVDKBoszWmDwIkhp8ByLqVxFgwzo)
+- [Online Site!](https://test-render-pmpx.onrender.com/)
+- [Locally Running Link](http://localhost:3000/)
 
-### Install Node.js
 
-1. Install Node Version Manager (NVM)
-   ```
-   brew install nvm
-   ```
-   Then follow the instructions to update your `~/.bash_profile`.
-2. Open a new terminal
-3. Install the latest version of [Node.js](https://nodejs.org/en/), currently `18.1.0`.
-   ```
-   nvm install 18
-   ```
 
-### Set up your project
 
-1. Fork this repository
-2. Rename your fork to `acebook-<team name>`
-3. Clone your fork to your local machine
-4. Install Node.js dependencies
-   ```
-   npm install
-   ```
-5. Install an ESLint plugin for your editor. For example: [linter-eslint](https://github.com/AtomLinter/linter-eslint) for Atom.
-6. Install MongoDB
-   ```
-   brew tap mongodb/brew
-   brew install mongodb-community@5.0
-   ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
-7. Start MongoDB
-   ```
-   brew services start mongodb-community@5.0
-   ```
 
-### Start
-
-1. Start the server
-   ```
-   npm start
-   ```
-2. Browse to [http://localhost:3000](http://localhost:3000)
-
-#### Start test server
-
-The server must be running locally with test configuration for the
-integration tests to pass.
-
-```
-npm run start:test
-```
-
-This starts the server on port `3030` and uses the `acebook_test` MongoDB database,
-so that integration tests do not interact with the development server.
-
-### Test
-
-- Run all tests
-  ```
-  npm test
-  ```
-- Run a check
-  ```bash
-  npm run lint              # linter only
-  npm run test:unit         # unit tests only
-  npm run test:integration  # integration tests only
-  ```
-
-## MongoDB Connection Errors?
-
-Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
-
-- Check that MongoDB is installed using `mongo --version`
-- Check that it's running using `brew services list`
-
-If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+OLLIES NOTES - 
+installation instructions for local
+description of hosting and link to live url
+Tools used
+Links to other MD files
+General summation of the site idea - 
+Working on a template
+How to run the tests and cypress
