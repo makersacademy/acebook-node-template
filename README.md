@@ -56,4 +56,4 @@ Acebook will connect people and make their lives betta.
 
 ## **New User Site Guide**
 
-[Acebook Betta Wireframe](assets/images/acebook_betta_wireframe.png)
+![Acebook Betta Wireframe](assets/images/acebook_betta_wireframe.png)
