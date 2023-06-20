@@ -26,7 +26,11 @@ const PostsController = {
         post.likedBy = likes.map((like) => like.user.username);
 
         post.comments = await commentService.getCommentsByPostId(post._id);
-        post.comments = post.comments.map((comment) => ({ comment }));
+        for (let comment of post.comments) {
+          console.log(comment._id);
+          comment.currentUser = currentUser.username === comment.user;
+        }
+        post.comments = post.comments.map((comment) => ( {comment} ));
       }
       posts = posts.map((post) => ({ post }));
       res.render("posts/index", { posts: posts });
