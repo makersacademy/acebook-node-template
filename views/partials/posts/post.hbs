@@ -19,8 +19,8 @@
     {{/if}}
 
     {{#if post.currentUser}}
-      <a href="/posts/{{post._id}}/edit" class="edit-button">Edit</a>
-      <form action="/posts/{{post._id}}/delete" method="POST">
+      <button class="edit-button" id="editBtn-{{post.id}}">Edit</button>
+      <form action="/posts/{{post.id}}/delete" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
       </form>
@@ -35,3 +35,15 @@
     </ul>
   </div>
 </li>
+
+<div id="editModal-{{post._id}}" class="modal">
+  <div class="modal-content">
+    <h1>Edit Post</h1>
+    <form id="editForm" action="/posts/{{post._id}}/update" method="post">
+      <input type="hidden" name="_method" value="PUT" />
+      <label for="message">Message:</label><br />
+      <textarea id="message" name="message">{{post.message}}</textarea><br/>
+      <input type="submit" value="Update Post"/>
+    </form>
+  </div>
+</div>
