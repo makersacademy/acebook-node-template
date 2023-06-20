@@ -62,7 +62,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
-app.use("/users/:username/posts", userPostsRouter); 
+app.use("/users/:username/posts", userPostsRouter);
 
 
 // catch 404 and forward to error handler

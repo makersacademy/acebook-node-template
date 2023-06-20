@@ -6,13 +6,12 @@
   </head>
   <body>
 
-{{!-- Authentication for user's login status which is linked to the controller sessions.js file under the Create method --}}
 <nav>
 <ul>
     {{#if isAuthenticated}}
         <li><a href="/posts">Posts</a></li>
         <li><a href='/users/{{user.username}}'>Profile</a></li> 
-        <li><a href="/sessions/login">Logout</a></li> 
+        <li><a href="/sessions/logout" >Logout</a></li> 
     {{else}}
         <li><a href="/sessions/login">Login</a></li>
         <li><a href="/users/signup">Sign-up</a></li>
