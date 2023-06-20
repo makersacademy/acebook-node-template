@@ -37,20 +37,48 @@ describe("Posts", () => {
     //type in a random message
     cy.get('#message').type(new_post);
     cy.get('input[type="submit"][value="Submit"]').click();
-    //assert that message is displayed
+    //assert that message is displayed with personal emoji
     cy.get('p.message')
       .should('exist')
       .contains(new_post);
-  // Assert the existence of the "author" element
-  cy.get('div.author').should('exist');
+    cy.contains('div.icon.post-icon', ':)').should('be.visible');
 
-  // Assert that the "author" element contains the name of the admin account
-  cy.get('div.author').should('contain', 'Mrtest Testtest');
+    });
+
+    it("A signed in user can create a post with a gif and see it displayed", () => {
+    //create random post message
+    const new_post_2 = chance.paragraph({ sentences: 1 })
+
+
+      // sign in
+    cy.signIn();
+
+    cy.url().should("include", "/posts");
+
+    //create a new post
+    cy.get('a.global-button.new-post-link[href="/posts/new"]').click();
+
+    //type in a random message
+
+    cy.get('input[type="text"][name="searchQuery"].input-box').type('funny image');
+    cy.get('input[type="submit"][value="Search"].global-button').click();
+    cy.get('input[name="gifUrl"]').first().click();
+
+    cy.get('#message').type(new_post_2);
+
+
+    cy.get('input[type="submit"][value="Submit"]').click();
+    //assert that message is displayed with personal emoji and gif
+    cy.get('p.message')
+      .should('exist')
+      .contains(new_post_2);
+    cy.contains('div.icon.post-icon', ':)').should('be.visible');
+    cy.get('.post-gif').should('exist');
+
     });
 
 
-
-    it("A signed in user cannot create an empty post - test currently inactive", () => {
+    it("A signed in user cannot create an empty post", () => {
 
       // sign in
     cy.signIn();

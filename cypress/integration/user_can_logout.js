@@ -22,7 +22,7 @@ describe("Logout", () => {
 
     });
 
-    it("A user can logout from their posts page and be taken to the login screen", () => {
+    it("A user can logout from their new post page and be taken to the login screen", () => {
 
       // sign in
       cy.signIn();
@@ -41,4 +41,6 @@ describe("Logout", () => {
       cy.url().should("include", "/sessions/new");
 
     });
+
+
   });

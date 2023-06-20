@@ -47,13 +47,51 @@ Acebook will connect people and make their lives betta.
 - [Test Scenarios](betta_test_scenarios.md)
 - [Security Report](betta_security_report.md)
 - [Accessibility Report](https://docs.google.com/document/d/1rBMSxzNgXs747tmHVDKBoszWmDwIkhp8ByLqVxFgwzo)
-- [Online Site!](https://test-render-pmpx.onrender.com/)
+- [Online Site!](https://acebook.cool)
 - [Locally Running Live Server](http://localhost:3000/)
 - [Locally Running Test Server](http://localhost:3030/)
 - [Trello Board](https://trello.com/b/ZcUWX9qo/betta-acebook)
 - [CI/CD Process Breakdown](cypress/CICD_Info.md)
 
 
-## **New User Site Guide**
+## **Guides and Outlines** 
 
-![Acebook Betta Wireframe](assets/images/acebook_betta_wireframe.png)
+### Wireframe
+
+  <img src="assets/images/acebook_betta_wireframe.png" width="400">
+
+## **List of Completed Functionality**
+
+- Signup, Login, Logout - All accounts stored on either a hosted or local MongoDB
+
+    <img src="assets/images/acebook_betta_login.png" width="500">
+
+- Associated name and personal 'Emoji Avatar' for each account
+
+    <img src="assets/images/acebook_betta_signup.png" width="300">
+
+- Make posts comprised of text and optional Gifs, which are displayed to all users
+
+    <img src="assets/images/acebook_betta_post.png" width="400">
+
+- Like and comment on posts, which are also displayed publicly
+
+    <img src="assets/images/acebook_betta_comment.png" width="400">
+
+- Emoji support on comments and posts
+
+    <img src="assets/images/acebook_betta_emoji.png" width="400">
+
+## **Credits**
+
+### Development Team:
+- [Afzaa Atcha](https://github.com/afzaa25)
+- [Jasmine Harper](https://github.com/jasmine-asra)
+- [Nishad Rai](https://github.com/nrai14)
+- [Oliver Weare](https://github.com/gwaarb)
+
+### QA Team:
+- [Emre Nallar](https://github.com/devCoder69409)
+- [Oliver Cullimore](https://github.com/olic32)
+- [Sam George](https://github.com/samgeorge21)
+- [Stefan Spencer](https://github.com/S-Spencer)

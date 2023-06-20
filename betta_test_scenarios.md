@@ -26,6 +26,7 @@
 | SU_10 | Verify maximum character limit                                      | Try to sign up with a name fields that exceeds character limit                            | Should throw error if character limit is exceeded                                             |
 | SU_11 | Verify auto log out feature (SECURITY)                              | Stay inactive for the duration of the session timeout                                     | Should be logged out automatically                                                            |
 | SU_12 | Verify prevention of harmful scripts                                | Try to inject harmful script during sign up                                               | Should prevent script injection                                                               |
+| SU_13 | Verify Emoji matches that displayed on main page                    | Sign up, add an Emoji                                                                     | Should display on posts page                                                                  |
 
 #### **3. Login Page:**
 
@@ -51,6 +52,7 @@
 | PP_08 | Verify post creation only when signed in (SECURITY)                    | Try to create a post when not logged in           | Should not be able to create a post                |
 | PP_09 | Verify handling of post creation with empty fields                     | Try to create a post with empty fields            | Error message should display                       | Fail - Able to create posts with empty field |
 | PP_10 | Verify navigation bar displays properly                                | Check the navigation bar on the posts page        | Navigation bar should display properly             |
+| PP_11 | Verify ability to create a new post with Gif                           | Log in and try to create a new post with Gif      | Should be able to create a post with a Gif         |
 
 #### **5. Performance Testing:**
 | Test Case ID | Test Scenario | Test Steps | Expected Result | Actual Result |
