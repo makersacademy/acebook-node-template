@@ -19,6 +19,12 @@ router.post("/add-friend", sessionChecker, ProfileController.AddFriend);
 router.post("/accept-friend-request", sessionChecker, ProfileController.AcceptFriendRequest);
 router.post("/", uploadProfile.single("profileImage"), ProfileController.AddProfilePicture);
 router.get("/profile", ProfileController.getImage);
+router.get('/', ProfileController.renderProfilePage);
+router.get('/image/:userId', ProfileController.getImage);
+
+
+// Route for retrieving the profile image
+
 
 
 module.exports = router;

@@ -169,7 +169,7 @@ const ProfileController = {
     User.findOne({ email: currentUserEmail })
     .then((user) => {
       console.log(user, "<<<<<< THIS IS A USER # 1");
-      user.image = {
+      user.profileImage = {
 				data: req.file
 					? fs.readFileSync("public/images/profileUploads/" + req.file.filename, "base64")
 					: null, // Read and encode the file as base64
@@ -219,19 +219,38 @@ const ProfileController = {
     // });
 
   },
-
-  getImage: (req, res) => {
-    User.findById(req.params.postId, (err, user) => {
-      if (err || !user || !user.image.data) {
-        return res.status(404).send("Image not found");
+  renderProfilePage: async (req, res) => {
+    try {
+      const userId = req.session.user._id;
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).send('User not found');
       }
-      res.set("Content-Type", user.profileImage.contentType);
 
-      let stringData = user.profileImage.data.toString();
-      let imageData = stringData.replace(/^data:image\/png;base64,/, "");
+      // Retrieve the profile image data
+      const profileImageData = user.profileImage;
+      
+      // Render the profile page and pass the user and profile image data to the template engine
+      res.render('profile', { user, profileImageData });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Internal server error');
+    }
+  },
 
-      res.send(Buffer.from(imageData, "base64"))
-    })
+  getImage: async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const user = await User.findById(userId);
+      if (!user || !user.profileImage || !user.profileImage.data) {
+        return res.status(404).send('Image not found');
+      }
+      res.set('Content-Type', user.profileImage.contentType);
+      res.send(user.profileImage.data.buffer);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Internal server error');
+    }
   }
 }
 
