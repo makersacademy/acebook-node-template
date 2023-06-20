@@ -42,10 +42,10 @@ describe("Timeline", () => {
     cy.get("#new-post-form").submit();
 
 
-    cy.get(".posts[1]").should("contain", "4");
-    cy.get(".posts[2]").should("contain", "3");
-    cy.get(".posts[3]").should("contain", "2");
-    cy.get(".posts[4]").should("contain", "1");
+    cy.get("li.content").eq(0).should("contain", "4");
+    cy.get("li.content").eq(1).should("contain", "3");
+    cy.get("li.content").eq(2).should("contain", "2");
+    cy.get("li.content").eq(3).should("contain", "1");
     
   });
 });

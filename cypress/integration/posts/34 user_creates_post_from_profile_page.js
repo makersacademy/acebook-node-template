@@ -19,11 +19,10 @@ describe("Timeline", () => {
     // submit a post
     cy.visit("/posts");
     cy.visit("/users/user1");
-    //cy.get("#content").click();
-    cy.get('textarea[name="content"]').type("Profile Post Test");
-    //cy.get("#textarea").type("Profile Post Test");
-    cy.get('button[type="submit"]').click()
+    cy.contains("New post").click();
+    cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
+    cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("eq", "Profile Post Test");
+    cy.get(".posts").should("contain", "Hello, world!");
   });
 });

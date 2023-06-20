@@ -25,7 +25,7 @@ describe("Timeline", () => {
       cy.get("#new-post-form").submit();
   
       cy.visit("/posts");
-      cy.get(".posts").should("eq", "Hello, world!");
+      cy.get(".posts").should("contain", "Hello, world!");
       
       // Assert that we can see the likes count
       cy.get(".posts").should("contain", "0 likes");
