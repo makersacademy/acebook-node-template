@@ -2,6 +2,7 @@ const Post = require("../models/post");
 const helpers = require("handlebars-helpers")();
 const fs = require("fs");
 
+
 const PostsController = {
 	Index: (req, res) => {
 		const usersFriends = req.session.user.friends;

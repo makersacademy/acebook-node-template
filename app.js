@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
+
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
@@ -13,6 +14,8 @@ const profileRouter = require("./routes/profile");
 const commentsRouter = require("./routes/posts");
 const { handlebars } = require("hbs");
 const moment = require("./public/javascripts/moment.min");
+
+
 const app = express();
 
 // view engine setup
@@ -25,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+
 
 app.use(
 	session({
