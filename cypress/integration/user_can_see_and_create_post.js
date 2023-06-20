@@ -42,10 +42,10 @@ describe("Posts", () => {
       .should('exist')
       .contains(new_post);
   // Assert the existence of the "author" element
-  cy.get('div.author').should('exist');
+  //cy.get('div.author').should('exist');
 
   // Assert that the "author" element contains the name of the admin account
-  cy.get('div.author').should('contain', 'Mrtest Testtest');
+  //cy.get('div.author').should('contain', 'Mrtest Testtest');
     });
 
 

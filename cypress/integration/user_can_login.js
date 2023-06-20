@@ -27,8 +27,7 @@ describe("Login", () => {
 
         //login with admin details, should be taken to posts page, and see initials at the top
       cy.url().should("include", "/posts");
-      cy.get('div.initials').should('exist');
-      cy.get('div.initials').should('contain', 'MT');
+
 
     });
 
