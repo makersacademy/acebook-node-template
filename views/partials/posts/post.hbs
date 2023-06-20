@@ -10,6 +10,14 @@
       </form>
     {{/unless}}
 
+    {{#if post.image}}
+      <img src="{{post.image}}" height="300px" width="300px">
+    {{/if}}
+
+    {{#if post.user.image}}
+      <img src="{{post.user.image}}" class="avatar">
+    {{/if}}
+
     {{#if post.currentUser}}
       <a href="/posts/{{post._id}}/edit" class="edit-button">Edit</a>
       <form action="/posts/{{post._id}}/delete" method="POST">
