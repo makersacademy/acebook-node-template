@@ -3,55 +3,55 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const UserSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: [true, "First name is required"],
-  },
-  lastName: {
-    type: String,
-    required: [true, "Last name is required"],
-  },
-  email: {
-    type: String,
-    required: [true, "Email is required"],
-  },
-  password: {
-    type: String,
-    required: [true, "Password is required"],
-  },
-  friends: {
-    type: [String],
-    default: [],
-  },
-  friendRequests: {
-    type: [String],
-    default: [],
-  },
-  sentFriendRequests: {
-    type: [String],
-    default: [],
-  },
+	firstName: {
+		type: String,
+		required: [true, "First name is required"],
+	},
+	lastName: {
+		type: String,
+		required: [true, "Last name is required"],
+	},
+	email: {
+		type: String,
+		required: [true, "Email is required"],
+	},
+	password: {
+		type: String,
+		required: [true, "Password is required"],
+	},
+	friends: {
+		type: [String],
+		default: [],
+	},
+	friendRequests: {
+		type: [String],
+		default: [],
+	},
+	sentFriendRequests: {
+		type: [String],
+		default: [],
+	},
 });
 
 UserSchema.pre("save", function (next) {
-  const user = this;
+	const user = this;
 
-  if (this.isModified("password") || this.isNew) {
-    bcrypt
-      .genSalt(saltRounds)
-      .then((salt) => {
-        console.log("Salt: ", salt);
-        return bcrypt.hash(user.password, salt);
-      })
-      .then((hash) => {
-        console.log("Hash: ", hash);
-        user.password = hash;
-        next();
-      })
-      .catch((err) => console.error(err.message));
-  } else {
-    return next();
-  }
+	if (this.isModified("password") || this.isNew) {
+		bcrypt
+			.genSalt(saltRounds)
+			.then((salt) => {
+				console.log("Salt: ", salt);
+				return bcrypt.hash(user.password, salt);
+			})
+			.then((hash) => {
+				console.log("Hash: ", hash);
+				user.password = hash;
+				next();
+			})
+			.catch((err) => console.error(err.message));
+	} else {
+		return next();
+	}
 });
 
 const User = mongoose.model("User", UserSchema);
@@ -72,14 +72,19 @@ const usersData = [
 		lastName: "Brown",
 		email: "joe@joe.com",
 		password: "$2b$10$X1zkDaZMR7.s9PTS/IzK5eCkBkDQxdcxJa90OrwgGiPjjQ00CK.Z6", // password1
-		friends: ["alex@alex.com", "chris@chris.com", "peter@peter.com"],
+		friends: [
+			"alex@alex.com",
+			"chris@chris.com",
+			"peter@peter.com",
+			"sue@sue.com",
+		],
 	},
 	{
 		firstName: "Chris",
 		lastName: "Robinson",
 		email: "chris@chris.com",
 		password: "$2b$10$Zk40SU.AGeyaQctsEjwRA.cjD6pKb7kqoWDciHFpQm0zCKn4uxrt.", // password1
-		friends: ["susie@susie.com", "joe@joe.com"],
+		friends: ["joe@joe.com", "alex@alex.com", "sue@sue.com"],
 	},
 	{
 		firstName: "Sue",
@@ -100,7 +105,7 @@ const usersData = [
 		lastName: "Smith",
 		email: "peter@peter.com",
 		password: "$2b$10$g9/cBqkFlsE.FLc1wH6kPOf0aUnKpEZjUAaxLcIP9iCOLAc0F4OAG", // password1
-		friends: [],
+		friends: ["joe@joe.com"],
 	},
 	{
 		firstName: "Test",
