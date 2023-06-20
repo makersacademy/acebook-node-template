@@ -22,7 +22,7 @@
         {{#if gifUrl}}
           <img src="{{gifUrl}}" class="post-gif">
         {{/if}}
-        <p class="message">{{this.message}}</p>
+        <p class="message">{{{this.message}}}</p>
         <div class="likes">
           <form action="/posts/{{this._id}}/likes" method="POST" id="like-post">
             <input type="submit" value="👍" class="global-button like-button">
