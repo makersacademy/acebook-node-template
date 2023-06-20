@@ -7,6 +7,9 @@ const cloudinaryService = require("../services/cloudinaryService");
 const PostsController = {
   Index: async (req, res) => {
     try {
+      if (!req.session.user) {
+        return res.redirect("/sessions/new");
+      }
       const currentUser = await userService.getCurrentUser(
         req.session.user._id
       );
