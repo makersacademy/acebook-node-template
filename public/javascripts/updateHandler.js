@@ -5,13 +5,19 @@ export const handleUpdateSubmit = () => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const formData = new FormData(form);
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
+      const formData = new FormData(event.target);
+      const params = new URLSearchParams([...formData.entries()]);
+
+      fetch(event.currentTarget.action, {
+        method: event.currentTarget.method,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params,
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           const postMessageElement = document.getElementById(
             `message-${data.post._id}`
           );
@@ -37,10 +43,15 @@ export const handleNewUpdateForm = (newPost) => {
   if (updateForm) {
     updateForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      const formData = new FormData(updateForm);
-      fetch(updateForm.action, {
-        method: "POST",
-        body: formData,
+      const formData = new FormData(event.target);
+      const params = new URLSearchParams([...formData.entries()]);
+
+      fetch(event.currentTarget.action, {
+        method: event.currentTarget.method,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params,
       })
         .then((response) => response.json())
         .then((data) => {

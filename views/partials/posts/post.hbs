@@ -38,22 +38,10 @@
 
 <div id="editModal-{{post._id}}" class="modal">
   <div class="modal-content">
-    <h1>Edit Post</h1>
-    <form class="updateForm" action="/posts/{{post._id}}/update" method="post">
-      <input type="hidden" name="_method" value="PUT" />
-      <label for="message">Message:</label><br />
+    <form class="updateForm" action="/posts/{{post._id}}/update" method="post" enctype="application/x-www-form-urlencoded">
+      <label for="message">Message:</label>
       <textarea id="message" name="message">{{post.message}}</textarea><br/>
       <input type="submit" value="Update Post"/>
     </form>
   </div>
 </div>
-
-<h1>Edit Post</h1>
-
-<form action="/posts/{{post._id}}/update" method="post">
-  <input type="hidden" name="_method" value="PUT" />
-  <label for="message">Message:</label><br />
-  <textarea id="message" name="message">{{post.message}}</textarea><br />
-
-  <input type="submit" value="Update Post" />
-</form>

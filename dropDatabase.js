@@ -5,6 +5,7 @@ const dropDatabase = async (url) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   });
 
   await connection.dropDatabase();

@@ -5,6 +5,7 @@ beforeAll(function (done) {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   });
 
   var db = mongoose.connection;

@@ -8,6 +8,7 @@ mongoose.connect("mongodb://0.0.0.0/acebook_test", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 });
 
 const db = mongoose.connection;
