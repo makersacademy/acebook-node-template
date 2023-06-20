@@ -4,7 +4,11 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   message: String,
-  image_url: String,
+  image: {
+    data: Buffer,
+    contentType: String,
+  },
+
   timestamp: { type : Date, default: Date.now },
   postAuthor: Object,
   likes: Array,

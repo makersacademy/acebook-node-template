@@ -2,6 +2,10 @@
       <input type="submit" value="Log Out"></form>
 
 <h1>{{ post.message }}</h1>
+
+{{#if post.image.data}}
+  <img src="/posts/{{post._id}}/image" width="1000px">
+{{/if}}
 <p>Author: {{ post.postAuthor.firstName }} {{ post.postAuthor.lastName }}</p>
 <p>Posted at: {{post.timestamp}}</p>
 
