@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  {{!-- <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  </head> --}}
+  {{!-- doesn't work :( vvv --}}
+  <link rel="shortcut icon" type="image/jpg" href="/public/images/acebook-logo.jpg"/>
   <body>
 
 <nav>
@@ -12,9 +14,9 @@
         <li><a href="/posts">Posts</a></li>
         <li><a href='/users/{{user.username}}'>Profile</a></li> 
         <li><a href="/sessions/logout" >Logout</a></li> 
-    {{else}}
+    {{!-- {{else}}
         <li><a href="/sessions/login">Login</a></li>
-        <li><a href="/users/signup">Sign-up</a></li>
+        <li><a href="/users/signup">Sign-up</a></li> --}}
     {{/if}}
 </ul>
 </nav>

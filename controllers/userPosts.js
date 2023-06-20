@@ -5,7 +5,7 @@ const UserPostsController = {
       const username = req.params.username; 
       const content = req.body.content; 
   
-      User.findOneAndUpdate( { username }, { $push: { posts: { content } } }, { new: true },
+      User.findOneAndUpdate({ username }, { $push: { posts: { content } } }, { new: true },
         (err) => {
           if (err) {
             throw err;

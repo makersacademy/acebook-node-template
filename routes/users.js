@@ -12,6 +12,4 @@ router.post("/:username/posts", UsersController.CreatePost);
 router.get("/:username", UsersController.Show);
 router.get("/:username/posts/:postId/edit", UsersController.EditPost);
 
-
-
 module.exports = router; 

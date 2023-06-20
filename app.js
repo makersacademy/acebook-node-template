@@ -12,8 +12,6 @@ const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users"); 
 const userPostsRouter = require("./routes/userPosts");
 
-// create a route for users/username
-
 const app = express();
 
 // view engine setup
