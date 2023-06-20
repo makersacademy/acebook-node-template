@@ -1,12 +1,12 @@
 const closeModalsOnClickOutside = () => {
-  window.onclick = (event) => {
+  window.addEventListener("click", (event) => {
     let allModals = document.getElementsByClassName("modal");
     for (let i = 0; i < allModals.length; i++) {
       if (event.target == allModals[i]) {
         allModals[i].style.display = "none";
       }
     }
-  };
+  });
 };
 
 export const handleEditButtonClick = () => {
