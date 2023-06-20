@@ -22,7 +22,7 @@ const PostsController = {
   },
 
   Edit: async (req, res) => { 
-    const post_id = req.body.post_id;
+    const post_id = req.params.id;
     console.log(`Post_id ${post_id}`);
     const user_id = req.session.user._id;
     console.log(`user_id ${user_id}`);
@@ -30,10 +30,24 @@ const PostsController = {
     const post = await Post.findOne({ _id: post_id });
     console.log(`post ${post}`);
 
-    res.render("posts/edit", { posts: post , user: req.session.user, isAuthenticated: true});
+    res.render("posts/edit", { post: post , user: req.session.user, isAuthenticated: true});
 
   },
  
+  Update: async (req, res) => { 
+    const post_id = req.params.id;
+    console.log(`Post_id ${post_id}`);
+    const user_id = req.session.user._id;
+    console.log(`user_id ${user_id}`);
+
+    const post = await Post.findOne({ _id: post_id });
+    console.log(`post ${post}`);
+    post.message = req.body.content 
+    await post.save()
+    res.status(201).redirect(`/users/${req.session.user.username}`); 
+
+  },
+
 
   AddLike: async (req, res) => {
     // get the post_id for the 
