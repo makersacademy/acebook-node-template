@@ -10,12 +10,22 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const expressHbs =  require('express-handlebars');
 
 const app = express();
+
+app.engine('.hbs', expressHbs.engine({ defaultLayout: 'layout', extname: '.hbs'}))
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+
+const hbs = expressHbs.create({});
+
+// register new function
+hbs.handlebars.registerHelper('shout', function(post) {
+  return post.message.toUpperCase();
+})
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -76,3 +86,26 @@ app.use((err, req, res) => {
 });
 
 module.exports = app;
+
+
+// var express = require('express');
+
+// var app = express();
+
+// 
+
+// 
+// app.set('view engine', '.hbs');
+
+
+
+// app.get('/', (req, res) => {
+//   res.render('home', {
+//     layout: false,
+//     totalPrice: 300,
+//   });
+// })
+
+// app.listen(3000, () => {
+//   console.log('Server is up');
+// });
