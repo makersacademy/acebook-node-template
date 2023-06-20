@@ -8,7 +8,7 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-    const { email, firstName, lastName, password, confirmPassword } = req.body;
+    const { email, firstName, lastName, password, confirmPassword, icon } = req.body;
     const maxLength = 50;
     if (firstName.length > maxLength) {
       return res.status(400).render("users/new", {
@@ -77,7 +77,8 @@ const UsersController = {
           email,
           firstName,
           lastName,
-          password: hashedPassword, // save hashed password in database
+          password: hashedPassword,
+          icon: icon
         });
 
         user.save((err) => {
@@ -90,6 +91,7 @@ const UsersController = {
             _id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
+            icon: user.icon
           };
           res.status(201).redirect("/posts");
         });

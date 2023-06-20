@@ -1,6 +1,6 @@
 <div class="timeline-navbar fixed-content">
   <div class="topbar">
-    <div class="initials">{{initials}}</div>
+    <div class="icon large-icon">{{icon}}</div>
     <h1 class="title">Acebook</h1>
     <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out" class="global-button logout">
@@ -16,12 +16,16 @@
   {{#each posts}}
   <div class="posts">
     <div class="post-sec">
-      <div class="author">{{this.author}}</div> 
+      <div class="icon post-icon">{{this.authorIcon}}</div> 
       <div class="post-details">
+        <p class="author-name">{{this.author}}</p>
+        {{#if gifUrl}}
+          <img src="{{gifUrl}}" class="post-gif">
+        {{/if}}
         <p class="message">{{this.message}}</p>
         <div class="likes">
           <form action="/posts/{{this._id}}/likes" method="POST" id="like-post">
-            <input type="submit" value="Like" class="global-button like-button">
+            <input type="submit" value="👍" class="global-button like-button">
             <p class="likes-count">{{this.likes}}</p>
           </form>
         </div>

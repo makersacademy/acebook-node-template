@@ -27,6 +27,7 @@ const SessionsController = {
         _id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
+        icon: user.icon
       };
 
       return res.redirect('/posts');

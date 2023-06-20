@@ -35,6 +35,13 @@ hr {
   background-color: var(--main-grey);
 }
 
+.input-area {
+  border: none;
+  border-radius: 2vh;
+  padding: 3vh;
+  background-color: var(--main-grey);
+}
+
 .global-button {
   padding: 1vh 2vh;
   margin: 0.5vh;
@@ -42,10 +49,12 @@ hr {
   border: none;
   background-color: var(--main-color);
   color: white;
+  font-size: 1.3vh;
 }
 
 .global-button:hover {
   background-color: var(--hover-color);
+  color: white;
   cursor: pointer;
 }
 
@@ -58,6 +67,16 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: center; 
+  background-color: var(--main-grey);
+}
+
+.new-content {
+  height: auto;
+  padding: 10vh;
+} 
+
+.white-box {
+  background-color: white;
 }
 
 .timeline {
@@ -65,8 +84,8 @@ hr {
   display: flex;
   flex-direction: column;
   align-content: center;
-  background-color: var(--main-grey);
   min-height: 68vh;
+  width: auto;
 }
 
 /* Banner */
@@ -78,7 +97,7 @@ hr {
 .timeline-navbar {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 98%;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -100,17 +119,22 @@ hr {
 .bottombar {
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
 }
+
+.bottombar {
+  font-size: 1.3vh;
+}
+
 
 /* Initials Icon */
 .initials {
   display: flex;
   margin: 0.5vh;
   padding: 3vh;
-  border-style: solid;
-  border-width: 1px;
   border-radius: 40vh;
+  background-color: #e30b5d;
+  color: white;
   height: 4vh;
   width: 4vh;
   justify-content: center;
@@ -169,6 +193,30 @@ hr {
   font-size: 12px;
 }
 
+.icon-select {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon {
+  display: flex;
+  padding: 1vh;
+  writing-mode: vertical-rl;
+  align-content: center;
+  justify-content: center;
+}
+
+.large-icon {
+  font-size: 4vh;
+  height: 6vh;
+  width: 6vh;
+  padding: 2vh;
+  background-color: #e30b5d;
+  border-radius: 10vh;
+}
+
 /* Posts Page */
 .posts {
   display: flex;
@@ -180,9 +228,26 @@ hr {
   background-color: white;
 }
 
+.post-gif {
+  max-width: 41.9vh;
+  height: auto;
+  border-radius: 1vh;
+}
+
 .post-sec {
   display: grid;
   grid-template-rows: 30% 70%;
+}
+
+.post-icon {
+  display: flex;
+  font-size: 3vh;
+  height: 4vh;
+  width: 4vh;
+  padding: 1vh;
+  background-color: #e30b5d;
+  border-radius: 10vh;
+  align-items: center;
 }
 
 .author {
@@ -260,12 +325,42 @@ hr {
 
 /* New Post Page */
 .new-post-box {
-  margin-top: 40vh;
+  margin-top: 30vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 6vh;
+  border-radius: 5vh;
 }
 
 #new-post-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.gif-finder {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gif-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.gif-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gif-thumbnail {
+  height: 10vh;
+  width: auto;
 }

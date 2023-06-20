@@ -1,13 +1,13 @@
 <div class="timeline-navbar">
   <div class="topbar">
-    <div class="initials">{{initials}}</div>
+    <div class="icon large-icon">{{icon}}</div>
     <h1 class="title">Acebook</h1>
     <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out" class="global-button logout">
     </form>
   </div>
   <div class="bottombar">
-    <a href="/posts" class="go-top">Back to Posts</a>
+    <a href="/posts">Back to Posts</a>
   </div>
 </div>
 
@@ -19,7 +19,29 @@
       {{error}}
       </div>
     {{/if}}
+    <form action="/posts/gif" method="post" class="gif-finder">
+      <div>
+        <input type="text" name="searchQuery" placeholder="Search GIFs" class="input-box">
+        <input type="submit" value="Search" class="global-button">
+      </div>
+    </form>
     <form id="new-post-form" action="/posts" method="post">
+    <div class="gif-results">
+        {{#if gifs}}
+          <ul class="gif-list">
+            {{#each gifs}}
+            <li>
+              <label class="gif">
+                <input type="radio" name="gifUrl" value="{{this.images.original.url}}">
+                <img src="{{this.images.original.url}}" alt="{{this.title}}" class="gif-thumbnail">
+              </label> 
+            </li>
+          {{/each}}
+          </ul>
+        {{else}}
+          <p>No GIFs found.</p>
+        {{/if}}
+      </div>
       <textarea id="message" class="input-area" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
       <input type="submit" value="Submit" class="global-button">
     </form>
