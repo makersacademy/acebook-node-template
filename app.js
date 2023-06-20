@@ -10,7 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users"); 
-const userPostsRouter = require("./routes/userPosts");
+// const userPostsRouter = require("./routes/userPosts");
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-app.use("/users/:username/posts", userPostsRouter);
+// app.use("/users/:username/posts", userPostsRouter);
 
 app.use(
   session({
@@ -60,7 +60,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
-app.use("/users/:username/posts", userPostsRouter); 
+// app.use("/users/:username/posts", userPostsRouter); 
 
 
 // catch 404 and forward to error handler

@@ -1,18 +1,21 @@
 const Post = require("../models/post");
 
 const PostsController = {
+  
   Index: (req, res) => {
     Post.find((err, posts) => {
       if (err) {
         throw err;
       }
-        // Implemented authentication logic to dynamically update navbar links based on the user's login status.
+      // Implemented authentication logic to dynamically update navbar links based on the user's login status.
       res.render("posts/index", { posts: posts, user: req.session.user, isAuthenticated: true});
     });
   },
+
   New: (req, res) => {
     res.render("posts/new", {isAuthenticated: true});
   },
+
   Create: (req, res) => {
     const { message, likes } = req.body;
   const username = req.session.user.username;

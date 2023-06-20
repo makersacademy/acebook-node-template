@@ -5,15 +5,15 @@ const UserSchema = new mongoose.Schema({
   username: String,
   email: String,
   password: String,
-  posts: [
-    {
-      content: String,
-      author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    },
-  ],
+  // posts: [
+  //   {
+  //     content: String,
+  //     author: {
+  //       type: mongoose.Schema.Types.ObjectId,
+  //       ref: "User",
+  //     },
+  //   },
+  // ],
 });
 
 UserSchema.statics.authenticate = function (email, password, callback) {
