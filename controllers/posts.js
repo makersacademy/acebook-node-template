@@ -21,6 +21,19 @@ const PostsController = {
     res.render("posts/new", {user: req.session.user, isAuthenticated: true});
   },
 
+  Edit: async (req, res) => { 
+    const post_id = req.body.post_id;
+    console.log(`Post_id ${post_id}`);
+    const user_id = req.session.user._id;
+    console.log(`user_id ${user_id}`);
+
+    const post = await Post.findOne({ _id: post_id });
+    console.log(`post ${post}`);
+
+    res.render("posts/edit", { posts: post , user: req.session.user, isAuthenticated: true});
+
+  },
+ 
 
   AddLike: async (req, res) => {
     // get the post_id for the 
