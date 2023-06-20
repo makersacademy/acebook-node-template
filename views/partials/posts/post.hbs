@@ -10,6 +10,14 @@
       </form>
     {{/unless}}
 
+    {{#if post.currentUser}}
+      <a href="/posts/{{post._id}}/edit" class="edit-button">Edit</a>
+      <form action="/posts/{{post._id}}/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+    {{/if}}
+
     <ul class="post-comment" id="comments-{{post.id}}">
       {{> posts/new_comment post}}
       {{> posts/likes post}}

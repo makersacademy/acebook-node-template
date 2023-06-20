@@ -71,6 +71,42 @@ const PostsController = {
       });
     }
   },
+  Edit: async (req, res) => {
+    const postId = req.params.id;
+    try {
+      const post = await postService.getPostById(postId);
+      if (!post) {
+        return res.status(404).json({ error: "Post not found" });
+      }
+      res.render("posts/edit", { post });
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
+  },
+  Update: async (req, res) => {
+    const postId = req.params.id;
+    const updatedData = req.body;
+
+    try {
+      const post = await postService.updatePostById(postId, updatedData);
+      if (!post) {
+        return res.status(404).json({ error: "Post not found" });
+      }
+      res.redirect(`/posts`);
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
+  },
+  Delete: (req, res) => {
+    const postId = req.params.id;
+
+    Post.findByIdAndDelete(postId, (err) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.redirect("/posts");
+    });
+  },
 };
 
 module.exports = PostsController;

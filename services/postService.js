@@ -1,6 +1,16 @@
 const Post = require("../models/post");
 const moment = require("moment");
 
+exports.getPostById = async (postId) => {
+  const post = await Post.findById(postId);
+  return post;
+};
+
+exports.updatePostById = async (postId, updatedData) => {
+  const post = await Post.findByIdAndUpdate(postId, updatedData, { new: true });
+  return post;
+};
+
 exports.getPosts = async () => {
   let posts = await Post.find().exec();
   posts = posts.reverse();

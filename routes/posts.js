@@ -5,5 +5,8 @@ const PostsController = require("../controllers/posts");
 
 router.get("/", PostsController.Index);
 router.post("/", parser.single("image"), PostsController.Create);
+router.get("/:id/edit", PostsController.Edit);
+router.post("/:id/update", PostsController.Update);
+router.post("/:id/delete", PostsController.Delete);
 
 module.exports = router;

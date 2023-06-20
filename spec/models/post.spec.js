@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Post = require("../../models/post");
 require("../mongodb_helper");
+const { mockResponse } = require('jest-mock-req-res');
 
 const user = {
   id: new mongoose.Types.ObjectId(),
@@ -67,4 +68,42 @@ describe("Post model", () => {
     expect(posts[0]).toMatchObject({ message: "some message" });
     expect(posts[1]).toMatchObject({ message: "another message" });
   });
+
+//   
+  // it("can render the edit page", async () => {
+  //   // Create a sample post
+  //   const post = new Post({ message: "Initial message", user: user.id });
+  //   await post.save();
+
+  //   // Call the Edit function
+  //   const req = { params: { id: post._id} };
+  //   const res = mockResponse();
+  //   await Post.Edit(req, res);
+
+  //   // Assert that the response status is successful (e.g., 200)
+  //   expect(res.status).toHaveBeenCalledWith(200);
+
+  //   // Assert that the correct template is rendered
+  //   expect(res.render).toHaveBeenCalledWith("posts/edit", { post });
+  // });
+
+//   it("can update a post", async () => {
+//     // Create a sample post
+//     const post = new Post({ message: "Initial message" });
+//     await post.save();
+
+//     // Call the Update function
+//     const req = { params: { id: post._id }, body: { message: "Updated message" } };
+//     const res = mockResponse();
+//     await PostsController.Update(req, res);
+
+//     // Retrieve the updated post from the database
+//     const updatedPost = await Post.findById(post._id);
+
+//     // Assert that the post has been updated
+//     expect(updatedPost.message).toBe("Updated message");
+
+//     // Assert that the response status is a redirect (e.g., 302)
+//     expect(res.redirect).toHaveBeenCalledWith("/posts");
+//   });
 });

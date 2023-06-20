@@ -1,0 +1,9 @@
+<h1>Edit Post</h1>
+
+<form action="/posts/{{post._id}}/update" method="post">
+  <input type="hidden" name="_method" value="PUT" />
+  <label for="message">Message:</label><br />
+  <textarea id="message" name="message">{{post.message}}</textarea><br />
+
+  <input type="submit" value="Update Post" />
+</form>

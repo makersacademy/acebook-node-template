@@ -28,6 +28,7 @@
     "express-session": "^1.17.2",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
+    "jest-mock-req-res": "^1.0.2",
     "method-override": "^3.0.0",
     "moment": "^2.29.4",
     "mongodb": "^3.4.1",
