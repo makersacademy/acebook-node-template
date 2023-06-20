@@ -1,7 +1,7 @@
 class sitePage {
   elements = {
     postURL: "/posts",
-    newPostUrl: "/posts",
+    newPostUrl: "/posts/new",
     signUpURL: "/users/new",
     signInUrl: "/sessions/new",
 
