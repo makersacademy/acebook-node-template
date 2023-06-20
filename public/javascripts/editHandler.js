@@ -27,11 +27,11 @@ export const handleEditButtonClick = () => {
 
 export const updateEditModalAndForm = (newPost, postId) => {
   let currentModal = newPost.querySelector(".modal");
-  let editForm = newPost.querySelector("#editForm");
+  let updateForm = newPost.querySelector(".updateForm");
 
-  if (currentModal && editForm) {
+  if (currentModal && updateForm) {
     currentModal.id = "editModal-" + postId;
-    editForm.action = `/posts/${postId}/update`;
+    updateForm.action = `/posts/${postId}/update`;
 
     let editButton = newPost.querySelector(".edit-button");
 

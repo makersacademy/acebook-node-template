@@ -3,6 +3,7 @@ import { attachFormListeners } from "./eventListeners.js";
 import { handleLikeButtonClick } from "./likeHandler.js";
 import { handleCommentFormSubmit } from "./commentHandler.js";
 import { updateEditModalAndForm } from "./editHandler.js";
+import { handleNewUpdateForm } from "./updateHandler.js";
 
 export const handleNewPostFormSubmit = async (event) => {
   event.preventDefault();
@@ -40,6 +41,7 @@ export const handleNewPostFormSubmit = async (event) => {
     let hiddenInput = newPost.querySelector("#like-form input[name='postId']");
     hiddenInput.value = postId;
     updateEditModalAndForm(newPost, postId);
+    handleNewUpdateForm(newPost);
   } catch (error) {
     console.error(error);
   } finally {

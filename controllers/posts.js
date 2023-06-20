@@ -34,6 +34,7 @@ const PostsController = {
       throw err;
     }
   },
+
   Create: async (req, res) => {
     const { message } = req.body;
 
@@ -71,6 +72,7 @@ const PostsController = {
       });
     }
   },
+
   Edit: async (req, res) => {
     const postId = req.params.id;
     try {
@@ -83,6 +85,7 @@ const PostsController = {
       return res.status(500).json({ error: err.message });
     }
   },
+
   Update: async (req, res) => {
     const postId = req.params.id;
     const updatedData = req.body;
@@ -92,11 +95,32 @@ const PostsController = {
       if (!post) {
         return res.status(404).json({ error: "Post not found" });
       }
-      res.redirect(`/posts`);
+
+      if (req.accepts("json")) {
+        res.json({ post });
+      } else {
+        res.redirect(`/posts`);
+      }
     } catch (err) {
       return res.status(500).json({ error: err.message });
     }
   },
+
+  // Update: async (req, res) => {
+  //   const postId = req.params.id;
+  //   const updatedData = req.body;
+
+  //   try {
+  //     const post = await postService.updatePostById(postId, updatedData);
+  //     if (!post) {
+  //       return res.status(404).json({ error: "Post not found" });
+  //     }
+  //     res.redirect(`/posts`);
+  //   } catch (err) {
+  //     return res.status(500).json({ error: err.message });
+  //   }
+  // },
+
   Delete: async (req, res) => {
     const postId = req.params.id;
 

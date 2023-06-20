@@ -1,5 +1,5 @@
 <li class="post-item">
-  <div class="post-message">{{post.message}}</div>
+  <div class="post-message" id="message-{{post.id}}">{{post.message}}</div>
   <p class="post-author">Written by {{post.username}} </p>
   <p class="post-date">Posted on {{post.formattedCreatedAt}}</p>
   <div class="actions">
@@ -39,7 +39,7 @@
 <div id="editModal-{{post._id}}" class="modal">
   <div class="modal-content">
     <h1>Edit Post</h1>
-    <form id="editForm" action="/posts/{{post._id}}/update" method="post">
+    <form class="updateForm" action="/posts/{{post._id}}/update" method="post">
       <input type="hidden" name="_method" value="PUT" />
       <label for="message">Message:</label><br />
       <textarea id="message" name="message">{{post.message}}</textarea><br/>
@@ -47,3 +47,13 @@
     </form>
   </div>
 </div>
+
+<h1>Edit Post</h1>
+
+<form action="/posts/{{post._id}}/update" method="post">
+  <input type="hidden" name="_method" value="PUT" />
+  <label for="message">Message:</label><br />
+  <textarea id="message" name="message">{{post.message}}</textarea><br />
+
+  <input type="submit" value="Update Post" />
+</form>
