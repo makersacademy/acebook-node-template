@@ -17,8 +17,37 @@ const PostsController = {
     });
     
   },
+  
   New: (req, res) => {
-    res.render("posts/new", {user: req.session.user, isAuthenticated: true});
+      res.render("posts/new", {user: req.session.user, isAuthenticated: true});
+    // }
+},
+
+  Edit: async (req, res) => { 
+    const post_id = req.params.id;
+    console.log(`Post_id ${post_id}`);
+    const user_id = req.session.user._id;
+    console.log(`user_id ${user_id}`);
+
+    const post = await Post.findOne({ _id: post_id });
+    console.log(`post ${post}`);
+
+    res.render("posts/edit", { post: post , user: req.session.user, isAuthenticated: true});
+
+  },
+ 
+  Update: async (req, res) => { 
+    const post_id = req.params.id;
+    console.log(`Post_id ${post_id}`);
+    const user_id = req.session.user._id;
+    console.log(`user_id ${user_id}`);
+
+    const post = await Post.findOne({ _id: post_id });
+    console.log(`post ${post}`);
+    post.message = req.body.content 
+    await post.save()
+    res.status(201).redirect(`/users/${req.session.user.username}`); 
+
   },
 
 
@@ -57,26 +86,22 @@ const PostsController = {
   Create: (req, res) => {
   const { message, likes } = req.body;
   const username = req.session.user.username;
-  // const now = new Date();
-  // const options = { 
-  //   weekday: 'short', 
-  //   month: 'short', 
-  //   day: 'numeric', 
-  //   year: 'numeric', 
-  //   hour: 'numeric', 
-  //   minute: 'numeric' 
-  // };
-  // const currentDate = now.toLocaleString('en-US', options);
   const post = new Post({ username, message, likes });
-    post.save((err) => {
-      if (err) {
-        throw err;
-      }
+  
+  console.log(`message ${post.message}`)
 
-      res.status(201).redirect("/posts");
-    });
+    if (post.message == '' ) {
+      res.render('posts/new', {error: "The post cannot be left blank!"});
+    } else {
+      post.save((err) => {
+        if (err) {
+          throw err;
+        }
+
+        res.status(201).redirect("/posts");
+      });
+    }
   },
 };
-
 
 module.exports = PostsController;
