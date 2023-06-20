@@ -36,6 +36,11 @@ const PostSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+PostSchema.pre("find", function (next) {
+  this.populate("user", "image"); 
+  next();
+});
+
 const Post = mongoose.model("Post", PostSchema);
 
 module.exports = Post;

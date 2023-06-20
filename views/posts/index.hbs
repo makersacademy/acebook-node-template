@@ -20,14 +20,19 @@
 <section class="timeline-section">
   <ul class="posts">
     {{#each posts}}
-      <li class="post-item">
+      <li class="post-item"> {{#if this.image}}
+        <img src="{{this.image}}" height="300px" width="300px">
+        {{/if}}
         <div class="post-message">{{this.message}}</div>
         <p class="post-author">Written by {{this.username}}</p>
+        {{#if this.user.image}}
+              <img src="{{this.user.image}}" class="avatar">
+              {{/if}}
         <p class="post-date">Posted on {{this.formattedCreatedAt}}</p>
         <div class="actions">
           {{#unless this.currentUser}}
             <form action="/friends" method="post">
-              <input type="hidden" name="recipientId" value={{this.user}} />
+              <input type="hidden" name="recipientId" value={{this.user._id}} />
               <button type="submit" class="befriend-button">Poke</button>
             </form>
           {{/unless}}
