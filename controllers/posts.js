@@ -34,9 +34,6 @@ const PostsController = {
       throw err;
     }
   },
-  New: (req, res) => {
-    res.render("posts/new", {});
-  },
   Create: async (req, res) => {
     const { message } = req.body;
 

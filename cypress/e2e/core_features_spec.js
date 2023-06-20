@@ -71,6 +71,7 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.signupAndSignInAs("test2@test.com", "tester2", "password123"); // Second test user creation
     sitePage.likePost(0);
     cy.get(".post-likes").eq(0).should("contain", "2 likes");
+    cy.reload();
     sitePage.shouldContain(".liked-by-tooltip", "tester1");
     sitePage.shouldContain(".liked-by-tooltip", "tester2");
   });

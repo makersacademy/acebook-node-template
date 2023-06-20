@@ -23,8 +23,11 @@ const LikesController = {
       }
 
       if (req.accepts("json")) {
+        const likes = await likeService.getLikesByPostId(req.body.postId);
+        console.log(likes);
+        const likedBy = likes.map((like) => like.user.username);
         const likesCount = await likeService.getLikesCount(req.body.postId);
-        return res.json({ likesCount });
+        return res.json({ likesCount, likedBy });
       } else {
         res.redirect("/posts");
       }

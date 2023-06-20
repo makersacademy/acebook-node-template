@@ -27,8 +27,15 @@ export const handleNewPostFormSubmit = async (event) => {
     let splitId = fullId.split("-");
     let postId = splitId[1];
 
-    let likeCount = newPost.querySelector(".post-likes");
-    likeCount.textContent = "0 likes";
+    let htmlString = `
+      <div class="post-likes">
+        <span id="like-count">0</span>
+        likes
+        <div class="liked-by-tooltip"></div>
+      </div>
+    `;
+
+    newPost.querySelector(".post-likes").innerHTML = htmlString;
 
     let hiddenInput = newPost.querySelector("#like-form input[name='postId']");
     hiddenInput.value = postId;
