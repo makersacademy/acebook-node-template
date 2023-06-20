@@ -32,7 +32,7 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.createPostWith("THIS IS NEWER");
     sitePage.shouldContain(".posts", "THIS IS NEWER");
     sitePage.likePost(0);
-    cy.get("#like-count").should(($el) => {
+    cy.get(".like-count").should(($el) => {
       expect($el).to.contain("1 likes");
     });
   });
@@ -60,13 +60,13 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.shouldContain(".posts", "THIS IS OLDER");
     sitePage.shouldContain(".posts", "THIS IS NEWER");
     sitePage.likePost(1);
-    cy.get("#like-count")
+    cy.get(".like-count")
       .eq(0)
       .should(($el) => {
         expect($el).to.contain("0 likes");
       });
 
-    cy.get("#like-count")
+    cy.get(".like-count")
       .eq(1)
       .should(($el) => {
         expect($el).to.contain("1 likes");
@@ -81,7 +81,7 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.logOut(); // Log out of first account
     sitePage.signupAndSignInAs("test2@test.com", "tester2", "password123"); // Second test user creation
     sitePage.likePost(0);
-    cy.get("#like-count").should(($el) => {
+    cy.get(".like-count").should(($el) => {
       expect($el).to.contain("2 likes");
     });
     sitePage.shouldContain(".liked-by-tooltip", "tester1");

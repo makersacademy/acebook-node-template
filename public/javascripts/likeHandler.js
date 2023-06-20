@@ -10,7 +10,7 @@ export const handleLikeButtonClick = async (event) => {
     const data = await postJson(likeForm.action, likeForm.method, dataObject);
     const post = likeForm.nextElementSibling;
     post.querySelector(
-      ".post-likes #like-count"
+      ".post-likes .like-count"
     ).innerText = `${data.likesCount} likes`;
     post.querySelector(".post-likes .liked-by-tooltip").textContent =
       data.likedBy;
