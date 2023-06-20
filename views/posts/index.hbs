@@ -7,14 +7,13 @@
   <li>
     <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
 
-{{#if this.image.contentType}}
-  <a href="/posts/{{this._id}}">
-    <img src="/posts/{{this._id}}/image">
-   
-  </a>
-
+    {{#if this.image.contentType}}
+      <a href="/posts/{{this._id}}">
+        <img src="/posts/{{this._id}}/image" width="500px">
+      </a>
     {{/if}}
-     <p>{{this.content}}</p>
+    
+    <p>{{this.message}}</p>
     <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
     <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
   </li>

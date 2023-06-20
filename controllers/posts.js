@@ -41,38 +41,26 @@ const PostsController = {
 
 	Create: (req, res) => {
 		const user = req.session.user;
-
-		post.postAuthor = {
-			firstName: user.firstName,
-			lastName: user.lastName,
-			// id: user._id,
-			email: user.email,
-		};
+		console.log(req.body);
 
 		const post = new Post({
-			content: req.body.message,
+			message: req.body.message,
+			postAuthor: {
+				firstName: user.firstName,
+				lastName: user.lastName,
+				// id: user._id,
+				email: user.email,
+			},
 			image: {
 				data: req.file
-					? fs.readFileSync("uploads/" + req.file.filename, "base64")
+					? fs.readFileSync("/tmp/my-uploads/" + req.file.filename, "base64")
 					: null, // Read and encode the file as base64
 				contentType: req.file ? req.file.mimetype : null, // Store the file mimetype in the database
 			},
 		});
-		console.log("Post:", post);
-		console.log(
-			"Post image data:",
-			post.image.data ? post.image.data.toString("base64") : null
-		);
-
-		post.postAuthor = {
-			firstName: user.firstName,
-			lastName: user.lastName,
-		};
 
 		post.timestamp = new Date();
-		const imageData = post.image.data
-			? post.image.data.toString("base64")
-			: null;
+		post.image.data ? post.image.data.toString("base64") : null;
 
 		post.save((err) => {
 			if (err) {
@@ -90,9 +78,12 @@ const PostsController = {
 				return res.status(404).send("Image not found");
 			}
 			res.set("Content-Type", post.image.contentType);
-			console.log(post.image.contentType);
+			// console.log(post.image.data.toString(), "<<<<<<< post.image.data");
 
-			res.send(Buffer.from(post.image.data, "base64"));
+			let stringData = post.image.data.toString();
+			let imageData = stringData.replace(/^data:image\/png;base64,/, "");
+
+			res.send(Buffer.from(imageData, "base64"));
 
 			console.log("Sending image data:", post.image.data);
 		});
