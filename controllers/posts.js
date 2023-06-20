@@ -53,7 +53,7 @@ const PostController = {
     const post = new Post({
       author: author,
       authorIcon: icon,
-      gifUrl: req.body.gifUrl
+      gifUrl: req.body.gifUrl,
       message: `${messageWithParagraphs}`,
     });
 
