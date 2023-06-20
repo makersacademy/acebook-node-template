@@ -11,6 +11,10 @@ exports.updatePostById = async (postId, updatedData) => {
   return post;
 };
 
+exports.deletePostById = async (postId) => {
+  await Post.findByIdAndDelete(postId);
+};
+
 exports.getPosts = async () => {
   let posts = await Post.find().exec();
   posts = posts.reverse();

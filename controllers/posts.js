@@ -97,15 +97,15 @@ const PostsController = {
       return res.status(500).json({ error: err.message });
     }
   },
-  Delete: (req, res) => {
+  Delete: async (req, res) => {
     const postId = req.params.id;
 
-    Post.findByIdAndDelete(postId, (err) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
+    try {
+      await postService.deletePostById(postId);
       res.redirect("/posts");
-    });
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
   },
 };
 
