@@ -7,6 +7,7 @@ const cloudinary = require("cloudinary").v2;
 
 const PostsController = {
   Index: async (req, res) => {
+
     try {
       const currentUser = await User.findById(req.session.user._id);
       let posts = await Post.find().exec();
@@ -84,6 +85,39 @@ const PostsController = {
       });
     }
   },
-};
+  Edit: (req, res) => {
+    const postId = req.params.id;
+
+    Post.findById(postId, (err, post) => {
+      if (err) {
+        return res.status(500).json({ error: err.message})
+      }
+      res.render('posts/edit', {post})
+    })
+  },
+  Update: (req, res) => {
+    const postId = req.params.id;
+    const updatedData = req.body;
+  
+    Post.findByIdAndUpdate(postId, updatedData, { new: true }, (err) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.redirect(`/posts`);
+    });
+  }, 
+  Delete: (req, res) => {
+    const postId = req.params.id;
+  
+    Post.findByIdAndDelete(postId, (err) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.redirect('/posts');
+    });
+  }
+  }
+  
+
 
 module.exports = PostsController;
