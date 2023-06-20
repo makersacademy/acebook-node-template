@@ -5,9 +5,9 @@ describe("Registration", () => {
     // sign up
     cy.visit("/users/signup");
     cy.get("#username").type('Tester1');
-    cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("password");
-    cy.get("#submit").click();
+    cy.get("#email").type("test@test.com");
+    cy.get("#password").type("Tester1!");
+    cy.get("#submit-signup-button").click();
 
     cy.url().should("include", "/sessions/login");
   });
