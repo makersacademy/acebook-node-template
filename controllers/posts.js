@@ -81,9 +81,9 @@ const PostController = {
       const firstName = req.session.user.firstName;
       const lastName = req.session.user.lastName;
       const author = `${firstName} ${lastName}`;
-      const initials = `${firstName[0]}${lastName[0]}`
+      const icon = req.session.user.icon
       
-      if (req.body.comment.trim() === "") {
+      if (req.body.comment.trim() === "" || req.body.comment.length > 114) {
         Post.find()
         .populate("comments")
         .exec((err, posts) => {
@@ -95,7 +95,7 @@ const PostController = {
         
           return res.status(400).render("posts/index", {
             posts: reversedPosts,
-            initials: initials,
+            icon: icon,
           })
         });
       

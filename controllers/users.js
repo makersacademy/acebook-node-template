@@ -21,7 +21,7 @@ const UsersController = {
         error: "Last name exceeds the character limit",
       });
     }
-
+    
     // Validate the first name to check for punctuation
     const hasFirstNamePunctuation = /[!"#$%&()*+,/:;<=>?@[\]^_`{|}~]/.test(firstName);
 
