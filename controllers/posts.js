@@ -17,9 +17,25 @@ const PostsController = {
     });
     
   },
+  
   New: (req, res) => {
-    res.render("posts/new", {user: req.session.user, isAuthenticated: true});
-  },
+    // const newPost = new Post({
+    //   username: req.session.username,
+    //   userID: req.session.userId,
+    //   message: req.body.message,
+    //   like: [],
+    //   date: "something",
+    // });
+    // const message = '';
+    // console.log(`message ${message}`);
+
+    // if(message == '') {
+    //   console.log(message)
+    //   res.render('posts/new', {error: "The post cannot be left blank!"});
+    // } else {
+      res.render("posts/new", {user: req.session.user, isAuthenticated: true});
+    // }
+},
 
 
   AddLike: async (req, res) => {
