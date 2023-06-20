@@ -26,6 +26,10 @@ body {
   color: #fff;
 }
 
+.error {
+    padding: 10px;
+}
+
 .wrapper {
   width: 400px;
   background: #fff;
@@ -172,14 +176,14 @@ form .made-user {
     text-align: center;
   }
   
-  form a,
-  form .made-user a {
+form a, 
+form .made-user a {
     color: #00b7ff;
     text-decoration: none;
-  }
+}
   
-  form a:hover,
-  form .made-user a:hover {
+form a:hover,
+form .made-user a:hover {
     text-decoration: underline;
   }
   
