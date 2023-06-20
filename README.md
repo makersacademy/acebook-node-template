@@ -35,7 +35,7 @@ Acebook will connect people and make their lives betta.
 - [Selenium](https://www.selenium.dev/documentation/webdriver/) for end-to-end testing.
 - [Render](https://render.com/) for live hosting and CD Pipeline.
 - [GitHub Actions](https://github.com/) for CI Pipeline and testing.
-- [Trello Board](https://trello.com/b/ZcUWX9qo/betta-acebook) for tracking agile processes.
+- [Trello Board](https://trello.com/) for tracking agile processes.
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) for database hosting.
 - [VSCode](https://code.visualstudio.com/) for development and shared coding.
 
@@ -48,17 +48,12 @@ Acebook will connect people and make their lives betta.
 - [Security Report](betta_security_report.md)
 - [Accessibility Report](https://docs.google.com/document/d/1rBMSxzNgXs747tmHVDKBoszWmDwIkhp8ByLqVxFgwzo)
 - [Online Site!](https://test-render-pmpx.onrender.com/)
-- [Locally Running Link](http://localhost:3000/)
+- [Locally Running Live Server](http://localhost:3000/)
+- [Locally Running Test Server](http://localhost:3030/)
+- [Trello Board](https://trello.com/b/ZcUWX9qo/betta-acebook)
+- [CI/CD Process Breakdown](cypress/CICD_Info.md)
 
 
+## **New User Site Guide**
 
-
-
-OLLIES NOTES - 
-installation instructions for local
-description of hosting and link to live url
-Tools used
-Links to other MD files
-General summation of the site idea - 
-Working on a template
-How to run the tests and cypress
+[Acebook Betta Wireframe](assets/images/acebook_betta_wireframe.png)
