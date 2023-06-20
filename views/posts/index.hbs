@@ -37,7 +37,7 @@
           
               <form action="/posts/{{this._id}}/delete" method="POST">
         <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="Delete">
+          <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
               </form>
           {{/if}}
           {{#each this.comments}}
