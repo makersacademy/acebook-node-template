@@ -9,7 +9,6 @@ class sitePage {
     enterPassword: () => cy.get("#password"),
     enterUsername: () => cy.get("#username"),
     detailsSubmitButton: () => cy.get("#submit"),
-    newPostButton: () => cy.get(".new-post-link"),
     newPostInput: () => cy.get("#message"),
     newPostSubmit: () => cy.get("#new-post-form").submit(),
     likeButton: () => cy.get('button[class="like-button"]'),
@@ -44,7 +43,6 @@ class sitePage {
   }
 
   createPostWith(input) {
-    this.elements.newPostButton().click();
     this.elements.newPostInput().type(input);
     this.elements.newPostSubmit();
   }
