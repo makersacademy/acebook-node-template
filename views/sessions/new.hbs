@@ -1,4 +1,5 @@
 <head>
+  <title>Login to your account</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -16,9 +17,11 @@
   {{/if}}
   </em>
   <form id="new-session-form" action="/sessions" method="post">
-    <input id="email" type="email" name="email" value="" placeholder="email" required class="input-box">
-    <input id="password" type="password" name="password" placeholder="password" required class="input-box">
-    <input id="submit" type="submit" value="Login" class="global-button">
+    <label for="email">Email:</label>
+    <input id="email" type="email" name="email" value="" placeholder="email" required class="input-box" aria-label="Type email address here" tabindex="1">
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password" placeholder="password" required class="input-box" aria-label="Type password here" tabindex="2">
+    <button id="submit" type="submit" class="global-button" aria-label="Submit Login Form" tabindex="3">Login</button>
   </form>
   <br>
   <p class="divert-text">Did you mean <a href="/users/new">signup</a>?</p>

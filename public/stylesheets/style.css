@@ -243,6 +243,32 @@ hr {
   align-items: center;
 }
 
+/* Labels (hidden but readable by screen readers) */
+label {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  visibility: hidden;
+}
+
+button:focus {
+  outline: 3px solid blue;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
 /* navbar media query */
 @media (max-width: 768px) {
   .timeline-navbar {

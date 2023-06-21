@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const isAuthenticated = require('../authMiddleware');
+const validateCommentLength = require('../functions/validateCommentLength')
 const PostsController = require("../controllers/posts");
 const axios = require('axios');
 
