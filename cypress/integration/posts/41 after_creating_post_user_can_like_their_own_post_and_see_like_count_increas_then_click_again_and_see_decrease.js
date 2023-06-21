@@ -20,9 +20,16 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("https://www.diy.com");
+    cy.get("#new-post-form").find('[type="text"]').type("self like test");
     cy.get("#new-post-form").submit();
-    cy.get(".posts").should('contain', 'https://www.diy.com');
+
+    //clikc like
+    cy.get("#likes-form").submit()
+    cy.get(".posts").should("contain", "1 like");
+
+    //clikc like agin and like count decreases
+    cy.get("#likes-form").submit()
+    cy.get(".posts").should("contain", "0 likes");
 
       });
 });

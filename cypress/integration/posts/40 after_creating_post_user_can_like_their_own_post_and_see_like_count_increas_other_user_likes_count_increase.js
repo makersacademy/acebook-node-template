@@ -20,9 +20,31 @@ describe("Timeline", () => {
     cy.visit("/posts");
     cy.contains("New post").click();
 
-    cy.get("#new-post-form").find('[type="text"]').type("https://www.diy.com");
+    cy.get("#new-post-form").find('[type="text"]').type("self like test");
     cy.get("#new-post-form").submit();
-    cy.get(".posts").should('contain', 'https://www.diy.com');
+
+    //clikc like
+    cy.get("#likes-form").submit()
+
+      // sign up
+      cy.visit("/users/signup");
+      cy.get("#username").type("User2");
+      cy.get("#email").type("someoneelse@example.com");
+      cy.get("#password").type("Password2");
+      cy.get("#submit-signup-button").click();
+
+      // sign in
+      cy.visit("/sessions/login");
+      cy.get("#email").type("someoneelse@example.com");
+      cy.get("#password").type("Password2");
+      cy.get("#submit-login-button").click();
+
+    // nav to posts
+    cy.visit("/posts");
+    //clikc like
+    cy.get("#likes-form").submit()
+    // check amount of likes
+    cy.get(".posts").should("contain", "2 likes");
 
       });
 });

@@ -12,4 +12,10 @@ router.post("/:username/posts", UsersController.CreatePost);
 router.get("/:username", UsersController.Show);
 router.get("/:username/posts/:postId/edit", UsersController.EditPost);
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> ecc0d856587a3cf87ee07b6fa05be2193cae4a97
 module.exports = router; 
