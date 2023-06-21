@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -104,7 +105,20 @@
         <div class="col-md-6 d-flex justify-content-center">
           <div id="image-circle"></div> 
         </div>
+{{!-- 
 
+<form id="new-post-form" action="/profile" method="post" enctype="multipart/form-data">
+  <input type="file" name="profileImage" id="file" >
+  <input type="submit">
+</form>
+
+{{#if currentUser.profileImage.contentType}}
+  <img src="/profile/{{currentUser._id}}/image" alt="Profile Image" width="200px">
+{{else}}
+  <p>No profile image available</p>
+{{/if}}
+
+--}}
         <div class="col-md-6">
           <span>
             <h4 class="heading-margin">First Name </h4>
@@ -161,6 +175,7 @@
 
               </form>
             </div>
+
             {{else}}
             No friends found.
             {{/each}}

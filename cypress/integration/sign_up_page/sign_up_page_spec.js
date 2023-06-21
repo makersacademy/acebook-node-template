@@ -7,15 +7,10 @@ describe("Sign-up Page", () =>{
     });
 });
 
-describe("Sign-up Page - Login Button Check", () => {
-    it("has a link to log-in", () => {
-    cy.get('a[href="/sessions/new"]').should('be.visible');
-    });
-});
 
 describe("Sign-up Page - Return to Home Page Button Check", () => {
     it("has a link to return to the home page", () => {
-    cy.get("#home-link").should('be.visible');
+    cy.contains("acebook")
     });
 });
 

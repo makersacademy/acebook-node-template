@@ -12,8 +12,8 @@ describe("Timeline - Like Functionality", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Testing Like Functionality");
     cy.get("#new-post-form").submit();
 
-    cy.get("ul > li:first-child button").click();
-    cy.get("ul > li:first-child span").should("contain", '1');
-    cy.get("ul > li:first-child span").should("not.have.value", '2');
+    cy.get(".likeButtonTimeline").eq(0).click();
+    cy.get('[id*="likesCount"]').eq(0).should("contain", '1');
+    cy.get('[id*="likesCount"]').eq(0).should("not.have.value", '2');
     });
 });

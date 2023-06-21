@@ -35,6 +35,7 @@ const UsersController = {
 			res.render("users/new", { errorMessages: errorMessages });
 		}
 	},
-};
+
+}
 
 module.exports = UsersController;
