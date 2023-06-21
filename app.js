@@ -10,7 +10,6 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users"); 
-const userPostsRouter = require("./routes/userPosts");
 const expressHbs =  require('express-handlebars');
 
 
