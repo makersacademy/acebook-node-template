@@ -1,5 +1,17 @@
-<form id="new-post-form" action="/posts" method="post">
-  <label for="message">Message: </label>
+<form action='/sessions?_method=DELETE' method='POST'>
+      <input type="submit" value="Log Out">
+    </form>
+
+<form id="new-post-form" action="/posts" method="post" enctype="multipart/form-data">
+  <input type="file" name="image" id="file" >
+  <label for="message">Message:</label>
   <input id="message" type="text" name="message" value="">
-  <input type="submit" value="Submit">
+  <input type="submit">
 </form>
+
+    {{#if error}}
+    <p style="color: red;">{{error}}</p>
+    {{/if}}
+
+
+
