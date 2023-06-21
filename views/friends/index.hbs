@@ -1,14 +1,14 @@
 <div class="friends-container">
   <section class="friendship-section">
     <h2>Friendship Requests</h2>
-{{#if friendshipsRequests}}
-    <ul class="friendship-requests">
-      {{#each friendshipsRequests}}
-        <li class="username">{{this.recipient.username}}</li>
-      {{/each}}
-{{else}}
-<p>You haven't sent any requests.</p>
-{{/if}}
+    <ul class="friendship-requests"></ul>
+      {{#if friendshipsRequests}}
+        {{#each friendshipsRequests}}
+          <li class="username">{{this.recipient.username}}</li>
+        {{/each}}
+      {{else}}
+        <p>You haven't sent any requests.</p>
+      {{/if}}
     </ul>
 
   </section>
