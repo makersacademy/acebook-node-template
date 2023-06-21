@@ -1,14 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Timeline</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
 <div class="timeline-navbar fixed-content">
+  {{!-- <button id="dark-mode-toggle" class="global-button toggle-button">Toggle Dark Mode</button> --}}
+  <i id="dark-mode-toggle" class="fas fa-moon toggle-button"></i>
+
   <div class="topbar">
     <div class="icon large-icon">{{icon}}</div>
       <a href="/about"><h1 class="title">Acebook</h1></a>
     <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out" class="global-button logout">
+      <input type="submit" value="Log Out" class="global-button logout" tabindex="1">
     </form>
   </div>
   <div class="bottombar">
-    <a class="global-button new-post-link" href="/posts/new">Create Post</a>
-    <a href="/posts" class="go-top">Back to top</a>
+    <a class="global-button new-post-link" href="/posts/new" tabindex="2">Create Post</a>
+    <a href="/posts" class="go-top" tabindex="3">Back to top</a>
   </div>
 </div>   
 
@@ -23,7 +36,7 @@
         <div class="icon post-icon" onclick="document.forms['makeNemesis{{this._id}}'].submit()">{{this.authorIcon}}</div> 
       </form>
       <div class="post-details">
-        <p class="author-name">{{this.author}}</p>
+        <p class="author-name">{{{this.author}}}</p>
         {{#if gifUrl}}
           <img src="{{gifUrl}}" class="post-gif">
         {{/if}}
@@ -52,13 +65,16 @@
     </div>
     <div class="post-comment-sec">
       <form action="/posts/{{this._id}}/comments" method="POST" id="new-comment-form">
-        <input id="comment" type="text" name="comment" value="" placeholder="Say something..." class="comment-box input-box" required>
-        <input type="submit" value="Submit" class="global-button">
+        <label for="comment">Comment:</label>
+        <input id="comment" type="text" name="comment" value="" placeholder="Say something..." class="comment-box input-box" aria-label="Type comment here" required>
+        <button type="submit" class="global-button">Submit</button>
       </form>
     </div>
   </div>
   {{/each}}
 </div>
+</body>
+</html>
 
 <script>
   window.addEventListener('beforeunload', function() {
@@ -75,5 +91,44 @@
       window.scrollTo(0, scrollPosition);
     }
   });
+
+
+// Get the dark mode toggle button element
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Check if the user's preference is stored in localStorage
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Set the initial state of dark mode based on the user's preference
+if (isDarkMode) {
+  document.body.classList.add('dark-mode');
+  darkModeToggle.classList.add('fa-sun');
+} else {
+  document.body.classList.remove('dark-mode');
+  darkModeToggle.classList.add('fa-moon');
+}
+
+// Toggle dark mode when the button is clicked
+darkModeToggle.addEventListener('click', () => {
+  // Toggle the dark mode class on the body element
+  document.body.classList.toggle('dark-mode');
+  darkModeToggle.classList.toggle('fa-sun');
+  darkModeToggle.classList.toggle('fa-moon');
+
+  // Update the button text and store the dark mode preference
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'true');
+  } else {
+    localStorage.setItem('darkMode', 'false');
+  }
+});
+
+    // Scroll to top functionality
+    const goTopLink = document.querySelector('.go-top');
+    goTopLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
 </script>
 

@@ -54,3 +54,12 @@ jobs:
 #         env:
 #           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           
+#   deploy-to-render:
+#     needs: build-and-test
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy to Render
+#         if: ${{ needs.build-and-test.result == 'success' }}
+#         run: |
+#           # Send a GET request to the Render deploy hook URL
+#           curl -X GET -sS key goes here

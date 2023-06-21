@@ -37,20 +37,48 @@ describe("Posts", () => {
     //type in a random message
     cy.get('#message').type(new_post);
     cy.get('input[type="submit"][value="Submit"]').click();
-    //assert that message is displayed
+    //assert that message is displayed with personal emoji
     cy.get('p.message')
       .should('exist')
       .contains(new_post);
-  // Assert the existence of the "author" element
-  cy.get('div.author').should('exist');
+    cy.contains('div.icon.post-icon', ':)').should('be.visible');
 
-  // Assert that the "author" element contains the name of the admin account
-  cy.get('div.author').should('contain', 'Mrtest Testtest');
+    });
+
+    it("A signed in user can create a post with a gif and see it displayed", () => {
+    //create random post message
+    const new_post_2 = chance.paragraph({ sentences: 1 })
+
+
+      // sign in
+    cy.signIn();
+
+    cy.url().should("include", "/posts");
+
+    //create a new post
+    cy.get('a.global-button.new-post-link[href="/posts/new"]').click();
+
+    //type in a random message
+
+    cy.get('input[type="text"][name="searchQuery"].input-box').type('funny image');
+    cy.get('input[type="submit"][value="Search"].global-button').click();
+    cy.get('input[name="gifUrl"]').first().click();
+
+    cy.get('#message').type(new_post_2);
+
+
+    cy.get('input[type="submit"][value="Submit"]').click();
+    //assert that message is displayed with personal emoji and gif
+    cy.get('p.message')
+      .should('exist')
+      .contains(new_post_2);
+    cy.contains('div.icon.post-icon', ':)').should('be.visible');
+    cy.get('.post-gif').should('exist');
+
     });
 
 
-
-    it("A signed in user cannot create an empty post - test currently inactive", () => {
+    it("A signed in user cannot create an empty post", () => {
 
       // sign in
     cy.signIn();
@@ -85,10 +113,38 @@ it("User can click on and add a comment to a post", () => {
   cy.get('input#comment.comment-box.input-box').first().as('commentInput');
 
   // Type text into the input element
-  cy.get('@commentInput').type(new_comment);
+  cy.get('@commentInput').type(`${new_comment}{enter}`);
+
+
 
   // Assert that any of the elements contains the entered text eventually
-  cy.get('input#comment.comment-box.input-box').should('have.value', new_comment);
+  cy.get('p.comment-content').should('contain', new_comment);
+
+});
+
+it("User cannot add a comment that is too long to a post", () => {
+
+    const new_post_4 = chance.paragraph({ sentences: 1 })
+    const new_comment_2 = chance.paragraph({ sentences: 10 })
+      // sign in
+    cy.signIn();
+
+    //click new post
+    cy.get('a.global-button.new-post-link[href="/posts/new"]').click();
+
+    cy.get('#message').type(new_post_4);
+    cy.get('input[type="submit"][value="Submit"]').click();
+
+  // Grab any one of the input elements
+  cy.get('input#comment.comment-box.input-box').first().as('commentInput');
+
+  // Type text into the input element
+  cy.get('@commentInput').type(`${new_comment_2}{enter}`);
+
+
+  // Assert that any of the elements does not contain the long comment
+  cy.get('p.comment-content').should('not.have.value', new_comment_2);
+
 
 });
 

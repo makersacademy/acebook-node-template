@@ -1,7 +1,20 @@
-<div class="timeline-navbar">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a new post</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+  
+<body>
+    
+    <div class="timeline-navbar">
+      <i id="dark-mode-toggle" class="fas fa-moon toggle-button"></i>
   <div class="topbar">
     <div class="icon large-icon">{{icon}}</div>
-    <h1 class="title">Acebook</h1>
+    <a href="/about"><h1 class="title">Acebook</h1></a>
     <form action='/sessions?_method=DELETE' method='POST'>
       <input type="submit" value="Log Out" class="global-button logout">
     </form>
@@ -13,7 +26,7 @@
 
 <div class="new-content">
   <div class="new-post-box">
-    <h1>Create your Post</h1>
+    <h1 class="create-title">Create your Post</h1>
     {{#if error }}
       <div class="error-message">
       {{error}}
@@ -31,15 +44,20 @@
           <ul class="gif-list">
             {{#each gifs}}
             <li>
-              <label class="gif">
-                <input type="radio" name="gifUrl" value="{{this.images.original.url}}">
+              <div class="gif" aria-label="{{this.title}}">
+                <input type="radio" name="gifUrl" value="{{this.images.original.url}}" id="gif-{{@index}}">
                 <img src="{{this.images.original.url}}" alt="{{this.title}}" class="gif-thumbnail">
-              </label> 
+                <label for="gif-alt-checkbox-{{@index}}">Add Alternative Text:</label>
+                <input type="checkbox" name="gifAltCheckbox" id="gif-alt-checkbox-{{@index}}">
+                <input type="text" name="gifAltText" id="gif-alt-text-{{@index}}" style="display:none;" placeholder="Type alternative text here">
+              </div> 
             </li>
           {{/each}}
           </ul>
         {{else}}
-          <p>No GIFs found.</p>
+          {{#if showNoGifsFound}}
+          <p class="no-gif-line">No GIFs found.</p>
+          {{/if}}
         {{/if}}
       </div>
         <textarea id="message" class="input-area" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
@@ -47,3 +65,87 @@
     </form>
   </div>
 </div>
+
+</body>
+</html>
+
+
+
+
+<script>
+  // Get the dark mode toggle button element
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+  // Check if the user's preference is stored in localStorage
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+  // Set the initial state of dark mode based on the user's preference
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+    darkModeToggle.classList.add('fa-sun');
+  } else {
+    document.body.classList.remove('dark-mode');
+    darkModeToggle.classList.add('fa-moon');
+  }
+
+  // Toggle dark mode when the button is clicked
+  darkModeToggle.addEventListener('click', () => {
+    // Toggle the dark mode class on the body element
+    document.body.classList.toggle('dark-mode');
+    darkModeToggle.classList.toggle('fa-sun');
+    darkModeToggle.classList.toggle('fa-moon');
+
+    // Update the button text and store the dark mode preference
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'true');
+    } else {
+      localStorage.setItem('darkMode', 'false');
+    }
+  });
+
+  const altCheckboxes = document.querySelectorAll('input[name="gifAltCheckbox"]');
+  altCheckboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      const altInputField = this.parentNode.querySelector('input[name="gifAltText"]');
+      if (this.checked) {
+        altInputField.style.display = 'inline-block';
+      } else {
+        altInputField.style.display = 'none';
+      }
+    });
+  });
+
+// initialize flag variable to false
+  let showNoGifsFound = false;
+
+  // function to handle search and update flag variable accordingly
+  function handleSearch() {
+    showNoGifsFound = false;
+  const apiKey = "eLyYwLxVEXe3Jzab51w6OoNKOXhG4byS";
+  const url = `https://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=${apiKey}`;
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // check if any results were found
+      if (data.data.length > 0) {
+        // update the "gifs" array and render the gif list
+        gifs = data.data;
+        renderGifList();
+      } else {
+        // no results found, show the "No GIFs found" message
+        showNoGifsFound = true;
+        renderNoGifsFound();
+      }
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+  }
+
+</script> 

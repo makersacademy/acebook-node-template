@@ -108,7 +108,7 @@ const PostController = {
       const lastName = req.session.user.lastName;
       const author = `${firstName} ${lastName}`;
       
-      if (req.body.comment.trim() === "") {
+      if (req.body.comment.trim() === "" || req.body.comment.length > 114) {
         Post.find()
         .populate("comments")
         .exec((err, posts) => {

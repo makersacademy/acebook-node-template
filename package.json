@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.3",
     "chai": "^4.3.7",
     "chance": "1.1.11",
+    "chromedriver": "^114.0.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dompurify": "^3.0.3",

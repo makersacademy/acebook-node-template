@@ -64,8 +64,73 @@ so that integration tests do not interact with the development server.
   ```bash
   npm run lint              # linter only
   npm run test:unit         # unit tests only
-  npm run test:integration  # integration tests only
+  npm run test:integration  # integration (Cypress) tests only
+  npm run test:e2e          # selenium tests only
+  npm run test:all          # all tests
   ```
+
+
+### **Selenium Test Suite Documentation**
+Selenium test suite is located in test/selenium.test.js. 
+
+**DATABASE WARNING:** 
+  
+Test database acebook_test is cleared after tests completed.  
+Please run the test with caution and comment out the code that drops database after test if you want to preserve your test data.
+
+
+**HOW TO USE:**
+- Step 1: Start test server
+   ```
+   npm run start:test
+   ```
+
+- Step 2: Run standalone selenium tests - These tests required to run sequentially due to possible browser conflicts.
+   ```
+   npm run test:e2e -- --runInBand
+   ```
+
+- If you want to run whole test suite:
+
+   ```
+   npm run test:all
+   ```
+
+
+Selenium tests written in Jest using selenium-webdriver and uses firefox and chrome browser.  
+
+### **DEPENDENCIES:**
+- Chrome:
+   ```
+   npm install chromedriver
+   ```
+
+- Firefox:
+   ```
+   npm install geckodriver --save-dev
+   ```
+
+- Selenium-webdriver:
+   ```
+   npm install --save-dev selenium-webdriver
+   ```
+
+**Note: You also need to install Firefox desktop version on your computer.**
+
+
+- Script structure of package.json
+   ```
+  "scripts": {
+    "lint": "eslint .",
+    "start": "nodemon ./bin/www",
+    "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/acebook_test' npm start",
+    "test:unit": "jest --testMatch '**/spec/models/**/*.[jt]s?(x)'",
+    "test:e2e": "jest --testMatch '**/test/**/*.[jt]s?(x)'",
+    "test:integration": "cypress run",
+    "test": "npm run lint && npm run test:unit && npm run test:integration",
+    "test:all": "npm run test && npm run test:e2e"
+    }
+    ```
 
 ## MongoDB Connection Errors?
 

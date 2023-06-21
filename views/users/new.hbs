@@ -1,41 +1,98 @@
-<div class="banner">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Create a new account</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+  <div class="banner">
+    <i id="dark-mode-toggle" class="fas fa-moon toggle-button"></i>
   <a><h1 class="title">Acebook</h1></a>
 </div>
 
 <div class="new-content white-box">
-  <h1>Signup</h1>
+  <h1 class="signup-title">Signup</h1>
   <form id="new-user-form" action="/users" method="post">
     {{#if error }}
       <div class="error-message">
       {{error}}
       </div>
     {{/if}}
-    <input id="first-name" type="first-name" name="firstName" maxlength="20" placeholder="first name" required class="input-box">
-    <input id="last-name" type="last-name" name="lastName" maxlength="20" placeholder="last name" required class="input-box">
-    <input id="email" type="email" name="email" placeholder="email" required class="input-box">
-    <ul class="password-requirement">
+    <label for="first-name">First Name:</label>
+    <input id="first-name" type="first-name" name="firstName" maxlength="20" placeholder="first name" required class="input-box" aria-label="Type first name here" tabindex="1">
+    <label for="last-name">Last Name:</label>
+    <input id="last-name" type="last-name" name="lastName" maxlength="20" placeholder="last name" required class="input-box" aria-label="Type last name here" tabindex="2">
+    <label for="email">Email:</label>
+    <input id="email" type="email" name="email" placeholder="email" required class="input-box" aria-label="Type email address here" tabindex="3">
+    <h2 class="visually-hidden">Password Requirements</h2>
+    <ul class="password-requirement" aria-label="Password requirements">
       Passwords must contain:
-      <li>At least 8 characters</li>
-      <li>At least one letter (A-Z)</li>
-      <li>At least one number</li> 
-      <li>At least one special characters</li> 
+      <li role="listitem">At least 8 characters</li>
+      <li role="listitem">At least one letter (A-Z)</li>
+      <li role="listitem">At least one number</li> 
+      <li role="listitem">At least one special characters</li> 
     </ul>
-    <input id="password" type="password" name="password" placeholder="password" required class="input-box">
-    <input id="confirmPassword" type="password" name="confirmPassword" placeholder="confirm password" required class="input-box">
-    <div class="icon-select">
-      <input type="radio" name="icon" value=":)" class="icon-radio"><div class="icon">:)</div>
-      <input type="radio" name="icon" value=":o" class="icon-radio"><div class="icon">:o</div>
-      <input type="radio" name="icon" value=":D" class="icon-radio"><div class="icon">:D</div>
-      <input type="radio" name="icon" value=":3" class="icon-radio"><div class="icon">:3</div>
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password" placeholder="password" required class="input-box" aria-label="Type password here" tabindex="4">
+    <label for="confirmPassword">Confirm Password:</label>
+    <input id="confirmPassword" type="password" name="confirmPassword" placeholder="confirm password" required class="input-box" aria-label="Retype password here" tabindex="5">
+    <fieldset>
+      <legend>Choose an icon:</legend>
+      <div class="icon-select">
+      <input type="radio" name="icon" value=":)" class="icon-radio" tabindex="6"><div class="icon">:)</div>
+      <input type="radio" name="icon" value=":o" class="icon-radio" tabindex="7"><div class="icon">:o</div>
+      <input type="radio" name="icon" value=":D" class="icon-radio" tabindex="8"><div class="icon">:D</div>
+      <input type="radio" name="icon" value=":3" class="icon-radio" tabindex="9"><div class="icon">:3</div>
     </div>
-    <div class="icon-select">
-      <input type="radio" name="icon" value=";)" class="icon-radio"><div class="icon">;)</div>
-      <input type="radio" name="icon" value=":b" class="icon-radio"><div class="icon">:b</div>
-      <input type="radio" name="icon" value=":s" class="icon-radio"><div class="icon">:s</div>
-      <input type="radio" name="icon" value=":|" class="icon-radio"><div class="icon">:|</div>
-    </div>
-    <input id="submit" type="submit" value="Submit" class="global-button">
+      <div class="icon-select">
+        <input type="radio" name="icon" value=";)" class="icon-radio" tabindex="10"><div class="icon">;)</div>
+        <input type="radio" name="icon" value=":b" class="icon-radio" tabindex="11"><div class="icon">:b</div>
+        <input type="radio" name="icon" value=":s" class="icon-radio" tabindex="12"><div class="icon">:s</div>
+        <input type="radio" name="icon" value=":|" class="icon-radio" tabindex="13"><div class="icon">:|</div>
+      </div>
+    </fieldset>
+    <button id="submit" type="submit" class="global-button" tabindex="14">Submit</button>
   </form>
   <br>
-  <p>Did you mean <a href="/sessions/new">login</a>?</p>
+  <p class="divert-text">Did you mean <a href="/sessions/new">login</a>?</p>
 </div>
+</body>
+</html>
+
+
+
+<script>
+// Get the dark mode toggle button element
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Check if the user's preference is stored in localStorage
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+// Set the initial state of dark mode based on the user's preference
+if (isDarkMode) {
+  document.body.classList.add('dark-mode');
+  darkModeToggle.classList.add('fa-sun');
+} else {
+  document.body.classList.remove('dark-mode');
+  darkModeToggle.classList.add('fa-moon');
+}
+
+// Toggle dark mode when the button is clicked
+darkModeToggle.addEventListener('click', () => {
+  // Toggle the dark mode class on the body element
+  document.body.classList.toggle('dark-mode');
+  darkModeToggle.classList.toggle('fa-sun');
+  darkModeToggle.classList.toggle('fa-moon');
+
+  // Update the button text and store the dark mode preference
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'true');
+  } else {
+    localStorage.setItem('darkMode', 'false');
+  }
+});
+
+</script> 

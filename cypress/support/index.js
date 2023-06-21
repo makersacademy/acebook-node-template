@@ -30,5 +30,6 @@ before(() => {
   cy.get("#confirmPassword").type(password);
   cy.get("#first-name").type("Mrtest");
   cy.get("#last-name").type("Testtest");
+  cy.get('input[type="radio"][name="icon"][value=":)"].icon-radio').click();
   cy.get("#submit").click();
 });

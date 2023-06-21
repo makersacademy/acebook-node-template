@@ -10,7 +10,6 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
-const aboutRouter = require("./routes/about");
 
 const User = require("./models/user");
 
