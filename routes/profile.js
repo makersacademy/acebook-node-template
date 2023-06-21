@@ -16,6 +16,6 @@ router.get("/", sessionChecker, ProfileController.Index);
 router.post("/remove-friend", sessionChecker, ProfileController.RemoveFriend);
 router.post("/add-friend", sessionChecker, ProfileController.AddFriend);
 router.post("/accept-friend-request", sessionChecker, ProfileController.AcceptFriendRequest);
-
+router.post("/reject-friend-request", sessionChecker, ProfileController.RejectFriendRequest);
 
 module.exports = router;

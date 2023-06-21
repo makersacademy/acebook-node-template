@@ -161,5 +161,51 @@ AddFriend: (req, res) => {
         throw err;
       });
   },
+
+  RejectFriendRequest: (req, res) => {
+    const currentUser = req.session.user;
+    const friendEmail = req.body.friendEmail;
+
+    // Remove the friend request from the current user's friendRequests
+    User.findOneAndUpdate(
+      { email: currentUser.email },
+      { $pull: { friendRequests: friendEmail } },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) {
+          throw err;
+        }
+
+        // Remove the current user from the friend's sentFriendRequests
+        User.findOneAndUpdate(
+          { email: friendEmail },
+          { $pull: { sentFriendRequests: currentUser.email } },
+          { new: true },
+          (err) => {
+            if (err) {
+              throw err;
+            }
+
+            // Re-query the user data with updated friendRequests and sentFriendRequests
+            User.find({}, (err) => {
+              if (err) {
+                throw err;
+              }
+
+              // Update the friendRequests and sentFriendRequests in the session
+              currentUser.friendRequests = updatedUser.friendRequests;
+
+              // Redirect to the Index route to render the updated data
+              res.redirect('/profile');
+            });
+          }
+        );
+      }
+    );
+  },
+
+  
 };
+
+
 module.exports = ProfileController;
