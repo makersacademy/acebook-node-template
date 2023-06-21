@@ -1,12 +1,17 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
-
+const User = require("../models/user");
+const Like = require("../models/like");
+const { post } = require("selenium-webdriver/http");
 
 const PostController = {
   Index: (req, res) => {
-    const firstName = req.session.user.firstName;
-    const lastName = req.session.user.lastName;
-    const icon = req.session.user.icon;
+    let renderParams = { posts: [] };
+
+    renderParams.icon = req.session.user.icon;
+    renderParams.nemesis = req.session.user.nemesis;
+    console.log(renderParams.nemesis)
+
 
     Post.find()
       .populate("comments")
@@ -15,19 +20,21 @@ const PostController = {
           throw err;
         }
         const reversedPosts = posts.slice().reverse();
-        res.render("posts/index", { posts: reversedPosts, icon: icon });
+
+        renderParams.posts = reversedPosts;
+        
+        console.log(renderParams)
+        res.render("posts/index", renderParams);
       });
   },
 
   New: (req, res) => {
-    const firstName = req.session.user.firstName;
-    const lastName = req.session.user.lastName;
     const icon = req.session.user.icon
 
     res.render("posts/new", {icon: icon});
   },
 
-  Create: (req, res, gifUrl) => {
+  Create: (req, res) => {
     if (req.body.message.trim() === "") {
       return res.status(400).render("posts/new", {
         error:
@@ -39,6 +46,7 @@ const PostController = {
     const lastName = req.session.user.lastName;
     const author = `${firstName} ${lastName}`;
     const icon = req.session.user.icon;
+    const authorID = req.session.user._id;
     
     if (req.body.message.trim() === "") {
       return res.status(400).render("posts/new", {
@@ -47,12 +55,12 @@ const PostController = {
         "Post content cannot be blank"
       })
     }
-
     const messageWithParagraphs = req.body.message.replace(/\r?\n/g, "<br>");
 
     const post = new Post({
       author: author,
       authorIcon: icon,
+      authorID: authorID,
       gifUrl: req.body.gifUrl,
       message: `${messageWithParagraphs}`,
     });
@@ -61,27 +69,44 @@ const PostController = {
       if (err) {
         throw err;
       }
-      res.status(201).redirect("/posts");
+      return module.exports.Index(req, res);
     });
   },
 
   Like: async (req, res) => {
-    try {
-      const post = await Post.findById(req.params.id);
-      post.likes += 1;
-      await post.save();
-      res.status(201).redirect("/posts");
-    } catch (err) {
-      throw err;
+    const postId = req.params.id;
+    const userId = req.session.user._id;
+  
+    // Try to find the existing like object
+    const like = await Like.findOne({ user: userId, post: postId });
+  
+    if (like) {
+      // If the user has already liked the post, remove the like object 
+      await like.remove();
+      const post = await Post.findByIdAndUpdate(postId, { $pull: { likes: userId } }, { new: true });
+  
+      return module.exports.Index(req, res);
+      
+    } else {
+      // User hasn't liked the post yet, so add a new like object 
+      const newLike = new Like({
+        user: userId,
+        post: postId
+      });
+  
+      // Save the new like object and push its _id to the likes array of the post
+      await newLike.save();
+      const post = await Post.findByIdAndUpdate(postId, { $push: { likes: userId } }, { new: true });
+  
+      return module.exports.Index(req, res);
     }
-  },
+  },  
 
   Comment: async (req, res) => {
     try {
       const firstName = req.session.user.firstName;
       const lastName = req.session.user.lastName;
       const author = `${firstName} ${lastName}`;
-      const icon = req.session.user.icon
       
       if (req.body.comment.trim() === "" || req.body.comment.length > 114) {
         Post.find()
@@ -91,17 +116,15 @@ const PostController = {
             throw err;
           }
           const reversedPosts = posts.slice().reverse();
-
+          
         
-          return res.status(400).render("posts/index", {
-            posts: reversedPosts,
-            icon: icon,
-          })
+          return module.exports.Index(req, res);
         });
       
       } else {
 
       const post = await Post.findById(req.params.id);
+
       const comment = new Comment({
         author: author,
         content: req.body.comment
@@ -111,12 +134,31 @@ const PostController = {
       post.comments.push(comment);
       await post.save();
       res.status(201).redirect("/posts");
-
       }
-      
     } catch (err) {
       throw err;
     }
+  },
+
+  MakeNemesis: async (req, res) => {
+    const postId = await req.params.id;
+    const post = await Post.findById(postId);
+
+    console.log(postId)
+    console.log(post.authorID)
+    // Update the user document in the database
+    // Check if author id is not equal to session user's id
+    if (post.authorID !== req.session.user._id.toString()) {
+
+      // Update the user document in the database
+      await User.findByIdAndUpdate(req.session.user._id, { nemesis: post.authorID });
+
+       // Update the nemesis value in the current session
+      req.session.user.nemesis = post.authorID;
+
+  }
+
+    res.redirect('/posts');
   }
 };
 

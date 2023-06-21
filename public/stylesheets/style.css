@@ -187,7 +187,7 @@ hr {
 }
 
 .logout {
-  margin-right: 4vh;
+  margin-right: 5vh;
 }
 
 .new-content,
@@ -234,6 +234,7 @@ hr {
   border-width: 1px;
   background-color: white;
   position: fixed;
+  z-index: 2;
 }
 
 .topbar,
@@ -445,6 +446,13 @@ button:focus {
   background-color: white;
 }
 
+.nemesis-icon {
+  position: absolute;
+  margin-left: 4vh;
+  margin-top: -1vh;
+  z-index: 1;
+}
+
 .post-gif {
   max-width: 41.9vh;
   height: auto;
@@ -462,9 +470,15 @@ button:focus {
   height: 4vh;
   width: 4vh;
   padding: 1vh;
-  background-color: #e30b5d;
+  background-color: var(--main-color);
   border-radius: 10vh;
   align-items: center;
+  color: white;
+}
+
+.post-icon:hover {
+  cursor: pointer;
+  background-color: var(--hover-color);
 }
 
 .author {
@@ -730,17 +744,51 @@ img {
     padding: 10px;
   }
 }
-/* 
-@media only screen and (max-width: 480px) {
-  .container-about {
-    margin: 0 5vh;
-  }
 
-  .container p {
-    width: 100%;
-  }
+/* About section */
+.about-title {
+  text-align: center;
+  margin-bottom: 15px;
+}
 
-  .team {
-    height: 80px;
-  }
-} */
+.container-about {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin: 0vh 30vh;
+  text-align: center;
+}
+
+.container p {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 50%;
+}
+
+.team {
+  height: 150px;
+  border-radius: 50px;
+  margin: 30px;
+}
+
+img {
+  height: 80px;
+  width: auto;
+}
+
+/* Footer styling */
+
+.footer {
+  margin-top: 20vh;
+  text-align: center;
+  color: var(--NavyBlue)
+}
+
+.photo {
+  transition:.5s;
+}
+
+.photo:hover {
+  transform:scale(1.3);
+}

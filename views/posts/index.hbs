@@ -29,7 +29,12 @@
   {{#each posts}}
   <div class="posts">
     <div class="post-sec">
-      <div class="icon post-icon">{{this.authorIcon}}</div> 
+      {{#ifEquals this.authorID ../nemesis}}
+        <div class="nemesis-icon">😈</div>
+      {{/ifEquals}}
+      <form action="/posts/{{this._id}}/nemesis" method="POST" name="makeNemesis{{this._id}}">
+        <div class="icon post-icon" onclick="document.forms['makeNemesis{{this._id}}'].submit()">{{this.authorIcon}}</div> 
+      </form>
       <div class="post-details">
         <p class="author-name">{{{this.author}}}</p>
         {{#if gifUrl}}
@@ -39,12 +44,17 @@
         <div class="likes">
           <form action="/posts/{{this._id}}/likes" method="POST" id="like-post">
             <input type="submit" value="👍" class="global-button like-button">
-            <p class="likes-count">{{this.likes}}</p>
+            <p class="likes-count">
+              {{#if this.likes.length}}
+                {{this.likes.length}}
+              {{else}}
+                0
+              {{/if}}
+            </p>
           </form>
         </div>
       </div>
     </div>
-
     <div class="comments-sec">
       {{#each this.comments}}
         <div class="comment">
@@ -65,8 +75,6 @@
 </div>
 </body>
 </html>
-
-
 
 <script>
   window.addEventListener('beforeunload', function() {

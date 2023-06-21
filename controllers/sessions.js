@@ -27,8 +27,10 @@ const SessionsController = {
         _id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
-        icon: user.icon
+        icon: user.icon,
+        nemesis: user.nemesis
       };
+      console.log(req.session.user.nemesis)
 
       return res.redirect('/posts');
 
