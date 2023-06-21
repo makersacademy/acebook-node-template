@@ -1,4 +1,5 @@
 const Comment = require("../models/comment");
+const commentService = require("../services/commentService");
 
 const CommentsController = {
   Create: async (req, res) => {
@@ -21,7 +22,7 @@ const CommentsController = {
             if (err) {
               res.status(500).json({ error: "Could not render post" });
             } else {
-              res.json({ html });
+              res.json({ html, comment });
             }
           }
         );
@@ -30,6 +31,21 @@ const CommentsController = {
       }
     } catch (err) {
       res.redirect("/posts");
+    }
+  },
+  Delete: async (req, res) => {
+    const commentId = req.params.id;
+
+    try {
+      const result = await commentService.deleteCommentById(commentId);
+
+      if (!result) {
+        return res.status(404).json({ error: "Comment not found" });
+      }
+
+      res.redirect(`/posts`);
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
     }
   },
 };

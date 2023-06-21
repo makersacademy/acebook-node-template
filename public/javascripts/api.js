@@ -1,11 +1,11 @@
-export const postJson = async (url, method, data) => {
+export const fetchData = async (url, method, body, headers) => {
   const response = await fetch(url, {
     method,
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      ...headers,
     },
-    body: JSON.stringify(data),
+    body,
   });
 
   if (response.ok) {
@@ -15,18 +15,10 @@ export const postJson = async (url, method, data) => {
   }
 };
 
-export const postFormData = async (url, method, formData) => {
-  const response = await fetch(url, {
-    method,
-    headers: {
-      Accept: "application/json",
-    },
-    body: formData,
+export const postJson = (url, method, data) =>
+  fetchData(url, method, JSON.stringify(data), {
+    "Content-Type": "application/json",
   });
 
-  if (response.ok) {
-    return response.json();
-  } else {
-    throw new Error("Error: " + response.statusText);
-  }
-};
+export const postFormData = (url, method, formData) =>
+  fetchData(url, method, formData);

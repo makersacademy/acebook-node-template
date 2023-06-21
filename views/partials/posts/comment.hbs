@@ -1,4 +1,16 @@
-<p class="comment-item">
-  <i>{{comment.content}}</i><br />
-  <span class="comment-author">Posted by {{comment.user}}</span>
-</p>
+<li class="comment-item">
+  <p><i>{{comment.content}}</i><br />
+    <span class="comment-author">Posted by {{comment.user}}</span>
+  </p>
+
+  {{#if comment.currentUser}}
+    <form
+      action="/comments/{{comment._id}}/delete"
+      method="POST"
+      onsubmit="return confirm('Are you sure you want to delete this post?')"
+    >
+      <input type="hidden" name="_method" value="DELETE" />
+      <button type="submit" class="delete-button">Delete</button>
+    </form>
+  {{/if}}
+</li>
