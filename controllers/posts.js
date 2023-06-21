@@ -55,6 +55,7 @@ const PostsController = {
   },
 
   Update: async (req, res) => { 
+    console.log("update");
     const post_id = req.params.id;
     console.log(`Post_id ${post_id}`);
     const user_id = req.session.user._id;
@@ -69,14 +70,16 @@ const PostsController = {
   },
 
   Delete: async (req, res) => { 
+    console.log("delete");
     const post_id = req.params.id;
     console.log(`Post_id ${post_id}`);
     const user_id = req.session.user._id;
     console.log(`user_id ${user_id}`);
 
     const post = await Post.findOne({ _id: post_id })
-    await post.deleteOne({ _id: post_id});
-    res.status(201).redirect(`/users/${req.session.user.username}`); 
+    console.log(`post = ${post}`);
+    await Post.deleteOne({ _id: post_id});
+    res.status(201).redirect(`/users/${req.session.user.username}?deleted=true`); 
   },
 
   AddLike: async (req, res) => {

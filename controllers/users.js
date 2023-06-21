@@ -8,7 +8,7 @@ const UsersController = {
   },
 
   Create: (req, res) => {
-     let query = {$or:[{username:{$regex: new RegExp('^' + req.body.username + '$', 'i')}},{email:{$regex: new RegExp('^' + req.body.email + '$', 'i')}}]}
+    let query = {$or:[{username:{$regex: new RegExp('^' + req.body.username + '$', 'i')}},{email:{$regex: new RegExp('^' + req.body.email + '$', 'i')}}]}
     
     console.log("hello", query)
     const newUser = new User({
@@ -29,7 +29,7 @@ const UsersController = {
           }
         });  
       }
-   });
+    });
   },
 
   Authenticate: function (req, res) {
@@ -60,7 +60,8 @@ const UsersController = {
     let posts = await Post.find({ username });
     let user = await User.findOne({ username });
     console.log(posts);
-    res.render("users/profile", { user, isAuthenticated: true, posts: posts });
+    const sortedPosts = posts.flat().sort((a, b) => b.date - a.date);
+    res.render("users/profile", { user, isAuthenticated: true, posts: sortedPosts});
   },
 
   CreatePost: (req, res) => {

@@ -9,8 +9,6 @@ router.get("/new", PostsController.New);
 router.post("/:id/likes", PostsController.AddLike);
 router.get("/:id/edit", PostsController.Edit);  
 router.post("/:id", PostsController.Update);
-router.post("/:id", PostsController.Delete);
-// router.post("/edit/delete", PostsController.Delete);       
-// router.post("/like", PostsController.AddLike); 
+router.post("/:id/delete", PostsController.Delete); 
 
 module.exports = router;
