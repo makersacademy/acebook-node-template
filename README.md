@@ -44,7 +44,7 @@ Acebook will connect people and make their lives betta.
 
 - [Installation Guide](INSTALLATION.md)
 - [User Stories](betta_user_stories.md)
-- [Test Scenarios](betta_test_scenarios.md)
+- [Test Scenarios and Automation Report](betta_test_scenarios.md)
 - [Security Report](betta_security_report.md)
 - [Accessibility Report](https://docs.google.com/document/d/1rBMSxzNgXs747tmHVDKBoszWmDwIkhp8ByLqVxFgwzo)
 - [Online Site!](https://acebook.cool)
