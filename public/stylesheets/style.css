@@ -37,21 +37,3 @@ ul li a.active {
   color: #ffddd2;
   background: #83c5be;
 }
-
-/* Signup page */
-#new-user-form{
-  padding-top: 5rem;
-  color: red;
-  text-align: center;
-}
-
-
-/* Login page */
-#new-session-form{
-  padding-top: 5rem;
-  text-align: center;
-}
-/* 
-.error {
-  
-} */

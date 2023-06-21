@@ -1,0 +1,14 @@
+<h1>Edit Post</h1>
+
+<li class="date">Created at: {{this.date}}</li>
+      <br>
+      <li class="username">Created By: {{{this.username}}}</li>
+      <br> 
+      <li class="content">Post Content: {{{this.message}}}</li>
+      <br>
+
+<form action="/posts/{{post._id}}" method="POST">
+  <label for="content">Edit Post:</label>
+  <textarea id="content" name="content">{{post.message}}</textarea>
+  <button type="submit">Save</button>
+</form>

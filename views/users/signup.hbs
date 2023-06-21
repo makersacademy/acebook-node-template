@@ -1,52 +1,72 @@
- <div class="error">
-    {{#if error}}
-      {{error}}
-    {{/if}}
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/login.css" />
+</head>
+
+<div class="error">
+  {{#if error}}
+    {{error}}
+  {{/if}}
+</div>
+
+<div class="wrapper">
+  <div class="title">
+    Signup Form ♤
   </div>
 
-<section>
   <form id="new-user-form" action="/users" method="post">
+    <div class="field">
+      <label for="username"></label>
+      <input
+        id="username"
+        type="username"
+        name="username"
+        value=""
+        maxlength="20"
+        oninvalid="alert('You must enter your username')"
+        required
+        placeholder="Username"
+      />
+    </div>
 
-    <label for="username">Username: </label>
-    <input
-      id="username"
-      type="username"
-      name="username"
-      value=""
-      maxlength="20"
-      oninvalid="alert('You must enter your username')"
-      required
-    />
+    <div class="field">
+      <label for="email"></label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        value=""
+        maxlength="30"
+        oninvalid="alert('You must enter a valid email address')"
+        required
+        placeholder="Email"
+      />
+    </div>
 
-    <label for="email">Email: </label>
-    <input
-      id="email"
-      type="email"
-      name="email"
-      value=""
-      maxlength="30"
-      oninvalid="alert('You must enter a valid email address')"
-      required
-    />
+    <div class="field">
+      <label for="password"></label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        value=""
+        oninvalid="alert('You must enter a valid password')"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+        required
+        placeholder="Password"
+      />
+    </div>
 
-    <label for="password">Password: </label>
-    <input
-      id="password"
-      type="password"
-      name="password"
-      value=""
-      oninvalid="alert('You must enter a valid password')"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-      title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-      required
-    />
-
-    <input id="submit-signup-button" type="submit" value="Submit" />
-    <input id="cancel" type="reset" value="Cancel" />
-
-    <div class="made-user">
-      <a href="/sessions/login">Already have an account? Log in here</a>
+    <div class="field">
+      <input id="submit-signup-button" type="submit" value="Submit" />
+    </div>
+    <div class="field">
+      <input id="cancel" type="reset" value="Cancel" />
+    </div>
+    <div class="made-user">Already have an account?
+      <br />
+      <a href="/sessions/login">Log in here</a>
     </div>
   </form>
-
-</section>
+</div>
