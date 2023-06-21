@@ -12,7 +12,6 @@ exports.getCommentsByPostId = async (postId) => {
 exports.deleteCommentById = async (id) => {
   try {
       const result = await Comment.findByIdAndRemove(id);
-
       return result;
   } catch (err) {
       throw err;

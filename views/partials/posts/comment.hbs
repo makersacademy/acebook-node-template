@@ -2,7 +2,7 @@
   <p><i>{{comment.content}}</i><br />
     <span class="comment-author">Posted by {{comment.user}}</span>
   </p>
-  
+   {{comment.currentUser}}
   {{#if comment.currentUser}}
       <form action="/comments/{{comment._id}}/delete" method="POST" onsubmit="return showConfirmation(event)">
         <input type="hidden" name="_method" value="DELETE">
