@@ -19,11 +19,11 @@
       {{#ifEquals this.authorID ../nemesis}}
         <div class="nemesis-icon">😈</div>
       {{/ifEquals}}
-      <form action="/posts/{{this.authorID}}/make-nemesis" method="POST" name="makeNemesis">
-        <div class="icon post-icon" onclick="document.forms['makeNemesis'].submit()">{{this.authorIcon}}</div> 
+      <form action="/posts/{{this._id}}/nemesis" method="POST" name="makeNemesis{{this._id}}">
+        <div class="icon post-icon" onclick="document.forms['makeNemesis{{this._id}}'].submit()">{{this.authorIcon}}</div> 
       </form>
       <div class="post-details">
-        <p class="author-name">{{this.authorID}}</p>
+        <p class="author-name">{{this.author}}</p>
         {{#if gifUrl}}
           <img src="{{gifUrl}}" class="post-gif">
         {{/if}}

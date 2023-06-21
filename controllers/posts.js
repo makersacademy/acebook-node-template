@@ -141,18 +141,24 @@ const PostController = {
   },
 
   MakeNemesis: async (req, res) => {
-    const authorID = await Post.findById(req.params.id);
-    const user = await User.findById(req.session.user._id)
+    const postId = await req.params.id;
+    const post = await Post.findById(postId);
 
-    if (authorID === user._id.toString()) {
-      return module.exports.Index(req, res);
-    }
+    console.log(postId)
+    console.log(post.authorID)
+    // Update the user document in the database
+    // Check if author id is not equal to session user's id
+    if (post.authorID !== req.session.user._id.toString()) {
 
-    user.nemesis = authorID
+      // Update the user document in the database
+      await User.findByIdAndUpdate(req.session.user._id, { nemesis: post.authorID });
 
-    req.session.reload(() => {
-      return module.exports.Index(req, res);
-    });
+       // Update the nemesis value in the current session
+      req.session.user.nemesis = post.authorID;
+
+  }
+
+    res.redirect('/posts');
   }
 };
 

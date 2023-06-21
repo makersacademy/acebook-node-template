@@ -4,7 +4,7 @@ function isAuthenticated(req, res, next) {
         next();
     } else {
       // The user is not authenticated. Redirect to the login page.
-        res.redirect('/login');
+        res.redirect('/session/new');
     }
 }
 

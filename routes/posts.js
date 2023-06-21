@@ -11,7 +11,7 @@ router.post("/", isAuthenticated, PostsController.Create);
 router.get("/new", isAuthenticated, PostsController.New);
 router.post("/:id/likes", isAuthenticated, PostsController.Like);
 router.post("/:id/comments", isAuthenticated, PostsController.Comment);
-router.post("/:id/make-nemesis", isAuthenticated, PostsController.MakeNemesis);
+router.post("/:id/nemesis", isAuthenticated, PostsController.MakeNemesis);
 
 router.post('/gif', async (req, res) => {
     const { searchQuery } = req.body;
