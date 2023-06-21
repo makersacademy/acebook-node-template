@@ -70,6 +70,7 @@
 
 .edit-delete {
   grid-area: 4 / 1 / 5 / 3;
+  margin-left: 4%;
 }
 
 .post-container-gap {
