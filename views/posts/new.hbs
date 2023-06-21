@@ -47,9 +47,6 @@
               <div class="gif" aria-label="{{this.title}}">
                 <input type="radio" name="gifUrl" value="{{this.images.original.url}}" id="gif-{{@index}}">
                 <img src="{{this.images.original.url}}" alt="{{this.title}}" class="gif-thumbnail">
-                <label for="gif-alt-checkbox-{{@index}}">Add Alternative Text:</label>
-                <input type="checkbox" name="gifAltCheckbox" id="gif-alt-checkbox-{{@index}}">
-                <input type="text" name="gifAltText" id="gif-alt-text-{{@index}}" style="display:none;" placeholder="Type alternative text here">
               </div> 
             </li>
           {{/each}}
@@ -101,18 +98,6 @@
     } else {
       localStorage.setItem('darkMode', 'false');
     }
-  });
-
-  const altCheckboxes = document.querySelectorAll('input[name="gifAltCheckbox"]');
-  altCheckboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-      const altInputField = this.parentNode.querySelector('input[name="gifAltText"]');
-      if (this.checked) {
-        altInputField.style.display = 'inline-block';
-      } else {
-        altInputField.style.display = 'none';
-      }
-    });
   });
 
 // initialize flag variable to false
