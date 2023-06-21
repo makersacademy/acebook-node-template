@@ -22,6 +22,9 @@ Acebook will connect people and make their lives betta.
   Our final version of the project encompassed all functionality that we initially aimed to have developed by the end of the timeframe,  
   although we had a large amount of 'Nice to Have' functions that were in the timeline. 
 
+  
+  The project is hosted live at [acebook.cool](acebook.cool). The version hosted is from a forked repo due to potential code conflicts - link below.
+
 ## **Tools used in this Project** 
 
 - [Express](https://expressjs.com/) web framework for Node.js.
@@ -42,6 +45,7 @@ Acebook will connect people and make their lives betta.
 
 ## **Useful Links**
 
+- [Repo for deployed project version](https://github.com/olic32/acebook-betta-render)
 - [Installation Guide](INSTALLATION.md)
 - [User Stories](betta_user_stories.md)
 - [Test Scenarios and Automation Report](betta_test_scenarios.md)
