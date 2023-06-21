@@ -1,16 +1,19 @@
 const mongoose = require("mongoose");
-const Comment = require("./comment");
 
 const PostSchema = new mongoose.Schema(
   {
     author: String,
     authorIcon: String,
+    authorID: String,
     message: {
       type: String,
       maxLength: 500,
       required: true,
     },
-    likes: { type: Number, default: 0 },
+    likes: {
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Like' }],
+      default: [],
+    },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
     gifUrl: String,
   },

@@ -51,11 +51,8 @@ const UserSchema = new mongoose.Schema({
         "Password is not valid. Passwords must contain at least 8 characters, a number and a special character",
     },
   },
-  friends: {
-    type: [mongoose.Types.ObjectId], // each friend is represented by their ObjectId
-    default: [],
-  },
-  icon: String
+  icon: String,
+  nemesis: String, //nemesis is represented by their id number
 });
 
 const User = mongoose.model("User", UserSchema);

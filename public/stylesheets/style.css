@@ -106,6 +106,7 @@ hr {
   border-width: 1px;
   background-color: white;
   position: fixed;
+  z-index: 2;
 }
 
 .topbar,
@@ -292,6 +293,13 @@ hr {
   background-color: white;
 }
 
+.nemesis-icon {
+  position: absolute;
+  margin-left: 4vh;
+  margin-top: -1vh;
+  z-index: 1;
+}
+
 .post-gif {
   max-width: 41.9vh;
   height: auto;
@@ -474,4 +482,52 @@ hr {
   resize: none;
   width: 400px;
   height: 500px;
+}
+
+/* About section */
+.about-title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.container-about {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin: 0vh 30vh;
+  text-align: center;
+}
+
+.container p {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 50%;
+}
+
+.team {
+  height: 150px;
+  border-radius: 50px;
+  margin: 30px;
+}
+
+img {
+  height: 80px;
+  width: auto;
+}
+
+/* Footer styling */
+
+.footer {
+  margin-top: 20vh;
+  text-align: center;
+  color: var(--NavyBlue)
+}
+
+.photo {
+  transition:.5s;
+}
+
+.photo:hover {
+  transform:scale(1.3);
 }

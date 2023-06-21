@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const assert = require('chai').assert;
 
 require("../mongodb_helper");
 const User = require("../../models/user");
@@ -115,29 +116,47 @@ describe("User model", () => {
     );
   });
 
-  it("adds and removes friends successfully", async () => {
-    const user = new User({
-      firstName: "John",
-      lastName: "Doe",
-      email: "test@example.com",
-      password: "P@ssw0rd",
+  it('should add another user as nemesis', function(done) {
+    // Create two user objects to test the nemesis functionality
+    const user1 = new User({
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@example.com',
+      password: 'Test123!',
     });
-    await user.save();
 
-    const friend1 = mongoose.Types.ObjectId();
-    const friend2 = mongoose.Types.ObjectId();
+    const user2 = new User({
+      firstName: 'Jane',
+      lastName: 'Smith',
+      email: 'jane@example.com',
+      password: 'Test123!',
+    });
 
-    user.friends.push(friend1);
-    user.friends.push(friend2);
-    await user.save();
+    // Save the users to the database
+    Promise.all([user1.save(), user2.save()])
+      .then(function(savedUsers) {
+        const john = savedUsers[0];
+        const jane = savedUsers[1];
 
-    expect(user.friends.length).toBe(2);
+        // Assign Jane as John's nemesis
+        john.nemesis = jane._id;
 
-    user.friends.pull(friend1);
-    await user.save();
+        // Save the updated user object
+        return john.save();
+      })
+      .then(function(updatedUser) {
+        // Fetch the user from the database to ensure the nemesis assignment was successful
+        return User.findById(updatedUser._id);
+      })
+      .then(function(fetchedUser) {
+        // Assert that the fetched user's nemesis is the assigned user
+        assert.equal(fetchedUser.nemesis.toString(), user2._id.toString());
 
-    expect(user.friends.length).toBe(1);
-    expect(user.friends[0]).toEqual(friend2);
+        done(); // Indicates the completion of the test
+      })
+      .catch(function(error) {
+        done(error); // Pass any errors to Mocha for reporting
+      });
   });
 
   it("first name does not take any punctuation", () => {

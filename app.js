@@ -5,24 +5,26 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const axios = require('axios');
-
+const hbs = require("hbs");
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const aboutRouter = require("./routes/about");
 
-const mongoose = require('mongoose')
 const User = require("./models/user");
 
 const sanitizeInput = require('./functions/sanitize')
 
 const app = express();
 
+hbs.registerHelper("ifEquals", function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
-
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -30,7 +32,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-
 
 app.use(
   session({
@@ -46,7 +47,6 @@ app.use(
   })
 );
 
-
 // clear the cookies after user logs out
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
@@ -54,7 +54,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
 
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
@@ -72,13 +71,12 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
-
+app.use("/about", aboutRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
-
 
 // error handler
 app.use((err, req, res) => {
@@ -90,7 +88,6 @@ app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render("error");
 });
-
 
 app.post("/users/new", async (req, res) => {
   try {
