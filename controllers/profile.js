@@ -42,6 +42,7 @@ const ProfileController = {
         nonFriends: nonFriends,
         friendRequests: friendRequests,
         friendRequestSent: friendRequestSent,
+        user: currentUser,
       });
     });
   },
