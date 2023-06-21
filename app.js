@@ -11,11 +11,6 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users"); 
 // const userPostsRouter = require("./routes/userPosts");
-<<<<<<< HEAD
-=======
-
-// create a route for users/username
->>>>>>> ecc0d856587a3cf87ee07b6fa05be2193cae4a97
 
 const app = express();
 
@@ -65,11 +60,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
-<<<<<<< HEAD
 // app.use("/users/:username/posts", userPostsRouter); 
-=======
-// app.use("/users/:username/posts", userPostsRouter);
->>>>>>> ecc0d856587a3cf87ee07b6fa05be2193cae4a97
 
 
 // catch 404 and forward to error handler
