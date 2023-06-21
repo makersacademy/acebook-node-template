@@ -1,11 +1,7 @@
-<h1>Create a New Post</h1>
-
-<div class="error-message">
-    {{#if error}}
-      {{error}}
-    {{/if}}
-</div>
-<br>
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
 <form id="new-post-form" action="/posts" method="post">
   <label for="message">Message: </label>

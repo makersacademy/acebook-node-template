@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 
 const PostsController = {
+  
   Index: (req, res) => {
     Post.find((err, posts) => {
       if (err) {

@@ -6,5 +6,3 @@ const HomeController = {
 
 module.exports = HomeController;
 
-
-// add to this page to make the appearance more dynamic :)
