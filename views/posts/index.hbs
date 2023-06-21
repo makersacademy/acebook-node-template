@@ -1,4 +1,4 @@
-<!doctype html>
+!doctype html>
 <html lang="en">
 
 <head>
@@ -41,18 +41,27 @@
 
 
   <h1>Timeline</h1>
-  <ul class="posts">
-    {{#each posts}}
-    <li class="border">
-      <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
-      <a href="/posts/{{this._id}}">{{this.message}}</a>
+{#each posts}}
+  <li>
+    <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
 
-      <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
-      <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
-    </li>
-    <span class="time-ago">Posted {{timeAgo this.timestamp}}</span><br />
-    {{/each}}
-  </ul>
+    {{#if this.image.contentType}}
+      <a href="/posts/{{this._id}}">
+        <img src="/posts/{{this._id}}/image" width="500px">
+      </a>
+    {{/if}}
+    
+    
+    {{#if this.message}}
+    <a href="/posts/{{this._id}}">{{this.message}}</a>{{/if}}
+    <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
+    <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
+  </li>
+  <span class="time-ago">Posted {{timeAgo this.timestamp}}</span><br/>
+
+{{/each}}
+
+</ul>
 
 
 

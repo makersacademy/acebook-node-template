@@ -1,5 +1,7 @@
 const Post = require("../models/post");
 const helpers = require("handlebars-helpers")();
+const fs = require("fs");
+
 
 const PostsController = {
 	Index: (req, res) => {
@@ -33,23 +35,48 @@ const PostsController = {
 	},
 
 	Create: (req, res) => {
-		const post = new Post(req.body);
 		const user = req.session.user;
+		console.log(req.body);
 
-		post.postAuthor = {
-			firstName: user.firstName,
-			lastName: user.lastName,
-			// id: user._id,
-			email: user.email,
-		};
+		const post = new Post({
+			message: req.body.message,
+			postAuthor: {
+				firstName: user.firstName,
+				lastName: user.lastName,
+				email: user.email,
+			},
+			image: {
+				data: req.file
+					? fs.readFileSync("/tmp/my-uploads/" + req.file.filename, "base64")
+					: null, // Read and encode the file as base64
+				contentType: req.file ? req.file.mimetype : null, // Store the file mimetype in the database
+			},
+		});
 
 		post.timestamp = new Date();
+		post.image.data ? post.image.data.toString("base64") : null;
 
 		post.save((err) => {
 			if (err) {
 				throw err;
 			}
+			console.log("Post saved:", post);
+
 			res.status(201).redirect("/posts");
+		});
+	},
+
+	getImage: (req, res) => {
+		Post.findById(req.params.postId, (err, post) => {
+			if (err || !post || !post.image.data) {
+				return res.status(404).send("Image not found");
+			}
+			res.set("Content-Type", post.image.contentType);
+
+			let stringData = post.image.data.toString();
+			let imageData = stringData.replace(/^data:image\/png;base64,/, "");
+
+			res.send(Buffer.from(imageData, "base64"));
 		});
 	},
 
