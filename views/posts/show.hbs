@@ -43,6 +43,9 @@
 
 <form action="/posts/{{ post._id }}/comments" method="POST">
   <textarea name="message" input="text" placeholder="Leave a comment"></textarea>
+  {{#if error}}
+    <p style="color: red;">{{ error }}</p> <!-- Display the error message if it exists -->
+  {{/if}}
   <button type="submit">Submit</button>
 </form>
 
