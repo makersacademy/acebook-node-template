@@ -47,7 +47,7 @@ const PostsController = {
 			},
 			image: {
 				data: req.file
-					? fs.readFileSync("public/images/" + req.file.filename, "base64")
+					? fs.readFileSync("public/images/profileUploads/" + req.file.filename, "base64")
 					: null, // Read and encode the file as base64
 				contentType: req.file ? req.file.mimetype : null, // Store the file mimetype in the database
 			},
@@ -73,11 +73,12 @@ const PostsController = {
 			}
 			res.set("Content-Type", post.image.contentType);
 			console.log(post.image.contentType, '<<<<THIS IS CONTENTTYPE')
+			console.log(post.image.data, '<<<< THIS IS IMAGE DATA')
 
 			let stringData = post.image.data.toString();
-			console.log(stringData, '<<<<THIS IS IMAGE DATA in string')
+			// console.log(stringData, '<<<<THIS IS IMAGE DATA in string')
 			let imageData = stringData.replace(/^data:image\/png;base64,/, "");
-			console.log(imageData, '<<<THIS IS IMAGEDATA')
+			// console.log(imageData, '<<<THIS IS IMAGEDATA')
 
 			res.send(Buffer.from(imageData, "base64"));
 		});
