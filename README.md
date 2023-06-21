@@ -82,6 +82,14 @@ Acebook will connect people and make their lives betta.
 
     <img src="assets/images/acebook_betta_emoji.png" width="400">
 
+- Light mode and Dark mode
+
+    <img src="assets/images/acebook_betta_nightmode.png" width="400">
+
+- About/Credits page
+
+    <img src="assets/images/acebook_betta_about.png" width="500">
+
 ## **Credits**
 
 ### Development Team:
