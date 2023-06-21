@@ -4,6 +4,20 @@
   <input type="submit" value="Log Out" />
 </form>
 
+<h1>{{currentUser.firstName}} {{currentUser.lastName}}</h1>
+
+<form id="new-post-form" action="/profile" method="post" enctype="multipart/form-data">
+  <input type="file" name="profileImage" id="file" >
+  <input type="submit">
+</form>
+
+{{#if currentUser.profileImage.contentType}}
+  <img src="/profile/{{currentUser._id}}/image" alt="Profile Image" width="200px">
+{{else}}
+  <p>No profile image available</p>
+{{/if}}
+
+<a href="../posts">Timeline</a>
 
 <div>
   <p>Friends</p>
@@ -11,7 +25,10 @@
     {{#each friends_names}}
       <form action="/profile/remove-friend" method="POST">
         <input type="hidden" name="friendEmail" value="{{this.email}}">
-        <li>{{this.firstName}} {{this.lastName}}<button type="submit">Remove Friend</button></li>
+        <li>
+          <p>{{this.firstName}} {{this.lastName}}</p> 
+          <button type="submit">Remove Friend</button>
+        </li>
       </form>
     {{else}}
       <li>No friends found.</li>
