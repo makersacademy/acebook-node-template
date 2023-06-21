@@ -45,22 +45,21 @@ jobs:
 #         env:
 #           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
-      - name: Run all Cypress tests on Edge
-        uses: cypress-io/github-action@v5
-        with:
-          browser: edge
-          start: npm start
-#           record: true
-#         env:
-#           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#       - name: Run all Cypress tests on Edge
+#         uses: cypress-io/github-action@v5
+#         with:
+#           browser: edge
+#           start: npm start
+# #           record: true
+# #         env:
+# #           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           
-
   deploy-to-render:
-     needs: build-and-test
-     runs-on: ubuntu-latest
-     steps:
-       - name: Deploy to Render
-         if: ${{ needs.build-and-test.result == 'success' }}
-         run: |
-           # Send a GET request to the Render deploy hook URL
-           curl -X https://api.render.com/deploy/srv-ci9e1mp8g3ne2eige8u0?key=nIJ86pXhKS8
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Render
+        if: ${{ needs.build-and-test.result == 'success' }}
+        run: |
+          # Send a GET request to the Render deploy hook URL
+          curl -X GET -sS "https://api.render.com/deploy/srv-ci9e1mp8g3ne2eige8u0?key=nIJ86pXhKS8"
