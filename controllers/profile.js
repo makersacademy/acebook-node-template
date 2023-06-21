@@ -1,6 +1,5 @@
 const User = require("../models/user");
 const fs = require("fs");
-const uploadProfile = require("../multerConfig");
 
 const ProfileController = {
   Index: (req, res) => {
@@ -44,6 +43,7 @@ const ProfileController = {
         nonFriends: nonFriends,
         friendRequests: friendRequests,
         friendRequestSent: friendRequestSent,
+        currentUser: currentUser
       });
     });
   },
@@ -175,10 +175,6 @@ const ProfileController = {
 					: null, // Read and encode the file as base64
 				contentType: req.file ? req.file.mimetype : null, // Store the file mimetype in the database
 			}
-      return user
-    })
-    .then((user) => {
-      console.log(user, "<<<<<< THIS IS A USER # 2");
       user.save((err) => {
         if (err) {
           throw err;
@@ -187,7 +183,51 @@ const ProfileController = {
 
         res.status(201).redirect("/profile");
       })
-		})
+    })
+  },
+
+  getImage: (req, res) => {
+    console.log(req.session.user, "<<<<< THIS IS THE LOGGED IN USER");
+
+    // res.set("Content-Type", currentUser.profileImage.contentType);
+
+    // let stringData = currentUser.profileImage.data.toString();
+    // let imageData = stringData.replace(/^data:image\/png;base64,/, "");
+
+    // res.send(Buffer.from(imageData, "base64"));
+
+    User.findById(req.session.user._id, (err, user) => {
+			if (err || !user || !user.profileImage.data) {
+				return res.status(404).send("Image not found");
+			}
+			res.set("Content-Type", user.profileImage.contentType);
+      console.log(user.profileImage.contentType)
+
+      console.log(user.profileImage.data, "<<<<<< THIS IS THE ORIGINAL DATA");
+
+			let stringData = user.profileImage.data.toString();
+      console.log(stringData, '<<<< THIS IS STRING DATA')
+			// let imageData = stringData.replace(/^data:image\/jpeg;base64,/, "");
+      // console.log(imageData)
+
+			res.send(Buffer.from(stringData, "base64"));
+		});
+  }
+}
+
+module.exports = ProfileController;
+
+ // .then((user) => {
+    //   console.log(user, "<<<<<< THIS IS A USER # 2");
+    //   user.save((err) => {
+    //     if (err) {
+    //       throw err;
+    //     }
+    //     console.log("Profile photo saved:", user);
+
+    //     res.status(201).redirect("/profile");
+    //   })
+		// })
 
     // uploadProfile.single("profileImage")(req, res, async (err) => {
     //   if (err) {
@@ -218,41 +258,22 @@ const ProfileController = {
     //   }
     // });
 
-  },
-  renderProfilePage: async (req, res) => {
-    try {
-      const userId = req.session.user._id;
-      const user = await User.findById(userId);
-      if (!user) {
-        return res.status(404).send('User not found');
-      }
 
-      // Retrieve the profile image data
-      const profileImageData = user.profileImage;
+  // renderProfilePage: async (req, res) => {
+  //   try {
+  //     const userId = req.session.user._id;
+  //     const user = await User.findById(userId);
+  //     if (!user) {
+  //       return res.status(404).send('User not found');
+  //     }
+
+  //     // Retrieve the profile image data
+  //     const profileImageData = user.profileImage;
       
-      // Render the profile page and pass the user and profile image data to the template engine
-      res.render('profile', { user, profileImageData });
-    } catch (err) {
-      console.log(err);
-      res.status(500).send('Internal server error');
-    }
-  },
-
-  getImage: async (req, res) => {
-    try {
-      const userId = req.params.userId;
-      const user = await User.findById(userId);
-      if (!user || !user.profileImage || !user.profileImage.data) {
-        return res.status(404).send('Image not found');
-      }
-      res.set('Content-Type', user.profileImage.contentType);
-      res.send(user.profileImage.data.buffer);
-    } catch (err) {
-      console.log(err);
-      res.status(500).send('Internal server error');
-    }
-  }
-}
-
-module.exports = ProfileController;
-
+  //     // Render the profile page and pass the user and profile image data to the template engine
+  //     res.render('profile', { user, profileImageData });
+  //   } catch (err) {
+  //     console.log(err);
+  //     res.status(500).send('Internal server error');
+  //   }
+  // },

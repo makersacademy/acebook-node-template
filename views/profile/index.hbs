@@ -8,16 +8,13 @@
   <input type="file" name="profileImage" id="file" >
   <input type="submit">
 </form>
-{{!-- {{#if currentUser.profileImage.contentType}}
-  <a href="/posts/{{currentUser._id}}">
-    <img src="/profile" width="500px">
-  </a>
-{{/if}} --}}
-{{#if profileImage}}
-  <img src="data:{{profileImage.contentType}};base64,{{profileImage.data.toString 'base64'}}" alt="Profile Image">
+
+{{#if currentUser.profileImage.contentType}}
+  <img src="/profile/{{currentUser._id}}/image" alt="Profile Image">
 {{else}}
   <p>No profile image available</p>
 {{/if}}
+
 <a href="../posts">Timeline</a>
 
 <div>
