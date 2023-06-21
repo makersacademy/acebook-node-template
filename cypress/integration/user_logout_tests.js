@@ -42,5 +42,30 @@ describe("Logout", () => {
 
     });
 
+    it("A user can logout from their new post page and cannot access the posts page", () => {
+
+      // sign in
+      cy.signIn();
+
+      cy.url().should("include", "/posts");
+
+      //click new post and go to new post page
+      cy.get('a.global-button.new-post-link[href="/posts/new"]').click();
+
+        //click logout
+      cy.get('input[type="submit"][value="Log Out"].global-button.logout').click();
+
+      cy.url().should("not.include", "/posts");
+
+        //should be back on login screen
+      cy.url().should("include", "/sessions/new");
+
+        //try and access posts page
+      cy.visit("/posts");
+
+      cy.url().should("include", "/sessions/new");
+
+    });
+
 
   });

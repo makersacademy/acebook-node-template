@@ -85,9 +85,9 @@ Please run the test with caution and comment out the code that drops database af
    npm run start:test
    ```
 
-- Step 2: Run standalone selenium tests
+- Step 2: Run standalone selenium tests - These tests required to run sequentially due to possible browser conflicts.
    ```
-   npm run test:e2e
+   npm run test:e2e -- --runInBand
    ```
 
 - If you want to run whole test suite:
@@ -97,9 +97,14 @@ Please run the test with caution and comment out the code that drops database af
    ```
 
 
-Selenium tests written in Jest using selenium-webdriver and uses firefox browser.  
+Selenium tests written in Jest using selenium-webdriver and uses firefox and chrome browser.  
 
 ### **DEPENDENCIES:**
+- Chrome:
+   ```
+   npm install chromedriver
+   ```
+
 - Firefox:
    ```
    npm install geckodriver --save-dev
