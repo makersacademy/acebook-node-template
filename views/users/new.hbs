@@ -1,40 +1,86 @@
-
 <html>
-    <head>
-        <title class="title">{{title}}</title>
-        <link rel="stylesheet" href="/stylesheets/master.css">
-    </head>
-    <body>
-        <nav>
-            <div class="navbar-title">
-                <h1 id="acebook-title">Welcome to Acebook</h1>
-            </div>
-                <ul class="navbar-items">
-                    <li><a href="/"><h3 id="home-link">Return to <br>Homepage</h3></a></li>
-                    <a href="/sessions/new"><h3 id="signup-link">Login</h3></a>
-                </ul>
-        </nav>
-        
-        <div id="content-box">
-            <div id="login-box">
-                <h4 id="login-text">Please fill in your details below to register:</h4>
-                <form id="new-user-form" action="/users/new" method="post">
-                    <input id="firstName" type="text" name="firstName" value="" placeholder="first name" required><br><br>
-                    <input id="lastName" type="text" name="lastName" value="" placeholder="last name" required><br><br>
-                    <input type="text" name="email" placeholder="email" id="email" required><br><br>
-                    <input type="password" name="password" placeholder="password" id="password" required><br><br>
-                    {{#if errorMessages}}
-                    <p>The following errors occurred:</p>
-                    <ul>
-                      {{#each errorMessages}}
-                        <li>{{this}}</li>
-                      {{/each}}
-                    </ul>
-                    {{/if}}
-                    <input id="submit" type="submit" value="Click to register!">
-                </form>
-            </div>
-        </div>
-    </body>
-</html>
 
+<head>
+    <title class="title">{{title}}</title>
+    <link rel="stylesheet" href="/stylesheets/signup.css">
+</head>
+
+<body>
+    <div class="container-fluid px-0">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="sessions/new">
+                    <img src="/images/logo.png" alt="Logo" width="100" height="40"
+                        class="d-inline-block align-text-top">
+
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    {{!-- <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+
+                    </div> --}}
+                </div>
+            </div>
+        </nav>
+    </div>
+    {{!-- <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10"> <a href="/sessions/new" class="text-decoration-none">
+                <p id="signup-link" class="mt-2"><strong>Login</strong></p>
+            </a>
+        </div>
+        <div class="col-1"></div>
+
+    </div> --}}
+
+
+    </div>
+
+    <div class="row signup-box">
+        <div class="col-2"></div>
+        <form id="new-user-form" action="/users/new" method="post"
+            class="row g-3 col-8 border p-5 bg-light rounded shadow">
+
+            <p><span class="h3">Signup!</span><br>It's quick and easy.</p>
+            <hr>
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input id="firstName" type="text" class="form-control" name="firstName" value="" required>
+            </div>
+            <div class="col-md-6">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" id="lastName" name="lastName" value="" class="form-control" required>
+            </div>
+            <div class="col-12">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="text" class="form-control" name="email" id="email" required>
+            </div>
+            <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-2"></div>
+            {{#if errorMessages}}
+            <p>The following errors occurred:</p>
+            <ul>
+                {{#each errorMessages}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/if}}
+
+            <div class="col-12">
+                <input id="submit" type="submit" class="btn btn-primary" value="Register">
+            </div>
+        </form>
+        <div class="col-2"></div>
+    </div>
+</body>
+
+</html>
