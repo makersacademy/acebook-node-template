@@ -3,8 +3,8 @@ describe("Post Page - Comment Functionality", () => {
 
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#email").type("test@test.com");
-    cy.get("#password").type("Testtest1");
+    cy.get("#email").type("chris@chris.com");
+    cy.get("#password").type("password1");
     cy.get("#submit").click();
 
     // submit a post
@@ -14,7 +14,7 @@ describe("Post Page - Comment Functionality", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Testing Comment Function - Other User");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Testing Comment Function - Other User");
+    cy.contains("Testing Comment Function - Other User");
     
     cy.get("input[type='submit']").click();
     cy.get("#email").type("sue@sue.com");

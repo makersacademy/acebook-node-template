@@ -21,10 +21,10 @@ describe("Timeline", () => {
       cy.get("#new-post-form").find('[type="text"]').type("Hello, world!");
       cy.get("#new-post-form").submit();
   
-      cy.get(".posts").should("contain", "Hello, world!");
+      cy.contains("Hello, world!");
 
       // Assert that we can see the likes count
-      cy.get(".posts").should("contain", "0 likes");
+      cy.get('[id*="likesCount"]').eq(0).should("contain", '0');
     });
   });
   
