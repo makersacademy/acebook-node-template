@@ -1,23 +1,24 @@
 <div class="friends-container">
   <section class="friendship-section">
     <h2>Friendship Requests</h2>
-    {{#if friendshipRequests}}
-      <ul class="friendship-requests">
-        {{#each friendshipsRequests}}
-          <li>{{this.recipient.username}}</li>
-        {{/each}}
-      </ul>
-    {{else}}
-      <p>You have currently no friend requests.</p>
-    {{/if}}
+{{#if friendshipsRequests}}
+    <ul class="friendship-requests">
+      {{#each friendshipsRequests}}
+        <li class="username">{{this.recipient.username}}</li>
+      {{/each}}
+{{else}}
+<p>You haven't sent any requests.</p>
+{{/if}}
+    </ul>
+
   </section>
 
   <section class="pending-section">
     <h2>Pending Friendships</h2>
     {{#if pendingFriendships}}
-      <div class="pending-friendships">
+      <ul class="pending-friendships">
         {{#each pendingFriendships}}
-          <p class="username">{{this.requester.username}}</p>
+          <li class="username">{{this.requester.username}}
           <div class="actions friend-actions">
             <form action="friends/accept" method="post">
               <input
@@ -44,8 +45,9 @@
               >Reject</button>
             </form>
           </div>
+          </li>
         {{/each}}
-      </div>
+      </ul>
     {{else}}
       <p>You have currently no pending requests.</p>
     {{/if}}
@@ -54,11 +56,11 @@
   <section class="accepted-section">
     <h2>You are friends with</h2>
     {{#if acceptedFriendships}}
-      <div class="accepted-friendships">
+      <ul class="accepted-friendships">
         {{#each acceptedFriendships}}
-          <p class="username">{{this.requester.username}}</p>
+          <li class="username">{{this.requester.username}}</li>
         {{/each}}
-      </div>
+      </ul>
     {{else}}
       <p>You don't have any friends :&#40;</p>
     {{/if}}
