@@ -2,28 +2,19 @@
 <ul class="posts"> 
   {{#each posts}}
     {{!-- {{#if _id in this.like}} --}}
-      <li class="date">Created at: {{this.date}}</li>
+      <li class="date">Created at: {{{formatDate this}}}</li>
       <br>
       <li class="username">Created By: {{{this.username}}}</li>
       <br> 
       <li class="content">Post Content: {{{this.message}}}</li>
       <br>
-      {{!-- if the likes = 1 then the button is like --}}
-      {{!-- {{#if (this.like.length == 1)}} --}}
-          {{!-- <li class="likes">{{{this.like.length}}} like</li>
+      
+      <li class="likes">{{{this.like.length}}} {{{if_equal this}}}</li>
 
-          <form id="likes-form" action="/posts/{{this._id}}/likes" method="post">
-            <input type="submit" value="like 👍">
-          </form> --}}
-        {{!-- {{else}} --}}
-      <li class="likes">{{{this.like.length}}} likes</li>
-
-        <form id="likes-form" action="/posts/{{this._id}}/likes" method="post">
-          <input type="submit" value="like 👍">
-        </form>
+      <form id="likes-form" action="/posts/{{this._id}}/likes" method="post">
+        <input type="submit" value="like 👍">
+      </form>
       <br>
-      {{!-- {{/if}} --}}
-    {{!-- {{/if}} --}}
   {{/each}}
 </ul>
 

@@ -10,15 +10,35 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users"); 
-// const userPostsRouter = require("./routes/userPosts");
+const expressHbs =  require('express-handlebars');
 
-// create a route for users/username
 
 const app = express();
+
+app.engine('.hbs', expressHbs.engine({ defaultLayout: 'layout', extname: '.hbs',runtimeOptions: {
+  allowProtoPropertiesByDefault: true,
+  allowProtoMethodsByDefault: true
+} }))
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+
+const hbs = expressHbs.create({});
+
+hbs.handlebars.registerHelper('formatDate', function(posts) {
+    const options = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric' };
+    const formattedDate = posts.date.toLocaleDateString('en-US', options);
+    return formattedDate;
+});
+
+hbs.handlebars.registerHelper('if_equal', function(posts) {
+  if (posts.like.length === 1) {
+  return "like";
+  } else {
+  return "likes";
+}
+});
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -26,7 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-// app.use("/users/:username/posts", userPostsRouter);
+
 
 app.use(
   session({
@@ -62,7 +82,6 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
-// app.use("/users/:username/posts", userPostsRouter);
 
 
 // catch 404 and forward to error handler
