@@ -5,6 +5,8 @@ const Like = require("../models/like");
 const Comment = require("../models/comment");
 const Friend = require("../models/friend");
 const users = require("./data/users");
+const postsData = require("./data/posts");
+const comments = require("./data/comments")
 
 mongoose.connect("mongodb://0.0.0.0/acebook", {
   useNewUrlParser: true,
@@ -48,24 +50,44 @@ const seedDB = async () => {
       await user.save();
       console.log(`User ${user.email} created successfully.`);
       createdUsers.push(user);
-
-      const post = new Post({
-        message: "Hello, World!",
-        user: user._id,
-      });
-      await post.save();
-      console.log(`Post "${post.message}" created successfully.`);
-
-      const like = new Like({
-        liked: true,
-        post: post._id,
-        user: user._id,
-      });
-      await like.save();
-      console.log(
-        `Like post_id "${like.post}", Like user_id "${like.user}" created successfully.`
-      );
     }
+      for (let postData of postsData) {
+        const user = createdUsers.find((u) => u.username === postData.user);
+      
+        const post = new Post({
+          message: postData.message,
+          user: user._id,
+          createdAt: Date.now()
+        });
+
+        if (postData.image) {
+          post.image = postData.image;
+        }
+        await post.save();
+        console.log(`Post "${post.message}" created successfully.`);
+      
+        const like = new Like({
+          liked: true,
+          post: post._id,
+          user: user._id,
+        });
+        await like.save();
+        console.log(
+          `Like post_id "${like.post}", Like user_id "${like.user}" created successfully.`
+        );
+          const randomCommentIndex = Math.floor(Math.random() * comments.length);
+          const commentData = comments[randomCommentIndex + 1];
+      
+          const comment = new Comment({
+            post: post._id,
+            user: commentData.user,
+            content: commentData.content,
+          });
+      
+          await comment.save();
+          console.log(`Comment "${comment.content}" created successfully.`);
+      }
+      
     const accepted_friendship = new Friend({
       requester: createdUsers[1],
       recipient: createdUsers[0],

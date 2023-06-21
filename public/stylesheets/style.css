@@ -17,3 +17,9 @@ form {
   margin-left: 420px;
   margin-right: 420px;
 }
+
+.post-image {
+  max-width: 400px;
+  max-height: 300px;
+  object-fit: cover; 
+}
