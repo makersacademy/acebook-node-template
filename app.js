@@ -11,6 +11,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const aboutRouter = require("./routes/about");
 
 const mongoose = require('mongoose')
 const User = require("./models/user");
@@ -72,6 +73,7 @@ app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/about", aboutRouter);
 
 
 // catch 404 and forward to error handler

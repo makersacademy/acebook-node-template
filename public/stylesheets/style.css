@@ -626,3 +626,52 @@ button:focus {
     max-width: none;
   }
 }
+
+
+/* About section */
+.about-title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.container-about {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin: 0vh 30vh;
+  text-align: center;
+}
+
+.container p {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 50%;
+}
+
+.team {
+  height: 150px;
+  border-radius: 50px;
+  margin: 30px;
+}
+
+img {
+  height: 80px;
+  width: auto;
+}
+
+/* Footer styling */
+
+.footer {
+  margin-top: 20vh;
+  text-align: center;
+  color: var(--NavyBlue)
+}
+
+.photo {
+  transition:.5s;
+}
+
+.photo:hover {
+  transform:scale(1.3);
+}
