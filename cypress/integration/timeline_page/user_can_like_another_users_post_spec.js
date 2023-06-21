@@ -2,8 +2,8 @@ describe("Timeline - Like Functionality - Interacting with other user", () => {
     it("can like another user's post", () => {
     // sign in
     cy.visit("/sessions/new");
-    cy.get("#email").type("test@test.com");
-    cy.get("#password").type("Testtest1");
+    cy.get("#email").type("chris@chris.com");
+    cy.get("#password").type("password1");
     cy.get("#submit").click();
 
     // submit a post
@@ -17,8 +17,8 @@ describe("Timeline - Like Functionality - Interacting with other user", () => {
     cy.get("#password").type("password1");
     cy.get("#submit").click();
 
-    cy.get("ul > li:first-child button").click();
-    cy.get("ul > li:first-child span").should("contain", '1');
-    cy.get("ul > li:first-child span").should("not.have.value", '2');
+    cy.get(".likeButtonTimeline").eq(0).click();
+    cy.get('[id*="likesCount"]').eq(0).should("contain", '1');
+    cy.get('[id*="likesCount"]').eq(0).should("not.have.value", '2');
     });
 });

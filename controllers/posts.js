@@ -35,7 +35,14 @@ const PostsController = {
 
 	Create: (req, res) => {
 		const user = req.session.user;
-		console.log(req.body);
+		const message = req.body.message;
+		const imageFile = req.file;
+		
+
+		if (!message && !imageFile) {
+			return res.render("posts/new", { error: "Please enter valid text or upload an image." });
+			
+		}
 
 		const post = new Post({
 			message: req.body.message,

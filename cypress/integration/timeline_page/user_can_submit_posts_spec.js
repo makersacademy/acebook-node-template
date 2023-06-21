@@ -13,6 +13,6 @@ describe("Timeline", () => {
     cy.get("#new-post-form").find('[type="text"]').type("Successful Post Testing");
     cy.get("#new-post-form").submit();
 
-    cy.get(".posts").should("contain", "Successful Post Testing");
+    cy.contains("Successful Post Testing");
   });
 });
