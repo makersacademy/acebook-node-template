@@ -17,9 +17,22 @@ export const handleCommentFormSubmit = async (event) => {
       event.currentTarget.method,
       dataObject
     );
+
     const newComment = document.createElement("li");
     newComment.classList.add("comment-item");
-    newComment.innerHTML = data.html;
+
+    const deleteString = `
+      <form
+        action="/comments/${data.comment._id}/delete"
+        method="POST"
+        onsubmit="return confirm('Are you sure you want to delete this post?')"
+      >
+        <input type="hidden" name="_method" value="DELETE"/>
+        <button type="submit" class="delete-button">Delete</button>
+      </form>
+    `;
+
+    newComment.innerHTML = `${data.html}${deleteString}`;
     const postsList = document.querySelector(`#comments-${postId}`);
     postsList.insertAdjacentElement("afterbegin", newComment);
   } catch (error) {

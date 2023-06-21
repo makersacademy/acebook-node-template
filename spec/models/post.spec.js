@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Post = require("../../models/post");
 require("../mongodb_helper");
+const PostsController = require("../../controllers/posts");
 const { mockResponse } = require('jest-mock-req-res');
 
 const user = {
@@ -69,22 +70,21 @@ describe("Post model", () => {
     expect(posts[1]).toMatchObject({ message: "another message" });
   });
 
-//   
+  
   // it("can render the edit page", async () => {
-  //   // Create a sample post
-  //   const post = new Post({ message: "Initial message", user: user.id });
+  //   const post = new Post({ message: "some message", user: user.id });
   //   await post.save();
-
-  //   // Call the Edit function
-  //   const req = { params: { id: post._id} };
-  //   const res = mockResponse();
-  //   await Post.Edit(req, res);
-
-  //   // Assert that the response status is successful (e.g., 200)
-  //   expect(res.status).toHaveBeenCalledWith(200);
-
-  //   // Assert that the correct template is rendered
-  //   expect(res.render).toHaveBeenCalledWith("posts/edit", { post });
+  
+  //   const req = { params: { id: post.id } };
+  //   const res = {
+  //     render: jest.fn((template, context) => {
+  //       expect(template).toBe("posts/edit");
+  //       expect(context).toMatchObject({ post });
+  //     }),
+  //   };
+  
+  //   await PostsController.Edit(req, res);
+  //   expect(res.render).toHaveBeenCalledTimes(1);
   // });
 
 //   it("can update a post", async () => {
@@ -107,3 +107,38 @@ describe("Post model", () => {
 //     expect(res.redirect).toHaveBeenCalledWith("/posts");
 //   });
 });
+
+//  Index: async (req, res) => {
+//     try {
+//       if (!req.session.user) {
+//         return res.redirect("/sessions/new");
+//       }
+//       const currentUser = await userService.getCurrentUser(req.session.user._id);
+//       let posts = await postService.getPosts();
+
+//       for (let post of posts) {
+//         post.likesCount = await likeService.getLikesCount(post._id);
+
+//         const user = await userService.getUserById(post.user);
+//         post.username = user.username;
+//         post.currentUser = currentUser.username === post.username;
+
+//         const likes = await likeService.getLikesByPostId(post._id);
+//         post.likedBy = likes.map((like) => like.user.username);
+
+//         post.comments = await commentService.getCommentsByPostId(post._id);
+//         for (let comment of post.comments) {
+//           comment.currentUser = currentUser.username === comment.user;
+//         }
+//       }
+//       posts = posts.map((post) => ({
+//         post: {
+//           ...post,
+//           comments: post.comments.map((comment) => ({ comment })),
+//         },
+//       }));
+//       res.render("posts/index", { posts: posts });
+//     } catch (err) {
+//       throw err;
+//     }
+//   },

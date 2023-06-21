@@ -8,3 +8,12 @@ exports.getCommentsByPostId = async (postId) => {
 
   return comments;
 };
+
+exports.deleteCommentById = async (id) => {
+  try {
+      const result = await Comment.findByIdAndRemove(id);
+      return result;
+  } catch (err) {
+      throw err;
+  }
+};
