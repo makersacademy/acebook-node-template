@@ -53,6 +53,7 @@
     
     
     {{#if this.message}}
+    
     <a href="/posts/{{this._id}}">{{this.message}}</a>{{/if}}
     <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
     <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
