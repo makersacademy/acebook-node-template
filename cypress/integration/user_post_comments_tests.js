@@ -113,10 +113,38 @@ it("User can click on and add a comment to a post", () => {
   cy.get('input#comment.comment-box.input-box').first().as('commentInput');
 
   // Type text into the input element
-  cy.get('@commentInput').type(new_comment);
+  cy.get('@commentInput').type(`${new_comment}{enter}`);
+
+
 
   // Assert that any of the elements contains the entered text eventually
-  cy.get('input#comment.comment-box.input-box').should('have.value', new_comment);
+  cy.get('p.comment-content').should('contain', new_comment);
+
+});
+
+it("User cannot add a comment that is too long to a post", () => {
+
+    const new_post_4 = chance.paragraph({ sentences: 1 })
+    const new_comment_2 = chance.paragraph({ sentences: 10 })
+      // sign in
+    cy.signIn();
+
+    //click new post
+    cy.get('a.global-button.new-post-link[href="/posts/new"]').click();
+
+    cy.get('#message').type(new_post_4);
+    cy.get('input[type="submit"][value="Submit"]').click();
+
+  // Grab any one of the input elements
+  cy.get('input#comment.comment-box.input-box').first().as('commentInput');
+
+  // Type text into the input element
+  cy.get('@commentInput').type(`${new_comment_2}{enter}`);
+
+
+  // Assert that any of the elements does not contain the long comment
+  cy.get('p.comment-content').should('not.have.value', new_comment_2);
+
 
 });
 
