@@ -1,21 +1,21 @@
-<div class="like">
+<div class="like-container">
   <form action="/likes" method="post" id="like-form">
     <input type="hidden" name="postId" value={{_id}} />
     <button type="submit" class="like-button">🤍</button>
   </form>
-</div>
 
-<div class="post-likes">
-  <div class="like-count">
-    {{likesCount}}
-    likes
-  </div>
-
-  {{#if likedBy}}
-    <div class="liked-by-tooltip">
-      {{#each likedBy}}
-        <div>{{this}}</div>
-      {{/each}}
+  <div class="post-likes">
+    <div class="like-count">
+      {{likesCount}}
+      likes
     </div>
-  {{/if}}
+
+    {{#if likedBy}}
+      <div class="liked-by-tooltip">
+        {{#each likedBy}}
+          <div>{{this}}</div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
 </div>
