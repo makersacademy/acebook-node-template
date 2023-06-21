@@ -1,9 +1,9 @@
 <h1>Edit Comment</h1>
 
 <form action="/posts/{{comment._id}}/update" method="post">
-    <input type="hidden" name="_method" value="PUT" />
-    <label for="comment">comment:</label><br />
-    <textarea id="comment" name="comment">{{comment.content}}</textarea><br />
+  <input type="hidden" name="_method" value="PUT" />
+  <label for="comment">comment:</label><br />
+  <textarea id="comment" name="comment">{{comment.content}}</textarea><br />
 
-    <input type="submit" value="Update Comment" />
+  <input type="submit" value="Update Comment" />
 </form>

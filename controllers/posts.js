@@ -30,7 +30,7 @@ const PostsController = {
           console.log(comment._id);
           comment.currentUser = currentUser.username === comment.user;
         }
-        post.comments = post.comments.map((comment) => ( {comment} ));
+        post.comments = post.comments.map((comment) => ({ comment }));
       }
       posts = posts.map((post) => ({ post }));
       res.render("posts/index", { posts: posts });
