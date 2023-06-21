@@ -54,6 +54,7 @@ const PostsController = {
       message,
       image,
       user: req.session.user,
+      username: req.session.user.username,
     };
 
     try {

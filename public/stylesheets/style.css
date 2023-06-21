@@ -44,3 +44,9 @@ h1 {
   margin-right: 17%;
   text-align: right;
 }
+
+.post-image {
+  max-width: 400px;
+  max-height: 300px;
+  object-fit: cover; 
+}
