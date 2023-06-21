@@ -2,7 +2,6 @@ const Post = require("../models/post");
 const helpers = require("handlebars-helpers")();
 const fs = require("fs");
 
-
 const PostsController = {
 	Index: (req, res) => {
 		const usersFriends = req.session.user.friends;
@@ -47,7 +46,10 @@ const PostsController = {
 			},
 			image: {
 				data: req.file
-					? fs.readFileSync("public/images/profileUploads/" + req.file.filename, "base64")
+					? fs.readFileSync(
+							"public/images/profileUploads/" + req.file.filename,
+							"base64"
+					  )
 					: null, // Read and encode the file as base64
 				contentType: req.file ? req.file.mimetype : null, // Store the file mimetype in the database
 			},
@@ -72,8 +74,8 @@ const PostsController = {
 				return res.status(404).send("Image not found");
 			}
 			res.set("Content-Type", post.image.contentType);
-			console.log(post.image.contentType, '<<<<THIS IS CONTENTTYPE')
-			console.log(post.image.data, '<<<< THIS IS IMAGE DATA')
+			// console.log(post.image.contentType, '<<<<THIS IS CONTENTTYPE')
+			// console.log(post.image.data, '<<<< THIS IS IMAGE DATA')
 
 			let stringData = post.image.data.toString();
 			// console.log(stringData, '<<<<THIS IS IMAGE DATA in string')

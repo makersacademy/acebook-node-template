@@ -23,7 +23,15 @@
     {{#each friends_names}}
       <form action="/profile/remove-friend" method="POST">
         <input type="hidden" name="friendEmail" value="{{this.email}}">
-        <li>{{this.firstName}} {{this.lastName}}<button type="submit">Remove Friend</button></li>
+        <li>
+          {{#if this.profileImage}}
+            <img src="/profile/{{this._id}}/postUserImage" alt="Profile Image" width="200px">
+          {{else}}
+            <p>No profile image available</p>
+          {{/if}}
+          <p>{{this.firstName}} {{this.lastName}}</p> 
+          <button type="submit">Remove Friend</button>
+        </li>
       </form>
     {{else}}
       <li>No friends found.</li>
