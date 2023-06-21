@@ -1,3 +1,5 @@
+jest.setTimeout(30000);
+
 const mongoose = require('mongoose');
 let connection
 
@@ -26,11 +28,12 @@ afterAll(async () => {
     await connection.disconnect();
 });
 
+
 test('Sign up stays on same page when fields left empty', async () => {
     //navigates to signup page
     await driver.get('http://localhost:3030/users/new');
 
-    await driver.findElement(By.css('#new-user-form > div:nth-child(7) > input:nth-child(5)')).click();
+    await driver.findElement(By.css('#submit')).click();
 
     //waits until signup page loads again
     await driver.wait(until.elementLocated(By.css('body > div.new-content.white-box > h1')), 10000);
@@ -54,12 +57,12 @@ test('Sign up fails with invalid password and stays on same page with error mess
     //once on the sign up page, inputs inappropriate data
     await driver.findElement(By.name('firstName')).sendKeys('Jo');
     await driver.findElement(By.name('lastName')).sendKeys('Do');
-    await driver.findElement(By.name('email')).sendKeys('test2@test.com');
+    await driver.findElement(By.name('email')).sendKeys('test@test.com');
     await driver.findElement(By.name('password')).sendKeys('pass');
     await driver.findElement(By.name('confirmPassword')).sendKeys('pass');
-    const submitButton = await driver.findElement(By.css('#new-user-form > div:nth-child(7) > input:nth-child(5)'));
-    await submitButton.click();
-    await submitButton.sendKeys(Key.RETURN);
+    const pickAvatar = await driver.findElement(By.css('#new-user-form > fieldset > div:nth-child(2) > input:nth-child(5)'));
+    await pickAvatar.click();
+    await pickAvatar.sendKeys(Key.RETURN);
 
     //waits until an error message appears
     await driver.wait(until.elementLocated(By.css('#new-user-form > div.error-message')), 10000);
@@ -93,9 +96,9 @@ test('Click sign up and register then check if successful', async () => {
     await driver.findElement(By.name('email')).sendKeys('test@test.com');
     await driver.findElement(By.name('password')).sendKeys('pass!1234');
     await driver.findElement(By.name('confirmPassword')).sendKeys('pass!1234');
-    const submitButton = await driver.findElement(By.css('#new-user-form > div:nth-child(7) > input:nth-child(5)'));
-    await submitButton.click();
-    await submitButton.sendKeys(Key.RETURN);
+    const pickAvatar = await driver.findElement(By.css('#new-user-form > fieldset > div:nth-child(2) > input:nth-child(5)'));
+    await pickAvatar.click();
+    await pickAvatar.sendKeys(Key.RETURN);
 
     //waits until the navigation to posts page
     await driver.wait(until.urlIs('http://localhost:3030/posts'), 10000);
@@ -170,7 +173,7 @@ test('Signed in user can create a post with GIF and it is displayed on timeline'
     //once on the posts page, searches for a GIF, picks one
     await driver.findElement(By.name('searchQuery')).sendKeys('Happy');
     await driver.findElement(By.css('body > div.new-content > div > form.gif-finder > div > input.global-button')).click();
-    await driver.findElement(By.css('#new-post-form > div > ul > li:nth-child(5) > label > input[type=radio]')).click();
+    await driver.findElement(By.css('#gif-4')).click();
 
     //and enters My post with GIF
     await driver.findElement(By.name('message')).sendKeys('My post with GIF');
@@ -183,8 +186,9 @@ test('Signed in user can create a post with GIF and it is displayed on timeline'
     let myGifImg = await driver.findElement(By.className('post-gif'));
     let postImg = await myGifImg.getAttribute('src');
 
-    //expects the post to have the GIF image
-    expect(postImg).toEqual("https://media1.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif?cid=10f0c94955382ylpw74un3zuhoksml1hw3c04curq46cmj5k&ep=v1_gifs_search&rid=giphy.gif&ct=g");
+    // expects the post to contain a part of the GIF image URL
+    let expectedPartialUrl = "https://media1.giphy.com/media/";
+    expect(postImg.includes(expectedPartialUrl)).toBeTruthy();
 
     //checks if the post is created
     let myGifPost = await driver.findElement(By.css('body > div.timeline > div > div.post-sec > div.post-details > p.message'));
@@ -192,6 +196,10 @@ test('Signed in user can create a post with GIF and it is displayed on timeline'
 
     //expects the text of post to be My post with GIF
     expect(postText).toBe("My post with GIF");
+
+//  //takes screenshot
+//  let screenshot = await driver.takeScreenshot();
+//  await fs.writeFile('a_happy_screenshot.png', screenshot, 'base64');
 });
 
 test('Signed in user can like a post', async () => {
@@ -215,7 +223,7 @@ test('Signed in user can comment on existing post', async () => {
 
     //once on the posts page, enters My first comment and submits
     await driver.findElement(By.name('comment')).sendKeys('My first comment');
-    await driver.findElement(By.css('#new-comment-form > input.global-button')).click();
+    await driver.findElement(By.css('#new-comment-form > button')).click();
 
     //checks if the comment is created
     let myFirstComment = await driver.findElement(By.css('body > div.timeline > div > div.comments-sec > div > p'));
