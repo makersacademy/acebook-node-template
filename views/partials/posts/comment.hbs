@@ -3,6 +3,7 @@
     <span class="comment-author">Posted by {{comment.user}}</span>
   </p>
 
+
 {{#if comment.currentUser}}
   <form action="/comments/{{comment._id}}/delete"
   method="POST"
@@ -12,5 +13,6 @@
   </form>
 {{/if}}
 </li>
+
 
 </li>
