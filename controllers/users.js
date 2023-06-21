@@ -20,8 +20,17 @@ const UsersController = {
 				res.status(400);
 				res.render("users/new", { errorMessages: errorMessages });
 			} else {
-				await user.save();
-				res.status(201).redirect("/sessions/new");
+				// Check if the email already exists in the database
+				const existingUser = await User.findOne({ email: user.email });
+	
+				if (existingUser) {
+					errorMessages.push("Email address already exists. Please choose a different email.");
+					res.status(400);
+					res.render("users/new", { errorMessages: errorMessages });
+				} else {
+					await user.save();
+					res.status(201).redirect("/sessions/new");
+				}
 			}
 		} catch (err) {
 			const errorMessages = [];
