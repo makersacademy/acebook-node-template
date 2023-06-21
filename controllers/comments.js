@@ -33,15 +33,6 @@ const CommentsController = {
       res.redirect("/posts");
     }
   },
-  // Edit: async (req, res) => {
-  //     const commentId = req.params.id;
-  //     try {
-  //       const comment = await commentService.getCommentById(commentId);
-  //       res.render("posts/editcomment", { comment });
-  //     } catch (err) {
-  //       return res.status(500).json({ error: err.message });
-  //     }
-  //   },
     Delete: async (req, res) => {
       const commentId = req.params.id;
   
