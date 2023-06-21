@@ -1,14 +1,14 @@
-<li class="post-item">
-  <div class="post-message">{{post.message}}</div>
-  <p class="post-author">Written by {{post.username}} </p>
-  <p class="post-date">Posted on {{post.formattedCreatedAt}}</p>
-  <div class="actions">
+<div class="post">
     {{#unless post.currentUser}}
       <form action="/friends" method="post">
         <input type="hidden" name="recipientId" value={{post.user}} />
-        <button type="submit" class="befriend-button">Poke</button>
+        <button type="submit" class="btn btn-primary btn-sm float-right" id="submit">Poke</button>
       </form>
     {{/unless}}
+  <p class="post-author">{{post.username}} said</p>
+  <h3 class="post-message">{{post.message}}</h3>
+  <p class="post-date">Posted on {{post.formattedCreatedAt}}</p>
+  <div class="actions">
 
     {{#if post.image}}
       <img src="{{post.image}}" height="300px" width="300px">
@@ -18,20 +18,26 @@
       <img src="{{post.user.image}}" class="avatar">
     {{/if}}
 
-    {{#if post.currentUser}}
-      <a href="/posts/{{post._id}}/edit" class="edit-button">Edit</a>
-      <form action="/posts/{{post._id}}/delete" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
-      </form>
-    {{/if}}
-
     <ul class="post-comment" id="comments-{{post.id}}">
-      {{> posts/new_comment post}}
-      {{> posts/likes post}}
       {{#each post.comments}}
         {{> posts/comment this}}
       {{/each}}
+      {{> posts/new_comment post}}
     </ul>
   </div>
-</li>
+</div>
+
+{{> posts/likes post}}
+
+<div class="edit-delete">
+    {{#if post.currentUser}}
+      <form action="/posts/{{post._id}}/delete" method="POST">
+      <a href="/posts/{{post._id}}/edit" class="btn btn-primary" id="submit">Edit</a>
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" id="submit" class="btn btn-primary" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
+      </form><br><br>
+    {{/if}}
+</div>
+
+
+<div class="post-container-gap"></div>

@@ -1,11 +1,97 @@
+/* Likes button */
+
 .liked-by-tooltip {
   display: none;
   position: absolute;
   background-color: white;
   border: 1px solid black;
   padding: 10px;
+  width: 8%;
 }
 
 .post-likes:hover .liked-by-tooltip {
   display: block;
+}
+
+/* Main grid on post index page */
+
+.feed-container {
+  display: grid;
+  grid-template-columns: 0.5fr 10fr 0.5fr 5fr 0.5fr;
+  grid-template-rows: 0.5fr 1fr 10fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+.messages {
+  grid-area: 1 / 1 / 2 / 6;
+}
+.title-timeline {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.title-new-post {
+  grid-area: 2 / 4 / 3 / 5;
+}
+
+.timeline-section {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.new-post {
+  grid-area: 3 / 4 / 4 / 5;
+}
+
+/* Nested grid for individual posts */
+
+.post-container {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 2fr 2fr 0.5fr 0.5fr 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: #f8f9fa;
+}
+.post {
+  grid-area: 1 / 1 / 3 / 3;
+  margin: 5%;
+}
+
+.like {
+  margin-left: 45%;
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.post-likes {
+  margin: auto;
+  margin-left: 0px;
+  margin-bottom: 5%;
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.edit-delete {
+  grid-area: 4 / 1 / 5 / 3;
+}
+
+.post-container-gap {
+  grid-area: 5 / 1 / 6 / 3;
+  background-color: white;
+}
+
+/* Text formatting */
+
+.message {
+  margin: auto;
+  margin-right: 17%;
+  text-align: right;
+}
+
+.titles {
+  color: #5c6bc0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.post-date {
+  color: grey;
+  text-align: right;
 }

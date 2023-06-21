@@ -1,4 +1,4 @@
-{{#if messages.success}}
+{{!-- {{#if messages.success}}
   <ul class="messages">
     {{#each messages.success}}
       <p class="message">{{this}}</p>
@@ -7,4 +7,39 @@
 {{/if}}
 
 <h1 class="title">{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p style="text-align: center;">Welcome to {{title}}</p> --}}
+
+<html>
+<head>
+  <link rel="stylesheet" href="stylesheets/homepage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+  <title>{{title}}</title>
+</head>
+<body class="homepage">
+  <section>
+    <div class="nav-bar">
+      <div class="logo">
+        <p><img src="/images/acebook.png" alt="people connecting image" class="logo"></p>
+      </div>
+      <div class="menu-bar">
+        <ul class="menu">
+          <li><a href="/users/new">Sign Up</a></li>
+          <li><a href="/sessions/new" class="login">Log In</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="home" id="home ">
+    <div class="content">
+      <h3 class="mainfont">
+        Connecting <span class="purpleColor"> Aces </span>Worldwide
+      </h3>
+      <h3 style="margin-left: 5%;">
+        Ace<span class="purpleColor">book</span>!
+      </h3>
+    </div>
+    <div class="image">
+      <img src="/images/elevate.jpg" alt=" hero-image" />
+    </div>
+</body>
+</html>

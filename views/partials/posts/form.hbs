@@ -5,16 +5,18 @@
   enctype="multipart/form-data"
 >
   <div class="form-message">
-    <label for="message">Message: </label>
+    <label for="message-input"></label>
     <textarea
-      id="message"
+      id="message-input"
       class="form-control custom-input"
       name="message"
+      rows="4"
     ></textarea>
   </div>
-
+  <br />
   <div class="form-image">
-    <label for="image">Image:</label>
+    <label for="image"><strong>Image</strong>
+    </label>
     <input
       type="file"
       class="form-control custom-input"
@@ -28,11 +30,12 @@
   {{/if}}
 
   <div class="form-submit">
+    <br /><br />
     <input
       type="submit"
       class="btn btn-primary btn-block"
-      id="#new-post-form"
+      id="submit"
+      value="Post now"
     />
-    Submit
   </div>
 </form>
