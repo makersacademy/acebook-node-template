@@ -17,31 +17,29 @@ var port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 /**
- * Connect to MongoDB
+ * Connect to MongoDB Atlas
  **/
 
-var mongoDbUrl = process.env.MONGODB_URL || "mongodb://0.0.0.0/acebook";
+// Replace the connection URL with your MongoDB Atlas connection URL
+var mongoDbUrl = process.env.MONGODB_URL || 'mongodb+srv://betta_connector:TgPGsailPkuBs6rx@betta-test-db.zsef4dh.mongodb.net/?retryWrites=true&w=majority';
+
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
-
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+})
+  .then(() => {
+    console.log('Connected to MongoDB Atlas');
+    startServer();
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB Atlas', error);
+  });
 
 /**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -98,4 +96,14 @@ function onListening() {
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   console.log("Now listening on " + bind);
   debug("Listening on " + bind);
+}
+
+/**
+ * Start the server
+ */
+
+function startServer() {
+  server.listen(port);
+  server.on("error", onError);
+  server.on("listening", onListening);
 }

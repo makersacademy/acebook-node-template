@@ -54,13 +54,13 @@ jobs:
 #         env:
 #           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           
-# Currently inactive - this code chunk will deploy automatically to render if tests passed
-#   deploy-to-render:
-#     needs: build-and-test
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Deploy to Render
-#         if: ${{ needs.build-and-test.result == 'success' }}
-#         run: |
-#           # Send a GET request to the Render deploy hook URL
-#           curl -X https://api.render.com/deploy/srv-ci8ncb18g3n3vm5rtfhg?key=RBk62O3l69E
+
+  deploy-to-render:
+     needs: build-and-test
+     runs-on: ubuntu-latest
+     steps:
+       - name: Deploy to Render
+         if: ${{ needs.build-and-test.result == 'success' }}
+         run: |
+           # Send a GET request to the Render deploy hook URL
+           curl -X https://api.render.com/deploy/srv-ci9e1mp8g3ne2eige8u0?key=nIJ86pXhKS8
