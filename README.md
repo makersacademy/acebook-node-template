@@ -23,7 +23,7 @@ Acebook will connect people and make their lives betta.
   although we had a large amount of 'Nice to Have' functions that were in the timeline. 
 
   
-  The project is hosted live at [acebook.cool](acebook.cool). The version hosted is from a forked repo due to potential code conflicts - link below.
+  The project is hosted live at [acebook.cool](https://www.acebook.cool/)). The version hosted is from a forked repo due to potential code conflicts - link below.
 
 ## **Tools used in this Project** 
 
