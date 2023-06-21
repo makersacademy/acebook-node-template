@@ -11,6 +11,6 @@ describe("Timeline Page - Empty Post Check", () => {
     cy.contains("New post").click();
 
     cy.get("#new-post-form").submit();
-    cy.url().should("contain", "/posts/new")
+    cy.contains("Please enter valid text or upload an image.")
     });
 });
