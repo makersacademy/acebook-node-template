@@ -18,7 +18,7 @@
 .feed-container {
   display: grid;
   grid-template-columns: 0.5fr 10fr 0.5fr 5fr 0.5fr;
-  grid-template-rows: 0.5fr 1fr 10fr;
+  grid-template-rows: 10px auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
@@ -45,7 +45,7 @@
 
 .post-container {
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 2fr 2fr 0.5fr 0.5fr 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -63,6 +63,7 @@
 
 .like-container {
   display: flex;
+  margin-left: 10%;
 }
 
 .post-likes {
@@ -74,7 +75,9 @@
 
 .edit-delete {
   grid-area: 4 / 1 / 5 / 3;
-  margin-left: 4%;
+  display: flex;
+  margin: 0% 5% 2% 80%;
+  justify-content: space-between;
 }
 
 .post-container-gap {
@@ -84,7 +87,8 @@
 
 /* Text formatting */
 
-.message {
+/* This is error messages */
+.message p {
   margin: auto;
   margin-right: 17%;
   text-align: right;
@@ -94,6 +98,8 @@
   color: #5c6bc0;
   font-weight: bold;
   text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .post-date {

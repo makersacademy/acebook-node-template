@@ -45,8 +45,8 @@
 <div id="editModal-{{post._id}}" class="modal">
   <div class="modal-content">
     <form class="updateForm" action="/posts/{{post._id}}/update" method="post" enctype="application/x-www-form-urlencoded">
-      <label for="message"><h2 class="titles">Message:</h2></label>
-      <textarea id="message" name="message" rows="4">{{post.message}}</textarea><br/>
+      <label for="message"><h2 class="titles">Edit message:</h2></label><br>
+      <textarea id="message" name="message" rows="4">{{post.message}}</textarea><br/><br>
       <input type="submit" value="Update Post" id="submit" class="btn btn-primary"/>
     </form>
   </div>
