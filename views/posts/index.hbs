@@ -16,20 +16,18 @@
   {{#each posts}}
   <div class="posts">
     <div class="post-sec">
-      {{#ifEquals this.authorID nemesis}}
+      {{#ifEquals this.authorID ../nemesis}}
         <div class="nemesis-icon">😈</div>
       {{/ifEquals}}
       <form action="/posts/{{this.authorID}}/make-nemesis" method="POST" name="makeNemesis">
         <div class="icon post-icon" onclick="document.forms['makeNemesis'].submit()">{{this.authorIcon}}</div> 
       </form>
       <div class="post-details">
-        <p class="author-name">{{this.author}}</p>
+        <p class="author-name">{{this.authorID}}</p>
         {{#if gifUrl}}
           <img src="{{gifUrl}}" class="post-gif">
         {{/if}}
         <p class="message">{{{this.message}}}</p>
-        <p>{{this.authorID}}</p>
-        <p>{{req.session.user.nemesis}}</p>
         <div class="likes">
           <form action="/posts/{{this._id}}/likes" method="POST" id="like-post">
             <input type="submit" value="👍" class="global-button like-button">

@@ -8,10 +8,10 @@ const PostController = {
   Index: (req, res) => {
     let renderParams = { posts: [] };
 
-    if (req.session && req.session.user) {
-      renderParams.icon = req.session.user.icon;
-      renderParams.nemesis = req.session.user.nemesis;
-    }
+    renderParams.icon = req.session.user.icon;
+    renderParams.nemesis = req.session.user.nemesis;
+    console.log(renderParams.nemesis)
+
 
     Post.find()
       .populate("comments")
@@ -22,7 +22,8 @@ const PostController = {
         const reversedPosts = posts.slice().reverse();
 
         renderParams.posts = reversedPosts;
-
+        
+        console.log(renderParams)
         res.render("posts/index", renderParams);
       });
   },
@@ -140,19 +141,18 @@ const PostController = {
   },
 
   MakeNemesis: async (req, res) => {
-    const nemesis = await User.findById(req.params.id);
-    const sessionId = req.session.user._id;
+    const authorID = await Post.findById(req.params.id);
+    const user = await User.findById(req.session.user._id)
 
-    if (nemesis._id.toString() === sessionId.toString()) { // compare object IDs as strings
-      return module.exports.Index(req, res); // reload the page and don't update anything
-  }
+    if (authorID === user._id.toString()) {
+      return module.exports.Index(req, res);
+    }
 
-  await User.updateOne(
-      { _id: sessionId},
-      { nemesis: nemesis._id.toString() }
-  );
-  
-  return module.exports.Index(req, res);
+    user.nemesis = authorID
+
+    req.session.reload(() => {
+      return module.exports.Index(req, res);
+    });
   }
 };
 

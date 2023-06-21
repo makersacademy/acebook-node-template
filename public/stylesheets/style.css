@@ -59,7 +59,7 @@ hr {
 }
 
 .logout {
-  margin-right: 4vh;
+  margin-right: 5vh;
 }
 
 .new-content,
@@ -317,9 +317,15 @@ hr {
   height: 4vh;
   width: 4vh;
   padding: 1vh;
-  background-color: #e30b5d;
+  background-color: var(--main-color);
   border-radius: 10vh;
   align-items: center;
+  color: white;
+}
+
+.post-icon:hover {
+  cursor: pointer;
+  background-color: var(--hover-color);
 }
 
 .author {
