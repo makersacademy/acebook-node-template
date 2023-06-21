@@ -7,7 +7,7 @@
 
 <div>
   <p>Friends</p>
-  <ul class="friends">
+  <ul class="users">
     {{#each friends_names}}
       <form action="/profile/remove-friend" method="POST">
         <input type="hidden" name="friendEmail" value="{{this.email}}">
@@ -26,8 +26,7 @@
       <form class="addFriendForm" data-friend-email="{{this.email}}">
         <input type="hidden" name="friendEmail" value="{{this.email}}">
         <li>{{this.firstName}} {{this.lastName}}
-          {{#if friendRequestSent}}
-            {{#if (currentUser.sentFriendRequests.includes this.email)}}
+            {{#if this.friendRequested }}
               <button class="addFriendButton" type="button" disabled>Friend Request Sent</button>
             {{else}}
               <button class="addFriendButton" type="button">Add Friend</button>
