@@ -1,27 +1,30 @@
-{{#if messages.success}}
-  <ul class="messages">
-    {{#each messages.success}}
-      <p class="message">{{this}}</p>
-    {{/each}}
-  </ul>
-{{/if}}
-{{#if messages.error}}
-  <ul class="errors">
-    Error: {{#each messages.error}}
-      <p class="error">{{this}}</p>
-    {{/each}}
-  </ul>
-{{/if}}
+<h2 class="titles">Your Timeline</h2>
+  <div class="feed-container">
 
-{{> posts/form }}
+  <div class="messages">
+  {{#if messages.success}}
+      {{#each messages.success}}
+        <p class="message">{{this}}</p>
+      {{/each}}
+  {{/if}}
+  {{#if messages.error}}
+      Error: {{#each messages.error}}
+        <p class="error">{{this}}</p>
+      {{/each}}
+  {{/if}}
+  </div>
 
-<section class="timeline-section">
-  <ul class="posts">
-    {{#each posts}}
-      {{> posts/post this}}
-        
-    {{/each}}
-  </ul>
-</section>
+  <div class="timeline-section">
+      {{#each posts}}
+        <div class="post-container">
+          {{> posts/post this}}
+        </div>
+      {{/each}}
+  </div>
+
+  <div class="new-post">
+    {{> posts/form }}
+  </div>
+</div>
 
 <script type="module" src="/javascripts/main.js"></script>

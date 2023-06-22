@@ -1,10 +1,11 @@
 <form id="" action="/posts" method="post" enctype="multipart/form-data">
   <div class="form-message">
-    <label for="message">Message: </label>
+    <label for="message"></label>
     <textarea
       id="message"
       class="form-control custom-input"
       name="message"
+      required
     ></textarea>
   </div>
 
@@ -26,7 +27,8 @@
     <input
       type="submit"
       class="btn btn-primary btn-block"
-      id="#new-post-form"
-    />Submit
+      id="submit"
+      value="Post now"
+    />
   </div>
 </form>

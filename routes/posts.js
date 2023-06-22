@@ -10,5 +10,4 @@ router.get("/:id/edit", PostsController.Edit);
 router.post("/:id/update", PostsController.Update);
 router.post("/:id/delete", PostsController.Delete);
 
-
 module.exports = router;

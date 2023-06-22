@@ -13,7 +13,7 @@ before(() => {
 describe("Test Core Site Feature Functionality", () => {
   it("1) Can Access Homepage", () => {
     cy.visit("/");
-    cy.get(".title").should("contain", "Acebook");
+    cy.title().should("contain", "Acebook");
   });
 
   it("2) Can Signup and Signin", () => {
@@ -24,13 +24,13 @@ describe("Test Core Site Feature Functionality", () => {
   it("3) Can Make a Post and See It", () => {
     sitePage.LoginAs("test@test.com", "password123");
     sitePage.createPostWith("THIS IS NEWER");
-    sitePage.shouldContain(".posts", "THIS IS NEWER");
+    sitePage.shouldContain(".timeline-section", "THIS IS NEWER");
   });
 
   it("4) Can See Likes Counts On Post", () => {
     sitePage.LoginAs("test@test.com", "password123");
     sitePage.createPostWith("THIS IS NEWER");
-    sitePage.shouldContain(".posts", "THIS IS NEWER");
+    sitePage.shouldContain(".timeline-section", "THIS IS NEWER");
     sitePage.likePost(0);
     cy.get(".like-count").should(($el) => {
       expect($el).to.contain("1 likes");
@@ -41,9 +41,9 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.seed_db(); // DB reseeded to ensure posts are clear and not clashing during tests
     sitePage.signupAndSignInAs("test@test.com", "testerman", "password123");
     sitePage.createPostWith("THIS IS OLDER");
-    sitePage.shouldContain(".posts", "THIS IS OLDER");
+    sitePage.shouldContain(".timeline-section", "THIS IS OLDER");
     sitePage.createPostWith("THIS IS NEWER");
-    sitePage.shouldContain(".posts", "THIS IS NEWER");
+    sitePage.shouldContain(".timeline-section", "THIS IS NEWER");
     cy.get(".post-message").then(($elements) => {
       const textArray = Array.from($elements).map((element) =>
         Cypress.$(element).text()
@@ -57,8 +57,8 @@ describe("Test Core Site Feature Functionality", () => {
     sitePage.signupAndSignInAs("test@test.com", "testerman", "password123");
     sitePage.createPostWith("THIS IS OLDER");
     sitePage.createPostWith("THIS IS NEWER");
-    sitePage.shouldContain(".posts", "THIS IS OLDER");
-    sitePage.shouldContain(".posts", "THIS IS NEWER");
+    sitePage.shouldContain(".timeline-section", "THIS IS OLDER");
+    sitePage.shouldContain(".timeline-section", "THIS IS NEWER");
     sitePage.likePost(1);
     cy.get(".like-count")
       .eq(0)
