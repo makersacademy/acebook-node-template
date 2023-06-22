@@ -1,5 +1,4 @@
 const userService = require("../services/userService");
-const cloudinary = require("cloudinary").v2;
 
 const UsersController = {
   New: (req, res) => {
@@ -25,13 +24,10 @@ const UsersController = {
       let image = "";
       try {
         if (req.file) {
-          console.log(req.file.path);
-          const result = await cloudinary.uploader.upload(req.file.path);
-
-          if (!result) {
+          image = req.file.path;
+          if (!image) {
             return res.status(500).send("An error occurred during upload.");
           }
-          image = result.url;
         }
       } catch (error) {
         console.log("error!");
