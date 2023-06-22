@@ -26,12 +26,14 @@ app.set("view engine", "hbs");
 
 const hbs = expressHbs.create({});
 
+//Date format helper
 hbs.handlebars.registerHelper('formatDate', function(posts) {
     const options = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric' };
     const formattedDate = posts.date.toLocaleDateString('en-US', options);
     return formattedDate;
 });
 
+//A simple helper to determine whether there has been one 'like' or multiple 'likes'
 hbs.handlebars.registerHelper('if_equal', function(posts) {
   if (posts.like.length === 1) {
   return "like";
@@ -39,6 +41,18 @@ hbs.handlebars.registerHelper('if_equal', function(posts) {
   return "likes";
 }
 });
+
+//Like button helper this checks if the session user has liked a post and if so displays the like
+// button with a coloured spade if not displays the like button with a blank spade 
+// hbs.handlebars.registerHelper('likeButton', function(posts) {
+//   if (posts.like.length === 1) {
+//   return "like";
+//   } else {
+//   return "likes";
+// }
+// });
+
+
 
 app.use(logger("dev"));
 app.use(express.json());

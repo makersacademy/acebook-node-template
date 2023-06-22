@@ -9,9 +9,11 @@
 <nav>
 <ul>
     {{#if isAuthenticated}}
-        <li><a href="/posts">Posts</a></li>
+        <li><a href="/posts">Posts Timeline</a></li>
+        <li><a class="new-post-link" href="/posts/new">Create New Post</a></li>
         <li><a href='/users/{{user.username}}'>Profile</a></li> 
         <li><a href="/sessions/logout" >Logout</a></li> 
+        <li>Logged in as {{{user.username}}}</li>
     {{else}}
         <li><a href="/sessions/login">Login</a></li>
         <li><a href="/users/signup">Sign-up</a></li>
