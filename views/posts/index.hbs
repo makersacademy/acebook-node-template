@@ -1,9 +1,30 @@
-<h1>Timeline</h1>
-<ul class="posts">
-  {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
-  {{/each}}
-</ul>
+<h2 class="titles">Your Timeline</h2>
+  <div class="feed-container">
 
-<a class="new-post-link" href="/posts/new">New post</a>
+  <div class="messages">
+  {{#if messages.success}}
+      {{#each messages.success}}
+        <p class="message">{{this}}</p>
+      {{/each}}
+  {{/if}}
+  {{#if messages.error}}
+      Error: {{#each messages.error}}
+        <p class="error">{{this}}</p>
+      {{/each}}
+  {{/if}}
+  </div>
+
+  <div class="timeline-section">
+      {{#each posts}}
+        <div class="post-container">
+          {{> posts/post this}}
+        </div>
+      {{/each}}
+  </div>
+
+  <div class="new-post">
+    {{> posts/form }}
+  </div>
+</div>
+
+<script type="module" src="/javascripts/main.js"></script>

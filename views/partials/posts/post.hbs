@@ -1,0 +1,50 @@
+<div class="post">
+    {{#unless post.currentUser}}
+      <form action="/friends" method="post">
+        <input type="hidden" name="recipientId" value={{post.user}} />
+        <button type="submit" class="btn btn-primary btn-sm float-right" id="submit">Poke</button>
+      </form>
+    {{/unless}}
+  <p class="post-author">{{#if post.user.image}}
+      <img src="{{post.user.image}}" class="avatar">
+    {{/if}}
+{{post.username}} said</p>    
+  <h3 class="post-message" id="message-{{post.id}}">{{post.message}}</h3>
+  <p class="post-date">Posted on {{post.formattedCreatedAt}}</p>
+  <div class="actions">
+
+    {{#if post.image}}
+      <img class="post-image" src="{{post.image}}" height="300px" width="300px">
+    {{/if}}
+    <ul class="post-comment" id="comments-{{post.id}}">
+      {{#each post.comments}}
+        {{> posts/comment this}}
+      {{/each}}
+      {{> posts/new_comment post}}
+    </ul>
+  </div>
+</div>
+
+{{> posts/likes post}}
+
+<div class="edit-delete">
+    {{#if post.currentUser}}
+      <button class="edit-button btn btn-primary" id="editBtn-{{post.id}}">Edit</button>
+      <form action="/posts/{{post.id}}/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" id="submit" class="btn btn-primary" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
+      </form>
+    {{/if}}
+</div>
+
+<div class="post-container-gap"></div>
+
+<div id="editModal-{{post._id}}" class="modal">
+  <div class="modal-content">
+    <form class="updateForm" action="/posts/{{post._id}}/update" method="post" enctype="application/x-www-form-urlencoded">
+      <label><h2 class="titles">Edit message:</h2></label><br>
+      <textarea class="modal-message" name="message" rows="4">{{post.message}}</textarea><br/><br>
+      <input type="submit" value="Update Post" id="submit" class="btn btn-primary"/>
+    </form>
+  </div>
+</div>

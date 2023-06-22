@@ -1,0 +1,43 @@
+<form
+  id="new-post-form"
+  action="/posts"
+  method="post"
+  enctype="multipart/form-data"
+  class="sticky-post"
+>
+  <h2 class="titles">New Message</h2>
+  <div class="form-message">
+    <label for="message"></label>
+    <textarea
+      id="message"
+      class="form-control custom-input"
+      name="message"
+      rows="4"
+    ></textarea>
+  </div>
+  <br />
+  <div class="form-image">
+    <label for="image"><strong>Image</strong>
+    </label>
+    <input
+      type="file"
+      class="form-control custom-input"
+      id="image"
+      name="image"
+    />
+  </div>
+
+  {{#if error}}
+    <p><strong>Error:</strong> {{error}}</p>
+  {{/if}}
+
+  <div class="form-submit">
+    <br /><br />
+    <input
+      type="submit"
+      class="btn btn-primary btn-block"
+      id="submit"
+      value="Post now"
+    />
+  </div>
+</form>
