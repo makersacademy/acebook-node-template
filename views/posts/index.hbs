@@ -66,7 +66,7 @@
     <div class="post-comment-sec">
       <form action="/posts/{{this._id}}/comments" method="POST" id="new-comment-form">
         <label for="comment">Comment:</label>
-        <input id="comment" type="text" name="comment" value="" placeholder="Say something..." class="comment-box input-box" aria-label="Type comment here" required>
+        <input id="comment" type="text" name="comment" value="" placeholder="Say something..." class="comment-box input-box" aria-label="Type comment here" maxlength="114" required>
         <button type="submit" class="global-button">Submit</button>
       </form>
     </div>

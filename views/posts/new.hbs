@@ -34,9 +34,12 @@
     {{/if}}
     <form action="/posts/gif" method="post" class="gif-finder">
       <div>
-        <input type="text" name="searchQuery" placeholder="Search GIFs" class="input-box">
+        <input type="text" name="searchQuery" placeholder="Search GIFs" class="input-box" maxlength="49">
         <input type="submit" value="Search" class="global-button">
       </div>
+      {{# if noGifFound}}
+        <p>No matching GIFs found</p>
+      {{/if}}
     </form>
     <form id="new-post-form" action="/posts" method="post">
       <div class="gif-results">

@@ -14,18 +14,32 @@ router.post("/:id/likes", isAuthenticated, PostsController.Like);
 router.post("/:id/comments", isAuthenticated, PostsController.Comment);
 router.post("/:id/nemesis", isAuthenticated, PostsController.MakeNemesis);
 
+
 router.post('/gif', isAuthenticated, async (req, res) => {
     const { searchQuery } = req.body;
-    const url = `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${YOUR_API_KEY}&limit=9`;
-    
+    const message = req.body.prevMessage;
+    console.log(message) // Get the current value of the message input field
+    const queryParams = { // Construct an object with the query parameters
+        q: searchQuery,
+        api_key: YOUR_API_KEY,
+        limit: 9,
+        message: message, // Append the message value as a query parameter
+    };
+    const url = `https://api.giphy.com/v1/gifs/search?${querystring.stringify(queryParams)}`; // Convert the object to a query string and append it to the URL
+
     try {
         const response = await axios.get(url);
         const { data } = response.data;
-        res.render('./posts/new', { icon: req.session.user.icon, gifs: data });
+        if (data.length === 0) {
+        res.render('./posts/new', { icon: req.session.user.icon, noGifFound: true, message: message }); // Pass the value of the message input field to the template
+        } else {
+        res.render('./posts/new', { icon: req.session.user.icon, gifs: data, message: message }); // Pass the value of the message input field to the template
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send(error.message);
     }
 });
+
 
 module.exports = router;
