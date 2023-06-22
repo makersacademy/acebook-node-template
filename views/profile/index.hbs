@@ -108,8 +108,7 @@
         <div class="col-md-6 d-flex justify-content-center">
           <div id="image-circle" class="shadow border">{{#if currentUser.profileImage.contentType}}
   <img id="image-circle"  src="/profile/{{currentUser._id}}/image" alt="Profile Image" width="200px">
-{{else}}
-  <p>No profile image available</p>
+
 {{/if}}</div> 
  
         </div>
@@ -185,8 +184,12 @@
 
 <div class="row upload-button"> 
   <form id="new-post-form" action="/profile" method="post" enctype="multipart/form-data">
-  <input type="file" name="profileImage" id="file" >
-  <input type="submit" value="Upload photo">
+     <label for="file" class="SubmitButton btn btn-outline-primary shadow-sm ">
+        Upload an image
+        <input type="file" name="profileImage" id="file" class="FileInputButton" style="display: none;">
+      </label>
+
+  <input type="submit" value="Upload photo" class="btn btn-outline-secondary">
 </form>
 </div>
 
