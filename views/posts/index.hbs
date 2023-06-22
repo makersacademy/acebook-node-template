@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,14 +27,18 @@
     .post-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      width: 800px;
+      width: 550px;
+      padding: 0 25px;
     }
 
     .likeButtonTimeline {
       font-size: 0.8rem;
       padding: 2px 6px;
+    }
+
+    .likes{
+      width: 160px;
     }
   </style>
 </head>
@@ -50,14 +55,15 @@
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-         <a href="../profile" class="text-decoration-none">My profile</a>
+        <a href="../profile" class="text-decoration-none">My profile</a>
+          <a class="new-post-link text-decoration-none ps-4" href="/posts/new">New post</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
-          <form action='/sessions?_method=DELETE' method='POST'>
-            <input id="logout_button" type="submit" value="Log Out">
-          </form>
-        </div>
-            
+            <form action='/sessions?_method=DELETE' method='POST'>
+              <input id="logout_button" type="submit" value="Log Out">
+            </form>
+          </div>
+
         </div>
       </div>
     </nav>
@@ -65,32 +71,45 @@
 
 
 
-  <h1>Timeline</h1>
+  <h1 class="text-center">Timeline</h1>
 
-{{#each posts}}
-<div class="timeline-container">
-  <div class="my-3 px-4">
-<div class="post-container border rounded shadow-sm bg-light-subtle">
-    <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
-    {{#if this.image.contentType}}
-      <a href="/posts/{{this._id}}">
-        <img src="/posts/{{this._id}}/image" width="500px">
-      </a>
-    {{/if}}
-    
-    
-    {{#if this.message}}
-    
-    <a href="/posts/{{this._id}}">{{this.message}}</a>{{/if}}
-    <button class="likeButtonTimeline btn btn-outline-primary shadow-sm" data-postid="{{this._id}}">Like</button>
-    <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
- 
-  <span class="time-ago">Posted {{timeAgo this.timestamp}}</span><br/>
+  {{#each posts}}
+  <div class="timeline-container d-flex justify-content-center">
+    <div class="my-3 px-4">
+      <div class="post-container border rounded shadow-sm bg-light-subtle">
+        <p class="mb-0 pt-2">{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
 
-</div>
-</div>
-</div>
-{{/each}}
+
+
+        {{#if this.message}}
+
+        <a href="/posts/{{this._id}}" class="text-decoration-none">{{this.message}}</a>
+        {{/if}}
+        {{#if this.image.contentType}}
+        <a href="/posts/{{this._id}}">
+          <img class="rounded shadow" src="/posts/{{this._id}}/image" width="500px">
+        </a>
+        {{/if}}
+
+        <div class="row d-flex justify-content-between  align-items-center py-2">
+
+            <div class="likes">
+              <button class="likeButtonTimeline btn btn-outline-primary shadow-sm pe-2"
+                data-postid="{{this._id}}">Like</button>
+              <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
+            </div>
+            <div class="likes">
+              <span class="time-ago py-2">Posted {{timeAgo this.timestamp}}</span><br />
+            </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  {{/each}}
 
 
 
@@ -125,7 +144,7 @@
   </script>
 
 
-  <a class="new-post-link" href="/posts/new">New post</a>
+
 </body>
 
 </html>
