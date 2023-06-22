@@ -38,12 +38,7 @@ app.use(
     key: "user_sid",
     secret: "super_secret",
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 1200000,
-    },
-    rolling: true, // Extend the session expiration on each request
-    rollingTimeout: 1200000, // Set the rolling timeout to 10 minutes
+    saveUninitialized: false,// Removed timeout 
   })
 );
 
