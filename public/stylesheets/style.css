@@ -8,12 +8,12 @@
 dark mode css
 */
 body.dark-mode {
-  --main-color: #9171f8;
+  --main-color: #7e59f7;
   --hover-color: #ba9ffb;
   --main-grey: #11111;
   --second-grey: #282828;
-  --third-grey: #3f3f3f;
-  --fourth-grey: #717171;
+  --third-grey: #212121;
+  --fourth-grey: #b8b8b8;
   --text-color: white;
   background-color: #111111;
 }
@@ -32,8 +32,8 @@ body.dark-mode .input-box {
 }
 
 body.dark-mode .message {
-  background-color: var(--fourth-grey);
-  color: black;
+  background-color: var(--third-grey);
+  color: var(--fourth-grey);
 }
 
 body.dark-mode .icon {
@@ -41,7 +41,11 @@ body.dark-mode .icon {
 }
 
 body.dark-mode .post-icon {
-  color: #111111;
+  color: white;
+}
+
+body.dark-mode .large-icon {
+  color: white;
 }
 
 body.dark-mode .white-box {
