@@ -3,15 +3,28 @@ const friendService = require("../services/friendService");
 const FriendsController = {
   Index: async (req, res) => {
     try {
+      if (!req.session.user) {
+        return res.redirect("/sessions/new");
+      }
       const friendshipsRequests = await friendService.getFriendshipRequests(
         req.session.user._id
       );
       const pendingFriendships = await friendService.getPendingFriendships(
         req.session.user._id
       );
-      const acceptedFriendships = await friendService.getAcceptedFriendships(
+      let acceptedFriendships = await friendService.getAcceptedFriendships(
         req.session.user._id
       );
+
+      acceptedFriendships = acceptedFriendships.map((friendship) => {
+        let friendUsername = "";
+        if (friendship.requester._id.toString() === req.session.user._id) {
+          friendUsername = friendship.recipient.username;
+        } else {
+          friendUsername = friendship.requester.username;
+        }
+        return { ...friendship._doc, friendUsername };
+      });
 
       res.render("friends/index", {
         friendshipsRequests,

@@ -6,15 +6,14 @@
   "private": true,
   "scripts": {
     "lint": "eslint .",
-    "start:app": "nodemon ./bin/www",
-    "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/acebook_test' npm run start:app",
+    "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/acebook_test' npm run start",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "jest",
     "test:integration": "cypress run",
     "emptySeed": "node ./seeds/cypress.js",
     "seed": "node ./seeds/index.js",
     "dropdb": "node dropDatabase.js",
-    "start": "npm-run-all --sequential seed start:app"
+    "start": "nodemon ./bin/www"
   },
   "engines": {
     "node": ">=18.1.0"
