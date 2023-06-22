@@ -2,7 +2,6 @@ const postService = require("../services/postService");
 const userService = require("../services/userService");
 const likeService = require("../services/likeService");
 const commentService = require("../services/commentService");
-const cloudinaryService = require("../services/cloudinaryService");
 const moment = require("moment");
 
 const PostsController = {
@@ -46,9 +45,7 @@ const PostsController = {
   Create: async (req, res) => {
     const { message } = req.body;
 
-    const image = req.file
-      ? await cloudinaryService.uploadImage(req.file.path)
-      : "";
+    const image = req.file.path;
 
     const postData = {
       message,
