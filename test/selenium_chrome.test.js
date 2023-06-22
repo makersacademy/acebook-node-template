@@ -187,7 +187,7 @@ test('Signed in user can create a post with GIF and it is displayed on timeline'
     let postImg = await myGifImg.getAttribute('src');
 
     //expects the post to contain a part of the GIF image URL
-    let expectedPartialUrl = "https://media1.giphy.com/media/";
+    let expectedPartialUrl = "gif&ct=g";
     expect(postImg.includes(expectedPartialUrl)).toBeTruthy();
 
     //checks if the post is created
