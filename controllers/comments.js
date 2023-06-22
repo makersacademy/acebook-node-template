@@ -5,7 +5,19 @@ const CommentsController = {
       CreateComment: (req, res) => {
         const { message } = req.body; // Extract the comment data from the request body
         const user = req.session.user;
-        console.log(user);
+        const postId = req.params.postId;
+
+    if (!message) {
+      const error = "Please enter a comment."; // Set the error message
+      return Post.findById(postId)
+        .then((post) => {
+          res.render("posts/show", { post, error }); // Render the same post page with the error message
+        })
+        .catch((err) => {
+          console.log(err);
+          res.render("error"); // Render an error page or handle the error in an appropriate way
+        });
+    }
         
         Post.findById(req.params.postId)
         .then((post) => {
@@ -35,14 +47,3 @@ const CommentsController = {
   module.exports = CommentsController;
   
   
-  // const comment = new Comment(req.body);
-  // comment.save()
-  //   .then(() => Post.findById(req.params.postId))
-  //   .then((post) => {
-  //     post.comments.unshift(comment);
-  //     return post.save();
-  //   })
-  //   .then(() => res.redirect(`/posts/${req.params.postId}`))
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });

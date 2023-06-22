@@ -42,7 +42,10 @@
 </ul>
 
 <form action="/posts/{{ post._id }}/comments" method="POST">
-  <textarea name="message" input="text" placeholder="Leave a comment"></textarea>
+  <textarea name="message" placeholder="Leave a comment"></textarea>
+  {{#if error}}
+    <p style="color: red;">{{ error }}</p> 
+  {{/if}}
   <button type="submit">Submit</button>
 </form>
 
