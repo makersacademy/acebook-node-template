@@ -5,3 +5,24 @@
   font-size: 1.5em;
   cursor: pointer;
 }
+
+.edit-button {
+  background-color: #5c6bc0;
+  border-color: #5c6bc0;
+}
+
+.delete-button {
+  background-color: #5c6bc0;
+  border-color: #5c6bc0;
+  font-size: smaller;
+}
+
+.edit-button:hover {
+  background-color: #3949ab;
+  border-color: #3949ab;
+}
+
+.delete-button:hover {
+  background-color: #3949ab;
+  border-color: #3949ab;
+}

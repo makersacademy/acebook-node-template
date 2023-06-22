@@ -3,16 +3,17 @@
     <span class="comment-author">Posted by {{comment.user}}</span>
   </p>
 
-
-{{#if comment.currentUser}}
-  <form action="/comments/{{comment._id}}/delete"
-  method="POST"
-  onsubmit="return confirm('Are you sure you want to delete this post?')">
-    <input type="hidden" name="_method" value="DELETE" />
-    <button type="submit" class="delete-button">Delete</button>
-  </form>
-{{/if}}
-</li>
-
-
+  {{#if comment.currentUser}}
+    <form
+      action="/comments/{{comment._id}}/delete"
+      method="POST"
+      onsubmit="return confirm('Are you sure you want to delete this comment?')"
+    >
+      <input type="hidden" name="_method" value="DELETE" />
+      <button
+        type="submit"
+        class="delete-button btn btn-primary float-right"
+      >Delete</button><br /><br />
+    </form>
+  {{/if}}
 </li>

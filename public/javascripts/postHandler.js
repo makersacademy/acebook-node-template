@@ -18,10 +18,10 @@ export const handleNewPostFormSubmit = async (event) => {
       formData
     );
 
-    const newPost = document.createElement("li");
-    newPost.classList.add("post-item");
+    const newPost = document.createElement("div");
+    newPost.classList.add("post-container");
     newPost.innerHTML = data.html;
-    const postsList = document.querySelector(".posts");
+    const postsList = document.querySelector(".timeline-section");
     postsList.insertAdjacentElement("afterbegin", newPost);
 
     let postComment = newPost.querySelector(".post-comment");
@@ -32,7 +32,6 @@ export const handleNewPostFormSubmit = async (event) => {
     let likeString = `
       <div class="post-likes">
         <div class="like-count">0 likes</div>
-        <div class="liked-by-tooltip"></div>
       </div>
     `;
 

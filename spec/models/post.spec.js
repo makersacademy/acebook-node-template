@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Post = require("../../models/post");
 require("../mongodb_helper");
 const PostsController = require("../../controllers/posts");
-const { mockResponse } = require('jest-mock-req-res');
+const { mockResponse } = require("jest-mock-req-res");
 
 const user = {
   id: new mongoose.Types.ObjectId(),
@@ -70,11 +70,10 @@ describe("Post model", () => {
     expect(posts[1]).toMatchObject({ message: "another message" });
   });
 
-  
   // it("can render the edit page", async () => {
   //   const post = new Post({ message: "some message", user: user.id });
   //   await post.save();
-  
+
   //   const req = { params: { id: post.id } };
   //   const res = {
   //     render: jest.fn((template, context) => {
@@ -82,30 +81,30 @@ describe("Post model", () => {
   //       expect(context).toMatchObject({ post });
   //     }),
   //   };
-  
+
   //   await PostsController.Edit(req, res);
   //   expect(res.render).toHaveBeenCalledTimes(1);
   // });
 
-//   it("can update a post", async () => {
-//     // Create a sample post
-//     const post = new Post({ message: "Initial message" });
-//     await post.save();
+  //   it("can update a post", async () => {
+  //     // Create a sample post
+  //     const post = new Post({ message: "Initial message" });
+  //     await post.save();
 
-//     // Call the Update function
-//     const req = { params: { id: post._id }, body: { message: "Updated message" } };
-//     const res = mockResponse();
-//     await PostsController.Update(req, res);
+  //     // Call the Update function
+  //     const req = { params: { id: post._id }, body: { message: "Updated message" } };
+  //     const res = mockResponse();
+  //     await PostsController.Update(req, res);
 
-//     // Retrieve the updated post from the database
-//     const updatedPost = await Post.findById(post._id);
+  //     // Retrieve the updated post from the database
+  //     const updatedPost = await Post.findById(post._id);
 
-//     // Assert that the post has been updated
-//     expect(updatedPost.message).toBe("Updated message");
+  //     // Assert that the post has been updated
+  //     expect(updatedPost.message).toBe("Updated message");
 
-//     // Assert that the response status is a redirect (e.g., 302)
-//     expect(res.redirect).toHaveBeenCalledWith("/posts");
-//   });
+  //     // Assert that the response status is a redirect (e.g., 302)
+  //     expect(res.redirect).toHaveBeenCalledWith("/posts");
+  //   });
 });
 
 //  Index: async (req, res) => {

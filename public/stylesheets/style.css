@@ -1,6 +1,10 @@
+@import url("./posts/comments.css");
 @import url("./friends/index.css");
 @import url("./posts/index.css");
 @import url("./components/index.css");
+@import url("./posts/new.css");
+@import url("./homepage.css");
+@import url("./posts/form.css");
 
 #submit {
   background-color: #5c6bc0;
@@ -12,10 +16,33 @@
   border-color: #3949ab;
 }
 
-form {
-  padding: 50px;
-  margin-left: 420px;
-  margin-right: 420px;
+.title {
+  text-align: center;
+  margin-top: 25px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto 500px auto;
+}
+
+#new-user-form {
+  grid-column-start: 2;
+}
+
+#new-session-form {
+  grid-column-start: 2;
+}
+
+.error {
+  margin: auto;
+  margin-right: 17%;
+  text-align: right;
 }
 
 .post-image {

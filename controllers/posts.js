@@ -3,6 +3,7 @@ const userService = require("../services/userService");
 const likeService = require("../services/likeService");
 const commentService = require("../services/commentService");
 const cloudinaryService = require("../services/cloudinaryService");
+const moment = require("moment");
 
 const PostsController = {
   Index: async (req, res) => {
@@ -31,6 +32,9 @@ const PostsController = {
           comment.currentUser = currentUser.username === comment.user;
         }
         post.comments = post.comments.map((comment) => ({ comment }));
+        post.formattedCreatedAt = moment(post.createdAt).format(
+          "DD/MM/YYYY HH:mm"
+        );
       }
       posts = posts.map((post) => ({ post }));
       res.render("posts/index", { posts: posts });
@@ -50,6 +54,7 @@ const PostsController = {
       message,
       image,
       user: req.session.user,
+      username: req.session.user.username,
     };
 
     try {
