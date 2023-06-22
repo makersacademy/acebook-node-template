@@ -1,5 +1,4 @@
 const friendService = require("../services/friendService");
-const userService = require("../services/userService");
 
 const FriendsController = {
   Index: async (req, res) => {
