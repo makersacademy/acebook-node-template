@@ -1,15 +1,44 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Timeline</title>
   <link rel="stylesheet" href="/stylesheets/posts.css">
+  <style>
+    body {
+      background-color: rgb(238, 240, 243);
+    }
+
+    #logout_button {
+      background-color: transparent;
+      border-width: 0;
+      font-family: inherit;
+      font-size: inherit;
+      font-style: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      padding: 0;
+      color: rgb(36, 90, 247);
+      margin-right: 1rem;
+    }
+
+    .post-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 800px;
+    }
+
+    .likeButtonTimeline {
+      font-size: 0.8rem;
+      padding: 2px 6px;
+    }
+  </style>
 </head>
 
 <body>
-
   <div class="container-fluid px-0">
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
       <div class="container-fluid">
@@ -21,18 +50,14 @@
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+         <a href="../profile" class="text-decoration-none">My profile</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          {{!-- <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-
-          </div> --}}
-            <form action='/sessions?_method=DELETE' method='POST'>
-    <input type="submit" value="Log Out">
-  </form>
-
-    <a href="../profile">My profile</a>
-
-
+          <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
+          <form action='/sessions?_method=DELETE' method='POST'>
+            <input id="logout_button" type="submit" value="Log Out">
+          </form>
+        </div>
+            
         </div>
       </div>
     </nav>
@@ -41,10 +66,12 @@
 
 
   <h1>Timeline</h1>
-{{#each posts}}
-  <li>
-    <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
 
+{{#each posts}}
+<div class="timeline-container">
+  <div class="my-3 px-4">
+<div class="post-container border rounded shadow-sm bg-light-subtle">
+    <p>{{this.postAuthor.firstName}} {{this.postAuthor.lastName}} posted:</p>
     {{#if this.image.contentType}}
       <a href="/posts/{{this._id}}">
         <img src="/posts/{{this._id}}/image" width="500px">
@@ -55,14 +82,17 @@
     {{#if this.message}}
     
     <a href="/posts/{{this._id}}">{{this.message}}</a>{{/if}}
-    <button class="likeButtonTimeline" data-postid="{{this._id}}">Like</button>
+    <button class="likeButtonTimeline btn btn-outline-primary shadow-sm" data-postid="{{this._id}}">Like</button>
     <span id="likesCount-{{this._id}}">{{this.likes.length}}</span> likes
-  </li>
+ 
   <span class="time-ago">Posted {{timeAgo this.timestamp}}</span><br/>
 
+</div>
+</div>
+</div>
 {{/each}}
 
-</ul>
+
 
 
 
