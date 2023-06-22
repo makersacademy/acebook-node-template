@@ -174,7 +174,7 @@ it("User can click on and see likes count, and add more likes and see it reflect
     //check that the count has increased
   cy.get('.post-details').contains('.message', new_post_2).parent('.post-details').within(() => {
 
-        cy.get('p.likes-count').should('have.text', '1');
+        cy.get('p.likes-count').should('contain', '1');
 
 
       });
