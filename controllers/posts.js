@@ -46,9 +46,7 @@ const PostsController = {
   Create: async (req, res) => {
     const { message } = req.body;
 
-    const image = req.file
-      ? await cloudinaryService.uploadImage(req.file.path)
-      : "";
+    const image = req.file ? req.file.path : "";
 
     const postData = {
       message,

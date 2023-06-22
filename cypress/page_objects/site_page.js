@@ -17,7 +17,7 @@ class sitePage {
   };
 
   seed_db() {
-    cy.exec("npm run seed");
+    cy.exec("npm run emptySeed");
   }
 
   shouldContain(element, value) {
