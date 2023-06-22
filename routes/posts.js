@@ -14,7 +14,7 @@ router.post("/:id/likes", isAuthenticated, PostsController.Like);
 router.post("/:id/comments", isAuthenticated, PostsController.Comment);
 router.post("/:id/nemesis", isAuthenticated, PostsController.MakeNemesis);
 
-router.post('/gif', async (req, res) => {
+router.post('/gif', isAuthenticated, async (req, res) => {
     const { searchQuery } = req.body;
     const url = `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${YOUR_API_KEY}&limit=9`;
     
