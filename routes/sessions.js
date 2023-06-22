@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const SessionsController = require("../controllers/sessions");
+const requireLoggedOut = require("../functions/requireLoggedOut");
 
-router.get("/new", SessionsController.New);
-router.post("/", SessionsController.Create);
+router.get("/new", requireLoggedOut, SessionsController.New);
+router.post("/", requireLoggedOut, SessionsController.Create);
 router.delete("/", SessionsController.Destroy);
 
 module.exports = router;

@@ -15,9 +15,7 @@ router.post("/:id/comments", isAuthenticated, PostsController.Comment);
 router.post("/:id/nemesis", isAuthenticated, PostsController.MakeNemesis);
 
 
-const querystring = require('querystring');
-
-router.post('/gif', async (req, res) => {
+router.post('/gif', isAuthenticated, async (req, res) => {
     const { searchQuery } = req.body;
     const message = req.body.prevMessage;
     console.log(message) // Get the current value of the message input field

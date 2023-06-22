@@ -29,7 +29,7 @@
     <h1 class="create-title">Create your Post</h1>
     {{#if error }}
       <div class="error-message">
-      {{error}}
+        {{error}}
       </div>
     {{/if}}
     <form action="/posts/gif" method="post" class="gif-finder">
@@ -46,26 +46,25 @@
         {{#if gifs}}
           <ul class="gif-list">
             {{#each gifs}}
-            <li>
-              <div class="gif" aria-label="{{this.title}}">
-                <input type="radio" name="gifUrl" value="{{this.images.original.url}}" id="gif-{{@index}}">
-                <img src="{{this.images.original.url}}" alt="{{this.title}}" class="gif-thumbnail">
-              </div> 
-            </li>
-          {{/each}}
+              <li>
+                <div class="gif" aria-label="{{this.title}}">
+                  <input type="radio" name="gifUrl" value="{{this.images.original.url}}" id="gif-{{@index}}">
+                  <img src="{{this.images.original.url}}" alt="{{this.title}}" class="gif-thumbnail">
+                </div> 
+              </li>
+            {{/each}}
+          </ul>
+        {{else}}
+          {{#if showNoGifsFound}}
+            <p class="no-gif-line">No GIFs found.</p>
+          {{/if}}
         {{/if}}
       </div>
-        <textarea id="message" class="input-area" type="text" name="message" rows="6" placeholder="Say something..." maxlength="500" required>{{message}}</textarea>
-        <input type="submit" value="Submit" class="global-button">
+      <textarea id="message" class="input-area" name="message" rows="6" placeholder="Say something..." maxlength="500" required>{{message}}</textarea>
+      <input type="submit" value="Submit" class="global-button">
     </form>
   </div>
 </div>
-
-</body>
-</html>
-
-
-
 
 <script>
   // Get the dark mode toggle button element
@@ -97,4 +96,74 @@
       localStorage.setItem('darkMode', 'false');
     }
   });
+
+// initialize flag variable to false
+  let showNoGifsFound = false;
+
+  // function to handle search and update flag variable accordingly
+  function handleSearch() {
+    showNoGifsFound = false;
+    const apiKey = "eLyYwLxVEXe3Jzab51w6OoNKOXhG4byS";
+    const url = `https://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=${apiKey}`;
+
+    // Save the message text to a temp variable
+    const messageText = document.getElementById("message").value;
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // check if any results were found
+        if (data.data.length > 0) {
+          // update the "gifs" array and render the gif list
+          gifs = data.data;
+          renderGifList();
+        } else {
+          // no results found, show the "No GIFs found" message
+          showNoGifsFound = true;
+          renderNoGifsFound();
+        }
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      })
+      // Set the message text back to local storage after the search has completed
+      .finally(() => {
+        if (messageText !== "") {
+          localStorage.setItem("messageText", messageText);
+        }
+      });
+  }
+
+  // Save message text to local storage when the user types in the text area
+  document.getElementById("message").addEventListener("input", function() {
+    localStorage.setItem("messageText", this.value);
+  });
+
+  // Retrieve message text from local storage and populate the text area on page load
+  var savedMessageText = localStorage.getItem("messageText");
+  if (savedMessageText !== null) {
+    document.getElementById("message").value = savedMessageText;
+  }
+
+  // Clear message text from local storage after the form is submitted
+  document.getElementById("new-post-form").addEventListener("submit", function() {
+    localStorage.removeItem("messageText");
+  });
+
+  // Remove message text from local storage when the user navigates away from the page
+  window.addEventListener("unload", function() {
+    localStorage.removeItem("messageText");
+  });
 </script> 
+
+</body>
+</html>
+
+
+
+
