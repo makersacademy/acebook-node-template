@@ -1,0 +1,41 @@
+<h1>Profile Page</h1>
+<p>Username: {{ user.username }}</p>
+<p>Email: {{ user.email }}</p>
+
+
+{{!-- <div class="deletion-message">
+    {{#if req.params.deleted}}
+      {{"successfully deleted"}}
+    {{/if}}
+</div> --}}
+<br>
+
+{{!-- add all other profile information needed above--}}
+
+{{!-- <h2>Create Post</h2>
+<form action="/users/{{ user.username }}/posts" method="POST"> 
+  <textarea name="content" rows="4" cols="50"></textarea>
+  <button type="submit">Post</button>
+</form> --}}
+
+{{!-- <a class="new-post-link" href="/posts/new">New post</a> --}}
+
+<h2>Posts:</h2>
+<ul>
+  {{#each posts}}
+  <br>
+    <li class="date">Created at: {{formatDate this}}</li>
+      <br>
+      <li class="username">Created By: {{{this.username}}}</li>
+      <br> 
+      <li class="content">{{{this.message}}}</li>
+      <br>
+      <form action="/posts/{{this._id}}/edit" method="GET">
+        <button type="submit">Edit</button>
+      </form>
+    </li>
+  {{/each}}
+  <br>
+</ul>
+
+{{!-- mabye can display all current posts made by users under create posts --}}

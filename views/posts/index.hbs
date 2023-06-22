@@ -1,9 +1,26 @@
-<h1>Timeline</h1>
-<ul class="posts">
+<h1>Posts Timeline</h1>
+<ul class="posts"> 
   {{#each posts}}
-  <li>{{this.message}}</li> 
-  <li>{{this.likes}} likes</li>
+    {{!-- {{#if _id in this.like}} --}}
+      <li class="date">Created at: {{{formatDate this}}}</li>
+      <br>
+      <li class="username">Created By: {{{this.username}}}</li>
+      <br> 
+      <li class="content">Post Content: {{{this.message}}}</li>
+      <br>
+      
+      <li class="likes">{{{this.like.length}}} {{{if_equal this}}}</li>
+
+      <form id="likes-form" action="/posts/{{this._id}}/likes" method="post">
+        <input type="submit" value="like 👍">
+      </form>
+      <br>
   {{/each}}
 </ul>
 
-<a class="new-post-link" href="/posts/new">New post</a>
+
+{{!-- ♤
+♠ --}}
+
+
+{{!-- <a class="new-post-link" href="/posts/new">New post</a> --}}

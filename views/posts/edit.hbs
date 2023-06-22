@@ -1,0 +1,25 @@
+<h1>Edit Post</h1>
+
+<li class="date">Created at: {{formatDate post}}</li>
+      <br>
+      <li class="username">Created By: {{post.username}}</li>
+      <br> 
+      <li class="content">Post Content: {{post.message}}</li>
+      <br>
+
+<h2 class="Edit-question">What would you like to do with the post?</h2>
+<br>
+
+<form action="/posts/{{post._id}}" method="POST">
+  <label for="content">Edit Post:</label>
+  <textarea id="content" name="content">{{post.message}}</textarea>
+  <button type="submit">Update Post</button>
+</form>
+
+<br>
+
+<form action="/posts/{{post._id}}/delete" method="POST">
+  <label for="content">Delete Post:</label>
+  {{!-- <textarea id="content" name="content">{{post.message}}</textarea> --}}
+  <button type="submit">Delete Post</button>
+</form>
