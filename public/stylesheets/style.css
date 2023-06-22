@@ -411,11 +411,25 @@ button:focus {
   font-size: 12px;
 }
 
+.icon-select-box {
+  border-radius: 1vh;
+  border-style: none;
+  background-color: var(--main-grey);
+}
+
 .icon-select {
   display: flex;
   list-style: none;
   align-items: center;
   justify-content: space-between;
+}
+
+.icon-select legend {
+  font-size: 1vh;
+}
+
+.choose-icon {
+  font-size: 3vh;
 }
 
 .icon {

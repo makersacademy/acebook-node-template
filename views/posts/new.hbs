@@ -34,9 +34,12 @@
     {{/if}}
     <form action="/posts/gif" method="post" class="gif-finder">
       <div>
-        <input type="text" name="searchQuery" placeholder="Search GIFs" class="input-box">
+        <input type="text" name="searchQuery" placeholder="Search GIFs" class="input-box" maxlength="49">
         <input type="submit" value="Search" class="global-button">
       </div>
+      {{# if noGifFound}}
+        <p>No matching GIFs found</p>
+      {{/if}}
     </form>
     <form id="new-post-form" action="/posts" method="post">
       <div class="gif-results">
@@ -50,14 +53,9 @@
               </div> 
             </li>
           {{/each}}
-          </ul>
-        {{else}}
-          {{#if showNoGifsFound}}
-          <p class="no-gif-line">No GIFs found.</p>
-          {{/if}}
         {{/if}}
       </div>
-        <textarea id="message" class="input-area" type="text" name="message" value="" rows="6" placeholder="Say something..." maxlength="500" required></textarea>
+        <textarea id="message" class="input-area" type="text" name="message" rows="6" placeholder="Say something..." maxlength="500" required>{{message}}</textarea>
         <input type="submit" value="Submit" class="global-button">
     </form>
   </div>
@@ -99,38 +97,4 @@
       localStorage.setItem('darkMode', 'false');
     }
   });
-
-// initialize flag variable to false
-  let showNoGifsFound = false;
-
-  // function to handle search and update flag variable accordingly
-  function handleSearch() {
-    showNoGifsFound = false;
-  const apiKey = "eLyYwLxVEXe3Jzab51w6OoNKOXhG4byS";
-  const url = `https://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=${apiKey}`;
-
-  fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // check if any results were found
-      if (data.data.length > 0) {
-        // update the "gifs" array and render the gif list
-        gifs = data.data;
-        renderGifList();
-      } else {
-        // no results found, show the "No GIFs found" message
-        showNoGifsFound = true;
-        renderNoGifsFound();
-      }
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-  }
-
 </script> 
