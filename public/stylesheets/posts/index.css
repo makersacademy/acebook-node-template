@@ -64,6 +64,7 @@
 .like-container {
   display: flex;
   margin-left: 10%;
+  align-items: center;
 }
 
 .post-likes {
@@ -76,8 +77,10 @@
 .edit-delete {
   grid-area: 4 / 1 / 5 / 3;
   display: flex;
-  margin: 0% 5% 2% 80%;
-  justify-content: space-between;
+  margin: 0% 5% 2% 0%;
+  gap: 2%;
+  align-items: end;
+  justify-content: center;
 }
 
 .post-container-gap {
@@ -106,4 +109,8 @@
 .post-date {
   color: grey;
   text-align: right;
+}
+
+.post-message {
+  overflow: auto;
 }

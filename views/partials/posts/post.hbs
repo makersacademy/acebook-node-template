@@ -5,19 +5,18 @@
         <button type="submit" class="btn btn-primary btn-sm float-right" id="submit">Poke</button>
       </form>
     {{/unless}}
-  <p class="post-author">{{post.username}} said</p>
+    
+  <p class="post-author">
+        {{#if post.user.image}}
+      <img src="{{post.user.image}}" class="avatar">
+    {{/if}}
+    {{post.username}} said</p>
   <h3 class="post-message" id="message-{{post.id}}">{{post.message}}</h3>
-  <p class="post-date">Posted on {{post.formattedCreatedAt}}</p>
-  <div class="actions">
-
     {{#if post.image}}
       <img class="post-image" src="{{post.image}}" height="300px" width="300px">
     {{/if}}
-
-    {{#if post.user.image}}
-      <img src="{{post.user.image}}" class="avatar">
-    {{/if}}
-
+  <p class="post-date">Posted on {{post.formattedCreatedAt}}</p>
+  <div class="actions">
 
     <ul class="post-comment" id="comments-{{post.id}}">
       {{#each post.comments}}

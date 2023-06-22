@@ -12,3 +12,13 @@
   position: sticky;
   top: 50px;
 }
+
+.modal-message {
+  width: 100%;
+  outline: none;
+  resize: none;
+}
+
+.modal-message:focus {
+  border: 2px solid #5c6bc0;
+}
