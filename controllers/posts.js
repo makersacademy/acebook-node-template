@@ -2,7 +2,7 @@ const postService = require("../services/postService");
 const userService = require("../services/userService");
 const likeService = require("../services/likeService");
 const commentService = require("../services/commentService");
-const cloudinaryService = require("../services/cloudinaryService");
+
 const moment = require("moment");
 
 const PostsController = {
