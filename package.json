@@ -11,9 +11,10 @@
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "jest",
     "test:integration": "cypress run",
+    "emptySeed": "node ./seeds/cypress.js",
     "seed": "node ./seeds/index.js",
     "dropdb": "node dropDatabase.js",
-    "start": "npm-run-all --parallel seed start:app"
+    "start": "npm-run-all --sequential seed start:app"
   },
   "engines": {
     "node": ">=18.1.0"
