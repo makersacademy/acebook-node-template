@@ -23,5 +23,8 @@
       "node"
     ],
     "rules": {
+      "node/no-unpublished-require": ["error", {
+        "allowModules": ["cypress"]
+      }]
     }
 }
