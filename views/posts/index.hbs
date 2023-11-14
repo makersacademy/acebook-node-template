@@ -2,6 +2,7 @@
 <ul class="posts">
   {{#each posts}}
   <li>{{this.message}}</li> 
+  <li>posted by {{this.author}}</li>
   <li>{{this.likes}} likes</li>
   {{/each}}
 </ul>
