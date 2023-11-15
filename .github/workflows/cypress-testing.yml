@@ -1,10 +1,12 @@
-name: Node.js CI with MongoDB and cypress
+name: build and test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+      - 'main'
   pull_request:
-    branches: [ "main" ]
+    branches: 
+      - 'main'
 
 jobs:
   build:
@@ -29,6 +31,12 @@ jobs:
       uses: supercharge/mongodb-github-action@1.10.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
 
     - name: Cypress run
       uses: cypress-io/github-action@v6
