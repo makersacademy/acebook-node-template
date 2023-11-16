@@ -11,6 +11,6 @@ jobs:
         runs-on: ubuntu-latest
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
-        - run: echo 'Hello Bereket and Lil'
+        - run: echo 'Hello Bereket and Lil!!!'
             
     
