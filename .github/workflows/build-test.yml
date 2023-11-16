@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-    if: github.event.pull_request.merged == false
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == false }}
 
     strategy:
       matrix:
