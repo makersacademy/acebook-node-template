@@ -30,7 +30,6 @@ jobs:
     - name: Cypress run
       uses: cypress-io/github-action@v6
       with:
-        build: npm run build --if-present
         start: npm run start:test
         wait-on: http://localhost:3030
 
