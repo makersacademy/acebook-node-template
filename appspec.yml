@@ -15,3 +15,4 @@ hooks:
     - location: scripts/start-server.sh
       timeout: 300
       runas: ec2-user
+
