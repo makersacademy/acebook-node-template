@@ -12,6 +12,6 @@ permissions:
       - file
 hooks:
   ApplicationStart:
-    - location: scripts/reload-pm2.sh
+    - location: scripts/start-server.sh
       timeout: 300
-      runas: ubuntu
+      runas: ec2-user
