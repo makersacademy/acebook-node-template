@@ -6,7 +6,7 @@ name: Build and Test
 on:
   push:
     branches:
-      - test
+      - ci-workflow-testing
 
 jobs:
   test:
