@@ -1,18 +1,12 @@
 name: Build and Test
 
 on:
-  push: 
-    branches: ['main']
   pull_request:
     branches: ['main']
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: | 
-      github.event_name == 'pull_request' && github.event.action == 'opened' ||
-      github.event_name == 'push' && github.event.ref == 'refs/heads/main' &&
-      github.event.before == github.sha
 
     strategy:
       matrix:
