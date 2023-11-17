@@ -1,0 +1,40 @@
+# The name of the workflow
+# Testing new branch
+name: Build and Test
+
+# This workflow will run on any push to the repository
+on:
+  push:
+    branches:
+      - ci-workflow-testing
+
+jobs:
+  test:
+    # Similar to docker, we set up a virtual machine to run our tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Each step has a name, some code, and some options
+      - name: Checkout Repository
+        uses: actions/checkout@v4 # This is a reference to some code to run
+
+      # This step installs the Node version we want
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # This step installs pip, pipenv, and our dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: 5.0
+
+      # Now we run our tests
+      - name: Test with Jest, Cypress
+        uses: cypress-io/github-action@v6
+        with:
+            start: npm run start:test
