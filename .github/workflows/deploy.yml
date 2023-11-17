@@ -33,9 +33,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
+      - run: npm ci
 
       - name: Zip project
         run: |
@@ -52,13 +50,5 @@ jobs:
             --deployment-group-name ${{ env.CODEPLOY_DEPLOYMENT_GROUP}} \
             --s3-location bucket=${{ env.BUCKET_NAME }},key=b-l-acebook-app.zip,bundleType=zip
 
-
-
-
-# stage('Deploy from S3 to Lambda') {
-#             steps {
-#                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: env.AWS_CREDENTIALS, secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-#                 // Deploy Lambda function using AWS CLI
-#                     sh 'aws lambda update-function-code --function-name Flil-lambda --s3-bucket ${BUCKET_NAME} --s3-key lambda-new.zip --region eu-west-2'
 
 
