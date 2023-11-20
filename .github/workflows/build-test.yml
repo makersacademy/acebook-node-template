@@ -1,8 +1,8 @@
 name: Build and Test
 
 on:
-  pull_request:
-    branches: ['main']
+  push:
+
 
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [14.x]
         mongodb-version: ['6.0']
 
     steps:
