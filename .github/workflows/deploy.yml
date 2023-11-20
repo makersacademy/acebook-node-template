@@ -13,7 +13,7 @@ env:
   CODEPLOY_DEPLOYMENT_GROUP: "b-l-acebook-deploy"
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
   
