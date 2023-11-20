@@ -1,12 +1,21 @@
-# The name of the workflow
-# Testing new branch
 name: Build and Test
 
-# This workflow will run on any push to the repository
 on:
-  push:
+  workflow_call:
+    inputs:
+      username:
+        description: 'A username passed from the caller workflow'
+        default: 'some software dev'
+        required: false
+        type: string
 
 jobs:
+  print-username:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print the input name to STDOUT
+        run: echo The username is ${{ inputs.username }}
   test:
     # Similar to docker, we set up a virtual machine to run our tests
     runs-on: ubuntu-latest

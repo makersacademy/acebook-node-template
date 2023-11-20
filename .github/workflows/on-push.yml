@@ -1,0 +1,10 @@
+name: Run Build & Test
+
+on:
+  push:
+
+jobs:
+  run-build-and-test:
+    uses: ./.github/workflows/build-and-test-workflow.yml
+
+
