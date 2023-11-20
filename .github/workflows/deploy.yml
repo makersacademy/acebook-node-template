@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: ["main"]
+    branches: ["deployment-bm"]
 
 env:
   AWS_REGION: "eu-west-2"
