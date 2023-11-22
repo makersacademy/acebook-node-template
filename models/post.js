@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   message: String,
+  author: String,
   likes: { type: Number, default: 0 }
 });
 

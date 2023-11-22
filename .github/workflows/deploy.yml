@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ['Build and Test']
+    branches: [main]
+    types: [completed]
+
+
+env:
+  AWS_REGION: "eu-west-2"
+  BUCKET_NAME: "b-l-acebook-bucket"
+  CODEDEPLOY_APP_NAME: "b-l-acebook"
+  CODEPLOY_DEPLOYMENT_GROUP: "b-l-acebook-deploy"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  
+    strategy:
+      matrix:
+        node-version: [18.1]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_SECRET_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+
+      - name: Zip project
+        run: |
+          zip -r b-l-acebook-app.zip .
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp b-l-acebook-app.zip s3://${{ env.BUCKET_NAME }}/
+
+      - name: Deploy to CodeDeploy
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ env.CODEDEPLOY_APP_NAME }} \
+            --deployment-group-name ${{ env.CODEPLOY_DEPLOYMENT_GROUP}} \
+            --s3-location bucket=${{ env.BUCKET_NAME }},key=b-l-acebook-app.zip,bundleType=zip
+
+
+
