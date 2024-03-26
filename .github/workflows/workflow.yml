@@ -16,6 +16,9 @@ jobs:
     needs: [continuous-integration]
     if: github.ref == 'refs/heads/main'
     steps:
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+         aws-region: us-west-2
       # Step 2: Create CodeDeploy Deployment
       - name: Create CodeDeploy Deployment
         id: deploy
