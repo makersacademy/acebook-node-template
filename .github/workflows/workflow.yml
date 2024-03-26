@@ -10,12 +10,6 @@ jobs:
       # Step 1: Checkout code
       - uses: actions/checkout@v2
 
-      # Step 2: Set up Node.js 14.x
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18.x'
-
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
