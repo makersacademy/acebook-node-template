@@ -18,7 +18,7 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "express": "^4.19.1",
     "express-session": "^1.17.2",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
@@ -29,10 +29,10 @@
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
-    "cypress": "^12.14.0",
+    "cypress": "^13.7.1",
     "eslint": "^8.10.0",
     "eslint-plugin-cypress": "^2.8.1",
-    "eslint-plugin-jest": "^22.21.0",
+    "eslint-plugin-jest": "^27.9.0",
     "eslint-plugin-node": "^10.0.0",
     "jest": "^27.5.1"
   },
