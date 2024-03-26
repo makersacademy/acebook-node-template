@@ -10,37 +10,12 @@ jobs:
       # Step 1: Checkout code
       - uses: actions/checkout@v2
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Step 4: Configure AWS credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-2
-
-      # Step 5: Build Application and Run unit Test
-      - name: Build Application and Run unit Test
-        run: |
-          npm run build
-          npm test
 
   continuous-deployment:
     runs-on: ubuntu-latest
     needs: [continuous-integration]
     if: github.ref == 'refs/heads/main'
     steps:
-      # Step 1: Configure AWS credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-2
-
       # Step 2: Create CodeDeploy Deployment
       - name: Create CodeDeploy Deployment
         id: deploy
