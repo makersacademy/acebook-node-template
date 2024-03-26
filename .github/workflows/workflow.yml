@@ -27,6 +27,6 @@ jobs:
         run: |
           aws deploy create-deployment \
           --application-name team-evergreen-codedeploy \
-          --deployment-group-name team-evergreen \
+          --deployment-group-name evergreen-production \
           --deployment-config-name CodeDeployDefault.OneAtATime \
           --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
