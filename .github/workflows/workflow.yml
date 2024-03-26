@@ -24,7 +24,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
+          aws-region: eu-west-2
 
       - name: Create CodeDeploy Deployment
         id: deploy
@@ -34,4 +34,4 @@ jobs:
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }} \
             --deployment-group-name evergreen-production \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --region us-west-2
+            --region eu-west-2
