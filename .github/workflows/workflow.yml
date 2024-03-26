@@ -16,18 +16,15 @@ jobs:
     needs: [continuous-integration]
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         aws-region: us-west-2
       # Step 2: Create CodeDeploy Deployment
       - name: Create CodeDeploy Deployment
         id: deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws deploy create-deployment \
           --application-name team-evergreen-codedeploy \
           --deployment-group-name team-evergreen \
           --deployment-config-name CodeDeployDefault.OneAtATime \
           --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
-    
