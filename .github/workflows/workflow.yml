@@ -19,7 +19,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: eu-west-2
-          role-to-assume: my-github-actions-role
+          role-to-assume: evergreen-acebook-codedeploy
       # Step 2: Create CodeDeploy Deployment
       - name: Create CodeDeploy Deployment
         id: deploy
