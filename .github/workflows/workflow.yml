@@ -14,28 +14,36 @@ jobs:
 
       # Add more steps as needed for building, testing, etc.
 
+      # Step to zip the application
+      - name: Zip
+        uses: zip -r app.zip .
+
+      - name: Upload
+        run: |
+          aws s3 cp app.zip s3 ://team-evergreen/app.zip
+        env:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+    
+
   continuous-deployment:
     runs-on: ubuntu-latest
     needs: continuous-integration
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Configure AWS Credentials and Set Region
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
-          role-duration-seconds: 1200
-          role-session-name: MySessionName
-
-      - name: Create CodeDeploy Deployment
+        
+      - name: Deploy with CodeDeploy 
         id: deploy
         run: |
           aws deploy create-deployment \
             --application-name team-evergreen-codedeploy \
-            --github-location repository=${{ github.repository }},commitId=${{ github.sha }} \
+            --s3-location bucket=team-evergreen, key=app.zip,bundleType=zip \
             --deployment-group-name evergreen-production \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --region eu-west-2
