@@ -1,23 +1,31 @@
-name: CI/CD Pipeline
+# Mati and Lloyd
 
+name: CI/CD Pipeline
 on:
   push:
     branches:
       - main
-
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      # Add more steps as needed for building, testing, etc.
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+        
+      - name: Install dependencies and Build
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
 
       # Step to zip the application
       - name: Zip
         uses: zip -r app.zip .
-
       - name: Upload
         run: |
           aws s3 cp app.zip s3 ://team-evergreen/app.zip
@@ -25,7 +33,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
-    
 
   continuous-deployment:
     runs-on: ubuntu-latest
@@ -38,8 +45,8 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
-        
-      - name: Deploy with CodeDeploy 
+
+      - name: Deploy with CodeDeploy
         id: deploy
         run: |
           aws deploy create-deployment \
