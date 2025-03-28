@@ -26,9 +26,9 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    ```
    Then follow the instructions to update your `~/.bash_profile`.
 2. Open a new terminal
-3. Install the latest version of [Node.js](https://nodejs.org/en/), currently `18.1.0`.
+3. Install the latest version of [Node.js](https://nodejs.org/en/), currently 25.
    ```
-   nvm install 18
+   nvm install 25
    ```
 
 ### Set up your project
@@ -44,12 +44,12 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 6. Install MongoDB
    ```
    brew tap mongodb/brew
-   brew install mongodb-community@5.0
+   brew install mongodb-community@8.0
    ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
+   *Note:* If you see a message that says `If you need to have mongodb-community@8.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
 7. Start MongoDB
    ```
-   brew services start mongodb-community@5.0
+   brew services start mongodb-community@8.0
    ```
 
 ### Start
