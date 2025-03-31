@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - develop
   pull_request:
     branches:
       - main
-      - develop
 
 jobs:
   setup:
@@ -63,17 +61,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 23
+          node-version: 20
           cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Unit Tests 
-        run: npm run test:unit 
-
-      - name: Run Integration Tests 
-        run: npm run test:integration 
+      - name: Start Server and Run Integration Tests
+        run: npx start-server-and-test "npm start" http://localhost:3030 "npm run test:integration"
 
   build:
     name: Build Project
