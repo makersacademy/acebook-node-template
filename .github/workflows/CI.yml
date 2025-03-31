@@ -10,7 +10,7 @@ on:
 
 jobs:
   setup:
-    name: Setup Environment
+    name: Test Environment Setup
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
