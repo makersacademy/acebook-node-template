@@ -36,5 +36,6 @@ jobs:
 
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm run start:test
+    - run: npm run start:test & 
+    - run: sleep 10
     - run: npm test
