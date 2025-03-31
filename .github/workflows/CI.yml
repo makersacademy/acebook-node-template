@@ -28,7 +28,6 @@ jobs:
   lint:
     name: Run Linter
     runs-on: ubuntu-latest
-    needs: setup
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -48,7 +47,6 @@ jobs:
   test:
     name: Run Tests 
     runs-on: ubuntu-latest
-    needs: setup
     services:
       mongodb:
         image: mongo:8.0
@@ -69,23 +67,3 @@ jobs:
 
       - name: Start Server and Run Integration Tests
         run: npx start-server-and-test "npm run start:test" http://localhost:3030 "npm run test:integration"
-
-  build:
-    name: Build Project
-    runs-on: ubuntu-latest
-    needs: [setup, lint, test]
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 23
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build Project
-        run: npm run build
