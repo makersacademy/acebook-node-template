@@ -25,6 +25,9 @@ jobs:
     #     key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
     #     restore-keys: |
     #       ${{ runner.os }}-node-modules-
+
+    - name: Clear npm cache
+      run: npm cache clean --force
           
     - name: Install dependecies
       run: npm ci
