@@ -27,7 +27,7 @@ jobs:
           ${{ runner.os }}-node-modules-
           
     - name: Install dependecies
-      run: npm install
+      run: npm ci
 
     - name: Cache MongoDB installation
       uses: actions/cache@v4
