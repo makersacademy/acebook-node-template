@@ -1,0 +1,12 @@
+name: Install NPM dependencies
+run-name: ${{ github.actor }} is installing the latest NPM dependencies
+on: [push]
+jobs:
+  install-nvm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show pre-installed Node.js version
+        run: node --version
+      - name: Install dependencies
+        run: npm install
