@@ -1,4 +1,4 @@
-name: Install NPM dependencies
+name: Build test server
 run-name: ${{ github.actor }} is installing the latest NPM dependencies
 on: [push]
 jobs:
@@ -13,8 +13,17 @@ jobs:
       - name: Install dependencies
         run: npm install
   install-mongodb:
-    needs: install-npm-dependencies
     runs-on: ubuntu-latest
     steps:
-      - name: Install gnupg curl
+      - name: Update apt
+        run: sudo apt-get update
+      - name: install gpg
         run: sudo apt-get install gnupg curl
+      - name: Get MongoDB GPG key
+        run: curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor
+      - name: Add repo to sources
+        run: echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+      - name: Update apt
+        run: sudo apt-get update
+      - name: install latest MongoDB
+        run: sudo apt-get install -y mongodb-org
