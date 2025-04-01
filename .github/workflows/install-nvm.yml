@@ -1,8 +1,12 @@
-name: Build test server
-run-name: ${{ github.actor }} is installing the latest NPM dependencies
-on: [push]
+name: Test on push
+run-name: ${{ github.actor }} started a test build
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - 'main'
 jobs:
-  install-npm-dependencies:
+  run-test-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
