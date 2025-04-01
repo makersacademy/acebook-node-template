@@ -45,5 +45,10 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-2
 
-    - name: Deploy static site to S3 bucket
-      run: aws s3 sync . s3://mantasdean-acebook --delete --exclude ".github/*"
+    - name: Zip files before upload (with exclusions)
+      run: |
+        zip -r app_files.zip . -x "node_modules/*" -x ".git/*" -x ".github/*"
+
+    - name: Upload zip file to S3
+      run: |
+        aws s3 cp app_files.zip s3://mantasdean-acebook/app_files.zip
