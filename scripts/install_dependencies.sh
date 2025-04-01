@@ -20,6 +20,9 @@ source "$NVM_DIR/nvm.sh"
 nvm install 23
 
 # Verify that package.json exists before installing dependencies
+echo "Listing files in /home/ec2-user/myapp for debugging..."
+ls -lah /home/ec2-user/myapp
+
 echo "Checking if package.json exists..."
 if [ ! -f /home/ec2-user/myapp/package.json ]; then
   echo "Error: package.json not found in /home/ec2-user/myapp! Deployment may have failed."
