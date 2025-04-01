@@ -19,18 +19,18 @@ export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
 nvm install 23
 
-# Wait for package.json to be copied, checking every 5 seconds
-echo "Waiting for package.json to be available..."
+# Wait for package-lock.json to be available, checking every 5 seconds
+echo "Waiting for package-lock.json to be available..."
 MAX_TRIES=10
 TRY_COUNT=0
-while [ ! -f /home/ec2-user/myapp/package.json ] && [ $TRY_COUNT -lt $MAX_TRIES ]; do
-  echo "Waiting for package.json... Attempt $((TRY_COUNT+1))/$MAX_TRIES"
+while [ ! -f /home/ec2-user/myapp/package-lock.json ] && [ $TRY_COUNT -lt $MAX_TRIES ]; do
+  echo "Waiting for package-lock.json... Attempt $((TRY_COUNT+1))/$MAX_TRIES"
   sleep 5
   TRY_COUNT=$((TRY_COUNT+1))
 done
 
-if [ ! -f /home/ec2-user/myapp/package.json ]; then
-  echo "Error: package.json not found in /home/ec2-user/myapp after waiting."
+if [ ! -f /home/ec2-user/myapp/package-lock.json ]; then
+  echo "Error: package-lock.json not found in /home/ec2-user/myapp after waiting."
   exit 1
 fi
 
