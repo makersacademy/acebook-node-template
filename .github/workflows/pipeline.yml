@@ -27,6 +27,7 @@ jobs:
     - run: echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
     - run: sudo apt-get update
     - run: sudo apt-get install -y mongodb-org
+    - run: sudo systemctl start mongod
     - run: npm run test:unit 
     # - name: Use Node.js ${{ matrix.node-version }}
     #   uses: actions/setup-node@v4
