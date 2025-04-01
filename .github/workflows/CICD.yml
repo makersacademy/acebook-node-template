@@ -41,6 +41,7 @@ jobs:
     - run: npm test
   
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -53,6 +54,7 @@ jobs:
           aws-region: eu-west-2
       - name: Sync files to S3 bucket
         run: |
+          aws s3 sync build https://eu-west-2.console.aws.amazon.com/s3/buckets/acebook-node-citation-bucket
           aws s3 sync build s3://acebook-node-citation-bucket
 
 
