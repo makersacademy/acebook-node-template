@@ -19,13 +19,18 @@ export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
 nvm install 23
 
-# Verify that package.json exists before installing dependencies
-echo "Listing files in /home/ec2-user/myapp for debugging..."
-ls -lah /home/ec2-user/myapp
+# Wait for package.json to be copied, checking every 5 seconds
+echo "Waiting for package.json to be available..."
+MAX_TRIES=10
+TRY_COUNT=0
+while [ ! -f /home/ec2-user/myapp/package.json ] && [ $TRY_COUNT -lt $MAX_TRIES ]; do
+  echo "Waiting for package.json... Attempt $((TRY_COUNT+1))/$MAX_TRIES"
+  sleep 5
+  TRY_COUNT=$((TRY_COUNT+1))
+done
 
-echo "Checking if package.json exists..."
 if [ ! -f /home/ec2-user/myapp/package.json ]; then
-  echo "Error: package.json not found in /home/ec2-user/myapp! Deployment may have failed."
+  echo "Error: package.json not found in /home/ec2-user/myapp after waiting."
   exit 1
 fi
 
