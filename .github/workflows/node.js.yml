@@ -56,3 +56,36 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v1
+
+name: Auto Merge Dev to Main
+
+on:
+  push:
+    branches:
+      - dev  # Change this to the branch you want to merge from
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge dev into main
+        run: |
+          git checkout main
+          git pull origin main
+          git merge --no-ff dev -m "Auto-merge dev into main"
+          git push origin main
