@@ -1,25 +1,19 @@
-<<<<<<< HEAD
 name: Deploy to S3
 run-name: ${{ github.actor }} started deploying code to S3
-=======
-name: Deploy to CodeDeploy
-run-name: ${{ github.actor }} started deploying a build
->>>>>>> b5edcd4f18bf6d9adee01092473b2cb5e72643de
 on:
   pull_request:
     types: closed
     branches:
       - 'main'
 jobs:
-  if_merged:
+  deploy-app:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
       - name: Zip files
-        run: git archive --format=zip --output app.zip main
-<<<<<<< HEAD
+        run: git archive --format=zip --output ./app.zip main
       - name: List files
         run: ls
       - name: Setup AWS CLI
@@ -29,6 +23,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
       - name: Sync zip to S3
-        run: aws s3 sync app.zip s3://acebook-of-troy --delete
-=======
->>>>>>> b5edcd4f18bf6d9adee01092473b2cb5e72643de
+        run: aws s3 cp app.zip s3://acebook-of-troy
