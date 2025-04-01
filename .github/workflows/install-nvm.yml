@@ -2,11 +2,21 @@ name: Install NPM dependencies
 run-name: ${{ github.actor }} is installing the latest NPM dependencies
 on: [push]
 jobs:
-  install-nvm:
+  install-npm-dependencies:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Show pre-installed Node.js version
-        run: node --version
+      - name: Show pre-installed nvm version
+        run: nvm -v
+      - name: Use Node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: 'latest'
       - name: Install dependencies
         run: npm install
+  install-mongodb:
+    needs: install-npm-dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install gnupg curl
+        run: sudo apt-get install gnupg curl
