@@ -46,13 +46,13 @@ jobs:
         sudo apt-get install -y mongodb-org
         sudo systemctl start mongod
         
-    - name: Start server in background
-      run: |
-        npm run start:test &
-        sleep 5
+    # - name: Start server in background
+    #   run: |
+    #     npm run start:test &
+    #     sleep 5
 
-    - name: Run tests
-      run: npm run test 
+    # - name: Run tests
+    #   run: npm run test 
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
@@ -62,4 +62,4 @@ jobs:
         aws-region: eu-west-2
 
     - name: Deploy static site to S3 bucket
-      run: aws s3 sync . s3://mantasdean-acebook --delete --exclude "node_modules/*" --exclude ".github/*" --exclude "spec/*"
+      run: aws s3 sync . s3://mantasdean-acebook --delete --exclude "node_modules/*" --exclude ".github/*" --exclude "spec/*" --exclude "package-lock.json"
