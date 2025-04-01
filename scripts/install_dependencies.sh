@@ -19,6 +19,13 @@ export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
 nvm install 23
 
+# Verify that package.json exists before installing dependencies
+echo "Checking if package.json exists..."
+if [ ! -f /home/ec2-user/myapp/package.json ]; then
+  echo "Error: package.json not found in /home/ec2-user/myapp! Deployment may have failed."
+  exit 1
+fi
+
 # Install project dependencies
 echo "Installing project dependencies..."
 cd /home/ec2-user/myapp || { echo "Directory not found!"; exit 1; }
