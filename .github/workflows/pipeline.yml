@@ -18,8 +18,24 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
+    - name: Cache Node.js dependencies
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+          
     - name: Install dependecies
       run: npm install
+
+    - name: Cache MongoDB installation
+      uses: actions/cache@v2
+      with:
+        path: /var/lib/mongodb
+        key: ${{ runner.os }}-mongodb-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-mongodb-
 
     - name: Install MongoDB
       run: |
@@ -46,4 +62,4 @@ jobs:
         aws-region: eu-west-2
 
     - name: Deploy static site to S3 bucket
-      run: aws s3 sync . s3://mantasdean-acebook --delete --exclude ".github/*"
+      run: aws s3 sync . s3://mantasdean-acebook --delete --exclude "node_modules/*" --exclude ".github/*" --exclude "spec/*"
