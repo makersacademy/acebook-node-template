@@ -6,12 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Show pre-installed nvm version
-        run: nvm -v
       - name: Use Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: 'latest'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
       - name: Install dependencies
         run: npm install
   install-mongodb:
