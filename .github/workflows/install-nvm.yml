@@ -10,11 +10,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'latest'
+          cache: 'npm'
       - name: Install dependencies
-        run: npm install
-  install-mongodb:
-    runs-on: ubuntu-latest
-    steps:
+        run: npm ci
       - name: Update apt
         run: sudo apt-get update
       - name: install gpg
@@ -27,9 +25,7 @@ jobs:
         run: sudo apt-get update
       - name: install latest MongoDB
         run: sudo apt-get install -y mongodb-org
-  run-mongodb:
-    needs: [install-npm-dependencies, install-mongodb]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Start MongoDB
+      - name: Reload Mongod
+        run: sudo systemctl daemon-reload
+      - name: Load Mongod
         run: sudo systemctl start mongod
