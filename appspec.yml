@@ -33,27 +33,7 @@ hooks:
     - location: before_install.sh
       timeout: 300
       runas: ec2-user
-    - location:
-      timeout:
-      runas:
-  AfterInstall:
-    - location:
-      timeout:
-      runas:
-    - location:
-      timeout:
-      runas:
   ApplicationStart:
-    - location:
-      timeout:
-      runas:
-    - location:
-      timeout:
-      runas:
-  ValidateService:
-    - location:
-      timeout:
-      runas:
-    - location:
-      timeout:
-      runas:
+    - location: application_start.sh
+      timeout: 300
+      runas: ec2-user
