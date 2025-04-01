@@ -4,49 +4,58 @@
 set -e
 
 echo "Updating packages..."
-# sudo apt update -y  # For Ubuntu/Debian
-sudo yum update -y  # For Amazon Linux
+sudo yum update -y
 
-# Ensure the application directory exists
-echo "Ensuring application directory exists..."
-sudo mkdir -p /home/ec2-user/myapp
-sudo chown ec2-user:ec2-user /home/ec2-user/myapp
+# Install dependencies for Node.js and MongoDB
+echo "Installing required dependencies..."
+sudo yum groupinstall 'Development Tools' -y
+sudo yum install -y curl git
 
-# Install Node.js and NVM
-echo "Installing Node.js and NVM..."
+# Install Node Version Manager (NVM)
+echo "Installing Node Version Manager (NVM)..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+
+# Load NVM into the current shell
 export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
+
+# Install Node.js version 23
+echo "Installing Node.js version 23..."
 nvm install 23
 
-# Wait for package-lock.json to be available, checking every 5 seconds
-echo "Waiting for package-lock.json to be available..."
-MAX_TRIES=10
-TRY_COUNT=0
-while [ ! -f /home/ec2-user/myapp/package-lock.json ] && [ $TRY_COUNT -lt $MAX_TRIES ]; do
-  echo "Waiting for package-lock.json... Attempt $((TRY_COUNT+1))/$MAX_TRIES"
-  sleep 5
-  TRY_COUNT=$((TRY_COUNT+1))
-done
+# Ensure the application directory exists
+APP_DIR="/home/ec2-user/myapp"
 
-if [ ! -f /home/ec2-user/myapp/package-lock.json ]; then
-  echo "Error: package-lock.json not found in /home/ec2-user/myapp after waiting."
+if [ ! -d "$APP_DIR" ]; then
+  echo "Error: Application directory $APP_DIR does not exist!"
+  exit 1
+fi
+
+# Verify that package.json exists
+if [ ! -f "$APP_DIR/package.json" ]; then
+  echo "Error: package.json not found in $APP_DIR!"
+  ls -lah "$APP_DIR"
   exit 1
 fi
 
 # Install project dependencies
 echo "Installing project dependencies..."
-cd /home/ec2-user/myapp || { echo "Directory not found!"; exit 1; }
+cd "$APP_DIR"
 npm install
 
-# Install MongoDB
-echo "Installing MongoDB..."
-wget -qO - https://pgp.mongodb.com/server-8.0.asc | sudo tee /etc/apt/trusted.gpg.d/mongodb.asc
-echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
-sudo apt update -y
-sudo apt install -y mongodb-org
+# Install MongoDB Community 8.0
+echo "Installing MongoDB Community 8.0..."
+echo "[mongodb-org-8.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/8.0/x86_64/
+gpgcheck=1
+enabled=1" | sudo tee /etc/yum.repos.d/mongodb-org-8.0.repo
 
-# Start MongoDB
+sudo yum install -y mongodb-org
+
+# Start MongoDB service
 echo "Starting MongoDB..."
 sudo systemctl start mongod
 sudo systemctl enable mongod
+
+echo "Dependencies installed successfully!"
