@@ -28,9 +28,14 @@ jobs:
     - run: sudo apt-get update
     - run: sudo apt-get install -y mongodb-org
     - run: sudo systemctl start mongod
+
+  start-server:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:   
     - run: npm run start:test
 
-  tests: 
+  run-tests: 
     runs-on: ubuntu-latest
     needs: build
     steps: 
