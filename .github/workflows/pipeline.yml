@@ -22,7 +22,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: npm install
-    - run: sudo apt-get install -y mongodb-community@8.0
+    - run: sudo apt-get update
+    - run: sudo apt-get install -y mongodb-org
     - run: npm run test:unit 
     # - name: Use Node.js ${{ matrix.node-version }}
     #   uses: actions/setup-node@v4
