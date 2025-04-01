@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Cache Node.js dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: node_modules
         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
@@ -30,7 +30,7 @@ jobs:
       run: npm install
 
     - name: Cache MongoDB installation
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: /var/lib/mongodb
         key: ${{ runner.os }}-mongodb-${{ hashFiles('**/package-lock.json') }}
