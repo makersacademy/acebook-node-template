@@ -18,47 +18,25 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    # - name: Cache Node.js dependencies
-    #   uses: actions/cache@v4
-    #   with:
-    #     path: node_modules
-    #     key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-node-modules-
-
-    - name: Clear npm cache
-      run: npm cache clean --force
-          
     - name: Install dependecies
-      run: npm ci
+      run: npm install
 
-    # - name: Cache MongoDB installation
-    #   uses: actions/cache@v4
-    #   with:
-    #     path: /var/lib/mongodb
-    #     key: ${{ runner.os }}-mongodb-${{ hashFiles('**/package-lock.json') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-mongodb-
-
-    # - name: Install MongoDB
-    #   run: |
-    #     sudo apt-get install gnupg curl
-    #     curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor
-    #     echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
-    #     sudo apt-get update
-    #     sudo apt-get install -y mongodb-org
-    #     sudo systemctl start mongod
+    - name: Install MongoDB
+      run: |
+        sudo apt-get install gnupg curl
+        curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor
+        echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+        sudo apt-get update
+        sudo apt-get install -y mongodb-org
+        sudo systemctl start mongod
         
-    # - name: Start server in background
-    #   run: |
-    #     npm run start:test &
-    #     sleep 5
+    - name: Start server in background
+      run: |
+        npm run start:test &
+        sleep 5
 
-    # - name: Run tests
-    #   run: npm run test 
-
-    - name: Zip files before upload
-      run: zip -r ../app_files.zip . -x "node_modules/*" -x ".github/*" -x ".git/*"
+    - name: Run tests
+      run: npm run test 
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
@@ -68,4 +46,4 @@ jobs:
         aws-region: eu-west-2
 
     - name: Deploy static site to S3 bucket
-      run: aws s3 cp ../app_files.zip s3://mantasdean-acebook/app_files.zip
+      run: aws s3 sync . s3://mantasdean-acebook --delete --exclude ".github/*"
