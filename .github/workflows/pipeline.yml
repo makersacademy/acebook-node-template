@@ -54,6 +54,9 @@ jobs:
     # - name: Run tests
     #   run: npm run test 
 
+    - name: Zip files before upload
+      run: zip -r ../app_files.zip . -x "node_modules/*" -x ".github/*" -x ".git/*"
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -62,4 +65,4 @@ jobs:
         aws-region: eu-west-2
 
     - name: Deploy static site to S3 bucket
-      run: aws s3 sync . s3://mantasdean-acebook --delete --exclude "node_modules/*" --exclude ".github/*" --exclude "spec/*" --exclude "package-lock.json"
+      run: aws s3 cp ../app_files.zip s3://mantasdean-acebook/app_files.zip
