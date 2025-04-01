@@ -4,12 +4,13 @@
 set -e
 
 echo "Updating packages..."
-sudo yum update -y
+sudo yum update -y --allowerasing
 
-# Install dependencies for Node.js and MongoDB
+# Install required dependencies
 echo "Installing required dependencies..."
 sudo yum groupinstall 'Development Tools' -y
-sudo yum install -y curl git
+sudo yum install -y curl --allowerasing
+sudo yum install -y git
 
 # Install Node Version Manager (NVM)
 echo "Installing Node Version Manager (NVM)..."
@@ -51,7 +52,7 @@ baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/8.0/x86_64/
 gpgcheck=1
 enabled=1" | sudo tee /etc/yum.repos.d/mongodb-org-8.0.repo
 
-sudo yum install -y mongodb-org
+sudo yum install -y mongodb-org --allowerasing
 
 # Start MongoDB service
 echo "Starting MongoDB..."
