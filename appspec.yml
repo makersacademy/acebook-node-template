@@ -1,26 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: /app.js
-    destination: /home/ec2-user/acebook/app.js
-  - source: /bin
-    destination: /home/ec2-user/acebook/bin
-  - source: /controllers
-    destination: /home/ec2-user/acebook/controllers
-  - source: /models
-    destination: /home/ec2-user/acebook/models
-  - source: /package-lock.json
-    destination: /home/ec2-user/acebook/package-lock.json
-  - source: /package.json
-    destination: /home/ec2-user/acebook/package.json
-  - source: /public
-    destination: /home/ec2-user/acebook/public
-  - source: /routes
-    destination: /home/ec2-user/acebook/routes
-  - source: /spec
-    destination: /home/ec2-user/acebook/spec
-  - source: /views
-    destination: /home/ec2-user/acebook/views
+  - source: /app
+    destination: /home/ec2-user/acebook/
 permissions:
   - object: /home/ec2-user/acebook/
     pattern: "**"
