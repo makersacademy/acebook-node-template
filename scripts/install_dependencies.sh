@@ -1,14 +1,20 @@
 #!/bin/bash
 set -e  # Exit on any error
 
+echo "Cleaning previous installations..."
+
+# Remove existing Node.js, NVM, and MongoDB if they exist
+rm -rf "$HOME/.nvm" || true
+sudo yum remove -y nodejs mongodb-org || true
+sudo rm -rf /var/lib/mongo /etc/mongod.conf /var/log/mongodb || true
+sudo rm -f /etc/yum.repos.d/mongodb-org-8.0.repo || true
+
 # Update system packages
 sudo yum update -y
 
-# Install NVM if not installed
-if [ ! -d "$HOME/.nvm" ]; then
-    echo "Installing NVM..."
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
-fi
+# Install NVM
+echo "Installing NVM..."
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
