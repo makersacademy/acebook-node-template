@@ -13,10 +13,12 @@ else
   mkdir ${DIR}
 fi
 
+# Change directory into /acebook
+cd /home/ec2-user/acebook
 # Install latest NPM
 npm install -g npm@latest
 # Install dependencies from package.json
-npm ci
+npm ci -v
 
 # Add mongodb repo to YUM sources
 echo "[mongodb-org-8.0]

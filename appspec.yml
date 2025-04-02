@@ -11,8 +11,8 @@ permissions:
     group: wheel
     mode: 777
 hooks:
-  BeforeInstall:
-    - location: before_install.sh
+  AfterInstall:
+    - location: after_install.sh
       timeout: 300
       runas: ec2-user
   ApplicationStart:
