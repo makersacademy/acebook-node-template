@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /app
+  - source: /
     destination: /home/ec2-user/acebook/
 permissions:
   - object: /home/ec2-user/acebook/
