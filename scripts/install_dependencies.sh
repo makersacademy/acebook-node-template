@@ -1,20 +1,14 @@
 #!/bin/bash
 set -e  # Exit on any error
 
-echo "Cleaning previous installations..."
-
-# Remove existing Node.js, NVM, and MongoDB if they exist
-rm -rf "$HOME/.nvm" || true
-sudo yum remove -y nodejs mongodb-org || true
-sudo rm -rf /var/lib/mongo /etc/mongod.conf /var/log/mongodb || true
-sudo rm -f /etc/yum.repos.d/mongodb-org-8.0.repo || true
-
 # Update system packages
 sudo yum update -y
 
-# Install NVM
-echo "Installing NVM..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+# Install NVM if not installed
+if [ ! -d "$HOME/.nvm" ]; then
+    echo "Installing NVM..."
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+fi
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
@@ -26,16 +20,25 @@ echo "Installing Node.js 23..."
 nvm install 23
 export PATH="$HOME/.nvm/versions/node/$(nvm version)/bin:$PATH"
 
-# Ensure the app directory exists
+# Ensure a clean app directory
 APP_DIR="/home/ec2-user/app"
-if [ ! -d "$APP_DIR" ]; then
-    mkdir -p "$APP_DIR"
-    echo "Created $APP_DIR directory."
+if [ -d "$APP_DIR" ]; then
+    echo "Cleaning up existing app directory..."
+    sudo rm -rf "$APP_DIR"/*
 fi
+
+# Recreate the app directory
+mkdir -p "$APP_DIR"
+echo "Created $APP_DIR directory."
 
 # Move to app directory and install npm dependencies
 cd "$APP_DIR"
-npm init -y
+
+# Ensure package.json is only created if it doesn't exist
+if [ ! -f "package.json" ]; then
+    npm init -y
+fi
+
 npm install
 
 # Install and start MongoDB
