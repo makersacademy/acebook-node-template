@@ -63,7 +63,7 @@ jobs:
       - name: Upload zip to S3 - aws deploy
         run: |
           aws deploy push \
-          --application-name acebook_app \
+          --application-name acebook-citation-app \
           --description "This is a revision for the application acebook_app" \
           --ignore-hidden-files \
           --s3-location s3://acebook-node-citation-bucket/app.zip \
