@@ -48,18 +48,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
 
-      - name: Get the version tag
-        id: version
-        run: |
-          VERSION=$(git describe --tags --abbrev=0)  # Get the latest Git tag as the version
-          echo "VERSION=$VERSION" >> $GITHUB_ENV  # Store it as an environment variable
+      # - name: Get the version tag
+      #   id: version
+      #   run: |
+      #     VERSION=$(git describe --tags --abbrev=0)  # Get the latest Git tag as the version
+      #     echo "VERSION=$VERSION" >> $GITHUB_ENV  # Store it as an environment variable
 
       - name: Zip Files
-        run: zip -r "./builds/${VERSION}.zip" . -x "*.git*"
+        run: zip -r "./builds/app.zip" . -x "*.git*"
 
       - name: Upload zip to S3
         run: |
-          aws s3 cp "./builds/${VERSION}.zip" s3://your-bucket-name/path/to/upload/${VERSION}.zip
+          aws s3 cp "./builds/app.zip" s3://your-bucket-name/path/to/upload/${VERSION}.zip
       # - name: Sync files to S3 bucket
       #   run: aws s3 sync . s3://acebook-node-citation-bucket --delete --exclude ".github/*"
 
