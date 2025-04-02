@@ -13,15 +13,22 @@ else
   mkdir ${DIR}
 fi
 
-#add npm and node to path
-export NVM_DIR="$HOME/.nvm" 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # loads nvm 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # loads nvm bash_completion (node is in path now)
-
 # Install latest NPM
 npm install -g npm@latest
 # Install dependencies from package.json
 npm install
+<<<<<<< Updated upstream
+=======
+
+# Add mongodb repo to YUM sources
+
+sudo echo "[mongodb-org-8.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/8.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://pgp.mongodb.com/server-8.0.asc" > /etc/yum.repos.d/mongodb-org-8.0.repo
+>>>>>>> Stashed changes
 
 # Install MongoDB Community from repository
 sudo yum install -y mongodb-org-8.0.6 mongodb-org-database-8.0.6 mongodb-org-server-8.0.6 mongodb-mongosh mongodb-org-mongos-8.0.6 mongodb-org-tools-8.0.6 mongodb-org-database-tools-extra-8.0.6
