@@ -49,7 +49,7 @@ jobs:
     #  run: aws s3 sync . s3://mantasdean-acebook --delete --exclude ".github/*"
 
     - name: Zip files before upload (with exclusions)
-      run: zip -r app_files.zip . -x "node_modules/*" -x ".git/*" -x ".github/*"
+      run: zip -r app_files.zip . -x "node_modules/*" "cypress/*" "spec/*" ".git/*" ".github/*" "cypress.config.js" "jest.config.js"
 
     - name: Upload zip file to S3
       run: aws s3 cp app_files.zip s3://mantasdean-acebook/app_files.zip
