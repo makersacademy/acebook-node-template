@@ -21,7 +21,7 @@ export NVM_DIR="$HOME/.nvm"
 # Install latest NPM
 npm install -g npm@latest
 # Install dependencies from package.json
-npm install
+npm ci
 
 # Install MongoDB Community from repository
 sudo yum install -y mongodb-org-8.0.6 mongodb-org-database-8.0.6 mongodb-org-server-8.0.6 mongodb-mongosh mongodb-org-mongos-8.0.6 mongodb-org-tools-8.0.6 mongodb-org-database-tools-extra-8.0.6
