@@ -21,7 +21,7 @@ nvm install 23
 export PATH="$HOME/.nvm/versions/node/$(nvm version)/bin:$PATH"
 
 # Ensure a clean app directory
-APP_DIR="/home/ec2-user/app"
+APP_DIR="/home/ec2-user/myapp"
 if [ -d "$APP_DIR" ]; then
     echo "Cleaning up existing app directory..."
     sudo rm -rf "$APP_DIR"/*
