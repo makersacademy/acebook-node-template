@@ -6,7 +6,6 @@ files:
 file_exists_behaviour: OVERWRITE
 permissions:
   - object: /home/ec2-user/acebook
-    pattern: "**"
     owner: ec2-user
     group: wheel
     mode: 777
