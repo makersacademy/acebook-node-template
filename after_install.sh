@@ -31,3 +31,6 @@ sudo systemctl start mongod
 
 # Enable at startup
 sudo systemctl enable mongod
+
+# Start server
+npm start
