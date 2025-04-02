@@ -14,13 +14,20 @@ fi
 
 echo "Checking for Homebrew Installation..."
 if ! command -v brew &>/dev/null; then
-    echo "Installing Homebrew..."
+    echo "Installing Homebrew as ec2-user..."
     sudo -u ec2-user /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    # Add Homebrew to PATH for the current session
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/ec2-user/.bashrc
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 else
-    echo "Homebrew is already installed.."
+    echo "Homebrew is already installed."
 fi
 
-echo "Installing NVM"
+# **Explicitly set Homebrew in PATH**
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+echo "Installing NVM via Homebrew"
 brew install nvm
 
 echo "Installing Node JS"
