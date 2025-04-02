@@ -36,6 +36,9 @@ if [ ! -d "/home/ec2-user/.nvm" ]; then
     sudo -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash'
 fi
 
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+
 echo "Installing Node JS"
 nvm install 23
 
