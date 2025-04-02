@@ -8,14 +8,17 @@ sudo yum update -y
 if [ ! -d "$HOME/.nvm" ]; then
     echo "Installing NVM..."
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
-else
-    echo "NVM is already installed."
 fi
 
-# Load NVM into the shell session
+# Load NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 # Install Node.js 23
 echo "Installing Node.js 23..."
 nvm install 23
+export PATH="$HOME/.nvm/versions/node/$(nvm version)/bin:$PATH"
 
 # Ensure the app directory exists
 APP_DIR="/home/ec2-user/app"
@@ -37,6 +40,5 @@ gpgcheck=1
 enabled=1
 gpgkey=https://pgp.mongodb.com/server-8.0.asc" | sudo tee /etc/yum.repos.d/mongodb-org-8.0.repo
 
-sudo yum install -y mongodb-org
-
+sudo yum install -y mongodb-org --enablerepo=mongodb-org-8.0
 sudo systemctl start mongod
