@@ -54,19 +54,25 @@ jobs:
       #     VERSION=$(git describe --tags --abbrev=0)  # Get the latest Git tag as the version
       #     echo "VERSION=$VERSION" >> $GITHUB_ENV  # Store it as an environment variable
 
-      - name: Zip Files
-        run: zip -r "app.zip" . -x "*.git*"
+      # - name: Zip Files
+      #   run: zip -r "app.zip" . -x "*.git*"
 
-      - name: Upload zip to S3
+      # - name: Upload zip to S3
+      #   run: |
+      #     aws s3 cp "app.zip" s3://acebook-node-citation-bucket/app.zip
+      - name: Upload zip to S3 - aws deploy
         run: |
-          aws s3 cp "app.zip" s3://acebook-node-citation-bucket/app.zip
-      # - name: Sync files to S3 bucket
-      #   run: aws s3 sync . s3://acebook-node-citation-bucket --delete --exclude ".github/*"
+          aws deploy push \
+          --application-name acebook_app \
+          --description "This is a revision for the application acebook_app" \
+          --ignore-hidden-files \
+          --s3-location s3://acebook-node-citation-bucket/app.zip \
+          --source .
       - name: Trigger CodeDeploy deployment
         run: |
           aws deploy create-deployment \
             --application-name acebook-citation-app \
             --deployment-group-name acebook-citation-app \
-            --revision revisionType=S3,bucket=acebook-node-citation-bucket,key=app.zip \
+            --revision revisionType=S3,bucket=acebook-node-citation-bucket,key=app.zip,bundleType=zip \
             --description "New version of app uploaded" \
             --deployment-config-name CodeDeployDefault.AllAtOnce
