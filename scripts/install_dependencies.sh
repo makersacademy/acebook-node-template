@@ -25,7 +25,7 @@ else
 fi
 
 # **Explicitly set Homebrew in PATH**
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 echo "Installing NVM via Homebrew"
 brew install nvm
