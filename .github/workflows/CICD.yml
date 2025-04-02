@@ -62,5 +62,11 @@ jobs:
           aws s3 cp "app.zip" s3://acebook-node-citation-bucket/app.zip
       # - name: Sync files to S3 bucket
       #   run: aws s3 sync . s3://acebook-node-citation-bucket --delete --exclude ".github/*"
-
-
+      - name: Trigger CodeDeploy deployment
+        run: |
+          aws deploy create-deployment \
+            --application-name acebook-citation-app \
+            --deployment-group-name acebook-citation-app \
+            --revision revisionType=S3,bucket=acebook-node-citation-bucket,key=app.zip \
+            --description "New version of app uploaded" \
+            --deployment-config-name CodeDeployDefault.AllAtOnce
