@@ -54,6 +54,5 @@ jobs:
           aws-region: eu-west-2
       - name: Sync files to S3 bucket
         run: |
-          aws s3 sync build s3://acebook-node-citation-bucket
-
+          aws s3 sync . s3://acebook-node-citation-bucket --delete --exclude ".github/*"
 
