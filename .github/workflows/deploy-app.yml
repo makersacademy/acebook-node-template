@@ -30,4 +30,4 @@ jobs:
       - name: Sync zip to S3
         run: aws s3 cp app.zip s3://acebook-of-troy
       - name: Deploy using AWS CodeDeploy
-        run: aws deploy create-deployment --application-name ${{ env.CODEDEPLOY_NAME }} --deployment-group-name ${{ env.DEPLOYMENT_GROUP_NAME }} --deployment-config-name CodeDeployDefault.OneAtATime --revision revisionType=S3,s3Location={bucket=${{ env.BUCKET_NAME }},key=${{ env.BUCKET_KEY }},bundleType=zip}
+        run: aws deploy create-deployment --application-name ${{ env.CODEDEPLOY_NAME }} --deployment-group-name ${{ env.DEPLOYMENT_GROUP_NAME }} --deployment-config-name CodeDeployDefault.OneAtATime --s3Location bucket=${{ env.BUCKET_NAME }},key=${{ env.BUCKET_KEY }},bundleType=zip
