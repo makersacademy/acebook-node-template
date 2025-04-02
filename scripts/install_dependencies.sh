@@ -27,8 +27,14 @@ fi
 # **Explicitly set Homebrew in PATH**
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-echo "Installing NVM via Homebrew"
-brew install nvm
+# echo "Installing NVM via Homebrew"
+# brew install nvm
+
+# Install NVM if not installed
+if [ ! -d "/home/ec2-user/.nvm" ]; then
+    echo "Installing NVM..."
+    sudo -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash'
+fi
 
 echo "Installing Node JS"
 nvm install 23
