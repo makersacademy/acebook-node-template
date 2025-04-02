@@ -26,7 +26,17 @@ fi
 
 # Move to app directory and install npm dependencies
 cd "$APP_DIR"
-npm init
+npm init -y
 npm install
 
 # Install and start MongoDB
+echo "[mongodb-org-8.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/8.0/aarch64/
+gpgcheck=1
+enabled=1
+gpgkey=https://pgp.mongodb.com/server-8.0.asc" | sudo tee /etc/yum.repos.d/mongodb-org-8.0.repo
+
+sudo yum install -y mongodb-org
+
+sudo systemctl start mongod
