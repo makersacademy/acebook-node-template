@@ -2,7 +2,7 @@
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 . ~/.nvm/nvm.sh
-nvm install
+nvm install node
 nvm use node
 
 DIR="/home/ec2-user/acebook"
