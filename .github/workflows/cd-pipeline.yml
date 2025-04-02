@@ -1,11 +1,11 @@
-name: Node.js CI
+name: CD pipeline
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  build:
+  upload-S3:
     runs-on: ubuntu-latest
     
     steps: 
