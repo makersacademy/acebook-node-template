@@ -55,11 +55,11 @@ jobs:
       #     echo "VERSION=$VERSION" >> $GITHUB_ENV  # Store it as an environment variable
 
       - name: Zip Files
-        run: zip -r "./builds/app.zip" . -x "*.git*"
+        run: zip -r "app.zip" . -x "*.git*"
 
       - name: Upload zip to S3
         run: |
-          aws s3 cp "./builds/app.zip" s3://your-bucket-name/path/to/upload/${VERSION}.zip
+          aws s3 cp "app.zip" s3://acebook-node-citation-bucket/app.zip
       # - name: Sync files to S3 bucket
       #   run: aws s3 sync . s3://acebook-node-citation-bucket --delete --exclude ".github/*"
 
