@@ -8,6 +8,26 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
 
 jobs:
   build:
@@ -72,7 +92,7 @@ jobs:
         run: |
           aws deploy create-deployment \
           --application-name acebook-citation-app \
-          --s3-location bucket=acebook-node-citation-bucket,key=app.zip,bundleType=zip,eTag=107ab2743156fcad6c0eeb39028f15ba \
+          --s3-location bucket=acebook-node-citation-bucket,key=app.zip,bundleType=zip \
           --deployment-group-name acebook-citation-app \
           --deployment-config-name CodeDeployDefault.AllAtOnce
       # comment
