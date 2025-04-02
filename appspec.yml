@@ -11,7 +11,7 @@ hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
   # AfterInstall:
   #   - location: Scripts/RunResourceTests.sh
   #     timeout: 180
