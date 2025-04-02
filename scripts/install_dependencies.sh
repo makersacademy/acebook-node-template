@@ -4,6 +4,14 @@ set -e
 echo "Updating Packages"
 sudo yum update -y
 
+echo "Checking if Git is installed..."
+if ! command -v git &>/dev/null; then
+    echo "Installing Git..."
+    sudo yum install -y git
+else
+    echo "Git is already installed."
+fi
+
 echo "Checking for Homebrew Installation..."
 if ! command -v brew &>/dev/null; then
     echo "Installing Homebrew..."
