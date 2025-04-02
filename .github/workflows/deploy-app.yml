@@ -24,3 +24,5 @@ jobs:
           aws-region: eu-west-2
       - name: Sync zip to S3
         run: aws s3 cp app.zip s3://acebook-of-troy
+      - name: Deploy using AWS CodeDeploy
+        run: aws deploy create-deployment --application-name ${{ env.codedeployname }}-${{ env.environment }} --deployment-group-name ${{ env.codedeployname }}-${{ env.environment }} --deployment-config-name CodeDeployDefault.OneAtATime --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
