@@ -36,19 +36,18 @@ if [ ! -d "/home/ec2-user/.nvm" ]; then
     sudo -u ec2-user bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash'
 fi
 
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
+# Make sure scripts are executable
+chmod +x /home/ec2-user/myapp/scripts/*.sh || echo "No scripts to make executable yet"
 
-echo "Installing Node JS"
-nvm install 23
+# Install MongoDB
+echo "[mongodb-org-8.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/8.0/aarch64/
+gpgcheck=1
+enabled=1
+gpgkey=https://pgp.mongodb.com/server-8.0.asc" | sudo tee /etc/yum.repos.d/mongodb-org-8.0.repo
 
-echo "Installing project dependencies"
-npm install
+sudo yum install -y mongodb-org --enablerepo=mongodb-org-8.0
+sudo systemctl start mongod
 
-echo "Tapping MongoDB brew repository"
-brew tap mongodb/brew
-
-echo "Installing MongoDB Community 8.0"
-brew install mongodb-community@8.0
-
-echo "Dependencies Installed Successfully"
+echo "BeforeInstall script completed successfully."
