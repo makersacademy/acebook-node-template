@@ -38,13 +38,6 @@ fi
 
 # Make sure scripts are executable
 chmod +x /home/ec2-user/myapp/scripts/*.sh || echo "No scripts to make executable yet"
-<<<<<<< HEAD
-=======
-
-sleep 1
-echo "Installing Node JS"
-nvm install 23
->>>>>>> 8abca75 (changes)
 
 # Install MongoDB
 echo "[mongodb-org-8.0]
