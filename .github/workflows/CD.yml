@@ -1,0 +1,51 @@
+name: CD
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: 'Trigger Deployment'
+        required: true
+        default: 'true'
+  workflow_run: 
+    workflows: ["CI"]
+    types: 
+      - completed
+
+jobs:
+  configure_aws:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+  s3_upload:
+    needs: configure_aws
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload zip to S3 - aws deploy
+        run: |
+          aws deploy push \
+          --application-name acebook-citation-app \
+          --description "This is a revision for the application acebook_app" \
+          --ignore-hidden-files \
+          --s3-location s3://acebook-node-citation-bucket/app.zip \
+          --source .
+  deploy:
+    needs: s3_upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger CodeDeploy deployment
+        run: |
+          aws deploy create-deployment \
+          --application-name acebook-citation-app \
+          --s3-location bucket=acebook-node-citation-bucket,key=app.zip,bundleType=zip \
+          --deployment-group-name acebook-citation-app \
+          --deployment-config-name CodeDeployDefault.AllAtOnce
