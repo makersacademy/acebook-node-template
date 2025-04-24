@@ -26,9 +26,9 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    ```
    Then follow the instructions to update your `~/.bash_profile`.
 2. Open a new terminal
-3. Install the latest version of [Node.js](https://nodejs.org/en/), currently 25.
+3. Install the latest version of [Node.js](https://nodejs.org/en/), currently 23.
    ```
-   nvm install 25
+   nvm install 23
    ```
 
 ### Set up your project
