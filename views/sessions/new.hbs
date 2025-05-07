@@ -1,7 +1,52 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+<p>Please log in or sign up</p>
+<br>
+
+<div class="box">
+<br>
 <form id="new-session-form" action="/sessions" method="post">
-  <label for="email">Email: </label>
-  <input id="email" type="email" name="email" value="">
-  <label for="password">Password: </label>
-  <input id="password" type="password" name="password" value="">
-  <input id="submit" type="submit" value="Submit">
-</form>
+  
+  <input id="email" type="email" name="email" value="" type="text" placeholder="Enter your e-mail">
+  <br>
+  
+  <input id="password" type="password" name="password" value="" type="text" placeholder="Password"> <br> <br>
+  {{#if accountCreated}}
+  Account created! Please sign in.
+  {{/if}}
+  {{#if emailExists}}
+  Email already exists! <br>
+  Please try to log in, or try to sign up with a different email.
+  {{/if}}
+  {{#if usernameExists}}
+  Username already exists! <br>
+  Please try to log in, or try to sign up with a different username.
+  {{/if}}
+  {{#if wronguser}}
+  User does not exist, please sign up!
+  {{/if}}
+  {{#if wrongpass}}
+  Password is incorrect, please try again.
+  {{/if}}
+  <br>
+  {{!-- password and user prompts for incorrect --}}
+  <br>
+  <br> <input id="submit" type="submit" value="Log in" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+</form> <br>
+<form id="new-session-form" action="/users/new" method="get">
+<input id="submit" type="submit" value="Sign up" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+</form> <br>
+{{!-- currently doesn't work needs to have a new route added with a form --}}
+<form id="new-session-form" action="/sessions" method="post">
+<input id="submit" type="submit" value="Forgot password" style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+</form><br>
+</div>
+</div>
+</body>
+</html>

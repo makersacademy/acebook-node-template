@@ -1,13 +1,171 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <form action='/sessions?_method=DELETE' method='POST'>
-      <input type="submit" value="Log Out">
-    </form>
-    {{{body}}}
-  </body>
+
+<head>
+
+  <title>Catbook</title>
+  <link rel="shortcut icon" type="image/jpg" href="/images/favicon.ico">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  
+  <div class="container" >
+    <div class="cat">
+      <div class="face">
+        <div class="ear-1">
+          <div class="inner-1"></div>
+        </div>
+        <div class="ear-r">
+          <div class="inner-2"></div>
+        </div>
+        <div class="eye-1">
+          <div class="eyeball"></div>
+        </div>
+        <div class="eye-r">
+          <div class="eyeball"></div>
+        </div>
+        <div class="nose">
+          <div class="l1"></div>
+          <div class="l2"></div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="paw-1"></div>
+        <div class="paw-2"></div>
+        <div class="tail"></div>
+      </div>
+      <div class="shadow"></div>
+    </div>
+  </div>
+</body>
+
+
+<style>
+  nav {
+    width: 180px;
+    background: rgb(255, 255, 255);
+    color: rgba(8, 8, 8, 0.87);
+    -webkit-clip-path: circle(24px at 30px 24px);
+    clip-path: circle(24px at 32px 24px);
+    -webkit-transition: -webkit-clip-path 0.5625s, clip-path 0.375s;
+    transition: -webkit-clip-path 0.5625s, clip-path 0.375s;
+    position:absolute;
+    top:34px;
+    left:600px;
+  }
+
+  nav:hover {
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    -webkit-transition-duration: 0.75s;
+    transition-duration: 0.75s;
+    -webkit-clip-path: circle(390px at 225px 24px);
+    clip-path: circle(390px at 150px 24px);
+  }
+
+  a {
+    display: block;
+    line-height: 30px;
+    padding: 0 20px;
+    color: inherit;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  a:hover {
+    background: #FFE082;
+  }
+
+  a:active {
+    background: #FFCA28;
+  }
+
+  .navicon {
+    padding: 23px 20px;
+    cursor: pointer;
+    -webkit-transform-origin: 32px 24px;
+    -ms-transform-origin: 32px 24px;
+    transform-origin: 32px 24px;
+  }
+
+  .navicon div {
+    position: relative;
+    width: 20px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.87);
+  }
+
+  .navicon div:before,
+  .navicon div:after {
+    display: block;
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.87);
+    position: absolute;
+  }
+
+  .navicon div:before {
+    top: -7px;
+  }
+
+  .navicon div:after {
+    top: 7px;
+  }
+
+   #banner{
+    position:relative;
+    top:-35px;
+    left:0px;
+}
+
+#pawburger{
+  position:absolute;
+  width:35%;
+  height:35%;
+  z-index: 1;
+  top:-9.5px;
+  left:0px;
+}
+#headers{
+  object-fit: contain;
+}
+</style>
+</head>
+
+<body>
+  
+
+
+<div id="headers">
+  <div style="display:inline-block">
+        <div id="banner" style="display:inline-block">
+    <img src="/images/Catbook.gif" alt="Welcome To Catbook">
+
+  {{#if shownavbar}}
+  <nav> 
+    <div class="navicon">
+    <img src="/images/paw.jpg"  id="pawburger" alt="=">
+    </div>
+    <a href="/posts">Home</a>
+    <a href="/friends">Friends</a>
+    <a href="/posts/explore">Explore posts</a>
+    <a href="/">Logout</a>
+    </div>
+    </nav>
+    {{/if}}
+  </div>
+   {{{body}}}
+
+
+
+  </div>
+
+</body>
+
 </html>

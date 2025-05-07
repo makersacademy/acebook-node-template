@@ -10,6 +10,7 @@ const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
+const friendsRouter = require("./routes/friends");
 
 const app = express();
 
@@ -56,8 +57,14 @@ const sessionChecker = (req, res, next) => {
 // route setup
 app.use("/", homeRouter);
 app.use("/posts", sessionChecker, postsRouter);
+app.use("posts/explore", sessionChecker, postsRouter); //do we need this for it to work?
 app.use("/sessions", sessionsRouter);
 app.use("/users", usersRouter);
+app.use("/friends", sessionChecker, friendsRouter) //added SC to check user is logged in
+
+//posts router to listen to a post request to the id/act
+app.use("/posts/:id/act", postsRouter)
+//app.use("/users/:id/befriend", postsRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
