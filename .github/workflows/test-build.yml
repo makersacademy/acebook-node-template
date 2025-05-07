@@ -1,0 +1,35 @@
+name: Test on push
+run-name: ${{ github.actor }} started a test build
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - 'main'
+jobs:
+  run-test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Update apt
+        run: sudo apt-get update
+      - name: install gpg
+        run: sudo apt-get install gnupg curl
+      - name: Get MongoDB GPG key
+        run: curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor
+      - name: Add repo to sources
+        run: echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+      - name: Update apt
+        run: sudo apt-get update
+      - name: install latest MongoDB
+        run: sudo apt-get install -y mongodb-org
+      - name: Load Mongod
+        run: sudo systemctl start mongod
+      - run: npm run start:test &
+      - run: npm run test
